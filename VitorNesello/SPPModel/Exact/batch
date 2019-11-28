@@ -1,0 +1,16 @@
+#!/bin/bash
+
+dirInstancias=../instances/set5_4/
+# for dirsets in `ls ${dirInstancias}`
+# do
+	for arquivo in `ls ${dirInstancias}`
+	do
+		#for i in $(seq 1 10)
+		#do
+		#	echo "Instancia: ${arquivo} Execucao: $i"
+			echo "Instancia: ${arquivo}"
+			./exeExactSolver ${dirInstancias}$arquivo
+		#done
+	done
+# done
+

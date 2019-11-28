@@ -1,0 +1,42 @@
+Tried aggregator 2 times.
+MIP Presolve eliminated 1000 rows and 113 columns.
+MIP Presolve modified 368 coefficients.
+Aggregator did 39 substitutions.
+Reduced MIP has 1084 rows, 1912 columns, and 6872 nonzeros.
+Reduced MIP has 982 binaries, 2 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.04 ticks)
+Found incumbent of value 4100.000000 after 0.02 sec. (19.05 ticks)
+Probing fixed 0 vars, tightened 1 bounds.
+Probing time = 0.01 sec. (8.38 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 1 rows and 1 columns.
+Aggregator did 1 substitutions.
+Reduced MIP has 1082 rows, 1910 columns, and 6868 nonzeros.
+Reduced MIP has 981 binaries, 23 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.75 ticks)
+Probing time = 0.00 sec. (3.04 ticks)
+Clique table members: 2464.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.02 sec. (30.67 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                         4100.0000        0.0000      633  100.00%
+      0     0      111.9667   125     4100.0000      111.9667      633   97.27%
+      0     0      114.0191   128     4100.0000      Cuts: 43     1057   97.22%
+      0     0      189.2609   126     4100.0000      Cuts: 85     1820   95.38%
+      0     0      209.2334   108     4100.0000      Cuts: 61     2112   94.90%
+*     0+    0                         1170.0000      209.2334     2112   82.12%
+*     0+    0                         1130.0000      209.2334     2112   81.48%
+*     0+    0                          990.0000      209.2334     2112   78.87%
+      0     0      209.6259   109      990.0000      Cuts: 32     2298   78.83%
+      0     0      211.3782   109      990.0000      Cuts: 77     2774   78.65%
+      0     0      211.3832   102      990.0000      Cuts: 28     2851   78.65%
+      0     0      211.3849   105      990.0000      Cuts: 20     2875   78.65%
+      0     0      211.3849   106      990.0000   Flowcuts: 7     2908   78.65%
+      0     2      211.3849   106      990.0000      211.3849     2908   78.65%
+Elapsed time = 0.93 sec. (1175.39 ticks, tree = 0.00 MB, solutions = 4)
+     28    30      214.1980   109      990.0000      214.1424     5605   78.37%

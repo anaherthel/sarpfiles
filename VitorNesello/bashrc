@@ -1,0 +1,25 @@
+alias emacs='emacs -nw'
+
+export PATH="$PATH:/usr/ilog/cplex/bin/x86-64_linux/cplex"
+alias cplex='/usr/ilog/cplex/bin/x86-64_linux/cplex'
+
+export PATH="$PATH:/usr/local/MATLAB/R2012a/bin/matlab"
+alias matlab='/usr/local/MATLAB/R2012a/bin/matlab'
+
+export TERM=xterm-256color
+
+export PATH="$PATH:/opt/sublime_text/sublime_text"
+alias sublime='/opt/sublime_text/sublime_text'
+
+alias reads='gnome-open'
+
+alias workFolder='cd ~/Dropbox/Universidade/Problemas/'
+
+export BAPCOD_VERSION=2.0.0
+export BAPCOD_ROOT=/opt/BaPCodFramework/2.0.0/BaPCod
+export BAPCOD_PATH=$BAPCOD_ROOT:$BAPCOD_ROOT/include:$BAPCOD_ROOT/include_solvers:$BAPCOD_ROOT/lib:$BAPCOD_ROOT/tools/backtrace:$BAPCOD_ROOT/tools/MathProgSolverBuilder/include:$BAPCOD_ROOT/tools/MathProgSolverBuilder/src
+export PATH=$BAPCOD_PATH:$PATH
+export BAPCOD_INCLUDE_SOLVER_DIR=$BAPCOD_ROOT/include_solverInterfaces
+export PATH=$PATH:/opt/BaPCodFramework/2.0.0/BaPCod/include_solverInterfaces
+export BOOST_LIBRARY_DIR=~/Downloads/boost_1_52_0/stage/lib
+export BOOST_ROOT=~/Downloads/boost_1_52_0

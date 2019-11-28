@@ -1,0 +1,50 @@
+Tried aggregator 2 times.
+MIP Presolve eliminated 150 rows and 59 columns.
+MIP Presolve modified 52 coefficients.
+Aggregator did 11 substitutions.
+Reduced MIP has 170 rows, 246 columns, and 851 nonzeros.
+Reduced MIP has 136 binaries, 2 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.32 ticks)
+Found incumbent of value 1400.000000 after 0.00 sec. (2.54 ticks)
+Probing time = 0.00 sec. (0.64 ticks)
+Cover probing fixed 0 vars, tightened 44 bounds.
+Tried aggregator 1 time.
+MIP Presolve eliminated 1 rows and 1 columns.
+MIP Presolve modified 36 coefficients.
+Reduced MIP has 169 rows, 245 columns, and 849 nonzeros.
+Reduced MIP has 135 binaries, 8 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.56 ticks)
+Probing fixed 0 vars, tightened 2 bounds.
+Probing time = 0.00 sec. (0.62 ticks)
+Clique table members: 505.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (1.25 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                         1400.0000        0.0000      105  100.00%
+      0     0      107.3179    40     1400.0000      107.3179      105   92.33%
+      0     0      112.7475    48     1400.0000      Cuts: 27      291   91.95%
+      0     0      149.5068    38     1400.0000      Cuts: 36      439   89.32%
+      0     0      169.6273    35     1400.0000      Cuts: 24      512   87.88%
+      0     0      178.1472    40     1400.0000      Cuts: 20      584   87.28%
+      0     0      178.1522    44     1400.0000      Cuts: 19      626   87.27%
+      0     0      178.1990    44     1400.0000      Cuts: 18      655   87.27%
+      0     0      178.2203    50     1400.0000      Cuts: 11      674   87.27%
+      0     0      178.3058    49     1400.0000      Cuts: 11      689   87.26%
+      0     0      178.3058    46     1400.0000      Cuts: 11      704   87.26%
+*     0+    0                          440.0000      178.3058      704   59.48%
+*     0+    0                          439.0000      178.3058      704   59.38%
+*     0+    0                          380.0000      178.3058      704   53.08%
+*     0+    0                          370.0000      178.3058      704   51.81%
+      0     2      178.3058    46      370.0000      178.3058      704   51.81%
+Elapsed time = 0.08 sec. (66.34 ticks, tree = 0.00 MB, solutions = 5)
+    835   642      237.9568    25      370.0000      204.9393    13794   44.61%
+    966   739      274.0000    23      370.0000      274.0000    18044   25.95%
+   1034   681      280.6540    26      370.0000      274.0000    21243   25.95%
+*  1365   495      integral     0      350.0000      274.9844    28649   21.43%
+   1726   537      318.5814    20      350.0000      276.1844    38082   21.09%
+   2037   675      305.4094    17      350.0000      278.6277    46536   20.39%
