@@ -103,3 +103,49 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 double calcEucDist (double *X, double *Y, int I, int J){
     return sqrt(pow(X[I] - X[J], 2) + pow(Y[I] - Y[J], 2));
 }
+
+void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs){
+//A = {(i,j): i ∈ S,j ∈ N ∪ Mp or (OK)
+//i,j ∈ M ∪ N, i != j or 
+//i ∈ M ∪ N, j ∈ Mp,i != j + m or 
+//i ∈ Mp, j ∈ Md,j != i + m or
+//(i,f): i ∈ M ∪ N ∪ S}
+
+    for (int i = inst->V - inst->K; i < inst->V; i++){
+        if (i > inst->n + 2* inst->m - 1){
+            for (int j = 0; j < inst->n + 2* inst->m; j++){
+                arcs[i][j] = true;
+            } 
+        }
+    }
+
+    for (int i = 0; i < inst->V - inst->K; i++){
+        if (i > inst->n + 2* inst->m - 1){
+            for (int j = 0; j < inst->n + 2* inst->m; j++){
+                arcs[i][j] = true;
+            } 
+        }
+    }
+        // if (i < inst->V - inst->K){
+        //     for (int j = 0; j < inst->n + 2* inst->m; j++){
+        //         if (i != j){
+
+        //             if (inst->n - 1 < j < inst->n + inst->m){
+        //                 if (i != (j + inst->m)){
+        //                     arcs[i][j] = true;
+        //                 }
+        //             }
+        //         }
+        //     }
+            
+
+        // }
+        // for (int j = 0; j < inst.V; j++){
+        //     if (i == j){
+        //         arcs[i][j]
+        //     }
+
+        // }
+    }
+
+}

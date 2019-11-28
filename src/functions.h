@@ -49,5 +49,6 @@ struct instanceStat{
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist);
 double calcEucDist (double *X, double *Y, int I, int J);
+void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs);
 
 #endif

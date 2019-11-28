@@ -20,7 +20,7 @@ int main (int argc, char *argv[]) {
 	nodeStat node;
 	instanceStat inst;
 	std::vector<nodeStat> nodeVec;
-
+	vector< vector<bool> > arcs;
 	// int vertices;
 
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix);
@@ -31,6 +31,25 @@ int main (int argc, char *argv[]) {
 	for (int i = 0; i < inst.V; i++){
 		for (int j = 0; j < inst.V; j++){
 			cout << setw(5) << distMatrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	vector<bool> arcRow;
+	
+	for (int i = 0; i < inst.V; i++){
+		for (int j = 0; j < inst.V; j++){
+			arcRow.push_back(false);
+		}
+		arcs.push_back(arcRow);
+	}
+	cout << "Feasible arcs: " << endl;
+
+	feasibleArcs(&inst, nodeVec, arcs);
+
+	for (int i = 0; i < inst.V; i++){
+		for (int j = 0; j < inst.V; j++){
+			cout << arcs[i][j] << " ";
 		}
 		cout << endl;
 	}
@@ -46,23 +65,20 @@ int main (int argc, char *argv[]) {
 	IloModel model(env, "SARP");
 
 	//Creating variables
-	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());	
+	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
 
-	// for (int i = 0; i < occRows.size(); i++){
+	for (int i = 0; i < nodeVec.size(); i++){
+		x[i] = IloArray <IloBoolVarArray> (env, nodeVec.size());
+		// for (int j = i + 1; j < nodeVec.size(); j++){
+		// 	IloArray <IloBoolVarArray> array2D(env, shifts.size());
 
-	// 	IloArray <IloArray <IloBoolVarArray> > array3D(env, shifts.size());
-	// 	x[i] = array3D;
-	// 	//getchar();
-	// 	for (int j = i + 1; j < occRows.size(); j++){
-	// 		IloArray <IloBoolVarArray> array2D(env, shifts.size());
-
-	// 		x[i][j] = array2D;
-	// 		for (int k = 0; k < shifts.size(); k++){
-	// 			IloBoolVarArray array(env, shifts.size());
-	// 			x[i][j][k] = array;
-	// 		}
-	// 	}	
-	// }
+		// 	x[i][j] = IloBoolVarArray (env, );
+		// 	for (int k = 0; k < shifts.size(); k++){
+		// 		IloBoolVarArray array(env, shifts.size());
+		// 		x[i][j][k] = array;
+		// 	}
+		// }	
+	}
 
 	// for (int i = 0; i < occRows.size(); i++){
 	// 	for (int j = i + 1; j < occRows.size(); j++){
@@ -150,8 +166,8 @@ int main (int argc, char *argv[]) {
 	// }
 
 
-	// IloCplex ShiftSKQAP(model);
-	// ShiftSKQAP.exportModel("ShiftSKQAP.lp");
+	IloCplex SARP(model);
+	SARP.exportModel("SARP.lp");
 
 	// ShiftSKQAP.solve();
 	// cout << "\nObj Val: " << setprecision(15) << ShiftSKQAP.getObjValue() << endl;
