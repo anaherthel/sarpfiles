@@ -28,8 +28,8 @@ int main (int argc, char *argv[]) {
 
 	cout << "Distance Matrix: " << endl;
 
-	for (int i = 0; i < inst.V; i++){
-		for (int j = 0; j < inst.V; j++){
+	for (int i = 0; i < inst.V + 1; i++){
+		for (int j = 0; j < inst.V + 1; j++){
 			cout << setw(5) << distMatrix[i][j] << " ";
 		}
 		cout << endl;
@@ -37,8 +37,8 @@ int main (int argc, char *argv[]) {
 
 	vector<bool> arcRow;
 	
-	for (int i = 0; i < inst.V; i++){
-		for (int j = 0; j < inst.V; j++){
+	for (int i = 0; i < inst.V + 1; i++){
+		for (int j = 0; j < inst.V + 1; j++){
 			arcRow.push_back(false);
 		}
 		arcs.push_back(arcRow);
@@ -46,10 +46,17 @@ int main (int argc, char *argv[]) {
 	cout << "Feasible arcs: " << endl;
 
 	feasibleArcs(&inst, nodeVec, arcs);
-
-	for (int i = 0; i < inst.V; i++){
-		for (int j = 0; j < inst.V; j++){
-			cout << arcs[i][j] << " ";
+	for (int i = 0; i < inst.V + 1; i++){
+		if (i == 0){
+			cout << setw(3) << " ";
+		}
+		cout << setw(3) << std::right << i;
+	}
+	cout << endl;
+	for (int i = 0; i < inst.V + 1; i++){
+		cout << setw(3) << std::right << i;
+		for (int j = 0; j < inst.V + 1; j++){
+			cout << setw(3) << std:: right << arcs[i][j];
 		}
 		cout << endl;
 	}
@@ -200,7 +207,7 @@ int main (int argc, char *argv[]) {
  //    delete[] xf;
  //    delete[] yf;
 
-	for ( int i = 0; i < inst.V; i++ ) {
+	for ( int i = 0; i < inst.V + 1; i++ ) {
 		delete[] distMatrix[i];
 	}
 

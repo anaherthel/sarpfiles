@@ -51,9 +51,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     double *xf = new double[V];
     double *yf = new double[V];
 
-    double **dist = new double*[V];
-    for (int i= 0; i < V; i++){
-        dist[i] = new double [V];
+    double **dist = new double*[V + 1];
+    for (int i= 0; i < V + 1; i++){
+        dist[i] = new double [V + 1];
     }
 
     int tempNode;
@@ -67,9 +67,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     // Calculate distance matrix (Euclidian)
 
-    for (int i = 0; i < V; i++){
-        for (int j = 0; j < V; j++){
-            dist[i][j] = floor(calcEucDist(xs, ys, i, j) + 0.5);
+    for (int i = 0; i < V + 1; i++){
+        for (int j = 0; j < V + 1; j++){
+            if (i < V){
+                if (j < V){
+                    dist[i][j] = floor(calcEucDist(xs, ys, i, j) + 0.5);
+                }
+                else if (j == V){
+                    dist[i][j] = 0;
+                }
+            }
+            else{
+                dist[i][j] = 0;
+            }
         }
     }
 
@@ -85,6 +95,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         nodeVec.push_back(*node);
     }
 
+    //Adding dummy node
+    
+    node->xs = 0;
+    node->ys = 0;
+    node->label = 'f';
+    node->load = 0;
+    node->e = 0;
+    node->l = 240;
+    node->xf = 0;
+    node->yf = 0;
+    nodeVec.push_back(*node);
 
     *Mdist = dist;
     inst->K = K;
@@ -105,47 +126,48 @@ double calcEucDist (double *X, double *Y, int I, int J){
 }
 
 void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs){
-//A = {(i,j): i ∈ S,j ∈ N ∪ Mp or (OK)
-//i,j ∈ M ∪ N, i != j or 
-//i ∈ M ∪ N, j ∈ Mp,i != j + m or 
-//i ∈ Mp, j ∈ Md,j != i + m or
-//(i,f): i ∈ M ∪ N ∪ S}
 
-    for (int i = inst->V - inst->K; i < inst->V; i++){
-        if (i > inst->n + 2* inst->m - 1){
-            for (int j = 0; j < inst->n + 2* inst->m; j++){
-                arcs[i][j] = true;
-            } 
+    for (int i = 0; i < inst->V; i++){
+        if (i < inst->n){
+            for(int j = 0; j < inst->n + 2*inst->m; j++){
+                if(i != j){
+                    arcs[i][j] = true;
+                }
+            }
+            arcs[i][inst->V] = true;
+        }
+        else if (i > inst->n - 1){
+            if (i < inst->n + inst->m){
+                for (int j = 0; j < inst->n + 2*inst->m; j++){
+                    if (i != j){
+                        if (j != i + inst->m){
+                            arcs[i][j] = true;
+                        }
+                    }
+                }               
+            }
+            else if (i > inst->n + inst->m - 1){
+                if (i < inst->n + 2*inst->m){
+                    for (int j = 0; j < inst->n + 2*inst->m; j++){
+                        if (i != j){
+                            if (j + inst->m != i){
+                                arcs[i][j] = true;
+                            }
+                        }
+                    }
+                    arcs[i][inst->V] = true;
+                }
+
+                else if (i > inst->n + 2* inst->m - 1){
+                    for (int j = 0; j < inst->n + inst->m; j++){
+                        arcs[i][j] = true;
+                    } 
+                    arcs[i][inst->V] = true;
+                }
+            }
         }
     }
 
-    for (int i = 0; i < inst->V - inst->K; i++){
-        if (i > inst->n + 2* inst->m - 1){
-            for (int j = 0; j < inst->n + 2* inst->m; j++){
-                arcs[i][j] = true;
-            } 
-        }
-    }
-        // if (i < inst->V - inst->K){
-        //     for (int j = 0; j < inst->n + 2* inst->m; j++){
-        //         if (i != j){
 
-        //             if (inst->n - 1 < j < inst->n + inst->m){
-        //                 if (i != (j + inst->m)){
-        //                     arcs[i][j] = true;
-        //                 }
-        //             }
-        //         }
-        //     }
-            
-
-        // }
-        // for (int j = 0; j < inst.V; j++){
-        //     if (i == j){
-        //         arcs[i][j]
-        //     }
-
-        // }
-    }
 
 }
