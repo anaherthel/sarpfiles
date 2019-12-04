@@ -119,22 +119,35 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     //     cout << nodeVec[i].label << " ";
     // }
     // cout << endl;
+
+    delete[] xs;
+    delete[] ys;
+    delete[] label;
+    delete[] load;
+    delete[] e;
+    delete[] l;
+    delete[] xf;
+    delete[] yf;
 }
 
 double calcEucDist (double *X, double *Y, int I, int J){
     return sqrt(pow(X[I] - X[J], 2) + pow(Y[I] - Y[J], 2));
 }
 
-void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs){
+void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, vector<int> &arcSizePlus, vector<int> &arcSizeMinus){
 
     for (int i = 0; i < inst->V; i++){
         if (i < inst->n){
             for(int j = 0; j < inst->n + 2*inst->m; j++){
                 if(i != j){
                     arcs[i][j] = true;
+                    arcSizePlus[i] += 1;
+                    arcSizeMinus[j] += 1;
                 }
             }
             arcs[i][inst->V] = true;
+            arcSizePlus[i] += 1;
+            arcSizeMinus[inst->V] += 1;
         }
         else if (i > inst->n - 1){
             if (i < inst->n + inst->m){
@@ -142,6 +155,8 @@ void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector
                     if (i != j){
                         if (j != i + inst->m){
                             arcs[i][j] = true;
+                            arcSizePlus[i] += 1;
+                            arcSizeMinus[j] += 1;
                         }
                     }
                 }               
@@ -152,22 +167,30 @@ void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector
                         if (i != j){
                             if (j + inst->m != i){
                                 arcs[i][j] = true;
+                                arcSizePlus[i] += 1;
+                                arcSizeMinus[j] += 1;
                             }
                         }
                     }
                     arcs[i][inst->V] = true;
+                    arcSizePlus[i] += 1;
+                    arcSizeMinus[inst->V] += 1;                    
                 }
 
                 else if (i > inst->n + 2* inst->m - 1){
                     for (int j = 0; j < inst->n + inst->m; j++){
                         arcs[i][j] = true;
+                        arcSizePlus[i] += 1;
+                        arcSizeMinus[j] += 1;
                     } 
                     arcs[i][inst->V] = true;
+                    arcSizePlus[i] += 1;
+                    arcSizeMinus[inst->V] += 1;                    
                 }
             }
         }
     }
-
+    
 
 
 }

@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, double **mdist, vector< pair<int,int> > arcVec){
+void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, double **mdist, vector< pair<int,int> > &arcVec, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus){
 
 	//MIP
 	//Creating environment and model 
@@ -83,35 +83,20 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 
 	model.add(IloMaximize(env, objFunction));
 
-	// //Creating constraints
-	// //Constraint 1
-
-	// for (int i = 0; i < occRows.size(); i++){
-	// 	IloExpr exp(env);
-	// 	sprintf (var, "Constraint1_%d", i);
-	// 	for (int k = 0; k < shifts.size(); k++){
-	// 		exp += y[i][k];
-	// 	}
-	// 	IloRange cons = (exp == 1);
-	// 	cons.setName(var);
-	// 	model.add(cons);
-	// }
-
-	// //Constraint 2
+	//Creating constraints
+	//Constraint 1 - requests served at most once by one vehicle
 	
-	// for (int i = 0; i < occRows.size(); i++){
-	// 	for (int j = i + 1; j < occRows.size(); j++){
-	// 		for (int k = 0; k < shifts.size(); k++){
-	// 			for (int l = 0; l < shifts.size(); l++){
-	// 				IloExpr exp(env);
-	// 				sprintf (var, "Constraint2_%d_%d_%d_%d", i, j, k, l);
+	// for (int i = 0; i < inst->n + inst->m; i++){
+	// 	IloExpr exp(env);
+	// 	for (int k = 0; k < shifts.size(); k++){
+	// 		for (int j = 0; j < arcVec.size(); j++){
+	// 			sprintf (var, "Constraint1_%d_%d_%d", , , k);
 
-	// 				exp = x[i][j][k][l] - y[i][k] - y[j][l];
+	// 			exp += x[i][j][k] ;
 
-	// 				IloRange cons = (exp >= - 1);
-	// 				cons.setName(var);
-	// 				model.add(cons);
-	// 			}
+	// 			IloRange cons = (exp <= 1);
+	// 			cons.setName(var);
+	// 			model.add(cons);
 	// 		}
 	// 	}
 	// }
