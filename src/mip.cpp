@@ -64,21 +64,20 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	//Creating objective function
 	
 	IloExpr objFunction(env);
-	int counter = 0;
+
 	for (int i = inst->n; i < inst->n + inst->m; i++){
-		for (int j = 0; j < nodeVec.size(); j++){
-			for (int k = 0; k < inst->K; k++){
-				objFunction += (double)gamma * x[i][j][k];
-				objFunction += (double)mu * mdist[i][i + inst->m] * x[i][j][k];
-				counter++;
+		for (int j = 0; j < arcVec.size(); j++){
+			if(arcVec[j].first == i){
+				for (int k = 0; k < inst->K; k++){
+					objFunction += (double)gamma * x[i][arcVec[j].second][k];
+					objFunction += (double)mu * mdist[i][i + inst->m] * x[i][arcVec[j].second][k];
+				}
 			}
 		}
 	}
-	cout << counter;
-	getchar();
 	for (int i = 0; i < arcVec.size(); i++){
 		for (int k = 0; k < inst->K; k++){
-			objFunction += (double)mdist[arcVec[i].first][arcVec[i].second] * x[arcVec[i].first][arcVec[i].second][k];
+			objFunction -= (double)mdist[arcVec[i].first][arcVec[i].second] * x[arcVec[i].first][arcVec[i].second][k];
 		}
 	}
 
