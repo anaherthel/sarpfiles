@@ -71,7 +71,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int j = 0; j < V + 1; j++){
             if (i < V){
                 if (j < V){
-                    dist[i][j] = floor(calcEucDist(xs, ys, i, j) + 0.5);
+                    dist[i][j] = floor(calcEucDist(xs, ys, i, j) + 0.5) * 5;
                 }
                 else if (j == V){
                     dist[i][j] = 0;
