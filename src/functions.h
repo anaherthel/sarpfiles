@@ -45,6 +45,9 @@ struct instanceStat{
     int delta;
     int T;
     int V;
+   	double gamma = 3;
+	double mu = 0.5;
+	double vmed = 18;
 };
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist);

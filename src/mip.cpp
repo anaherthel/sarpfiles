@@ -9,9 +9,8 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	char var[100];
 	IloEnv env;
 	IloModel model(env, "SARP");
-	double gamma = 3;
-	double mu = 0.5;
-	double vmed = 18;
+	long M = numeric_limits<long>::max();
+	long W = numeric_limits<long>::max();
 
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
@@ -69,8 +68,8 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		for (int j = 0; j < arcVec.size(); j++){
 			if(arcVec[j].first == i){
 				for (int k = 0; k < inst->K; k++){
-					objFunction += (double)gamma * x[i][arcVec[j].second][k];
-					objFunction += (double)mu * mdist[i][i + inst->m] * x[i][arcVec[j].second][k];
+					objFunction += (double)inst->gamma * x[i][arcVec[j].second][k];
+					objFunction += (double)inst->mu * mdist[i][i + inst->m] * x[i][arcVec[j].second][k];
 				}
 			}
 		}
@@ -181,6 +180,36 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		IloRange cons = (exp == 1);
 		cons.setName(var);
 		model.add(cons);	
+	}
+
+	//Constraints 7 and 8 - TW
+
+	for (int i = 0; i < inst->n; i++){
+		IloExpr exp(env);
+		exp = b[i];
+
+		sprintf (var, "Constraint7_%d", i);
+		IloRange cons1 = (exp <= nodeVec[i].l);
+		cons1.setName(var);
+		model.add(cons1);
+		
+		sprintf (var, "Constraint8_%d", i);
+		IloRange cons2 = (nodeVec[i].e <= exp);
+		cons2.setName(var);
+		model.add(cons2);
+	}
+
+	//Constraints 9
+
+	for (int i = 0; i < arcs.size(); i++){
+		for (int k = 0; k < inst->K; k++){
+			IloExpr exp(env);
+			exp = b[arcs[i].second] - b[arcs[i].first] - mdist[arcs[i].first][arcs[i].second]/inst->vmed - 
+			sprintf (var, "Constraint9_%d_%d", i, k);
+			IloRange cons = (exp >= 0);
+			cons.setName(var);
+			model.add(cons);					
+		}
 	}
 
 	IloCplex SARP(model);
