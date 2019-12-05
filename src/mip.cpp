@@ -135,6 +135,28 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		}
 	}
 
+	//Constraint 4 - Flow conservation
+
+	for (int i = 0; i < inst->n + 2*inst->m; i++){
+		for (int k = 0; k < inst->K; k++){
+			IloExpr exp1(env);
+			IloExpr exp2(env);
+			//Left side: arc leaves i
+			for (int j = 0; j < arcPlus[i].size(); j++){
+				exp1 += x[arcPlus[i][j].first][arcPlus[i][j].second][k];
+			}
+			//Right side: arc enters i
+			for (int j = 0; j < arcMinus[i].size(); j++){
+				exp2 += x[arcMinus[i][j].first][arcMinus[i][j].second][k];
+
+			}
+			sprintf (var, "Constraint4_%d_%d", i, k);
+			IloRange cons = ((exp1-exp2) == 0);
+			cons.setName(var);
+			model.add(cons);
+		}
+	}
+
 	IloCplex SARP(model);
 	SARP.exportModel("SARP.lp");
 
