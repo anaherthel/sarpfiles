@@ -115,7 +115,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	}
 	//Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle
 
-	for (int i = inst->n - 1; i < inst->n + inst->m; i++){
+	for (int i = inst->n; i < inst->n + inst->m; i++){
 		for (int k = 0; k < inst->K; k++){
 			IloExpr exp1(env);
 			IloExpr exp2(env);
@@ -157,6 +157,32 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		}
 	}
 
+	//Constraint 5 - The route of every vehicle has to start at its starting position
+
+	for (int k = 0; k < inst->K; k++){
+		IloExpr exp(env);
+		for (int i = 0; i < arcPlus[inst->V - inst->K + k].size(); i++){
+			exp += x[arcPlus[inst->V - inst->K + k][i].first][arcPlus[inst->V - inst->K + k][i].second][k];
+		}
+		sprintf (var, "Constraint5_%d", k);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);	
+	}
+
+	//Constraint 6 - The route of every vehicle has to end at the dummy node f.
+
+	for (int k = 0; k < inst->K; k++){
+		IloExpr exp(env);
+		for (int i = 0; i < arcMinus[inst->V].size(); i++){
+			exp += x[arcMinus[inst->V][i].first][arcMinus[inst->V][i].second][k];
+		}
+		sprintf (var, "Constraint6_%d", k);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);	
+	}
+
 	IloCplex SARP(model);
 	SARP.exportModel("SARP.lp");
 
@@ -166,5 +192,6 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	env.end();
 
 	//infile.close();
+	
 
 }
