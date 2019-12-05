@@ -84,23 +84,56 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	model.add(IloMaximize(env, objFunction));
 
 	//Creating constraints
-	//Constraint 1 - requests served at most once by one vehicle
+	//Constraint 1 - all passenger requests must be served
 	
-	// for (int i = 0; i < inst->n + inst->m; i++){
-	// 	IloExpr exp(env);
-	// 	for (int k = 0; k < shifts.size(); k++){
-	// 		for (int j = 0; j < arcVec.size(); j++){
-	// 			sprintf (var, "Constraint1_%d_%d_%d", , , k);
+	for (int i = 0; i < inst->n; i++){
+		IloExpr exp(env);
+		for (int k = 0; k < inst->K; k++){
+			for (int j = 0; j < arcPlus[i].size(); j++){
+				exp += x[i][arcPlus[i][j].second][k];
+			}
+		}
+		sprintf (var, "Constraint1_%d", i);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
 
-	// 			exp += x[i][j][k] ;
+	//Constraint 2 - parcel requests may be denied
+	
+	for (int i = inst->n - 1; i < inst->n + inst->m; i++){
+		IloExpr exp(env);
+		for (int k = 0; k < inst->K; k++){
+			for (int j = 0; j < arcPlus[i].size(); j++){
+				exp += x[i][arcPlus[i][j].second][k];
+			}
+		}
+		sprintf (var, "Constraint2_%d", i);
+		IloRange cons = (exp <= 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+	//Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle
 
-	// 			IloRange cons = (exp <= 1);
-	// 			cons.setName(var);
-	// 			model.add(cons);
-	// 		}
-	// 	}
-	// }
+	for (int i = inst->n - 1; i < inst->n + inst->m; i++){
+		for (int k = 0; k < inst->K; k++){
+			IloExpr exp1(env);
+			IloExpr exp2(env);
+			//Left side: arc leaves i
+			for (int j = 0; j < arcPlus[i].size(); j++){
+				exp1 += x[i][arcPlus[i][j].second][k];
+			}
+			//Right side: arc leaves i + m
+			for (int j = 0; j < arcPlus[i + inst->m].size(); j++){
+				exp2 += x[i + inst->m][arcPlus[i + inst->m][j].second][k];
 
+			}
+			sprintf (var, "Constraint3_%d_%d", i, k);
+			IloRange cons = ((exp1-exp2) == 0);
+			cons.setName(var);
+			model.add(cons);
+		}
+	}
 
 	IloCplex SARP(model);
 	SARP.exportModel("SARP.lp");

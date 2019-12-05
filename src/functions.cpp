@@ -134,32 +134,39 @@ double calcEucDist (double *X, double *Y, int I, int J){
     return sqrt(pow(X[I] - X[J], 2) + pow(Y[I] - Y[J], 2));
 }
 
-void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, vector<int> &arcSizePlus, vector<int> &arcSizeMinus){
+void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus){
 
     for (int i = 0; i < inst->V; i++){
         if (i < inst->n){
             for(int j = 0; j < inst->n + 2*inst->m; j++){
                 if(i != j){
                     arcs[i][j] = true;
-                    arcSizePlus[i] += 1;
-                    arcSizeMinus[j] += 1;
+                    fArc.first = i;
+                    fArc.second = j;
+                    arcMinus[j].push_back(fArc);
+                    arcPlus[i].push_back(fArc);
                 }
             }
             arcs[i][inst->V] = true;
-            arcSizePlus[i] += 1;
-            arcSizeMinus[inst->V] += 1;
+            fArc.first = i;
+            fArc.second = inst->V;
+            arcMinus[inst->V].push_back(fArc);
+            arcPlus[i].push_back(fArc);
         }
+
         else if (i > inst->n - 1){
             if (i < inst->n + inst->m){
                 for (int j = 0; j < inst->n + 2*inst->m; j++){
                     if (i != j){
                         if (j != i + inst->m){
                             arcs[i][j] = true;
-                            arcSizePlus[i] += 1;
-                            arcSizeMinus[j] += 1;
+                            fArc.first = i;
+                            fArc.second = j;
+                            arcMinus[j].push_back(fArc);
+                            arcPlus[i].push_back(fArc);
                         }
                     }
-                }               
+                }
             }
             else if (i > inst->n + inst->m - 1){
                 if (i < inst->n + 2*inst->m){
@@ -167,30 +174,35 @@ void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector
                         if (i != j){
                             if (j + inst->m != i){
                                 arcs[i][j] = true;
-                                arcSizePlus[i] += 1;
-                                arcSizeMinus[j] += 1;
+                                fArc.first = i;
+                                fArc.second = j;
+                                arcMinus[j].push_back(fArc);
+                                arcPlus[i].push_back(fArc);
                             }
                         }
                     }
                     arcs[i][inst->V] = true;
-                    arcSizePlus[i] += 1;
-                    arcSizeMinus[inst->V] += 1;                    
+                    fArc.first = i;
+                    fArc.second = inst->V;
+                    arcMinus[inst->V].push_back(fArc);
+                    arcPlus[i].push_back(fArc);                   
                 }
 
                 else if (i > inst->n + 2* inst->m - 1){
                     for (int j = 0; j < inst->n + inst->m; j++){
                         arcs[i][j] = true;
-                        arcSizePlus[i] += 1;
-                        arcSizeMinus[j] += 1;
+                        fArc.first = i;
+                        fArc.second = j;
+                        arcMinus[j].push_back(fArc);
+                        arcPlus[i].push_back(fArc);
                     } 
                     arcs[i][inst->V] = true;
-                    arcSizePlus[i] += 1;
-                    arcSizeMinus[inst->V] += 1;                    
+                    fArc.first = i;
+                    fArc.second = inst->V;
+                    arcMinus[inst->V].push_back(fArc);
+                    arcPlus[i].push_back(fArc);             
                 }
             }
         }
     }
-    
-
-
 }

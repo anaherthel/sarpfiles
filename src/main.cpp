@@ -29,8 +29,6 @@ int main (int argc, char *argv[]) {
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix);
 	vector< vector< pair<int,int> > > arcPlus;
 	vector< vector< pair<int,int> > > arcMinus; 
-	vector<int> arcSizePlus;
- 	vector<int> arcSizeMinus;
 
 	cout << "Distance Matrix: " << endl;
 
@@ -51,31 +49,48 @@ int main (int argc, char *argv[]) {
 	}
 	// cout << "Feasible arcs: " << endl;
 	
-	for (int i = 0; i < inst.V + 1; i++){
-		arcSizePlus.push_back(0);
-		arcSizeMinus.push_back(0);
-	}
-
-	feasibleArcs(&inst, nodeVec, arcs, arcSizePlus, arcSizeMinus);
-
-	fArc.first = 0;
-	fArc.second = 0;
+	// for (int i = 0; i < inst.V + 1; i++){
+	// 	auxVec.push_back(fArc);
+	// }
 
 	for (int i = 0; i < inst.V + 1; i++){
-		for (int j = 0; j < arcSizeMinus[i]; j++){
-			auxVec.push_back(fArc);
-		}
 		arcMinus.push_back(auxVec);
-		auxVec.clear();
+		arcPlus.push_back(auxVec);
 	}
 
-	for (int i = 0; i < inst.V + 1; i++){
-		for (int j = 0; j < arcSizePlus[i]; j++){
-			auxVec.push_back(fArc);
-		}
-		arcPlus.push_back(auxVec);
-		auxVec.clear();
-	}
+	feasibleArcs(&inst, nodeVec, arcs, fArc, arcPlus, arcMinus);
+	// cout << "\nArcsPlus: " << endl;
+	// for (int i = 0; i < arcPlus.size(); i++){
+	// 	cout << i << ": " << endl;
+	// 	for (int j = 0; j < arcPlus[i].size(); j++){
+	// 		cout << "(" << arcPlus[i][j].first << "," << arcPlus[i][j].second << ") ";
+	// 	}
+	// 	cout << endl;
+	// }
+
+	// cout << "\nArcsMinus: " << endl;
+	// for (int i = 0; i < arcMinus.size(); i++){
+	// 	cout << i << ": " << endl;
+	// 	for (int j = 0; j < arcMinus[i].size(); j++){
+	// 		cout << "(" << arcMinus[i][j].first << ", " << arcMinus[i][j].second << ") ";
+	// 	}
+	// 	cout << endl;
+	// }
+	// for (int i = 0; i < inst.V + 1; i++){
+	// 	for (int j = 0; j < arcSizePlus[i]; j++){
+	// 		auxVec.push_back(fArc);
+	// 	}
+	// 	arcPlus.push_back(auxVec);
+	// 	auxVec.clear();
+	// }
+
+	// for (int i = 0; i < arcVec.size(); i++){
+	// 	for (int j = 0; j < arcPlus.size(); j++){
+	// 		if(j == arcVec[i].first){
+	// 			arcPlus[j]
+	// 		}
+	// 	}
+	// }
 
 	// cout << "\nSizes: " << endl;
 	
