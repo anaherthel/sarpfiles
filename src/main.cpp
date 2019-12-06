@@ -135,7 +135,12 @@ int main (int argc, char *argv[]) {
 
 	// cout << "Instance stats: " << inst.K  << " " << inst.delta << " " <<
 	// inst.n << " " << inst.m << " " << inst.T << " " << inst.V << endl;
-
+	// cout << "\nDeltas: ";
+	// for (int i =0; i < nodeVec.size(); i++){
+	// 	cout << nodeVec[i].load << " ";
+	// }
+	// cout << endl;
+	// getchar();
 	mip(&inst, nodeVec, arcs, distMatrix, arcVec, arcPlus, arcMinus);
 
 	for ( int i = 0; i < inst.V + 1; i++ ) {

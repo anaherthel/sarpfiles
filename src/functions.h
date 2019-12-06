@@ -52,7 +52,7 @@ struct instanceStat{
 };
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist);
-double calcEucDist (double *X, double *Y, int I, int J);
+double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J);
 void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus);
 
 #endif

@@ -70,22 +70,29 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     for (int i = 0; i < V + 1; i++){
         if (i < n){ 
-           delta[i] = 2 * service + sqrt(pow(xs[i] - xf[i], 2) + pow(ys[i] - yf[i], 2))/inst->vmed;
+           delta[i] = 2 * (service/60) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5) * 5)/inst->vmed;
+           cout << "delta " << i << ": " << delta[i] << endl;
+           getchar();
         }
         else if (i < V){ 
            delta[i] = service;
         }
         for (int j = 0; j < V + 1; j++){
-            if (i < V){
-                if (j < V){
-                    dist[i][j] = floor(calcEucDist(xs, ys, i, j) + 0.5) * 5;
-                }
-                else if (j == V){
-                    dist[i][j] = 0;
-                }
+            if(i == j){
+               dist[i][j] = 0;
             }
             else{
-                dist[i][j] = 0;
+                if (i < V){
+                    if (j < V){
+                        dist[i][j] = floor(calcEucDist(xs, ys, xf, yf, i, j) + 0.5) * 5;
+                    }
+                    else if (j == V){
+                        dist[i][j] = 0;
+                    }
+                }
+                else{
+                    dist[i][j] = 0;
+                }
             }
         }
     }
@@ -138,8 +145,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     delete[] yf;
 }
 
-double calcEucDist (double *X, double *Y, int I, int J){
-    return sqrt(pow(X[I] - X[J], 2) + pow(Y[I] - Y[J], 2));
+double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J){
+    return sqrt(pow(Xf[I] - Xs[J], 2) + pow(Yf[I] - Ys[J], 2));
 }
 
 void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus){

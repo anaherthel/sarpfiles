@@ -110,7 +110,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 
 	//Constraint 2 - parcel requests may be denied
 	
-	for (int i = inst->n - 1; i < inst->n + inst->m; i++){
+	for (int i = inst->n; i < inst->n + inst->m; i++){
 		IloExpr exp(env);
 		for (int k = 0; k < inst->K; k++){
 			for (int j = 0; j < arcPlus[i].size(); j++){
@@ -216,19 +216,24 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		IloExpr sumx(env);
 
 		for (int k = 0; k < inst->K; k++){
-			sumx = x[arcVec[i].first][arcVec[i].second][k];
+			sumx += x[arcVec[i].first][arcVec[i].second][k];
 		}
 
-			exp = b[arcVec[i].second] - b[arcVec[i].first] - nodeVec[i].delta - mdist[arcVec[i].first][arcVec[i].second]/inst->vmed + M * (1 - sumx);
+			exp = b[arcVec[i].first] - b[arcVec[i].second] + nodeVec[arcVec[i].first].delta + (mdist[arcVec[i].first][arcVec[i].second]/inst->vmed) - M * (1 - sumx);
 			sprintf (var, "Constraint9_%d_%d", arcVec[i].first, arcVec[i].second);
-			IloRange cons = (exp >= 0);
+			IloRange cons = (exp <= 0);
 			cons.setName(var);
 			model.add(cons);					
 
 	}
 
-	//Constraints 10 and 11 - On-duty time
-	for (int k = 0; k < inst->K; k++){
+	//Constraints 10  - On-duty time
+	for (int k = 0; k < inst->K; k++){	// cout << "\nDeltas: ";
+	// for (int i =0; i < nodeVec.size(); i++){
+	// 	cout << nodeVec[i].load << " ";
+	// }
+	// cout << endl;
+	// getchar();
 		for (int i = 0; i < inst->n + inst->m; i++){
 			IloExpr exp(env);
 			exp = b[i] - mdist[inst->V - inst->K + k][i]/inst->vmed;
@@ -240,9 +245,10 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 			
 		}		
 	}
+    //Constraints 11  - Off-duty time
 	for (int k = 0; k < inst->K; k++){
 		for (int i = 0; i < inst->n + 2*inst->m; i++){
-			if (i < inst->n && i > inst->m - 1){
+			if (i < inst->n || i > inst->m - 1){
 				IloExpr exp(env);
 				exp = b[i] + nodeVec[i].delta;
 				
@@ -255,7 +261,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	}
 
 	//Constraints 12 and 13 - transported capacity
-	//Scenarios 1-A and 2-A: Q = 1; 1-B and 2-B Q > 1
+	//Scenarios 1-A and 2-A: Q = 1;
 	for (int i = 0; i < arcVec.size(); i++){
 		IloExpr exp(env);
 		IloExpr sumx(env);
@@ -263,24 +269,44 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 			sumx += x[arcVec[i].first][arcVec[i].second][k];
 		}
 
-		exp = w[arcVec[i].second] - w[arcVec[i].first] - nodeVec[i].load + W * (1 - sumx);
+		exp = w[arcVec[i].second] - w[arcVec[i].first] - nodeVec[arcVec[i].second].load - W * (1 - sumx);
 
-		sprintf (var, "Constraint12_%d", i);
+		sprintf (var, "Constraint12_%d_%d", arcVec[i].first, arcVec[i].second);
 		IloRange cons1 = (0 <= exp);
 		cons1.setName(var);
 		model.add(cons1);
 		
-		sprintf (var, "Constraint13_%d", i);
+		sprintf (var, "Constraint13_%d_%d", arcVec[i].first, arcVec[i].second);
 		IloRange cons2 = (exp <= 1);
 		cons2.setName(var);
 		model.add(cons2);
 	} 
+	//Scenarios 1-B and 2-B Q > 1:
+	// for (int i = 0; i < arcVec.size(); i++){
+	// 	IloExpr exp(env);
+	// 	IloExpr sumx(env);
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		sumx += x[arcVec[i].first][arcVec[i].second][k];
+	// 	}
+
+	// 	exp = w[arcVec[i].second] - w[arcVec[i].first] - nodeVec[i].load + W * (1 - sumx);
+
+	// 	sprintf (var, "Constraint12_%d", i);
+	// 	IloRange cons1 = (0 <= exp);
+	// 	cons1.setName(var);
+	// 	model.add(cons1);
+		
+	// 	sprintf (var, "Constraint13_%d", i);
+	// 	IloRange cons2 = (exp <= floor(inst->m/2));
+	// 	cons2.setName(var);
+	// 	model.add(cons2);
+	// } 
 
 	IloCplex SARP(model);
 	SARP.exportModel("SARP.lp");
 
-	// ShiftSKQAP.solve();
-	// cout << "\nObj Val: " << setprecision(15) << ShiftSKQAP.getObjValue() << endl;
+	SARP.solve();
+	cout << "\nObj Val: " << setprecision(15) << SARP.getObjValue() << endl;
 
 	env.end();
 
