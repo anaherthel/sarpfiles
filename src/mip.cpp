@@ -45,6 +45,15 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		model.add(b[i]);
 	}
 
+	IloNumVarArray w(env, nodeVec.size(), 0, inst->m + 1); //creates continuous variable with the specified bounds
+
+	for (int i = 0; i < nodeVec.size(); ++i){
+		sprintf(var, "w(%d)", i);
+		w[i].setName(var);
+		model.add(w[i]);
+	}
+
+
 	//  Load Variable
 	// upperBound = (double) upperBoundCapacity(data);
 	// BigQ = upperBound + 1;
@@ -203,14 +212,19 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	//Constraints 9 - TW 
 
 	for (int i = 0; i < arcVec.size(); i++){
+		IloExpr exp(env);
+		IloExpr sumx(env);
+
 		for (int k = 0; k < inst->K; k++){
-			IloExpr exp(env);
-			exp = b[arcVec[i].second] - b[arcVec[i].first] -  - mdist[arcVec[i].first][arcVec[i].second]/inst->vmed + M * (1 - x[arcVec[i].first][arcVec[i].second][k]);
-			sprintf (var, "Constraint9_%d_%d_%d", arcVec[i].first, arcVec[i].second, k);
+			sumx = x[arcVec[i].first][arcVec[i].second][k];
+		}
+
+			exp = b[arcVec[i].second] - b[arcVec[i].first] - nodeVec[i].delta - mdist[arcVec[i].first][arcVec[i].second]/inst->vmed + M * (1 - sumx);
+			sprintf (var, "Constraint9_%d_%d", arcVec[i].first, arcVec[i].second);
 			IloRange cons = (exp >= 0);
 			cons.setName(var);
 			model.add(cons);					
-		}
+
 	}
 
 	//Constraints 10 and 11 - On-duty time
@@ -241,11 +255,25 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	}
 
 	//Constraints 12 and 13 - transported capacity
-
+	//Scenarios 1-A and 2-A: Q = 1; 1-B and 2-B Q > 1
 	for (int i = 0; i < arcVec.size(); i++){
+		IloExpr exp(env);
+		IloExpr sumx(env);
 		for (int k = 0; k < inst->K; k++){
-
+			sumx += x[arcVec[i].first][arcVec[i].second][k];
 		}
+
+		exp = w[arcVec[i].second] - w[arcVec[i].first] - nodeVec[i].load + W * (1 - sumx);
+
+		sprintf (var, "Constraint12_%d", i);
+		IloRange cons1 = (0 <= exp);
+		cons1.setName(var);
+		model.add(cons1);
+		
+		sprintf (var, "Constraint13_%d", i);
+		IloRange cons2 = (exp <= 1);
+		cons2.setName(var);
+		model.add(cons2);
 	} 
 
 	IloCplex SARP(model);
