@@ -14,6 +14,7 @@
 
 using namespace std;
 
+//x(hours) = Euc_dist/vmed
 int main (int argc, char *argv[]) {
 
 	double **distMatrix;

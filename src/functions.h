@@ -35,6 +35,8 @@ struct nodeStat{
 	int l;
 	double xf;
 	double yf;
+    double delta;
+
 };
 
 struct instanceStat{
@@ -42,7 +44,6 @@ struct instanceStat{
     int n;
     int m;
     int K;
-    int delta;
     int T;
     int V;
    	double gamma = 3;

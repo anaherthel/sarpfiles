@@ -9,8 +9,9 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	char var[100];
 	IloEnv env;
 	IloModel model(env, "SARP");
-	long M = numeric_limits<long>::max();
-	long W = numeric_limits<long>::max();
+	//long M = numeric_limits<long>::max();
+	long M = 2*inst->T;
+	long W = 2*inst->m;
 
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
@@ -199,18 +200,53 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		model.add(cons2);
 	}
 
-	//Constraints 9
+	//Constraints 9 - TW 
 
-	for (int i = 0; i < arcs.size(); i++){
+	for (int i = 0; i < arcVec.size(); i++){
 		for (int k = 0; k < inst->K; k++){
 			IloExpr exp(env);
-			exp = b[arcs[i].second] - b[arcs[i].first] - mdist[arcs[i].first][arcs[i].second]/inst->vmed - 
-			sprintf (var, "Constraint9_%d_%d", i, k);
+			exp = b[arcVec[i].second] - b[arcVec[i].first] -  - mdist[arcVec[i].first][arcVec[i].second]/inst->vmed + M * (1 - x[arcVec[i].first][arcVec[i].second][k]);
+			sprintf (var, "Constraint9_%d_%d_%d", arcVec[i].first, arcVec[i].second, k);
 			IloRange cons = (exp >= 0);
 			cons.setName(var);
 			model.add(cons);					
 		}
 	}
+
+	//Constraints 10 and 11 - On-duty time
+	for (int k = 0; k < inst->K; k++){
+		for (int i = 0; i < inst->n + inst->m; i++){
+			IloExpr exp(env);
+			exp = b[i] - mdist[inst->V - inst->K + k][i]/inst->vmed;
+
+			sprintf (var, "Constraint10_%d_%d",k, i);
+			IloRange cons = (nodeVec[inst->V - inst->K + k].e <= exp);
+			cons.setName(var);
+			model.add(cons);
+			
+		}		
+	}
+	for (int k = 0; k < inst->K; k++){
+		for (int i = 0; i < inst->n + 2*inst->m; i++){
+			if (i < inst->n && i > inst->m - 1){
+				IloExpr exp(env);
+				exp = b[i] + nodeVec[i].delta;
+				
+				sprintf (var, "Constraint11_%d_%d",k, i);
+				IloRange cons = (exp <= nodeVec[inst->V - inst->K + k].l);
+				cons.setName(var);
+				model.add(cons);
+			}
+		}
+	}
+
+	//Constraints 12 and 13 - transported capacity
+
+	for (int i = 0; i < arcVec.size(); i++){
+		for (int k = 0; k < inst->K; k++){
+
+		}
+	} 
 
 	IloCplex SARP(model);
 	SARP.exportModel("SARP.lp");

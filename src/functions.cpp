@@ -20,7 +20,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     int n;
     int m;
     int K;
-    int delta;
+    int service;
     int T;
     int V;
 
@@ -35,7 +35,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     }
 
     in >> K;
-    in >> delta;
+    in >> service;
     in >> n;
     in >> m;
     in >> T;
@@ -50,6 +50,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     int *l = new int[V];
     double *xf = new double[V];
     double *yf = new double[V];
+    double *delta = new double[V];
 
     double **dist = new double*[V + 1];
     for (int i= 0; i < V + 1; i++){
@@ -68,6 +69,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // Calculate distance matrix (Euclidian)
 
     for (int i = 0; i < V + 1; i++){
+        if (i < n){ 
+           delta[i] = 2 * service + sqrt(pow(xs[i] - xf[i], 2) + pow(ys[i] - yf[i], 2))/inst->vmed;
+        }
+        else if (i < V){ 
+           delta[i] = service;
+        }
         for (int j = 0; j < V + 1; j++){
             if (i < V){
                 if (j < V){
@@ -92,6 +99,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         node->l = l[i];
         node->xf = xf[i];
         node->yf = yf[i];
+        node->delta = delta[i];
         nodeVec.push_back(*node);
     }
 
@@ -105,11 +113,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     node->l = 240;
     node->xf = 0;
     node->yf = 0;
+    node->delta = 0;
     nodeVec.push_back(*node);
 
     *Mdist = dist;
     inst->K = K;
-    inst->delta = delta;
     inst->n = n;
     inst->m = m;
     inst->T = T;
