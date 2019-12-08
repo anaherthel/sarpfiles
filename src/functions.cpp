@@ -20,7 +20,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     int n;
     int m;
     int K;
-    int service;
+    double service;
     int T;
     int V;
 
@@ -70,7 +70,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     for (int i = 0; i < V + 1; i++){
         if (i < n){ 
-           delta[i] = 2 * (service/60) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5) * 5)/inst->vmed;
+           delta[i] = (2 * (service/60)) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5) * 5)/inst->vmed;
            cout << "delta " << i << ": " << delta[i] << endl;
            getchar();
         }

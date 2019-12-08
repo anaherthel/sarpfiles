@@ -269,7 +269,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 			sumx += x[arcVec[i].first][arcVec[i].second][k];
 		}
 
-		exp = w[arcVec[i].second] - w[arcVec[i].first] - nodeVec[arcVec[i].second].load - W * (1 - sumx);
+		exp = w[arcVec[i].second] - w[arcVec[i].first] - nodeVec[arcVec[i].second].load + W * (1 - sumx);
 
 		sprintf (var, "Constraint12_%d_%d", arcVec[i].first, arcVec[i].second);
 		IloRange cons1 = (0 <= exp);
@@ -277,7 +277,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		model.add(cons1);
 		
 		sprintf (var, "Constraint13_%d_%d", arcVec[i].first, arcVec[i].second);
-		IloRange cons2 = (exp <= 1);
+		IloRange cons2 = (w[arcVec[i].second] <= 1);
 		cons2.setName(var);
 		model.add(cons2);
 	} 
