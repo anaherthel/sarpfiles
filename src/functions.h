@@ -31,8 +31,8 @@ struct nodeStat{
 	double ys;
 	char label;
 	int load;
-	int e;
-	int l;
+	double e;
+	double l;
 	double xf;
 	double yf;
     double delta;
@@ -44,11 +44,11 @@ struct instanceStat{
     int n;
     int m;
     int K;
-    int T;
+    double T;
     int V;
    	double gamma = 3;
-	double mu = 0.5;
-	double vmed = 18;
+	double mu = 2;
+	double vmed = 15;
 };
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist);

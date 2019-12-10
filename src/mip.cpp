@@ -37,6 +37,14 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	// BigB = upperBound + 1;
 	// printf("upperboundtime: %.2lf\n\n", upperBound);
 
+	IloBoolVarArray y(env, nodeVec.size()); //creates boolean variable (y_i = 1 se nó i é visitado; 0 cc)
+
+	for (int i = 0; i < nodeVec.size(); ++i){
+		sprintf(var, "y(%d)", i);
+		y[i].setName(var);
+		model.add(y[i]);
+	}
+
 	IloNumVarArray b(env, nodeVec.size(), 0, inst->T); //creates continuous variable with the specified bounds
 
 	for (int i = 0; i < nodeVec.size(); ++i){
@@ -228,35 +236,45 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	}
 
 	//Constraints 10  - On-duty time
-	for (int k = 0; k < inst->K; k++){	// cout << "\nDeltas: ";
-	// for (int i =0; i < nodeVec.size(); i++){
-	// 	cout << nodeVec[i].load << " ";
-	// }
-	// cout << endl;
-	// getchar();
-		for (int i = 0; i < inst->n + inst->m; i++){
-			IloExpr exp(env);
-			exp = b[i] - mdist[inst->V - inst->K + k][i]/inst->vmed;
+	// for (int k = 0; k < inst->K; k++){	// cout << "\nDeltas: ";
+	// // for (int i =0; i < nodeVec.size(); i++){
+	// // 	cout << nodeVec[i].load << " ";
+	// // }
+	// // cout << endl;
+	// // getchar();
+	// 	for (int i = 0; i < inst->n + inst->m; i++){
+	// 		IloExpr exp(env);
+	// 		exp = b[i] - mdist[inst->V - inst->K + k][i]/inst->vmed;
 
-			sprintf (var, "Constraint10_%d_%d",k, i);
-			IloRange cons = (nodeVec[inst->V - inst->K + k].e <= exp);
-			cons.setName(var);
-			model.add(cons);
+	// 		sprintf (var, "Constraint10_%d_%d",k, i);
+	// 		IloRange cons = (nodeVec[inst->V - inst->K + k].e <= exp);
+	// 		cons.setName(var);
+	// 		model.add(cons);
 			
-		}		
-	}
+	// 	}		
+	// }
+	// for (int k = 0; k < inst->K; k++){	
+	// 	for (int i = 0; i < arcsPlus[inst->V - inst->K + k].size(); i++){
+	// 		IloExpr exp(env);
+	// 		exp = b[i] - mdist[inst->V - inst->K + k][i]/inst->vmed;
+
+	// 		sprintf (var, "Constraint10_%d_%d",k, i);
+	// 		IloRange cons = (b[inst->V - inst->K + k] <= exp);
+	// 		cons.setName(var);
+	// 		model.add(cons);
+			
+	// 	}		
+	// }
     //Constraints 11  - Off-duty time
 	for (int k = 0; k < inst->K; k++){
-		for (int i = 0; i < inst->n + 2*inst->m; i++){
-			if (i < inst->n || i > inst->m - 1){
-				IloExpr exp(env);
-				exp = b[i] + nodeVec[i].delta;
-				
-				sprintf (var, "Constraint11_%d_%d",k, i);
-				IloRange cons = (exp <= nodeVec[inst->V - inst->K + k].l);
-				cons.setName(var);
-				model.add(cons);
-			}
+		for (int i = 0; i < arcMinus[inst->V].size(); i++){
+			IloExpr exp(env);
+			exp = b[arcMinus[inst->V][i].first] + nodeVec[arcMinus[inst->V][i].first].delta - M * (x[arcMinus[inst->V][i].first][arcMinus[inst->V][i].second][k] - 1);
+			
+			sprintf (var, "Constraint11_%d_%d_%d", k, arcMinus[inst->V][i].first, inst->V);
+			IloRange cons = (exp <= nodeVec[inst->V - inst->K + k].l);
+			cons.setName(var);
+			model.add(cons);
 		}
 	}
 
@@ -311,6 +329,25 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	env.end();
 
 	//infile.close();
-	
 
+//Codigo exemplo pra pegar os valores das variáveis não-zero, no caso são variáveis x de 2 índices: 	
+// for (int p = 1; p < positions+1; p++) {
+// 		for (int i = 1; i < data->vehicles+1; i++) {
+// 			if (AssemblyLine.getValue(x[i][p]) > 0.5) {
+// 				cout << i << " ";
+// 				break;
+// 			}
+// 		}
+// }
+
+// AssemblyLine.getValue(x[i][p])
+// getValues
+// ok?
+// aí com isso vc se vira
+// pra pegar o valor da FO é isso
+
+// AssemblyLine.getObjValue()
+// aí vc pode até fazer um código pra tentar montar a solução de forma mais intuitiva a partir dos valores das variáveis
+// pra auxiliar no debug
+// se for o caso
 }

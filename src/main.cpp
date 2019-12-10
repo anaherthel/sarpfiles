@@ -69,13 +69,12 @@ int main (int argc, char *argv[]) {
 	// 	cout << endl;
 	// }
 
-	// cout << "\nArcsMinus: " << endl;
-	// for (int i = 0; i < arcMinus.size(); i++){
-	// 	cout << i << ": " << endl;
-	// 	for (int j = 0; j < arcMinus[i].size(); j++){
-	// 		cout << "(" << arcMinus[i][j].first << ", " << arcMinus[i][j].second << ") ";
-	// 	}
-	// 	cout << endl;
+	cout << "\nArcsMinus: " << endl;
+	for (int j = 0; j < arcMinus[inst.V].size(); j++){
+		cout << "(" << arcMinus[inst.V][j].first << ", " << arcMinus[inst.V][j].second << ") ";
+	}
+		cout << endl;
+		getchar();
 	// }
 	// for (int i = 0; i < inst.V + 1; i++){
 	// 	for (int j = 0; j < arcSizePlus[i]; j++){

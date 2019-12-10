@@ -1,0 +1,173 @@
+
+Log started (V12.7.0.0) Mon Dec  9 17:32:16 2019
+
+
+Problem 'SARP.lp' read.
+Read time = 0.02 sec. (0.05 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 218 rows and 16 columns.
+MIP Presolve modified 355 coefficients.
+Reduced MIP has 238 rows, 262 columns, and 1446 nonzeros.
+Reduced MIP has 244 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (1.53 ticks)
+Found incumbent of value -295.000000 after 0.04 sec. (3.01 ticks)
+Probing fixed 24 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (1.05 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 24 rows and 24 columns.
+MIP Presolve modified 6 coefficients.
+Reduced MIP has 214 rows, 238 columns, and 1254 nonzeros.
+Reduced MIP has 220 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.67 ticks)
+Probing time = 0.00 sec. (0.84 ticks)
+Clique table members: 861.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.48 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                         -295.0000       42.0000           114.24%
+      0     0      -71.0000    10     -295.0000      -71.0000       38   75.93%
+*     0     0      integral     0      -75.0000       Cuts: 5       42    0.00%
+      0     0        cutoff            -75.0000      -75.0000       42    0.00%
+Elapsed time = 0.05 sec. (9.13 ticks, tree = 0.01 MB, solutions = 2)
+
+Implied bound cuts applied:  1
+Mixed integer rounding cuts applied:  3
+Zero-half cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.05 sec. (9.14 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.05 sec. (9.14 ticks)
+
+Solution pool: 2 solutions saved.
+
+MIP - Integer optimal solution:  Objective = -7.5000000000e+01
+Solution time =    0.06 sec.  Iterations = 42  Nodes = 0
+Deterministic time = 9.14 ticks  (154.84 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(1,0,0)                      1.000000
+x(11,1,0)                     1.000000
+x(12,2,1)                     1.000000
+x(0,13,0)                     1.000000
+x(2,13,1)                     1.000000
+b(0)                         54.000000
+b(1)                         14.000000
+b(2)                        167.000000
+b(3)                          6.944444
+b(4)                          6.666667
+b(5)                          5.833333
+b(6)                          8.055556
+b(13)                       720.000000
+w(13)                         1.000000
+All other variables in the range 1-278 are 0.
+
+Log started (V12.7.0.0) Tue Dec 10 11:14:21 2019
+
+
+Problem 'SARP.lp' read.
+Read time = 0.00 sec. (0.05 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 216 rows and 16 columns.
+MIP Presolve modified 349 coefficients.
+Reduced MIP has 240 rows, 262 columns, and 1452 nonzeros.
+Reduced MIP has 244 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (1.53 ticks)
+Found incumbent of value -59.000000 after 0.01 sec. (3.02 ticks)
+Probing fixed 24 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (1.05 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 24 rows and 24 columns.
+MIP Presolve modified 6 coefficients.
+Reduced MIP has 216 rows, 238 columns, and 1260 nonzeros.
+Reduced MIP has 220 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.67 ticks)
+Probing time = 0.00 sec. (0.84 ticks)
+Clique table members: 857.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.80 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -59.0000      144.0000           344.07%
+      0     0        5.9777    14      -59.0000        5.9777       63  110.13%
+      0     0        4.0000    21      -59.0000      Cuts: 12       89  106.78%
+      0     0        0.9770    18      -59.0000      Cuts: 37      119  101.66%
+      0     0        0.8337    18      -59.0000      Cuts: 14      123  101.41%
+      0     0        0.7647    21      -59.0000       Cuts: 5      129  101.30%
+      0     0        0.5000    16      -59.0000       Cuts: 6      132  100.85%
+      0     0        0.3333    15      -59.0000       Cuts: 5      140  100.56%
+      0     0       -0.0000    10      -59.0000       Cuts: 9      153  100.00%
+      0     0       -0.0000    10      -59.0000      Cuts: 10      157  100.00%
+*     0+    0                           -1.0000       -0.0000           100.00%
+*     0+    0                            0.0000       -0.0000             0.00%
+      0     0        cutoff              0.0000       -0.0000      157    0.00%
+Elapsed time = 0.03 sec. (19.36 ticks, tree = 0.01 MB, solutions = 3)
+
+Clique cuts applied:  2
+Implied bound cuts applied:  2
+Mixed integer rounding cuts applied:  6
+Zero-half cuts applied:  5
+Gomory fractional cuts applied:  4
+
+Root node processing (before b&c):
+  Real time             =    0.04 sec. (19.37 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.04 sec. (19.37 ticks)
+
+Solution pool: 3 solutions saved.
+
+MIP - Integer optimal solution:  Objective =  0.0000000000e+00
+Solution time =    0.04 sec.  Iterations = 157  Nodes = 0
+Deterministic time = 19.37 ticks  (518.48 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(1,10,0)                     1.000000
+x(2,4,1)                      1.000000
+x(3,8,1)                      1.000000
+x(4,7,1)                      1.000000
+x(6,1,0)                      1.000000
+x(8,2,1)                      1.000000
+x(10,0,0)                     1.000000
+x(11,6,0)                     1.000000
+x(12,3,1)                     1.000000
+x(0,13,0)                     1.000000
+x(7,13,1)                     1.000000
+b(0)                         54.000000
+b(1)                         14.000000
+b(2)                        182.000000
+b(3)                          5.266667
+b(4)                        229.733333
+b(5)                          1.400000
+b(6)                          5.133333
+b(7)                        235.000000
+b(8)                         10.666667
+b(10)                        14.766667
+b(13)                       720.000000
+w(1)                          1.000000
+w(3)                          1.000000
+w(4)                          1.000000
+w(5)                          1.000000
+w(6)                          1.000000
+w(13)                         1.000000
+All other variables in the range 1-278 are 0.
