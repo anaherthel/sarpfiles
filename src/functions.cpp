@@ -70,7 +70,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     for (int i = 0; i < V + 1; i++){
         if (i < n){ 
-           delta[i] = (2 * (service/60)) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed;
+           delta[i] = (2 * (service/60)) + ((floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed);
            cout << "delta " << i << ": " << delta[i] << endl;
            getchar();
         }
@@ -117,7 +117,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     node->label = 'f';
     node->load = 0;
     node->e = 0;
-    node->l = 240;
+    node->l = 240/60;
     node->xf = 0;
     node->yf = 0;
     node->delta = 0;
@@ -127,8 +127,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     inst->K = K;
     inst->n = n;
     inst->m = m;
-    inst->T = T;
-    inst->V = V/60;
+    inst->T = T/60;
+    inst->V = V;
     // cout << "\nNode vec: ";
     // for (int i = 0; i < nodeVec.size(); i++){
     //     cout << nodeVec[i].label << " ";

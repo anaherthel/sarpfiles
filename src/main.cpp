@@ -117,6 +117,7 @@ int main (int argc, char *argv[]) {
 	// 	cout << "(" << arcVec[i].first << ", " << arcVec[i].second << ") ";
 	// }
 	// cout << endl;
+
 	for (int i = 0; i < inst.V + 1; i++){
 		if (i == 0){
 			cout << setw(3) << " ";

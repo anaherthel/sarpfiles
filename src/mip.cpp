@@ -18,7 +18,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 
 	for (int i = 0; i < nodeVec.size(); i++){
 		x[i] = IloArray <IloBoolVarArray> (env, nodeVec.size());
-		for(int j = 0; j < nodeVec.size(); ++j){
+		for(int j = 0; j < nodeVec.size(); j++){
 			if (arcs[i][j] != true){
 				continue; // If arc i to j is invalid
 			} 
@@ -37,17 +37,19 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	// BigB = upperBound + 1;
 	// printf("upperboundtime: %.2lf\n\n", upperBound);
 
-	IloBoolVarArray y(env, nodeVec.size()); //creates boolean variable (y_i = 1 se nó i é visitado; 0 cc)
-
-	for (int i = 0; i < nodeVec.size(); ++i){
-		sprintf(var, "y(%d)", i);
-		y[i].setName(var);
-		model.add(y[i]);
+	IloArray <IloBoolVarArray> y(env, nodeVec.size()); //creates boolean variable (y_i = 1 se nó i é visitado; 0 cc)
+	for (int i = 0; i < nodeVec.size(); i++){
+		y[i] = IloBoolVarArray (env, inst->K);
+		for (int k = 0; k < inst->K; k++){
+			sprintf(var, "y(%d,%d)", i, k);
+			y[i][k].setName(var);
+			model.add(y[i][k]);
+		}
 	}
 
 	IloNumVarArray b(env, nodeVec.size(), 0, inst->T); //creates continuous variable with the specified bounds
 
-	for (int i = 0; i < nodeVec.size(); ++i){
+	for (int i = 0; i < nodeVec.size(); i++){
 		sprintf(var, "b(%d)", i);
 		b[i].setName(var);
 		model.add(b[i]);
@@ -55,7 +57,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 
 	IloNumVarArray w(env, nodeVec.size(), 0, inst->m + 1); //creates continuous variable with the specified bounds
 
-	for (int i = 0; i < nodeVec.size(); ++i){
+	for (int i = 0; i < nodeVec.size(); i++){
 		sprintf(var, "w(%d)", i);
 		w[i].setName(var);
 		model.add(w[i]);
@@ -101,36 +103,77 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	model.add(IloMaximize(env, objFunction));
 
 	//Creating constraints
-	//Constraint 1 - all passenger requests must be served
+	// Constraint 1 - all passenger requests must be served
 	
-	for (int i = 0; i < inst->n; i++){
+	// for (int i = 0; i < inst->n; i++){
+	// 	IloExpr exp(env);
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		for (int j = 0; j < arcPlus[i].size(); j++){
+	// 			exp += x[i][arcPlus[i][j].second][k];
+	// 		}
+	// 	}
+	// 	sprintf (var, "Constraint1_%d", i);
+	// 	IloRange cons = (exp == 1);
+	// 	cons.setName(var);
+	// 	model.add(cons);
+	// }
+
+	//Constraint 1 - relationship between both variables
+
+	for (int i = 0; i < inst->n + 2*inst->m; i++){
 		IloExpr exp(env);
+		IloExpr exp2(env);
 		for (int k = 0; k < inst->K; k++){
 			for (int j = 0; j < arcPlus[i].size(); j++){
 				exp += x[i][arcPlus[i][j].second][k];
 			}
+			exp2 += y[i][k];
 		}
 		sprintf (var, "Constraint1_%d", i);
+		IloRange cons = (exp - exp2 == 0);
+		cons.setName(var);
+		model.add(cons);
+	}
+	// //Constraint 2 - all passenger requests must be served
+
+	for (int i = 0; i < inst->n; i++){
+		IloExpr exp(env);
+		for (int k = 0; k < inst->K; k++){
+			exp += y[i][k];
+		}
+		sprintf (var, "Constraint2_%d", i);
 		IloRange cons = (exp == 1);
 		cons.setName(var);
 		model.add(cons);
 	}
 
-	//Constraint 2 - parcel requests may be denied
-	
+	// //Constraint 3 - parcel requests may be denied
 	for (int i = inst->n; i < inst->n + inst->m; i++){
 		IloExpr exp(env);
 		for (int k = 0; k < inst->K; k++){
-			for (int j = 0; j < arcPlus[i].size(); j++){
-				exp += x[i][arcPlus[i][j].second][k];
-			}
+			exp += y[i][k];
 		}
-		sprintf (var, "Constraint2_%d", i);
+		sprintf (var, "Constraint3_%d", i);
 		IloRange cons = (exp <= 1);
 		cons.setName(var);
 		model.add(cons);
 	}
-	//Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle
+
+	// //Constraint 2 - parcel requests may be denied
+	
+	// // for (int i = inst->n; i < inst->n + inst->m; i++){
+	// // 	IloExpr exp(env);
+	// // 	for (int k = 0; k < inst->K; k++){
+	// // 		for (int j = 0; j < arcPlus[i].size(); j++){
+	// // 			exp += x[i][arcPlus[i][j].second][k];
+	// // 		}
+	// // 	}
+	// // 	sprintf (var, "Constraint2_%d", i);
+	// // 	IloRange cons = (exp <= 1);
+	// // 	cons.setName(var);
+	// // 	model.add(cons);
+	// // }
+	//Constraint 4 - parcel that is picked up, has to be delivered by the same vehicle
 
 	for (int i = inst->n; i < inst->n + inst->m; i++){
 		for (int k = 0; k < inst->K; k++){
@@ -145,14 +188,14 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 				exp2 += x[i + inst->m][arcPlus[i + inst->m][j].second][k];
 
 			}
-			sprintf (var, "Constraint3_%d_%d", i, k);
+			sprintf (var, "Constraint4_%d_%d", i, k);
 			IloRange cons = ((exp1-exp2) == 0);
 			cons.setName(var);
 			model.add(cons);
 		}
 	}
 
-	//Constraint 4 - Flow conservation
+	//Constraint 5 - Flow conservation
 
 	for (int i = 0; i < inst->n + 2*inst->m; i++){
 		for (int k = 0; k < inst->K; k++){
@@ -167,139 +210,148 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 				exp2 += x[arcMinus[i][j].first][arcMinus[i][j].second][k];
 
 			}
-			sprintf (var, "Constraint4_%d_%d", i, k);
+			sprintf (var, "Constraint5_%d_%d", i, k);
 			IloRange cons = ((exp1-exp2) == 0);
 			cons.setName(var);
 			model.add(cons);
 		}
 	}
 
-	//Constraint 5 - The route of every vehicle has to start at its starting position
+	// //Constraint 6 and 7- The route of every vehicle has to start at its starting position
 
 	for (int k = 0; k < inst->K; k++){
 		IloExpr exp(env);
+		IloExpr exp2(env);
+		exp2 = y[inst->V - inst->K + k][k];
 		for (int i = 0; i < arcPlus[inst->V - inst->K + k].size(); i++){
 			exp += x[arcPlus[inst->V - inst->K + k][i].first][arcPlus[inst->V - inst->K + k][i].second][k];
 		}
-		sprintf (var, "Constraint5_%d", k);
-		IloRange cons = (exp == 1);
+		sprintf (var, "Constraint6_%d", k);
+		IloRange cons = (exp - exp2 == 0);
 		cons.setName(var);
-		model.add(cons);	
+		model.add(cons);
+
+		sprintf (var, "Constraint7_%d", k);
+		IloRange cons2 = (exp2 == 1);
+		cons2.setName(var);
+		model.add(cons2);	
 	}
 
-	//Constraint 6 - The route of every vehicle has to end at the dummy node f.
+	//Constraint 8 and 9- The route of every vehicle has to end at the dummy node f.
 
 	for (int k = 0; k < inst->K; k++){
 		IloExpr exp(env);
+		IloExpr exp2(env);
+		exp2 = y[inst->V][k];
 		for (int i = 0; i < arcMinus[inst->V].size(); i++){
 			exp += x[arcMinus[inst->V][i].first][arcMinus[inst->V][i].second][k];
 		}
-		sprintf (var, "Constraint6_%d", k);
-		IloRange cons = (exp == 1);
+		sprintf (var, "Constraint8_%d", k);
+		IloRange cons = (exp - exp2 == 0);
 		cons.setName(var);
 		model.add(cons);	
+
+		sprintf (var, "Constraint9_%d", k);
+		IloRange cons2 = (exp2 == 1);
+		cons2.setName(var);
+		model.add(cons2);
 	}
 
-	//Constraints 7 and 8 - TW
+	//Constraints 10 and 11 - TW
 
 	for (int i = 0; i < inst->n; i++){
 		IloExpr exp(env);
 		exp = b[i];
 
-		sprintf (var, "Constraint7_%d", i);
+		sprintf (var, "Constraint10_%d", i);
 		IloRange cons1 = (exp <= nodeVec[i].l);
 		cons1.setName(var);
 		model.add(cons1);
 		
-		sprintf (var, "Constraint8_%d", i);
+		sprintf (var, "Constraint11_%d", i);
 		IloRange cons2 = (nodeVec[i].e <= exp);
 		cons2.setName(var);
 		model.add(cons2);
 	}
 
-	//Constraints 9 - TW 
+	//Constraint 12 - tie service begining to node visit
 
-	for (int i = 0; i < arcVec.size(); i++){
+	for (int i = 0; i < inst->V + 1; i++){
 		IloExpr exp(env);
-		IloExpr sumx(env);
-
+		IloExpr exp2(env);
 		for (int k = 0; k < inst->K; k++){
-			sumx += x[arcVec[i].first][arcVec[i].second][k];
+			exp2 += y[i][k];
 		}
-
-			exp = b[arcVec[i].first] - b[arcVec[i].second] + nodeVec[arcVec[i].first].delta + (mdist[arcVec[i].first][arcVec[i].second]/inst->vmed) - M * (1 - sumx);
-			sprintf (var, "Constraint9_%d_%d", arcVec[i].first, arcVec[i].second);
-			IloRange cons = (exp <= 0);
-			cons.setName(var);
-			model.add(cons);					
-
+		exp = b[i] - M * exp2; 
+		sprintf (var, "Constraint12_%d", i);
+		IloRange cons = (exp <= 0);
+		cons.setName(var);
+		model.add(cons);	
 	}
 
-	//Constraints 10  - On-duty time
-	// for (int k = 0; k < inst->K; k++){	// cout << "\nDeltas: ";
-	// // for (int i =0; i < nodeVec.size(); i++){
-	// // 	cout << nodeVec[i].load << " ";
+	// //Constraints 9 - TW 
+
+	// for (int i = 0; i < arcVec.size(); i++){
+	// 	IloExpr exp(env);
+	// 	IloExpr sumx(env);
+
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		sumx += x[arcVec[i].first][arcVec[i].second][k];
+	// 	}
+
+	// 		exp = b[arcVec[i].first] - b[arcVec[i].second] + nodeVec[arcVec[i].first].delta + (mdist[arcVec[i].first][arcVec[i].second]/inst->vmed) - M * (1 - sumx);
+	// 		sprintf (var, "Constraint9_%d_%d", arcVec[i].first, arcVec[i].second);
+	// 		IloRange cons = (exp <= 0);
+	// 		cons.setName(var);
+	// 		model.add(cons);					
+
+	// }
+
+	// //Constraints 10  - On-duty time
+	// // for (int k = 0; k < inst->K; k++){	// cout << "\nDeltas: ";
+	// // // for (int i =0; i < nodeVec.size(); i++){
+	// // // 	cout << nodeVec[i].load << " ";
+	// // // }
+	// // // cout << endl;
+	// // // getchar();
+	// // 	for (int i = 0; i < inst->n + inst->m; i++){
+	// // 		IloExpr exp(env);
+	// // 		exp = b[i] - mdist[inst->V - inst->K + k][i]/inst->vmed;
+
+	// // 		sprintf (var, "Constraint10_%d_%d",k, i);
+	// // 		IloRange cons = (nodeVec[inst->V - inst->K + k].e <= exp);
+	// // 		cons.setName(var);
+	// // 		model.add(cons);
+			
+	// // 	}		
 	// // }
-	// // cout << endl;
-	// // getchar();
-	// 	for (int i = 0; i < inst->n + inst->m; i++){
-	// 		IloExpr exp(env);
-	// 		exp = b[i] - mdist[inst->V - inst->K + k][i]/inst->vmed;
+	// // for (int k = 0; k < inst->K; k++){	
+	// // 	for (int i = 0; i < arcsPlus[inst->V - inst->K + k].size(); i++){
+	// // 		IloExpr exp(env);
+	// // 		exp = b[i] - mdist[inst->V - inst->K + k][i]/inst->vmed;
 
-	// 		sprintf (var, "Constraint10_%d_%d",k, i);
-	// 		IloRange cons = (nodeVec[inst->V - inst->K + k].e <= exp);
+	// // 		sprintf (var, "Constraint10_%d_%d",k, i);
+	// // 		IloRange cons = (b[inst->V - inst->K + k] <= exp);
+	// // 		cons.setName(var);
+	// // 		model.add(cons);
+			
+	// // 	}		
+	// // }
+ //    //Constraints 11  - Off-duty time
+	// for (int k = 0; k < inst->K; k++){
+	// 	for (int i = 0; i < arcMinus[inst->V].size(); i++){
+	// 		IloExpr exp(env);
+	// 		exp = b[arcMinus[inst->V][i].first] + nodeVec[arcMinus[inst->V][i].first].delta - M * (x[arcMinus[inst->V][i].first][arcMinus[inst->V][i].second][k] - 1);
+			
+	// 		sprintf (var, "Constraint11_%d_%d_%d", k, arcMinus[inst->V][i].first, inst->V);
+	// 		IloRange cons = (exp <= nodeVec[inst->V - inst->K + k].l);
 	// 		cons.setName(var);
 	// 		model.add(cons);
-			
-	// 	}		
+	// 	}
 	// }
-	// for (int k = 0; k < inst->K; k++){	
-	// 	for (int i = 0; i < arcsPlus[inst->V - inst->K + k].size(); i++){
-	// 		IloExpr exp(env);
-	// 		exp = b[i] - mdist[inst->V - inst->K + k][i]/inst->vmed;
 
-	// 		sprintf (var, "Constraint10_%d_%d",k, i);
-	// 		IloRange cons = (b[inst->V - inst->K + k] <= exp);
-	// 		cons.setName(var);
-	// 		model.add(cons);
-			
-	// 	}		
-	// }
-    //Constraints 11  - Off-duty time
-	for (int k = 0; k < inst->K; k++){
-		for (int i = 0; i < arcMinus[inst->V].size(); i++){
-			IloExpr exp(env);
-			exp = b[arcMinus[inst->V][i].first] + nodeVec[arcMinus[inst->V][i].first].delta - M * (x[arcMinus[inst->V][i].first][arcMinus[inst->V][i].second][k] - 1);
-			
-			sprintf (var, "Constraint11_%d_%d_%d", k, arcMinus[inst->V][i].first, inst->V);
-			IloRange cons = (exp <= nodeVec[inst->V - inst->K + k].l);
-			cons.setName(var);
-			model.add(cons);
-		}
-	}
-
-	//Constraints 12 and 13 - transported capacity
-	//Scenarios 1-A and 2-A: Q = 1;
-	for (int i = 0; i < arcVec.size(); i++){
-		IloExpr exp(env);
-		IloExpr sumx(env);
-		for (int k = 0; k < inst->K; k++){
-			sumx += x[arcVec[i].first][arcVec[i].second][k];
-		}
-
-		exp = w[arcVec[i].second] - w[arcVec[i].first] - nodeVec[arcVec[i].second].load + W * (1 - sumx);
-
-		sprintf (var, "Constraint12_%d_%d", arcVec[i].first, arcVec[i].second);
-		IloRange cons1 = (0 <= exp);
-		cons1.setName(var);
-		model.add(cons1);
-		
-		sprintf (var, "Constraint13_%d_%d", arcVec[i].first, arcVec[i].second);
-		IloRange cons2 = (w[arcVec[i].second] <= 1);
-		cons2.setName(var);
-		model.add(cons2);
-	} 
-	//Scenarios 1-B and 2-B Q > 1:
+	// //Constraints 12 and 13 - transported capacity
+	// //Scenarios 1-A and 2-A: Q = 1;
 	// for (int i = 0; i < arcVec.size(); i++){
 	// 	IloExpr exp(env);
 	// 	IloExpr sumx(env);
@@ -307,24 +359,44 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	// 		sumx += x[arcVec[i].first][arcVec[i].second][k];
 	// 	}
 
-	// 	exp = w[arcVec[i].second] - w[arcVec[i].first] - nodeVec[i].load + W * (1 - sumx);
+	// 	exp = w[arcVec[i].second] - w[arcVec[i].first] - nodeVec[arcVec[i].second].load + W * (1 - sumx);
 
-	// 	sprintf (var, "Constraint12_%d", i);
+	// 	sprintf (var, "Constraint12_%d_%d", arcVec[i].first, arcVec[i].second);
 	// 	IloRange cons1 = (0 <= exp);
 	// 	cons1.setName(var);
 	// 	model.add(cons1);
 		
-	// 	sprintf (var, "Constraint13_%d", i);
-	// 	IloRange cons2 = (exp <= floor(inst->m/2));
+	// 	sprintf (var, "Constraint13_%d_%d", arcVec[i].first, arcVec[i].second);
+	// 	IloRange cons2 = (w[arcVec[i].second] <= 1);
 	// 	cons2.setName(var);
 	// 	model.add(cons2);
 	// } 
+	// //Scenarios 1-B and 2-B Q > 1:
+	// // for (int i = 0; i < arcVec.size(); i++){
+	// // 	IloExpr exp(env);
+	// // 	IloExpr sumx(env);
+	// // 	for (int k = 0; k < inst->K; k++){
+	// // 		sumx += x[arcVec[i].first][arcVec[i].second][k];
+	// // 	}
+
+	// // 	exp = w[arcVec[i].second] - w[arcVec[i].first] - nodeVec[i].load + W * (1 - sumx);
+
+	// // 	sprintf (var, "Constraint12_%d", i);
+	// // 	IloRange cons1 = (0 <= exp);
+	// // 	cons1.setName(var);
+	// // 	model.add(cons1);
+		
+	// // 	sprintf (var, "Constraint13_%d", i);
+	// // 	IloRange cons2 = (exp <= floor(inst->m/2));
+	// // 	cons2.setName(var);
+	// // 	model.add(cons2);
+	// // } 
 
 	IloCplex SARP(model);
 	SARP.exportModel("SARP.lp");
 
-	SARP.solve();
-	cout << "\nObj Val: " << setprecision(15) << SARP.getObjValue() << endl;
+	// SARP.solve();
+	// cout << "\nObj Val: " << setprecision(15) << SARP.getObjValue() << endl;
 
 	env.end();
 
