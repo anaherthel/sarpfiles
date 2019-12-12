@@ -21,7 +21,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     int m;
     int K;
     double service;
-    int T;
+    double T;
     int V;
 
     char *instance; 
@@ -46,8 +46,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     double *ys = new double[V];
     char *label = new char[V];
     int *load = new int[V];
-    int *e = new int[V];
-    int *l = new int[V];
+    double *e = new double[V];
+    double *l = new double[V];
     double *xf = new double[V];
     double *yf = new double[V];
     double *delta = new double[V];
@@ -70,12 +70,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     for (int i = 0; i < V + 1; i++){
         if (i < n){ 
-           delta[i] = (2 * (service/60)) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5) * 5)/inst->vmed;
+           delta[i] = (2 * (service/60)) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed;
+           // delta[i] = (2 * (service/60)) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed;
            cout << "delta " << i << ": " << delta[i] << endl;
            getchar();
         }
         else if (i < V){ 
-           delta[i] = service;
+           delta[i] = service/60;
         }
         for (int j = 0; j < V + 1; j++){
             if(i == j){
@@ -84,7 +85,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             else{
                 if (i < V){
                     if (j < V){
-                        dist[i][j] = floor(calcEucDist(xs, ys, xf, yf, i, j) + 0.5) * 5;
+                        dist[i][j] = floor(calcEucDist(xs, ys, xf, yf, i, j) + 0.5)/5;
                     }
                     else if (j == V){
                         dist[i][j] = 0;
@@ -102,32 +103,33 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         node->ys = ys[i];
         node->label = label[i];
         node->load = load[i];
-        node->e = e[i];
-        node->l = l[i];
+        node->e = e[i]/60;
+        node->l = l[i]/60;
         node->xf = xf[i];
         node->yf = yf[i];
         node->delta = delta[i];
         nodeVec.push_back(*node);
     }
 
-    //Adding dummy node
-    
-    node->xs = 0;
-    node->ys = 0;
-    node->label = 'f';
-    node->load = 0;
-    node->e = 0;
-    node->l = 240;
-    node->xf = 0;
-    node->yf = 0;
-    node->delta = 0;
-    nodeVec.push_back(*node);
+    //Adding dummy nodes
+    for (int i = 0; i < inst->K; i++){
+        node->xs = 0;
+        node->ys = 0;
+        node->label = 'f';
+        node->load = 0;
+        node->e = 0;
+        node->l = 240/60;
+        node->xf = 0;
+        node->yf = 0;
+        node->delta = 0;
+        nodeVec.push_back(*node);
+    }
 
     *Mdist = dist;
     inst->K = K;
     inst->n = n;
     inst->m = m;
-    inst->T = T;
+    inst->T = T/60;
     inst->V = V;
     // cout << "\nNode vec: ";
     // for (int i = 0; i < nodeVec.size(); i++){

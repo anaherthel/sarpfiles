@@ -42,8 +42,8 @@ int main (int argc, char *argv[]) {
 
 	vector<bool> arcRow;
 	
-	for (int i = 0; i < inst.V + 1; i++){
-		for (int j = 0; j < inst.V + 1; j++){
+	for (int i = 0; i < inst.V + inst->K; i++){
+		for (int j = 0; j < inst.V + inst->K; j++){
 			arcRow.push_back(false);
 		}
 		arcs.push_back(arcRow);
@@ -54,7 +54,7 @@ int main (int argc, char *argv[]) {
 	// 	auxVec.push_back(fArc);
 	// }
 
-	for (int i = 0; i < inst.V + 1; i++){
+	for (int i = 0; i < inst.V + inst->K; i++){
 		arcMinus.push_back(auxVec);
 		arcPlus.push_back(auxVec);
 	}

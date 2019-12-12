@@ -37,6 +37,16 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	// BigB = upperBound + 1;
 	// printf("upperboundtime: %.2lf\n\n", upperBound);
 
+	IloArray <IloBoolVarArray> y(env, nodeVec.size()); //creates boolean variable (y_i = 1 se nó i é visitado; 0 cc)
+	for (int i = 0; i < nodeVec.size(); i++){
+		y[i] = IloBoolVarArray (env, inst->K);
+		for (int k = 0; k < inst->K; k++){
+			sprintf(var, "y(%d,%d)", i, k);
+			y[i][k].setName(var);
+			model.add(y[i][k]);
+		}
+	}
+
 	IloNumVarArray b(env, nodeVec.size(), 0, inst->T); //creates continuous variable with the specified bounds
 
 	for (int i = 0; i < nodeVec.size(); ++i){
@@ -209,7 +219,19 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		model.add(cons2);
 	}
 
-	//Constraints 9 - TW 
+	//Constraint 9 - bound begining of service to pickup and delivery
+
+	for (int i = inst->n; i < inst->n + inst->m; i++){
+		IloExpr exp(env);
+		exp = b[i] + nodeVec[i].delta - b[i + inst->m];
+
+		sprintf (var, "Constraint9_%d", i);
+		IloRange cons = (exp <= 0);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	//Constraints 10 - TW 
 
 	for (int i = 0; i < arcVec.size(); i++){
 		IloExpr exp(env);
@@ -220,47 +242,45 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		}
 
 			exp = b[arcVec[i].first] - b[arcVec[i].second] + nodeVec[arcVec[i].first].delta + (mdist[arcVec[i].first][arcVec[i].second]/inst->vmed) - M * (1 - sumx);
-			sprintf (var, "Constraint9_%d_%d", arcVec[i].first, arcVec[i].second);
+			sprintf (var, "Constraint10_%d_%d", arcVec[i].first, arcVec[i].second);
 			IloRange cons = (exp <= 0);
 			cons.setName(var);
 			model.add(cons);					
 
 	}
 
-	//Constraints 10  - On-duty time
+	//Constraints 11  - On-duty time
 	for (int k = 0; k < inst->K; k++){	// cout << "\nDeltas: ";
 	// for (int i =0; i < nodeVec.size(); i++){
 	// 	cout << nodeVec[i].load << " ";
 	// }
 	// cout << endl;
 	// getchar();
-		for (int i = 0; i < inst->n + inst->m; i++){
+		for (int i = 0; i < arcPlus[inst->V - inst->K + k].size(); i++){
 			IloExpr exp(env);
-			exp = b[i] - mdist[inst->V - inst->K + k][i]/inst->vmed;
+			exp = b[arcPlus[inst->V - inst->K + k][i].first] - mdist[arcPlus[inst->V - inst->K + k][i].first][arcPlus[inst->V - inst->K + k][i].second]/inst->vmed;
 
-			sprintf (var, "Constraint10_%d_%d",k, i);
+			sprintf (var, "Constraint11_%d_%d",k, i);
 			IloRange cons = (nodeVec[inst->V - inst->K + k].e <= exp);
 			cons.setName(var);
 			model.add(cons);
 			
 		}		
 	}
-    //Constraints 11  - Off-duty time
+    //Constraints 12  - Off-duty time
 	for (int k = 0; k < inst->K; k++){
-		for (int i = 0; i < inst->n + 2*inst->m; i++){
-			if (i < inst->n || i > inst->m - 1){
-				IloExpr exp(env);
-				exp = b[i] + nodeVec[i].delta;
-				
-				sprintf (var, "Constraint11_%d_%d",k, i);
-				IloRange cons = (exp <= nodeVec[inst->V - inst->K + k].l);
-				cons.setName(var);
-				model.add(cons);
-			}
+		for (int i = 0; i < arcMinus[inst->V + k].size(); i++){
+			IloExpr exp(env);
+			//exp = b[i] + nodeVec[i].delta;
+			exp = b[i] + nodeVec[i].delta;
+			sprintf (var, "Constraint12_%d_%d",k, i);
+			IloRange cons = (exp <= nodeVec[inst->V - inst->K + k].l);
+			cons.setName(var);
+			model.add(cons);
 		}
 	}
 
-	//Constraints 12 and 13 - transported capacity
+	//Constraints 13 and 14 - transported capacity
 	//Scenarios 1-A and 2-A: Q = 1;
 	for (int i = 0; i < arcVec.size(); i++){
 		IloExpr exp(env);
@@ -271,12 +291,12 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 
 		exp = w[arcVec[i].second] - w[arcVec[i].first] - nodeVec[arcVec[i].second].load + W * (1 - sumx);
 
-		sprintf (var, "Constraint12_%d_%d", arcVec[i].first, arcVec[i].second);
+		sprintf (var, "Constraint13_%d_%d", arcVec[i].first, arcVec[i].second);
 		IloRange cons1 = (0 <= exp);
 		cons1.setName(var);
 		model.add(cons1);
 		
-		sprintf (var, "Constraint13_%d_%d", arcVec[i].first, arcVec[i].second);
+		sprintf (var, "Constraint14_%d_%d", arcVec[i].first, arcVec[i].second);
 		IloRange cons2 = (w[arcVec[i].second] <= 1);
 		cons2.setName(var);
 		model.add(cons2);

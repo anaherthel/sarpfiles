@@ -1,0 +1,101 @@
+
+Log started (V12.4.0.0) Thu Dec 12 20:05:00 2019
+
+
+Problem 'SARP.lp' read.
+Read time =    0.07 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 221 rows and 18 columns.
+MIP Presolve modified 356 coefficients.
+Reduced MIP has 239 rows, 260 columns, and 1439 nonzeros.
+Reduced MIP has 242 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 26 vars, tightened 0 bounds.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 26 rows and 26 columns.
+Reduced MIP has 213 rows, 234 columns, and 1235 nonzeros.
+Reduced MIP has 216 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.07 sec.
+Probing time =    0.00 sec.
+Clique table members: 1763.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       10.2741    15                     10.2741       90         
+      0     0        9.7539    18                    Cuts: 26      102         
+      0     0        9.3080    40                    Cuts: 17      131         
+      0     0        9.1295    40                    Cuts: 36      149         
+      0     0        8.9905    20                    Cuts: 16      168         
+      0     0        8.9333    14                    Cuts: 10      177         
+      0     0        8.9120    27                     Cuts: 5      185         
+      0     0        8.8857    16                    Cuts: 10      193         
+      0     0        8.8800    12                     Cuts: 9      195         
+*     0+    0                          -11.8000        8.8800      195  175.25%
+      0     2        8.8800    12      -11.8000        8.8800      195  175.25%
+Elapsed real time =   0.40 sec. (tree size =  0.01 MB, solutions = 1)
+*    42    28      integral     0        4.0000        8.5935      763  114.84%
+*    76    36      integral     0        6.0000        8.3657     1160   39.43%
+*   184     4      integral     0        6.6000        7.3176     2062   10.87%
+
+Clique cuts applied:  7
+Implied bound cuts applied:  3
+Flow cuts applied:  1
+Mixed integer rounding cuts applied:  12
+Zero-half cuts applied:  16
+Gomory fractional cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.27
+Parallel b&c, 2 threads:
+  Real time             =    0.19
+  Sync time (average)   =    0.01
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.46 sec.
+
+Solution pool: 4 solutions saved.
+
+MIP - Integer optimal solution:  Objective =  6.6000000000e+00
+Solution time =    0.64 sec.  Iterations = 2062  Nodes = 185
+Deterministic time = 47.22 ticks  (74.28 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(0,9,0)                      1.000000
+x(1,10,0)                     1.000000
+x(2,7,1)                      1.000000
+x(3,2,1)                      1.000000
+x(5,0,0)                      1.000000
+x(6,1,0)                      1.000000
+x(10,5,0)                     1.000000
+x(11,6,0)                     1.000000
+x(12,3,1)                     1.000000
+x(7,13,1)                     1.000000
+x(9,13,0)                     1.000000
+b(0)                          1.150000
+b(1)                          0.283333
+b(2)                          2.783333
+b(3)                          2.680000
+b(7)                          3.916667
+b(4)                          3.833333
+b(8)                          3.916667
+b(5)                          0.706667
+b(9)                          1.496667
+b(6)                          0.193333
+b(10)                         0.563333
+b(13)                        12.000000
+w(0)                          1.000000
+w(1)                          1.000000
+w(2)                          1.000000
+w(3)                          1.000000
+w(4)                          1.000000
+w(5)                          1.000000
+w(6)                          1.000000
+w(13)                         1.000000
+All other variables in the range 1-278 are 0.
