@@ -191,6 +191,17 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 
 	//Constraint 6 - The route of every vehicle has to end at the dummy node f.
 
+	// for (int k = 0; k < inst->K; k++){
+	// 	IloExpr exp(env);
+	// 	for (int i = 0; i < arcMinus[inst->V].size(); i++){
+	// 		exp += x[arcMinus[inst->V][i].first][arcMinus[inst->V][i].second][k];
+	// 	}
+	// 	sprintf (var, "Constraint6_%d", k);
+	// 	IloRange cons = (exp == 1);
+	// 	cons.setName(var);
+	// 	model.add(cons);	
+	// }
+
 	for (int k = 0; k < inst->K; k++){
 		IloExpr exp(env);
 		for (int i = 0; i < arcMinus[inst->V].size(); i++){
@@ -201,7 +212,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		cons.setName(var);
 		model.add(cons);	
 	}
-
+	
 	//Constraints 7 and 8 - TW
 
 	for (int i = 0; i < inst->n; i++){

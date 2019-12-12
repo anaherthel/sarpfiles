@@ -46,6 +46,7 @@ struct instanceStat{
     int K;
     int T;
     int V;
+    int dummy;
    	double gamma = 3;
 	double mu = 2;
 	double vmed = 30;

@@ -27,23 +27,25 @@ int main (int argc, char *argv[]) {
 	pair<int, int> fArc;
 	vector< pair<int,int> > arcVec;
 	vector< pair<int,int> > auxVec;
+
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix);
+	
 	vector< vector< pair<int,int> > > arcPlus;
 	vector< vector< pair<int,int> > > arcMinus; 
 
 	cout << "Distance Matrix: " << endl;
 
-	for (int i = 0; i < inst.V + 1; i++){
-		for (int j = 0; j < inst.V + 1; j++){
+	for (int i = 0; i < inst.V + inst.dummy; i++){
+		for (int j = 0; j < inst.V + inst.dummy; j++){
 			cout << setw(5) << distMatrix[i][j] << " ";
 		}
 		cout << endl;
 	}
-
+	getchar();
 	vector<bool> arcRow;
 	
-	for (int i = 0; i < inst.V + inst->K; i++){
-		for (int j = 0; j < inst.V + inst->K; j++){
+	for (int i = 0; i < inst.V + inst.dummy; i++){
+		for (int j = 0; j < inst.V + inst.dummy; j++){
 			arcRow.push_back(false);
 		}
 		arcs.push_back(arcRow);
@@ -54,7 +56,7 @@ int main (int argc, char *argv[]) {
 	// 	auxVec.push_back(fArc);
 	// }
 
-	for (int i = 0; i < inst.V + inst->K; i++){
+	for (int i = 0; i < inst.V + inst.dummy; i++){
 		arcMinus.push_back(auxVec);
 		arcPlus.push_back(auxVec);
 	}
@@ -118,16 +120,16 @@ int main (int argc, char *argv[]) {
 	// 	cout << "(" << arcVec[i].first << ", " << arcVec[i].second << ") ";
 	// }
 	// cout << endl;
-	for (int i = 0; i < inst.V + 1; i++){
+	for (int i = 0; i < inst.V + inst.dummy; i++){
 		if (i == 0){
 			cout << setw(3) << " ";
 		}
 		cout << setw(3) << std::right << i;
 	}
 	cout << endl;
-	for (int i = 0; i < inst.V + 1; i++){
+	for (int i = 0; i < inst.V + inst.dummy; i++){
 		cout << setw(3) << std::right << i;
-		for (int j = 0; j < inst.V + 1; j++){
+		for (int j = 0; j < inst.V + inst.dummy; j++){
 			cout << setw(3) << std:: right << arcs[i][j];
 		}
 		cout << endl;
@@ -143,7 +145,7 @@ int main (int argc, char *argv[]) {
 	// getchar();
 	mip(&inst, nodeVec, arcs, distMatrix, arcVec, arcPlus, arcMinus);
 
-	for ( int i = 0; i < inst.V + 1; i++ ) {
+	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {
 		delete[] distMatrix[i];
 	}
 
