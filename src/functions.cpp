@@ -211,11 +211,11 @@ void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector
                         arcMinus[j].push_back(fArc);
                         arcPlus[i].push_back(fArc);
                     } 
-                    arcs[i][inst->V] = true;
-                    fArc.first = i;
-                    fArc.second = inst->V;
-                    arcMinus[inst->V].push_back(fArc);
-                    arcPlus[i].push_back(fArc);             
+                    // arcs[i][inst->V] = true;
+                    // fArc.first = i;
+                    // fArc.second = inst->V;
+                    // arcMinus[inst->V].push_back(fArc);
+                    // arcPlus[i].push_back(fArc);             
                 }
             }
         }

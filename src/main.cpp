@@ -69,12 +69,18 @@ int main (int argc, char *argv[]) {
 	// 	cout << endl;
 	// }
 
-	cout << "\nArcsMinus: " << endl;
-	for (int j = 0; j < arcMinus[inst.V].size(); j++){
-		cout << "(" << arcMinus[inst.V][j].first << ", " << arcMinus[inst.V][j].second << ") ";
-	}
-		cout << endl;
-		getchar();
+	// cout << "\nArcsMinus: " << endl;
+	// for (int j = 0; j < arcMinus[inst.V].size(); j++){
+	// 	cout << "(" << arcMinus[inst.V][j].first << ", " << arcMinus[inst.V][j].second << ") ";
+	// }
+	// 	cout << endl;
+	// 	getchar();
+	// cout << "ArcsPlus: " << endl;
+	// for (int j = 0; j < arcPlus[inst.n+2*inst.m+1].size(); j++){
+	// 	cout << "(" << arcPlus[inst.n+2*inst.m+1][j].first << ", " << arcPlus[inst.n+2*inst.m+1][j].second << ") ";
+	// }
+	// 	cout << endl;
+	// 	getchar();
 	// }
 	// for (int i = 0; i < inst.V + 1; i++){
 	// 	for (int j = 0; j < arcSizePlus[i]; j++){
@@ -117,7 +123,7 @@ int main (int argc, char *argv[]) {
 	// 	cout << "(" << arcVec[i].first << ", " << arcVec[i].second << ") ";
 	// }
 	// cout << endl;
-
+	// getchar();
 	for (int i = 0; i < inst.V + 1; i++){
 		if (i == 0){
 			cout << setw(3) << " ";

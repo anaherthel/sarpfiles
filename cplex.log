@@ -171,3 +171,73 @@ w(5)                          1.000000
 w(6)                          1.000000
 w(13)                         1.000000
 All other variables in the range 1-278 are 0.
+
+Log started (V12.7.0.0) Thu Dec 12 10:54:34 2019
+
+Row 'Constraint13_0_1' repeats.
+Row 'Constraint13_0_10' repeats.
+Row 'Constraint13_0_13' repeats.
+Row 'Constraint13_0_2' repeats.
+Row 'Constraint13_0_3' repeats.
+120 repeated row warnings not printed.
+
+Problem 'SARP.lp' read.
+Read time = 0.01 sec. (0.05 ticks)
+Infeasibility row 'Constraint12_1':  0 <= -0.233333.
+Presolve time = 0.00 sec. (0.15 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.23 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.23 ticks)
+
+
+MIP - Integer infeasible.
+Current MIP best bound =  1.8800000000e+02 (gap is infinite)
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 0.23 ticks  (61.40 ticks/sec)
+
+No integer feasible solution exists.
+
+Log started (V12.7.0.0) Thu Dec 12 17:36:39 2019
+
+
+Problem 'SARP.lp' read.
+Read time = 0.00 sec. (0.04 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 62 rows and 94 columns.
+MIP Presolve modified 428 coefficients.
+Reduced MIP has 263 rows, 236 columns, and 1296 nonzeros.
+Reduced MIP has 214 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.68 ticks)
+Probing fixed 155 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (1.11 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 178 rows and 167 columns.
+Reduced MIP has 85 rows, 69 columns, and 311 nonzeros.
+Reduced MIP has 55 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.34 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (4.11 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (4.11 ticks)
+
+
+MIP - Integer infeasible.
+Current MIP best bound is infinite.
+Solution time =    0.01 sec.  Iterations = 0  Nodes = 0 (1)
+Deterministic time = 4.11 ticks  (519.04 ticks/sec)
+
+No integer feasible solution exists.
+
+Log started (V12.7.0.0) Thu Dec 12 17:41:40 2019
+
