@@ -26,6 +26,8 @@ int main (int argc, char *argv[]) {
 	// int vertices;
 	pair<int, int> fArc;
 	vector< pair<int,int> > arcVec;
+	vector< pair<int,int> > nodummyarcVec;
+
 	vector< pair<int,int> > auxVec;
 
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix);
@@ -41,7 +43,7 @@ int main (int argc, char *argv[]) {
 		}
 		cout << endl;
 	}
-	getchar();
+	// getchar();
 	vector<bool> arcRow;
 	
 	for (int i = 0; i < inst.V + inst.dummy; i++){
@@ -70,7 +72,7 @@ int main (int argc, char *argv[]) {
 	// 	}
 	// 	cout << endl;
 	// }
-
+	// getchar();
 	// cout << "\nArcsMinus: " << endl;
 	// for (int i = 0; i < arcMinus.size(); i++){
 	// 	cout << i << ": " << endl;
@@ -87,13 +89,16 @@ int main (int argc, char *argv[]) {
 	// 	auxVec.clear();
 	// }
 
-	// for (int i = 0; i < arcVec.size(); i++){
-	// 	for (int j = 0; j < arcPlus.size(); j++){
-	// 		if(j == arcVec[i].first){
-	// 			arcPlus[j]
+	// for (int i = 0; i < nodeVec.size(); i++){
+	// 	for (int j = 0; j < arcs[i].size() - inst.dummy; j++){
+	// 		if (arcs[i][j]){
+	// 			fArc.first = i;
+	// 			fArc.first = j;
+	// 			nodummyarcVec.push_back(fArc);
 	// 		}
 	// 	}
 	// }
+
 
 	// cout << "\nSizes: " << endl;
 	
@@ -111,15 +116,29 @@ int main (int argc, char *argv[]) {
 				fArc.first = i;
 				fArc.second = j;
 				arcVec.push_back(fArc);
+				if (j < inst.V){
+					nodummyarcVec.push_back(fArc);
+				}
 			}
 		}
 	}
 
+	// cout << "\nNo dummy Arc Vector:" << endl;
+	// for (int i = 0; i < nodummyarcVec.size(); i++){
+	// 	cout << "(" << nodummyarcVec[i].first << ", " << nodummyarcVec[i].second << ") ";
+	// }
+	// cout << endl;
+
+	// getchar();
+
 	// cout << "\nArc Vector:" << endl;
-	// for (int i; i < arcVec.size(); i++){
+	// for (int i = 0; i < arcVec.size(); i++){
 	// 	cout << "(" << arcVec[i].first << ", " << arcVec[i].second << ") ";
 	// }
 	// cout << endl;
+
+	// getchar();
+
 	for (int i = 0; i < inst.V + inst.dummy; i++){
 		if (i == 0){
 			cout << setw(3) << " ";
@@ -143,7 +162,7 @@ int main (int argc, char *argv[]) {
 	// }
 	// cout << endl;
 	// getchar();
-	mip(&inst, nodeVec, arcs, distMatrix, arcVec, arcPlus, arcMinus);
+	mip(&inst, nodeVec, arcs, distMatrix, arcVec, nodummyarcVec, arcPlus, arcMinus);
 
 	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {
 		delete[] distMatrix[i];

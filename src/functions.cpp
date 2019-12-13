@@ -42,8 +42,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     in >> T;
 
     V = n + 2*m + K;
-    inst->dummy = K;
-
+    // inst->dummy = K;
+    inst->dummy = 1;
+    
     double *xs = new double[V];
     double *ys = new double[V];
     char *label = new char[V];
