@@ -363,19 +363,28 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	}
 
 	//Constraints 13  - On-duty time
-	for (int k = 0; k < inst->K; k++){
-		for (int i = 0; i < arcPlus[inst->V - inst->K + k].size(); i++){
-			IloExpr exp(env);
-			exp = b[arcPlus[inst->V - inst->K + k][i].first] - mdist[arcPlus[inst->V - inst->K + k][i].first][arcPlus[inst->V - inst->K + k][i].second]/inst->vmed;
+	// for (int k = 0; k < inst->K; k++){
+	// 	for (int i = 0; i < arcPlus[inst->V - inst->K + k].size(); i++){
+	// 		IloExpr exp(env);
+	// 		exp = b[arcPlus[inst->V - inst->K + k][i].second] - mdist[arcPlus[inst->V - inst->K + k][i].first][arcPlus[inst->V - inst->K + k][i].second]/inst->vmed;
 
-			sprintf (var, "Constraint13_%d_%d",k, i);
-			IloRange cons = (nodeVec[inst->V - inst->K + k].e <= exp);
-			cons.setName(var);
-			model.add(cons);
+	// 		sprintf (var, "Constraint13_%d_%d",k, i);
+	// 		IloRange cons = (nodeVec[inst->V - inst->K + k].e <= exp);
+	// 		cons.setName(var);
+	// 		model.add(cons);
 			
-		}		
-	}
+	// 	}		
+	// }
 
+	for (int k = 0; k < inst->K; k++){
+		IloExpr exp(env);
+		exp = b[inst->V - inst->K + k];
+
+		sprintf (var, "Constraint13_%d",k);
+		IloRange cons = (nodeVec[inst->V - inst->K + k].e <= exp);
+		cons.setName(var);
+		model.add(cons);
+	}
 
     //Constraints 14  - Off-duty time
 	
