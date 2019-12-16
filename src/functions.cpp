@@ -2,19 +2,28 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist){
+void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem){
     
-    if (argc < 2) {
+    if (argc < 4) {
         cout << "\nMissing parameters\n";
-        cout << " ./exeSARP [Instance] "<< endl;
+        cout << " ./exeSARP [Instance] [Optimization strategy] [Scenario]"<< endl;
         exit(1);
     }
     
-    if (argc > 2) {
+    if (argc > 4) {
         cout << "\nToo many parameters\n";
-        cout << " ./exeSARP [Instance] " << endl;
+        cout << " ./exeSARP [Instance] [Optimization strategy] [Scenario]" << endl;
         exit(1);
     }  
+
+    if (argv[2] == "sim"){
+        problem->sim = true;
+    }
+    else if (argv[2] == "seq"){
+        problem->seq = true;
+    }
+
+    problem->scen = argv[3];
 
     string file;
     int n;
@@ -86,7 +95,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             else{
                 if (i < V){
                     if (j < V){
-                        dist[i][j] = floor(calcEucDist(xs, ys, xf, yf, i, j) + 0.5)/5;
+                        dist[i][j] = floor(calcEucDist(xs, ys, xf, yf, i, j) + 0.5);
                     }
                     else if (j >= V){
                         dist[i][j] = 0;
@@ -225,12 +234,21 @@ double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J
 //     }
 // }
 
-void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus){
+void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem){
 
-    for (int i = 0; i < inst->V; i++){
-        if (i < inst->n){
-            for(int j = 0; j < inst->n + 2*inst->m; j++){
-                if(i != j){
+    if (problem->scen == "1A" || problem->scen == "2A"){
+           for (int i = 0; i < inst->V; i++){
+            if (i < inst->n){
+                for(int j = 0; j < inst->n + 2*inst->m; j++){
+                    if(i != j){
+                        arcs[i][j] = true;
+                        fArc.first = i;
+                        fArc.second = j;
+                        arcMinus[j].push_back(fArc);
+                        arcPlus[i].push_back(fArc);
+                    }
+                }
+                for (int j = inst->V; j < inst->V + inst->dummy; j++){
                     arcs[i][j] = true;
                     fArc.first = i;
                     fArc.second = j;
@@ -238,34 +256,12 @@ void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector
                     arcPlus[i].push_back(fArc);
                 }
             }
-            for (int j = inst->V; j < inst->V + inst->dummy; j++){
-                arcs[i][j] = true;
-                fArc.first = i;
-                fArc.second = j;
-                arcMinus[j].push_back(fArc);
-                arcPlus[i].push_back(fArc);
-            }
-        }
 
-        else if (i > inst->n - 1){
-            if (i < inst->n + inst->m){
-                for (int j = 0; j < inst->n + 2*inst->m; j++){
-                    if (i != j){
-                        if (j != i + inst->m){
-                            arcs[i][j] = true;
-                            fArc.first = i;
-                            fArc.second = j;
-                            arcMinus[j].push_back(fArc);
-                            arcPlus[i].push_back(fArc);
-                        }
-                    }
-                }
-            }
-            else if (i > inst->n + inst->m - 1){
-                if (i < inst->n + 2*inst->m){
+            else if (i > inst->n - 1){
+                if (i < inst->n + inst->m){
                     for (int j = 0; j < inst->n + 2*inst->m; j++){
                         if (i != j){
-                            if (j + inst->m != i){
+                            if (j != i + inst->m){
                                 arcs[i][j] = true;
                                 fArc.first = i;
                                 fArc.second = j;
@@ -274,7 +270,54 @@ void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector
                             }
                         }
                     }
-                    for (int j = inst->V; j < inst->V + inst->dummy; j++){
+                }
+                else if (i > inst->n + inst->m - 1){
+                    if (i < inst->n + 2*inst->m){
+                        for (int j = 0; j < inst->n + 2*inst->m; j++){
+                            if (i != j){
+                                if (j + inst->m != i){
+                                    arcs[i][j] = true;
+                                    fArc.first = i;
+                                    fArc.second = j;
+                                    arcMinus[j].push_back(fArc);
+                                    arcPlus[i].push_back(fArc);
+                                }
+                            }
+                        }
+                        for (int j = inst->V; j < inst->V + inst->dummy; j++){
+                            arcs[i][j] = true;
+                            fArc.first = i;
+                            fArc.second = j;
+                            arcMinus[j].push_back(fArc);
+                            arcPlus[i].push_back(fArc);
+                        }
+                    }
+
+                    else if (i > inst->n + 2* inst->m - 1){
+                        for (int j = 0; j < inst->n + inst->m; j++){
+                            arcs[i][j] = true;
+                            fArc.first = i;
+                            fArc.second = j;
+                            arcMinus[j].push_back(fArc);
+                            arcPlus[i].push_back(fArc);
+                        }
+                        // for (int j = inst->V; j < inst->V + inst->dummy; j++){
+                        //     arcs[i][j] = true;
+                        //     fArc.first = i;
+                        //     fArc.second = j;
+                        //     arcMinus[j].push_back(fArc);
+                        //     arcPlus[i].push_back(fArc);
+                        // }
+                    }
+                }
+            }
+        }
+    }
+    if (problem->scen == "1B" || problem->scen == "2B"){
+        for (int i = 0; i < inst->V; i++){
+            if (i < inst->n){
+                for(int j = 0; j < inst->n + 2*inst->m; j++){
+                    if(i != j){
                         arcs[i][j] = true;
                         fArc.first = i;
                         fArc.second = j;
@@ -282,22 +325,67 @@ void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector
                         arcPlus[i].push_back(fArc);
                     }
                 }
+                for (int j = inst->V; j < inst->V + inst->dummy; j++){
+                    arcs[i][j] = true;
+                    fArc.first = i;
+                    fArc.second = j;
+                    arcMinus[j].push_back(fArc);
+                    arcPlus[i].push_back(fArc);
+                }
+            }
 
-                else if (i > inst->n + 2* inst->m - 1){
+            else if (i > inst->n - 1){
+                if (i < inst->n + inst->m){
                     for (int j = 0; j < inst->n + inst->m; j++){
-                        arcs[i][j] = true;
-                        fArc.first = i;
-                        fArc.second = j;
-                        arcMinus[j].push_back(fArc);
-                        arcPlus[i].push_back(fArc);
+                        if (i != j){
+                            if (j != i + inst->m){
+                                arcs[i][j] = true;
+                                fArc.first = i;
+                                fArc.second = j;
+                                arcMinus[j].push_back(fArc);
+                                arcPlus[i].push_back(fArc);
+                            }
+                        }
                     }
-                    // for (int j = inst->V; j < inst->V + inst->dummy; j++){
-                    //     arcs[i][j] = true;
-                    //     fArc.first = i;
-                    //     fArc.second = j;
-                    //     arcMinus[j].push_back(fArc);
-                    //     arcPlus[i].push_back(fArc);
-                    // }
+                }
+                else if (i > inst->n + inst->m - 1){
+                    if (i < inst->n + 2*inst->m){
+                        for (int j = 0; j < inst->n + 2*inst->m; j++){
+                            if (i != j){
+                                if (j + inst->m != i){
+                                    arcs[i][j] = true;
+                                    fArc.first = i;
+                                    fArc.second = j;
+                                    arcMinus[j].push_back(fArc);
+                                    arcPlus[i].push_back(fArc);
+                                }
+                            }
+                        }
+                        for (int j = inst->V; j < inst->V + inst->dummy; j++){
+                            arcs[i][j] = true;
+                            fArc.first = i;
+                            fArc.second = j;
+                            arcMinus[j].push_back(fArc);
+                            arcPlus[i].push_back(fArc);
+                        }
+                    }
+
+                    else if (i > inst->n + 2* inst->m - 1){
+                        for (int j = 0; j < inst->n + inst->m; j++){
+                            arcs[i][j] = true;
+                            fArc.first = i;
+                            fArc.second = j;
+                            arcMinus[j].push_back(fArc);
+                            arcPlus[i].push_back(fArc);
+                        }
+                        // for (int j = inst->V; j < inst->V + inst->dummy; j++){
+                        //     arcs[i][j] = true;
+                        //     fArc.first = i;
+                        //     fArc.second = j;
+                        //     arcMinus[j].push_back(fArc);
+                        //     arcPlus[i].push_back(fArc);
+                        // }
+                    }
                 }
             }
         }

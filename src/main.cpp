@@ -21,6 +21,7 @@ int main (int argc, char *argv[]) {
 	
 	nodeStat node;
 	instanceStat inst;
+	probStat problem;
 	std::vector<nodeStat> nodeVec;
 	vector< vector<bool> > arcs;
 	// int vertices;
@@ -30,7 +31,7 @@ int main (int argc, char *argv[]) {
 
 	vector< pair<int,int> > auxVec;
 
-	readData(argc, argv, &node, &inst, nodeVec, &distMatrix);
+	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem);
 	
 	vector< vector< pair<int,int> > > arcPlus;
 	vector< vector< pair<int,int> > > arcMinus; 
@@ -63,7 +64,7 @@ int main (int argc, char *argv[]) {
 		arcPlus.push_back(auxVec);
 	}
 
-	feasibleArcs(&inst, nodeVec, arcs, fArc, arcPlus, arcMinus);
+	feasibleArcs(&inst, nodeVec, arcs, fArc, arcPlus, arcMinus, &problem);
 	// cout << "\nArcsPlus: " << endl;
 	// for (int i = 0; i < arcPlus.size(); i++){
 	// 	cout << i << ": " << endl;
@@ -122,6 +123,13 @@ int main (int argc, char *argv[]) {
 			}
 		}
 	}
+
+	cout << "\nArcs arriving at f:" << endl;
+
+	for (int i = 0; i < arcMinus[inst.V].size(); i++){
+		cout << arcMinus[inst.V][i].first << " - " << arcMinus[inst.V][i].second << endl;
+	}
+	getchar();
 
 	// cout << "\nNo dummy Arc Vector:" << endl;
 	// for (int i = 0; i < nodummyarcVec.size(); i++){

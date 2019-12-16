@@ -405,8 +405,8 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	for (int k = 0; k < inst->K; k++){
 		for (int i = 0; i < arcMinus[inst->V].size(); i++){
 			IloExpr exp(env);
-			exp = b[i] + nodeVec[arcMinus[inst->V][i].first].delta;
-			sprintf (var, "Constraint14_%d_%d",k, i);
+			exp = b[arcMinus[inst->V][i].first] + nodeVec[arcMinus[inst->V][i].first].delta;
+			sprintf (var, "Constraint14_%d_%d",k, arcMinus[inst->V][i].first);
 			IloRange cons = (exp <= nodeVec[inst->V - inst->K + k].l);
 			cons.setName(var);
 			model.add(cons);
@@ -417,6 +417,28 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	// //Constraints 15 and 16 - transported capacity
 	// //Scenarios 1-A and 2-A: Q = 1;
 	
+	// for (int i = 0; i < nodummyarcVec.size(); i++){
+	// 	IloExpr exp(env);
+	// 	IloExpr sumx(env);
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		sumx += x[nodummyarcVec[i].first][nodummyarcVec[i].second][k];
+	// 	}
+
+	// 	exp = w[nodummyarcVec[i].second] - w[nodummyarcVec[i].first] - nodeVec[nodummyarcVec[i].second].load + W * (1 - sumx);
+
+	// 	sprintf (var, "Constraint15_%d_%d", nodummyarcVec[i].first, nodummyarcVec[i].second);
+	// 	IloRange cons1 = (0 <= exp);
+	// 	cons1.setName(var);
+	// 	model.add(cons1);
+		
+	// 	sprintf (var, "Constraint16_%d_%d", nodummyarcVec[i].first, nodummyarcVec[i].second);
+	// 	IloRange cons2 = (w[nodummyarcVec[i].second] <= 1);
+	// 	cons2.setName(var);
+	// 	model.add(cons2);
+	// } 
+
+
+	//Scenarios 1-B and 2-B Q > 1:
 	for (int i = 0; i < nodummyarcVec.size(); i++){
 		IloExpr exp(env);
 		IloExpr sumx(env);
@@ -432,13 +454,10 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		model.add(cons1);
 		
 		sprintf (var, "Constraint16_%d_%d", nodummyarcVec[i].first, nodummyarcVec[i].second);
-		IloRange cons2 = (w[nodummyarcVec[i].second] <= 1);
+		IloRange cons2 = (w[nodummyarcVec[i].second] <= 3);
 		cons2.setName(var);
 		model.add(cons2);
 	} 
-
-
-	//Scenarios 1-B and 2-B Q > 1:
 	// for (int i = 0; i < arcVec.size(); i++){
 	// 	IloExpr exp(env);
 	// 	IloExpr sumx(env);
