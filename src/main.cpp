@@ -34,7 +34,8 @@ int main (int argc, char *argv[]) {
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem);
 	
 	vector< vector< pair<int,int> > > arcPlus;
-	vector< vector< pair<int,int> > > arcMinus; 
+	vector< vector< pair<int,int> > > arcMinus;
+	vector< pair<int,int> > arcNN;
 
 	cout << "Distance Matrix: " << endl;
 
@@ -64,7 +65,13 @@ int main (int argc, char *argv[]) {
 		arcPlus.push_back(auxVec);
 	}
 
-	feasibleArcs(&inst, nodeVec, arcs, fArc, arcPlus, arcMinus, &problem);
+	// for (int i = 0; i < inst.n; i++){
+	// 	arcNN.push_back(auxVec);
+	// }
+
+	feasibleArcs(&inst, nodeVec, arcs, fArc, arcPlus, arcMinus, &problem, arcNN);
+	
+
 	// cout << "\nArcsPlus: " << endl;
 	// for (int i = 0; i < arcPlus.size(); i++){
 	// 	cout << i << ": " << endl;
@@ -124,12 +131,12 @@ int main (int argc, char *argv[]) {
 		}
 	}
 
-	cout << "\nArcs arriving at f:" << endl;
+	// cout << "\nArcs arriving at f:" << endl;
 
-	for (int i = 0; i < arcMinus[inst.V].size(); i++){
-		cout << arcMinus[inst.V][i].first << " - " << arcMinus[inst.V][i].second << endl;
-	}
-	getchar();
+	// for (int i = 0; i < arcMinus[inst.V].size(); i++){
+	// 	cout << arcMinus[inst.V][i].first << " - " << arcMinus[inst.V][i].second << endl;
+	// }
+	// getchar();
 
 	// cout << "\nNo dummy Arc Vector:" << endl;
 	// for (int i = 0; i < nodummyarcVec.size(); i++){
@@ -139,13 +146,20 @@ int main (int argc, char *argv[]) {
 
 	// getchar();
 
-	// cout << "\nArc Vector:" << endl;
-	// for (int i = 0; i < arcVec.size(); i++){
-	// 	cout << "(" << arcVec[i].first << ", " << arcVec[i].second << ") ";
-	// }
-	// cout << endl;
+	cout << "\nArc Vector:" << endl;
+	for (int i = 0; i < arcVec.size(); i++){
+		cout << "(" << arcVec[i].first << ", " << arcVec[i].second << ") ";
+	}
+	cout << endl;
 
-	// getchar();
+	getchar();
+
+	cout << "\nArc NN: " << endl;
+	for (int i = 0; i < arcNN.size(); i++){
+		cout << "(" << arcNN[i].first << ", " << arcNN[i].second << ") ";
+
+	}
+	getchar();
 
 	for (int i = 0; i < inst.V + inst.dummy; i++){
 		if (i == 0){
@@ -170,7 +184,9 @@ int main (int argc, char *argv[]) {
 	// }
 	// cout << endl;
 	// getchar();
-	mip(&inst, nodeVec, arcs, distMatrix, arcVec, nodummyarcVec, arcPlus, arcMinus);
+	
+
+	mip(&inst, nodeVec, arcs, distMatrix, arcVec, nodummyarcVec, arcPlus, arcMinus, arcNN);
 
 	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {
 		delete[] distMatrix[i];

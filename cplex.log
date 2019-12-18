@@ -3885,3 +3885,132 @@ w(11)                         1.000000
 w(13)                         1.000000
 w(15)                         2.000000
 All other variables in the range 1-543 are 0.
+
+Log started (V12.7.0.0) Tue Dec 17 11:44:00 2019
+
+
+Problem 'SARP.lp' read.
+Read time = 0.00 sec. (0.11 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 415 rows and 24 columns.
+MIP Presolve modified 566 coefficients.
+Reduced MIP has 503 rows, 559 columns, and 3432 nonzeros.
+Reduced MIP has 532 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (3.49 ticks)
+Probing fixed 40 vars, tightened 0 bounds.
+Probing time = 0.01 sec. (5.04 ticks)
+Cover probing fixed 0 vars, tightened 25 bounds.
+Tried aggregator 1 time.
+MIP Presolve eliminated 40 rows and 45 columns.
+MIP Presolve modified 55 coefficients.
+Reduced MIP has 463 rows, 514 columns, and 3112 nonzeros.
+Reduced MIP has 487 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.43 ticks)
+Probing time = 0.00 sec. (2.65 ticks)
+Clique table members: 1766.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (2.59 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       17.7247    26                     17.7247      130         
+      0     0       12.6000    38                    Cuts: 47      175         
+      0     0       11.2000    41                    Cuts: 62      212         
+      0     0       11.0909    46                    Cuts: 18      239         
+      0     0       11.0909    47                    Cuts: 53      257         
+      0     0       11.0000    31                    Cuts: 10      285         
+      0     0       11.0000    31                    Cuts: 69      329         
+*     0+    0                          -40.0000       11.0000           127.50%
+      0     2       11.0000    15      -40.0000       10.7235      329  126.81%
+Elapsed time = 0.23 sec. (138.32 ticks, tree = 0.01 MB, solutions = 1)
+*    36+    6                          -17.0000       10.7235           163.08%
+*  3323+ 1297                           -9.0000        6.3769           170.85%
+   3323  1298        8.9700    44       -9.0000        6.3769    36629  170.85%
+   4543   663        cutoff             -9.0000        6.3769    47722  170.85%
+   7835  2545        cutoff             -9.0000        4.9386    79410  154.87%
+  10100  3419        cutoff             -9.0000        3.0000   107668  133.33%
+  12311  3674       -3.7191    16       -9.0000        1.6271   130965  118.08%
+* 13578  3386      integral     0       -8.0000        0.5464   151174  106.83%
+  14263  2987        cutoff             -8.0000       -0.1748   159061   97.82%
+  16749  1526        cutoff             -8.0000       -3.0000   189443   62.50%
+
+GUB cover cuts applied:  6
+Clique cuts applied:  3
+Cover cuts applied:  5
+Implied bound cuts applied:  1
+Flow cuts applied:  2
+Mixed integer rounding cuts applied:  12
+Zero-half cuts applied:  11
+Lift and project cuts applied:  9
+Gomory fractional cuts applied:  15
+
+Root node processing (before b&c):
+  Real time             =    0.23 sec. (138.04 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    3.54 sec. (2081.14 ticks)
+  Sync time (average)   =    0.44 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    3.77 sec. (2219.18 ticks)
+
+Solution pool: 4 solutions saved.
+
+MIP - Integer optimal solution:  Objective = -8.0000000000e+00
+Solution time =    3.77 sec.  Iterations = 201677  Nodes = 18441
+Deterministic time = 2219.18 ticks  (587.95 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(0,13,0)                     1.000000
+x(1,4,0)                      1.000000
+x(2,11,1)                     1.000000
+x(3,15,0)                     1.000000
+x(4,10,0)                     1.000000
+x(6,2,1)                      1.000000
+x(8,0,0)                      1.000000
+x(10,3,0)                     1.000000
+x(11,5,1)                     1.000000
+x(15,8,0)                     1.000000
+x(16,1,0)                     1.000000
+x(17,6,1)                     1.000000
+y(0)                          1.000000
+y(1)                          1.000000
+y(2)                          1.000000
+y(3)                          1.000000
+y(4)                          1.000000
+x(5,18,1)                     1.000000
+y(5)                          1.000000
+y(6)                          1.000000
+y(8)                          1.000000
+y(10)                         1.000000
+y(11)                         1.000000
+x(13,18,0)                    1.000000
+y(13)                         1.000000
+y(15)                         1.000000
+b(0)                          1.833333
+b(1)                          0.183333
+b(2)                          0.400000
+b(3)                          1.133333
+b(4)                          0.483333
+b(5)                          1.183333
+b(6)                          0.216667
+b(8)                          1.683333
+b(10)                         0.916667
+b(11)                         0.800000
+b(13)                         2.433333
+b(15)                         1.533333
+y(16)                         1.000000
+y(17)                         1.000000
+w(0)                          1.000000
+w(2)                          1.000000
+w(3)                          1.000000
+w(5)                          1.000000
+w(6)                          1.000000
+w(7)                          1.000000
+w(8)                          1.000000
+w(10)                         1.000000
+All other variables in the range 1-583 are 0.

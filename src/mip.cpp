@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, double **mdist, vector< pair<int,int> > &arcVec,  vector< pair<int,int> > &nodummyarcVec, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus){
+void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, double **mdist, vector< pair<int,int> > &arcVec,  vector< pair<int,int> > &nodummyarcVec, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, vector< pair<int,int> > &arcNN){
 
 	//MIP
 	//Creating environment and model 
@@ -417,28 +417,6 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	// //Constraints 15 and 16 - transported capacity
 	// //Scenarios 1-A and 2-A: Q = 1;
 	
-	// for (int i = 0; i < nodummyarcVec.size(); i++){
-	// 	IloExpr exp(env);
-	// 	IloExpr sumx(env);
-	// 	for (int k = 0; k < inst->K; k++){
-	// 		sumx += x[nodummyarcVec[i].first][nodummyarcVec[i].second][k];
-	// 	}
-
-	// 	exp = w[nodummyarcVec[i].second] - w[nodummyarcVec[i].first] - nodeVec[nodummyarcVec[i].second].load + W * (1 - sumx);
-
-	// 	sprintf (var, "Constraint15_%d_%d", nodummyarcVec[i].first, nodummyarcVec[i].second);
-	// 	IloRange cons1 = (0 <= exp);
-	// 	cons1.setName(var);
-	// 	model.add(cons1);
-		
-	// 	sprintf (var, "Constraint16_%d_%d", nodummyarcVec[i].first, nodummyarcVec[i].second);
-	// 	IloRange cons2 = (w[nodummyarcVec[i].second] <= 1);
-	// 	cons2.setName(var);
-	// 	model.add(cons2);
-	// } 
-
-
-	//Scenarios 1-B and 2-B Q > 1:
 	for (int i = 0; i < nodummyarcVec.size(); i++){
 		IloExpr exp(env);
 		IloExpr sumx(env);
@@ -454,10 +432,50 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 		model.add(cons1);
 		
 		sprintf (var, "Constraint16_%d_%d", nodummyarcVec[i].first, nodummyarcVec[i].second);
-		IloRange cons2 = (w[nodummyarcVec[i].second] <= 3);
+		IloRange cons2 = (w[nodummyarcVec[i].second] <= 1);
 		cons2.setName(var);
 		model.add(cons2);
 	} 
+
+
+	//Scenarios 1-B and 2-B Q > 1:
+	// for (int i = 0; i < nodummyarcVec.size(); i++){
+	// 	IloExpr exp(env);
+	// 	IloExpr sumx(env);
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		sumx += x[nodummyarcVec[i].first][nodummyarcVec[i].second][k];
+	// 	}
+
+	// 	exp = w[nodummyarcVec[i].second] - w[nodummyarcVec[i].first] - nodeVec[nodummyarcVec[i].second].load + W * (1 - sumx);
+
+	// 	sprintf (var, "Constraint15_%d_%d", nodummyarcVec[i].first, nodummyarcVec[i].second);
+	// 	IloRange cons1 = (0 <= exp);
+	// 	cons1.setName(var);
+	// 	model.add(cons1);
+		
+	// 	sprintf (var, "Constraint16_%d_%d", nodummyarcVec[i].first, nodummyarcVec[i].second);
+	// 	IloRange cons2 = (w[nodummyarcVec[i].second] <= 3);
+	// 	cons2.setName(var);
+	// 	model.add(cons2);
+	// } 
+
+	//Constraint 17 - Only one passenger visited with parcel beign carried (1A)
+
+	for(int i = 0; i < arcNN.size(); i++){
+		IloExpr exp(env);
+		IloExpr sumx(env);
+		for (int k = 0; k < inst->K; k++){
+			sumx += x[arcNN[i].first][arcNN[i].second][k];
+		}
+
+		exp = sumx - W * (1 - w[arcNN[i].first]);
+
+		sprintf (var, "Constraint17_%d_%d", arcNN[i].first, arcNN[i].second);
+		IloRange cons = (exp <= 0);
+		cons.setName(var);
+		model.add(cons);
+	}
+
 	// for (int i = 0; i < arcVec.size(); i++){
 	// 	IloExpr exp(env);
 	// 	IloExpr sumx(env);

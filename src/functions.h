@@ -7,7 +7,7 @@
 #include <string.h>
 #include <list>
 #include <vector>
-#include <algorithm>
+#include <algorithm>	
 #include <iterator>
 #include <math.h>
 #include <cmath>
@@ -59,9 +59,18 @@ struct probStat{
 	string scen;
 };
 
+// struct Arcset{
+// 	vector< vector<bool> > arcs;
+// 	vector< vector< pair<int,int> > > arcMinus;
+// 	vector< vector< pair<int,int> > > arcPlus;
+// 	vector< pair<int,int> > arcNN;
+// 	vector< pair<int,int> > nodummyarcVec;
+// }
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem);
 double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J);
-void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem);
+void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem, vector< pair<int,int> > &arcNN);
+string getInstanceType (char **argv);
+
 
 #endif
