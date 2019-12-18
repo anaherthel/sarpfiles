@@ -459,7 +459,22 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 	// 	model.add(cons2);
 	// } 
 
-	//Constraint 17 - Only one passenger visited with parcel beign carried (1A)
+	//Constraint 17 - Only one passenger visited with any number of parcels being carried (1A;1B)
+
+	// for(int i = 0; i < arcNN.size(); i++){
+	// 	IloExpr exp(env);
+	// 	IloExpr sumx(env);
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		sumx += x[arcNN[i].first][arcNN[i].second][k];
+	// 	}
+
+	// 	exp = sumx - W * (1 - w[arcNN[i].first]);
+
+	// 	sprintf (var, "Constraint17_%d_%d", arcNN[i].first, arcNN[i].second);
+	// 	IloRange cons = (exp <= 0);
+	// 	cons.setName(var);
+	// 	model.add(cons);
+	// }
 
 	for(int i = 0; i < arcNN.size(); i++){
 		IloExpr exp(env);
@@ -468,7 +483,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &
 			sumx += x[arcNN[i].first][arcNN[i].second][k];
 		}
 
-		exp = sumx - W * (1 - w[arcNN[i].first]);
+		exp = sumx - 1 - (w[arcNN[i].first]/W);
 
 		sprintf (var, "Constraint17_%d_%d", arcNN[i].first, arcNN[i].second);
 		IloRange cons = (exp <= 0);

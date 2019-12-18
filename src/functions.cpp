@@ -162,7 +162,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] xf;
         delete[] yf;
     }
-
+    else if (InstanceType == "sarpdata"){
+        
+    }
  
 }
 
