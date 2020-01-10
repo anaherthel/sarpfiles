@@ -442,3 +442,6 @@ string getInstanceType (char **argv){
 
 }
 
+void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<int> &bundle, vector< vector<double> > &bundleTimesVec, vector<double> &bundleTimes){
+    
+}

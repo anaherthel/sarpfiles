@@ -54,8 +54,15 @@ int main (int argc, char *argv[]) {
 	// getchar();
 	vector<bool> arcRow;
 	
-	
+	makeBundles(&inst, nodeVec, bundleVec, bundle, bundleTimesVec, bundleTimes);
 
+	for (int i = 0; i < bundleVec.size(); i++){
+		cout << "[";
+		for (int j = 0; j < bundleVec[i].size(); j++){
+			cout << setw(3) << std:: right << bundleVec[i][j];
+		}
+		cout << "]" << endl;
+	}
 	// for (int i = 0; i < inst.V + inst.dummy; i++){
 	// 	for (int j = 0; j < inst.V + inst.dummy; j++){
 	// 		arcRow.push_back(false);
