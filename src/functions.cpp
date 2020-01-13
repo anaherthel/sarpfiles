@@ -162,7 +162,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] xf;
         delete[] yf;
     }
-    else if (InstanceType == "sarpdata"){
+    else if (instType == "sarpdata"){
         
     }
  
@@ -442,6 +442,35 @@ string getInstanceType (char **argv){
 
 }
 
-void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<int> &bundle, vector< vector<double> > &bundleTimesVec, vector<double> &bundleTimes){
-    
+void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<int> &bundle, vector<double> &bundleTimes){
+
+//For 1A:   
+    for (int i = 0; i < inst->n; i++){
+        for (int j = inst->n; j < inst->m + inst->n; j++){
+            bundle.push_back(j);
+            bundle.push_back(i);
+            bundle.push_back(j+inst->m);
+            bundleTimes.push_back(nodeVec[j].delta + nodeVec[i].delta + nodeVec[j+inst->m].delta);
+
+            cout << "\nBundle: [";
+            for (int k = 0; k < bundle.size(); k++){
+                cout << bundle[k];
+                if (k < bundle.size() - 1){
+                    cout << ", ";
+                }
+            }
+            cout << "]" << endl;
+
+            bundleVec.push_back(bundle);
+            bundle.clear();
+        }
+    }
+
+    for (int i = 2*inst->m + inst->n; i < nodeVec.size(); i++){
+        bundle.push_back(i);
+        bundleVec.push_back(bundle);
+        bundle.clear();
+    }
+
+
 }

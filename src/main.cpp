@@ -40,7 +40,6 @@ int main (int argc, char *argv[]) {
 	vector< vector<int> > bundleVec;
 	vector<int> bundle;
 
-	vector< vector<double> > bundleTimesVec;
 	vector<double> bundleTimes;
 	
 	cout << "Distance Matrix: " << endl;
@@ -54,15 +53,35 @@ int main (int argc, char *argv[]) {
 	// getchar();
 	vector<bool> arcRow;
 	
-	makeBundles(&inst, nodeVec, bundleVec, bundle, bundleTimesVec, bundleTimes);
+	makeBundles(&inst, nodeVec, bundleVec, bundle, bundleTimes);
 
+	cout << "\nBundle Vector: [";
 	for (int i = 0; i < bundleVec.size(); i++){
 		cout << "[";
 		for (int j = 0; j < bundleVec[i].size(); j++){
 			cout << setw(3) << std:: right << bundleVec[i][j];
+			if (j < bundleVec[i].size() - 1){
+                cout << ", ";
+            }
 		}
-		cout << "]" << endl;
+		cout << "],";
 	}
+	cout << "]" << endl;
+
+	// for (int i = 0; i < nodeVec.size(); i++){
+	// 	cout << "\nNode: " << i << " - service time: " << nodeVec[i].delta;
+	// }
+	// cout << endl;
+
+	// for (int i = 0; i < bundleTimes.size(); i++){
+	// 	cout << "\nBundle:";
+	// 	for (int j = 0; j < bundleVec[i].size(); j++){
+	// 		cout << bundleVec[i][j] << " ";
+	// 	}
+	// 	cout << endl;
+	// 	cout << "\nTime of service for the bundle: " << bundleTimes[i] << endl;
+	// }
+
 	// for (int i = 0; i < inst.V + inst.dummy; i++){
 	// 	for (int j = 0; j < inst.V + inst.dummy; j++){
 	// 		arcRow.push_back(false);
