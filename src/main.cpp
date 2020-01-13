@@ -42,6 +42,9 @@ int main (int argc, char *argv[]) {
 
 	vector<double> bundleTimes;
 	
+	vector< vector< vector<int> > >clusterVec;
+	vector< vector<int> > clusters;
+
 	cout << "Distance Matrix: " << endl;
 
 	for (int i = 0; i < inst.V + inst.dummy; i++){
@@ -53,7 +56,7 @@ int main (int argc, char *argv[]) {
 	// getchar();
 	vector<bool> arcRow;
 	
-	makeBundles(&inst, nodeVec, bundleVec, bundle, bundleTimes);
+	makeBundles(&inst, nodeVec, bundleVec, bundle, bundleTimes, clusters, clusterVec);
 
 	cout << "\nBundle Vector: [";
 	for (int i = 0; i < bundleVec.size(); i++){
@@ -67,6 +70,18 @@ int main (int argc, char *argv[]) {
 		cout << "],";
 	}
 	cout << "]" << endl;
+
+	cout << "\nClusters:";
+	for (int i = 0; i < clusterVec.size(); i++){
+		cout << "\nCluster " << i << ": ";
+		for (int j = 0; j < clusterVec[i].size(); j++){
+			for (int k = 0; k < clusterVec[i][j].size(); k++){
+				cout << clusterVec[i][j][k] << " ";
+			}
+			cout << ", ";
+		}
+		cout << endl;
+	}
 
 	// for (int i = 0; i < nodeVec.size(); i++){
 	// 	cout << "\nNode: " << i << " - service time: " << nodeVec[i].delta;

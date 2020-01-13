@@ -442,7 +442,7 @@ string getInstanceType (char **argv){
 
 }
 
-void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<int> &bundle, vector<double> &bundleTimes){
+void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<int> &bundle, vector<double> &bundleTimes, vector< vector<int> > &clusters, vector< vector< vector<int> > > &clusterVec){
 
 //For 1A:   
     for (int i = 0; i < inst->n; i++){
@@ -452,24 +452,31 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<
             bundle.push_back(j+inst->m);
             bundleTimes.push_back(nodeVec[j].delta + nodeVec[i].delta + nodeVec[j+inst->m].delta);
 
-            cout << "\nBundle: [";
-            for (int k = 0; k < bundle.size(); k++){
-                cout << bundle[k];
-                if (k < bundle.size() - 1){
-                    cout << ", ";
-                }
-            }
-            cout << "]" << endl;
+            // cout << "\nBundle: [";
+            // for (int k = 0; k < bundle.size(); k++){
+            //     cout << bundle[k];
+            //     if (k < bundle.size() - 1){
+            //         cout << ", ";
+            //     }
+            // }
+            // cout << "]" << endl;
 
             bundleVec.push_back(bundle);
+            clusters.push_back(bundle);
             bundle.clear();
         }
+        clusterVec.push_back(clusters);
+        clusters.clear();
     }
 
     for (int i = 2*inst->m + inst->n; i < nodeVec.size(); i++){
         bundle.push_back(i);
         bundleVec.push_back(bundle);
+        clusters.push_back(bundle);
         bundle.clear();
+        
+        clusterVec.push_back(clusters);
+        clusters.clear();
     }
 
 
