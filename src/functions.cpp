@@ -446,6 +446,10 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<
 
 //For 1A:   
     for (int i = 0; i < inst->n; i++){
+        bundle.push_back(i);
+        bundleVec.push_back(bundle);
+        clusters.push_back(bundle);
+        bundle.clear();
         for (int j = inst->n; j < inst->m + inst->n; j++){
             bundle.push_back(j);
             bundle.push_back(i);
