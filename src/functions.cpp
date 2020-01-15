@@ -485,3 +485,32 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<
 
 
 }
+
+void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<double> &bundleProfVec){
+    double cost;
+
+    for (int i = 0; i < bundleVec.size(); i++){
+        if (bundleVec[i].size() <= 1){
+            cost = 0;
+            bundleProfVec.push_back(cost);
+        }
+        else{
+            for (int j = 0; j < bundleVec[i].size() - 1; j++){
+                cost = 0;
+                if (bundleVec[i][j] > inst->n - 1 && bundleVec[i][j] < inst->n + inst->m){
+                    cost += inst->gamma + inst->mu*mdist[bundleVec[i][j]][bundleVec[i][j] + inst->m];
+                    for (int k = j + 1; k < bundleVec[i].size(); k++){
+                        if (bundleVec[i][k] == bundleVec[i][j] + inst->m){
+                            break;
+                        }
+                        else if (bundleVec[i][k] < inst->n + inst->m){
+                            cost += - mdist[bundleVec[i][j]][bundleVec[i][k]] - mdist[bundleVec[i][k]][bundleVec[i][j] + inst->m];
+                            
+                        }
+                    }
+                    bundleProfVec.push_back(cost);
+                }
+            }            
+        }
+    }   
+}

@@ -72,6 +72,7 @@ double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J
 void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem, vector< pair<int,int> > &arcNN);
 string getInstanceType (char **argv);
 void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<int> &bundle, vector<double> &bundleTimes, vector< vector<int> > &clusters, vector< vector< vector<int> > > &clusterVec);
+void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<double> &bundleProfVec);
 
 
 #endif

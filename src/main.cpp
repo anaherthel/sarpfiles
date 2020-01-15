@@ -45,6 +45,8 @@ int main (int argc, char *argv[]) {
 	vector< vector< vector<int> > >clusterVec;
 	vector< vector<int> > clusters;
 
+	vector<double> bundleProfVec;
+
 	cout << "Distance Matrix: " << endl;
 
 	for (int i = 0; i < inst.V + inst.dummy; i++){
@@ -71,17 +73,30 @@ int main (int argc, char *argv[]) {
 	}
 	cout << "]" << endl;
 
-	cout << "\nClusters:";
-	for (int i = 0; i < clusterVec.size(); i++){
-		cout << "\nCluster " << i << ": ";
-		for (int j = 0; j < clusterVec[i].size(); j++){
-			for (int k = 0; k < clusterVec[i][j].size(); k++){
-				cout << clusterVec[i][j][k] << " ";
-			}
-			cout << ", ";
-		}
-		cout << endl;
+	// cout << "\nClusters:";
+	// for (int i = 0; i < clusterVec.size(); i++){
+	// 	cout << "\nCluster " << i << ": ";
+	// 	for (int j = 0; j < clusterVec[i].size(); j++){
+	// 		for (int k = 0; k < clusterVec[i][j].size(); k++){
+	// 			cout << clusterVec[i][j][k] << " ";
+	// 		}
+	// 		cout << ", ";
+	// 	}
+	// 	cout << endl;
+	// }
+
+	bundleProfit(&inst, distMatrix, nodeVec, bundleVec, bundleProfVec);
+
+	cout << "\nBundle Profit: [";
+	for (int i = 0; i < bundleProfVec.size(); i++){
+		cout << setw(3) << std:: right << bundleProfVec[i];
+		if (i < bundleProfVec.size() - 1){
+            cout << ", ";
+        }
 	}
+	cout << endl;
+
+
 
 	// for (int i = 0; i < nodeVec.size(); i++){
 	// 	cout << "\nNode: " << i << " - service time: " << nodeVec[i].delta;
@@ -160,6 +175,8 @@ int main (int argc, char *argv[]) {
 	// }
 
 	// mip(&inst, nodeVec, arcs, distMatrix, arcVec, nodummyarcVec, arcPlus, arcMinus, arcNN);
+
+	// mip(&inst, nodeVec, distMatrix, bundleVec, bundleTimes, clusterVec);
 
 	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {
 		delete[] distMatrix[i];
