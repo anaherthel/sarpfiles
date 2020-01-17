@@ -230,9 +230,7 @@ int main (int argc, char *argv[]) {
 	// 	cout << endl;
 	// }
 
-	// mip(&inst, nodeVec, arcs, distMatrix, arcVec, nodummyarcVec, arcPlus, arcMinus, arcNN);
-
-	// mip(&inst, nodeVec, distMatrix, bundleVec, bundleTimes, clusterVec, bArcs, bArcPlus, bArcMinus);
+	mip(&inst, nodeVec, distMatrix, bundleVec, bundleTimes, clusterVec, bArcs, bArcPlus, bArcMinus, bArcVec, bundleProfVec);
 
 	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {
 		delete[] distMatrix[i];
