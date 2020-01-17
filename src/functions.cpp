@@ -514,3 +514,41 @@ void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
         }
     }   
 }
+
+void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, pair<int, int> &bFArc, vector< vector<bool> > &bArcs, vector< vector< pair<int,int> > > &bArcPlus, vector< vector< pair<int,int> > > &bArcMinus){
+    //1-A
+    int setN = bundleVec.size() - inst->K - 1;
+    int currentCluster = 0;
+
+    for(int i = 0; i < bundleVec.size(); i++){
+        if (i > currentCluster*(inst->m + 1) + inst->m){
+            currentCluster++;
+        }
+        if(i < setN){
+            for (int j = 0; j < setN; j++){
+                if (i != j){
+                    if (j > currentCluster*(inst->m + 1) + inst->m || j < currentCluster*(inst->m + 1)){
+                        bArcs[i][j] = true;
+                        bFArc.first = i;
+                        bFArc.second = j;
+                        bArcMinus[j].push_back(bFArc);
+                        bArcPlus[i].push_back(bFArc);
+                    }
+                } 
+            }
+            bArcs[i][bundleVec.size()-1] = true;
+            bArcMinus[bundleVec.size()-1].push_back(bFArc);
+            bArcPlus[i].push_back(bFArc);
+        }
+        else if (i >= setN){
+            if (i < bundleVec.size()-1){
+                for (int j = 0; j < setN; j++){
+                    bArcs[i][j] = true;
+                    bArcMinus[j].push_back(bFArc);
+                    bArcPlus[i].push_back(bFArc);
+                }
+            }
+        }
+    }
+}
+

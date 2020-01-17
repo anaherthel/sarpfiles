@@ -73,6 +73,7 @@ void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector
 string getInstanceType (char **argv);
 void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<int> &bundle, vector<double> &bundleTimes, vector< vector<int> > &clusters, vector< vector< vector<int> > > &clusterVec);
 void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<double> &bundleProfVec);
+void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, pair<int, int> &bFArc, vector< vector<bool> > &bArcs, vector< vector< pair<int,int> > > &bArcPlus, vector< vector< pair<int,int> > > &bArcMinus);
 
 
 #endif

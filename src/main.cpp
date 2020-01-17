@@ -46,6 +46,14 @@ int main (int argc, char *argv[]) {
 	vector< vector<int> > clusters;
 
 	vector<double> bundleProfVec;
+	
+	vector<bool> bArcRow;
+	pair<int, int> bFArc;
+	vector< vector<bool> > bArcs;
+	vector< pair<int,int> > bArcVec;
+	vector< vector< pair<int,int> > > bArcPlus;
+	vector< vector< pair<int,int> > > bArcMinus;
+
 
 	cout << "Distance Matrix: " << endl;
 
@@ -96,7 +104,55 @@ int main (int argc, char *argv[]) {
 	}
 	cout << endl;
 
+	for (int i = 0; i < bundleVec.size(); i++){
+		for (int j = 0; j < bundleVec.size(); j++){
+			bArcRow.push_back(false);
+		}
+		bArcs.push_back(bArcRow);
+	}
+	
+	for (int i = 0; i < bundleVec.size(); i++){
+		auxVec.push_back(bFArc);
+	}
+	auxVec.clear();
 
+	for (int i = 0; i < bundleVec.size(); i++){
+		bArcMinus.push_back(auxVec);
+		bArcPlus.push_back(auxVec);
+	}
+
+	feasibleBundleArcs(&inst, nodeVec, bundleVec, bFArc, bArcs, bArcPlus, bArcMinus);
+
+	cout<< "\nFeasible arcs between bundles:" << endl;
+	for (int i = 0; i < bundleVec.size(); i++){
+		if (i == 0){
+			cout << setw(3) << " ";
+		}
+		cout << setw(3) << std::right << i;
+	}
+	cout << endl;
+	for (int i = 0; i < bundleVec.size(); i++){
+		cout << setw(3) << std::right << i;
+		for (int j = 0; j < bundleVec.size(); j++){
+			cout << setw(3) << std:: right << bArcs[i][j];
+		}
+		cout << endl;
+	}
+
+	for (int i = 0; i < bundleVec.size(); i++){
+		for (int j = 0; j < bundleVec.size(); j++){
+			if(bArcs[i][j]){
+				bFArc.first = i;
+				bFArc.second = j;
+				bArcVec.push_back(bFArc);
+			}
+		}
+	}
+	cout << "\nBundle arc vector: " << endl;
+	for (int i = 0; i < bArcVec.size(); i++){
+		cout << bArcVec[i].first << " - " << bArcVec[i].second << " ";
+	}
+	getchar();
 
 	// for (int i = 0; i < nodeVec.size(); i++){
 	// 	cout << "\nNode: " << i << " - service time: " << nodeVec[i].delta;
@@ -176,7 +232,7 @@ int main (int argc, char *argv[]) {
 
 	// mip(&inst, nodeVec, arcs, distMatrix, arcVec, nodummyarcVec, arcPlus, arcMinus, arcNN);
 
-	// mip(&inst, nodeVec, distMatrix, bundleVec, bundleTimes, clusterVec);
+	// mip(&inst, nodeVec, distMatrix, bundleVec, bundleTimes, clusterVec, bArcs, bArcPlus, bArcMinus);
 
 	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {
 		delete[] distMatrix[i];

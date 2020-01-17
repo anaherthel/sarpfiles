@@ -524,35 +524,36 @@
 
 // }
 
-void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< vector<int> > &bundleVec, vector<double> &bundleTimes, vector< vector< vector<int> > > &clusterVec){
-	// //MIP
-	// //Creating environment and model 
-	// char var[100];
-	// IloEnv env;
-	// IloModel model(env, "SARP");
-	// //long M = numeric_limits<long>::max();
-	// // long M = 2*inst->T;
-	// // long W = 2*inst->m;
+void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< vector<int> > &bundleVec, vector<double> &bundleTimes, vector< vector< vector<int> > > &clusterVec, vector< vector<bool> > &bArcs, vector< vector< pair<int,int> > > &bArcPlus, vector< vector< pair<int,int> > > &bArcMinus){
 
-	// //Creating variables
-	// IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
+	//MIP
+	//Creating environment and model 
+	char var[100];
+	IloEnv env;
+	IloModel model(env, "bSARP");
+	//long M = numeric_limits<long>::max();
+	// long M = 2*inst->T;
+	// long W = 2*inst->m;
 
-	// for (int i = 0; i < nodeVec.size(); i++){
-	// 	x[i] = IloArray <IloBoolVarArray> (env, nodeVec.size());
-	// 	for(int j = 0; j < nodeVec.size(); ++j){
-	// 		if (arcs[i][j] != true){
-	// 			continue; // If arc i to j is invalid
-	// 		} 
+	//Creating variables
+	IloArray <IloArray <IloBoolVarArray> > x(env, bundleVec.size());
 
-	// 		x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
+	for (int i = 0; i < bundleVec.size(); i++){
+		x[i] = IloArray <IloBoolVarArray> (env, bundleVec.size());
+		for(int j = 0; j < bundleVec.size(); ++j){
+			if (bArcs[i][j] != true){
+				continue; // If arc i to j is invalid
+			} 
 
-	// 		for(int k = 0; k < inst->K; k++){
-	// 			sprintf(var, "x(%d,%d,%d)", i, j, k);
-	// 			x[i][j][k].setName(var);
-	// 			model.add(x[i][j][k]);
-	// 		}
-	// 	}	
-	// }
+			x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
+
+			for(int k = 0; k < inst->K; k++){
+				sprintf(var, "x(%d,%d,%d)", i, j, k);
+				x[i][j][k].setName(var);
+				model.add(x[i][j][k]);
+			}
+		}	
+	}
 	
 	// IloBoolVarArray y(env, nodeVec.size()); //creates boolean variable (y_i = 1 se nó i é visitado; 0 cc)
 	// for (int i = 0; i < nodeVec.size(); i++){
@@ -577,11 +578,11 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< 
 	// 	model.add(w[i]);
 	// }
 
-	// //Creating objective function
+	//Creating objective function
 	
-	// IloExpr objFunction(env);
+	IloExpr objFunction(env);
 
-	// for (int i = inst->n; i < inst->n + inst->m; i++){
+	// for (int i = 0; i < ; i++){
 	// 	for (int j = 0; j < arcVec.size(); j++){
 	// 		if(arcVec[j].first == i){
 	// 			for (int k = 0; k < inst->K; k++){
@@ -647,11 +648,11 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< 
 	// 	model.add(cons);
 	// }
 
-	IloCplex SARP(model);
-	SARP.exportModel("SARP.lp");
+	IloCplex bSARP(model);
+	bSARP.exportModel("bSARP.lp");
 
-	// // SARP.solve();
-	// // cout << "\nObj Val: " << setprecision(15) << SARP.getObjValue() << endl;
+	// SARP.solve();
+	// cout << "\nObj Val: " << setprecision(15) << SARP.getObjValue() << endl;
 
 	env.end();
 
