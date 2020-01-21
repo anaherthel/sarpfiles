@@ -131,6 +131,17 @@ int main (int argc, char *argv[]) {
 
 	feasibleBundleArcs(&inst, nodeVec, bundleVec, bFArc, bArcs, bArcPlus, bArcMinus);
 
+	// cout << "\nPlus arcs from 15: "<< endl;
+	// for (int i = 0; i < bArcPlus.size(); i++){
+	// 	for (int j = 0; j < bArcPlus[i].size(); j++){
+	// 		if (i == 15){
+	// 			cout  << bArcPlus[i][j].first << " - " << bArcPlus[i][j].second << endl;
+	// 		}			
+	// 	} 
+	// }
+
+	// getchar();
+
 	cout<< "\nFeasible arcs between bundles:" << endl;
 	for (int i = 0; i < bundleVec.size(); i++){
 		if (i == 0){

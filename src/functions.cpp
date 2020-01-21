@@ -520,7 +520,7 @@ void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< 
     int setN = bundleVec.size() - inst->K - 1;
     int currentCluster = 0;
 
-    for(int i = 0; i < bundleVec.size(); i++){
+    for(int i = 0; i < bundleVec.size() - 1; i++){
         if (i > currentCluster*(inst->m + 1) + inst->m){
             currentCluster++;
         }
@@ -536,17 +536,19 @@ void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< 
                     }
                 } 
             }
+            bFArc.first = i;
+            bFArc.second = bundleVec.size()-1;
             bArcs[i][bundleVec.size()-1] = true;
             bArcMinus[bundleVec.size()-1].push_back(bFArc);
             bArcPlus[i].push_back(bFArc);
         }
         else if (i >= setN){
-            if (i < bundleVec.size()-1){
-                for (int j = 0; j < setN; j++){
-                    bArcs[i][j] = true;
-                    bArcMinus[j].push_back(bFArc);
-                    bArcPlus[i].push_back(bFArc);
-                }
+            for (int j = 0; j < setN; j++){
+                bArcs[i][j] = true;
+                bFArc.first = i;
+                bFArc.second = j;
+                bArcMinus[j].push_back(bFArc);
+                bArcPlus[i].push_back(bFArc);
             }
         }
     }
