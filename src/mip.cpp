@@ -9,6 +9,8 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< 
 	char var[100];
 	IloEnv env;
 	IloModel model(env, "bSARP");
+	int setN = bundleVec.size() - inst->K - 1;
+	int currSP;
 	//long M = numeric_limits<long>::max();
 	// long M = 2*inst->T;
 	// long W = 2*inst->m;
@@ -78,53 +80,64 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< 
 
 	model.add(IloMaximize(env, objFunction));
 
+	//Creating constraints
 
+	//Constraint 1 - Only one arc leaves the cluster
 
-	// //Creating constraints
+	for (int i = 0; i < setN; i++){
+		IloExpr exp(env);
+		for (int k = 0; k < inst->K; k++){
+			for (int j = 0; j < bArcPlus[i].size(); j++){
+				exp += x[bArcPlus[i][j].first][bArcPlus[i][j].second][k];
+			}
+		}
+		sprintf (var, "Constraint1_%d", i);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
 
-	// //Constraint 0 - x and y
-
-	// for (int i = 0; i < inst->n + 2*inst->m; i++){
-	// 	IloExpr exp(env);
-	// 	for (int k = 0; k < inst->K; k++){
-	// 		for (int j = 0; j < arcPlus[i].size(); j++){
-	// 			exp += x[i][arcPlus[i][j].second][k];
-	// 		}
-	// 	}
-	// 	sprintf (var, "Constraint0_%d", i);
-	// 	IloRange cons = (exp - y[i] == 0);
-	// 	cons.setName(var);
-	// 	model.add(cons);
-	// }
-
-	// // Constraint 1 - all passenger requests must be served
+	// Constraint 2 - Only one arc comes into the cluster
 	
-	// // for (int i = 0; i < inst->n; i++){
-	// // 	IloExpr exp(env);
-	// // 	for (int k = 0; k < inst->K; k++){
-	// // 		for (int j = 0; j < arcPlus[i].size(); j++){
-	// // 			exp += x[i][arcPlus[i][j].second][k];
-	// // 		}
-	// // 	}
-	// // 	sprintf (var, "Constraint1_%d", i);
-	// // 	IloRange cons = (exp == 1);
-	// // 	cons.setName(var);
-	// // 	model.add(cons);
-	// // }
+	for (int i = 0; i < setN; i++){
+		IloExpr exp(env);
+		for (int k = 0; k < inst->K; k++){
+			for (int j = 0; j < bArcMinus[i].size(); j++){
+				exp += x[bArcMinus[i][j].first][bArcMinus[i][j].second][k];
+			}
+		}
+		sprintf (var, "Constraint2_%d", i);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
 
-	// for (int i = 0; i < inst->n; i++){
-	// 	IloExpr exp(env);
-	// 	// for (int k = 0; k < inst->K; k++){
-	// 	// 	for (int j = 0; j < arcPlus[i].size(); j++){
-	// 	// 		exp += x[i][arcPlus[i][j].second][k];
-	// 	// 	}
-	// 	// }
-	// 	exp = y[i];
-	// 	sprintf (var, "Constraint1_%d", i);
-	// 	IloRange cons = (exp == 1);
-	// 	cons.setName(var);
-	// 	model.add(cons);
-	// }
+	// Constraint 3 - Each vehicle leaves its starting node
+	
+	for (int k = 0; k < inst->K; k++){
+		IloExpr exp(env);
+		currSP = setN + k;
+		for (int i = 0; i < bArcPlus[currSP].size(); i++){
+			exp += x[bArcPlus[currSP][i].first][bArcPlus[currSP][i].second][k];
+		}
+		sprintf (var, "Constraint3_%d", k);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	// Constraint 4 - All vehicles end the trip at the dummy node f
+	
+	for (int k = 0; k < inst->K; k++){
+		IloExpr exp(env);
+		for (int i = 0; i < bArcMinus[bArcVec.size()-1].size(); i++){
+			exp += x[bArcPlus[currSP][i].first][bArcPlus[currSP][i].second][k];
+		}
+		sprintf (var, "Constraint4_%d", k);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}	
 
 	IloCplex bSARP(model);
 	bSARP.exportModel("bSARP.lp");

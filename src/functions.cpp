@@ -552,3 +552,18 @@ void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< 
     }
 }
 
+void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector< vector<int> > &parcelBundleVec){
+    int parcelReq;
+    for (int i = 0; i < bundleVec.size(); i++){
+        for (int j = 0; j < bundleVec[i].size(); j++){
+            if (bundleVec[i][j] < inst->n){
+                break;
+            }
+            else{
+                parcelReq = bundleVec[i][j];
+                parcelBundleVec[parcelReq - inst->m].push_back(bundleVec[i]);
+            }
+
+        }
+    }
+}

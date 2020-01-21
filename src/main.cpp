@@ -54,6 +54,8 @@ int main (int argc, char *argv[]) {
 	vector< vector< pair<int,int> > > bArcPlus;
 	vector< vector< pair<int,int> > > bArcMinus;
 
+	vector<int> parcelBundle;
+	vector< vector<int> > parcelBundleVec;
 
 	cout << "Distance Matrix: " << endl;
 
@@ -80,6 +82,12 @@ int main (int argc, char *argv[]) {
 		cout << "],";
 	}
 	cout << "]" << endl;
+
+	for (int i = 0; i < inst->m; i ++){
+		parcelBundleVec.push_back(parcelBundle);
+	}
+	
+	makeParcelBundles(&inst, nodeVec, bundleVec, parcelBundleVec);
 
 	// cout << "\nClusters:";
 	// for (int i = 0; i < clusterVec.size(); i++){
@@ -230,7 +238,7 @@ int main (int argc, char *argv[]) {
 	// 	cout << endl;
 	// }
 
-	mip(&inst, nodeVec, distMatrix, bundleVec, bundleTimes, clusterVec, bArcs, bArcPlus, bArcMinus, bArcVec, bundleProfVec);
+	// mip(&inst, nodeVec, distMatrix, bundleVec, bundleTimes, clusterVec, bArcs, bArcPlus, bArcMinus, bArcVec, bundleProfVec);
 
 	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {
 		delete[] distMatrix[i];
