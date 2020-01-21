@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< vector<int> > &bundleVec, vector<double> &bundleTimes, vector< vector< vector<int> > > &clusterVec, vector< vector<bool> > &bArcs, vector< vector< pair<int,int> > > &bArcPlus, vector< vector< pair<int,int> > > &bArcMinus, vector< pair<int,int> > &bArcVec, vector<double> &bundleProfVec){
+void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< vector<int> > &bundleVec, vector<double> &bundleTimes, vector< vector< vector<int> > > &clusterVec, vector< vector<bool> > &bArcs, vector< vector< pair<int,int> > > &bArcPlus, vector< vector< pair<int,int> > > &bArcMinus, vector< pair<int,int> > &bArcVec, vector<double> &bundleProfVec, vector< vector<int> > &parcelBundleVec){
 
 	//MIP
 	//Creating environment and model 

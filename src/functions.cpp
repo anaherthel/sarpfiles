@@ -559,11 +559,30 @@ void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, vector< ve
             if (bundleVec[i][j] < inst->n){
                 break;
             }
+            else if (bundleVec[i][j] > inst->n + inst->m - 1){
+                break;
+            }
             else{
                 parcelReq = bundleVec[i][j];
-                parcelBundleVec[parcelReq - inst->m].push_back(bundleVec[i]);
+                parcelBundleVec[parcelReq - inst->n].push_back(i);
             }
 
         }
     }
+
+    // cout << "\nParcel bundles: ";
+    
+    // for (int i = 0; i < parcelBundleVec.size(); i++){
+    //     cout << "\np req: " << i + inst->n << " - bundles: ";
+    //     for(int j = 0; j < parcelBundleVec[i].size(); j++){         
+    //         if (j == parcelBundleVec[i].size()-1){
+    //             cout << parcelBundleVec[i][j];
+    //         }
+    //         else{
+    //             cout << parcelBundleVec[i][j] << ", ";
+    //         }
+    //     }
+    // }
+    // getchar();
+
 }

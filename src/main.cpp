@@ -83,10 +83,10 @@ int main (int argc, char *argv[]) {
 	}
 	cout << "]" << endl;
 
-	for (int i = 0; i < inst->m; i ++){
+	for (int i = 0; i < inst.m; i ++){
 		parcelBundleVec.push_back(parcelBundle);
 	}
-	
+
 	makeParcelBundles(&inst, nodeVec, bundleVec, parcelBundleVec);
 
 	// cout << "\nClusters:";
@@ -238,7 +238,7 @@ int main (int argc, char *argv[]) {
 	// 	cout << endl;
 	// }
 
-	// mip(&inst, nodeVec, distMatrix, bundleVec, bundleTimes, clusterVec, bArcs, bArcPlus, bArcMinus, bArcVec, bundleProfVec);
+	mip(&inst, nodeVec, distMatrix, bundleVec, bundleTimes, clusterVec, bArcs, bArcPlus, bArcMinus, bArcVec, bundleProfVec, parcelBundleVec);
 
 	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {
 		delete[] distMatrix[i];
