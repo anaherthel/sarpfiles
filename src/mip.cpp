@@ -13,6 +13,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< 
 	IloModel model(env, "bSARP");
 	int setN = bundleVec.size() - inst->K - 1;
 	int currSP;
+	int currParcel;
 	//long M = numeric_limits<long>::max();
 	// long M = 2*inst->T;
 	// long W = 2*inst->m;
@@ -140,6 +141,54 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< 
 		cons.setName(var);
 		model.add(cons);
 	}	
+
+	//Constraint 5 - No parcel can be served more than once
+
+	for (int i = 0; i < parcelBundleVec.size(); i++){
+		IloExpr exp(env);
+		currParcel = inst->n + i;
+		for (int j = 0; j < parcelBundleVec[i].size(); j++){
+			for (int l = 0; l < bArcPlus[parcelBundleVec[i][j]].size(); l++){
+				for (int k = 0; k < inst->K; k++){
+					exp += x[bArcPlus[parcelBundleVec[i][j]][l].first][bArcPlus[parcelBundleVec[i][j]][l].second][k];
+				}
+			}
+		}
+		sprintf (var, "Constraint5_%d", currParcel);
+		IloRange cons = (exp <= 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	//Constraint 6 - Flow conservation between clusters
+
+	// for (int i = 0; i < clusterVec.size(); i++){
+	// 	for (int j = 0; j < clusterVec.size(); j++){
+	// 		if (i != j){
+
+	// 		}
+	// 	}
+	// }
+
+	for (int i = 0; i < setN; i++){
+		for (int k = 0; k < inst->K; k++){
+			IloExpr exp1(env);
+			IloExpr exp2(env);
+
+			for (int j = 0; j < bArcPlus[bundleVec[i]].size(); j++){
+				exp1 += x[bArcPlus[bundleVec[i]][j].first][bArcPlus[bundleVec[i]][j].second][k];
+			}
+
+			// for (int j = 0; j < bArcMinus[bundleVec[i]].size(); j++){
+			// 	exp2 += x[bArcMinus[bundleVec[i]][j].first][bArcMinus[bundleVec[i]][j].second][k];
+			// }
+
+			// sprintf (var, "Constraint6_%d_%d", i, k);
+			// IloRange cons = (exp1 - exp2 == 0);
+			// cons.setName(var);
+			// model.add(cons);			
+		}
+	}
 
 	IloCplex bSARP(model);
 	bSARP.exportModel("bSARP.lp");
