@@ -132,8 +132,8 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< 
 	
 	for (int k = 0; k < inst->K; k++){
 		IloExpr exp(env);
-		for (int i = 0; i < bArcMinus[bArcVec.size()-1].size(); i++){
-			exp += x[bArcPlus[currSP][i].first][bArcPlus[currSP][i].second][k];
+		for (int i = 0; i < bArcMinus[bundleVec.size()-1].size(); i++){
+			exp += x[bArcMinus[bundleVec.size()-1][i].first][bArcMinus[bundleVec.size()-1][i].second][k];
 		}
 		sprintf (var, "Constraint4_%d", k);
 		IloRange cons = (exp == 1);
