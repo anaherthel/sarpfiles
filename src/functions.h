@@ -74,6 +74,7 @@ string getInstanceType (char **argv);
 void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<int> &bundle, vector<double> &bundleTimes, vector< vector<int> > &clusters, vector< vector< vector<int> > > &clusterVec);
 void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<double> &bundleProfVec);
 void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, pair<int, int> &bFArc, vector< vector<bool> > &bArcs, vector< vector< pair<int,int> > > &bArcPlus, vector< vector< pair<int,int> > > &bArcMinus);
+void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector< vector<int> > > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus);
 void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector< vector<int> > &parcelBundleVec);
 
 

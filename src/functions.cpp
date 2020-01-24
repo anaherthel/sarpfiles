@@ -554,6 +554,39 @@ void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< 
     }
 }
 
+void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector< vector<int> > > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus){
+    
+    int reqClusters = clusterVec.size() - inst->K - 1;
+    
+    for(int i = 0; i < clusterVec.size() - 1; i++){
+        if(i < reqClusters){
+            for (int j = 0; j < reqClusters; j++){
+                if (i != j){
+                    cArcs[i][j] = true;
+                    cFArc.first = i;
+                    cFArc.second = j;
+                    cArcMinus[j].push_back(cFArc);
+                    cArcPlus[i].push_back(cFArc);
+                } 
+            }
+            cFArc.first = i;
+            cFArc.second = clusterVec.size()-1;
+            cArcs[i][clusterVec.size()-1] = true;
+            cArcMinus[clusterVec.size()-1].push_back(cFArc);
+            cArcPlus[i].push_back(cFArc);
+        }
+        else if (i >= reqClusters){
+            for (int j = 0; j < reqClusters; j++){
+                cArcs[i][j] = true;
+                cFArc.first = i;
+                cFArc.second = j;
+                cArcMinus[j].push_back(cFArc);
+                cArcPlus[i].push_back(cFArc);
+            }
+        }
+    }
+}
+
 void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector< vector<int> > &parcelBundleVec){
     int parcelReq;
     for (int i = 0; i < bundleVec.size(); i++){

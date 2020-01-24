@@ -241,3 +241,71 @@ No integer feasible solution exists.
 
 Log started (V12.7.0.0) Thu Dec 12 17:41:40 2019
 
+
+Log started (V12.7.0.0) Thu Jan 23 16:03:45 2020
+
+
+Problem 'bSARP.lp' read.
+Read time = 0.02 sec. (0.03 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 64 rows, 390 columns, and 1440 nonzeros.
+Reduced MIP has 390 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.86 ticks)
+Found incumbent of value -545.000000 after 0.01 sec. (2.25 ticks)
+Probing time = 0.00 sec. (1.98 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 64 rows, 390 columns, and 1440 nonzeros.
+Reduced MIP has 390 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.86 ticks)
+Probing time = 0.00 sec. (1.97 ticks)
+Clique table members: 834.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.00 sec. (0.54 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                         -545.0000       68.0000           112.48%
+      0     0     -408.0000    12     -545.0000     -408.0000       74   25.14%
+*     0+    0                         -408.0000     -408.0000             0.00%
+      0     0        cutoff           -408.0000     -408.0000       74    0.00%
+Elapsed time = 0.02 sec. (8.84 ticks, tree = 0.01 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (8.86 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (8.86 ticks)
+
+Solution pool: 2 solutions saved.
+
+MIP - Integer optimal solution:  Objective = -4.0800000000e+02
+Solution time =    0.03 sec.  Iterations = 74  Nodes = 0
+Deterministic time = 8.86 ticks  (345.20 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(0,13,0)                     1.000000
+x(1,7,1)                      1.000000
+x(2,10,1)                     1.000000
+x(3,8,1)                      1.000000
+x(4,5,0)                      1.000000
+x(5,4,0)                      1.000000
+x(6,11,1)                     1.000000
+x(7,12,1)                     1.000000
+x(8,3,1)                      1.000000
+x(9,17,0)                     1.000000
+x(10,2,1)                     1.000000
+x(11,1,1)                     1.000000
+x(12,17,1)                    1.000000
+x(13,0,0)                     1.000000
+x(14,9,0)                     1.000000
+x(15,14,0)                    1.000000
+x(16,6,1)                     1.000000
+All other variables in the range 1-390 are 0.

@@ -43,6 +43,7 @@ int main (int argc, char *argv[]) {
 	vector<double> bundleTimes;
 	
 	vector< vector< vector<int> > >clusterVec;
+	vector< vector<int> >clusterVecII;
 	vector< vector<int> > clusters;
 
 	vector<double> bundleProfVec;
@@ -53,6 +54,13 @@ int main (int argc, char *argv[]) {
 	vector< pair<int,int> > bArcVec;
 	vector< vector< pair<int,int> > > bArcPlus;
 	vector< vector< pair<int,int> > > bArcMinus;
+
+	vector<bool> cArcRow;
+	pair<int, int> cFArc;
+	vector< vector<bool> > cArcs;
+	vector< pair<int,int> > cArcVec;
+	vector< vector< pair<int,int> > > cArcPlus;
+	vector< vector< pair<int,int> > > cArcMinus;
 
 	vector<int> parcelBundle;
 	vector< vector<int> > parcelBundleVec;
@@ -131,6 +139,27 @@ int main (int argc, char *argv[]) {
 
 	feasibleBundleArcs(&inst, nodeVec, bundleVec, bFArc, bArcs, bArcPlus, bArcMinus);
 
+	for (int i = 0; i < clusterVec.size(); i++){
+		for (int j = 0; j < clusterVec.size(); j++){
+			cArcRow.push_back(false);
+		}
+		cArcs.push_back(cArcRow);
+	}
+	
+	for (int i = 0; i < clusterVec.size(); i++){
+		auxVec.push_back(cFArc);
+	}
+	auxVec.clear();
+
+	for (int i = 0; i < clusterVec.size(); i++){
+		cArcMinus.push_back(auxVec);
+		cArcPlus.push_back(auxVec);
+	}
+
+
+	feasibleClusterArcs(&inst, nodeVec, clusterVec, cFArc, cArcs, cArcPlus, cArcMinus);
+
+
 	// cout << "\nPlus arcs from 17: "<< endl;
 	// for (int i = 0; i < bArcPlus.size(); i++){
 	// 	for (int j = 0; j < bArcPlus[i].size(); j++){
@@ -168,6 +197,22 @@ int main (int argc, char *argv[]) {
 		cout << endl;
 	}
 
+	cout<< "\nFeasible arcs between clusters:" << endl;
+	for (int i = 0; i < clusterVec.size(); i++){
+		if (i == 0){
+			cout << setw(3) << " ";
+		}
+		cout << setw(3) << std::right << i;
+	}
+	cout << endl;
+	for (int i = 0; i < clusterVec.size(); i++){
+		cout << setw(3) << std::right << i;
+		for (int j = 0; j < clusterVec.size(); j++){
+			cout << setw(3) << std:: right << cArcs[i][j];
+		}
+		cout << endl;
+	}
+
 	for (int i = 0; i < bundleVec.size(); i++){
 		for (int j = 0; j < bundleVec.size(); j++){
 			if(bArcs[i][j]){
@@ -177,11 +222,28 @@ int main (int argc, char *argv[]) {
 			}
 		}
 	}
-	cout << "\nBundle arc vector: " << endl;
-	for (int i = 0; i < bArcVec.size(); i++){
-		cout << bArcVec[i].first << " - " << bArcVec[i].second << " ";
+	// cout << "\nBundle arc vector: " << endl;
+	// for (int i = 0; i < bArcVec.size(); i++){
+	// 	cout << bArcVec[i].first << " - " << bArcVec[i].second << " ";
+	// }
+	// getchar();
+
+
+	for (int i = 0; i < clusterVec.size(); i++){
+		for (int j = 0; j < clusterVec.size(); j++){
+			if(cArcs[i][j]){
+				cFArc.first = i;
+				cFArc.second = j;
+				cArcVec.push_back(cFArc);
+			}
+		}
 	}
-	getchar();
+
+	// cout << "\nCluster arc vector: " << endl;
+	// for (int i = 0; i < cArcVec.size(); i++){
+	// 	cout << cArcVec[i].first << " - " << cArcVec[i].second << " ";
+	// }
+	// getchar();
 
 	// for (int i = 0; i < nodeVec.size(); i++){
 	// 	cout << "\nNode: " << i << " - service time: " << nodeVec[i].delta;
@@ -259,7 +321,7 @@ int main (int argc, char *argv[]) {
 	// 	cout << endl;
 	// }
 
-	mip(&inst, nodeVec, distMatrix, bundleVec, bundleTimes, clusterVec, bArcs, bArcPlus, bArcMinus, bArcVec, bundleProfVec, parcelBundleVec);
+	mip(&inst, nodeVec, distMatrix, bundleVec, bundleTimes, clusterVec, bArcs, bArcPlus, bArcMinus, bArcVec, bundleProfVec, parcelBundleVec, cArcVec, cArcPlus, cArcMinus);
 
 	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {
 		delete[] distMatrix[i];
