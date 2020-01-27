@@ -442,42 +442,42 @@ string getInstanceType (char **argv){
 
 }
 
-void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<int> &bundle, vector<double> &bundleTimes, vector< vector<int> > &clusters, vector< vector< vector<int> > > &clusterVec){
+void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector< vector<int> > &clusters, vector< vector< vector<int> > > &clusterVec){
 
 //For 1A:   
     for (int i = 0; i < inst->n; i++){
-        bundle.push_back(i);
-        bundleVec.push_back(bundle);
-        clusters.push_back(bundle);
-        bundle.clear();
+        bStat->bundle.push_back(i);
+        bStat->bundleVec.push_back(bStat->bundle);
+        clusters.push_back(bStat->bundle);
+        bStat->bundle.clear();
         for (int j = inst->n; j < inst->m + inst->n; j++){
-            bundle.push_back(j);
-            bundle.push_back(i);
-            bundle.push_back(j+inst->m);
-            bundleTimes.push_back(nodeVec[j].delta + nodeVec[i].delta + nodeVec[j+inst->m].delta);
+            bStat->bundle.push_back(j);
+            bStat->bundle.push_back(i);
+            bStat->bundle.push_back(j+inst->m);
+            bStat->bundleTimes.push_back(nodeVec[j].delta + nodeVec[i].delta + nodeVec[j+inst->m].delta);
 
             // cout << "\nBundle: [";
-            // for (int k = 0; k < bundle.size(); k++){
-            //     cout << bundle[k];
-            //     if (k < bundle.size() - 1){
+            // for (int k = 0; k < bStat->bundle.size(); k++){
+            //     cout << bStat->bundle[k];
+            //     if (k < bStat->bundle.size() - 1){
             //         cout << ", ";
             //     }
             // }
             // cout << "]" << endl;
 
-            bundleVec.push_back(bundle);
-            clusters.push_back(bundle);
-            bundle.clear();
+            bStat->bundleVec.push_back(bStat->bundle);
+            clusters.push_back(bStat->bundle);
+            bStat->bundle.clear();
         }
         clusterVec.push_back(clusters);
         clusters.clear();
     }
 
     for (int i = 2*inst->m + inst->n; i < nodeVec.size(); i++){
-        bundle.push_back(i);
-        bundleVec.push_back(bundle);
-        clusters.push_back(bundle);
-        bundle.clear();
+        bStat->bundle.push_back(i);
+        bStat->bundleVec.push_back(bStat->bundle);
+        clusters.push_back(bStat->bundle);
+        bStat->bundle.clear();
         
         clusterVec.push_back(clusters);
         clusters.clear();
@@ -486,41 +486,41 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<
 
 }
 
-void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<double> &bundleProfVec){
+void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
     double cost;
 
-    for (int i = 0; i < bundleVec.size(); i++){
-        if (bundleVec[i].size() <= 1){
+    for (int i = 0; i < bStat->bundleVec.size(); i++){
+        if (bStat->bundleVec[i].size() <= 1){
             cost = 0;
-            bundleProfVec.push_back(cost);
+            bStat->bundleProfVec.push_back(cost);
         }
         else{
-            for (int j = 0; j < bundleVec[i].size() - 1; j++){
+            for (int j = 0; j < bStat->bundleVec[i].size() - 1; j++){
                 cost = 0;
-                if (bundleVec[i][j] > inst->n - 1 && bundleVec[i][j] < inst->n + inst->m){
-                    cost += inst->gamma + inst->mu*mdist[bundleVec[i][j]][bundleVec[i][j] + inst->m];
-                    for (int k = j + 1; k < bundleVec[i].size(); k++){
-                        if (bundleVec[i][k] == bundleVec[i][j] + inst->m){
+                if (bStat->bundleVec[i][j] > inst->n - 1 && bStat->bundleVec[i][j] < inst->n + inst->m){
+                    cost += inst->gamma + inst->mu*mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j] + inst->m];
+                    for (int k = j + 1; k < bStat->bundleVec[i].size(); k++){
+                        if (bStat->bundleVec[i][k] == bStat->bundleVec[i][j] + inst->m){
                             break;
                         }
-                        else if (bundleVec[i][k] < inst->n + inst->m){
-                            cost += - mdist[bundleVec[i][j]][bundleVec[i][k]] - mdist[bundleVec[i][k]][bundleVec[i][j] + inst->m];
+                        else if (bStat->bundleVec[i][k] < inst->n + inst->m){
+                            cost += - mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][k]] - mdist[bStat->bundleVec[i][k]][bStat->bundleVec[i][j] + inst->m];
                             
                         }
                     }
-                    bundleProfVec.push_back(cost);
+                    bStat->bundleProfVec.push_back(cost);
                 }
             }            
         }
     }   
 }
 
-void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, pair<int, int> &bFArc, vector< vector<bool> > &bArcs, vector< vector< pair<int,int> > > &bArcPlus, vector< vector< pair<int,int> > > &bArcMinus){
+void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat){
     //1-A
-    int setN = bundleVec.size() - inst->K - 1;
+    int setN = bStat->bundleVec.size() - inst->K - 1;
     int currentCluster = 0;
 
-    for(int i = 0; i < bundleVec.size() - 1; i++){
+    for(int i = 0; i < bStat->bundleVec.size() - 1; i++){
         if (i > currentCluster*(inst->m + 1) + inst->m){
             currentCluster++;
         }
@@ -528,27 +528,27 @@ void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< 
             for (int j = 0; j < setN; j++){
                 if (i != j){
                     if (j > currentCluster*(inst->m + 1) + inst->m || j < currentCluster*(inst->m + 1)){
-                        bArcs[i][j] = true;
-                        bFArc.first = i;
-                        bFArc.second = j;
-                        bArcMinus[j].push_back(bFArc);
-                        bArcPlus[i].push_back(bFArc);
+                        bStat->bArcs[i][j] = true;
+                        bStat->bFArc.first = i;
+                        bStat->bFArc.second = j;
+                        bStat->bArcMinus[j].push_back(bStat->bFArc);
+                        bStat->bArcPlus[i].push_back(bStat->bFArc);
                     }
                 } 
             }
-            bFArc.first = i;
-            bFArc.second = bundleVec.size()-1;
-            bArcs[i][bundleVec.size()-1] = true;
-            bArcMinus[bundleVec.size()-1].push_back(bFArc);
-            bArcPlus[i].push_back(bFArc);
+            bStat->bFArc.first = i;
+            bStat->bFArc.second = bStat->bundleVec.size()-1;
+            bStat->bArcs[i][bStat->bundleVec.size()-1] = true;
+            bStat->bArcMinus[bStat->bundleVec.size()-1].push_back(bStat->bFArc);
+            bStat->bArcPlus[i].push_back(bStat->bFArc);
         }
         else if (i >= setN){
             for (int j = 0; j < setN; j++){
-                bArcs[i][j] = true;
-                bFArc.first = i;
-                bFArc.second = j;
-                bArcMinus[j].push_back(bFArc);
-                bArcPlus[i].push_back(bFArc);
+                bStat->bArcs[i][j] = true;
+                bStat->bFArc.first = i;
+                bStat->bFArc.second = j;
+                bStat->bArcMinus[j].push_back(bStat->bFArc);
+                bStat->bArcPlus[i].push_back(bStat->bFArc);
             }
         }
     }
@@ -587,19 +587,19 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector<
     }
 }
 
-void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector< vector<int> > &parcelBundleVec){
+void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat){
     int parcelReq;
-    for (int i = 0; i < bundleVec.size(); i++){
-        for (int j = 0; j < bundleVec[i].size(); j++){
-            if (bundleVec[i][j] < inst->n){
+    for (int i = 0; i < bStat->bundleVec.size(); i++){
+        for (int j = 0; j < bStat->bundleVec[i].size(); j++){
+            if (bStat->bundleVec[i][j] < inst->n){
                 break;
             }
-            else if (bundleVec[i][j] > inst->n + inst->m - 1){
+            else if (bStat->bundleVec[i][j] > inst->n + inst->m - 1){
                 break;
             }
             else{
-                parcelReq = bundleVec[i][j];
-                parcelBundleVec[parcelReq - inst->n].push_back(i);
+                parcelReq = bStat->bundleVec[i][j];
+                bStat->parcelBundleVec[parcelReq - inst->n].push_back(i);
             }
 
         }
@@ -620,4 +620,40 @@ void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, vector< ve
     // }
     // getchar();
 
+}
+
+void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
+
+    double parcelTime;
+    double bundleTime;
+    bool firstPassenger;
+
+    for (int i = 0; i < bStat->bundleVec.size(); i++){
+        parcelTime = 0;
+        bundleTime = 0;
+        firstPassenger = false;
+        for (int j = 0; j < bStat->bundleVec[i].size(); j++){
+            if (bStat->bundleVec[i].size() > 1){
+                if (bStat->bundleVec[i][j] >= inst->n){
+                    parcelTime += (mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]]/inst->vmed) + nodeVec[bStat->bundleVec[i][j]].delta;
+                    cout << bStat->bundleVec[i][j] << " " << bStat->bundleVec[i][j + 1] << ": " << parcelTime << endl;
+                    getchar();
+                    if (bStat->bundleVec[i][j + 1] < inst->n){
+                        parcelTime += nodeVec[bStat->bundleVec[i][j + 1]].delta;
+                        bundleTime = nodeVec[bStat->bundleVec[i][j]].e - parcelTime;
+                        firstPassenger = true;
+                        break;
+                    }
+                }
+            }
+            else{
+                firstPassenger = true;
+                bundleTime = nodeVec[bStat->bundleVec[i][j]].e;
+                break;
+            }
+        }
+        if (firstPassenger){
+            bStat->bundleStart.push_back(bundleTime);
+        }
+    }
 }

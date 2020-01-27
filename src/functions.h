@@ -59,6 +59,22 @@ struct probStat{
 	string scen;
 };
 
+struct bundleStat{
+	vector<int> bundle;
+	vector< vector<int> > bundleVec;
+	vector<double> bundleTimes;
+	pair<int, int> bFArc;
+	vector<double> bundleProfVec;
+	vector<bool> bArcRow;
+	vector< vector<bool> > bArcs;
+	vector< pair<int,int> > bArcVec;
+	vector< vector< pair<int,int> > > bArcPlus;
+	vector< vector< pair<int,int> > > bArcMinus;
+	vector<int> parcelBundle;
+	vector< vector<int> > parcelBundleVec;
+	vector<double> bundleStart;
+};
+
 // struct Arcset{
 // 	vector< vector<bool> > arcs;
 // 	vector< vector< pair<int,int> > > arcMinus;
@@ -71,11 +87,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J);
 void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem, vector< pair<int,int> > &arcNN);
 string getInstanceType (char **argv);
-void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<int> &bundle, vector<double> &bundleTimes, vector< vector<int> > &clusters, vector< vector< vector<int> > > &clusterVec);
-void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector<double> &bundleProfVec);
-void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, pair<int, int> &bFArc, vector< vector<bool> > &bArcs, vector< vector< pair<int,int> > > &bArcPlus, vector< vector< pair<int,int> > > &bArcMinus);
-void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector< vector<int> > > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus);
-void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<int> > &bundleVec, vector< vector<int> > &parcelBundleVec);
 
+void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector< vector<int> > &clusters, vector< vector< vector<int> > > &clusterVec);
+void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
+void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat);
+void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector< vector<int> > > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus);
+void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat);
+void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
 
 #endif

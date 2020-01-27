@@ -26,8 +26,6 @@
 
 using namespace std;
 
-void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< vector<int> > &bundleVec, vector<double> &bundleTimes, 
-	vector< vector< vector<int> > > &clusterVec, vector< vector<bool> > &bArcs, vector< vector< pair<int,int> > > &bArcPlus, 
-	vector< vector< pair<int,int> > > &bArcMinus, vector< pair<int,int> > &bArcVec, vector<double> &bundleProfVec, vector< vector<int> > &parcelBundleVec, vector< pair<int,int> > &cArcVec, 
-	vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus);
+void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector< vector<int> > > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus);
+
 #endif
