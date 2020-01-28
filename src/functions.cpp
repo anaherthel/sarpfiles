@@ -60,19 +60,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // inst->dummy = K;
         inst->dummy = 1;
 
-        double *xs = new double[V];
-        double *ys = new double[V];
-        char *label = new char[V];
-        int *load = new int[V];
-        double *e = new double[V];
-        double *l = new double[V];
-        double *xf = new double[V];
-        double *yf = new double[V];
-        double *delta = new double[V];
+        double *xs = new double[V + inst->dummy];
+        double *ys = new double[V + inst->dummy];
+        char *label = new char[V + inst->dummy];
+        int *load = new int[V + inst->dummy];
+        double *e = new double[V + inst->dummy];
+        double *l = new double[V + inst->dummy];
+        double *xf = new double[V + inst->dummy];
+        double *yf = new double[V + inst->dummy];
+        double *delta = new double[V + inst->dummy];
 
-        double **dist = new double*[V + K];
-        for (int i= 0; i < V + K; i++){
-            dist[i] = new double [V + K];
+        double **dist = new double*[V + inst->dummy];
+        for (int i= 0; i < V + inst->dummy; i++){
+            dist[i] = new double [V + inst->dummy];
         }
 
         int tempNode;
@@ -89,10 +89,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
                delta[i] = (2 * (service/60)) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed;
-               cout << "delta " << i << ": " << delta[i] << endl;
+               // cout << "delta " << i << ": " << delta[i] << endl;
             }
-            else if (i < V){ 
+            else if (i < V - K){ 
                delta[i] = service/60;
+            }
+            else if (i >= V - K){
+                delta[i] = 0;
             }
             for (int j = 0; j < V + inst->dummy; j++){
                 if(i == j){
@@ -162,9 +165,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] xf;
         delete[] yf;
     }
-    else if (instType == "sarpdata"){
+
+    // else if (instType == "sarpdata"){
         
-    }
+    // }
  
 }
 
@@ -515,7 +519,7 @@ void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
     }   
 }
 
-void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat){
+void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
     //1-A
     int setN = bStat->bundleVec.size() - inst->K - 1;
     int currentCluster = 0;
@@ -528,11 +532,13 @@ void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleSt
             for (int j = 0; j < setN; j++){
                 if (i != j){
                     if (j > currentCluster*(inst->m + 1) + inst->m || j < currentCluster*(inst->m + 1)){
-                        bStat->bArcs[i][j] = true;
-                        bStat->bFArc.first = i;
-                        bStat->bFArc.second = j;
-                        bStat->bArcMinus[j].push_back(bStat->bFArc);
-                        bStat->bArcPlus[i].push_back(bStat->bFArc);
+                        if (bStat->bundleStart[i] + mdist[][] < bStat->bundleStart[j]){
+                            bStat->bArcs[i][j] = true;
+                            bStat->bFArc.first = i;
+                            bStat->bFArc.second = j;
+                            bStat->bArcMinus[j].push_back(bStat->bFArc);
+                            bStat->bArcPlus[i].push_back(bStat->bFArc);                            
+                        }
                     }
                 } 
             }
@@ -552,6 +558,8 @@ void feasibleBundleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleSt
             }
         }
     }
+
+
 }
 
 void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector< vector<int> > > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus){
@@ -635,12 +643,10 @@ void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeV
         for (int j = 0; j < bStat->bundleVec[i].size(); j++){
             if (bStat->bundleVec[i].size() > 1){
                 if (bStat->bundleVec[i][j] >= inst->n){
-                    parcelTime += (mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]]/inst->vmed) + nodeVec[bStat->bundleVec[i][j]].delta;
-                    cout << bStat->bundleVec[i][j] << " " << bStat->bundleVec[i][j + 1] << ": " << parcelTime << endl;
-                    getchar();
+                    parcelTime += ((mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]])/inst->vmed) + nodeVec[bStat->bundleVec[i][j]].delta;
+
                     if (bStat->bundleVec[i][j + 1] < inst->n){
-                        parcelTime += nodeVec[bStat->bundleVec[i][j + 1]].delta;
-                        bundleTime = nodeVec[bStat->bundleVec[i][j]].e - parcelTime;
+                        bundleTime = nodeVec[bStat->bundleVec[i][j + 1]].e - parcelTime;
                         firstPassenger = true;
                         break;
                     }
