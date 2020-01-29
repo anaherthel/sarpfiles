@@ -73,6 +73,9 @@ struct bundleStat{
 	vector<int> parcelBundle;
 	vector< vector<int> > parcelBundleVec;
 	vector<double> bundleStart;
+    vector <int> lastElement;
+    vector<int> firstElement;
+
 };
 
 // struct Arcset{
@@ -94,5 +97,6 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
 void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector< vector<int> > > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus);
 void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat);
 void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
+void makeBundleReference (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
 
 #endif

@@ -156,7 +156,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 		model.add(cons);
 	}	
 
-	// //Constraint 5 - No parcel can be served more than once
+	//Constraint 5 - No parcel can be served more than once
 
 	for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
 		IloExpr exp(env);
@@ -174,15 +174,16 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 		model.add(cons);
 	}
 
-	// //Constraint 6 - Flow conservation between clusters
 
-	// for (int i = 0; i < clusterVec.size(); i++){
-	// 	for (int j = 0; j < clusterVec.size(); j++){
-	// 		if (i != j){
+	//Constraint 6 - Flow conservation between clusters
 
-	// 		}
-	// 	}
-	// }
+	for (int i = 0; i < clusterVec.size(); i++){
+		for (int j = 0; j < clusterVec.size(); j++){
+			if (i != j){
+
+			}
+		}
+	}
 
 	for (int i = 0; i < setN; i++){
 		for (int k = 0; k < inst->K; k++){
@@ -207,8 +208,8 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 	IloCplex bSARP(model);
 	bSARP.exportModel("bSARP.lp");
 
-	// bSARP.solve();
-	// cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
+	bSARP.solve();
+	cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
 
 	env.end();
 

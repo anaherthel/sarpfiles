@@ -124,7 +124,10 @@ int main (int argc, char *argv[]) {
 
 	makeStartTimes(&inst, distMatrix, nodeVec, &bStat);
 
+	makeBundleReference(&inst, distMatrix, nodeVec, &bStat);
+
 	feasibleBundleArcs(&inst, distMatrix, nodeVec, &bStat);
+
 
 	for (int i = 0; i < clusterVec.size(); i++){
 		for (int j = 0; j < clusterVec.size(); j++){

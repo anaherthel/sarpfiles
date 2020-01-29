@@ -532,7 +532,8 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
             for (int j = 0; j < setN; j++){
                 if (i != j){
                     if (j > currentCluster*(inst->m + 1) + inst->m || j < currentCluster*(inst->m + 1)){
-                        if (bStat->bundleStart[i] + mdist[][] < bStat->bundleStart[j]){
+                        if (bStat->bundleStart[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+
                             bStat->bArcs[i][j] = true;
                             bStat->bFArc.first = i;
                             bStat->bFArc.second = j;
@@ -559,6 +560,17 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
         }
     }
 
+
+    for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
+        for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
+            for (int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
+                if (bStat->parcelBundleVec[i][j] != bStat->parcelBundleVec[i][k]){
+                    cout << " um: " << bStat->parcelBundleVec[i][j] << " outro: " << bStat->parcelBundleVec[i][k] << endl;
+                    // bStat->bArcs[bStat->parcelBundleVec[i][j]][bStat->parcelBundleVec[i][k]] = false;
+                }
+            }
+        }
+    }
 
 }
 
@@ -662,4 +674,29 @@ void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeV
             bStat->bundleStart.push_back(bundleTime);
         }
     }
+}
+
+void makeBundleReference(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
+
+    for (int i = 0; i < bStat->bundleVec.size(); i++){
+
+        bStat->lastElement.push_back(bStat->bundleVec[i][bStat->bundleVec[i].size()-1]);
+
+    }
+    // cout << "\nLast Element Vector: " << endl;
+
+    // for (int i = 0; i < bStat->lastElement.size(); i++){
+    //     cout << bStat->lastElement[i] << ", ";
+    // }
+
+    for (int i = 0; i < bStat->bundleVec.size(); i++){
+
+        bStat->firstElement.push_back(bStat->bundleVec[i][0]);
+
+    }
+    // cout << "\nFirst Element Vector: " << endl;
+
+    // for (int i = 0; i < bStat->firstElement.size(); i++){
+    //     cout << bStat->firstElement[i] << ", ";
+    // }
 }
