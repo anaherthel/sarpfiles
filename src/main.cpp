@@ -41,9 +41,10 @@ int main (int argc, char *argv[]) {
 	vector< pair<int,int> > arcNN;
 	
 
-	vector< vector< vector<int> > >clusterVec;
-	vector< vector<int> >clusterVecII;
-	vector< vector<int> > clusters;
+	// vector< vector< vector<int> > >clusterVec;
+	vector< vector<int> >clusterVec;
+	vector<int> clusters;
+	// vector< vector<int> > clusters;
 
 	vector<bool> cArcRow;
 	pair<int, int> cFArc;
@@ -79,6 +80,17 @@ int main (int argc, char *argv[]) {
 	for (int i = 0; i < inst.m; i ++){
 		bStat.parcelBundleVec.push_back(bStat.parcelBundle);
 	}
+
+	cout << "\nClusters:";
+	for (int i = 0; i < clusterVec.size(); i++){
+		cout << "\nCluster " << i << ": ";
+		for (int j = 0; j < clusterVec[i].size(); j++){
+			cout << clusterVec[i][j] << " ";
+		}
+		cout << ", ";
+		cout << endl;
+	}
+	getchar();
 
 	makeParcelBundles(&inst, nodeVec, &bStat);
 
@@ -129,6 +141,14 @@ int main (int argc, char *argv[]) {
 	feasibleBundleArcs(&inst, distMatrix, nodeVec, &bStat);
 
 
+	cout << "\nBundle Times: ";
+	for (int i = 0; i < bStat.bundleStart.size(); i++){
+		cout <<	bStat.bundleStart[i] << ", ";
+	}
+	cout << endl;
+	
+
+
 	for (int i = 0; i < clusterVec.size(); i++){
 		for (int j = 0; j < clusterVec.size(); j++){
 			cArcRow.push_back(false);
@@ -147,7 +167,7 @@ int main (int argc, char *argv[]) {
 	}
 
 
-	feasibleClusterArcs(&inst, nodeVec, clusterVec, cFArc, cArcs, cArcPlus, cArcMinus);
+	feasibleClusterArcs(&inst, nodeVec, &bStat, clusterVec, cFArc, cArcs, cArcPlus, cArcMinus);
 
 	cout<< "\nFeasible arcs between bundles:" << endl;
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
@@ -165,23 +185,23 @@ int main (int argc, char *argv[]) {
 		cout << endl;
 	}
 
-	// cout<< "\nFeasible arcs between clusters:" << endl;
-	// for (int i = 0; i < clusterVec.size(); i++){
-	// 	if (i == 0){
-	// 		cout << setw(3) << " ";
-	// 	}
-	// 	cout << setw(3) << std::right << i;
-	// }
-	// cout << endl;
+	cout<< "\nFeasible arcs between clusters:" << endl;
+	for (int i = 0; i < clusterVec.size(); i++){
+		if (i == 0){
+			cout << setw(3) << " ";
+		}
+		cout << setw(3) << std::right << i;
+	}
+	cout << endl;
 
 
-	// for (int i = 0; i < clusterVec.size(); i++){
-	// 	cout << setw(3) << std::right << i;
-	// 	for (int j = 0; j < clusterVec.size(); j++){
-	// 		cout << setw(3) << std:: right << cArcs[i][j];
-	// 	}
-	// 	cout << endl;
-	// }
+	for (int i = 0; i < clusterVec.size(); i++){
+		cout << setw(3) << std::right << i;
+		for (int j = 0; j < clusterVec.size(); j++){
+			cout << setw(3) << std:: right << cArcs[i][j];
+		}
+		cout << endl;
+	}
 
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
 		for (int j = 0; j < bStat.bundleVec.size(); j++){
@@ -193,6 +213,7 @@ int main (int argc, char *argv[]) {
 		}
 	}
 
+
 	for (int i = 0; i < clusterVec.size(); i++){
 		for (int j = 0; j < clusterVec.size(); j++){
 			if(cArcs[i][j]){
@@ -200,6 +221,13 @@ int main (int argc, char *argv[]) {
 				cFArc.second = j;
 				cArcVec.push_back(cFArc);
 			}
+		}
+	}
+	cout << "\nPlus arcs: " << endl;
+	for (int i = 0; i < cArcPlus.size(); i++){
+		cout << "Cluster " << i << ": ";
+		for (int j = 0; j < cArcPlus[i].size(); j++){
+			cout << cArcPlus[i][j].first << " - " << cArcPlus[i][j].second << ", ";
 		}
 	}
 
@@ -254,7 +282,10 @@ int main (int argc, char *argv[]) {
 	// 	cout << endl;
 	// }
 
+
+
 	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus);
+
 
 	int counter = 0;
 	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {
