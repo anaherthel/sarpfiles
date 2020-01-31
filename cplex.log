@@ -309,3 +309,317 @@ x(14,9,0)                     1.000000
 x(15,14,0)                    1.000000
 x(16,6,1)                     1.000000
 All other variables in the range 1-390 are 0.
+
+Log started (V12.4.0.0) Fri Jan 31 15:24:32 2020
+
+File 'bSarp.lp' not found.
+No file read.
+
+Problem 'bSARP.lp' read.
+Read time =    0.15 sec.
+Tried aggregator 3 times.
+MIP Presolve eliminated 2 rows and 162 columns.
+Aggregator did 6 substitutions.
+All rows and columns eliminated.
+Presolve time =    0.05 sec.
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.9000000000e+01
+Solution time =    0.14 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 0.15 ticks  (1.08 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(9,17,0)                     1.000000
+x(11,17,0)                    1.000000
+x(15,4,0)                     1.000000
+x(15,9,1)                     1.000000
+x(16,11,1)                    1.000000
+x(0,17,0)                     1.000000
+All other variables in the range 1-168 are 0.
+
+Log started (V12.4.0.0) Fri Jan 31 15:26:19 2020
+
+
+Log started (V12.4.0.0) Fri Jan 31 15:26:27 2020
+
+
+Problem 'bSARP.lp' read.
+Read time =    0.00 sec.
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 159 columns.
+Aggregator did 9 substitutions.
+All rows and columns eliminated.
+Presolve time =    0.00 sec.
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  1.3000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 0.12 ticks  (89.60 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(9,0,0)                      1.000000
+x(11,17,1)                    1.000000
+x(15,9,0)                     1.000000
+x(16,11,1)                    1.000000
+x(0,17,0)                     1.000000
+All other variables in the range 1-168 are 0.
+
+Log started (V12.4.0.0) Fri Jan 31 15:33:06 2020
+
+No problem exists.
+
+Problem 'bSARP.lp' read.
+Read time =    0.00 sec.
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 225 columns.
+Aggregator did 9 substitutions.
+All rows and columns eliminated.
+Presolve time =    0.00 sec.
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  2.3000000000e+01
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 0.17 ticks  (106.57 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(5,20,0)                     1.000000
+x(10,5,0)                     1.000000
+x(13,20,1)                    1.000000
+x(18,10,0)                    1.000000
+x(19,13,1)                    1.000000
+All other variables in the range 1-234 are 0.
+
+Log started (V12.4.0.0) Fri Jan 31 15:37:10 2020
+
+
+Problem 'bSARP.lp' read.
+Read time =    0.01 sec.
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 716 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 14 rows, 42 columns, and 78 nonzeros.
+Reduced MIP has 42 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.00 sec.
+Tried aggregator 1 time.
+Presolve time =    0.03 sec.
+Probing time =    0.00 sec.
+Clique table members: 14.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.05 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       36.0000       36.0000       11    0.00%
+Elapsed real time =   0.10 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.07
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.07 sec.
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  3.6000000000e+01
+Solution time =    0.10 sec.  Iterations = 11  Nodes = 0
+Deterministic time = 0.73 ticks  (7.52 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(5,28,1)                     1.000000
+x(10,5,1)                     1.000000
+x(14,30,0)                    1.000000
+x(23,38,0)                    1.000000
+x(27,23,0)                    1.000000
+x(36,10,0)                    1.000000
+x(37,13,1)                    1.000000
+x(30,38,1)                    1.000000
+All other variables in the range 1-760 are 0.
+
+Log started (V12.4.0.0) Fri Jan 31 16:20:57 2020
+
+
+Problem 'bSARP.lp' read.
+Read time =    0.01 sec.
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 686 columns.
+Aggregator did 1 substitutions.
+Reduced MIP has 27 rows, 73 columns, and 249 nonzeros.
+Reduced MIP has 73 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.00 sec.
+Tried aggregator 1 time.
+Presolve time =    0.01 sec.
+Probing time =    0.00 sec.
+Clique table members: 319.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       36.0000       36.0000       26    0.00%
+Elapsed real time =   0.02 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.01
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.01 sec.
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  3.6000000000e+01
+Solution time =    0.02 sec.  Iterations = 26  Nodes = 0
+Deterministic time = 1.53 ticks  (71.66 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(5,28,0)                     1.000000
+x(10,5,0)                     1.000000
+x(14,30,1)                    1.000000
+x(23,38,0)                    1.000000
+x(27,23,0)                    1.000000
+x(36,10,0)                    1.000000
+x(37,13,1)                    1.000000
+x(30,38,1)                    1.000000
+All other variables in the range 1-760 are 0.
+
+Log started (V12.4.0.0) Fri Jan 31 16:25:53 2020
+
+
+Problem 'bSARP.lp' read.
+Read time =    0.01 sec.
+Tried aggregator 3 times.
+MIP Presolve eliminated 4 rows and 197 columns.
+Aggregator did 14 substitutions.
+Reduced MIP has 70 rows, 549 columns, and 2022 nonzeros.
+Reduced MIP has 549 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 48 vars, tightened 0 bounds.
+Probing time =    0.10 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 48 columns.
+Reduced MIP has 70 rows, 501 columns, and 1850 nonzeros.
+Reduced MIP has 501 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.13 sec.
+Probing time =    0.02 sec.
+Clique table members: 2978.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       31.0000       31.0000       37    0.00%
+Elapsed real time =   0.18 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.05
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.05 sec.
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  3.1000000000e+01
+Solution time =    0.18 sec.  Iterations = 37  Nodes = 0
+Deterministic time = 19.78 ticks  (110.10 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(5,27,0)                     1.000000
+x(10,5,0)                     1.000000
+x(13,30,1)                    1.000000
+x(23,38,0)                    1.000000
+x(27,23,0)                    1.000000
+x(36,10,0)                    1.000000
+x(37,13,1)                    1.000000
+x(30,38,1)                    1.000000
+All other variables in the range 1-760 are 0.
+
+Log started (V12.4.0.0) Fri Jan 31 16:32:05 2020
+
+
+Problem 'bSARP.lp' read.
+Read time =    0.01 sec.
+Tried aggregator 2 times.
+MIP Presolve eliminated 4 rows and 44 columns.
+Aggregator did 7 substitutions.
+Reduced MIP has 82 rows, 709 columns, and 3121 nonzeros.
+Reduced MIP has 709 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+Presolve time =    0.04 sec.
+Probing time =    0.03 sec.
+Clique table members: 4709.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       14.5000     8                     14.5000       54         
+*     0+    0                           -2.0000       14.5000       54  825.00%
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 31 rows and 573 columns.
+Aggregator did 15 substitutions.
+Reduced MIP has 36 rows, 121 columns, and 481 nonzeros.
+Reduced MIP has 121 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 40 vars, tightened 0 bounds.
+Probing time =    0.01 sec.
+Tried aggregator 6 times.
+MIP Presolve eliminated 26 rows and 111 columns.
+MIP Presolve modified 35 coefficients.
+Aggregator did 10 substitutions.
+All rows and columns eliminated.
+Represolve time =    0.03 sec.
+
+Solution pool: 2 solutions saved.
+
+MIP - Integer optimal solution:  Objective =  1.4000000000e+01
+Solution time =    0.18 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 16.54 ticks  (91.75 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(5,27,0)                     1.000000
+x(10,5,0)                     1.000000
+x(13,30,1)                    1.000000
+x(36,10,0)                    1.000000
+x(37,13,1)                    1.000000
+x(18,38,0)                    1.000000
+x(27,18,0)                    1.000000
+x(30,38,1)                    1.000000
+All other variables in the range 1-760 are 0.
