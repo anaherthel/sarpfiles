@@ -226,20 +226,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             vys.push_back(0);
             vload.push_back(0);
             ve.push_back(0);
-            vxf.push_back(0);
-            vyf.push_back(0);            
         }
 
+        for (int i = 0; i < V; i++){
+            vxf.push_back(0);
+            vyf.push_back(0);   
+        }
 
         for (int i = 0; i < originalV; i++){
             in >> vxs[i] >> vys[i] >> vload[i] >> ve[i];
         }
 
-        vxs.erase(vxs.begin());
-        vys.erase(vys.begin());
-        vload.erase(vload.begin());
 
-        for (int i = 0; i < V; i++){
+        for (int i = 0; i < originalV; i++){
             if (vload[i] == -3){
                 vxf[i - n] = vxs[i];
                 vyf[i - n] = vys[i];
@@ -250,14 +249,28 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
         }
 
+        vxs.erase(vxs.begin());
+        vys.erase(vys.begin());
+        vload.erase(vload.begin());
+
+        cout << "\ntest vxf: ";
+        for (int i = 0; i < V; i++){
+            cout << vxf[i] << " ";
+        }
+        getchar();
+
         for (int i = 0; i < n/2; i++){
             vxs.erase(vxs.begin() + n);
             vys.erase(vys.begin() + n);
             vload.erase(vload.begin() + n);
             ve.erase(ve.begin() + n);
-            vxf.erase(vxf.begin() + n);
-            vyf.erase(vyf.begin() + n);    
         }
+
+        cout << "\ntest vxf: ";
+        for (int i = 0; i < V; i++){
+            cout << vxf[i] << " ";
+        }
+        getchar();
 
         // cout << "Vector after: " << endl;
         // for (int i = 0; i < vxs.size(); i++){
@@ -279,9 +292,36 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             load[i] = vload[i];
             e[i] = ve[i];
             l[i] = ve[i];
-
-
+            xf[i] = vxf[i];
+            yf[i] = vyf[i];
         }
+
+        double *slatitude = new double [V + inst->dummy];
+        double *slongitude = new double [V + inst->dummy];
+        double *flatitude = new double [V + inst->dummy];
+        double *flongitude = new double [V + inst->dummy];
+        
+        CalcLatLong ( xs, ys, xf, yf, V, slatitude, slongitude, flatitude, flongitude );
+        
+        cout << "F Lat:" << endl;
+        for (int i = 0; i < V; i++){
+            cout << flatitude[i] << " ";
+        }
+        getchar();
+        double test;
+
+        test =  CalcDistGeo ( slatitude, slongitude, flatitude, flongitude, 0, 0 );
+
+        cout << "Testing feature: " << test << endl;
+
+        getchar();
+
+        // // Calcular Matriz Distancia
+        // for ( int i = 1; i < N+1; i++ ) {
+        //     for ( int j = 1; j < N+1; j++ ) {
+        //         dist[i][j] = CalcDistGeo ( latitude, longitude, i, j );
+        //     }
+        // }
 
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
@@ -314,6 +354,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
         }
 
+        delete[] xs;
+        delete[] ys;
+        delete[] load;
+        delete[] e;
+        delete[] l;
+        delete[] xf;
+        delete[] yf;
+        delete[] slatitude;
+        delete[] flatitude;
+        delete[] slongitude;
+        delete[] flongitude;
     }
  
 }
@@ -322,35 +373,45 @@ double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J
     return sqrt(pow(Xf[I] - Xs[J], 2) + pow(Yf[I] - Ys[J], 2));
 }
 
-double CalcLatLong (double *X, double *Y, int n, double *latit, double* longit){
+double CalcLatLong (double *Xs, double *Ys, double *Xf, double *Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit){
     double PI = 3.141592, min;
     int deg;
     
-    for (int i = 1; i < n+1; i++) {
-        deg = (int) X[i];
-        min = X[i] - deg;
-        latit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
+    for (int i = 0; i < n; i++) {
+        deg = (int) Xs[i];
+        min = Xs[i] - deg;
+        slatit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
+        deg = (int) Xf[i];
+        cout << "deg f: " << deg;
+        min = Xf[i] - deg;
+        cout << " - min f: " << min;
+        getchar();
+        flatit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
     }
     
-    for (int i = 1; i < n+1; i++) {
-        deg = (int) Y[i];
-        min = Y[i] - deg;
-        longit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
+    for (int i = 0; i < n; i++) {
+        deg = (int) Ys[i];
+        min = Ys[i] - deg;
+        slongit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
+        deg = (int) Yf[i];
+        min = Yf[i] - deg;
+        flongit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
     }
     return 0;
 }
 
 
-double CalcDistGeo (double *latit, double *longit, int I, int J){
+double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flongit, int I, int J){
     double q1, q2, q3, RRR = 6378.388;
     
-    q1 = cos(longit[I] - longit[J]);
-    q2 = cos(latit[I] - latit[J]);
-    q3 = cos(latit[I] + latit[J]);
+    q1 = cos(flongit[I] - slongit[J]);
+    q2 = cos(flatit[I] - slatit[J]);
+    q3 = cos(flatit[I] + slatit[J]);
     
     return
     (int) (RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)) + 1.0);
 }
+
 
 // void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus){
 
