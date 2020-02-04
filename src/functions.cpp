@@ -32,6 +32,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     double service;
     double T;
     int V;
+    int originalV;
     int dummy;
 
     string instType;
@@ -63,7 +64,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double *xs = new double[V + inst->dummy];
         double *ys = new double[V + inst->dummy];
         char *label = new char[V + inst->dummy];
-        int *load = new int[V + inst->dummy];
+        double *load = new double[V + inst->dummy];
         double *e = new double[V + inst->dummy];
         double *l = new double[V + inst->dummy];
         double *xf = new double[V + inst->dummy];
@@ -170,14 +171,185 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] yf;
     }
 
-    // else if (instType == "sarpdata"){
+    else if (instType == "sarpdata"){
+        string filename(argv[1]);
+        string InstanceName;
+
+        string::size_type loc = filename.find_last_of("r", filename.size());
+        string::size_type loc2 = filename.find_last_of(".", filename.size());
         
-    // }
+        InstanceName.append(filename, loc+1, loc2-loc-1);
+        std::replace(InstanceName.begin(), InstanceName.end(), '_', ' ');
+        vector<int> instanceData;
+        stringstream ss(InstanceName);
+        int temp;
+        while (ss >> temp){
+            instanceData.push_back(temp);
+        }
+
+        // for(int i = 0; i < instanceData.size(); i++){
+        //     cout << instanceData[i] << endl;
+        // }
+
+        K = instanceData[0];
+        n = instanceData[1];
+        m = instanceData[2];
+        service = 5;
+        V = n/2 + m + K;
+        originalV = n + m + 2*K;
+
+        inst->dummy = 1;
+
+        double *xs = new double[V + inst->dummy];
+        double *ys = new double[V + inst->dummy];
+        double *load = new double[V + inst->dummy];
+        double *e = new double[V + inst->dummy];
+        double *l = new double[V + inst->dummy];
+        double *xf = new double[V + inst->dummy];
+        double *yf = new double[V + inst->dummy];
+        double *delta = new double[V + inst->dummy];
+
+        double **dist = new double*[V + inst->dummy];
+        for (int i= 0; i < V + inst->dummy; i++){
+            dist[i] = new double [V + inst->dummy];
+        }
+
+        vector<double> vxs;
+        vector<double> vys;
+        vector<double> vload;
+        vector<double> ve;
+        vector<double> vxf;
+        vector<double> vyf;
+
+        for (int i = 0; i < originalV; i++){
+            vxs.push_back(0);
+            vys.push_back(0);
+            vload.push_back(0);
+            ve.push_back(0);
+            vxf.push_back(0);
+            vyf.push_back(0);            
+        }
+
+
+        for (int i = 0; i < originalV; i++){
+            in >> vxs[i] >> vys[i] >> vload[i] >> ve[i];
+        }
+
+        vxs.erase(vxs.begin());
+        vys.erase(vys.begin());
+        vload.erase(vload.begin());
+
+        for (int i = 0; i < V; i++){
+            if (vload[i] == -3){
+                vxf[i - n] = vxs[i];
+                vyf[i - n] = vys[i];
+            }
+            else{
+                vxf[i] = vxs[i];
+                vyf[i] = vys[i];  
+            }
+        }
+
+        for (int i = 0; i < n/2; i++){
+            vxs.erase(vxs.begin() + n);
+            vys.erase(vys.begin() + n);
+            vload.erase(vload.begin() + n);
+            ve.erase(ve.begin() + n);
+            vxf.erase(vxf.begin() + n);
+            vyf.erase(vyf.begin() + n);    
+        }
+
+        // cout << "Vector after: " << endl;
+        // for (int i = 0; i < vxs.size(); i++){
+        //     cout << i << ": vxs: " << vxs[i] << " - vxf:" << vxf[i] << " - vload:" << vload[i] << endl;
+        // }
+        // cout << endl;
+        // getchar();
+
+
+        inst->K = K;
+        inst->n = n;
+        inst->m = m;
+        // inst->T = ;
+        inst->V = V;
+
+        for (int i = 0; i < V; i++){
+            xs[i] = vxs[i];
+            ys[i] = vys[i];
+            load[i] = vload[i];
+            e[i] = ve[i];
+            l[i] = ve[i];
+
+
+        }
+
+        for (int i = 0; i < V + inst->dummy; i++){
+            if (i < n){ 
+               delta[i] = (2 * (service/60)) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed;
+               // cout << "delta " << i << ": " << delta[i] << endl;
+            }
+            else if (i < V - K){ 
+               delta[i] = service/60;
+            }
+            else if (i >= V - K){
+                delta[i] = 0;
+            }
+            for (int j = 0; j < V + inst->dummy; j++){
+                if(i == j){
+                   dist[i][j] = 0;
+                }
+                else{
+                    if (i < V){
+                        if (j < V){
+                            dist[i][j] = floor(calcEucDist(xs, ys, xf, yf, i, j) + 0.5);
+                        }
+                        else if (j >= V){
+                            dist[i][j] = 0;
+                        }
+                    }
+                    else{
+                        dist[i][j] = 0;
+                    }
+                }
+            }
+        }
+
+    }
  
 }
 
 double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J){
     return sqrt(pow(Xf[I] - Xs[J], 2) + pow(Yf[I] - Ys[J], 2));
+}
+
+double CalcLatLong (double *X, double *Y, int n, double *latit, double* longit){
+    double PI = 3.141592, min;
+    int deg;
+    
+    for (int i = 1; i < n+1; i++) {
+        deg = (int) X[i];
+        min = X[i] - deg;
+        latit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
+    }
+    
+    for (int i = 1; i < n+1; i++) {
+        deg = (int) Y[i];
+        min = Y[i] - deg;
+        longit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
+    }
+    return 0;
+}
+
+
+double CalcDistGeo (double *latit, double *longit, int I, int J){
+    double q1, q2, q3, RRR = 6378.388;
+    
+    q1 = cos(longit[I] - longit[J]);
+    q2 = cos(latit[I] - latit[J]);
+    q3 = cos(latit[I] + latit[J]);
+    
+    return
+    (int) (RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)) + 1.0);
 }
 
 // void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus){

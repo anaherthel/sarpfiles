@@ -71,7 +71,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 	for (int i = 0; i < bStat->bArcVec.size(); i++){
 		for (int k = 0; k < inst->K; k++){
 			objFunction += bStat->bundleProfVec[bStat->bArcVec[i].first] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
-			objFunction += bStat->bundleProfVec[bStat->bArcVec[i].second] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
+			//objFunction += bStat->bundleProfVec[bStat->bArcVec[i].second] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
 		}
 	}
 	int lastElOfi;

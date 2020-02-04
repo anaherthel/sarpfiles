@@ -30,7 +30,7 @@ struct nodeStat{
 	double xs;
 	double ys;
 	char label;
-	int load;
+	double load;
 	double e;
 	double l;
 	double xf;
@@ -78,6 +78,10 @@ struct bundleStat{
     vector<int> firstElement;
 
 };
+
+template<char delimiter>
+class WordDelimitedBy : public std::string
+{};
 
 // struct Arcset{
 // 	vector< vector<bool> > arcs;
