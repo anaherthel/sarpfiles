@@ -49,7 +49,7 @@ struct instanceStat{
     int dummy;
    	double gamma = 3;
 	double mu = 2;
-	double vmed = 30;
+	double vmed = 60;
 	int nCluster;
 };
 
@@ -93,7 +93,7 @@ class WordDelimitedBy : public std::string
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem);
 double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J);
-double CalcLatLong (double *Xs, double *Ys, double *Xf, double *Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit);
+double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit);
 double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flongit, int I, int J);
 
 void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem, vector< pair<int,int> > &arcNN);
