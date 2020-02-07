@@ -231,11 +231,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < vxs.size(); i++){
             vxf.push_back(vxs[i]);
             vyf.push_back(vys[i]);
-            vl.push_back(ve[i]);
 
             if (vload[i] < -2.0){
-                vxf[i - 2*n] = vxs[i];
-                vyf[i - 2*n] = vys[i];
+                vxf[i - m - n] = vxs[i];
+                vyf[i - m - n] = vys[i];
 
             }
         }
@@ -246,22 +245,38 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         vload.erase(vload.begin());
         vxf.erase(vxf.begin());
         vyf.erase(vyf.begin());
+        ve.erase(ve.begin());
 
         for (int i = 0; i < n; i++){
-            vxs.erase(vxs.begin() + 2*n);
-            vys.erase(vys.begin() + 2*n);
-            vload.erase(vload.begin() + 2*n);
-            ve.erase(ve.begin() + 2*n);
-            vxf.erase(vxf.begin() + 2*n);
-            vyf.erase(vyf.begin() + 2*n);
+            vxs.erase(vxs.begin() + n + m);
+            vys.erase(vys.begin() + n + m);
+            vload.erase(vload.begin() + n + m);
+            ve.erase(ve.begin() + n + m);
+            vxf.erase(vxf.begin() + n + m);
+            vyf.erase(vyf.begin() + n + m);
         }
-        
+
+        for (int i = 0; i < ve.size(); i++){
+            vl.push_back(ve[i]);
+        }
+
+        for (int i = n; i < vl.size(); i++){
+            vl[i] = 14*60;
+        }
+
+        // cout << "vl: " << endl;
+        // for(int i = 0; i < vl.size(); i++){
+        //     cout << vl[i] << " ";
+        // }
+
         CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
         
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
                delta[i] = (2 * (service/60)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
                // cout << "delta " << i << ": " << delta[i] << endl;
+                // delta[i] = (2 * (service/60)) + (CalcMan(vxs, vys, vxf, vys, i, i))/inst->vmed;
+
             }
             else if (i < V - K){ 
                delta[i] = service/60;
@@ -277,6 +292,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     if (i < V){
                         if (j < V){
                             dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+                            // dist[i][j] = CalcMan(vxs, vys, vxf, vys, i, i);
                         }
                         else if (j >= V){
                             dist[i][j] = 0;
@@ -313,7 +329,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->ys = 0;
             node->load = 0;
             node->e = 0;
-            node->l = 1000/60;
+            node->l = 14*60;
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
@@ -331,10 +347,191 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] flongitude;
     }
  
+    else if (instType == "sf_data"){
+
+        in >> K;
+        in >> service;
+        in >> n;
+        in >> m;
+
+        V = n + 2*m + K;
+
+        originalV = 2*n + 2*m + 2; 
+
+        inst->dummy = 1;
+
+        double *delta = new double[V + inst->dummy];
+        double *slatitude = new double [V + inst->dummy];
+        double *slongitude = new double [V + inst->dummy];
+        double *flatitude = new double [V + inst->dummy];
+        double *flongitude = new double [V + inst->dummy];
+
+        double **dist = new double*[V + inst->dummy];
+        for (int i= 0; i < V + inst->dummy; i++){
+            dist[i] = new double [V + inst->dummy];
+        }
+
+        vector<double> vxs;
+        vector<double> vys;
+        vector<double> vload;
+        vector<double> ve;
+        vector<double> vxf;
+        vector<double> vyf;
+        vector<double> vl;
+
+        int tempNode;
+
+        for (int i = 0; i < originalV; i++){
+            vxs.push_back(0);
+            vys.push_back(0);
+            vload.push_back(0);
+            ve.push_back(0);
+            vl.push_back(0);
+        }
+
+        for (int i = 0; i < originalV; i++){
+            in >> tempNode >> vxs[i] >> vys[i] >> tempNode >> vload[i] >> ve[i] >> vl[i];
+        }
+
+        for (int i = 0; i < vxs.size(); i++){
+            vxf.push_back(vxs[i]);
+            vyf.push_back(vys[i]);
+
+            if (vload[i] < -2.0){
+                vxf[i - m - n] = vxs[i];
+                vyf[i - m - n] = vys[i];
+
+            }
+        }
+
+        vxs.erase(vxs.begin());
+        vys.erase(vys.begin());
+        vload.erase(vload.begin());
+        vxf.erase(vxf.begin());
+        vyf.erase(vyf.begin());
+        ve.erase(ve.begin());
+
+        for (int i = 0; i < n; i++){
+            vxs.erase(vxs.begin() + n + m);
+            vys.erase(vys.begin() + n + m);
+            vload.erase(vload.begin() + n + m);
+            ve.erase(ve.begin() + n + m);
+            vxf.erase(vxf.begin() + n + m);
+            vyf.erase(vyf.begin() + n + m);
+        }
+
+        for (int i = 0; i < n; i++){
+            vl[i] = ve[i];
+        }
+
+        for (int i = 1; i < K; i++){
+            vxs.push_back(vxs[vxs.size()-1]);
+            vys.push_back(vys[vys.size()-1]);
+            vload.push_back(vload[vload.size()-1]);
+            ve.push_back(ve[ve.size()-1]);
+            vl.push_back(vl[vl.size()-1]);
+            vxf.push_back(vxf[vxf.size()-1]);
+            vyf.push_back(vyf[vyf.size()-1]);
+        }
+
+
+        // cout << "Testing: " << endl;
+        // for (int i = 0; i < vxs.size(); i++){
+        //     cout << "i: " << i << " vxs: " << vxs[i] << " vys: " << vys[i] << " vload: " << vload[i] << " ve: " << ve[i] << " vl: " << vl[i] << " vxf: " << vxf[i] << " vyf: " << vyf[i] << endl; 
+        // }
+        // getchar();
+
+
+        // Calculate distance matrix (Geolocation)
+
+        CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
+        
+        for (int i = 0; i < V + inst->dummy; i++){
+            if (i < n){ 
+               delta[i] = (2 * (service/60)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
+               // cout << "delta " << i << ": " << delta[i] << endl;
+                // delta[i] = (2 * (service/60)) + (CalcMan(vxs, vys, vxf, vys, i, i))/inst->vmed;
+
+            }
+            else if (i < V - K){ 
+               delta[i] = service/60;
+            }
+            else if (i >= V - K){
+                delta[i] = 0;
+            }
+            for (int j = 0; j < V + inst->dummy; j++){
+                if(i == j){
+                   dist[i][j] = 0;
+                }
+                else{
+                    if (i < V){
+                        if (j < V){
+                            dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+                            // dist[i][j] = CalcMan(vxs, vys, vxf, vys, i, i);
+                        }
+                        else if (j >= V){
+                            dist[i][j] = 0;
+                        }
+                    }
+                    else{
+                        dist[i][j] = 0;
+                    }
+                }
+            }
+        }
+
+
+        *Mdist = dist;
+        inst->K = K;
+        inst->n = n;
+        inst->m = m;
+        inst->V = V;
+
+        for (int i = 0; i < V; i++){
+            node->xs = vxs[i];
+            node->ys = vys[i];
+            node->load = vload[i];
+            node->e = ve[i]/60;
+            node->l = vl[i]/60;
+            node->xf = vxf[i];
+            node->yf = vyf[i];
+            node->delta = delta[i];
+            nodeVec.push_back(*node);
+        }
+
+        //Adding dummy nodes
+        for (int i = 0; i < inst->dummy; i++){
+            node->xs = 0;
+            node->ys = 0;
+            node->load = 0;
+            node->e = 0;
+            node->l = 14*60;
+            node->xf = 0;
+            node->yf = 0;
+            node->delta = 0;
+            nodeVec.push_back(*node);
+        }
+
+        if( problem->scen == "1A" ){
+            inst->nCluster = inst->n + inst->K + inst->dummy;
+        }
+
+        delete[] delta;
+        delete[] slatitude;
+        delete[] slongitude;
+        delete[] flatitude;
+        delete[] flongitude;
+   
+    }
+
 }
 
 double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J){
     return sqrt(pow(Xf[I] - Xs[J], 2) + pow(Yf[I] - Ys[J], 2));
+}
+
+double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
+    return abs(Xf[I] - Xs[J]) + abs(Yf[I] - Ys[J]);
 }
 
 double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit){
@@ -379,7 +576,6 @@ double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flo
     (int) (RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)) + 1.0);
     // (int) (RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)));
 }
-
 
 // void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus){
 
