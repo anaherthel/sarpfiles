@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem){
+void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, vector<double> &passProfit){
     
     if (argc < 4) {
         cout << "\nMissing parameters\n";
@@ -70,6 +70,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double *xf = new double[V + inst->dummy];
         double *yf = new double[V + inst->dummy];
         double *delta = new double[V + inst->dummy];
+        double *profit = new double[V+inst->dummy];
 
         double **dist = new double*[V + inst->dummy];
         for (int i= 0; i < V + inst->dummy; i++){
@@ -86,17 +87,20 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         // Calculate distance matrix (Euclidian)
-
+        double singleProfit;
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
                delta[i] = (2 * (service/60)) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed;
+               profit[i] = inst->gamma2 + inst->mu2*floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5) - floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5);
                // cout << "delta " << i << ": " << delta[i] << endl;
             }
             else if (i < V - K){ 
                delta[i] = service/60;
+               profit[i] = 0;
             }
             else if (i >= V - K){
                 delta[i] = 0;
+                profit[i] = 0;
             }
             for (int j = 0; j < V + inst->dummy; j++){
                 if(i == j){
@@ -128,7 +132,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xf = xf[i];
             node->yf = yf[i];
             node->delta = delta[i];
+            node->profit = profit[i];
             nodeVec.push_back(*node);
+
         }
 
         //Adding dummy nodes
@@ -142,6 +148,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
+            node->profit = 0;
             nodeVec.push_back(*node);
         }
 
@@ -161,6 +168,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             inst->nCluster = inst->n + inst->K + inst->dummy;
         }
 
+        delete[] profit;
         delete[] xs;
         delete[] ys;
         delete[] label;
@@ -202,6 +210,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double *slongitude = new double [V + inst->dummy];
         double *flatitude = new double [V + inst->dummy];
         double *flongitude = new double [V + inst->dummy];
+        double *profit = new double[V+inst->dummy];
 
 
         double **dist = new double*[V + inst->dummy];
@@ -274,15 +283,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
                delta[i] = (2 * (service/60)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
+               profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+
                // cout << "delta " << i << ": " << delta[i] << endl;
                 // delta[i] = (2 * (service/60)) + (CalcMan(vxs, vys, vxf, vys, i, i))/inst->vmed;
 
             }
             else if (i < V - K){ 
                delta[i] = service/60;
+               profit[i] = 0;
             }
             else if (i >= V - K){
                 delta[i] = 0;
+                profit[i] = 0;
             }
             for (int j = 0; j < V + inst->dummy; j++){
                 if(i == j){
@@ -321,6 +334,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xf = vxf[i];
             node->yf = vyf[i];
             node->delta = delta[i];
+            node->profit = profit[i];
             nodeVec.push_back(*node);
         }
 
@@ -333,13 +347,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
+            node->profit = 0;
             nodeVec.push_back(*node);
         }
 
         if( problem->scen == "1A" ){
             inst->nCluster = inst->n + inst->K + inst->dummy;
         }
-
+        
+        delete[] profit;
         delete[] delta;
         delete[] slatitude;
         delete[] slongitude;
@@ -365,6 +381,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double *slongitude = new double [V + inst->dummy];
         double *flatitude = new double [V + inst->dummy];
         double *flongitude = new double [V + inst->dummy];
+        double *profit = new double[V+inst->dummy];
 
         double **dist = new double*[V + inst->dummy];
         for (int i= 0; i < V + inst->dummy; i++){
@@ -446,18 +463,22 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
         
+        double singleProfit;
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
-               delta[i] = (2 * (service/60)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
+                delta[i] = (2 * (service/60)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
+                profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
                // cout << "delta " << i << ": " << delta[i] << endl;
                 // delta[i] = (2 * (service/60)) + (CalcMan(vxs, vys, vxf, vys, i, i))/inst->vmed;
 
             }
             else if (i < V - K){ 
                delta[i] = service/60;
+               profit[i] = 0;
             }
             else if (i >= V - K){
                 delta[i] = 0;
+                profit[i] = 0;
             }
             for (int j = 0; j < V + inst->dummy; j++){
                 if(i == j){
@@ -496,6 +517,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xf = vxf[i];
             node->yf = vyf[i];
             node->delta = delta[i];
+            node->profit = profit[i];
             nodeVec.push_back(*node);
         }
 
@@ -509,6 +531,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
+            node->profit = 0;
             nodeVec.push_back(*node);
         }
 
@@ -516,6 +539,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             inst->nCluster = inst->n + inst->K + inst->dummy;
         }
 
+        delete[] profit;
         delete[] delta;
         delete[] slatitude;
         delete[] slongitude;
@@ -872,12 +896,37 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
 
 }
 
-void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
+void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<double> &passProfit){
     double cost;
+
+    // for (int i = 0; i < bStat->bundleVec.size(); i++){
+    //     if (bStat->bundleVec[i].size() <= 1){
+    //         cost = 0;
+    //         bStat->bundleProfVec.push_back(cost);
+    //     }
+    //     else{
+    //         for (int j = 0; j < bStat->bundleVec[i].size() - 1; j++){
+    //             cost = 0;
+    //             if (bStat->bundleVec[i][j] > inst->n - 1 && bStat->bundleVec[i][j] < inst->n + inst->m){
+    //                 cost += inst->gamma + inst->mu*mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j] + inst->m];
+    //                 for (int k = j + 1; k < bStat->bundleVec[i].size(); k++){
+    //                     if (bStat->bundleVec[i][k] == bStat->bundleVec[i][j] + inst->m){
+    //                         break;
+    //                     }
+    //                     else if (bStat->bundleVec[i][k] < inst->n + inst->m){
+    //                         cost += - mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][k]] - mdist[bStat->bundleVec[i][k]][bStat->bundleVec[i][j] + inst->m];
+                            
+    //                     }
+    //                 }
+    //                 bStat->bundleProfVec.push_back(cost);
+    //             }
+    //         }            
+    //     }
+    // }
 
     for (int i = 0; i < bStat->bundleVec.size(); i++){
         if (bStat->bundleVec[i].size() <= 1){
-            cost = 0;
+            cost = nodeVec[bStat->bundleVec[i][0]].profit;
             bStat->bundleProfVec.push_back(cost);
         }
         else{
@@ -885,20 +934,25 @@ void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                 cost = 0;
                 if (bStat->bundleVec[i][j] > inst->n - 1 && bStat->bundleVec[i][j] < inst->n + inst->m){
                     cost += inst->gamma + inst->mu*mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j] + inst->m];
-                    for (int k = j + 1; k < bStat->bundleVec[i].size(); k++){
-                        if (bStat->bundleVec[i][k] == bStat->bundleVec[i][j] + inst->m){
-                            break;
-                        }
-                        else if (bStat->bundleVec[i][k] < inst->n + inst->m){
-                            cost += - mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][k]] - mdist[bStat->bundleVec[i][k]][bStat->bundleVec[i][j] + inst->m];
-                            
-                        }
-                    }
+                    cost += - mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]];
                     bStat->bundleProfVec.push_back(cost);
+                    continue;
                 }
-            }            
+                else if (bStat->bundleVec[i][j] < inst->n){
+                    cost += nodeVec[bStat->bundleVec[i][j]].profit;
+                    cost += - mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]];
+                    bStat->bundleProfVec.push_back(cost);
+                    continue;
+                } 
+                else if (bStat->bundleVec[i][j] > inst->n + inst->m - 1){
+                    cost += nodeVec[bStat->bundleVec[i][j]].profit;
+                    cost += - mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]];
+                    bStat->bundleProfVec.push_back(cost);
+                    continue;
+                }               
+            }
         }
-    }   
+    } 
 }
 
 void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){

@@ -31,10 +31,11 @@ int main (int argc, char *argv[]) {
 	pair<int, int> fArc;
 	vector< pair<int,int> > arcVec;
 	vector< pair<int,int> > nodummyarcVec;
+	vector<double> nodeProfit;
 
 	vector< pair<int,int> > auxVec;
 
-	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem);
+	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, nodeProfit);
 	
 	vector< vector< pair<int,int> > > arcPlus;
 	vector< vector< pair<int,int> > > arcMinus;
@@ -53,31 +54,31 @@ int main (int argc, char *argv[]) {
 	vector< vector< pair<int,int> > > cArcPlus;
 	vector< vector< pair<int,int> > > cArcMinus;
 
-	// cout << "Distance Matrix: " << endl;
+	cout << "Distance Matrix: " << endl;
 
-	// for (int i = 0; i < inst.V + inst.dummy; i++){
-	// 	for (int j = 0; j < inst.V + inst.dummy; j++){
-	// 		cout << setw(5) << distMatrix[i][j] << " ";
-	// 	}
-	// 	cout << endl;
-	// }
+	for (int i = 0; i < inst.V + inst.dummy; i++){
+		for (int j = 0; j < inst.V + inst.dummy; j++){
+			cout << setw(5) << distMatrix[i][j] << " ";
+		}
+		cout << endl;
+	}
 
 	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec);
 
-	// cout << "\nBundle Vector: [";
-	// for (int i = 0; i < bStat.bundleVec.size(); i++){
-	// 	cout << "[";
-	// 	for (int j = 0; j < bStat.bundleVec[i].size(); j++){
-	// 		cout << setw(3) << std:: right << bStat.bundleVec[i][j];
-	// 		if (j < bStat.bundleVec[i].size() - 1){
- //                cout << ", ";
- //            }
-	// 	}
-	// 	cout << "],";
-	// }
-	// cout << "]" << endl;
+	cout << "\nBundle Vector: [";
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		cout << "[";
+		for (int j = 0; j < bStat.bundleVec[i].size(); j++){
+			cout << setw(3) << std:: right << bStat.bundleVec[i][j];
+			if (j < bStat.bundleVec[i].size() - 1){
+                cout << ", ";
+            }
+		}
+		cout << "],";
+	}
+	cout << "]" << endl;
 
-	// getchar();
+	getchar();
 	for (int i = 0; i < inst.m; i ++){
 		bStat.parcelBundleVec.push_back(bStat.parcelBundle);
 	}
@@ -112,17 +113,22 @@ int main (int argc, char *argv[]) {
 	// 	}
 	// 	cout << endl;
 	// }
-
-	bundleProfit(&inst, distMatrix, nodeVec, &bStat);
-
-	// cout << "\nBundle Profit: [";
-	// for (int i = 0; i < bStat.bundleProfVec.size(); i++){
-	// 	cout << setw(3) << std:: right << bStat.bundleProfVec[i];
-	// 	if (i < bStat.bundleProfVec.size() - 1){
- //            cout << ", ";
- //        }
+	// cout << "\nNode profits: " << endl;
+	// for (int i = 0; i < nodeVec.size(); i++){
+	// 	cout << nodeVec[i].profit << " ";
 	// }
 	// cout << endl;
+	// getchar();
+	bundleProfit(&inst, distMatrix, nodeVec, &bStat, nodeProfit);
+
+	cout << "\nBundle Profit: [";
+	for (int i = 0; i < bStat.bundleProfVec.size(); i++){
+		cout << setw(3) << std:: right << bStat.bundleProfVec[i];
+		if (i < bStat.bundleProfVec.size() - 1){
+            cout << ", ";
+        }
+	}
+	cout << endl;
 
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
 		for (int j = 0; j < bStat.bundleVec.size(); j++){

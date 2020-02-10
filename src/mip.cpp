@@ -38,9 +38,6 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 		}	
 	}
 
-
-
-	
 	// IloBoolVarArray y(env, nodeVec.size()); //creates boolean variable (y_i = 1 se nó i é visitado; 0 cc)
 	// for (int i = 0; i < nodeVec.size(); i++){
 	// 	sprintf(var, "y(%d)", i);
