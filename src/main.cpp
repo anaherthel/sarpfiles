@@ -35,8 +35,27 @@ int main (int argc, char *argv[]) {
 
 	vector< pair<int,int> > auxVec;
 
+	int p = 3; //number of parcel requests to be associated with a passenger request(1A)
+	vector< vector<int> > clsParcel;
+	vector<int> vecOfInt;
+
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, nodeProfit);
 	
+	for (int i = 0; i < inst.n; i++){
+		clsParcel.push_back(vecOfInt);
+	}
+
+	if (p > -1){
+		makeSmallerProblem(&inst, nodeVec, distMatrix, p, clsParcel);
+	}
+	else{
+		for (int i = 0; i < clsParcel.size(); i++){
+			for(int j = inst.n; j < inst.n + inst.m; j++){
+				clsParcel[i].push_back(j);
+			}
+		}
+	}
+
 	vector< vector< pair<int,int> > > arcPlus;
 	vector< vector< pair<int,int> > > arcMinus;
 	vector< pair<int,int> > arcNN;
@@ -63,7 +82,7 @@ int main (int argc, char *argv[]) {
 		cout << endl;
 	}
 
-	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec);
+	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec, clsParcel);
 
 	cout << "\nBundle Vector: [";
 	for (int i = 0; i < bStat.bundleVec.size(); i++){

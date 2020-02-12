@@ -189,6 +189,24 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 		model.add(cons);
 	}
 
+	//Constraint 5(b) - No parcel can be served (Find a lower bound)
+
+
+	// for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
+	// 	IloExpr exp(env);
+	// 	currParcel = inst->n + i;
+	// 	for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
+	// 		for (int l = 0; l < bStat->bArcPlus[bStat->parcelBundleVec[i][j]].size(); l++){
+	// 			for (int k = 0; k < inst->K; k++){
+	// 				exp += x[bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].first][bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].second][k];
+	// 			}
+	// 		}
+	// 	}
+	// 	sprintf (var, "Constraint5_%d", currParcel);
+	// 	IloRange cons = (exp == 0);
+	// 	cons.setName(var);
+	// 	model.add(cons);
+	// }
 
 	// //Constraint 6 - Flow conservation between clusters
 
