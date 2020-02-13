@@ -69,6 +69,7 @@ struct bundleStat{
 	vector<double> bundleTimes;
 	pair<int, int> bFArc;
 	vector<double> bundleProfVec;
+	vector<double> bundleServVec;
 	vector<bool> bArcRow;
 	vector< vector<bool> > bArcs;
 	vector< pair<int,int> > bArcVec;
