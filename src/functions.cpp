@@ -936,29 +936,42 @@ void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
 
     for (int i = 0; i < bStat->bundleVec.size(); i++){
         cost = 0;
+        service = 0;
         if (bStat->bundleVec[i].size() <= 1){
             cost = nodeVec[bStat->bundleVec[i][0]].profit;
             bStat->bundleProfVec.push_back(cost);
+            service = nodeVec[bStat->bundleVec[i][0]].delta;
+            bStat->bundleServVec.push_back(service);
         }
         else{
             for (int j = 0; j < bStat->bundleVec[i].size() - 1; j++){
-                if (bStat->bundleVec[i][j] > inst->n - 1 && bStat->bundleVec[i][j] < inst->n + inst->m){
+                if (bStat->bundleVec[i][j] > inst->n - 1 && bStat->bundleVec[i][j] < inst->n + inst->m){ //parcel pickup
                     cost += inst->gamma + inst->mu*mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j] + inst->m];
                     cost += - mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]];
+                    service += nodeVec[bStat->bundleVec[i][j]].delta + (mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]]/inst->vmed);
                     continue;
                 }
-                else if (bStat->bundleVec[i][j] < inst->n){
+                else if (bStat->bundleVec[i][j] < inst->n){//passenger request
                     cost += nodeVec[bStat->bundleVec[i][j]].profit;
                     cost += - mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]];
+                    service += nodeVec[bStat->bundleVec[i][j]].delta + (mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]]/inst->vmed);
                     continue;
                 } 
-                else if (bStat->bundleVec[i][j] > inst->n + inst->m - 1){
+                else if (bStat->bundleVec[i][j] > inst->n + inst->m - 1){//parcel delivery
                     cost += nodeVec[bStat->bundleVec[i][j]].profit;
                     cost += - mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]];
+                    service += nodeVec[bStat->bundleVec[i][j]].delta + (mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]]/inst->vmed);
                     continue;
                 }               
             }
+            cost += nodeVec[bStat->bundleVec[i][bStat->bundleVec[i].size() - 1]].profit;
+            service += nodeVec[bStat->bundleVec[i][bStat->bundleVec[i].size() - 1]].delta;
+            // cout << bStat->bundleVec[i][bStat->bundleVec[i].size() - 1] << " - delta: " << nodeVec[bStat->bundleVec[i][bStat->bundleVec[i].size() - 1]].delta;
+            // getchar();
+            // cout << "bundle: " << i << " - service(final): " << service << endl;
+            // getchar(); 
             bStat->bundleProfVec.push_back(cost);
+            bStat->bundleServVec.push_back(service);
         }
     } 
 }
@@ -984,7 +997,7 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
             for (int j = 0; j < setN; j++){
                 if (i != j){
                     if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){
-                        if (bStat->bundleStart[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                        if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
                             bStat->bArcs[i][j] = true;
                             // bStat->bFArc.first = i;
                             // bStat->bFArc.second = j;
@@ -1002,7 +1015,7 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
         }
         else if (i >= setN){
             for (int j = 0; j < setN; j++){
-                if (bStat->bundleStart[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
                     bStat->bArcs[i][j] = true;
                     // bStat->bFArc.first = i;
                     // bStat->bFArc.second = j;
@@ -1023,6 +1036,15 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
             }
         }
     }
+
+    // for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
+    //     for (int j = 0; j < bStat->parcelBundleVec[i].size() - 1; j++){
+    //         if (bStat->parcelBundleVec[i][j] != bStat->parcelBundleVec[i][j+1]){
+    //             bStat->bArcs[bStat->parcelBundleVec[i][j]][bStat->parcelBundleVec[i][j+1]] = false;
+    //             bStat->bArcs[bStat->parcelBundleVec[i][j+1]][bStat->parcelBundleVec[i][j]] = false;
+    //         }
+    //     }
+    // }
 
     //remove arcs from/to bundles with negative start times
     for (int i = 0; i < bStat->bundleStart.size(); i++){
@@ -1105,7 +1127,6 @@ void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat
                 parcelReq = bStat->bundleVec[i][j];
                 bStat->parcelBundleVec[parcelReq - inst->n].push_back(i);
             }
-
         }
     }
 }
