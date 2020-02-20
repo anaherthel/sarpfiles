@@ -833,7 +833,7 @@ string getInstanceType (char **argv){
     return InstanceType;
 }
 
-void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<int> &clusters, vector< vector<int> > &clusterVec, vector< vector<int> > &clsParcel){
+void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<int> &clusters, vector< vector<int> > &clusterVec, vector< vector<int> > &clsParcel, probStat* problem){
 
 //For 1A:
     // int counter = 0;
@@ -869,37 +869,75 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
     // }
 
 //For 1A:
-    int counter = 0;
-    for (int i = 0; i < inst->n; i++){
-        bStat->bundle.push_back(i);
-        bStat->bundleVec.push_back(bStat->bundle);
-        // clusters.push_back(bStat->bundle);
-        clusters.push_back(bStat->bundleVec.size()-1);
-        bStat->bundle.clear();
-        for (int j = 0; j < clsParcel[i].size(); j++){
-            bStat->bundle.push_back(clsParcel[i][j]);
+    if (probStat->scen == "1A"){
+        int counter = 0;
+        for (int i = 0; i < inst->n; i++){
             bStat->bundle.push_back(i);
-            bStat->bundle.push_back(clsParcel[i][j]+inst->m);
-            bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta + nodeVec[clsParcel[i][j]+inst->m].delta);
             bStat->bundleVec.push_back(bStat->bundle);
             // clusters.push_back(bStat->bundle);
             clusters.push_back(bStat->bundleVec.size()-1);
             bStat->bundle.clear();
+            for (int j = 0; j < clsParcel[i].size(); j++){
+                bStat->bundle.push_back(clsParcel[i][j]);
+                bStat->bundle.push_back(i);
+                bStat->bundle.push_back(clsParcel[i][j]+inst->m);
+                bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta + nodeVec[clsParcel[i][j]+inst->m].delta);
+                bStat->bundleVec.push_back(bStat->bundle);
+                // clusters.push_back(bStat->bundle);
+                clusters.push_back(bStat->bundleVec.size()-1);
+                bStat->bundle.clear();
+            }
+            clusterVec.push_back(clusters);
+            clusters.clear();
         }
-        clusterVec.push_back(clusters);
-        clusters.clear();
+
+        for (int i = 2*inst->m + inst->n; i < nodeVec.size(); i++){
+            bStat->bundle.push_back(i);
+            bStat->bundleVec.push_back(bStat->bundle);
+            // clusters.push_back(bStat->bundle);
+            clusters.push_back(bStat->bundleVec.size()-1);
+            bStat->bundle.clear();
+            
+            clusterVec.push_back(clusters);
+            clusters.clear();
+        }
     }
 
-    for (int i = 2*inst->m + inst->n; i < nodeVec.size(); i++){
-        bStat->bundle.push_back(i);
-        bStat->bundleVec.push_back(bStat->bundle);
-        // clusters.push_back(bStat->bundle);
-        clusters.push_back(bStat->bundleVec.size()-1);
-        bStat->bundle.clear();
-        
-        clusterVec.push_back(clusters);
-        clusters.clear();
+//For 1B:
+    else if (probStat->scen == "1B"){
+        int counter = 0;
+        for (int i = 0; i < inst->n; i++){
+            bStat->bundle.push_back(i);
+            bStat->bundleVec.push_back(bStat->bundle);
+            // clusters.push_back(bStat->bundle);
+            clusters.push_back(bStat->bundleVec.size()-1);
+            bStat->bundle.clear();
+            for (int j = 0; j < clsParcel[i].size(); j++){
+                bStat->bundle.push_back(clsParcel[i][j]);
+                bStat->bundle.push_back(i);
+                bStat->bundle.push_back(clsParcel[i][j]+inst->m);
+                bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta + nodeVec[clsParcel[i][j]+inst->m].delta);
+                bStat->bundleVec.push_back(bStat->bundle);
+                // clusters.push_back(bStat->bundle);
+                clusters.push_back(bStat->bundleVec.size()-1);
+                bStat->bundle.clear();
+            }
+            clusterVec.push_back(clusters);
+            clusters.clear();
+        }
+
+        for (int i = 2*inst->m + inst->n; i < nodeVec.size(); i++){
+            bStat->bundle.push_back(i);
+            bStat->bundleVec.push_back(bStat->bundle);
+            // clusters.push_back(bStat->bundle);
+            clusters.push_back(bStat->bundleVec.size()-1);
+            bStat->bundle.clear();
+            
+            clusterVec.push_back(clusters);
+            clusters.clear();
+        }
     }
+
 
 }
 
@@ -1190,99 +1228,172 @@ bool compareCosts(const bParcelStruct &a, const bParcelStruct &b){
     return a.cost < b.cost;
 }
 
-void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, int p, vector< vector<int> > &clsParcel){
+void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, int p, vector< vector<int> > &clsParcel, probStat* problem, int Q){
 
-    vector<bParcelStruct> vecOfDist;
-    double singleCost;
-    int counter;
-    bParcelStruct bps;
+    if (problem->scen == "1A"){
+        vector<bParcelStruct> vecOfDist;
+        double singleCost;
+        int counter;
+        bParcelStruct bps;
 
-    if (p > -1){
-        for (int i = 0; i < inst->n; i++){
+        if (p > -1){
+            for (int i = 0; i < inst->n; i++){
 
-            for (int j = inst->n; j < inst->n + inst->m; j++){
-                bps.cost = mdist[j][i];
-                bps.parcelreq = j;
-                vecOfDist.push_back(bps);
+                for (int j = inst->n; j < inst->n + inst->m; j++){
+                    bps.cost = mdist[j][i];
+                    bps.parcelreq = j;
+                    vecOfDist.push_back(bps);
+                }
+                counter = 0;
+                for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
+
+                    vecOfDist[counter].cost += mdist[i][j];
+                    counter++;
+                }
+                // cout << "old Vec: " << endl;
+                // for (int i = 0; i < vecOfDist.size(); i++){
+                //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
+                // }
+                // cout << endl;
+                // getchar();
+                sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
+
+                // cout << "New Vec: " << endl; 
+                // for (int k = 0; k < vecOfDist.size(); k++){
+                //     cout << vecOfDist[k].parcelreq << ": " << vecOfDist[k].cost << " ";
+                // }
+                // cout << endl;
+                // getchar();
+
+                for (int j = 0; j < p; j++){
+                    clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                }
+                vecOfDist.clear();
             }
-            counter = 0;
-            for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
-
-                vecOfDist[counter].cost += mdist[i][j];
-                counter++;
-            }
-            // cout << "old Vec: " << endl;
-            // for (int i = 0; i < vecOfDist.size(); i++){
-            //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
-            // }
-            // cout << endl;
-            // getchar();
-            sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
-
-            // cout << "New Vec: " << endl; 
-            // for (int k = 0; k < vecOfDist.size(); k++){
-            //     cout << vecOfDist[k].parcelreq << ": " << vecOfDist[k].cost << " ";
-            // }
-            // cout << endl;
-            // getchar();
-
-            for (int j = 0; j < p; j++){
-                clsParcel[i].push_back(vecOfDist[j].parcelreq);
-            }
-            vecOfDist.clear();
         }
-    }
 
-    else{
-        // for (int i = 0; i < clsParcel.size(); i++){
-        //     for(int j = inst.n; j < inst.n + inst.m; j++){
-        //         clsParcel[i].push_back(j);
+        else{
+            // for (int i = 0; i < clsParcel.size(); i++){
+            //     for(int j = inst.n; j < inst.n + inst.m; j++){
+            //         clsParcel[i].push_back(j);
+            //     }
+            // }
+
+            for (int i = 0; i < inst->n; i++){
+
+                for (int j = inst->n; j < inst->n + inst->m; j++){
+                    bps.cost = mdist[j][i];
+                    bps.parcelreq = j;
+                    vecOfDist.push_back(bps);
+                }
+                counter = 0;
+                for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
+
+                    vecOfDist[counter].cost += mdist[i][j];
+                    counter++;
+                }
+                // cout << "old Vec: " << endl;
+                // for (int i = 0; i < vecOfDist.size(); i++){
+                //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
+                // }
+                // cout << endl;
+                // getchar();
+                sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
+
+                // cout << "New Vec: " << endl; 
+                // for (int k = 0; k < vecOfDist.size(); k++){
+                //     // cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
+                //     cout << vecOfDist[k].parcelreq << " ";
+                // }
+                // cout << endl;
+                // getchar();
+
+                for (int j = 0; j < inst->m; j++){
+                    clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                }
+                vecOfDist.clear();
+            }
+        }
+
+        // cout << "Best reqs: " << endl; 
+        // for (int j = 0; j < clsParcel.size(); j++){
+        //     for (int i = 0; i < clsParcel[j].size(); i++){
+        //         cout << clsParcel[j][i] << " ";
         //     }
+        //     cout << endl;        
         // }
-
-        for (int i = 0; i < inst->n; i++){
-
-            for (int j = inst->n; j < inst->n + inst->m; j++){
-                bps.cost = mdist[j][i];
-                bps.parcelreq = j;
-                vecOfDist.push_back(bps);
-            }
-            counter = 0;
-            for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
-
-                vecOfDist[counter].cost += mdist[i][j];
-                counter++;
-            }
-            // cout << "old Vec: " << endl;
-            // for (int i = 0; i < vecOfDist.size(); i++){
-            //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
-            // }
-            // cout << endl;
-            // getchar();
-            sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
-
-            // cout << "New Vec: " << endl; 
-            // for (int k = 0; k < vecOfDist.size(); k++){
-            //     // cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
-            //     cout << vecOfDist[k].parcelreq << " ";
-            // }
-            // cout << endl;
-            // getchar();
-
-            for (int j = 0; j < inst->m; j++){
-                clsParcel[i].push_back(vecOfDist[j].parcelreq);
-            }
-            vecOfDist.clear();
-        }
+        // getchar();
     }
 
-    // cout << "Best reqs: " << endl; 
-    // for (int j = 0; j < clsParcel.size(); j++){
-    //     for (int i = 0; i < clsParcel[j].size(); i++){
-    //         cout << clsParcel[j][i] << " ";
-    //     }
-    //     cout << endl;        
-    // }
-    // getchar();
+    else if (problem->scen == "1B"){
 
+        vector< vector<int> > ppuSets;
+        vector< vector<int> > pdoSets;
+        vector<int> prep;
+        vector<bParcelStruct> vecOfDist;
+        double singleCost;
+        int counter;
+        bParcelStruct bps;
+        
+        for (int j = inst->n; j < inst->n + inst->m; j++){
+            ppuSets.push_back(prep);
+            pdoSets.push_back(prep);
+        }
+        counter = 0;
+        for (int j = inst->n; j < inst->n + inst->m; j++){
+            for (int k = inst->n; k < inst->n + inst->m; k++){
+                if(j != k){
+
+                    ppu[counter].push_back(j);
+                    ppu[counter].push_back(k);
+                    counter++;
+                }
+            }
+        }
+
+    //     bps.cost = mdist[j][k];
+    //     bps.parcelreq = j;
+    //     vecOfDist.push_back(bps);
+    //     counter = 0;
+    //         for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
+
+    //         vecOfDist[counter].cost += mdist[i][j];
+    //         counter++;
+    //     }
+    //     // cout << "old Vec: " << endl;
+    //     // for (int i = 0; i < vecOfDist.size(); i++){
+    //     //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
+    //     // }
+    //     // cout << endl;
+    //     // getchar();
+    //     sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
+
+    //     // cout << "New Vec: " << endl; 
+    //     // for (int k = 0; k < vecOfDist.size(); k++){
+    //     //     // cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
+    //     //     cout << vecOfDist[k].parcelreq << " ";
+    //     // }
+    //     // cout << endl;
+    //     // getchar();
+
+    //         for (int j = 0; j < inst->m; j++){
+    //             clsParcel[i].push_back(vecOfDist[j].parcelreq);
+    //         }
+    //         vecOfDist.clear();
+    //         }
+
+    //     }
+
+    // }
+
+        // cout << "Best reqs: " << endl; 
+        // for (int j = 0; j < clsParcel.size(); j++){
+        //     for (int i = 0; i < clsParcel[j].size(); i++){
+        //         cout << clsParcel[j][i] << " ";
+        //     }
+        //     cout << endl;        
+        // }
+        // getchar();
+    
+ 
 }

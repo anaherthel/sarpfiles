@@ -34,8 +34,10 @@ int main (int argc, char *argv[]) {
 	vector<double> nodeProfit;
 
 	vector< pair<int,int> > auxVec;
+	vector< vector<int> > parcelSets;
 
 	int p = -1; //number of parcel requests to be associated with a passenger request(1A)
+	int Q = 5;
 	vector< vector<int> > clsParcel;
 	vector<int> vecOfInt;
 
@@ -56,17 +58,17 @@ int main (int argc, char *argv[]) {
 	// 	}
 	// }
 
-	makeSmallerProblem(&inst, nodeVec, distMatrix, p, clsParcel);
+	makeSmallerProblem(&inst, nodeVec, distMatrix, p, clsParcel, &problem, parcelSets, Q);
 
-	cout << "\nClosest parcels: " << endl;
-	for (int i = 0; i < clsParcel.size(); i++){
-		cout << i << ": ";
-		for (int j = 0; j < clsParcel[i].size(); j++){
-			cout << clsParcel[i][j] << " ";
-		}
-		cout << endl;
-	}
-	getchar();
+	// cout << "\nClosest parcels: " << endl;
+	// for (int i = 0; i < clsParcel.size(); i++){
+	// 	cout << i << ": ";
+	// 	for (int j = 0; j < clsParcel[i].size(); j++){
+	// 		cout << clsParcel[i][j] << " ";
+	// 	}
+	// 	cout << endl;
+	// }
+	// getchar();
 
 	vector< vector< pair<int,int> > > arcPlus;
 	vector< vector< pair<int,int> > > arcMinus;
@@ -94,7 +96,7 @@ int main (int argc, char *argv[]) {
 	// 	cout << endl;
 	// }
 	// getchar();
-	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec, clsParcel);
+	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, &problem);
 
 	// cout << "\nBundle Vector: [";
 	// for (int i = 0; i < bStat.bundleVec.size(); i++){
@@ -118,7 +120,7 @@ int main (int argc, char *argv[]) {
 	if (probStat.scen == "2A" || probStat.scen == "2B"){
 		for (int i = 0; i < inst.m; i ++){
 			bStat.passBundleVec.push_back(bStat.parcelBundle);
-		}		
+		}
 	}
 	
 
