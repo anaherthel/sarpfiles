@@ -164,10 +164,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // }
         // cout << endl;
 
-        if( problem->scen == "1A" ){
-            inst->nCluster = inst->n + inst->K + inst->dummy;
-        }
-
         delete[] profit;
         delete[] xs;
         delete[] ys;
@@ -237,6 +233,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             in >> vxs[i] >> vys[i] >> vload[i] >> ve[i];
         }
 
+        ve[ve.size()-1] = 0;
+
         for (int i = 0; i < vxs.size(); i++){
             vxf.push_back(vxs[i]);
             vyf.push_back(vys[i]);
@@ -304,7 +302,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 else{
                     if (i < V){
                         if (j < V){
-                            dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+                            dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
                             // dist[i][j] = CalcMan(vxs, vys, vxf, vys, i, i);
                         }
                         else if (j >= V){
@@ -351,10 +349,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
 
-        if( problem->scen == "1A" ){
-            inst->nCluster = inst->n + inst->K + inst->dummy;
-        }
-        
         delete[] profit;
         delete[] delta;
         delete[] slatitude;
@@ -409,6 +403,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < originalV; i++){
             in >> tempNode >> vxs[i] >> vys[i] >> tempNode >> vload[i] >> ve[i] >> vl[i];
         }
+
+        ve[ve.size()-1] = 0;
 
         for (int i = 0; i < vxs.size(); i++){
             vxf.push_back(vxs[i]);
@@ -475,7 +471,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 else{
                     if (i < V){
                         if (j < V){
-                            dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+                            dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
                         }
                         else if (j >= V){
                             dist[i][j] = 0;
@@ -522,10 +518,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
 
-        if( problem->scen == "1A" ){
-            inst->nCluster = inst->n + inst->K + inst->dummy;
-        }
-
         delete[] profit;
         delete[] delta;
         delete[] slatitude;
@@ -533,6 +525,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] flatitude;
         delete[] flongitude;
    
+    }
+
+    if(problem->scen == "1A" || "1B"){
+        inst->nCluster = inst->n + inst->K + inst->dummy;
+    }
+    else if(problem->scen == "2A" || "2B"){
+        inst->nCluster = inst->n + inst->K + inst->dummy;
     }
 
 }
@@ -583,8 +582,7 @@ double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flo
     q2 = cos(flatit[I] - slatit[J]);
     q3 = cos(flatit[I] + slatit[J]);
 
-    return
-    (int) (RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)) + 1.0);
+    return (RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)));
     // (int) (RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)));
 }
 
@@ -1047,9 +1045,9 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
     // }
 
     //remove arcs from/to bundles with negative start times
-    for (int i = 0; i < bStat->bundleStart.size(); i++){
+    for (int i = 0; i < bStat->bundleStart.size() - 1; i++){
         if (bStat->bundleStart[i] < 0){
-            for (int j = 0; j < bStat->bundleVec.size(); j++){
+            for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
                 bStat->bArcs[j][i] = false;
                 bStat->bArcs[i][j] = false;
             }
@@ -1071,16 +1069,25 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
 
 }
 
-void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector< vector<int> > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus){
+void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector< vector<int> > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, int p){
     
     int reqClusters = clusterVec.size() - inst->K - 1;
     int clusterA = 0;
     int clusterB;
     int setN = bStat->bundleVec.size() - inst->K - 1;
+    int ref;
 
-    for(int i = 0; i < bStat->bundleVec.size(); i++){
+    if (p < 0){
+        ref = inst->m;
+    }
+
+    else{
+        ref = p;
+    }
+
+    for (int i = 0; i < bStat->bundleVec.size(); i++){
         if (i < setN){
-            if (i > clusterA*(inst->m + 1) + inst->m){
+            if (i > clusterA*(ref + 1) + ref){
                 clusterA++;
             }           
         }
@@ -1090,7 +1097,7 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
         clusterB = 0;
         for (int j = 0; j < bStat->bundleVec.size(); j++){
             if (j < setN){
-                if (j > clusterB*(inst->m + 1) + inst->m){
+                if (j > clusterB*(ref + 1) + ref){
                     clusterB++;
                 }                
             }
@@ -1190,38 +1197,83 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
     int counter;
     bParcelStruct bps;
 
-    for (int i = 0; i < inst->n; i++){
+    if (p > -1){
+        for (int i = 0; i < inst->n; i++){
 
-        for (int j = inst->n; j < inst->n + inst->m; j++){
-            bps.cost = mdist[j][i];
-            bps.parcelreq = j;
-            vecOfDist.push_back(bps);
-        }
-        counter = 0;
-        for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
+            for (int j = inst->n; j < inst->n + inst->m; j++){
+                bps.cost = mdist[j][i];
+                bps.parcelreq = j;
+                vecOfDist.push_back(bps);
+            }
+            counter = 0;
+            for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
 
-            vecOfDist[counter].cost += mdist[i][j];
-            counter++;
+                vecOfDist[counter].cost += mdist[i][j];
+                counter++;
+            }
+            // cout << "old Vec: " << endl;
+            // for (int i = 0; i < vecOfDist.size(); i++){
+            //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
+            // }
+            // cout << endl;
+            // getchar();
+            sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
+
+            // cout << "New Vec: " << endl; 
+            // for (int k = 0; k < vecOfDist.size(); k++){
+            //     cout << vecOfDist[k].parcelreq << ": " << vecOfDist[k].cost << " ";
+            // }
+            // cout << endl;
+            // getchar();
+
+            for (int j = 0; j < p; j++){
+                clsParcel[i].push_back(vecOfDist[j].parcelreq);
+            }
+            vecOfDist.clear();
         }
-        // cout << "old Vec: " << endl;
-        // for (int i = 0; i < vecOfDist.size(); i++){
-        //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
+    }
+
+    else{
+        // for (int i = 0; i < clsParcel.size(); i++){
+        //     for(int j = inst.n; j < inst.n + inst.m; j++){
+        //         clsParcel[i].push_back(j);
+        //     }
         // }
-        // cout << endl;
-        // getchar();
-        sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
 
-        // cout << "New Vec: " << endl; 
-        // for (int i = 0; i < vecOfDist.size(); i++){
-        //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
-        // }
-        // cout << endl;
-        // getchar();
+        for (int i = 0; i < inst->n; i++){
 
-        for (int j = 0; j < p; j++){
-            clsParcel[i].push_back(vecOfDist[j].parcelreq);
+            for (int j = inst->n; j < inst->n + inst->m; j++){
+                bps.cost = mdist[j][i];
+                bps.parcelreq = j;
+                vecOfDist.push_back(bps);
+            }
+            counter = 0;
+            for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
+
+                vecOfDist[counter].cost += mdist[i][j];
+                counter++;
+            }
+            // cout << "old Vec: " << endl;
+            // for (int i = 0; i < vecOfDist.size(); i++){
+            //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
+            // }
+            // cout << endl;
+            // getchar();
+            sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
+
+            // cout << "New Vec: " << endl; 
+            // for (int k = 0; k < vecOfDist.size(); k++){
+            //     // cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
+            //     cout << vecOfDist[k].parcelreq << " ";
+            // }
+            // cout << endl;
+            // getchar();
+
+            for (int j = 0; j < inst->m; j++){
+                clsParcel[i].push_back(vecOfDist[j].parcelreq);
+            }
+            vecOfDist.clear();
         }
-        vecOfDist.clear();
     }
 
     // cout << "Best reqs: " << endl; 
