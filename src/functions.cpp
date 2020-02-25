@@ -1236,12 +1236,13 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
         int counter;
         bParcelStruct bps;
 
-        if (p > -1){
+        if (p > -1 && p != 0){
             for (int i = 0; i < inst->n; i++){
 
                 for (int j = inst->n; j < inst->n + inst->m; j++){
                     bps.cost = mdist[j][i];
                     bps.parcelreq = j;
+                    bps.before = 1;
                     vecOfDist.push_back(bps);
                 }
                 counter = 0;
@@ -1250,20 +1251,8 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
                     vecOfDist[counter].cost += mdist[i][j];
                     counter++;
                 }
-                // cout << "old Vec: " << endl;
-                // for (int i = 0; i < vecOfDist.size(); i++){
-                //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
-                // }
-                // cout << endl;
-                // getchar();
-                sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
 
-                // cout << "New Vec: " << endl; 
-                // for (int k = 0; k < vecOfDist.size(); k++){
-                //     cout << vecOfDist[k].parcelreq << ": " << vecOfDist[k].cost << " ";
-                // }
-                // cout << endl;
-                // getchar();
+                sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
 
                 for (int j = 0; j < p; j++){
                     clsParcel[i].push_back(vecOfDist[j].parcelreq);
@@ -1272,128 +1261,134 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
             }
         }
 
+        else if (p == 0){
+            break;
+        }
+
         else{
-            // for (int i = 0; i < clsParcel.size(); i++){
-            //     for(int j = inst.n; j < inst.n + inst.m; j++){
-            //         clsParcel[i].push_back(j);
-            //     }
-            // }
-
             for (int i = 0; i < inst->n; i++){
-
                 for (int j = inst->n; j < inst->n + inst->m; j++){
                     bps.cost = mdist[j][i];
                     bps.parcelreq = j;
+                    bps.before = 1;
                     vecOfDist.push_back(bps);
                 }
                 counter = 0;
                 for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
-
                     vecOfDist[counter].cost += mdist[i][j];
                     counter++;
                 }
-                // cout << "old Vec: " << endl;
-                // for (int i = 0; i < vecOfDist.size(); i++){
-                //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
-                // }
-                // cout << endl;
-                // getchar();
-                sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
-
-                // cout << "New Vec: " << endl; 
-                // for (int k = 0; k < vecOfDist.size(); k++){
-                //     // cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
-                //     cout << vecOfDist[k].parcelreq << " ";
-                // }
-                // cout << endl;
-                // getchar();
-
                 for (int j = 0; j < inst->m; j++){
                     clsParcel[i].push_back(vecOfDist[j].parcelreq);
                 }
                 vecOfDist.clear();
             }
         }
-
-        // cout << "Best reqs: " << endl; 
-        // for (int j = 0; j < clsParcel.size(); j++){
-        //     for (int i = 0; i < clsParcel[j].size(); i++){
-        //         cout << clsParcel[j][i] << " ";
-        //     }
-        //     cout << endl;        
-        // }
-        // getchar();
     }
 
-    else if (problem->scen == "1B"){
-
-        vector< vector<int> > ppuSets;
-        vector< vector<int> > pdoSets;
-        vector<int> prep;
+    else if (problem->scen == "2A"){
         vector<bParcelStruct> vecOfDist;
         double singleCost;
-        int counter;
         bParcelStruct bps;
-        
-        for (int j = inst->n; j < inst->n + inst->m; j++){
-            ppuSets.push_back(prep);
-            pdoSets.push_back(prep);
-        }
-        counter = 0;
-        for (int j = inst->n; j < inst->n + inst->m; j++){
-            for (int k = inst->n; k < inst->n + inst->m; k++){
-                if(j != k){
 
-                    ppu[counter].push_back(j);
-                    ppu[counter].push_back(k);
-                    counter++;
+        if (p > -1 && p != 0){
+            for (int i = 0; i < inst->n; i++){
+                for (int j = inst->n; j < inst->n + inst->m; j++){
+                    bps.cost = mdist[j][i];
+                    bps.parcelreq = j;
+                    vecOfDist.push_back(bps);
                 }
+                sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
+
+                for (int j = 0; j < p; j++){
+                    clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                }
+                vecOfDist.clear(); 
+
+                for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
+                    bps.cost = mdist[i][j];
+                    bps.parcelreq = j;
+                    bps.before = 0;
+                    vecOfDist.push_back(bps);
+                    bps.cost = mdist[j][i];
+                    bps.parcelreq = j;
+                    bps.before = 1;
+                    vecOfDist.push_back(bps);                   
+                }
+                sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
+
+                for (int j = 0; j < p; j++){
+                    clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                }
+                vecOfDist.clear(); 
             }
         }
 
-    //     bps.cost = mdist[j][k];
-    //     bps.parcelreq = j;
-    //     vecOfDist.push_back(bps);
+        else if (p == 0){
+            break;
+        }
+
+        else{
+            for (int i = 0; i < inst->n; i++){
+                for (int j = inst->n; j < inst->n + inst->m; j++){
+                    bps.cost = mdist[j][i];
+                    bps.parcelreq = j;
+                    vecOfDist.push_back(bps);
+                }
+
+                for (int j = 0; j < inst->m; j++){
+                    clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                }
+                vecOfDist.clear(); 
+
+                for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
+                    bps.cost = mdist[i][j];
+                    bps.parcelreq = j;
+                    bps.before = 0;
+                    vecOfDist.push_back(bps);
+                    bps.cost = mdist[j][i];
+                    bps.parcelreq = j;
+                    bps.before = 1;
+                    vecOfDist.push_back(bps);                   
+                }
+
+                for (int j = 0; j < inst->m; j++){
+                    clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                }
+                vecOfDist.clear();
+            }
+        }  
+    }    
+
+
+    // else if (problem->scen == "1B"){
+
+    //     vector< vector<int> > ppuSets;
+    //     vector< vector<int> > pdoSets;
+    //     vector<int> prep;
+    //     vector<bParcelStruct> vecOfDist;
+    //     double singleCost;
+    //     int counter;
+    //     bParcelStruct bps;
+        
+    //     for (int j = inst->n; j < inst->n + inst->m; j++){
+    //         ppuSets.push_back(prep);
+    //         pdoSets.push_back(prep);
+    //     }
     //     counter = 0;
-    //         for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
+    //     for (int j = inst->n; j < inst->n + inst->m; j++){
+    //         ppu[counter].push_back(j);
+    //         for (int k = inst->n; k < inst->n + inst->m; k++){
+    //             if(j != k){
 
-    //         vecOfDist[counter].cost += mdist[i][j];
-    //         counter++;
-    //     }
-    //     // cout << "old Vec: " << endl;
-    //     // for (int i = 0; i < vecOfDist.size(); i++){
-    //     //     cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
-    //     // }
-    //     // cout << endl;
-    //     // getchar();
-    //     sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
-
-    //     // cout << "New Vec: " << endl; 
-    //     // for (int k = 0; k < vecOfDist.size(); k++){
-    //     //     // cout << vecOfDist[i].parcelreq << ": " << vecOfDist[i].cost << " ";
-    //     //     cout << vecOfDist[k].parcelreq << " ";
-    //     // }
-    //     // cout << endl;
-    //     // getchar();
-
-    //         for (int j = 0; j < inst->m; j++){
-    //             clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                    
+    //                 ppu[counter].push_back(k);
+    //                 counter++;
+    //             }
     //         }
-    //         vecOfDist.clear();
-    //         }
-
     //     }
-
     // }
 
-        // cout << "Best reqs: " << endl; 
-        // for (int j = 0; j < clsParcel.size(); j++){
-        //     for (int i = 0; i < clsParcel[j].size(); i++){
-        //         cout << clsParcel[j][i] << " ";
-        //     }
-        //     cout << endl;        
-        // }
-        // getchar();
-    
- 
+
+
 }

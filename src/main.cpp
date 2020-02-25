@@ -34,9 +34,9 @@ int main (int argc, char *argv[]) {
 	vector<double> nodeProfit;
 
 	vector< pair<int,int> > auxVec;
-	vector< vector<int> > parcelSets;
+	// vector< vector<int> > parcelSets;
 
-	int p = -1; //number of parcel requests to be associated with a passenger request(1A)
+	int p = -1; //number of parcel requests to be associated with a passenger request(1A) or the number of best matchings
 	int Q = 5;
 	vector< vector<int> > clsParcel;
 	vector<int> vecOfInt;
@@ -57,18 +57,18 @@ int main (int argc, char *argv[]) {
 	// 		}
 	// 	}
 	// }
+	
+	makeSmallerProblem(&inst, nodeVec, distMatrix, p, clsParcel, &problem, Q);
 
-	makeSmallerProblem(&inst, nodeVec, distMatrix, p, clsParcel, &problem, parcelSets, Q);
-
-	// cout << "\nClosest parcels: " << endl;
-	// for (int i = 0; i < clsParcel.size(); i++){
-	// 	cout << i << ": ";
-	// 	for (int j = 0; j < clsParcel[i].size(); j++){
-	// 		cout << clsParcel[i][j] << " ";
-	// 	}
-	// 	cout << endl;
-	// }
-	// getchar();
+	cout << "\nClosest parcels: " << endl;
+	for (int i = 0; i < clsParcel.size(); i++){
+		cout << i << ": ";
+		for (int j = 0; j < clsParcel[i].size(); j++){
+			cout << clsParcel[i][j] << " ";
+		}
+		cout << endl;
+	}
+	getchar();
 
 	vector< vector< pair<int,int> > > arcPlus;
 	vector< vector< pair<int,int> > > arcMinus;

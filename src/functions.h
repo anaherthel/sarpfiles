@@ -88,6 +88,7 @@ struct bundleStat{
 struct bParcelStruct{
 	double cost;
 	int parcelreq;
+	bool before;
 };
 
 // struct Arcset{
