@@ -88,7 +88,6 @@ struct bundleStat{
 struct bParcelStruct{
 	double cost;
 	int parcelreq;
-	bool before;
 };
 
 // struct Arcset{
@@ -117,7 +116,7 @@ void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat
 void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
 void makeBundleReference (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
 
-void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, int p, vector< vector<int> > &clsParcel, probStat* problem, vector< vector<int> > &parcelSets, int Q);
+void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, int p, vector< vector<int> > &clsParcel, probStat* problem, int Q);
 
 bool compareCosts(const bParcelStruct &a, const bParcelStruct &b);
 

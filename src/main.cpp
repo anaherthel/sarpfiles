@@ -57,7 +57,7 @@ int main (int argc, char *argv[]) {
 	// 		}
 	// 	}
 	// }
-	
+
 	makeSmallerProblem(&inst, nodeVec, distMatrix, p, clsParcel, &problem, Q);
 
 	cout << "\nClosest parcels: " << endl;
@@ -113,11 +113,11 @@ int main (int argc, char *argv[]) {
 
 	// getchar();
 
-	for (int i = 0; i < inst.m; i ++){
+	for (int i = 0; i < inst.m; i++){
 		bStat.parcelBundleVec.push_back(bStat.parcelBundle);
 	}
 
-	if (probStat.scen == "2A" || probStat.scen == "2B"){
+	if (problem.scen == "2A" || problem.scen == "2B"){
 		for (int i = 0; i < inst.m; i ++){
 			bStat.passBundleVec.push_back(bStat.parcelBundle);
 		}

@@ -869,7 +869,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
     // }
 
 //For 1A:
-    if (probStat->scen == "1A"){
+    if (problem->scen == "1A"){
         int counter = 0;
         for (int i = 0; i < inst->n; i++){
             bStat->bundle.push_back(i);
@@ -904,7 +904,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
     }
 
 //For 1B:
-    else if (probStat->scen == "1B"){
+    else if (problem->scen == "1B"){
         int counter = 0;
         for (int i = 0; i < inst->n; i++){
             bStat->bundle.push_back(i);
@@ -1242,7 +1242,6 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
                 for (int j = inst->n; j < inst->n + inst->m; j++){
                     bps.cost = mdist[j][i];
                     bps.parcelreq = j;
-                    bps.before = 1;
                     vecOfDist.push_back(bps);
                 }
                 counter = 0;
@@ -1262,7 +1261,7 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
         }
 
         else if (p == 0){
-            break;
+            
         }
 
         else{
@@ -1270,7 +1269,6 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
                 for (int j = inst->n; j < inst->n + inst->m; j++){
                     bps.cost = mdist[j][i];
                     bps.parcelreq = j;
-                    bps.before = 1;
                     vecOfDist.push_back(bps);
                 }
                 counter = 0;
@@ -1308,11 +1306,9 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
                 for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
                     bps.cost = mdist[i][j];
                     bps.parcelreq = j;
-                    bps.before = 0;
                     vecOfDist.push_back(bps);
                     bps.cost = mdist[j][i];
-                    bps.parcelreq = j;
-                    bps.before = 1;
+                    bps.parcelreq = j*inst->m;
                     vecOfDist.push_back(bps);                   
                 }
                 sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
@@ -1325,35 +1321,21 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
         }
 
         else if (p == 0){
-            break;
+            // break;
         }
 
         else{
             for (int i = 0; i < inst->n; i++){
                 for (int j = inst->n; j < inst->n + inst->m; j++){
-                    bps.cost = mdist[j][i];
-                    bps.parcelreq = j;
-                    vecOfDist.push_back(bps);
-                }
-
-                for (int j = 0; j < inst->m; j++){
-                    clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                    clsParcel[i].push_back(j);
                 }
                 vecOfDist.clear(); 
 
                 for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
-                    bps.cost = mdist[i][j];
-                    bps.parcelreq = j;
-                    bps.before = 0;
-                    vecOfDist.push_back(bps);
-                    bps.cost = mdist[j][i];
-                    bps.parcelreq = j;
-                    bps.before = 1;
-                    vecOfDist.push_back(bps);                   
-                }
+                    
+                    clsParcel[i].push_back(j);
+                    clsParcel[i].push_back(j*inst->m);
 
-                for (int j = 0; j < inst->m; j++){
-                    clsParcel[i].push_back(vecOfDist[j].parcelreq);
                 }
                 vecOfDist.clear();
             }
