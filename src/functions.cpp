@@ -781,99 +781,144 @@ void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
     } 
 }
 
-void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, int p){
-    //1-A
+void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, int p, probStat* problem){
     int setN = bStat->bundleVec.size() - inst->K - 1;
     int currentCluster = 0;
     int ref;
-    if (p < 0){
-        ref = inst->m;
-    }
 
-    else{
-        ref = p;
-    }
-
-    for(int i = 0; i < bStat->bundleVec.size() - 1; i++){
-        if (i > currentCluster*(ref + 1) + ref){
-            currentCluster++;
+    if (problem->scen == "1A"){
+        if (p < 0){
+            ref = inst->m;
         }
-        if(i < setN){
-            for (int j = 0; j < setN; j++){
-                if (i != j){
-                    if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){
-                        if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
-                            bStat->bArcs[i][j] = true;
-                            // bStat->bFArc.first = i;
-                            // bStat->bFArc.second = j;
-                            // bStat->bArcMinus[j].push_back(bStat->bFArc);
-                            // bStat->bArcPlus[i].push_back(bStat->bFArc);                            
+        else{
+            ref = p;
+        }
+
+        for(int i = 0; i < bStat->bundleVec.size() - 1; i++){
+            if (i > currentCluster*(ref + 1) + ref){
+                currentCluster++;
+            }
+            if(i < setN){
+                for (int j = 0; j < setN; j++){
+                    if (i != j){
+                        if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){
+                            if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                                bStat->bArcs[i][j] = true;
+                            }
                         }
+                    } 
+                }
+                bStat->bArcs[i][bStat->bundleVec.size()-1] = true;
+            }
+            else if (i >= setN){
+                for (int j = 0; j < setN; j++){
+                    if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                        bStat->bArcs[i][j] = true;
                     }
-                } 
-            }
-            bStat->bArcs[i][bStat->bundleVec.size()-1] = true;
-            // bStat->bFArc.first = i;
-            // bStat->bFArc.second = bStat->bundleVec.size()-1;
-            // bStat->bArcMinus[bStat->bundleVec.size()-1].push_back(bStat->bFArc);
-            // bStat->bArcPlus[i].push_back(bStat->bFArc);
-        }
-        else if (i >= setN){
-            for (int j = 0; j < setN; j++){
-                if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
-                    bStat->bArcs[i][j] = true;
-                    // bStat->bFArc.first = i;
-                    // bStat->bFArc.second = j;
-                    // bStat->bArcMinus[j].push_back(bStat->bFArc);
-                    // bStat->bArcPlus[i].push_back(bStat->bFArc);
                 }
             }
         }
-    }
 
-    //remove arcs to bundles with same parcel requests
-    for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
-        for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
-            for (int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
-                if (bStat->parcelBundleVec[i][j] != bStat->parcelBundleVec[i][k]){
-                    bStat->bArcs[bStat->parcelBundleVec[i][j]][bStat->parcelBundleVec[i][k]] = false;
+        //remove arcs to bundles with same parcel requests
+        for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
+            for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
+                for (int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
+                    if (bStat->parcelBundleVec[i][j] != bStat->parcelBundleVec[i][k]){
+                        bStat->bArcs[bStat->parcelBundleVec[i][j]][bStat->parcelBundleVec[i][k]] = false;
+                    }
                 }
             }
         }
-    }
 
-    // for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
-    //     for (int j = 0; j < bStat->parcelBundleVec[i].size() - 1; j++){
-    //         if (bStat->parcelBundleVec[i][j] != bStat->parcelBundleVec[i][j+1]){
-    //             bStat->bArcs[bStat->parcelBundleVec[i][j]][bStat->parcelBundleVec[i][j+1]] = false;
-    //             bStat->bArcs[bStat->parcelBundleVec[i][j+1]][bStat->parcelBundleVec[i][j]] = false;
-    //         }
-    //     }
-    // }
-
-    //remove arcs from/to bundles with negative start times
-    for (int i = 0; i < bStat->bundleStart.size() - 1; i++){
-        if (bStat->bundleStart[i] < 0){
-            for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
-                bStat->bArcs[j][i] = false;
-                bStat->bArcs[i][j] = false;
+        //remove arcs from/to bundles with negative start times
+        for (int i = 0; i < bStat->bundleStart.size() - 1; i++){
+            if (bStat->bundleStart[i] < 0){
+                for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
+                    bStat->bArcs[j][i] = false;
+                    bStat->bArcs[i][j] = false;
+                }
             }
         }
+
+        for (int i = 0; i < bStat->bundleVec.size(); i++){
+            for (int j = 0; j < bStat->bundleVec.size(); j++){
+                if (bStat->bArcs[i][j]){
+                    bStat->bFArc.first = i;
+                    bStat->bFArc.second = j;
+                    bStat->bArcMinus[j].push_back(bStat->bFArc);
+                    bStat->bArcPlus[i].push_back(bStat->bFArc); 
+                }
+            }
+        }  
     }
 
+    else if (problem->scen == "2A"){
+        if (p < 0){
+            ref = 3*inst->m;
+        }
+        else{
+            ref = p;
+        }
 
-
-    for (int i = 0; i < bStat->bundleVec.size(); i++){
-        for (int j = 0; j < bStat->bundleVec.size(); j++){
-            if (bStat->bArcs[i][j]){
-                bStat->bFArc.first = i;
-                bStat->bFArc.second = j;
-                bStat->bArcMinus[j].push_back(bStat->bFArc);
-                bStat->bArcPlus[i].push_back(bStat->bFArc); 
+        for(int i = 0; i < bStat->bundleVec.size() - 1; i++){
+            if (i > currentCluster*(ref + 1) + ref){
+                currentCluster++;
+            }
+            if(i < setN){
+                for (int j = 0; j < setN; j++){
+                    if (i != j){
+                        if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){
+                            if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                                bStat->bArcs[i][j] = true;
+                            }
+                        }
+                    } 
+                }
+                bStat->bArcs[i][bStat->bundleVec.size()-1] = true;
+            }
+            else if (i >= setN){
+                for (int j = 0; j < setN; j++){
+                    if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                        bStat->bArcs[i][j] = true;
+                    }
+                }
             }
         }
-    }
 
+        //remove arcs to bundles with same parcel requests
+        for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
+            for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
+                for (int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
+                    if (bStat->parcelBundleVec[i][j] != bStat->parcelBundleVec[i][k]){
+                        bStat->bArcs[bStat->parcelBundleVec[i][j]][bStat->parcelBundleVec[i][k]] = false;
+                    }
+                }
+            }
+        }
+
+        //remove arcs from/to bundles with negative start times
+        for (int i = 0; i < bStat->bundleStart.size() - 1; i++){
+            if (bStat->bundleStart[i] < 0){
+                for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
+                    bStat->bArcs[j][i] = false;
+                    bStat->bArcs[i][j] = false;
+                }
+            }
+        }
+
+        for (int i = 0; i < bStat->bundleVec.size(); i++){
+            for (int j = 0; j < bStat->bundleVec.size(); j++){
+                if (bStat->bArcs[i][j]){
+                    bStat->bFArc.first = i;
+                    bStat->bFArc.second = j;
+                    bStat->bArcMinus[j].push_back(bStat->bFArc);
+                    bStat->bArcPlus[i].push_back(bStat->bFArc); 
+                }
+            }
+        }          
+    }   
+
+    
 }
 
 void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector< vector<int> > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, int p){
@@ -947,23 +992,24 @@ void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat
     }
 
     else if (problem->scen == "2A"){
-        for (int i = 0; i < bStat->bundleVec.size(); i++){
-            for (int j = 0; j < bStat->bundleVec[i].size(); j++){
-                if (bStat->bundleVec[i][j] < inst->n){
-                    continue;
-                }
-                else if (bStat->bundleVec[i][j] > inst->n + inst->m - 1){
-                    parcelReq = bStat->bundleVec[i][j];
-                    bStat->parcelBundleVec[parcelReq - inst->n].push_back(i);
-                }
-                else{
-                    parcelReq = bStat->bundleVec[i][j];
-                    bStat->parcelBundleVec[parcelReq - inst->n].push_back(i);
-                }
+        int setN = bStat->bundleVec.size() - inst->K - 1;
+        for (int i = 0; i < setN; i++){
+            if (bStat->bundleVec[i].size() <= 1){
+                continue;
             }
+            else{
+                for (int j = 0; j < bStat->bundleVec[i].size(); j++){
+                    if (bStat->bundleVec[i][j] < inst->n){
+                        continue;
+                    }
+                    else{
+                        parcelReq = bStat->bundleVec[i][j];
+                        bStat->parcelBundleVec[parcelReq - inst->n].push_back(i);
+                    }
+                }                
+            }   
         }         
     }
-
 }
 
 void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){

@@ -99,20 +99,20 @@ int main (int argc, char *argv[]) {
 
 	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, &problem);
 
-	// cout << "\nBundle Vector: [";
-	// for (int i = 0; i < bStat.bundleVec.size(); i++){
-	// 	cout << "[";
-	// 	for (int j = 0; j < bStat.bundleVec[i].size(); j++){
-	// 		cout << setw(3) << std:: right << bStat.bundleVec[i][j];
-	// 		if (j < bStat.bundleVec[i].size() - 1){
- //                cout << ", ";
- //            }
-	// 	}
-	// 	cout << "],";
-	// }
-	// cout << "]" << endl;
+	cout << "\nBundle Vector: [";
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		cout << "[";
+		for (int j = 0; j < bStat.bundleVec[i].size(); j++){
+			cout << setw(3) << std:: right << bStat.bundleVec[i][j];
+			if (j < bStat.bundleVec[i].size() - 1){
+                cout << ", ";
+            }
+		}
+		cout << "],";
+	}
+	cout << "]" << endl;
 
-	// getchar();
+	getchar();
 
 	if (problem.scen == "1A"){
 		for (int i = 0; i < inst.m; i++){
@@ -121,52 +121,32 @@ int main (int argc, char *argv[]) {
 	}
 
 	else if (problem.scen == "2A"){
-		for (int i = 0; i < 2* inst.m; i++){
+		for (int i = 0; i < 2*inst.m; i++){
 			bStat.parcelBundleVec.push_back(bStat.parcelBundle);
 		}
 	}
 
-	// cout << "\nSize of parcel vec:" << bStat.parcelBundleVec.size();	
-	// getchar();
-
-	cout << "\nClusters:";
 	for (int i = 0; i < clusterVec.size(); i++){
-		cout << "\nCluster " << i << ": ";
-		for (int j = 0; j < clusterVec[i].size(); j++){
-			cout << clusterVec[i][j] << ": ";
-			cout << "[";
-			for (int l = 0; l < bStat.bundleVec[clusterVec[i][j]].size(); l++){
-				cout << setw(3) << std:: right << bStat.bundleVec[clusterVec[i][j]][l];
-				if (l < bStat.bundleVec[clusterVec[i][j]].size() - 1){
-	                cout << ", ";
-	            }
+		cout << "\nCluster " << i << ": [";
+		for(int k = 0; k < clusterVec[i].size(); k++){
+			cout << "(" << clusterVec[i][k] << ") " << "[";
+			for (int j = 0; j < bStat.bundleVec[clusterVec[i][k]].size(); j++){
+				cout << setw(3) << std:: right << bStat.bundleVec[clusterVec[i][k]][j];
+	            if (j < bStat.bundleVec[clusterVec[i][k]].size() - 1){
+					cout << ",";
+				}
+				else{
+					cout << "] ";
+				}
 			}
-			cout << "],";
+			
 		}
-		cout << endl;
+		cout << "]" << endl;
 	}
 
 	getchar();
 
 	makeParcelBundles(&inst, nodeVec, &bStat, &problem);
-
-	// cout << "\nClusters:";
-	// for (int i = 0; i < clusterVec.size(); i++){
-	// 	cout << "\nCluster " << i << ": ";
-	// 	for (int j = 0; j < clusterVec[i].size(); j++){
-	// 		for (int k = 0; k < clusterVec[i][j].size(); k++){
-	// 			cout << clusterVec[i][j][k] << " ";
-	// 		}
-	// 		cout << ", ";
-	// 	}
-	// 	cout << endl;
-	// }
-	// cout << "\nNode profits: " << endl;
-	// for (int i = 0; i < nodeVec.size(); i++){
-	// 	cout << nodeVec[i].profit << " ";
-	// }
-	// cout << endl;
-	// getchar();
 
 	// cout << "\nParcel Bundles: " << endl;
 
@@ -231,24 +211,24 @@ int main (int argc, char *argv[]) {
 
 	// getchar();
 
-	feasibleBundleArcs(&inst, distMatrix, nodeVec, &bStat, p);
+	feasibleBundleArcs(&inst, distMatrix, nodeVec, &bStat, p, &problem);
 
-	// cout<< "\nFeasible arcs between bundles:" << endl;
-	// for (int i = 0; i < bStat.bundleVec.size(); i++){
-	// 	if (i == 0){
-	// 		cout << setw(3) << " ";
-	// 	}
-	// 	cout << setw(3) << std::right << i;
-	// }
-	// cout << endl;
-	// for (int i = 0; i < bStat.bundleVec.size(); i++){
-	// 	cout << setw(3) << std::right << i;
-	// 	for (int j = 0; j < bStat.bundleVec.size(); j++){
-	// 		cout << setw(3) << std:: right << bStat.bArcs[i][j];
-	// 	}
-	// 	cout << endl;
-	// }
-	// getchar();
+	cout<< "\nFeasible arcs between bundles:" << endl;
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		if (i == 0){
+			cout << setw(3) << " ";
+		}
+		cout << setw(3) << std::right << i;
+	}
+	cout << endl;
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		cout << setw(3) << std::right << i;
+		for (int j = 0; j < bStat.bundleVec.size(); j++){
+			cout << setw(3) << std:: right << bStat.bArcs[i][j];
+		}
+		cout << endl;
+	}
+	getchar();
 
 	for (int i = 0; i < clusterVec.size(); i++){
 		for (int j = 0; j < clusterVec.size(); j++){
