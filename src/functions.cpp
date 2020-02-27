@@ -884,33 +884,44 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
                                         bStat->bArcs[i][j] = true;
                                     }                                     
                                 }
+                                // else if (bStat->label[j] == 1){
+                                //     if(bStat->mainNode[i] != bStat->mainNode[j]){  
+                                //         bStat->bArcs[i][j] = true;
+                                //     } 
+                                // }
                                 else if (bStat->label[j] == 2){
-
+                                    if (bStat->mainNode[j] == bStat->mainNode[i] + inst->m){
+                                        if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                                            bStat->bArcs[i][j] = true;
+                                        }
+                                    }  
                                 }
+                            }
+                            else if (bStat->label[i] == 2){
+                                if (bStat->label[j] == 0 || bStat->label[j] == 1){
+                                    if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                                        bStat->bArcs[i][j] = true;
+                                    }  
+                                }
+                            }
+                            else{
+                                if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                                    bStat->bArcs[i][j] = true;
+                                }                                   
                             }
                         }
                     } 
                 }
                 if (bStat->label[i] == 0 || bStat->label[i] == 2){
-
                     bStat->bArcs[i][bStat->bundleVec.size()-1] = true;
                 }
             }
             else if (i >= setN){
                 for (int j = 0; j < setN; j++){
-                    if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
-                        bStat->bArcs[i][j] = true;
-                    }
-                }
-            }
-        }
-
-        //remove arcs to bundles with same parcel requests
-        for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
-            for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
-                for (int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
-                    if (bStat->parcelBundleVec[i][j] != bStat->parcelBundleVec[i][k]){
-                        bStat->bArcs[bStat->parcelBundleVec[i][j]][bStat->parcelBundleVec[i][k]] = false;
+                    if (bStat->label[j] == 0 || bStat->label[j] == 1){
+                        if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                            bStat->bArcs[i][j] = true;
+                        }                        
                     }
                 }
             }
@@ -922,41 +933,6 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
                 for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
                     bStat->bArcs[j][i] = false;
                     bStat->bArcs[i][j] = false;
-                }
-            }
-        }
-
-        for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
-            if (i < inst->m){
-                for (int j = 0; j < inst->m; j++){
-                    if (i != j){
-                        for(int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
-                            for(int l = 0; l < bStat->parcelBundleVec[j].size(); l++){
-                                // cout << "k: " << k << "; l: " << l << endl;
-                                bStat->bArcs[bStat->parcelBundleVec[i][k]][bStat->parcelBundleVec[j][l]] = false;    
-                            }
-                        }
-                    }
-                }
-                for (int j = inst->m; j < bStat->parcelBundleVec.size(); j++){
-                    if (j != i + inst->m){
-                        for(int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
-                            for(int l = 0; l < bStat->parcelBundleVec[j].size(); l++){
-                                bStat->bArcs[bStat->parcelBundleVec[i][k]][bStat->parcelBundleVec[j][l]] = false;  
-                            }
-                        }
-                    }
-                }
-            }
-            else{
-                for (int j = inst->m; j < bStat->parcelBundleVec.size(); j++){
-                    if (i != j){
-                        for(int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
-                            for(int l = 0; l < bStat->parcelBundleVec[j].size(); l++){
-                                bStat->bArcs[bStat->parcelBundleVec[i][k]][bStat->parcelBundleVec[j][l]] = false;  
-                            }
-                        }                        
-                    }
                 }
             }
         }

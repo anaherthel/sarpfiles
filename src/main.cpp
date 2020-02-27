@@ -113,13 +113,6 @@ int main (int argc, char *argv[]) {
 	cout << "]" << endl;
 
 	getchar();
-	
-	// cout << "\nLabel Vector: [";
-	// for (int i = 0; i < bStat.label.size(); i++){
-	// 	cout << bStat.label[i] << " ";
-	// }
-	// cout << endl;
-	// getchar();
 
 	if (problem.scen == "1A"){
 		for (int i = 0; i < inst.m; i++){
@@ -203,26 +196,33 @@ int main (int argc, char *argv[]) {
 
 	makeBundleReference(&inst, distMatrix, nodeVec, &bStat);
 
-	// cout << "\nBundle Times: ";
-	// for (int i = 0; i < bStat.bundleStart.size(); i++){
-	// 	cout <<	i  << ": " << bStat.bundleStart[i] << ", ";
-	// }
-	// cout << endl;
+	
+	cout << "\nfirst element Vector: [";
+	for (int i = 0; i < bStat.firstElement.size(); i++){
+		cout << bStat.firstElement[i] << " ";
+	}
+	cout << endl;
+	getchar();
 
-	// getchar();
+	cout << "\nBundle Times: ";
+	for (int i = 0; i < bStat.bundleStart.size(); i++){
+		cout <<	i  << ": " << bStat.bundleStart[i] << ", ";
+	}
+	cout << endl;
+
+	getchar();
 	
 
-	// cout << "\nBundle Service Times: ";
-	// for (int i = 0; i < bStat.bundleServVec.size(); i++){
-	// 	cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
-	// }
-	// cout << endl;
+	cout << "\nBundle Service Times: ";
+	for (int i = 0; i < bStat.bundleServVec.size(); i++){
+		cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
+	}
+	cout << endl;
 
-	// getchar();
+	getchar();
 
 
 	feasibleBundleArcs(&inst, distMatrix, nodeVec, &bStat, p, &problem);
-
 
 	cout<< "\nFeasible arcs between bundles:" << endl;
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
