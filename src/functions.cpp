@@ -92,8 +92,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             if (i < n){ 
                delta[i] = (2 * (service/60)) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed;
                profit[i] = inst->gamma2 + inst->mu2*floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5) - floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5);
-               cout << "delta " << i << ": " << delta[i] << endl;
-               cout << "profit " << i << ": " << profit[i] << endl;
+               // cout << "delta " << i << ": " << delta[i] << endl;
+               // cout << "profit " << i << ": " << profit[i] << endl;
             }
             else if (i < V - K){ 
                delta[i] = service/60;
@@ -902,6 +902,41 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
                 for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
                     bStat->bArcs[j][i] = false;
                     bStat->bArcs[i][j] = false;
+                }
+            }
+        }
+
+        for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
+            if (i < inst->m){
+                for (int j = 0; j < inst->m; j++){
+                    if (i != j){
+                        for(int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
+                            for(int l = 0; l < bStat->parcelBundleVec[j].size(); l++){
+                                // cout << "k: " << k << "; l: " << l << endl;
+                                bStat->bArcs[bStat->parcelBundleVec[i][k]][bStat->parcelBundleVec[j][l]] = false;    
+                            }
+                        }
+                    }
+                }
+                for (int j = inst->m; j < bStat->parcelBundleVec.size(); j++){
+                    if (j != i + inst->m){
+                        for(int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
+                            for(int l = 0; l < bStat->parcelBundleVec[j].size(); l++){
+                                bStat->bArcs[bStat->parcelBundleVec[i][k]][bStat->parcelBundleVec[j][l]] = false;  
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                for (int j = inst->m; j < bStat->parcelBundleVec.size(); j++){
+                    if (i != j){
+                        for(int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
+                            for(int l = 0; l < bStat->parcelBundleVec[j].size(); l++){
+                                bStat->bArcs[bStat->parcelBundleVec[i][k]][bStat->parcelBundleVec[j][l]] = false;  
+                            }
+                        }                        
+                    }
                 }
             }
         }

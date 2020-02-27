@@ -60,15 +60,15 @@ int main (int argc, char *argv[]) {
 
 	makeSmallerProblem(&inst, nodeVec, distMatrix, p, clsParcel, &problem, Q);
 
-	cout << "\nClosest parcels: " << endl;
-	for (int i = 0; i < clsParcel.size(); i++){
-		cout << i << ": ";
-		for (int j = 0; j < clsParcel[i].size(); j++){
-			cout << clsParcel[i][j] << " ";
-		}
-		cout << endl;
-	}
-	getchar();
+	// cout << "\nClosest parcels: " << endl;
+	// for (int i = 0; i < clsParcel.size(); i++){
+	// 	cout << i << ": ";
+	// 	for (int j = 0; j < clsParcel[i].size(); j++){
+	// 		cout << clsParcel[i][j] << " ";
+	// 	}
+	// 	cout << endl;
+	// }
+	// getchar();
 
 	vector< vector< pair<int,int> > > arcPlus;
 	vector< vector< pair<int,int> > > arcMinus;
@@ -148,17 +148,17 @@ int main (int argc, char *argv[]) {
 
 	makeParcelBundles(&inst, nodeVec, &bStat, &problem);
 
-	// cout << "\nParcel Bundles: " << endl;
+	cout << "\nParcel Bundles: " << endl;
 
-	// for (int i = 0 ; i < bStat.parcelBundleVec.size(); i++){
-	// 	cout << i + inst.n << ": ";
-	// 	for(int j = 0; j < bStat.parcelBundleVec[i].size(); j++){
-	// 		cout << bStat.parcelBundleVec[i][j] << " ";
-	// 	}
-	// 	cout << endl;
-	// }
-	// cout << endl;
-	// getchar();
+	for (int i = 0 ; i < bStat.parcelBundleVec.size(); i++){
+		cout << i + inst.n << ": ";
+		for(int j = 0; j < bStat.parcelBundleVec[i].size(); j++){
+			cout << bStat.parcelBundleVec[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+	getchar();
 
 	bundleProfit(&inst, distMatrix, nodeVec, &bStat, nodeProfit);
 
@@ -211,7 +211,9 @@ int main (int argc, char *argv[]) {
 
 	// getchar();
 
+
 	feasibleBundleArcs(&inst, distMatrix, nodeVec, &bStat, p, &problem);
+
 
 	cout<< "\nFeasible arcs between bundles:" << endl;
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
