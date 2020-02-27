@@ -113,6 +113,13 @@ int main (int argc, char *argv[]) {
 	cout << "]" << endl;
 
 	getchar();
+	
+	// cout << "\nLabel Vector: [";
+	// for (int i = 0; i < bStat.label.size(); i++){
+	// 	cout << bStat.label[i] << " ";
+	// }
+	// cout << endl;
+	// getchar();
 
 	if (problem.scen == "1A"){
 		for (int i = 0; i < inst.m; i++){
@@ -159,6 +166,8 @@ int main (int argc, char *argv[]) {
 	}
 	cout << endl;
 	getchar();
+
+
 
 	bundleProfit(&inst, distMatrix, nodeVec, &bStat, nodeProfit);
 

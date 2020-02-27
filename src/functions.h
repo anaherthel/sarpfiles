@@ -82,7 +82,8 @@ struct bundleStat{
 	vector<double> bundleStart;
     vector <int> lastElement;
     vector<int> firstElement;
-
+    vector<int> label; //0- purely passenger; 1- parcel pickup req; 2- parcel delivery req; 3- starting/dummy
+    vector<int> mainNode;
 };
 
 struct bParcelStruct{

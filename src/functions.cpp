@@ -647,6 +647,8 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
         int counter = 0;
         for (int i = 0; i < inst->n; i++){
             bStat->bundle.push_back(i);
+            bStat->label.push_back(0);
+            bStat->mainNode.push_back(i);
             bStat->bundleVec.push_back(bStat->bundle);
             // clusters.push_back(bStat->bundle);
             clusters.push_back(bStat->bundleVec.size()-1);
@@ -655,6 +657,8 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
                 if (clsParcel[i][j] > inst->n + 2*inst->m){
                     bStat->bundle.push_back(clsParcel[i][j]/inst->m);
                     bStat->bundle.push_back(i);
+                    bStat->label.push_back(2);
+                    bStat->mainNode.push_back(clsParcel[i][j]/inst->m);
                     bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta);
                     bStat->bundleVec.push_back(bStat->bundle);
                     clusters.push_back(bStat->bundleVec.size()-1);
@@ -664,6 +668,8 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
                 else if (clsParcel[i][j] < inst->n + inst->m){
                     bStat->bundle.push_back(clsParcel[i][j]);
                     bStat->bundle.push_back(i);
+                    bStat->label.push_back(1);
+                    bStat->mainNode.push_back(clsParcel[i][j]);
                     bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta);
                     bStat->bundleVec.push_back(bStat->bundle);
                     clusters.push_back(bStat->bundleVec.size()-1);
@@ -673,6 +679,8 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
                 else{
                     bStat->bundle.push_back(i);
                     bStat->bundle.push_back(clsParcel[i][j]);
+                    bStat->mainNode.push_back(clsParcel[i][j]);
+                    bStat->label.push_back(2);
                     bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta);
                     bStat->bundleVec.push_back(bStat->bundle);
                     clusters.push_back(bStat->bundleVec.size()-1);
@@ -686,6 +694,8 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
         for (int i = 2*inst->m + inst->n; i < nodeVec.size(); i++){
             bStat->bundle.push_back(i);
             bStat->bundleVec.push_back(bStat->bundle);
+            bStat->label.push_back(3);
+            bStat->mainNode.push_back(i);
             // clusters.push_back(bStat->bundle);
             clusters.push_back(bStat->bundleVec.size()-1);
             bStat->bundle.clear();
@@ -868,13 +878,23 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
                 for (int j = 0; j < setN; j++){
                     if (i != j){
                         if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){
-                            if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
-                                bStat->bArcs[i][j] = true;
+                            if (bStat->label[i] == 1){
+                                if (bStat->label[j] == 0){
+                                    if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                                        bStat->bArcs[i][j] = true;
+                                    }                                     
+                                }
+                                else if (bStat->label[j] == 2){
+
+                                }
                             }
                         }
                     } 
                 }
-                bStat->bArcs[i][bStat->bundleVec.size()-1] = true;
+                if (bStat->label[i] == 0 || bStat->label[i] == 2){
+
+                    bStat->bArcs[i][bStat->bundleVec.size()-1] = true;
+                }
             }
             else if (i >= setN){
                 for (int j = 0; j < setN; j++){
