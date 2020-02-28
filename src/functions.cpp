@@ -662,6 +662,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
                     bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta);
                     bStat->bundleVec.push_back(bStat->bundle);
                     clusters.push_back(bStat->bundleVec.size()-1);
+                    bStat->activeDL.push_back(bStat->bundleVec.size()-1);
                     bStat->bundle.clear();
                 } 
                 
@@ -673,6 +674,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
                     bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta);
                     bStat->bundleVec.push_back(bStat->bundle);
                     clusters.push_back(bStat->bundleVec.size()-1);
+                    bStat->activePU.push_back(bStat->bundleVec.size()-1);
                     bStat->bundle.clear();
                 }
 
@@ -684,6 +686,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
                     bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta);
                     bStat->bundleVec.push_back(bStat->bundle);
                     clusters.push_back(bStat->bundleVec.size()-1);
+                    bStat->activeDL.push_back(bStat->bundleVec.size()-1);
                     bStat->bundle.clear(); 
                 }               
             }
@@ -952,7 +955,7 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
     
 }
 
-void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector< vector<int> > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, int p){
+void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector< vector<int> > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, int p, probStat* problem){
     
     int reqClusters = clusterVec.size() - inst->K - 1;
     int clusterA = 0;
@@ -961,7 +964,12 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
     int ref;
 
     if (p < 0){
-        ref = inst->m;
+        if(problem->scen == "1A"){
+            ref = inst->m;
+        }
+        else if (problem->scen == "2A"){
+            ref = 3*inst->m;
+        }
     }
 
     else{

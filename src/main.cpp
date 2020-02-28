@@ -197,29 +197,29 @@ int main (int argc, char *argv[]) {
 	makeBundleReference(&inst, distMatrix, nodeVec, &bStat);
 
 	
-	cout << "\nfirst element Vector: [";
-	for (int i = 0; i < bStat.firstElement.size(); i++){
-		cout << bStat.firstElement[i] << " ";
-	}
-	cout << endl;
-	getchar();
+	// cout << "\nfirst element Vector: [";
+	// for (int i = 0; i < bStat.firstElement.size(); i++){
+	// 	cout << bStat.firstElement[i] << " ";
+	// }
+	// cout << endl;
+	// getchar();
 
-	cout << "\nBundle Times: ";
-	for (int i = 0; i < bStat.bundleStart.size(); i++){
-		cout <<	i  << ": " << bStat.bundleStart[i] << ", ";
-	}
-	cout << endl;
+	// cout << "\nBundle Times: ";
+	// for (int i = 0; i < bStat.bundleStart.size(); i++){
+	// 	cout <<	i  << ": " << bStat.bundleStart[i] << ", ";
+	// }
+	// cout << endl;
 
-	getchar();
+	// getchar();
 	
 
-	cout << "\nBundle Service Times: ";
-	for (int i = 0; i < bStat.bundleServVec.size(); i++){
-		cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
-	}
-	cout << endl;
+	// cout << "\nBundle Service Times: ";
+	// for (int i = 0; i < bStat.bundleServVec.size(); i++){
+	// 	cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
+	// }
+	// cout << endl;
 
-	getchar();
+	// getchar();
 
 
 	feasibleBundleArcs(&inst, distMatrix, nodeVec, &bStat, p, &problem);
@@ -278,25 +278,25 @@ int main (int argc, char *argv[]) {
 
 	getchar();
 
-	feasibleClusterArcs(&inst, nodeVec, &bStat, clusterVec, cFArc, cArcs, cArcPlus, cArcMinus, p);
+	feasibleClusterArcs(&inst, nodeVec, &bStat, clusterVec, cFArc, cArcs, cArcPlus, cArcMinus, p, &problem);
 
-	// cout<< "\nFeasible arcs between clusters:" << endl;
-	// for (int i = 0; i < clusterVec.size(); i++){
-	// 	if (i == 0){
-	// 		cout << setw(3) << " ";
-	// 	}
-	// 	cout << setw(3) << std::right << i;
-	// }
-	// cout << endl;
-	// for (int i = 0; i < clusterVec.size(); i++){
-	// 	cout << setw(3) << std::right << i;
-	// 	for (int j = 0; j < clusterVec.size(); j++){
-	// 		cout << setw(3) << std:: right << cArcs[i][j];
-	// 	}
-	// 	cout << endl;
-	// }
+	cout<< "\nFeasible arcs between clusters:" << endl;
+	for (int i = 0; i < clusterVec.size(); i++){
+		if (i == 0){
+			cout << setw(3) << " ";
+		}
+		cout << setw(3) << std::right << i;
+	}
+	cout << endl;
+	for (int i = 0; i < clusterVec.size(); i++){
+		cout << setw(3) << std::right << i;
+		for (int j = 0; j < clusterVec.size(); j++){
+			cout << setw(3) << std:: right << cArcs[i][j];
+		}
+		cout << endl;
+	}
 
-	// getchar();
+	getchar();
 
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
 		for (int j = 0; j < bStat.bundleVec.size(); j++){
@@ -377,7 +377,7 @@ int main (int argc, char *argv[]) {
 	// 	cout << endl;
 	// }
 
-	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus);
+	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem);
 
 	int counter = 0;
 	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {

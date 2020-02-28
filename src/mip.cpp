@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus){
+void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem){
 
 	//MIP
 	//Creating environment and model 
@@ -187,7 +187,8 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 		IloRange cons = (exp <= 1);
 		cons.setName(var);
 		model.add(cons);
-	}
+	}	
+
 
 	//Constraint 5(b) - No parcel can be served (Find a lower bound)
 
@@ -246,6 +247,31 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 			model.add(cons);			
 		}
 	}
+
+	if (problem->scen == "2A"){
+		//Constraint 7 - if a pickup bundle is visited, the corresponding delivery bundle must also be visited by the same vehicle
+		for (int i = 0; i < inst->m; i++){
+			for (int k = 0; k < inst->K; k++){
+				IloExpr exp1(env);
+				IloExpr exp2(env);
+				for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
+					for (int l = 0; l < bStat->bArcPlus[bStat->parcelBundleVec[i][j]].size(); l++){
+						exp1 += x[bStat->bArcPlus[bStat->parcelBundleVec[i][j]].first][bStat->bArcPlus[bStat->parcelBundleVec[i][j]].second][k];
+					}					
+				}
+				
+				
+				for (int j = 0; j < bStat->bArcMinus[i + inst->m].size(); j++){
+					exp2 += x[bStat->bArcMinus[i ][j].first][bStat->bArcMinus[i][j].second][k];
+				}
+
+				sprintf (var, "Constraint7_%d_%d", i, k);
+				IloRange cons = (exp1 - exp2 == 0);
+				cons.setName(var);
+				model.add(cons);			
+			}			
+		}
+	}	
 
 	IloCplex bSARP(model);
 	bSARP.exportModel("bSARP.lp");
