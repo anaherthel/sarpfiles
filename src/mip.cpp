@@ -254,18 +254,20 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 			for (int k = 0; k < inst->K; k++){
 				IloExpr exp1(env);
 				IloExpr exp2(env);
+				currParcel = inst->n + i;
 				for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
 					for (int l = 0; l < bStat->bArcPlus[bStat->parcelBundleVec[i][j]].size(); l++){
-						exp1 += x[bStat->bArcPlus[bStat->parcelBundleVec[i][j]].first][bStat->bArcPlus[bStat->parcelBundleVec[i][j]].second][k];
+						exp1 += x[bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].first][bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].second][k];
 					}					
 				}
-				
-				
-				for (int j = 0; j < bStat->bArcMinus[i + inst->m].size(); j++){
-					exp2 += x[bStat->bArcMinus[i ][j].first][bStat->bArcMinus[i][j].second][k];
+								
+				for (int j = 0; j < bStat->parcelBundleVec[i + inst->m].size(); j++){
+					for (int l = 0; l < bStat->bArcMinus[bStat->parcelBundleVec[i + inst->m][j]].size(); l++){
+						exp1 += x[bStat->bArcMinus[bStat->parcelBundleVec[i + inst->m][j]][l].first][bStat->bArcMinus[bStat->parcelBundleVec[i + inst->m][j]][l].second][k];
+					}
 				}
 
-				sprintf (var, "Constraint7_%d_%d", i, k);
+				sprintf (var, "Constraint7_%d_%d", currParcel, k);
 				IloRange cons = (exp1 - exp2 == 0);
 				cons.setName(var);
 				model.add(cons);			
