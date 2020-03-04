@@ -528,6 +528,180 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
    
     }
 
+    else if (instType == "grubhub"){
+
+        K = 1;
+        service = 5 / 60;
+        
+        while ( file.compare("DIMENSION:") != 0 && file.compare("DIMENSION") != 0 ){
+            in >> file;
+        }
+        
+        in >> V;
+
+        // V = n + 2*m + K;
+
+        // originalV = 2*n + 2*m + 2; 
+
+        // inst->dummy = 1;
+
+        // double *delta = new double[V + inst->dummy];
+        // double *slatitude = new double [V + inst->dummy];
+        // double *slongitude = new double [V + inst->dummy];
+        // double *flatitude = new double [V + inst->dummy];
+        // double *flongitude = new double [V + inst->dummy];
+        // double *profit = new double[V+inst->dummy];
+
+        // double **dist = new double*[V + inst->dummy];
+        // for (int i= 0; i < V + inst->dummy; i++){
+        //     dist[i] = new double [V + inst->dummy];
+        // }
+
+        // vector<double> vxs;
+        // vector<double> vys;
+        // vector<double> vload;
+        // vector<double> ve;
+        // vector<double> vxf;
+        // vector<double> vyf;
+        // vector<double> vl;
+
+        // int tempNode;
+
+        // for (int i = 0; i < originalV; i++){
+        //     vxs.push_back(0);
+        //     vys.push_back(0);
+        //     vload.push_back(0);
+        //     ve.push_back(0);
+        //     vl.push_back(0);
+        // }
+
+        // for (int i = 0; i < originalV; i++){
+        //     in >> tempNode >> vxs[i] >> vys[i] >> tempNode >> vload[i] >> ve[i] >> vl[i];
+        // }
+
+        // ve[ve.size()-1] = 0;
+
+        // for (int i = 0; i < vxs.size(); i++){
+        //     vxf.push_back(vxs[i]);
+        //     vyf.push_back(vys[i]);
+
+        //     if (vload[i] < -2.0){
+        //         vxf[i - m - n] = vxs[i];
+        //         vyf[i - m - n] = vys[i];
+
+        //     }
+        // }
+
+        // vxs.erase(vxs.begin());
+        // vys.erase(vys.begin());
+        // vload.erase(vload.begin());
+        // vxf.erase(vxf.begin());
+        // vyf.erase(vyf.begin());
+        // ve.erase(ve.begin());
+
+        // for (int i = 0; i < n; i++){
+        //     vxs.erase(vxs.begin() + n + m);
+        //     vys.erase(vys.begin() + n + m);
+        //     vload.erase(vload.begin() + n + m);
+        //     ve.erase(ve.begin() + n + m);
+        //     vxf.erase(vxf.begin() + n + m);
+        //     vyf.erase(vyf.begin() + n + m);
+        // }
+
+        // for (int i = 0; i < n; i++){
+        //     vl[i] = ve[i];
+        // }
+
+        // for (int i = 1; i < K; i++){
+        //     vxs.push_back(vxs[vxs.size()-1]);
+        //     vys.push_back(vys[vys.size()-1]);
+        //     vload.push_back(vload[vload.size()-1]);
+        //     ve.push_back(ve[ve.size()-1]);
+        //     vl.push_back(vl[vl.size()-1]);
+        //     vxf.push_back(vxf[vxf.size()-1]);
+        //     vyf.push_back(vyf[vyf.size()-1]);
+        // }
+        // // Calculate distance matrix (Geolocation)
+
+        // CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
+        
+        // double singleProfit;
+        // for (int i = 0; i < V + inst->dummy; i++){
+        //     if (i < n){ 
+        //         delta[i] = (2 * (service/60)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
+        //         profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+        //     }
+        //     else if (i < V - K){ 
+        //        delta[i] = service/60;
+        //        profit[i] = 0;
+        //     }
+        //     else if (i >= V - K){
+        //         delta[i] = 0;
+        //         profit[i] = 0;
+        //     }
+        //     for (int j = 0; j < V + inst->dummy; j++){
+        //         if(i == j){
+        //            dist[i][j] = 0;
+        //         }
+        //         else{
+        //             if (i < V){
+        //                 if (j < V){
+        //                     dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
+        //                 }
+        //                 else if (j >= V){
+        //                     dist[i][j] = 0;
+        //                 }
+        //             }
+        //             else{
+        //                 dist[i][j] = 0;
+        //             }
+        //         }
+        //     }
+        // }
+
+
+        // *Mdist = dist;
+        // inst->K = K;
+        // inst->n = n;
+        // inst->m = m;
+        // inst->V = V;
+
+        // for (int i = 0; i < V; i++){
+        //     node->xs = vxs[i];
+        //     node->ys = vys[i];
+        //     node->load = vload[i];
+        //     node->e = ve[i]/60;
+        //     node->l = vl[i]/60;
+        //     node->xf = vxf[i];
+        //     node->yf = vyf[i];
+        //     node->delta = delta[i];
+        //     node->profit = profit[i];
+        //     nodeVec.push_back(*node);
+        // }
+
+        // //Adding dummy nodes
+        // for (int i = 0; i < inst->dummy; i++){
+        //     node->xs = 0;
+        //     node->ys = 0;
+        //     node->load = 0;
+        //     node->e = 0;
+        //     node->l = 14*60;
+        //     node->xf = 0;
+        //     node->yf = 0;
+        //     node->delta = 0;
+        //     node->profit = 0;
+        //     nodeVec.push_back(*node);
+        // }
+
+        // delete[] profit;
+        // delete[] delta;
+        // delete[] slatitude;
+        // delete[] slongitude;
+        // delete[] flatitude;
+        // delete[] flongitude;
+
+    }
+
     if(problem->scen == "1A" || "1B"){
         inst->nCluster = inst->n + inst->K + inst->dummy;
     }

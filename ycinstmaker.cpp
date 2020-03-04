@@ -25,3 +25,29 @@
 using namespace std;
 
 int main (){ 
+
+	srand (time(0));
+
+	// std::locale loc("");
+	// std::locale::global (loc);
+
+	// wcout.imbue(loc);
+
+	ifstream infile("yellow_cab_data.txt");
+
+	infile1.imbue(loc);
+
+	if (infile1.is_open()){
+		while (wordList.size() < lSize){
+			infile >> wordSt.sWord;
+			infile >> wordSt.wordFreq;
+			wordList.push_back(wordSt);
+			//counter++;
+		}
+		infile1.close();
+	}
+	else cout << "Unable to open file" << endl;
+
+
+
+}
