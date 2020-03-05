@@ -22,47 +22,9 @@
 #include <sys/time.h>
 #include <ctime>
 #include <unistd.h>
+#include "readdata.h"
 
 using namespace std;
-
-struct nodeStat{
-
-	double xs;
-	double ys;
-	char label;
-	double load;
-	double e;
-	double l;
-	double xf;
-	double yf;
-    double delta;
-    double profit;
-
-};
-
-struct instanceStat{
-
-    int n;
-    int m;
-    int K;
-    int T;
-    int V;
-    int dummy;
-   	double gamma = 4; //initial fare for parcels
-	double mu = 2; //fare per km for parcels
-	double vmed = 19.3;
-	double gamma2 = 7; //initial fare for passengers
-	double mu2 = 4; //fare per km for passengers
-	int nCluster;
-
-};
-
-struct probStat{
-
-	bool sim;
-	bool seq;
-	string scen;
-};
 
 struct bundleStat{
 	vector<int> bundle;
@@ -101,15 +63,7 @@ struct bParcelStruct{
 // 	vector< pair<int,int> > nodummyarcVec;
 // }
 
-void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, vector<double> &passProfit);
-double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J);
-double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
-
-double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit);
-double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flongit, int I, int J);
-
 void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem, vector< pair<int,int> > &arcNN);
-string getInstanceType (char **argv);
 
 void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<int> &clusters, vector< vector<int> > &clusterVec, vector< vector<int> > &clsParcel, probStat* problem);
 void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<double> &passProfit);
