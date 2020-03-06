@@ -553,14 +553,23 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         K = 1;
         service = 5 / 60;
+        int refpoint = K + 1;
 
         while ( file.compare("DIMENSION:") != 0 && file.compare("DIMENSION") != 0 ){
             in >> file;
         }
         
         in >> V;
-        m = floor(V * 0.4);
-        n = (V - m);
+
+        m = floor(V * 0.3);
+        
+        if (m % 2 != 0){
+            m--;
+        }
+
+        n = (V - refpoint - m)/2;
+
+        m /= 2; 
 
         cout << "\n" << n << " " << m << endl;
 
@@ -575,25 +584,52 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         in >> file;
         in >> ewf;
-        cout << "ewf: " << ewf;
+        cout << "\newf: " << ewf << endl;
+
 
         getchar();
 
-        double **dataDist = new double*[V];
-        for (int i= 0; i < V; i++){
-            dataDist[i] = new double [V];
+        double **dist = new double*[V];
+        for (int i= 0; i < V + inst->dummy; i++){
+            dist[i] = new double [V];
         }
-        
+
         while (file.compare("EDGE_WEIGHT_SECTION") != 0){
             in >> file;
         }
+        
+        vector <vector <double> > tempData;
+        vector<double> auxtempdata;
+
+        for (int i = 0; i < V + refpoint; i++){
+            for(int j = 0; j < V + refpoint; j++){
+                auxtempdata.push_back(0);
+            }
+            tempData.push_back(auxtempdata);
+            auxtempdata.clear();
+        }
+
+        // if (ewf == "LOWER_DIAG_ROW"){
+        //     for (int i = 0; i < V; i++) {
+        //         for (int j = 0; j < i + 1; j++) {
+        //             in >> dataDist[i][j];
+        //             if (i > 0){
+        //                 dataDist[j][i] = dataDist[i][j];                        
+        //             }
+
+        //             // cout << i << " " << j << " " << dist[i][j];
+        //             // getchar();
+        //         }
+        //     }
+        // }
+
 
         if (ewf == "LOWER_DIAG_ROW"){
             for (int i = 0; i < V; i++) {
                 for (int j = 0; j < i + 1; j++) {
-                    in >> dataDist[i][j];
+                    in >> tempData[i][j];
                     if (i > 0){
-                        dataDist[j][i] = dataDist[i][j];                        
+                        tempData[j][i] = tempData[i][j];                        
                     }
 
                     // cout << i << " " << j << " " << dist[i][j];
@@ -601,36 +637,49 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 }
             }
         }
+        // for (int i = 0; i < refpoint; i++){
+        //     tempData.push_back(auxtempdata);
+        //     tempData.push_back(auxtempdata);            
+        // }
+        
+        //adjusting rows
+        for (int i = 0; i < V; i++){
+            for (int j = 0; j < refpoint; j++){
+                tempData[V + j][i] = tempData[j][i];
+            }
+        }
 
-        double **dist = new double*[V];
-        for (int i= 0; i < V + inst->dummy; i++){
-            dist[i] = new double [V];
+        //adjusting columns
+        for (int i = 0; i < V; i++){
+            for (int j = 0; j < refpoint; j++){
+                tempData[i][V + j] = tempData[i][j];
+            }
+        }
+
+        // //maybe we needed to adjust the corner (relying on the -0 being f)
+
+        //erase unused
+        for (int j = 0; j < refpoint; j++){
+            tempData.erase(tempData.begin());
         }
 
         for (int i = 0; i < V; i++){
-        	for (int j = 0; j < V; j++){
-
-        	}
+            for (int j = 0; j < refpoint; j++){
+                tempData[i].erase(tempData[i].begin());
+            }   
         }
 
         cout << "\nDistance Matrix:" << endl;
 
         for (int i = 0; i < V; i++) {
             for (int j = 0; j < V; j++) {
-                cout << setw(5) << dataDist[i][j] << " ";
+                cout << setw(5) << tempData[i][j] << " ";
             }
             cout << endl;
         }
         cout << endl;
 
         getchar();
-
-		int counter = 0;
-		for ( int i = 0; i < V; i++ ) {
-			delete[] dataDist[i];
-
-		}
-		delete[] dataDist;
     }
 
     if(problem->scen == "1A" || "1B"){
