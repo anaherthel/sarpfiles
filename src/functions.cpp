@@ -40,7 +40,6 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
         }
     }
 
-
 //*******
 //For 2A:
 //******* 

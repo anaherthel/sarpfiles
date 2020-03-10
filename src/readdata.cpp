@@ -552,10 +552,14 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     else if (instType == "grubhub"){
 
         K = 1;
-        service = 5 / 60;
+        service = 5; //for some reason, service = 5/60 did not work
+        service = service/60;
         int refpoint = K + 1;
         int instV;
         inst->dummy = 1;
+
+        int seed = 1234;
+        srand(seed);
 
         vector <vector <double> > tempData;
         vector<double> auxtempdata;
@@ -579,11 +583,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         m /= 2; 
 
         V = n + 2*m + K;
-        cout << "\n" << n << " " << m << endl;
-
-        cout << "\ninstV: " << instV;
-
-        cout << "\nRealV: " << V << endl;
+        // cout << "\n" << n << " " << m << endl;
 
         while ( file.compare("EDGE_WEIGHT_FORMAT") != 0 && file.compare("EDGE_WEIGHT_FORMAT") != 0 ){
 
@@ -596,6 +596,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         double *delta = new double[V + inst->dummy];
         double *profit = new double[V + inst->dummy];
+        double *e = new double[V + inst->dummy];
+        double *l = new double[V + inst->dummy];
 
         double **dist = new double*[V];
         for (int i= 0; i < V + inst->dummy; i++){
@@ -660,17 +662,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }   
         }
 
-        // cout << "\nBefore - Distance Matrix:" << endl;
+        cout << "\nBefore - Distance Matrix:" << endl;
 
-        // for (int i = 0; i < instV; i++) {
-        //     for (int j = 0; j < instV; j++) {
-        //         cout << setw(5) << tempData[i][j] << " ";
-        //     }
-        //     cout << endl;
-        // }
-        // cout << endl;
+        for (int i = 0; i < instV; i++) {
+            for (int j = 0; j < instV; j++) {
+                cout << setw(5) << tempData[i][j] << " ";
+            }
+            cout << endl;
+        }
+        cout << endl;
 
-        // getchar();
+        getchar();
 
         //collapsing passenger nodes
 
@@ -702,8 +704,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //calculate deltas
         for(int i = 0; i < V + inst->dummy; i++){
             if (i < n){
-                delta[i] = 2 * service + (tempData[2*i][2*i+1])/inst->vmed;
-                profit[i] = inst->gamma2 + inst->mu2*tempData[2*i][2*i+1] - tempData[2*i][2*i+1];    
+                delta[i] = 2 * service + ((tempData[2*i][2*i+1])/1000)/inst->vmed;
+                // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
+                profit[i] = inst->gamma2 + inst->mu2*(tempData[2*i][2*i+1]/1000) - (tempData[2*i][2*i+1]/1000);    
             }
             else if (i < V - K){
                 delta[i] = service;
@@ -716,6 +719,29 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         for (int i = 0; i < V + inst->dummy; i++){
+            if(i < n){
+                e[i] = 540 + rand() % 480;
+                l[i] = e[i];
+            }
+            else{
+                e[i] = 540;
+                l[i] = 1020;
+            }
+        }
+        cout << "Earlier times: " << endl;
+        for(int i = 0; i < V + inst->dummy; i++){
+            cout << e[i] << " ";
+        }
+        cout << endl;
+        getchar();
+
+        // cout << "Deltas: " << endl;
+        // for(int i = 0; i < V + inst->dummy; i++){
+        //     cout << delta[i] << " ";
+        // }
+        // cout << endl;
+        // getchar();
+        for (int i = 0; i < V + inst->dummy; i++){
             node->e = e[i]/60;
             node->l = l[i]/60;
             node->delta = delta[i];
@@ -723,11 +749,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
 
+        for(int i = 0; i < V + inst->dummy; i++){
+            for (int j = 0; j < V + inst->dummy; j++){
+                dist[i][j] = realData[i][j];
+            }
+        }
         *Mdist = dist;
         inst->K = K;
         inst->n = n;
         inst->m = m;
-        // inst->T = T/60;
         inst->V = V;
 
         delete[] profit;

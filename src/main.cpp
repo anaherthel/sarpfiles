@@ -165,16 +165,16 @@ int main (int argc, char *argv[]) {
 
 	bundleProfit(&inst, distMatrix, nodeVec, &bStat, nodeProfit);
 
-	// cout << "\nBundle Profit: [";
-	// for (int i = 0; i < bStat.bundleProfVec.size(); i++){
-	// 	cout << setw(3) << std:: right << bStat.bundleProfVec[i];
-	// 	if (i < bStat.bundleProfVec.size() - 1){
- //            cout << ", ";
- //        }
-	// }
-	// cout << endl;
+	cout << "\nBundle Profit: [";
+	for (int i = 0; i < bStat.bundleProfVec.size(); i++){
+		cout << setw(3) << std:: right << bStat.bundleProfVec[i];
+		if (i < bStat.bundleProfVec.size() - 1){
+            cout << ", ";
+        }
+	}
+	cout << endl;
 
-	// getchar();
+	getchar();
 
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
 		for (int j = 0; j < bStat.bundleVec.size(); j++){
@@ -205,22 +205,22 @@ int main (int argc, char *argv[]) {
 	// cout << endl;
 	// getchar();
 
-	// cout << "\nBundle Times: ";
-	// for (int i = 0; i < bStat.bundleStart.size(); i++){
-	// 	cout <<	i  << ": " << bStat.bundleStart[i] << ", ";
-	// }
-	// cout << endl;
+	cout << "\nBundle Times: ";
+	for (int i = 0; i < bStat.bundleStart.size(); i++){
+		cout <<	i  << ": " << bStat.bundleStart[i] << ", ";
+	}
+	cout << endl;
 
-	// getchar();
+	getchar();
 	
 
-	// cout << "\nBundle Service Times: ";
-	// for (int i = 0; i < bStat.bundleServVec.size(); i++){
-	// 	cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
-	// }
-	// cout << endl;
+	cout << "\nBundle Service Times: ";
+	for (int i = 0; i < bStat.bundleServVec.size(); i++){
+		cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
+	}
+	cout << endl;
 
-	// getchar();
+	getchar();
 
 
 	feasibleBundleArcs(&inst, distMatrix, nodeVec, &bStat, p, &problem);
@@ -383,7 +383,6 @@ int main (int argc, char *argv[]) {
 	int counter = 0;
 	for ( int i = 0; i < inst.V + inst.dummy; i++ ) {
 		delete[] distMatrix[i];
-
 	}
 	delete[] distMatrix;
 
