@@ -55,13 +55,20 @@ struct bParcelStruct{
 	int parcelreq;
 };
 
-// struct Arcset{
-// 	vector< vector<bool> > arcs;
-// 	vector< vector< pair<int,int> > > arcMinus;
-// 	vector< vector< pair<int,int> > > arcPlus;
-// 	vector< pair<int,int> > arcNN;
-// 	vector< pair<int,int> > nodummyarcVec;
-// }
+struct mipsol{
+	int s;
+	int e;
+	int k; 
+};
+
+struct solStats{
+	double tParcel;
+	double tPass;
+	double tBoth;
+	double tNone;
+};
+
+
 
 void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem, vector< pair<int,int> > &arcNN);
 
@@ -78,5 +85,10 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
 bool compareCosts(const bParcelStruct &a, const bParcelStruct &b);
 
 void makeParcelSets (instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< vector<int> > &parcelSets);
+void solStatIni(solStats *sStat);
+
+void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector<mipsol> > &solvec, vector<int> &nodeSol);
+
+void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector<mipsol> > &solvec, solStats *sStat);
 
 #endif

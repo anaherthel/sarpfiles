@@ -682,7 +682,76 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
     //         }
     //     }
     // }
+}
+
+void solStatIni(solStats *sStat){
+
+    sStat->tParcel = 0;
+    sStat->tPass = 0;
+    sStat->tBoth = 0;
+    sStat->tNone = 0;
+
+}
+
+void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector<mipsol> > &solvec, vector<int> nodeSol){
+
+    bool inserted;
+
+    for (int k = 0; k < inst->K; k++){
+        for (int i = 0; i < solvec[k].size(); i++){
+            inserted = false;
+            if (nodeSol.empty()){
+                nodeSol.push_back(solvec[k][i].s);
+                nodeSol.push_back(solvec[k][i].e);
+                inserted = true;
+            }
+            else{
+                for (int j = 0; j < nodeSol.size(); j++){
+                    if(solvec[k][i].s == nodeSol[j]){
+                        nodeSol.push_back(solvec[k][i].s);
+                        nodeSol.push_back(solvec[k][i].e);
+                        inserted = true;
+                    }
+                    else if (solvec[k][i].e == nodeSol[j]){
+                        nodeSol.insert(nodeSol.begin()+j, solvec[k][i].e);
+                        nodeSol.insert(nodeSol.begin()+j, solvec[k][i].s);
+                        inserted = true;
+                    }
+                }
+                if (inserted == false){
+                    nodeSol.push_back(solvec[k][i].s);
+                    nodeSol.push_back(solvec[k][i].e);
+                }
+            }
+        }
+    }
+    cout << "\nSolution by bundles: " << endl;
+    for (int i = 0; i < nodeSol.size(); i++){
+        cout << nodeSol[i] << " - ";
+    }
+    cout << endl;
+    getchar();
+}
 
 
+void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector<mipsol> > &solvec, solStats *sStat){
 
+    for (int k = 0; k < inst->K; k++){
+        // for (int i = 0; i < solvec[k].size(); i++){
+        //     for (int j = 0; j < bStat.bundleVec[solvec[k][i].s].size(); j++){
+        //         if (bStat.bundleVec[solvec[k][i].s][j] < n){    
+        //             sStat.tPass += nodeVec[bStat.bundleVec[solvec[k][i].s][j]].delta;
+        //         }
+        //         else if (bStat.bundleVec[solvec[k][i].s][j] < inst->m + inst->n){
+
+        //         }
+        //         else if (bStat.bundleVec[solvec[k][i].s][j]){
+
+        //         }
+        //         else{
+
+        //         }
+        //     }
+        // }
+    }
 }

@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem){
+void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, vector< vector<mipsol> > &solvec){
 
 	//MIP
 	//Creating environment and model 
@@ -14,9 +14,8 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 	int currSP;
 	int currParcel;
 	int currCluster;
-	//long M = numeric_limits<long>::max();
-	// long M = 2*inst->T;
-	// long W = 2*inst->m;
+	mipsol solution;
+	vector <mipsol> auxsolvec;
 
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, bStat->bundleVec.size());
@@ -37,29 +36,6 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 			}
 		}	
 	}
-
-	// IloBoolVarArray y(env, nodeVec.size()); //creates boolean variable (y_i = 1 se nó i é visitado; 0 cc)
-	// for (int i = 0; i < nodeVec.size(); i++){
-	// 	sprintf(var, "y(%d)", i);
-	// 	y[i].setName(var);
-	// 	model.add(y[i]);
-	// }
-
-	// IloNumVarArray b(env, nodeVec.size(), 0, inst->T); //creates continuous variable with the specified bounds
-
-	// for (int i = 0; i < nodeVec.size(); ++i){
-	// 	sprintf(var, "b(%d)", i);
-	// 	b[i].setName(var);
-	// 	model.add(b[i]);
-	// }
-
-	// IloNumVarArray w(env, nodeVec.size(), 0, inst->m + 1); //creates continuous variable with the specified bounds
-
-	// for (int i = 0; i < nodeVec.size(); ++i){
-	// 	sprintf(var, "w(%d)", i);
-	// 	w[i].setName(var);
-	// 	model.add(w[i]);
-	// }
 
 	//Creating objective function
 	
@@ -100,36 +76,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 		model.add(cons);
 	}
 
-	// for (int i = 0; i < setN; i++){
-	// 	IloExpr exp(env);
-	// 	currCluster = 
-	// 	for (int k = 0; k < inst->K; k++){
-	// 		for (int j = 0; j < bArcPlus[i].size(); j++){
-	// 			exp += x[bArcPlus[i][j].first][bArcPlus[i][j].second][k];
-	// 		}
-	// 	}
-	// 	sprintf (var, "Constraint1_%d", i);
-	// 	IloRange cons = (exp == 1);
-	// 	cons.setName(var);
-	// 	model.add(cons);
-	// }
-
-
-
 	// Constraint 2 - Only one arc comes into the cluster
-	
-	// for (int i = 0; i < setN; i++){
-	// 	IloExpr exp(env);
-	// 	for (int k = 0; k < inst->K; k++){
-	// 		for (int j = 0; j < bStat->bArcMinus[i].size(); j++){
-	// 			exp += x[bStat->bArcMinus[i][j].first][bStat->bArcMinus[i][j].second][k];
-	// 		}
-	// 	}
-	// 	sprintf (var, "Constraint2_%d", i);
-	// 	IloRange cons = (exp == 1);
-	// 	cons.setName(var);
-	// 	model.add(cons);
-	// }
 
 	for (int i = 0; i < csetN; i++){
 		IloExpr exp(env);
@@ -189,44 +136,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 		model.add(cons);
 	}	
 
-
-	//Constraint 5(b) - No parcel can be served (Find a lower bound)
-
-
-	// for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
-	// 	IloExpr exp(env);
-	// 	currParcel = inst->n + i;
-	// 	for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
-	// 		for (int l = 0; l < bStat->bArcPlus[bStat->parcelBundleVec[i][j]].size(); l++){
-	// 			for (int k = 0; k < inst->K; k++){
-	// 				exp += x[bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].first][bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].second][k];
-	// 			}
-	// 		}
-	// 	}
-	// 	sprintf (var, "Constraint5_%d", currParcel);
-	// 	IloRange cons = (exp == 0);
-	// 	cons.setName(var);
-	// 	model.add(cons);
-	// }
-
-	// //Constraint 6 - Flow conservation between clusters
-
-	// for (int i = 0; i < csetN; i++){
-	// 	for (int k = 0; k < inst->K; k++){
-	// 		IloExpr exp1(env);
-	// 		IloExpr exp2(env);
-	// 		for (int j = 0; j < cArcPlus[i].size(); j++){
-	// 			exp1 += x[cArcPlus[i][j].first][cArcPlus[i][j].second][k];
-	// 		}
-	// 		for (int j = 0; j < cArcMinus[i].size(); j++){
-	// 			exp2 += x[cArcMinus[i][j].first][cArcMinus[i][j].second][k]; 
-	// 		}		
-	// 		sprintf (var, "Constraint6_%d_%d", i, k);
-	// 		IloRange cons = (exp1 - exp2 == 0);
-	// 		cons.setName(var);
-	// 		model.add(cons);
-	// 	}
-	// }
+	//Constraint 6 - Flow conservation between clusters
 
 	for (int i = 0; i < setN; i++){
 		for (int k = 0; k < inst->K; k++){
@@ -279,8 +189,34 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 	bSARP.exportModel("bSARP.lp");
 
 	bSARP.solve();
+	cout << "\nSol status: " << bSARP.getStatus() << endl;
 	cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
 
-	env.end();
+	for (int k = 0; k < inst->K; k++ ){
+ 		solvec.push_back(auxsolvec);
+	}
 
+	for (int i = 0; i < bStat->bundleVec.size(); i++){
+		for(int j = 0; j < bStat->bundleVec.size(); ++j){
+			for (int k = 0; k < inst->K; k++){
+				if (bStat->bArcs[i][j] == true){
+					if (bSARP.getValue(x[i][j][k]) == 1){
+						solution.s = i;
+						solution.e = j;
+						solution.k = k;
+						solvec[k].push_back(solution);
+						// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
+					}
+				}
+			}
+		}	
+	}
+	
+	for (int k = 0; k < inst->K; k++){
+		for (int i = 0; i < solvec[k].size(); i++){
+			cout << "x(" << solvec[k][i].s << ", " << solvec[k][i].e << ", " << solvec[k][i].k << ")" << endl;
+		}
+	}	
+
+	env.end();
 }

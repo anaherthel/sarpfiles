@@ -5,26 +5,27 @@
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, vector<double> &passProfit){
     
-    if (argc < 4) {
+    if (argc < 3) {
         cout << "\nMissing parameters\n";
-        cout << " ./exeSARP [Instance] [Optimization strategy] [Scenario]"<< endl;
+        // cout << " ./exeSARP [Instance] [Optimization strategy] [Scenario]"<< endl;
+        cout << " ./exeSARP [Instance] [Scenario]"<< endl;
         exit(1);
     }
     
-    if (argc > 4) {
+    if (argc > 3) {
         cout << "\nToo many parameters\n";
-        cout << " ./exeSARP [Instance] [Optimization strategy] [Scenario]" << endl;
+        cout << " ./exeSARP [Instance] [Scenario]" << endl;
         exit(1);
     }  
 
-    if (argv[2] == "sim"){
-        problem->sim = true;
-    }
-    else if (argv[2] == "seq"){
-        problem->seq = true;
-    }
+    // if (argv[2] == "sim"){
+    //     problem->sim = true;
+    // }
+    // else if (argv[2] == "seq"){
+    //     problem->seq = true;
+    // }
 
-    problem->scen = argv[3];
+    problem->scen = argv[2];
 
     string file, ewf;
     int n;
@@ -176,12 +177,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] xf;
         delete[] yf;
 
-        int counter = 0;
-		for ( int i = 0; i < inst->V + inst->dummy; i++ ) {
-			delete[] dist[i];
-
-		}
-		delete[] dist;
     }
 
     else if (instType == "sarpdata"){
@@ -364,13 +359,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] slongitude;
         delete[] flatitude;
         delete[] flongitude;
-
-       	int counter = 0;
-		for ( int i = 0; i < inst->V + inst->dummy; i++ ) {
-			delete[] dist[i];
-
-		}
-		delete[] dist;
     }
  
     else if (instType == "sf_data"){
@@ -541,12 +529,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] flatitude;
         delete[] flongitude;
    
-	   	int counter = 0;
-		for ( int i = 0; i < inst->V + inst->dummy; i++ ) {
-			delete[] dist[i];
-
-		}
-		delete[] dist;
     }
 
     else if (instType == "grubhub"){
@@ -556,7 +538,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         service = service/60;
         int refpoint = K + 1;
         int instV;
-        inst->dummy = 1;
+        dummy = 1;
+        inst->dummy = dummy;
 
         int seed = 1234;
         srand(seed);
@@ -599,9 +582,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double *e = new double[V + inst->dummy];
         double *l = new double[V + inst->dummy];
 
-        double **dist = new double*[V];
+        double **dist = new double*[V + inst->dummy];
         for (int i= 0; i < V + inst->dummy; i++){
-            dist[i] = new double [V];
+            dist[i] = new double [V + inst->dummy];
         }
 
         while (file.compare("EDGE_WEIGHT_SECTION") != 0){
@@ -662,17 +645,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }   
         }
 
-        cout << "\nBefore - Distance Matrix:" << endl;
+        // cout << "\nBefore - Distance Matrix:" << endl;
 
-        for (int i = 0; i < instV; i++) {
-            for (int j = 0; j < instV; j++) {
-                cout << setw(5) << tempData[i][j] << " ";
-            }
-            cout << endl;
-        }
-        cout << endl;
+        // for (int i = 0; i < instV; i++) {
+        //     for (int j = 0; j < instV; j++) {
+        //         cout << setw(5) << tempData[i][j] << " ";
+        //     }
+        //     cout << endl;
+        // }
+        // cout << endl;
 
-        getchar();
+        // getchar();
 
         //collapsing passenger nodes
 
@@ -728,12 +711,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 l[i] = 1020;
             }
         }
-        cout << "Earlier times: " << endl;
-        for(int i = 0; i < V + inst->dummy; i++){
-            cout << e[i] << " ";
-        }
-        cout << endl;
-        getchar();
+        // cout << "Earlier times: " << endl;
+        // for(int i = 0; i < V + inst->dummy; i++){
+        //     cout << e[i] << " ";
+        // }
+        // cout << endl;
+        // getchar();
 
         // cout << "Deltas: " << endl;
         // for(int i = 0; i < V + inst->dummy; i++){
