@@ -693,48 +693,101 @@ void solStatIni(solStats *sStat){
 
 }
 
-void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector<mipsol> > &solvec, vector<int> nodeSol){
+void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector< pair<int, int> > > &solvec, vector<int> &solInNode){
 
     bool inserted;
 
+    vector< pair <int, int> > auxVec;
+    pair<int, int> auxPair;
+
     for (int k = 0; k < inst->K; k++){
         for (int i = 0; i < solvec[k].size(); i++){
-            inserted = false;
-            if (nodeSol.empty()){
-                nodeSol.push_back(solvec[k][i].s);
-                nodeSol.push_back(solvec[k][i].e);
-                inserted = true;
-            }
-            else{
-                for (int j = 0; j < nodeSol.size(); j++){
-                    if(solvec[k][i].s == nodeSol[j]){
-                        nodeSol.push_back(solvec[k][i].s);
-                        nodeSol.push_back(solvec[k][i].e);
-                        inserted = true;
-                    }
-                    else if (solvec[k][i].e == nodeSol[j]){
-                        nodeSol.insert(nodeSol.begin()+j, solvec[k][i].e);
-                        nodeSol.insert(nodeSol.begin()+j, solvec[k][i].s);
-                        inserted = true;
-                    }
-                }
-                if (inserted == false){
-                    nodeSol.push_back(solvec[k][i].s);
-                    nodeSol.push_back(solvec[k][i].e);
-                }
-            }
+            auxPair.first = solvec[k][i].first;
+            auxPair.second = solvec[k][i].second;            
+            auxVec.push_back(auxPair);
         }
+        
+        while(!auxVec.empty()){
+            for (int i = 0; i < auxVec.size(); i++){
+                inserted = false;
+                if (solInNode.empty()){
+                    solInNode.push_back(auxVec[i].first);
+                    solInNode.push_back(auxVec[i].second);
+                    inserted = true;
+                    cout << "\nSolution in Nodes: ";
+                    for (int l = 0; l < solInNode.size(); l++){
+                        cout << solInNode[l] << " ";
+                    }
+                    cout << endl;
+                    getchar();
+                }
+                // else{
+                //     for (int j = 0; j < solInNode.size(); j++){
+                //         if(solvec[k][i].s == solInNode[j]){
+                //             // solInNode.push_back(solvec[k][i].s);
+                //             solInNode.push_back(solvec[k][i].e);
+                //             inserted = true;
+
+                //         }
+                //         else if (solvec[k][i].e == solInNode[j]){
+                //             solInNode.insert(solInNode.begin()+j, solvec[k][i].s);
+                //             inserted = true;
+                //         }
+                //     }
+                //     if (inserted == false){
+                //         auxList.push_back(solvec[k][i].s);
+                //         auxList.push_back(solvec[k][i].e);                    
+                //     }
+                // }
+            }           
+        }
+
     }
+
+
+
+    // for (int k = 0; k < inst->K; k++){
+    //     for (int i = 0; i < solvec[k].size(); i++){
+    //         inserted = false;
+    //         if (solInNode.empty()){
+    //             solInNode.push_back(solvec[k][i].s);
+    //             solInNode.push_back(solvec[k][i].e);
+    //             inserted = true;
+    //         }
+    //         else{
+    //             for (int j = 0; j < solInNode.size(); j++){
+    //                 if(solvec[k][i].s == solInNode[j]){
+    //                     // solInNode.push_back(solvec[k][i].s);
+    //                     solInNode.push_back(solvec[k][i].e);
+    //                     inserted = true;
+    //                     cout << "\nSolution in Nodes: ";
+    //                     for (int l =0; l < solInNode.size(); l++){
+    //                         cout << solInNode[l] << " ";
+    //                     }
+    //                     cout << endl;
+    //                 }
+    //                 else if (solvec[k][i].e == solInNode[j]){
+    //                     solInNode.insert(solInNode.begin()+j, solvec[k][i].s);
+    //                     inserted = true;
+    //                 }
+    //             }
+    //             if (inserted == false){
+    //                 auxList.push_back(solvec[k][i].s);
+    //                 auxList.push_back(solvec[k][i].e);                    
+    //             }
+    //         }
+    //     }
+    // }
     cout << "\nSolution by bundles: " << endl;
-    for (int i = 0; i < nodeSol.size(); i++){
-        cout << nodeSol[i] << " - ";
+    for (int i = 0; i < solInNode.size(); i++){
+        cout << solInNode[i] << " - ";
     }
     cout << endl;
     getchar();
 }
 
 
-void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector<mipsol> > &solvec, solStats *sStat){
+void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector< pair<int, int> > > &solvec, solStats *sStat){
 
     for (int k = 0; k < inst->K; k++){
         // for (int i = 0; i < solvec[k].size(); i++){

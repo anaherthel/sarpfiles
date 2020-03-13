@@ -26,9 +26,7 @@ int main (int argc, char *argv[]) {
 	bundleStat bStat;
 	solStats sStat;
 
-	vector<int> nodeSol;
-
-	std::vector<nodeStat> nodeVec;
+	vector<nodeStat> nodeVec;
 	vector<bool> arcRow;
 	vector< vector<bool> > arcs;
 	// int vertices;
@@ -45,7 +43,9 @@ int main (int argc, char *argv[]) {
 	vector< vector<int> > clsParcel;
 	vector<int> vecOfInt;
 
-	vector< vector<mipsol> > solvec;
+	vector<int> solInNode;
+
+	vector< vector< pair<int, int> > > solvec; 
 
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, nodeProfit);
 	
@@ -115,7 +115,7 @@ int main (int argc, char *argv[]) {
 	}
 	cout << "]" << endl;
 
-	getchar();
+	// getchar();
 
 	if (problem.scen == "1A"){
 		for (int i = 0; i < inst.m; i++){
@@ -147,7 +147,7 @@ int main (int argc, char *argv[]) {
 		cout << "]" << endl;
 	}
 
-	getchar();
+	// getchar();
 
 	makeParcelBundles(&inst, nodeVec, &bStat, &problem);
 
@@ -297,7 +297,7 @@ int main (int argc, char *argv[]) {
 		cout << endl;
 	}
 
-	getchar();
+	// getchar();
 
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
 		for (int j = 0; j < bStat.bundleVec.size(); j++){
@@ -380,10 +380,11 @@ int main (int argc, char *argv[]) {
 
 	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, solvec);
 
+	nodeSolution (&inst, distMatrix, &bStat, nodeVec, solvec, solInNode);
+
 	solStatIni(&sStat);
 
 	// cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
-	nodeSolution (&inst, distMatrix, &bStat, nodeVec, solvec, nodeSol);
 
 	mipSolStats (&inst, distMatrix, &bStat, nodeVec, solvec, &sStat);
 

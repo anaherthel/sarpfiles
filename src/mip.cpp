@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, vector< vector<mipsol> > &solvec){
+void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, vector< vector< pair<int, int> > > &solvec){
 
 	//MIP
 	//Creating environment and model 
@@ -14,8 +14,8 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 	int currSP;
 	int currParcel;
 	int currCluster;
-	mipsol solution;
-	vector <mipsol> auxsolvec;
+	vector< pair<int, int> > auxPairVec;
+	pair<int, int> auxPair;
 
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, bStat->bundleVec.size());
@@ -192,8 +192,8 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 	cout << "\nSol status: " << bSARP.getStatus() << endl;
 	cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
 
-	for (int k = 0; k < inst->K; k++ ){
- 		solvec.push_back(auxsolvec);
+	for (int k = 0; k < inst->K; k++){
+ 		solvec.push_back(auxPairVec);
 	}
 
 	for (int i = 0; i < bStat->bundleVec.size(); i++){
@@ -201,10 +201,9 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 			for (int k = 0; k < inst->K; k++){
 				if (bStat->bArcs[i][j] == true){
 					if (bSARP.getValue(x[i][j][k]) == 1){
-						solution.s = i;
-						solution.e = j;
-						solution.k = k;
-						solvec[k].push_back(solution);
+						auxPair.first = i;
+						auxPair.second = j;
+						solvec[k].push_back(auxPair);
 						// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
 					}
 				}
@@ -214,7 +213,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 	
 	for (int k = 0; k < inst->K; k++){
 		for (int i = 0; i < solvec[k].size(); i++){
-			cout << "x(" << solvec[k][i].s << ", " << solvec[k][i].e << ", " << solvec[k][i].k << ")" << endl;
+			cout << "x(" << solvec[k][i].first << ", " << solvec[k][i].second << ", " << k << ")" << endl;
 		}
 	}	
 

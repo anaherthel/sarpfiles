@@ -575,7 +575,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         in >> file;
         in >> ewf;
-        getchar();
 
         double *delta = new double[V + inst->dummy];
         double *profit = new double[V + inst->dummy];

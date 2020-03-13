@@ -55,12 +55,6 @@ struct bParcelStruct{
 	int parcelreq;
 };
 
-struct mipsol{
-	int s;
-	int e;
-	int k; 
-};
-
 struct solStats{
 	double tParcel;
 	double tPass;
@@ -87,8 +81,8 @@ bool compareCosts(const bParcelStruct &a, const bParcelStruct &b);
 void makeParcelSets (instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< vector<int> > &parcelSets);
 void solStatIni(solStats *sStat);
 
-void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector<mipsol> > &solvec, vector<int> &nodeSol);
+void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector< pair<int, int> > > &solvec, vector<int> &solInNode);
 
-void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector<mipsol> > &solvec, solStats *sStat);
+void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector< pair<int, int> > > &solvec, solStats *sStat);
 
 #endif
