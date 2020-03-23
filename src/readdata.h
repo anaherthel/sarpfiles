@@ -49,6 +49,7 @@ struct instanceStat{
     int T;
     int V;
     int dummy;
+    double service;
    	double gamma = 4; //initial fare for parcels
 	double mu = 2; //fare per km for parcels
 	// double vmed = 19.3;

@@ -161,6 +161,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->m = m;
         inst->T = T/60;
         inst->V = V;
+        inst->service = service;
         // cout << "\nNode vec: ";
         // for (int i = 0; i < nodeVec.size(); i++){
         //     cout << nodeVec[i].label << " ";
@@ -326,6 +327,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->n = n;
         inst->m = m;
         inst->V = V;
+        inst->service = service;
         
         for (int i = 0; i < V; i++){
             node->xs = vxs[i];
@@ -494,6 +496,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->n = n;
         inst->m = m;
         inst->V = V;
+        inst->service = service;
 
         for (int i = 0; i < V; i++){
             node->xs = vxs[i];
@@ -686,6 +689,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //calculate deltas
         for(int i = 0; i < V + inst->dummy; i++){
             if (i < n){
+                cout << i << ": " << (tempData[2*i][2*i+1]);
                 delta[i] = 2 * service + ((tempData[2*i][2*i+1])/1000)/inst->vmed;
                 // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
                 profit[i] = inst->gamma2 + inst->mu2*(tempData[2*i][2*i+1]/1000) - (tempData[2*i][2*i+1]/1000);    
@@ -741,6 +745,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->n = n;
         inst->m = m;
         inst->V = V;
+        inst->service = service;
 
         delete[] profit;
         delete[] delta;

@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, vector< vector< pair<int, int> > > &solvec){
+void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat){
 
 	//MIP
 	//Creating environment and model 
@@ -192,8 +192,10 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 	cout << "\nSol status: " << bSARP.getStatus() << endl;
 	cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
 
+	sStat->solprofit = bSARP.getObjValue();
+
 	for (int k = 0; k < inst->K; k++){
- 		solvec.push_back(auxPairVec);
+ 		sStat->solvec.push_back(auxPairVec);
 	}
 
 	for (int i = 0; i < bStat->bundleVec.size(); i++){
@@ -203,7 +205,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 					if (bSARP.getValue(x[i][j][k]) == 1){
 						auxPair.first = i;
 						auxPair.second = j;
-						solvec[k].push_back(auxPair);
+						sStat->solvec[k].push_back(auxPair);
 						// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
 					}
 				}
@@ -212,8 +214,8 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 	}
 	
 	for (int k = 0; k < inst->K; k++){
-		for (int i = 0; i < solvec[k].size(); i++){
-			cout << "x(" << solvec[k][i].first << ", " << solvec[k][i].second << ", " << k << ")" << endl;
+		for (int i = 0; i < sStat->solvec[k].size(); i++){
+			cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
 		}
 	}	
 

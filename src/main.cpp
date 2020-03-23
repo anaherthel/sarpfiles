@@ -43,11 +43,16 @@ int main (int argc, char *argv[]) {
 	vector< vector<int> > clsParcel;
 	vector<int> vecOfInt;
 
-	vector<int> solInNode;
+	// vector<int> solInNode;
 
-	vector< vector< pair<int, int> > > solvec; 
+	// vector< vector< pair<int, int> > > solvec; 
 
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, nodeProfit);
+	
+	for (int i = 0; i < inst.n; i++){
+		cout << "delta " << i << ": " << nodeVec[i].delta << endl;
+	}
+	
 	
 	for (int i = 0; i < inst.n; i++){
 		clsParcel.push_back(vecOfInt);
@@ -90,14 +95,14 @@ int main (int argc, char *argv[]) {
 	vector< vector< pair<int,int> > > cArcPlus;
 	vector< vector< pair<int,int> > > cArcMinus;
 
-	// cout << "Distance Matrix: " << endl;
+	cout << "Distance Matrix: " << endl;
 
-	// for (int i = 0; i < inst.V + inst.dummy; i++){
-	// 	for (int j = 0; j < inst.V + inst.dummy; j++){
-	// 		cout << setw(5) << distMatrix[i][j] << " ";
-	// 	}
-	// 	cout << endl;
-	// }
+	for (int i = 0; i < inst.V + inst.dummy; i++){
+		for (int j = 0; j < inst.V + inst.dummy; j++){
+			cout << setw(5) << distMatrix[i][j] << " ";
+		}
+		cout << endl;
+	}
 	// getchar();
 
 	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, &problem);
@@ -378,15 +383,17 @@ int main (int argc, char *argv[]) {
 	// 	cout << endl;
 	// }
 
-	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, solvec);
+	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat);
 
-	nodeSolution (&inst, distMatrix, &bStat, nodeVec, solvec, solInNode);
+	nodeSolution (&inst, distMatrix, &bStat, nodeVec, &sStat);
 
 	solStatIni(&sStat);
 
+	mipSolStats (&inst, distMatrix, &bStat, nodeVec, &sStat);
+
 	// cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
 
-	mipSolStats (&inst, distMatrix, &bStat, nodeVec, solvec, &sStat);
+	printStats(&inst, &bStat, &sStat);
 
 	for ( int i = 0; i < inst.V + inst.dummy; i++) {
 		delete[] distMatrix[i];

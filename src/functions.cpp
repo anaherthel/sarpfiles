@@ -691,120 +691,247 @@ void solStatIni(solStats *sStat){
     sStat->tBoth = 0;
     sStat->tNone = 0;
 
+    sStat->dParcel = 0;
+    sStat->dPass = 0;
+    sStat->dBoth = 0;
+    sStat->dNone = 0;
+
 }
 
-void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector< pair<int, int> > > &solvec, vector<int> &solInNode){
+void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
 
     bool inserted;
 
     vector< pair <int, int> > auxVec;
     pair<int, int> auxPair;
+    int setN = bStat->bundleVec.size() - inst->K - 1;
+    int currSP;
+    vector<int> orderVec;
 
     for (int k = 0; k < inst->K; k++){
-        for (int i = 0; i < solvec[k].size(); i++){
-            auxPair.first = solvec[k][i].first;
-            auxPair.second = solvec[k][i].second;            
+        currSP = setN + k;
+        for (int i = 0; i < sStat->solvec[k].size(); i++){
+            auxPair.first = sStat->solvec[k][i].first;
+            auxPair.second = sStat->solvec[k][i].second;            
             auxVec.push_back(auxPair);
         }
         
         while(!auxVec.empty()){
-            for (int i = 0; i < auxVec.size(); i++){
-                inserted = false;
-                if (solInNode.empty()){
-                    solInNode.push_back(auxVec[i].first);
-                    solInNode.push_back(auxVec[i].second);
-                    inserted = true;
-                    cout << "\nSolution in Nodes: ";
-                    for (int l = 0; l < solInNode.size(); l++){
-                        cout << solInNode[l] << " ";
+            // if (sStat->solOrder[k].empty()){
+            if (orderVec.empty()){
+                for (int i = 0; i < auxVec.size(); i++){
+                    if (auxVec[i].first == currSP){
+                        // sStat->solOrder[k].push_back(auxVec[i].first);
+                        // sStat->solOrder[k].push_back(auxVec[i].second);
+                        orderVec.push_back(auxVec[i].first);
+                        orderVec.push_back(auxVec[i].second);
+
+                        auxVec.erase(auxVec.begin()+i);
                     }
-                    cout << endl;
-                    getchar();
                 }
-                // else{
-                //     for (int j = 0; j < solInNode.size(); j++){
-                //         if(solvec[k][i].s == solInNode[j]){
-                //             // solInNode.push_back(solvec[k][i].s);
-                //             solInNode.push_back(solvec[k][i].e);
-                //             inserted = true;
+            }
+            else{
+                for (int j = 0; j < auxVec.size(); j++){
+                    // if(auxVec[j].first == sStat->solOrder[k].back()){
+                    if(auxVec[j].first == orderVec.back()){
+                        // sStat->solOrder[k].push_back(auxVec[j].second);
+                        orderVec.push_back(auxVec[j].second);
 
-                //         }
-                //         else if (solvec[k][i].e == solInNode[j]){
-                //             solInNode.insert(solInNode.begin()+j, solvec[k][i].s);
-                //             inserted = true;
-                //         }
-                //     }
-                //     if (inserted == false){
-                //         auxList.push_back(solvec[k][i].s);
-                //         auxList.push_back(solvec[k][i].e);                    
-                //     }
-                // }
-            }           
+                        auxVec.erase(auxVec.begin()+j);
+                    }
+                }
+            }
         }
-
+        sStat->solOrder.push_back(orderVec);
+        orderVec.clear();
     }
 
+    for (int k = 0; k < inst->K; k++){
+        sStat->solInNode.push_back(orderVec);
+        for(int i = 0; i < sStat->solOrder[k].size(); i++){
+            for (int j = 0; j < bStat->bundleVec[sStat->solOrder[k][i]].size(); j++){
+                sStat->solInNode[k].push_back(bStat->bundleVec[sStat->solOrder[k][i]][j]);
+            }
+        }
+    }
 
-
-    // for (int k = 0; k < inst->K; k++){
-    //     for (int i = 0; i < solvec[k].size(); i++){
-    //         inserted = false;
-    //         if (solInNode.empty()){
-    //             solInNode.push_back(solvec[k][i].s);
-    //             solInNode.push_back(solvec[k][i].e);
-    //             inserted = true;
-    //         }
-    //         else{
-    //             for (int j = 0; j < solInNode.size(); j++){
-    //                 if(solvec[k][i].s == solInNode[j]){
-    //                     // solInNode.push_back(solvec[k][i].s);
-    //                     solInNode.push_back(solvec[k][i].e);
-    //                     inserted = true;
-    //                     cout << "\nSolution in Nodes: ";
-    //                     for (int l =0; l < solInNode.size(); l++){
-    //                         cout << solInNode[l] << " ";
-    //                     }
-    //                     cout << endl;
-    //                 }
-    //                 else if (solvec[k][i].e == solInNode[j]){
-    //                     solInNode.insert(solInNode.begin()+j, solvec[k][i].s);
-    //                     inserted = true;
-    //                 }
-    //             }
-    //             if (inserted == false){
-    //                 auxList.push_back(solvec[k][i].s);
-    //                 auxList.push_back(solvec[k][i].e);                    
-    //             }
-    //         }
-    //     }
-    // }
-    cout << "\nSolution by bundles: " << endl;
-    for (int i = 0; i < solInNode.size(); i++){
-        cout << solInNode[i] << " - ";
+    cout << "\nSolution by nodes: " << endl;
+    for (int k = 0; k < inst->K; k++){
+        cout << "Vehicle " << k << ": ";
+        for (int i = 0; i < sStat->solInNode[k].size(); i++){
+            if (i < sStat->solInNode[k].size() - 1){
+                cout << sStat->solInNode[k][i] << " - ";
+            }
+            else{
+                cout << sStat->solInNode[k][i];
+            }
+        }
+        cout << endl;
     }
     cout << endl;
-    getchar();
+    // getchar();
 }
 
 
-void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, vector< vector< pair<int, int> > > &solvec, solStats *sStat){
+void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
 
+    int load;
+    double distPass;
+    // load = 0;
+    double dij;
+    int currNode;
+    int nextNode;
+    
     for (int k = 0; k < inst->K; k++){
-        // for (int i = 0; i < solvec[k].size(); i++){
-        //     for (int j = 0; j < bStat.bundleVec[solvec[k][i].s].size(); j++){
-        //         if (bStat.bundleVec[solvec[k][i].s][j] < n){    
-        //             sStat.tPass += nodeVec[bStat.bundleVec[solvec[k][i].s][j]].delta;
-        //         }
-        //         else if (bStat.bundleVec[solvec[k][i].s][j] < inst->m + inst->n){
+        load = 0;
+        for (int i = 0; i < sStat->solInNode[k].size() - 2; i++){
+            // dij = mdist[sStat->solInNode[k][i]][sStat->solInNode[k][i + 1]];
+            currNode = sStat->solInNode[k][i];
+            nextNode = sStat->solInNode[k][i + 1];
+            dij = mdist[currNode][nextNode];
+            if(currNode < inst->n){
+                if(nextNode < inst->n){
+                    if (load > 0){
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tBoth += nodeVec[nextNode].delta;   
 
-        //         }
-        //         else if (bStat.bundleVec[solvec[k][i].s][j]){
+                        sStat->dParcel += dij;
+                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                        sStat->dBoth += distPass;
+                    }  
+                    else{
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tPass += nodeVec[nextNode].delta;
 
-        //         }
-        //         else{
+                        sStat->dNone += dij;
+                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                        sStat->dPass += distPass;
 
-        //         }
-        //     }
-        // }
+                    }
+                }
+
+                else if (sStat->solInNode[k][i + 1] < inst->n + inst->m){
+                    if (load > 0){
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+                        load++;
+
+                        sStat->dParcel += dij;
+                    }  
+                    else{
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+                        load++;
+
+                        sStat->dNone += dij;
+                    }
+                }
+
+                else if (sStat->solInNode[k][i + 1] < inst->n + 2*inst->m){
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load--;
+
+                    sStat->dParcel += dij;
+                }
+            }
+            else if (currNode < inst->n + inst->m){
+                if (nextNode < inst->n){
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tBoth += nodeVec[nextNode].delta;
+
+                    sStat->dParcel += dij;
+                    distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                    sStat->dBoth += distPass;  
+                }
+                else if(nextNode < inst->n + inst->m){
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load++;
+
+                    sStat->dParcel += dij;         
+                }
+                else if (nextNode < inst->n + 2*inst->m){
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load--;
+
+                    sStat->dParcel += dij;
+                }
+            }
+            else if (currNode < inst->n + 2*inst->m){
+                if(nextNode < inst->n){
+                    if (load > 0){
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tBoth += nodeVec[nextNode].delta; 
+
+                        sStat->dParcel += dij;
+                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                        sStat->dBoth += distPass;                           
+                    }  
+                    else{
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tPass += nodeVec[nextNode].delta;
+
+                        sStat->dNone += dij;
+                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                        sStat->dBoth += distPass;                         
+                    }   
+                }
+                else if(nextNode < inst->n + inst->m){
+                    if (load > 0){
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+                        load++;
+
+                        sStat->dParcel += dij;
+                    }  
+                    else{
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+                        load++;
+
+                        sStat->dNone += dij;
+                    }                  
+                }
+                else if (nextNode < inst->n + 2*inst->m){
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load--;
+
+                    sStat->dParcel += dij;
+                }
+            }
+            else{
+                if(nextNode < inst->n){
+                    sStat->tNone += dij/inst->vmed;
+                    sStat->tPass += nodeVec[nextNode].delta;
+                    load = 0;
+
+                    sStat->dNone += dij;
+                    distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                    sStat->dPass += distPass;  
+                }
+                else if(nextNode < inst->n + inst->m){
+                    sStat->tNone += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load++;
+
+                    sStat->dNone += dij;
+                }
+            }
+        }
     }
+}
+
+void printStats(instanceStat *inst, bundleStat *bStat, solStats *sStat){
+    cout << "\nTotal passenger time: " << sStat->tPass << endl;
+    cout << "\nTotal parcel time: " << sStat->tParcel << endl;
+    cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
+    cout << "\nTotal idle time: " << sStat->tNone << endl;
+
+    cout << "\nTotal passenger distance: " << sStat->dPass << endl;
+    cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
+    cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
+    cout << "\nTotal idle distance: " << sStat->dNone << endl;
 }
