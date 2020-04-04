@@ -70,11 +70,9 @@ struct solStats{
     vector< vector<int> > solOrder;
 	vector< vector<int> > solInNode;
 	vector< vector< pair<int, int> > > solvec;
+
+	bool feasible;
 };
-
-
-
-
 
 void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem, vector< pair<int,int> > &arcNN);
 
@@ -98,5 +96,8 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
 void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat);
 
 void printStats(instanceStat *inst, bundleStat *bStat, solStats *sStat);
+
+void increaseK (instanceStat *inst, vector<nodeStat> &nodeVec, double ***mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat, double **auxdist);
+
 
 #endif

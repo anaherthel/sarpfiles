@@ -19,7 +19,8 @@ using namespace std;
 int main (int argc, char *argv[]) {
 
 	double **distMatrix;
-	
+	double **auxdist;
+
 	nodeStat node;
 	instanceStat inst;
 	probStat problem;
@@ -49,9 +50,9 @@ int main (int argc, char *argv[]) {
 
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, nodeProfit);
 	
-	for (int i = 0; i < inst.n; i++){
-		cout << "delta " << i << ": " << nodeVec[i].delta << endl;
-	}
+	// for (int i = 0; i < inst.n; i++){
+	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
+	// }
 	
 	
 	for (int i = 0; i < inst.n; i++){
@@ -103,7 +104,7 @@ int main (int argc, char *argv[]) {
 		}
 		cout << endl;
 	}
-	// getchar();
+	getchar();
 
 	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, &problem);
 
@@ -186,6 +187,7 @@ int main (int argc, char *argv[]) {
 			bStat.bArcRow.push_back(false);
 		}
 		bStat.bArcs.push_back(bStat.bArcRow);
+		bStat.bArcRow.clear();
 	}
 	
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
@@ -382,9 +384,26 @@ int main (int argc, char *argv[]) {
 	// 	}
 	// 	cout << endl;
 	// }
-
+	
 	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat);
 
+	while(!sStat.feasible && inst.K < inst.V - 1){
+		auxdist = distMatrix;
+		increaseK (&inst, nodeVec, &distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat, auxdist);
+
+		// cout << "New Distance Matrix: " << endl;
+
+		// for (int i = 0; i < inst.V + inst.dummy; i++){
+		// 	for (int j = 0; j < inst.V + inst.dummy; j++){
+		// 		cout << setw(5) << distMatrix[i][j] << " ";
+		// 	}
+		// 	cout << endl;
+		// }
+		// getchar();
+
+		mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat);
+	}
+	
 	nodeSolution (&inst, distMatrix, &bStat, nodeVec, &sStat);
 
 	solStatIni(&sStat);

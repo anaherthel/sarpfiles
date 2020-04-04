@@ -806,7 +806,6 @@ void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<
                         sStat->dNone += dij;
                         distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
                         sStat->dPass += distPass;
-
                     }
                 }
 
@@ -875,7 +874,8 @@ void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<
 
                         sStat->dNone += dij;
                         distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
-                        sStat->dBoth += distPass;                         
+                        sStat->dPass += distPass;
+                                               
                     }   
                 }
                 else if(nextNode < inst->n + inst->m){
@@ -920,18 +920,161 @@ void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<
                     sStat->dNone += dij;
                 }
             }
+            // cout << "\nTotal passenger time: " << sStat->tPass << endl;
+            // cout << "\nTotal parcel time: " << sStat->tParcel << endl;
+            // cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
+            // cout << "\nTotal idle time: " << sStat->tNone << endl;
+
+            // cout << "\nTotal passenger distance: " << sStat->dPass << endl;
+            // cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
+            // cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
+            // cout << "\nTotal idle distance: " << sStat->dNone << endl;
+            // getchar();
+
         }
     }
 }
 
 void printStats(instanceStat *inst, bundleStat *bStat, solStats *sStat){
-    cout << "\nTotal passenger time: " << sStat->tPass << endl;
-    cout << "\nTotal parcel time: " << sStat->tParcel << endl;
-    cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
-    cout << "\nTotal idle time: " << sStat->tNone << endl;
+    // for (int i = 0; i < inst->K; i++){
 
-    cout << "\nTotal passenger distance: " << sStat->dPass << endl;
-    cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
-    cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
-    cout << "\nTotal idle distance: " << sStat->dNone << endl;
+        cout << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone << endl;
+        cout << "\nTotal passenger time: " << sStat->tPass << endl;
+        cout << "\nTotal parcel time: " << sStat->tParcel << endl;
+        cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
+        cout << "\nTotal idle time: " << sStat->tNone << endl;
+
+        cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
+        cout << "\nTotal passenger distance: " << sStat->dPass << endl;
+        cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
+        cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
+        cout << "\nTotal idle distance: " << sStat->dNone << endl;
+    // }
+}
+
+void increaseK (instanceStat *inst, vector<nodeStat> &nodeVec, double ***mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat, double **auxdist){
+
+    inst->K++;
+    vector< vector<double> > distVec;
+    vector<double> distRow;
+    vector<double> dummyRow;
+
+    for (int i = 0; i < inst->V; i++){
+        for (int j = 0; j < inst->V; j++){
+
+            distRow.push_back(auxdist[i][j]);
+            if (j == inst->V - 1){
+                distRow.push_back(auxdist[i][j]);
+                distRow.push_back(0);
+            }
+        }
+        distVec.push_back(distRow);
+        if (i == inst->V - 1){
+            distVec.push_back(distRow);
+        }
+        distRow.clear();
+    }
+
+    for (int i = 0; i < distVec[0].size(); i++){
+        distRow.push_back(0);
+    }
+    distVec.push_back(distRow);
+
+    inst->V = inst->n + 2*inst->m + inst->K;
+
+    double **dist = new double*[inst->V + inst->dummy];
+    for (int i = 0; i < inst->V + inst->dummy; i++){
+        dist[i] = new double [inst->V + inst->dummy];
+    }
+
+    for (int i = 0; i < distVec.size(); i++){
+        for (int j = 0; j < distVec[i].size(); j++){
+            dist[i][j] = distVec[i][j];
+        }
+    }
+
+    *mdist = dist;
+    //update Node Vector
+    nodeStat newNode = nodeVec[nodeVec.size() - 2];
+    nodeVec.insert(nodeVec.begin() + nodeVec.size() - 1, newNode);
+    
+    //Update Bundle Vector
+    vector<int> auxVec;
+    auxVec.push_back(nodeVec.size() - 2);
+    bStat->bundleVec.insert(bStat->bundleVec.begin() + bStat->bundleVec.size() - 1, auxVec);
+    bStat->bundleVec.back()[0]++;
+    auxVec.clear();
+
+    //Update Bundle Profit Vector
+    double newProfit = bStat->bundleProfVec[bStat->bundleProfVec.size() - 2];
+    bStat->bundleProfVec.insert(bStat->bundleProfVec.begin() + bStat->bundleProfVec.size() - 1, newProfit);
+
+    //Update Cluster Vector
+
+    auxVec.push_back(bStat->bundleVec.size() - 2);
+    
+    clusterVec.pop_back();
+
+    clusterVec.push_back(auxVec);
+    auxVec.clear();
+    
+    auxVec.push_back(bStat->bundleVec.size() - 1);
+
+    clusterVec.push_back(auxVec);
+    auxVec.clear();
+
+    //Update Bundle Arc Vector
+
+    cout<< "\n(Before) Feasible arcs between bundles:" << endl;
+    for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
+        if (i == 0){
+         cout << setw(3) << " ";
+        }
+        cout << setw(3) << std::right << i;
+    }
+    cout << endl;
+    for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
+        cout << setw(3) << std::right << i;
+        for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
+            cout << setw(3) << std:: right << bStat->bArcs[i][j];
+        }
+        cout << endl;
+    }
+    getchar();
+
+    for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
+        bStat->bArcs[i].insert(bStat->bArcs[i].begin() + bStat->bArcs[i].size() - 1, false);
+    }
+
+    cout<< "\n(Before2) Feasible arcs between bundles:" << endl;
+    for (int i = 0; i < bStat->bundleVec.size(); i++){
+        if (i == 0){
+         cout << setw(3) << " ";
+        }
+        cout << setw(3) << std::right << i;
+    }
+    cout << endl;
+    for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
+        cout << setw(3) << std::right << i;
+        for (int j = 0; j < bStat->bundleVec.size(); j++){
+            cout << setw(3) << std:: right << bStat->bArcs[i][j];
+        }
+        cout << endl;
+    }
+    getchar();
+
+    for (int j = 0; j < bStat->bundleVec.size(); j++){
+        bStat->bArcRow.push_back(bStat->bArcs[bStat->bundleVec.size() - 2][j]);
+    }
+    // bStat->bArcs.insert(bStat->bArcs[i].begin() + bStat->bArcs[i].size() - 1, bStat->bArcRow);
+
+    cout << "New Row: " << bStat->bArcRow.size() << endl;
+    for (int i = 0; i < bStat->bArcRow.size(); i++){
+        cout << bStat->bArcRow[i] << " ";
+    }
+    cout << endl;
+    getchar();
+    
+    bStat->bArcRow.clear();
+
 }

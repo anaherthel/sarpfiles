@@ -58,7 +58,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> n;
         in >> m;
         in >> T;
-
+        inst->vmed = 19.3;
+        service = service/60;
+        inst->service = service;
         V = n + 2*m + K;
         // inst->dummy = K;
         inst->dummy = 1;
@@ -92,14 +94,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double singleProfit;
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
-               delta[i] = (2 * (service/60)) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed;
-               profit[i] = inst->gamma2 + inst->mu2*floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5) - floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5);
+                cout << "\nDist " << i << " :" << floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5); 
+                delta[i] = (2 * service) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed;
+                profit[i] = inst->gamma2 + inst->mu2*floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5) - floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5);
                // cout << "delta " << i << ": " << delta[i] << endl;
                // cout << "profit " << i << ": " << profit[i] << endl;
             }
             else if (i < V - K){ 
-               delta[i] = service/60;
-               profit[i] = 0;
+                delta[i] = service;
+                profit[i] = 0;
             }
             else if (i >= V - K){
                 delta[i] = 0;
@@ -201,10 +204,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         n = instanceData[1]/2;
         m = instanceData[2]/2;
         service = 5;
+        service = service/60;
         V = n + 2*m + K;
         originalV = 2*n + 2*m + 2*K;
 
+        inst->vmed = 19.3;
         inst->dummy = 1;
+
 
         double *delta = new double[V + inst->dummy];
         double *slatitude = new double [V + inst->dummy];
@@ -285,7 +291,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
-               delta[i] = (2 * (service/60)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
+               delta[i] = (2 * (service)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
                profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
 
                // cout << "delta " << i << ": " << delta[i] << endl;
@@ -293,7 +299,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
             }
             else if (i < V - K){ 
-               delta[i] = service/60;
+               delta[i] = service;
                profit[i] = 0;
             }
             else if (i >= V - K){
@@ -370,10 +376,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> n;
         in >> m;
 
+        service = service/60;
         V = n + 2*m + K;
 
         originalV = 2*n + 2*m + 2; 
-
+        inst->vmed = 19.3;
         inst->dummy = 1;
 
         double *delta = new double[V + inst->dummy];
@@ -459,11 +466,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double singleProfit;
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
-                delta[i] = (2 * (service/60)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
+                delta[i] = (2 * (service)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
                 profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
             }
             else if (i < V - K){ 
-               delta[i] = service/60;
+               delta[i] = service;
                profit[i] = 0;
             }
             else if (i >= V - K){
@@ -543,6 +550,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         int instV;
         dummy = 1;
         inst->dummy = dummy;
+        inst->vmed = 19.3;
 
         int seed = 1234;
         srand(seed);
@@ -690,7 +698,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for(int i = 0; i < V + inst->dummy; i++){
             if (i < n){
                 cout << i << ": " << (tempData[2*i][2*i+1]);
-                delta[i] = 2 * service + ((tempData[2*i][2*i+1])/1000)/inst->vmed;
+                delta[i] = 2 * service + (((tempData[2*i][2*i+1])/1000)/inst->vmed);
                 // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
                 profit[i] = inst->gamma2 + inst->mu2*(tempData[2*i][2*i+1]/1000) - (tempData[2*i][2*i+1]/1000);    
             }
