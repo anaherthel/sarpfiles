@@ -96,15 +96,15 @@ int main (int argc, char *argv[]) {
 	vector< vector< pair<int,int> > > cArcPlus;
 	vector< vector< pair<int,int> > > cArcMinus;
 
-	cout << "Distance Matrix: " << endl;
+	// cout << "Distance Matrix: " << endl;
 
-	for (int i = 0; i < inst.V + inst.dummy; i++){
-		for (int j = 0; j < inst.V + inst.dummy; j++){
-			cout << setw(5) << distMatrix[i][j] << " ";
-		}
-		cout << endl;
-	}
-	getchar();
+	// for (int i = 0; i < inst.V + inst.dummy; i++){
+	// 	for (int j = 0; j < inst.V + inst.dummy; j++){
+	// 		cout << setw(5) << distMatrix[i][j] << " ";
+	// 	}
+	// 	cout << endl;
+	// }
+	// getchar();
 
 	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, &problem);
 
@@ -387,23 +387,23 @@ int main (int argc, char *argv[]) {
 	
 	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat);
 
-	while(!sStat.feasible && inst.K < inst.V - 1){
-		auxdist = distMatrix;
-		increaseK (&inst, nodeVec, &distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat, auxdist);
+	// while(!sStat.feasible && inst.K < inst.n){
+	// 	auxdist = distMatrix;
+	// 	increaseK (&inst, nodeVec, &distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat, auxdist);
 
-		// cout << "New Distance Matrix: " << endl;
+	// 	// cout << "New Distance Matrix: " << endl;
 
-		// for (int i = 0; i < inst.V + inst.dummy; i++){
-		// 	for (int j = 0; j < inst.V + inst.dummy; j++){
-		// 		cout << setw(5) << distMatrix[i][j] << " ";
-		// 	}
-		// 	cout << endl;
-		// }
-		// getchar();
+	// 	// for (int i = 0; i < inst.V + inst.dummy; i++){
+	// 	// 	for (int j = 0; j < inst.V + inst.dummy; j++){
+	// 	// 		cout << setw(5) << distMatrix[i][j] << " ";
+	// 	// 	}
+	// 	// 	cout << endl;
+	// 	// }
+	// 	// getchar();
 
-		mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat);
-	}
-	
+	// 	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat);
+	// }
+
 	nodeSolution (&inst, distMatrix, &bStat, nodeVec, &sStat);
 
 	solStatIni(&sStat);

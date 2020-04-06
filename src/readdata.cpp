@@ -544,6 +544,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     else if (instType == "grubhub"){
 
         K = 1;
+        bool increaseK = true;
         service = 5; //for some reason, service = 5/60 did not work
         service = service/60;
         int refpoint = K + 1;
@@ -577,7 +578,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         m /= 2; 
 
         V = n + 2*m + K;
+        // cout << "V: " << V << endl;
         // cout << "\n" << n << " " << m << endl;
+        // getchar();
 
         while ( file.compare("EDGE_WEIGHT_FORMAT") != 0 && file.compare("EDGE_WEIGHT_FORMAT") != 0 ){
 
@@ -586,16 +589,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         in >> file;
         in >> ewf;
-
-        double *delta = new double[V + inst->dummy];
-        double *profit = new double[V + inst->dummy];
-        double *e = new double[V + inst->dummy];
-        double *l = new double[V + inst->dummy];
-
-        double **dist = new double*[V + inst->dummy];
-        for (int i= 0; i < V + inst->dummy; i++){
-            dist[i] = new double [V + inst->dummy];
-        }
 
         while (file.compare("EDGE_WEIGHT_SECTION") != 0){
             in >> file;
@@ -618,7 +611,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         if (ewf == "LOWER_DIAG_ROW"){
-            for (int i = 0; i < instV; i++) {
+           for (int i = 0; i < instV; i++) {
                 for (int j = 0; j < i + 1; j++) {
                     in >> tempData[i][j];
                     if (i > 0){
@@ -655,18 +648,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }   
         }
 
-        // cout << "\nBefore - Distance Matrix:" << endl;
-
-        // for (int i = 0; i < instV; i++) {
-        //     for (int j = 0; j < instV; j++) {
-        //         cout << setw(5) << tempData[i][j] << " ";
-        //     }
-        //     cout << endl;
-        // }
-        // cout << endl;
-
-        // getchar();
-
         //collapsing passenger nodes
 
         for (int i = 0; i < V + inst->dummy; i++){
@@ -694,6 +675,39 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 }
             }
         }
+
+        if (increaseK == true){
+            K = 2;
+
+            vector<double> distRow;
+            vector<double> dummyRow;
+
+            double valueDist;
+            
+            for (int i = 0; i < V + inst->dummy; i++){
+                valueDist = realData[i][realData[i].size() - 2];
+                realData[i].insert(realData[i].begin() + realData[i].size() - 1, valueDist);
+            }
+
+            for (int i = 0; i < V + inst->dummy; i++){
+                distRow.push_back(realData[V - 1][i]);
+                dummyRow.push_back(realData[V][i]);
+            }
+            // distRow.push_back(0);
+            dummyRow.push_back(0);
+
+            realData.pop_back();
+
+            realData.push_back(distRow);
+            realData.push_back(dummyRow);
+            V++;
+        }
+
+        double *delta = new double[V + inst->dummy];
+        double *profit = new double[V + inst->dummy];
+        double *e = new double[V + inst->dummy];
+        double *l = new double[V + inst->dummy];
+
         //calculate deltas
         for(int i = 0; i < V + inst->dummy; i++){
             if (i < n){
@@ -741,6 +755,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->delta = delta[i];
             node->profit = profit[i];
             nodeVec.push_back(*node);
+        }
+
+     
+        double **dist = new double*[V + inst->dummy];
+        for (int i= 0; i < V + inst->dummy; i++){
+            dist[i] = new double [V + inst->dummy];
         }
 
         for(int i = 0; i < V + inst->dummy; i++){

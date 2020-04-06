@@ -190,42 +190,36 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 
 	bSARP.solve();
 	cout << "\nSol status: " << bSARP.getStatus() << endl;
-	sStat->feasible = bSARP.isPrimalFeasible();
+	// sStat->feasible = bSARP.isPrimalFeasible();
 
-	if (sStat->feasible){
- 
- 		cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
+	cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
 
-		sStat->solprofit = bSARP.getObjValue();
+	sStat->solprofit = bSARP.getObjValue();
 
-		for (int k = 0; k < inst->K; k++){
-	 		sStat->solvec.push_back(auxPairVec);
-		}
+	for (int k = 0; k < inst->K; k++){
+ 		sStat->solvec.push_back(auxPairVec);
+	}
 
-		for (int i = 0; i < bStat->bundleVec.size(); i++){
-			for(int j = 0; j < bStat->bundleVec.size(); ++j){
-				for (int k = 0; k < inst->K; k++){
-					if (bStat->bArcs[i][j] == true){
-						if (bSARP.getValue(x[i][j][k]) == 1){
-							auxPair.first = i;
-							auxPair.second = j;
-							sStat->solvec[k].push_back(auxPair);
-							// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
-						}
+	for (int i = 0; i < bStat->bundleVec.size(); i++){
+		for(int j = 0; j < bStat->bundleVec.size(); ++j){
+			for (int k = 0; k < inst->K; k++){
+				if (bStat->bArcs[i][j] == true){
+					if (bSARP.getValue(x[i][j][k]) == 1){
+						auxPair.first = i;
+						auxPair.second = j;
+						sStat->solvec[k].push_back(auxPair);
+						// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
 					}
 				}
-			}	
-		}
-		
-		for (int k = 0; k < inst->K; k++){
-			for (int i = 0; i < sStat->solvec[k].size(); i++){
-				cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
 			}
 		}	
 	}
+	
+	for (int k = 0; k < inst->K; k++){
+		for (int i = 0; i < sStat->solvec[k].size(); i++){
+			cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
+		}
+	}	
 
-	else{
-		return;
-	}
 	env.end();
 }

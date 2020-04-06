@@ -715,7 +715,8 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
             auxPair.second = sStat->solvec[k][i].second;            
             auxVec.push_back(auxPair);
         }
-        
+        cout<< "here1";
+        getchar();
         while(!auxVec.empty()){
             // if (sStat->solOrder[k].empty()){
             if (orderVec.empty()){
@@ -741,7 +742,11 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                     }
                 }
             }
+        cout<< "auxvec size: " << auxVec.size();
+        getchar();
         }
+        cout<< "here3";
+        getchar();
         sStat->solOrder.push_back(orderVec);
         orderVec.clear();
     }
@@ -755,7 +760,9 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
         }
     }
 
+
     cout << "\nSolution by nodes: " << endl;
+
     for (int k = 0; k < inst->K; k++){
         cout << "Vehicle " << k << ": ";
         for (int i = 0; i < sStat->solInNode[k].size(); i++){
@@ -952,129 +959,149 @@ void printStats(instanceStat *inst, bundleStat *bStat, solStats *sStat){
     // }
 }
 
-void increaseK (instanceStat *inst, vector<nodeStat> &nodeVec, double ***mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat, double **auxdist){
+// void increaseK (instanceStat *inst, vector<nodeStat> &nodeVec, double ***mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat, double **auxdist){
 
-    inst->K++;
-    vector< vector<double> > distVec;
-    vector<double> distRow;
-    vector<double> dummyRow;
+//     inst->K++;
+//     vector< vector<double> > distVec;
+//     vector<double> distRow;
+//     vector<double> dummyRow;
 
-    for (int i = 0; i < inst->V; i++){
-        for (int j = 0; j < inst->V; j++){
+//     for (int i = 0; i < inst->V; i++){
+//         for (int j = 0; j < inst->V; j++){
 
-            distRow.push_back(auxdist[i][j]);
-            if (j == inst->V - 1){
-                distRow.push_back(auxdist[i][j]);
-                distRow.push_back(0);
-            }
-        }
-        distVec.push_back(distRow);
-        if (i == inst->V - 1){
-            distVec.push_back(distRow);
-        }
-        distRow.clear();
-    }
+//             distRow.push_back(auxdist[i][j]);
+//             if (j == inst->V - 1){
+//                 distRow.push_back(auxdist[i][j]);
+//                 distRow.push_back(0);
+//             }
+//         }
+//         distVec.push_back(distRow);
+//         if (i == inst->V - 1){
+//             distVec.push_back(distRow);
+//         }
+//         distRow.clear();
+//     }
 
-    for (int i = 0; i < distVec[0].size(); i++){
-        distRow.push_back(0);
-    }
-    distVec.push_back(distRow);
+//     for (int i = 0; i < distVec[0].size(); i++){
+//         distRow.push_back(0);
+//     }
+//     distVec.push_back(distRow);
 
-    inst->V = inst->n + 2*inst->m + inst->K;
+//     inst->V = inst->n + 2*inst->m + inst->K;
 
-    double **dist = new double*[inst->V + inst->dummy];
-    for (int i = 0; i < inst->V + inst->dummy; i++){
-        dist[i] = new double [inst->V + inst->dummy];
-    }
+//     double **dist = new double*[inst->V + inst->dummy];
+//     for (int i = 0; i < inst->V + inst->dummy; i++){
+//         dist[i] = new double [inst->V + inst->dummy];
+//     }
 
-    for (int i = 0; i < distVec.size(); i++){
-        for (int j = 0; j < distVec[i].size(); j++){
-            dist[i][j] = distVec[i][j];
-        }
-    }
+//     for (int i = 0; i < distVec.size(); i++){
+//         for (int j = 0; j < distVec[i].size(); j++){
+//             dist[i][j] = distVec[i][j];
+//         }
+//     }
 
-    *mdist = dist;
-    //update Node Vector
-    nodeStat newNode = nodeVec[nodeVec.size() - 2];
-    nodeVec.insert(nodeVec.begin() + nodeVec.size() - 1, newNode);
+//     *mdist = dist;
+//     //update Node Vector
+//     nodeStat newNode = nodeVec[nodeVec.size() - 2];
+//     nodeVec.insert(nodeVec.begin() + nodeVec.size() - 1, newNode);
     
-    //Update Bundle Vector
-    vector<int> auxVec;
-    auxVec.push_back(nodeVec.size() - 2);
-    bStat->bundleVec.insert(bStat->bundleVec.begin() + bStat->bundleVec.size() - 1, auxVec);
-    bStat->bundleVec.back()[0]++;
-    auxVec.clear();
+//     //Update Bundle Vector
+//     vector<int> auxVec;
+//     auxVec.push_back(nodeVec.size() - 2);
+//     bStat->bundleVec.insert(bStat->bundleVec.begin() + bStat->bundleVec.size() - 1, auxVec);
+//     bStat->bundleVec.back()[0]++;
+//     auxVec.clear();
 
-    //Update Bundle Profit Vector
-    double newProfit = bStat->bundleProfVec[bStat->bundleProfVec.size() - 2];
-    bStat->bundleProfVec.insert(bStat->bundleProfVec.begin() + bStat->bundleProfVec.size() - 1, newProfit);
+//     //Update Bundle Profit Vector
+//     double newProfit = bStat->bundleProfVec[bStat->bundleProfVec.size() - 2];
+//     bStat->bundleProfVec.insert(bStat->bundleProfVec.begin() + bStat->bundleProfVec.size() - 1, newProfit);
 
-    //Update Cluster Vector
+//     //Update Cluster Vector
 
-    auxVec.push_back(bStat->bundleVec.size() - 2);
+//     auxVec.push_back(bStat->bundleVec.size() - 2);
     
-    clusterVec.pop_back();
+//     clusterVec.pop_back();
 
-    clusterVec.push_back(auxVec);
-    auxVec.clear();
+//     clusterVec.push_back(auxVec);
+//     auxVec.clear();
     
-    auxVec.push_back(bStat->bundleVec.size() - 1);
+//     auxVec.push_back(bStat->bundleVec.size() - 1);
 
-    clusterVec.push_back(auxVec);
-    auxVec.clear();
+//     clusterVec.push_back(auxVec);
+//     auxVec.clear();
 
-    //Update Bundle Arc Vector
+//     //Update Bundle Arc Vector
+//     for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
+//         cout << setw(3) << std::right << i;
+//         for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
+//             cout << setw(3) << std:: right << bStat->bArcs[i][j];
+//         }
+//         cout << endl;
+//     }
 
-    cout<< "\n(Before) Feasible arcs between bundles:" << endl;
-    for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
-        if (i == 0){
-         cout << setw(3) << " ";
-        }
-        cout << setw(3) << std::right << i;
-    }
-    cout << endl;
-    for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
-        cout << setw(3) << std::right << i;
-        for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
-            cout << setw(3) << std:: right << bStat->bArcs[i][j];
-        }
-        cout << endl;
-    }
-    getchar();
+//     for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
+//         bStat->bArcs[i].insert(bStat->bArcs[i].begin() + bStat->bArcs[i].size() - 1, false);
+//     }
 
-    for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
-        bStat->bArcs[i].insert(bStat->bArcs[i].begin() + bStat->bArcs[i].size() - 1, false);
-    }
+//     for (int j = 0; j < bStat->bundleVec.size(); j++){
+//         bStat->bArcRow.push_back(bStat->bArcs[bStat->bundleVec.size() - 3][j]);
+//     }
 
-    cout<< "\n(Before2) Feasible arcs between bundles:" << endl;
-    for (int i = 0; i < bStat->bundleVec.size(); i++){
-        if (i == 0){
-         cout << setw(3) << " ";
-        }
-        cout << setw(3) << std::right << i;
-    }
-    cout << endl;
-    for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
-        cout << setw(3) << std::right << i;
-        for (int j = 0; j < bStat->bundleVec.size(); j++){
-            cout << setw(3) << std:: right << bStat->bArcs[i][j];
-        }
-        cout << endl;
-    }
-    getchar();
+//     bStat->bArcRow.clear();
 
-    for (int j = 0; j < bStat->bundleVec.size(); j++){
-        bStat->bArcRow.push_back(bStat->bArcs[bStat->bundleVec.size() - 2][j]);
-    }
-    // bStat->bArcs.insert(bStat->bArcs[i].begin() + bStat->bArcs[i].size() - 1, bStat->bArcRow);
 
-    cout << "New Row: " << bStat->bArcRow.size() << endl;
-    for (int i = 0; i < bStat->bArcRow.size(); i++){
-        cout << bStat->bArcRow[i] << " ";
-    }
-    cout << endl;
-    getchar();
+//     //Update Bundle Plus and Minus Vector
+
+//     // pair<int,int> newArc;
+//     // vector< pair<int, int> > vecNewArcPlus;
+//     // vector< pair<int, int> > vecNewArcMinus;
+
+//     // cout << "Bundle Arcs Plus (before): " << endl;
+
+//     // for (int i = 0; i < bStat->bArcPlus.size(); i++){
+//     //     cout << i << ": ";
+//     //     for (int j = 0; j < bStat->bArcPlus[i].size(); j++){
+//     //         cout << "(" << bStat->bArcPlus[i][j].first << ", " << bStat->bArcPlus[i][j].second << "), ";
+//     //     }
+//     //     cout << endl;
+//     // }
+//     // getchar();
+
+//     // for (int i = 0; i < bStat->bArcs[bStat->bundleVec.size() - 2].size(); i++){
+//     //     if(bStat->bArcs[bStat->bundleVec.size() - 2][i] == true){
+//     //         newArc.first = bStat->bArcPlus[bStat->bundleVec.size() - 2][i].first;
+//     //         newArc.second = bStat->bArcPlus[bStat->bundleVec.size() - 2][i].second;
+//     //         vecNewArcPlus.push_back(newArc);
+//     //     }
+//     //     // newArc.first = bArcMinus[bStat->bundleVec.size() - 3][i].first;
+//     //     // newArc.second = bArcMinus[bStat->bundleVec.size() - 3][i].second;
+//     //     // vecNewArcMinus.push_back(newArc);
+//     // }
+
+//     // bStat->bArcPlus.insert(bStat->bArcPlus.begin() + bStat->bArcPlus.size() - 1, vecNewArcPlus);
+
+//     // // bStat->bArcMinus.insert(bStat->bArcMinus.begin() + bStat->bArcMinus.size() - 1, vecNewArcMinus);
     
-    bStat->bArcRow.clear();
+//     // cout << "Bundle Arcs Plus (after): " << endl;
 
-}
+//     // for (int i = 0; i < bStat->bArcPlus.size(); i++){
+//     //     cout << i << ": ";
+//     //     for (int j = 0; j < bStat->bArcPlus[i].size(); j++){
+//     //         cout << "(" << bStat->bArcPlus[i][j].first << ", " << bStat->bArcPlus[i][j].second << "), ";
+//     //     }
+//     //     cout << endl;
+//     // }
+//     // getchar();
+
+//     bStat->bArcPlus.clear();
+//     bStat->bArcMinus.clear();
+
+
+
+//     for (int i = 0; i < bStat->bArcs.size(); i++){
+//         for (int j = 0; j < bStat->bArcs[i].size(); j++){
+//             if (bStat->bArcs[i][j] == true);
+
+//         }
+//     }
+// }
