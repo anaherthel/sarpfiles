@@ -2156,3 +2156,122 @@ x(6,9,0)                      1.000000
 x(9,2,0)                      1.000000
 x(12,6,0)                     1.000000
 All other variables in the range 1-61 are 0.
+
+Log started (V12.4.0.0) Tue Apr  7 17:49:44 2020
+
+
+Problem 'bSARP.lp' read.
+Read time =    0.09 sec.
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1094 columns, and 4748 nonzeros.
+Reduced MIP has 1094 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.12 sec.
+Probing time =    0.02 sec.
+Clique table members: 7187.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.07 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       80.8473    22                     80.8473      175         
+*     0     0      integral     0       80.8420       Cuts: 8      178    0.00%
+      0     0        cutoff             80.8420       80.8420      178    0.00%
+Elapsed real time =   0.40 sec. (tree size =  0.00 MB, solutions = 1)
+
+Clique cuts applied:  1
+Zero-half cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.23
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.23 sec.
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  8.0842000000e+01
+Solution time =    0.41 sec.  Iterations = 178  Nodes = 0
+Deterministic time = 34.29 ticks  (83.50 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(0,4,1)                      1.000000
+x(4,16,1)                     1.000000
+x(9,14,0)                     1.000000
+x(14,32,0)                    1.000000
+x(16,38,1)                    1.000000
+x(20,0,1)                     1.000000
+x(27,28,0)                    1.000000
+x(28,38,0)                    1.000000
+x(32,27,0)                    1.000000
+x(36,9,0)                     1.000000
+x(37,20,1)                    1.000000
+All other variables in the range 1-1097 are 0.
+
+Log started (V12.4.0.0) Tue Apr  7 22:35:55 2020
+
+
+Problem 'bSARP.lp' read.
+Read time =    0.02 sec.
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1090 columns, and 4730 nonzeros.
+Reduced MIP has 1090 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.06 sec.
+Probing time =    0.02 sec.
+Clique table members: 7189.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       88.8470       88.8470       96    0.00%
+Elapsed real time =   0.11 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.05
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.05 sec.
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  8.8847000000e+01
+Solution time =    0.12 sec.  Iterations = 96  Nodes = 0
+Deterministic time = 15.70 ticks  (132.24 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(0,32,0)                     1.000000
+x(4,31,1)                     1.000000
+x(10,12,0)                    1.000000
+x(12,0,0)                     1.000000
+x(16,38,0)                    1.000000
+x(21,24,1)                    1.000000
+x(24,4,1)                     1.000000
+x(31,38,1)                    1.000000
+x(32,16,0)                    1.000000
+x(36,10,0)                    1.000000
+x(37,21,1)                    1.000000
+All other variables in the range 1-1093 are 0.

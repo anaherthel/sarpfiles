@@ -204,11 +204,12 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 		for(int j = 0; j < bStat->bundleVec.size(); ++j){
 			for (int k = 0; k < inst->K; k++){
 				if (bStat->bArcs[i][j] == true){
-					if (bSARP.getValue(x[i][j][k]) == 1){
+					if (bSARP.getValue(x[i][j][k]) > 0.5){
 						auxPair.first = i;
 						auxPair.second = j;
 						sStat->solvec[k].push_back(auxPair);
 						// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
+						// getchar();
 					}
 				}
 			}

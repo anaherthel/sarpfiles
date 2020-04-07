@@ -715,8 +715,8 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
             auxPair.second = sStat->solvec[k][i].second;            
             auxVec.push_back(auxPair);
         }
-        cout<< "here1";
-        getchar();
+        // cout<< "here1";
+        // getchar();
         while(!auxVec.empty()){
             // if (sStat->solOrder[k].empty()){
             if (orderVec.empty()){
@@ -742,11 +742,11 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                     }
                 }
             }
-        cout<< "auxvec size: " << auxVec.size();
-        getchar();
+        // cout<< "auxvec size: " << auxVec.size();
+        // getchar();
         }
-        cout<< "here3";
-        getchar();
+        // cout<< "here3";
+        // getchar();
         sStat->solOrder.push_back(orderVec);
         orderVec.clear();
     }

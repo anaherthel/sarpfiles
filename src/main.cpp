@@ -96,30 +96,30 @@ int main (int argc, char *argv[]) {
 	vector< vector< pair<int,int> > > cArcPlus;
 	vector< vector< pair<int,int> > > cArcMinus;
 
-	// cout << "Distance Matrix: " << endl;
+	cout << "Distance Matrix: " << endl;
 
-	// for (int i = 0; i < inst.V + inst.dummy; i++){
-	// 	for (int j = 0; j < inst.V + inst.dummy; j++){
-	// 		cout << setw(5) << distMatrix[i][j] << " ";
-	// 	}
-	// 	cout << endl;
-	// }
-	// getchar();
+	for (int i = 0; i < inst.V + inst.dummy; i++){
+		for (int j = 0; j < inst.V + inst.dummy; j++){
+			cout << setw(5) << distMatrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+	getchar();
 
 	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, &problem);
 
-	cout << "\nBundle Vector: [";
-	for (int i = 0; i < bStat.bundleVec.size(); i++){
-		cout << "[";
-		for (int j = 0; j < bStat.bundleVec[i].size(); j++){
-			cout << setw(3) << std:: right << bStat.bundleVec[i][j];
-			if (j < bStat.bundleVec[i].size() - 1){
-                cout << ", ";
-            }
-		}
-		cout << "],";
-	}
-	cout << "]" << endl;
+	// cout << "\nBundle Vector: [";
+	// for (int i = 0; i < bStat.bundleVec.size(); i++){
+	// 	cout << "[";
+	// 	for (int j = 0; j < bStat.bundleVec[i].size(); j++){
+	// 		cout << setw(3) << std:: right << bStat.bundleVec[i][j];
+	// 		if (j < bStat.bundleVec[i].size() - 1){
+ //                cout << ", ";
+ //            }
+	// 	}
+	// 	cout << "],";
+	// }
+	// cout << "]" << endl;
 
 	// getchar();
 
@@ -135,23 +135,23 @@ int main (int argc, char *argv[]) {
 		}
 	}
 
-	for (int i = 0; i < clusterVec.size(); i++){
-		cout << "\nCluster " << i << ": [";
-		for(int k = 0; k < clusterVec[i].size(); k++){
-			cout << "(" << clusterVec[i][k] << ") " << "[";
-			for (int j = 0; j < bStat.bundleVec[clusterVec[i][k]].size(); j++){
-				cout << setw(3) << std:: right << bStat.bundleVec[clusterVec[i][k]][j];
-	            if (j < bStat.bundleVec[clusterVec[i][k]].size() - 1){
-					cout << ",";
-				}
-				else{
-					cout << "] ";
-				}
-			}
+	// for (int i = 0; i < clusterVec.size(); i++){
+	// 	cout << "\nCluster " << i << ": [";
+	// 	for(int k = 0; k < clusterVec[i].size(); k++){
+	// 		cout << "(" << clusterVec[i][k] << ") " << "[";
+	// 		for (int j = 0; j < bStat.bundleVec[clusterVec[i][k]].size(); j++){
+	// 			cout << setw(3) << std:: right << bStat.bundleVec[clusterVec[i][k]][j];
+	//             if (j < bStat.bundleVec[clusterVec[i][k]].size() - 1){
+	// 				cout << ",";
+	// 			}
+	// 			else{
+	// 				cout << "] ";
+	// 			}
+	// 		}
 			
-		}
-		cout << "]" << endl;
-	}
+	// 	}
+	// 	cout << "]" << endl;
+	// }
 
 	// getchar();
 
@@ -266,23 +266,23 @@ int main (int argc, char *argv[]) {
 		cArcPlus.push_back(auxVec);
 	}
 
-	// for (int i = 0; i < clusterVec.size(); i++){
-	// 	cout << "\nCluster " << i << ": [";
-	// 	for(int k = 0; k < clusterVec[i].size(); k++){
-	// 		cout << "(" << clusterVec[i][k] << ") " << "[";
-	// 		for (int j = 0; j < bStat.bundleVec[clusterVec[i][k]].size(); j++){
-	// 			cout << setw(3) << std:: right << bStat.bundleVec[clusterVec[i][k]][j];
-	//             if (j < bStat.bundleVec[clusterVec[i][k]].size() - 1){
-	// 				cout << ",";
-	// 			}
-	// 			else{
-	// 				cout << "] ";
-	// 			}
-	// 		}
+	for (int i = 0; i < clusterVec.size(); i++){
+		cout << "\nCluster " << i << ": [";
+		for(int k = 0; k < clusterVec[i].size(); k++){
+			cout << "(" << clusterVec[i][k] << ") " << "[";
+			for (int j = 0; j < bStat.bundleVec[clusterVec[i][k]].size(); j++){
+				cout << setw(3) << std:: right << bStat.bundleVec[clusterVec[i][k]][j];
+	            if (j < bStat.bundleVec[clusterVec[i][k]].size() - 1){
+					cout << ",";
+				}
+				else{
+					cout << "] ";
+				}
+			}
 			
-	// 	}
-	// 	cout << "]" << endl;
-	// }
+		}
+		cout << "]" << endl;
+	}
 
 	// getchar();
 
@@ -384,7 +384,8 @@ int main (int argc, char *argv[]) {
 	// 	}
 	// 	cout << endl;
 	// }
-	
+	// cout << "K: " << inst.K << endl;
+	// getchar();
 	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat);
 
 	// while(!sStat.feasible && inst.K < inst.n){
