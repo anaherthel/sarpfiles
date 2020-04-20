@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<int> &clusters, vector< vector<int> > &clusterVec, vector< vector<int> > &clsParcel, probStat* problem){
+void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<int> &clusters, vector< vector<int> > &clusterVec, vector< vector<bParcelStruct> > &clsParcel, probStat* problem){
 //*******
 //For 1A:
 //*******    
@@ -15,10 +15,10 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
             clusters.push_back(bStat->bundleVec.size()-1);
             bStat->bundle.clear();
             for (int j = 0; j < clsParcel[i].size(); j++){
-                bStat->bundle.push_back(clsParcel[i][j]);
+                bStat->bundle.push_back(clsParcel[i][j].parcelreq);
                 bStat->bundle.push_back(i);
-                bStat->bundle.push_back(clsParcel[i][j]+inst->m);
-                bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta + nodeVec[clsParcel[i][j]+inst->m].delta);
+                bStat->bundle.push_back(clsParcel[i][j].parcelreq + inst->m);
+                bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j].parcelreq].delta + nodeVec[i].delta + nodeVec[clsParcel[i][j].parcelreq + inst->m].delta);
                 bStat->bundleVec.push_back(bStat->bundle);
                 // clusters.push_back(bStat->bundle);
                 clusters.push_back(bStat->bundleVec.size()-1);
@@ -55,40 +55,86 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
             clusters.push_back(bStat->bundleVec.size()-1);
             bStat->bundle.clear();
             for (int j = 0; j < clsParcel[i].size(); j++){
-                if (clsParcel[i][j] > inst->n + 2*inst->m){
-                    bStat->bundle.push_back(clsParcel[i][j]/inst->m);
-                    bStat->bundle.push_back(i);
-                    bStat->label.push_back(2);
-                    bStat->mainNode.push_back(clsParcel[i][j]/inst->m);
-                    bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta);
-                    bStat->bundleVec.push_back(bStat->bundle);
-                    clusters.push_back(bStat->bundleVec.size()-1);
-                    bStat->activeDL.push_back(bStat->bundleVec.size()-1);
-                    bStat->bundle.clear();
-                } 
+                // if (clsParcel[i][j].parcelreq > inst->n + 2*inst->m){
+                //     if (clsParcel[i][j].poslabel == 'b'){
+                //         bStat->bundle.push_back(clsParcel[i][j].parcelreq);
+                //         bStat->bundle.push_back(i);
+                //         bStat->label.push_back(2);
+                //         bStat->mainNode.push_back(clsParcel[i][j].parcelreq);
+                //         bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j].parcelreq].delta + nodeVec[i].delta);
+                //         bStat->bundleVec.push_back(bStat->bundle);
+                //         clusters.push_back(bStat->bundleVec.size()-1);
+                //         bStat->activeDL.push_back(bStat->bundleVec.size()-1);
+                //         bStat->bundle.clear();
+                //     }
+
+                //     else{
+                //         bStat->bundle.push_back(clsParcel[i][j].parcelreq);
+                //         bStat->bundle.push_back(i);
+                //         bStat->label.push_back(1);
+                //         bStat->mainNode.push_back(clsParcel[i][j]/(pow(inst->m, 2)));
+                //         bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta);
+                //         bStat->bundleVec.push_back(bStat->bundle);
+                //         clusters.push_back(bStat->bundleVec.size()-1);
+                //         bStat->activePU.push_back(bStat->bundleVec.size()-1);
+                //         bStat->bundle.clear();
+                //     }
+                // } 
                 
-                else if (clsParcel[i][j] < inst->n + inst->m){
-                    bStat->bundle.push_back(clsParcel[i][j]);
-                    bStat->bundle.push_back(i);
-                    bStat->label.push_back(1);
-                    bStat->mainNode.push_back(clsParcel[i][j]);
-                    bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta);
-                    bStat->bundleVec.push_back(bStat->bundle);
-                    clusters.push_back(bStat->bundleVec.size()-1);
-                    bStat->activePU.push_back(bStat->bundleVec.size()-1);
-                    bStat->bundle.clear();
+                if (clsParcel[i][j].parcelreq < inst->n + inst->m){
+                    if (clsParcel[i][j].poslabel == 0){
+                        bStat->bundle.push_back(clsParcel[i][j].parcelreq);
+                        bStat->bundle.push_back(i);
+                        bStat->label.push_back(1);
+                        bStat->label2.push_back(0);
+                        bStat->mainNode.push_back(clsParcel[i][j].parcelreq);
+                        bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j].parcelreq].delta + nodeVec[i].delta);
+                        bStat->bundleVec.push_back(bStat->bundle);
+                        clusters.push_back(bStat->bundleVec.size()-1);
+                        bStat->activePU.push_back(bStat->bundleVec.size()-1);
+                        bStat->bundle.clear();   
+                    }
+                    else{
+                        bStat->bundle.push_back(i);
+                        bStat->bundle.push_back(clsParcel[i][j].parcelreq);
+                        bStat->label.push_back(1);
+                        bStat->label2.push_back(1);
+                        bStat->mainNode.push_back(clsParcel[i][j].parcelreq);
+                        bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j].parcelreq].delta + nodeVec[i].delta);
+                        bStat->bundleVec.push_back(bStat->bundle);
+                        clusters.push_back(bStat->bundleVec.size()-1);
+                        bStat->activePU.push_back(bStat->bundleVec.size()-1);
+                        bStat->bundle.clear();    
+                    }
+
                 }
 
                 else{
-                    bStat->bundle.push_back(i);
-                    bStat->bundle.push_back(clsParcel[i][j]);
-                    bStat->mainNode.push_back(clsParcel[i][j]);
-                    bStat->label.push_back(2);
-                    bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta);
-                    bStat->bundleVec.push_back(bStat->bundle);
-                    clusters.push_back(bStat->bundleVec.size()-1);
-                    bStat->activeDL.push_back(bStat->bundleVec.size()-1);
-                    bStat->bundle.clear(); 
+                    if (clsParcel[i][j].poslabel == 0){
+                        bStat->bundle.push_back(clsParcel[i][j].parcelreq);
+                        bStat->bundle.push_back(i);
+                        bStat->mainNode.push_back(clsParcel[i][j].parcelreq);
+                        bStat->label.push_back(2);
+                        bStat->label2.push_back(0);
+                        bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j].parcelreq].delta + nodeVec[i].delta);
+                        bStat->bundleVec.push_back(bStat->bundle);
+                        clusters.push_back(bStat->bundleVec.size()-1);
+                        bStat->activeDL.push_back(bStat->bundleVec.size()-1);
+                        bStat->bundle.clear(); 
+                    }
+                    else{
+                        bStat->bundle.push_back(i);
+                        bStat->bundle.push_back(clsParcel[i][j].parcelreq);
+                        bStat->mainNode.push_back(clsParcel[i][j].parcelreq);
+                        bStat->label.push_back(2);
+                        bStat->label2.push_back(1);
+                        bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j].parcelreq].delta + nodeVec[i].delta);
+                        bStat->bundleVec.push_back(bStat->bundle);
+                        clusters.push_back(bStat->bundleVec.size()-1);
+                        bStat->activeDL.push_back(bStat->bundleVec.size()-1);
+                        bStat->bundle.clear();                         
+                    }
+
                 }               
             }
             clusterVec.push_back(clusters);
@@ -268,7 +314,7 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
 
     else if (problem->scen == "2A"){
         if (p < 0){
-            ref = 3*inst->m;
+            ref = 4*inst->m;
         }
         else{
             ref = p;
@@ -294,11 +340,16 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
                                 //     } 
                                 // }
                                 else if (bStat->label[j] == 2){
-                                    if (bStat->mainNode[j] == bStat->mainNode[i] + inst->m){
-                                        if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
-                                            bStat->bArcs[i][j] = true;
-                                        }
-                                    }  
+                                    if (bStat->label2[i] == 1 && bStat->label2[j] == 0){
+                                        continue;
+                                    }
+                                    else{
+                                        if (bStat->mainNode[j] == bStat->mainNode[i] + inst->m){
+                                            if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
+                                                bStat->bArcs[i][j] = true;
+                                            }
+                                        }                                      
+                                    }
                                 }
                             }
                             else if (bStat->label[i] == 2){
@@ -369,7 +420,7 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
             ref = inst->m;
         }
         else if (problem->scen == "2A"){
-            ref = 3*inst->m;
+            ref = 4*inst->m;
         }
     }
 
@@ -513,7 +564,7 @@ bool compareCosts(const bParcelStruct &a, const bParcelStruct &b){
     return a.cost < b.cost;
 }
 
-void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, int p, vector< vector<int> > &clsParcel, probStat* problem, int Q){
+void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, int p, vector< vector<bParcelStruct> > &clsParcel, probStat* problem, int Q){
 
     if (problem->scen == "1A"){
         vector<bParcelStruct> vecOfDist;
@@ -539,7 +590,8 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
                 sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
 
                 for (int j = 0; j < p; j++){
-                    clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                    // clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                    clsParcel[i].push_back(vecOfDist[j]);
                 }
                 vecOfDist.clear();
             }
@@ -562,7 +614,8 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
                     counter++;
                 }
                 for (int j = 0; j < inst->m; j++){
-                    clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                    // clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                    clsParcel[i].push_back(vecOfDist[j]);
                 }
                 vecOfDist.clear();
             }
@@ -611,22 +664,30 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
             //*********************************************
             for (int i = 0; i < inst->n; i++){
                 for (int j = inst->n; j < inst->n + inst->m; j++){
+                    bps.cost = mdist[i][j];
+                    bps.parcelreq = j;
+                    bps.poslabel = 1;
+                    vecOfDist.push_back(bps);
                     bps.cost = mdist[j][i];
                     bps.parcelreq = j;
+                    bps.poslabel = 0;
                     vecOfDist.push_back(bps);
                 }
                 for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
                     bps.cost = mdist[i][j];
                     bps.parcelreq = j;
+                    bps.poslabel = 1;
                     vecOfDist.push_back(bps);
                     bps.cost = mdist[j][i];
-                    bps.parcelreq = j*inst->m;
+                    bps.parcelreq = j;
+                    bps.poslabel = 0;
                     vecOfDist.push_back(bps);                   
                 }
                 sort(vecOfDist.begin(), vecOfDist.end(), compareCosts);
 
                 for (int j = 0; j < p; j++){
-                    clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                    // clsParcel[i].push_back(vecOfDist[j].parcelreq);
+                    clsParcel[i].push_back(vecOfDist[j]);
                 }
                 vecOfDist.clear();
             }
@@ -639,14 +700,24 @@ void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **
         else{
             for (int i = 0; i < inst->n; i++){
                 for (int j = inst->n; j < inst->n + inst->m; j++){
-                    clsParcel[i].push_back(j);
+                    bps.parcelreq = j;
+                    bps.poslabel = 0;
+                    clsParcel[i].push_back(bps);
+                    // bps.parcelreq = j;
+                    bps.poslabel = 1;
+                    clsParcel[i].push_back(bps);
+                    // clsParcel[i].push_back(j);
+
                 }
                 vecOfDist.clear(); 
 
                 for (int j = inst->n + inst->m; j < inst->n + 2*inst->m; j++){
-                    
-                    clsParcel[i].push_back(j);
-                    clsParcel[i].push_back(j*inst->m);
+                    bps.parcelreq = j;
+                    bps.poslabel = 0;
+                    clsParcel[i].push_back(bps);
+                    bps.poslabel = 1;
+                    clsParcel[i].push_back(bps);
+                    // clsParcel[i].push_back(j);
 
                 }
                 vecOfDist.clear();
@@ -958,150 +1029,3 @@ void printStats(instanceStat *inst, bundleStat *bStat, solStats *sStat){
         cout << "\nTotal idle distance: " << sStat->dNone << endl;
     // }
 }
-
-// void increaseK (instanceStat *inst, vector<nodeStat> &nodeVec, double ***mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat, double **auxdist){
-
-//     inst->K++;
-//     vector< vector<double> > distVec;
-//     vector<double> distRow;
-//     vector<double> dummyRow;
-
-//     for (int i = 0; i < inst->V; i++){
-//         for (int j = 0; j < inst->V; j++){
-
-//             distRow.push_back(auxdist[i][j]);
-//             if (j == inst->V - 1){
-//                 distRow.push_back(auxdist[i][j]);
-//                 distRow.push_back(0);
-//             }
-//         }
-//         distVec.push_back(distRow);
-//         if (i == inst->V - 1){
-//             distVec.push_back(distRow);
-//         }
-//         distRow.clear();
-//     }
-
-//     for (int i = 0; i < distVec[0].size(); i++){
-//         distRow.push_back(0);
-//     }
-//     distVec.push_back(distRow);
-
-//     inst->V = inst->n + 2*inst->m + inst->K;
-
-//     double **dist = new double*[inst->V + inst->dummy];
-//     for (int i = 0; i < inst->V + inst->dummy; i++){
-//         dist[i] = new double [inst->V + inst->dummy];
-//     }
-
-//     for (int i = 0; i < distVec.size(); i++){
-//         for (int j = 0; j < distVec[i].size(); j++){
-//             dist[i][j] = distVec[i][j];
-//         }
-//     }
-
-//     *mdist = dist;
-//     //update Node Vector
-//     nodeStat newNode = nodeVec[nodeVec.size() - 2];
-//     nodeVec.insert(nodeVec.begin() + nodeVec.size() - 1, newNode);
-    
-//     //Update Bundle Vector
-//     vector<int> auxVec;
-//     auxVec.push_back(nodeVec.size() - 2);
-//     bStat->bundleVec.insert(bStat->bundleVec.begin() + bStat->bundleVec.size() - 1, auxVec);
-//     bStat->bundleVec.back()[0]++;
-//     auxVec.clear();
-
-//     //Update Bundle Profit Vector
-//     double newProfit = bStat->bundleProfVec[bStat->bundleProfVec.size() - 2];
-//     bStat->bundleProfVec.insert(bStat->bundleProfVec.begin() + bStat->bundleProfVec.size() - 1, newProfit);
-
-//     //Update Cluster Vector
-
-//     auxVec.push_back(bStat->bundleVec.size() - 2);
-    
-//     clusterVec.pop_back();
-
-//     clusterVec.push_back(auxVec);
-//     auxVec.clear();
-    
-//     auxVec.push_back(bStat->bundleVec.size() - 1);
-
-//     clusterVec.push_back(auxVec);
-//     auxVec.clear();
-
-//     //Update Bundle Arc Vector
-//     for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
-//         cout << setw(3) << std::right << i;
-//         for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
-//             cout << setw(3) << std:: right << bStat->bArcs[i][j];
-//         }
-//         cout << endl;
-//     }
-
-//     for (int i = 0; i < bStat->bundleVec.size() - 1; i++){
-//         bStat->bArcs[i].insert(bStat->bArcs[i].begin() + bStat->bArcs[i].size() - 1, false);
-//     }
-
-//     for (int j = 0; j < bStat->bundleVec.size(); j++){
-//         bStat->bArcRow.push_back(bStat->bArcs[bStat->bundleVec.size() - 3][j]);
-//     }
-
-//     bStat->bArcRow.clear();
-
-
-//     //Update Bundle Plus and Minus Vector
-
-//     // pair<int,int> newArc;
-//     // vector< pair<int, int> > vecNewArcPlus;
-//     // vector< pair<int, int> > vecNewArcMinus;
-
-//     // cout << "Bundle Arcs Plus (before): " << endl;
-
-//     // for (int i = 0; i < bStat->bArcPlus.size(); i++){
-//     //     cout << i << ": ";
-//     //     for (int j = 0; j < bStat->bArcPlus[i].size(); j++){
-//     //         cout << "(" << bStat->bArcPlus[i][j].first << ", " << bStat->bArcPlus[i][j].second << "), ";
-//     //     }
-//     //     cout << endl;
-//     // }
-//     // getchar();
-
-//     // for (int i = 0; i < bStat->bArcs[bStat->bundleVec.size() - 2].size(); i++){
-//     //     if(bStat->bArcs[bStat->bundleVec.size() - 2][i] == true){
-//     //         newArc.first = bStat->bArcPlus[bStat->bundleVec.size() - 2][i].first;
-//     //         newArc.second = bStat->bArcPlus[bStat->bundleVec.size() - 2][i].second;
-//     //         vecNewArcPlus.push_back(newArc);
-//     //     }
-//     //     // newArc.first = bArcMinus[bStat->bundleVec.size() - 3][i].first;
-//     //     // newArc.second = bArcMinus[bStat->bundleVec.size() - 3][i].second;
-//     //     // vecNewArcMinus.push_back(newArc);
-//     // }
-
-//     // bStat->bArcPlus.insert(bStat->bArcPlus.begin() + bStat->bArcPlus.size() - 1, vecNewArcPlus);
-
-//     // // bStat->bArcMinus.insert(bStat->bArcMinus.begin() + bStat->bArcMinus.size() - 1, vecNewArcMinus);
-    
-//     // cout << "Bundle Arcs Plus (after): " << endl;
-
-//     // for (int i = 0; i < bStat->bArcPlus.size(); i++){
-//     //     cout << i << ": ";
-//     //     for (int j = 0; j < bStat->bArcPlus[i].size(); j++){
-//     //         cout << "(" << bStat->bArcPlus[i][j].first << ", " << bStat->bArcPlus[i][j].second << "), ";
-//     //     }
-//     //     cout << endl;
-//     // }
-//     // getchar();
-
-//     bStat->bArcPlus.clear();
-//     bStat->bArcMinus.clear();
-
-
-
-//     for (int i = 0; i < bStat->bArcs.size(); i++){
-//         for (int j = 0; j < bStat->bArcs[i].size(); j++){
-//             if (bStat->bArcs[i][j] == true);
-
-//         }
-//     }
-// }

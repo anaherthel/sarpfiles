@@ -183,7 +183,40 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 				model.add(cons);			
 			}			
 		}
-	}	
+		
+		for (int i = 0; i < 1; i++){
+			IloExpr exp1(env);
+		
+			exp1 = x[36][18][0];
+			sprintf (var, "Constraint8");
+			IloRange cons = (exp1 == 1);
+			cons.setName(var);
+			model.add(cons);
+		}
+
+		for (int i = 0; i < 1; i++){
+
+			IloExpr exp1(env);
+			
+			exp1 = x[18][31][0];
+			sprintf (var, "Constraint9");
+			IloRange cons = (exp1 == 1);
+			cons.setName(var);
+			model.add(cons);
+		}
+
+		for (int i = 0; i < 1; i++){		
+			IloExpr exp1(env);
+			
+			exp1 = x[31][8][0];
+			sprintf (var, "Constraint10");
+			IloRange cons = (exp1 == 1);
+			cons.setName(var);
+			model.add(cons);
+		}
+
+	}
+
 
 	IloCplex bSARP(model);
 	bSARP.exportModel("bSARP.lp");

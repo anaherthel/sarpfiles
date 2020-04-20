@@ -1,7 +1,8 @@
 #!/bin/bash
 
-dirInstancias='Instances/grubhub_1'
+dirInstancias='Instances/grubhub'
 #runs=10
+# dirInstancias='Instances/sf_data'
 
 #for fator in 4 # se voce precisar variar algum argumento do codigo
 #do
@@ -15,7 +16,7 @@ dirInstancias='Instances/grubhub_1'
 		#for iter in {1..1} #se for heuristica vc vai querer rodar mais de uma vez
 		#do
 			echo "Solving: " ${arquivo} ":" #output pra saber que instancia ta sendo rodada
-			./exeSARP ${dirInstancias}/${arquivo} 1A #2A 1B 2B
+			./exeSARP ${dirInstancias}/${arquivo} 2A #2A 1B 2B
 		#done
 	done
 #done

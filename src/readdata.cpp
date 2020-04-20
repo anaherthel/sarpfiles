@@ -376,7 +376,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> n;
         in >> m;
 
-        K = 9;
+        K = 11;
 
         service = service/60;
         V = n + 2*m + K;

@@ -41,22 +41,26 @@ int main (int argc, char *argv[]) {
 
 	int p = -1; //number of parcel requests to be associated with a passenger request(1A) or the number of best matchings
 	int Q = 5;
-	vector< vector<int> > clsParcel;
+	// vector< vector<int> > clsParcel;
+	vector< vector<bParcelStruct> > clsParcel;
 	vector<int> vecOfInt;
-
+	vector<bParcelStruct> auxbpsvec;
 	// vector<int> solInNode;
 
 	// vector< vector< pair<int, int> > > solvec; 
 
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, nodeProfit);
+	for (int i = 0; i < inst.V; i++){
+		cout << "profit " << i << ": " << nodeVec[i].profit << endl;
+	}
 	
-	// for (int i = 0; i < inst.n; i++){
-	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
-	// }
+	for (int i = 0; i < inst.n; i++){
+		cout << "delta " << i << ": " << nodeVec[i].delta << endl;
+	}
 	
 	
 	for (int i = 0; i < inst.n; i++){
-		clsParcel.push_back(vecOfInt);
+		clsParcel.push_back(auxbpsvec);
 	}
 
 	// if (p > -1){
@@ -96,7 +100,7 @@ int main (int argc, char *argv[]) {
 	vector< vector< pair<int,int> > > cArcPlus;
 	vector< vector< pair<int,int> > > cArcMinus;
 
-	cout << "Distance Matrix: " << endl;
+ 	cout << "Distance Matrix: " << endl;
 
 	for (int i = 0; i < inst.V + inst.dummy; i++){
 		for (int j = 0; j < inst.V + inst.dummy; j++){
@@ -171,16 +175,16 @@ int main (int argc, char *argv[]) {
 
 	bundleProfit(&inst, distMatrix, nodeVec, &bStat, nodeProfit);
 
-	// cout << "\nBundle Profit: [";
-	// for (int i = 0; i < bStat.bundleProfVec.size(); i++){
-	// 	cout << setw(3) << std:: right << bStat.bundleProfVec[i];
-	// 	if (i < bStat.bundleProfVec.size() - 1){
- //            cout << ", ";
- //        }
-	// }
-	// cout << endl;
+	cout << "\nBundle Profit: [";
+	for (int i = 0; i < bStat.bundleProfVec.size(); i++){
+		cout << setw(3) << std:: right << bStat.bundleProfVec[i];
+		if (i < bStat.bundleProfVec.size() - 1){
+            cout << ", ";
+        }
+	}
+	cout << endl;
 
-	// getchar();
+	getchar();
 
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
 		for (int j = 0; j < bStat.bundleVec.size(); j++){
@@ -232,22 +236,22 @@ int main (int argc, char *argv[]) {
 
 	feasibleBundleArcs(&inst, distMatrix, nodeVec, &bStat, p, &problem);
 
-	// cout<< "\nFeasible arcs between bundles:" << endl;
-	// for (int i = 0; i < bStat.bundleVec.size(); i++){
-	// 	if (i == 0){
-	// 		cout << setw(3) << " ";
-	// 	}
-	// 	cout << setw(3) << std::right << i;
-	// }
-	// cout << endl;
-	// for (int i = 0; i < bStat.bundleVec.size(); i++){
-	// 	cout << setw(3) << std::right << i;
-	// 	for (int j = 0; j < bStat.bundleVec.size(); j++){
-	// 		cout << setw(3) << std:: right << bStat.bArcs[i][j];
-	// 	}
-	// 	cout << endl;
-	// }
-	// getchar();
+	cout<< "\nFeasible arcs between bundles:" << endl;
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		if (i == 0){
+			cout << setw(3) << " ";
+		}
+		cout << setw(3) << std::right << i;
+	}
+	cout << endl;
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		cout << setw(3) << std::right << i;
+		for (int j = 0; j < bStat.bundleVec.size(); j++){
+			cout << setw(3) << std:: right << bStat.bArcs[i][j];
+		}
+		cout << endl;
+	}
+	getchar();
 
 	for (int i = 0; i < clusterVec.size(); i++){
 		for (int j = 0; j < clusterVec.size(); j++){
@@ -284,10 +288,12 @@ int main (int argc, char *argv[]) {
 		cout << "]" << endl;
 	}
 
+	// cout << "here" << endl;
 	// getchar();
 
 	feasibleClusterArcs(&inst, nodeVec, &bStat, clusterVec, cFArc, cArcs, cArcPlus, cArcMinus, p, &problem);
-
+	// cout << "here" << endl;
+	// getchar();
 	cout<< "\nFeasible arcs between clusters:" << endl;
 	for (int i = 0; i < clusterVec.size(); i++){
 		if (i == 0){

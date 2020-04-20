@@ -38,7 +38,6 @@ struct nodeStat{
 	double yf;
     double delta;
     double profit;
-
 };
 
 struct instanceStat{
