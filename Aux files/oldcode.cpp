@@ -1,4 +1,6 @@
+//*************************************************************************
 //Old code pieces for GOMDVSP
+//*************************************************************************
 
 void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<int> &clusters, vector< vector<int> > &clusterVec, vector< vector<int> > &clsParcel, probStat* problem){
 
@@ -36,6 +38,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
     // }
 
  }
+//*************************************************************************
 
 //For simple nodes (before bundles)
  void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem, vector< pair<int,int> > &arcNN){
@@ -198,6 +201,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
         }
     }
 }
+//*************************************************************************
 
 void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<double> &passProfit){
     double cost;
@@ -301,6 +305,9 @@ void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
 //         }
 //     }
 // }
+   //*************************************************************************
+
+//*************************************************************************
 
 void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, int p, probStat* problem){
     //*******
@@ -399,6 +406,9 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
         }        
     }
  }
+ //*************************************************************************
+
+//*************************************************************************
 
  // void increaseK (instanceStat *inst, vector<nodeStat> &nodeVec, double ***mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat, double **auxdist){
 
@@ -456,6 +466,8 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
 //     //Update Bundle Profit Vector
 //     double newProfit = bStat->bundleProfVec[bStat->bundleProfVec.size() - 2];
 //     bStat->bundleProfVec.insert(bStat->bundleProfVec.begin() + bStat->bundleProfVec.size() - 1, newProfit);
+//*************************************************************************
+//*************************************************************************
 
 //     //Update Cluster Vector
 
@@ -489,7 +501,9 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
 //     }
 
 //     bStat->bArcRow.clear();
+//*************************************************************************
 
+//*************************************************************************
 
 //     //Update Bundle Plus and Minus Vector
 
@@ -546,3 +560,426 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
 //         }
 //     }
 // }
+//*************************************************************************
+
+//*************************************************************************
+
+    if (instType == "myinstances"){
+
+        in >> K;
+        in >> service;
+        in >> n;
+        in >> m;
+        in >> T;
+        inst->vmed = 19.3;
+        service = service/60;
+        inst->service = service;
+        V = n + 2*m + K;
+        // inst->dummy = K;
+        inst->dummy = 1;
+
+        double *xs = new double[V + inst->dummy];
+        double *ys = new double[V + inst->dummy];
+        char *label = new char[V + inst->dummy];
+        double *load = new double[V + inst->dummy];
+        double *e = new double[V + inst->dummy];
+        double *l = new double[V + inst->dummy];
+        double *xf = new double[V + inst->dummy];
+        double *yf = new double[V + inst->dummy];
+        double *delta = new double[V + inst->dummy];
+        double *profit = new double[V+inst->dummy];
+
+        double **dist = new double*[V + inst->dummy];
+        for (int i= 0; i < V + inst->dummy; i++){
+            dist[i] = new double [V + inst->dummy];
+        }
+
+        int tempNode;
+        // for (int i = 0; i < V; i++){
+        //     nodeVec.push_back(*node);
+        // }
+
+        for (int i = 0; i < V; i++){
+            in >> tempNode >> xs[i] >> ys[i] >> label[i] >> load[i] >> e[i] >> l[i] >> xf[i] >> yf[i];
+        }
+
+        // Calculate distance matrix (Euclidian)
+        double singleProfit;
+        for (int i = 0; i < V + inst->dummy; i++){
+            if (i < n){ 
+                // cout << "\nDist " << i << " :" << floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5); 
+                delta[i] = (2 * service) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed;
+                profit[i] = inst->gamma2 + inst->mu2*floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5) - floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5);
+               // cout << "delta " << i << ": " << delta[i] << endl;
+               // cout << "profit " << i << ": " << profit[i] << endl;
+            }
+            else if (i < V - K){ 
+                delta[i] = service;
+                profit[i] = 0;
+            }
+            else if (i >= V - K){
+                delta[i] = service;
+                if (i < n + m){
+                    profit[i] = inst->gamma + inst->mu*floor(calcEucDist(xs, ys, xf, yf, i, i+m) + 0.5);
+                }
+                else{
+                    profit[i] = 0;
+                }
+            }
+            for (int j = 0; j < V + inst->dummy; j++){
+                if(i == j){
+                   dist[i][j] = 0;
+                }
+                else{
+                    if (i < V){
+                        if (j < V){
+                            dist[i][j] = floor(calcEucDist(xs, ys, xf, yf, i, j) + 0.5);
+                        }
+                        else if (j >= V){
+                            dist[i][j] = 0;
+                        }
+                    }
+                    else{
+                        dist[i][j] = 0;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < V; i++){
+            node->xs = xs[i];
+            node->ys = ys[i];
+            node->label = label[i];
+            node->load = load[i];
+            node->e = e[i]/60;
+            node->l = l[i]/60;
+            node->xf = xf[i];
+            node->yf = yf[i];
+            node->delta = delta[i];
+            node->profit = profit[i];
+            nodeVec.push_back(*node);
+
+        }
+
+        //Adding dummy nodes
+        for (int i = 0; i < inst->dummy; i++){
+            node->xs = 0;
+            node->ys = 0;
+            node->label = 'f';
+            node->load = 0;
+            node->e = 0;
+            node->l = 240/60;
+            node->xf = 0;
+            node->yf = 0;
+            node->delta = 0;
+            node->profit = 0;
+            nodeVec.push_back(*node);
+        }
+
+        *Mdist = dist;
+        inst->K = K;
+        inst->n = n;
+        inst->m = m;
+        inst->T = T/60;
+        inst->V = V;
+        inst->service = service;
+        // cout << "\nNode vec: ";
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << nodeVec[i].label << " ";
+        // }
+        // cout << endl;
+
+        delete[] profit;
+        delete[] xs;
+        delete[] ys;
+        delete[] label;
+        delete[] load;
+        delete[] e;
+        delete[] l;
+        delete[] xf;
+        delete[] yf;
+
+    }
+//*************************************************************************
+
+//*************************************************************************
+
+    if (instType == "sarpdata"){
+
+        string filename(argv[1]);
+        string InstanceName;
+
+        string::size_type loc = filename.find_last_of("r", filename.size());
+        string::size_type loc2 = filename.find_last_of(".", filename.size());
+       
+        InstanceName.append(filename, loc+1, loc2-loc-1);
+        std::replace(InstanceName.begin(), InstanceName.end(), '_', ' ');
+        vector<int> instanceData;
+        stringstream ss(InstanceName);
+        int temp;
+        while (ss >> temp){
+            instanceData.push_back(temp);
+        }
+
+        K = instanceData[0];
+        n = instanceData[1]/2;
+        m = instanceData[2]/2;
+        service = 5;
+        service = service/60;
+        V = n + 2*m + K;
+        originalV = 2*n + 2*m + 2*K;
+
+        inst->vmed = 19.3;
+        inst->dummy = 1;
+
+
+        double *delta = new double[V + inst->dummy];
+        double *slatitude = new double [V + inst->dummy];
+        double *slongitude = new double [V + inst->dummy];
+        double *flatitude = new double [V + inst->dummy];
+        double *flongitude = new double [V + inst->dummy];
+        double *profit = new double[V+inst->dummy];
+
+
+        double **dist = new double*[V + inst->dummy];
+        for (int i= 0; i < V + inst->dummy; i++){
+            dist[i] = new double [V + inst->dummy];
+        }
+
+        vector<double> vxs;
+        vector<double> vys;
+        vector<double> vload;
+        vector<double> ve;
+        vector<double> vxf;
+        vector<double> vyf;
+        vector<double> vl;
+
+        for (int i = 0; i < originalV; i++){
+            vxs.push_back(0);
+            vys.push_back(0);
+            vload.push_back(0);
+            ve.push_back(0);
+        }
+
+        for (int i = 0; i < originalV; i++){
+            in >> vxs[i] >> vys[i] >> vload[i] >> ve[i];
+        }
+
+        ve[ve.size()-1] = 0;
+
+        for (int i = 0; i < vxs.size(); i++){
+            vxf.push_back(vxs[i]);
+            vyf.push_back(vys[i]);
+
+            if (vload[i] < -2.0){
+                vxf[i - m - n] = vxs[i];
+                vyf[i - m - n] = vys[i];
+
+            }
+        }
+
+
+        vxs.erase(vxs.begin());
+        vys.erase(vys.begin());
+        vload.erase(vload.begin());
+        vxf.erase(vxf.begin());
+        vyf.erase(vyf.begin());
+        ve.erase(ve.begin());
+
+        for (int i = 0; i < n; i++){
+            vxs.erase(vxs.begin() + n + m);
+            vys.erase(vys.begin() + n + m);
+            vload.erase(vload.begin() + n + m);
+            ve.erase(ve.begin() + n + m);
+            vxf.erase(vxf.begin() + n + m);
+            vyf.erase(vyf.begin() + n + m);
+        }
+
+        for (int i = 0; i < ve.size(); i++){
+            vl.push_back(ve[i]);
+        }
+
+        for (int i = n; i < vl.size(); i++){
+            vl[i] = 14*60;
+        }
+
+        // cout << "vl: " << endl;
+        // for(int i = 0; i < vl.size(); i++){
+        //     cout << vl[i] << " ";
+        // }
+
+        CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
+        
+        for (int i = 0; i < V + inst->dummy; i++){
+            if (i < n){ 
+               delta[i] = (2 * (service)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
+               profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+
+               // cout << "delta " << i << ": " << delta[i] << endl;
+                // delta[i] = (2 * (service/60)) + (CalcMan(vxs, vys, vxf, vys, i, i))/inst->vmed;
+
+            }
+            else if (i < V - K){ 
+                delta[i] = service;
+                if (i < n + m){
+                    profit[i] = inst->gamma + inst->mu*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
+                }
+                else{
+                    profit[i] = 0;
+                }
+            }
+            else if (i >= V - K){
+                delta[i] = 0;
+                profit[i] = 0;
+            }
+            for (int j = 0; j < V + inst->dummy; j++){
+                if(i == j){
+                   dist[i][j] = 0;
+                }
+                else{
+                    if (i < V){
+                        if (j < V){
+                            dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
+                            // dist[i][j] = CalcMan(vxs, vys, vxf, vys, i, i);
+                        }
+                        else if (j >= V){
+                            dist[i][j] = 0;
+                        }
+                    }
+                    else{
+                        dist[i][j] = 0;
+                    }
+                }
+            }
+        }
+
+
+        *Mdist = dist;
+        inst->K = K;
+        inst->n = n;
+        inst->m = m;
+        inst->V = V;
+        inst->service = service;
+        
+        for (int i = 0; i < V; i++){
+            node->xs = vxs[i];
+            node->ys = vys[i];
+            node->load = vload[i];
+            node->e = ve[i]/60;
+            node->l = vl[i]/60;
+            node->xf = vxf[i];
+            node->yf = vyf[i];
+            node->delta = delta[i];
+            node->profit = profit[i];
+            nodeVec.push_back(*node);
+        }
+
+        for (int i = 0; i < inst->dummy; i++){
+            node->xs = 0;
+            node->ys = 0;
+            node->load = 0;
+            node->e = 0;
+            node->l = 14*60;
+            node->xf = 0;
+            node->yf = 0;
+            node->delta = 0;
+            node->profit = 0;
+            nodeVec.push_back(*node);
+        }
+
+        delete[] profit;
+        delete[] delta;
+        delete[] slatitude;
+        delete[] slongitude;
+        delete[] flatitude;
+        delete[] flongitude;
+    }
+//*************************************************************************
+
+
+//*************************************************************************
+
+                // if (clsParcel[i][j].parcelreq > inst->n + 2*inst->m){
+                //     if (clsParcel[i][j].poslabel == 'b'){
+                //         bStat->bundle.push_back(clsParcel[i][j].parcelreq);
+                //         bStat->bundle.push_back(i);
+                //         bStat->label.push_back(2);
+                //         bStat->mainNode.push_back(clsParcel[i][j].parcelreq);
+                //         bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j].parcelreq].delta + nodeVec[i].delta);
+                //         bStat->bundleVec.push_back(bStat->bundle);
+                //         clusters.push_back(bStat->bundleVec.size()-1);
+                //         bStat->activeDL.push_back(bStat->bundleVec.size()-1);
+                //         bStat->bundle.clear();
+                //     }
+
+                //     else{
+                //         bStat->bundle.push_back(clsParcel[i][j].parcelreq);
+                //         bStat->bundle.push_back(i);
+                //         bStat->label.push_back(1);
+                //         bStat->mainNode.push_back(clsParcel[i][j]/(pow(inst->m, 2)));
+                //         bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta);
+                //         bStat->bundleVec.push_back(bStat->bundle);
+                //         clusters.push_back(bStat->bundleVec.size()-1);
+                //         bStat->activePU.push_back(bStat->bundleVec.size()-1);
+                //         bStat->bundle.clear();
+                //     }
+                // } 
+//*************************************************************************
+
+//*************************************************************************
+    //creating feasible arcs for single nodes (before working w bundles)
+//*************************************************************************
+
+
+        // for (int i = 0; i < inst.V + inst.dummy; i++){
+    //  for (int j = 0; j < inst.V + inst.dummy; j++){
+    //      arcRow.push_back(false);
+    //  }
+    //  arcs.push_back(arcRow);
+    // }
+    // cout << "Feasible arcs: " << endl;
+    
+    // for (int i = 0; i < inst.V + 1; i++){
+    //  auxVec.push_back(fArc);
+    // }
+
+    // for (int i = 0; i < inst.V + inst.dummy; i++){
+    //  arcMinus.push_back(auxVec);
+    //  arcPlus.push_back(auxVec);
+    // }
+
+    // for (int i = 0; i < inst.n; i++){
+    //  arcNN.push_back(auxVec);
+    // }
+
+    // feasibleArcs(&inst, nodeVec, arcs, fArc, arcPlus, arcMinus, &problem, arcNN);
+
+    // for (int i = 0; i < nodeVec.size(); i++){
+    //  for (int j = 0; j < nodeVec.size(); j++){
+    //      if(arcs[i][j]){
+    //          fArc.first = i;
+    //          fArc.second = j;
+    //          arcVec.push_back(fArc);
+    //          if (j < inst.V){
+    //              nodummyarcVec.push_back(fArc);
+    //          }
+    //      }
+    //  }
+    // }
+
+    // for (int i = 0; i < inst.V + inst.dummy; i++){
+    //  if (i == 0){
+    //      cout << setw(3) << " ";
+    //  }
+    //  cout << setw(3) << std::right << i;
+    // }
+    // cout << endl;
+    // for (int i = 0; i < inst.V + inst.dummy; i++){
+    //  cout << setw(3) << std::right << i;
+    //  for (int j = 0; j < inst.V + inst.dummy; j++){
+    //      cout << setw(3) << std:: right << arcs[i][j];
+    //  }
+    //  cout << endl;
+    // }
+    // cout << "K: " << inst.K << endl;
+    // getchar();

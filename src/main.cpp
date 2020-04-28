@@ -112,20 +112,20 @@ int main (int argc, char *argv[]) {
 
 	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, &problem);
 
-	// cout << "\nBundle Vector: [";
-	// for (int i = 0; i < bStat.bundleVec.size(); i++){
-	// 	cout << "[";
-	// 	for (int j = 0; j < bStat.bundleVec[i].size(); j++){
-	// 		cout << setw(3) << std:: right << bStat.bundleVec[i][j];
-	// 		if (j < bStat.bundleVec[i].size() - 1){
- //                cout << ", ";
- //            }
-	// 	}
-	// 	cout << "],";
-	// }
-	// cout << "]" << endl;
+	cout << "\nBundle Vector: [";
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		cout << "[";
+		for (int j = 0; j < bStat.bundleVec[i].size(); j++){
+			cout << setw(3) << std:: right << bStat.bundleVec[i][j];
+			if (j < bStat.bundleVec[i].size() - 1){
+                cout << ", ";
+            }
+		}
+		cout << "],";
+	}
+	cout << "]" << endl;
 
-	// getchar();
+	getchar();
 
 	if (problem.scen == "1A"){
 		for (int i = 0; i < inst.m; i++){
@@ -175,16 +175,34 @@ int main (int argc, char *argv[]) {
 
 	bundleProfit(&inst, distMatrix, nodeVec, &bStat, nodeProfit);
 
-	cout << "\nBundle Profit: [";
-	for (int i = 0; i < bStat.bundleProfVec.size(); i++){
-		cout << setw(3) << std:: right << bStat.bundleProfVec[i];
-		if (i < bStat.bundleProfVec.size() - 1){
-            cout << ", ";
-        }
-	}
-	cout << endl;
+	// cout << "\nBundle Profit: [";
+	// for (int i = 0; i < bStat.bundleProfVec.size(); i++){
+	// 	cout << setw(3) << std:: right << bStat.bundleProfVec[i];
+	// 	if (i < bStat.bundleProfVec.size() - 1){
+ //            cout << ", ";
+ //        }
+	// }
+	// cout << endl;
 
-	getchar();
+	// getchar();
+	cout << "Initial Clusters: " << endl;
+	for (int i = 0; i < clusterVec.size(); i++){
+		cout << "\nCluster " << i << ": [";
+		for(int k = 0; k < clusterVec[i].size(); k++){
+			cout << "(" << clusterVec[i][k] << ") " << "[";
+			for (int j = 0; j < bStat.bundleVec[clusterVec[i][k]].size(); j++){
+				cout << setw(3) << std:: right << bStat.bundleVec[clusterVec[i][k]][j];
+	            if (j < bStat.bundleVec[clusterVec[i][k]].size() - 1){
+					cout << ",";
+				}
+				else{
+					cout << "] ";
+				}
+			}
+			
+		}
+		cout << "]" << endl;
+	}
 
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
 		for (int j = 0; j < bStat.bundleVec.size(); j++){
@@ -204,7 +222,9 @@ int main (int argc, char *argv[]) {
 		bStat.bArcPlus.push_back(auxVec);
 	}
 
-	makeStartTimes(&inst, distMatrix, nodeVec, &bStat);
+	// cout << "testing: " << inst.endCluster;
+	// getchar();
+	makeStartTimes(&inst, distMatrix, nodeVec, &bStat, &problem);
 
 	makeBundleReference(&inst, distMatrix, nodeVec, &bStat);
 
@@ -215,6 +235,14 @@ int main (int argc, char *argv[]) {
 	// }
 	// cout << endl;
 	// getchar();
+
+	// cout << "\nlast element Vector: [";
+	// for (int i = 0; i < bStat.lastElement.size(); i++){
+	// 	cout << bStat.lastElement[i] << " ";
+	// }
+	// cout << endl;
+	// getchar();
+
 
 	// cout << "\nBundle Times: ";
 	// for (int i = 0; i < bStat.bundleStart.size(); i++){
@@ -340,57 +368,14 @@ int main (int argc, char *argv[]) {
 	// 	}
 	// }
 
-	// for (int i = 0; i < inst.V + inst.dummy; i++){
-	// 	for (int j = 0; j < inst.V + inst.dummy; j++){
-	// 		arcRow.push_back(false);
-	// 	}
-	// 	arcs.push_back(arcRow);
-	// }
-	// cout << "Feasible arcs: " << endl;
-	
-	// for (int i = 0; i < inst.V + 1; i++){
-	// 	auxVec.push_back(fArc);
-	// }
-
-	// for (int i = 0; i < inst.V + inst.dummy; i++){
-	// 	arcMinus.push_back(auxVec);
-	// 	arcPlus.push_back(auxVec);
-	// }
-
-	// for (int i = 0; i < inst.n; i++){
-	// 	arcNN.push_back(auxVec);
-	// }
-
-	// feasibleArcs(&inst, nodeVec, arcs, fArc, arcPlus, arcMinus, &problem, arcNN);
-
-	// for (int i = 0; i < nodeVec.size(); i++){
-	// 	for (int j = 0; j < nodeVec.size(); j++){
-	// 		if(arcs[i][j]){
-	// 			fArc.first = i;
-	// 			fArc.second = j;
-	// 			arcVec.push_back(fArc);
-	// 			if (j < inst.V){
-	// 				nodummyarcVec.push_back(fArc);
-	// 			}
-	// 		}
+	// cout << "\nMinus arcs: " << endl;
+	// for (int i = 0; i < bStat.bArcMinus.size(); i++){
+	// 	cout << "Bundle " << i << ": ";
+	// 	for (int j = 0; j < bStat.bArcMinus[i].size(); j++){
+	// 		cout << bStat.bArcMinus[i][j].first << " - " << bStat.bArcMinus[i][j].second << ", ";
 	// 	}
 	// }
 
-	// for (int i = 0; i < inst.V + inst.dummy; i++){
-	// 	if (i == 0){
-	// 		cout << setw(3) << " ";
-	// 	}
-	// 	cout << setw(3) << std::right << i;
-	// }
-	// cout << endl;
-	// for (int i = 0; i < inst.V + inst.dummy; i++){
-	// 	cout << setw(3) << std::right << i;
-	// 	for (int j = 0; j < inst.V + inst.dummy; j++){
-	// 		cout << setw(3) << std:: right << arcs[i][j];
-	// 	}
-	// 	cout << endl;
-	// }
-	// cout << "K: " << inst.K << endl;
 	// getchar();
 	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat);
 

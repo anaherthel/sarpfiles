@@ -51,325 +51,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     instType = getInstanceType(argv);
 
-    if (instType == "myinstances"){
-
-        in >> K;
-        in >> service;
-        in >> n;
-        in >> m;
-        in >> T;
-        inst->vmed = 19.3;
-        service = service/60;
-        inst->service = service;
-        V = n + 2*m + K;
-        // inst->dummy = K;
-        inst->dummy = 1;
-
-        double *xs = new double[V + inst->dummy];
-        double *ys = new double[V + inst->dummy];
-        char *label = new char[V + inst->dummy];
-        double *load = new double[V + inst->dummy];
-        double *e = new double[V + inst->dummy];
-        double *l = new double[V + inst->dummy];
-        double *xf = new double[V + inst->dummy];
-        double *yf = new double[V + inst->dummy];
-        double *delta = new double[V + inst->dummy];
-        double *profit = new double[V+inst->dummy];
-
-        double **dist = new double*[V + inst->dummy];
-        for (int i= 0; i < V + inst->dummy; i++){
-            dist[i] = new double [V + inst->dummy];
-        }
-
-        int tempNode;
-        // for (int i = 0; i < V; i++){
-        //     nodeVec.push_back(*node);
-        // }
-
-        for (int i = 0; i < V; i++){
-            in >> tempNode >> xs[i] >> ys[i] >> label[i] >> load[i] >> e[i] >> l[i] >> xf[i] >> yf[i];
-        }
-
-        // Calculate distance matrix (Euclidian)
-        double singleProfit;
-        for (int i = 0; i < V + inst->dummy; i++){
-            if (i < n){ 
-                // cout << "\nDist " << i << " :" << floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5); 
-                delta[i] = (2 * service) + (floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5))/inst->vmed;
-                profit[i] = inst->gamma2 + inst->mu2*floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5) - floor(calcEucDist(xs, ys, xf, yf, i, i) + 0.5);
-               // cout << "delta " << i << ": " << delta[i] << endl;
-               // cout << "profit " << i << ": " << profit[i] << endl;
-            }
-            else if (i < V - K){ 
-                delta[i] = service;
-                profit[i] = 0;
-            }
-            else if (i >= V - K){
-                delta[i] = 0;
-                profit[i] = 0;
-            }
-            for (int j = 0; j < V + inst->dummy; j++){
-                if(i == j){
-                   dist[i][j] = 0;
-                }
-                else{
-                    if (i < V){
-                        if (j < V){
-                            dist[i][j] = floor(calcEucDist(xs, ys, xf, yf, i, j) + 0.5);
-                        }
-                        else if (j >= V){
-                            dist[i][j] = 0;
-                        }
-                    }
-                    else{
-                        dist[i][j] = 0;
-                    }
-                }
-            }
-        }
-
-        for (int i = 0; i < V; i++){
-            node->xs = xs[i];
-            node->ys = ys[i];
-            node->label = label[i];
-            node->load = load[i];
-            node->e = e[i]/60;
-            node->l = l[i]/60;
-            node->xf = xf[i];
-            node->yf = yf[i];
-            node->delta = delta[i];
-            node->profit = profit[i];
-            nodeVec.push_back(*node);
-
-        }
-
-        //Adding dummy nodes
-        for (int i = 0; i < inst->dummy; i++){
-            node->xs = 0;
-            node->ys = 0;
-            node->label = 'f';
-            node->load = 0;
-            node->e = 0;
-            node->l = 240/60;
-            node->xf = 0;
-            node->yf = 0;
-            node->delta = 0;
-            node->profit = 0;
-            nodeVec.push_back(*node);
-        }
-
-        *Mdist = dist;
-        inst->K = K;
-        inst->n = n;
-        inst->m = m;
-        inst->T = T/60;
-        inst->V = V;
-        inst->service = service;
-        // cout << "\nNode vec: ";
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << nodeVec[i].label << " ";
-        // }
-        // cout << endl;
-
-        delete[] profit;
-        delete[] xs;
-        delete[] ys;
-        delete[] label;
-        delete[] load;
-        delete[] e;
-        delete[] l;
-        delete[] xf;
-        delete[] yf;
-
-    }
-
-    else if (instType == "sarpdata"){
-
-        string filename(argv[1]);
-        string InstanceName;
-
-        string::size_type loc = filename.find_last_of("r", filename.size());
-        string::size_type loc2 = filename.find_last_of(".", filename.size());
-       
-        InstanceName.append(filename, loc+1, loc2-loc-1);
-        std::replace(InstanceName.begin(), InstanceName.end(), '_', ' ');
-        vector<int> instanceData;
-        stringstream ss(InstanceName);
-        int temp;
-        while (ss >> temp){
-            instanceData.push_back(temp);
-        }
-
-        K = instanceData[0];
-        n = instanceData[1]/2;
-        m = instanceData[2]/2;
-        service = 5;
-        service = service/60;
-        V = n + 2*m + K;
-        originalV = 2*n + 2*m + 2*K;
-
-        inst->vmed = 19.3;
-        inst->dummy = 1;
-
-
-        double *delta = new double[V + inst->dummy];
-        double *slatitude = new double [V + inst->dummy];
-        double *slongitude = new double [V + inst->dummy];
-        double *flatitude = new double [V + inst->dummy];
-        double *flongitude = new double [V + inst->dummy];
-        double *profit = new double[V+inst->dummy];
-
-
-        double **dist = new double*[V + inst->dummy];
-        for (int i= 0; i < V + inst->dummy; i++){
-            dist[i] = new double [V + inst->dummy];
-        }
-
-        vector<double> vxs;
-        vector<double> vys;
-        vector<double> vload;
-        vector<double> ve;
-        vector<double> vxf;
-        vector<double> vyf;
-        vector<double> vl;
-
-        for (int i = 0; i < originalV; i++){
-            vxs.push_back(0);
-            vys.push_back(0);
-            vload.push_back(0);
-            ve.push_back(0);
-        }
-
-        for (int i = 0; i < originalV; i++){
-            in >> vxs[i] >> vys[i] >> vload[i] >> ve[i];
-        }
-
-        ve[ve.size()-1] = 0;
-
-        for (int i = 0; i < vxs.size(); i++){
-            vxf.push_back(vxs[i]);
-            vyf.push_back(vys[i]);
-
-            if (vload[i] < -2.0){
-                vxf[i - m - n] = vxs[i];
-                vyf[i - m - n] = vys[i];
-
-            }
-        }
-
-
-        vxs.erase(vxs.begin());
-        vys.erase(vys.begin());
-        vload.erase(vload.begin());
-        vxf.erase(vxf.begin());
-        vyf.erase(vyf.begin());
-        ve.erase(ve.begin());
-
-        for (int i = 0; i < n; i++){
-            vxs.erase(vxs.begin() + n + m);
-            vys.erase(vys.begin() + n + m);
-            vload.erase(vload.begin() + n + m);
-            ve.erase(ve.begin() + n + m);
-            vxf.erase(vxf.begin() + n + m);
-            vyf.erase(vyf.begin() + n + m);
-        }
-
-        for (int i = 0; i < ve.size(); i++){
-            vl.push_back(ve[i]);
-        }
-
-        for (int i = n; i < vl.size(); i++){
-            vl[i] = 14*60;
-        }
-
-        // cout << "vl: " << endl;
-        // for(int i = 0; i < vl.size(); i++){
-        //     cout << vl[i] << " ";
-        // }
-
-        CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
-        
-        for (int i = 0; i < V + inst->dummy; i++){
-            if (i < n){ 
-               delta[i] = (2 * (service)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
-               profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
-
-               // cout << "delta " << i << ": " << delta[i] << endl;
-                // delta[i] = (2 * (service/60)) + (CalcMan(vxs, vys, vxf, vys, i, i))/inst->vmed;
-
-            }
-            else if (i < V - K){ 
-               delta[i] = service;
-               profit[i] = 0;
-            }
-            else if (i >= V - K){
-                delta[i] = 0;
-                profit[i] = 0;
-            }
-            for (int j = 0; j < V + inst->dummy; j++){
-                if(i == j){
-                   dist[i][j] = 0;
-                }
-                else{
-                    if (i < V){
-                        if (j < V){
-                            dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
-                            // dist[i][j] = CalcMan(vxs, vys, vxf, vys, i, i);
-                        }
-                        else if (j >= V){
-                            dist[i][j] = 0;
-                        }
-                    }
-                    else{
-                        dist[i][j] = 0;
-                    }
-                }
-            }
-        }
-
-
-        *Mdist = dist;
-        inst->K = K;
-        inst->n = n;
-        inst->m = m;
-        inst->V = V;
-        inst->service = service;
-        
-        for (int i = 0; i < V; i++){
-            node->xs = vxs[i];
-            node->ys = vys[i];
-            node->load = vload[i];
-            node->e = ve[i]/60;
-            node->l = vl[i]/60;
-            node->xf = vxf[i];
-            node->yf = vyf[i];
-            node->delta = delta[i];
-            node->profit = profit[i];
-            nodeVec.push_back(*node);
-        }
-
-        for (int i = 0; i < inst->dummy; i++){
-            node->xs = 0;
-            node->ys = 0;
-            node->load = 0;
-            node->e = 0;
-            node->l = 14*60;
-            node->xf = 0;
-            node->yf = 0;
-            node->delta = 0;
-            node->profit = 0;
-            nodeVec.push_back(*node);
-        }
-
-        delete[] profit;
-        delete[] delta;
-        delete[] slatitude;
-        delete[] slongitude;
-        delete[] flatitude;
-        delete[] flongitude;
-    }
- 
-    else if (instType == "sf_data"){
+    if (instType == "sf_data"){
 
         in >> K;
         in >> service;
@@ -472,8 +154,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
             }
             else if (i < V - K){ 
-               delta[i] = service;
-               profit[i] = 0;
+                delta[i] = service;
+                if (i < n + m){
+                    profit[i] = inst->gamma + inst->mu*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
+                }
+                else{
+                    profit[i] = 0;
+                }
             }
             else if (i >= V - K){
                 delta[i] = 0;
@@ -721,7 +408,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
             else if (i < V - K){
                 delta[i] = service;
-                profit[i] = 0;
+                if (i < n + m){
+                    profit[i] = inst->gamma + inst->mu*(tempData[i + n][i + n + m]/1000);
+                }
+                else{
+                    profit[i] = 0;
+                }
             }
             else if (i >= V - K){
                 delta[i] = 0;
@@ -962,6 +654,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double *e = new double[V + inst->dummy];
         double *l = new double[V + inst->dummy];
 
+        int reference = n;
         //calculate deltas
         for(int i = 0; i < V + inst->dummy; i++){
             if (i < n){
@@ -972,7 +665,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
             else if (i < V - K){
                 delta[i] = service;
-                profit[i] = 0;
+                if (i < n + m){
+                    profit[i] = inst->gamma + inst->mu*(tempData[i + n][i + n + m]/1000);
+                }
+                else{
+                    profit[i] = 0;
+                }
             }
             else if (i >= V - K){
                 delta[i] = 0;

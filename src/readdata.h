@@ -57,6 +57,7 @@ struct instanceStat{
 	double gamma2 = 7; //initial fare for passengers
 	double mu2 = 4; //fare per km for passengers
 	int nCluster;
+	int endCluster;
 
 };
 
