@@ -1,0 +1,5735 @@
+Solving:  grubhub-11-0.tsp :
+
+Cluster 0: [(0) [  0] (1) [  8,  0, 11] (2) [  9,  0, 12] (3) [ 10,  0, 13] ]
+
+Cluster 1: [(4) [  1] (5) [  8,  1, 11] (6) [  9,  1, 12] (7) [ 10,  1, 13] ]
+
+Cluster 2: [(8) [  2] (9) [  8,  2, 11] (10) [  9,  2, 12] (11) [ 10,  2, 13] ]
+
+Cluster 3: [(12) [  3] (13) [  8,  3, 11] (14) [  9,  3, 12] (15) [ 10,  3, 13] ]
+
+Cluster 4: [(16) [  4] (17) [  8,  4, 11] (18) [  9,  4, 12] (19) [ 10,  4, 13] ]
+
+Cluster 5: [(20) [  5] (21) [  8,  5, 11] (22) [  9,  5, 12] (23) [ 10,  5, 13] ]
+
+Cluster 6: [(24) [  6] (25) [  8,  6, 11] (26) [  9,  6, 12] (27) [ 10,  6, 13] ]
+
+Cluster 7: [(28) [  7] (29) [  8,  7, 11] (30) [  9,  7, 12] (31) [ 10,  7, 13] ]
+
+Cluster 8: [(32) [ 14] ]
+
+Cluster 9: [(33) [ 15] ]
+
+Cluster 10: [(34) [ 16] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10
+  0  0  1  0  0  1  0  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  1
+  2  1  1  0  1  1  0  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  1
+  8  1  1  1  1  1  1  1  1  0  0  0
+  9  1  1  1  1  1  1  1  1  0  0  0
+ 10  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 85 rows, 880 columns, and 3790 nonzeros.
+Reduced MIP has 880 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.05 sec.
+Probing time =    0.04 sec.
+Clique table members: 5930.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       81.5550       81.5550      139    0.00%
+Elapsed real time =   0.13 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.07
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.07 sec.
+
+Sol status: Optimal
+
+Obj Val: 81.555
+x(0, 7, 0)
+x(7, 28, 0)
+x(10, 0, 0)
+x(28, 34, 0)
+x(32, 10, 0)
+x(12, 24, 1)
+x(16, 34, 1)
+x(21, 12, 1)
+x(24, 16, 1)
+x(33, 21, 1)
+
+Solution by nodes: 
+Vehicle 0: 14 - 9 - 2 - 12 - 0 - 10 - 1 - 13 - 7 - 16
+Vehicle 1: 15 - 8 - 5 - 11 - 3 - 6 - 4 - 16
+
+
+Total time: 2.58333333333333
+
+Total passenger time: 1.02219343696028
+
+Total parcel time: 0.6960103626943
+
+Total combined transportation time: 0.615388601036269
+
+Total idle time: 0.249740932642487
+
+Total distance: 14.475
+
+Total passenger distance: 3.645
+
+Total parcel distance: 3.783
+
+Total combined transportation distance: 2.227
+
+Total idle distance: 4.82
+Solving:  grubhub-11-1.tsp :
+
+Cluster 0: [(0) [  0] (1) [  8,  0, 11] (2) [  9,  0, 12] (3) [ 10,  0, 13] ]
+
+Cluster 1: [(4) [  1] (5) [  8,  1, 11] (6) [  9,  1, 12] (7) [ 10,  1, 13] ]
+
+Cluster 2: [(8) [  2] (9) [  8,  2, 11] (10) [  9,  2, 12] (11) [ 10,  2, 13] ]
+
+Cluster 3: [(12) [  3] (13) [  8,  3, 11] (14) [  9,  3, 12] (15) [ 10,  3, 13] ]
+
+Cluster 4: [(16) [  4] (17) [  8,  4, 11] (18) [  9,  4, 12] (19) [ 10,  4, 13] ]
+
+Cluster 5: [(20) [  5] (21) [  8,  5, 11] (22) [  9,  5, 12] (23) [ 10,  5, 13] ]
+
+Cluster 6: [(24) [  6] (25) [  8,  6, 11] (26) [  9,  6, 12] (27) [ 10,  6, 13] ]
+
+Cluster 7: [(28) [  7] (29) [  8,  7, 11] (30) [  9,  7, 12] (31) [ 10,  7, 13] ]
+
+Cluster 8: [(32) [ 14] ]
+
+Cluster 9: [(33) [ 15] ]
+
+Cluster 10: [(34) [ 16] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10
+  0  0  1  0  0  1  0  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  1
+  2  1  1  0  1  1  0  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  1
+  8  1  1  1  1  1  1  1  1  0  0  0
+  9  1  1  1  1  1  1  1  1  0  0  0
+ 10  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 85 rows, 890 columns, and 3840 nonzeros.
+Reduced MIP has 890 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+Presolve time =    0.05 sec.
+Probing time =    0.02 sec.
+Clique table members: 5838.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       74.7240       74.7240      138    0.00%
+Elapsed real time =   0.11 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.06
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.06 sec.
+
+Sol status: Optimal
+
+Obj Val: 74.724
+x(1, 24, 0)
+x(4, 16, 0)
+x(8, 1, 0)
+x(16, 34, 0)
+x(24, 4, 0)
+x(32, 8, 0)
+x(14, 28, 1)
+x(23, 14, 1)
+x(28, 34, 1)
+x(33, 23, 1)
+
+Solution by nodes: 
+Vehicle 0: 14 - 2 - 8 - 0 - 11 - 6 - 1 - 4 - 16
+Vehicle 1: 15 - 10 - 5 - 13 - 9 - 3 - 12 - 7 - 16
+
+
+Total time: 2.4187219343696
+
+Total passenger time: 0.966908462867012
+
+Total parcel time: 0.646476683937824
+
+Total combined transportation time: 0.575336787564767
+
+Total idle time: 0.23
+
+Total distance: 11.298
+
+Total passenger distance: 2.578
+
+Total parcel distance: 2.827
+
+Total combined transportation distance: 1.454
+
+Total idle distance: 4.439
+Solving:  grubhub-11-2.tsp :
+
+Cluster 0: [(0) [  0] (1) [  8,  0, 11] (2) [  9,  0, 12] (3) [ 10,  0, 13] ]
+
+Cluster 1: [(4) [  1] (5) [  8,  1, 11] (6) [  9,  1, 12] (7) [ 10,  1, 13] ]
+
+Cluster 2: [(8) [  2] (9) [  8,  2, 11] (10) [  9,  2, 12] (11) [ 10,  2, 13] ]
+
+Cluster 3: [(12) [  3] (13) [  8,  3, 11] (14) [  9,  3, 12] (15) [ 10,  3, 13] ]
+
+Cluster 4: [(16) [  4] (17) [  8,  4, 11] (18) [  9,  4, 12] (19) [ 10,  4, 13] ]
+
+Cluster 5: [(20) [  5] (21) [  8,  5, 11] (22) [  9,  5, 12] (23) [ 10,  5, 13] ]
+
+Cluster 6: [(24) [  6] (25) [  8,  6, 11] (26) [  9,  6, 12] (27) [ 10,  6, 13] ]
+
+Cluster 7: [(28) [  7] (29) [  8,  7, 11] (30) [  9,  7, 12] (31) [ 10,  7, 13] ]
+
+Cluster 8: [(32) [ 14] ]
+
+Cluster 9: [(33) [ 15] ]
+
+Cluster 10: [(34) [ 16] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10
+  0  0  1  0  0  1  0  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  1
+  2  1  1  0  1  1  0  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  1
+  8  1  1  1  1  1  1  1  1  0  0  0
+  9  1  1  1  1  1  1  1  1  0  0  0
+ 10  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 85 rows, 884 columns, and 3810 nonzeros.
+Reduced MIP has 884 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+Presolve time =    0.05 sec.
+Probing time =    0.02 sec.
+Clique table members: 5899.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       76.3280       76.3280       99    0.00%
+Elapsed real time =   0.10 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.04
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.04 sec.
+
+Sol status: Optimal
+
+Obj Val: 76.328
+x(2, 31, 0)
+x(21, 2, 0)
+x(31, 34, 0)
+x(32, 21, 0)
+x(4, 16, 1)
+x(8, 12, 1)
+x(12, 24, 1)
+x(16, 34, 1)
+x(24, 4, 1)
+x(33, 8, 1)
+
+Solution by nodes: 
+Vehicle 0: 14 - 8 - 5 - 11 - 9 - 0 - 12 - 10 - 7 - 13 - 16
+Vehicle 1: 15 - 2 - 3 - 6 - 1 - 4 - 16
+
+
+Total time: 2.54338514680484
+
+Total passenger time: 0.97986183074266
+
+Total parcel time: 0.658031088082902
+
+Total combined transportation time: 0.604663212435233
+
+Total idle time: 0.300829015544041
+
+Total distance: 13.704
+
+Total passenger distance: 2.828
+
+Total parcel distance: 3.05
+
+Total combined transportation distance: 2.02
+
+Total idle distance: 5.806
+Solving:  grubhub-11-3.tsp :
+
+Cluster 0: [(0) [  0] (1) [  8,  0, 11] (2) [  9,  0, 12] (3) [ 10,  0, 13] ]
+
+Cluster 1: [(4) [  1] (5) [  8,  1, 11] (6) [  9,  1, 12] (7) [ 10,  1, 13] ]
+
+Cluster 2: [(8) [  2] (9) [  8,  2, 11] (10) [  9,  2, 12] (11) [ 10,  2, 13] ]
+
+Cluster 3: [(12) [  3] (13) [  8,  3, 11] (14) [  9,  3, 12] (15) [ 10,  3, 13] ]
+
+Cluster 4: [(16) [  4] (17) [  8,  4, 11] (18) [  9,  4, 12] (19) [ 10,  4, 13] ]
+
+Cluster 5: [(20) [  5] (21) [  8,  5, 11] (22) [  9,  5, 12] (23) [ 10,  5, 13] ]
+
+Cluster 6: [(24) [  6] (25) [  8,  6, 11] (26) [  9,  6, 12] (27) [ 10,  6, 13] ]
+
+Cluster 7: [(28) [  7] (29) [  8,  7, 11] (30) [  9,  7, 12] (31) [ 10,  7, 13] ]
+
+Cluster 8: [(32) [ 14] ]
+
+Cluster 9: [(33) [ 15] ]
+
+Cluster 10: [(34) [ 16] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10
+  0  0  1  0  0  1  0  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  1
+  2  1  1  0  1  1  0  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  1
+  8  1  1  1  1  1  1  1  1  0  0  0
+  9  1  1  1  1  1  1  1  1  0  0  0
+ 10  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 85 rows, 880 columns, and 3790 nonzeros.
+Reduced MIP has 880 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+Presolve time =    0.05 sec.
+Probing time =    0.02 sec.
+Clique table members: 5930.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       80.6240    27                     80.6240      146         
+*     0+    0                           79.7780       80.6240      146    1.06%
+*     0+    0                           79.8700       80.6240      146    0.94%
+*     0+    0                           80.4150       80.6240      146    0.26%
+*     0+    0                           80.4440       80.6240      146    0.22%
+
+Repeating presolve.
+Tried aggregator 3 times.
+MIP Presolve eliminated 31 rows and 798 columns.
+MIP Presolve modified 11 coefficients.
+Aggregator did 8 substitutions.
+Reduced MIP has 46 rows, 74 columns, and 282 nonzeros.
+Reduced MIP has 74 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 38 vars, tightened 0 bounds.
+Probing changed sense of 1 constraints.
+Probing time =    0.00 sec.
+Tried aggregator 2 times.
+MIP Presolve eliminated 32 rows and 60 columns.
+MIP Presolve modified 7 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 9 rows, 9 columns, and 32 nonzeros.
+Reduced MIP has 9 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.00 sec.
+Tried aggregator 1 time.
+Represolve time =    0.02 sec.
+Probing time =    0.00 sec.
+Clique table members: 15.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           80.4440       80.6240      147    0.22%
+      0     0        cutoff             80.4440                    147    0.00%
+
+Root node processing (before b&c):
+  Real time             =    0.10
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.10 sec.
+
+Sol status: Optimal
+
+Obj Val: 80.444
+x(5, 31, 0)
+x(8, 14, 0)
+x(14, 24, 0)
+x(20, 8, 0)
+x(24, 5, 0)
+x(31, 34, 0)
+x(32, 20, 0)
+x(0, 16, 1)
+x(16, 34, 1)
+x(33, 0, 1)
+
+Solution by nodes: 
+Vehicle 0: 14 - 5 - 2 - 9 - 3 - 12 - 6 - 8 - 1 - 11 - 10 - 7 - 13 - 16
+Vehicle 1: 15 - 0 - 4 - 16
+
+
+Total time: 2.54359240069085
+
+Total passenger time: 0.968566493955095
+
+Total parcel time: 0.748963730569948
+
+Total combined transportation time: 0.604818652849741
+
+Total idle time: 0.221243523316062
+
+Total distance: 13.708
+
+Total passenger distance: 2.61
+
+Total parcel distance: 4.805
+
+Total combined transportation distance: 2.023
+
+Total idle distance: 4.27
+Solving:  grubhub-11-4.tsp :
+
+Cluster 0: [(0) [  0] (1) [  8,  0, 11] (2) [  9,  0, 12] (3) [ 10,  0, 13] ]
+
+Cluster 1: [(4) [  1] (5) [  8,  1, 11] (6) [  9,  1, 12] (7) [ 10,  1, 13] ]
+
+Cluster 2: [(8) [  2] (9) [  8,  2, 11] (10) [  9,  2, 12] (11) [ 10,  2, 13] ]
+
+Cluster 3: [(12) [  3] (13) [  8,  3, 11] (14) [  9,  3, 12] (15) [ 10,  3, 13] ]
+
+Cluster 4: [(16) [  4] (17) [  8,  4, 11] (18) [  9,  4, 12] (19) [ 10,  4, 13] ]
+
+Cluster 5: [(20) [  5] (21) [  8,  5, 11] (22) [  9,  5, 12] (23) [ 10,  5, 13] ]
+
+Cluster 6: [(24) [  6] (25) [  8,  6, 11] (26) [  9,  6, 12] (27) [ 10,  6, 13] ]
+
+Cluster 7: [(28) [  7] (29) [  8,  7, 11] (30) [  9,  7, 12] (31) [ 10,  7, 13] ]
+
+Cluster 8: [(32) [ 14] ]
+
+Cluster 9: [(33) [ 15] ]
+
+Cluster 10: [(34) [ 16] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10
+  0  0  1  0  0  1  0  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  1
+  2  1  1  0  1  1  0  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  1
+  8  1  1  1  1  1  1  1  1  0  0  0
+  9  1  1  1  1  1  1  1  1  0  0  0
+ 10  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 85 rows, 882 columns, and 3800 nonzeros.
+Reduced MIP has 882 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.06 sec.
+Probing time =    0.03 sec.
+Clique table members: 6024.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       79.5490       79.5490      103    0.00%
+Elapsed real time =   0.13 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.07
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.07 sec.
+
+Sol status: Optimal
+
+Obj Val: 79.549
+x(5, 16, 0)
+x(12, 27, 0)
+x(16, 34, 0)
+x(20, 12, 0)
+x(27, 5, 0)
+x(32, 20, 0)
+x(0, 28, 1)
+x(10, 0, 1)
+x(28, 34, 1)
+x(33, 10, 1)
+
+Solution by nodes: 
+Vehicle 0: 14 - 5 - 3 - 10 - 6 - 13 - 8 - 1 - 11 - 4 - 16
+Vehicle 1: 15 - 9 - 2 - 12 - 0 - 7 - 16
+
+
+Total time: 2.44374784110535
+
+Total passenger time: 0.976442141623489
+
+Total parcel time: 0.755492227979275
+
+Total combined transportation time: 0.563316062176166
+
+Total idle time: 0.148497409326425
+
+Total distance: 11.781
+
+Total passenger distance: 2.762
+
+Total parcel distance: 4.931
+
+Total combined transportation distance: 1.222
+
+Total idle distance: 2.866
+Solving:  grubhub-11-5.tsp :
+
+Cluster 0: [(0) [  0] (1) [  8,  0, 11] (2) [  9,  0, 12] (3) [ 10,  0, 13] ]
+
+Cluster 1: [(4) [  1] (5) [  8,  1, 11] (6) [  9,  1, 12] (7) [ 10,  1, 13] ]
+
+Cluster 2: [(8) [  2] (9) [  8,  2, 11] (10) [  9,  2, 12] (11) [ 10,  2, 13] ]
+
+Cluster 3: [(12) [  3] (13) [  8,  3, 11] (14) [  9,  3, 12] (15) [ 10,  3, 13] ]
+
+Cluster 4: [(16) [  4] (17) [  8,  4, 11] (18) [  9,  4, 12] (19) [ 10,  4, 13] ]
+
+Cluster 5: [(20) [  5] (21) [  8,  5, 11] (22) [  9,  5, 12] (23) [ 10,  5, 13] ]
+
+Cluster 6: [(24) [  6] (25) [  8,  6, 11] (26) [  9,  6, 12] (27) [ 10,  6, 13] ]
+
+Cluster 7: [(28) [  7] (29) [  8,  7, 11] (30) [  9,  7, 12] (31) [ 10,  7, 13] ]
+
+Cluster 8: [(32) [ 14] ]
+
+Cluster 9: [(33) [ 15] ]
+
+Cluster 10: [(34) [ 16] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10
+  0  0  1  0  0  1  0  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  1
+  2  1  1  0  1  1  0  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  1
+  8  1  1  1  1  1  1  1  1  0  0  0
+  9  1  1  1  1  1  1  1  1  0  0  0
+ 10  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 85 rows, 882 columns, and 3800 nonzeros.
+Reduced MIP has 882 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+Presolve time =    0.05 sec.
+Probing time =    0.02 sec.
+Clique table members: 5950.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       79.2160       79.2160      122    0.00%
+Elapsed real time =   0.09 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.05
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.05 sec.
+
+Sol status: Optimal
+
+Obj Val: 79.216
+x(4, 16, 0)
+x(8, 15, 0)
+x(15, 26, 0)
+x(16, 34, 0)
+x(26, 4, 0)
+x(32, 8, 0)
+x(1, 28, 1)
+x(20, 1, 1)
+x(28, 34, 1)
+x(33, 20, 1)
+
+Solution by nodes: 
+Vehicle 0: 14 - 2 - 10 - 3 - 13 - 9 - 6 - 12 - 1 - 4 - 16
+Vehicle 1: 15 - 5 - 8 - 0 - 11 - 7 - 16
+
+
+Total time: 2.51333333333333
+
+Total passenger time: 0.986804835924007
+
+Total parcel time: 0.663212435233161
+
+Total combined transportation time: 0.606424870466321
+
+Total idle time: 0.256891191709845
+
+Total distance: 13.124
+
+Total passenger distance: 2.962
+
+Total parcel distance: 3.15
+
+Total combined transportation distance: 2.054
+
+Total idle distance: 4.958
+Solving:  grubhub-11-6.tsp :
+
+Cluster 0: [(0) [  0] (1) [  8,  0, 11] (2) [  9,  0, 12] (3) [ 10,  0, 13] ]
+
+Cluster 1: [(4) [  1] (5) [  8,  1, 11] (6) [  9,  1, 12] (7) [ 10,  1, 13] ]
+
+Cluster 2: [(8) [  2] (9) [  8,  2, 11] (10) [  9,  2, 12] (11) [ 10,  2, 13] ]
+
+Cluster 3: [(12) [  3] (13) [  8,  3, 11] (14) [  9,  3, 12] (15) [ 10,  3, 13] ]
+
+Cluster 4: [(16) [  4] (17) [  8,  4, 11] (18) [  9,  4, 12] (19) [ 10,  4, 13] ]
+
+Cluster 5: [(20) [  5] (21) [  8,  5, 11] (22) [  9,  5, 12] (23) [ 10,  5, 13] ]
+
+Cluster 6: [(24) [  6] (25) [  8,  6, 11] (26) [  9,  6, 12] (27) [ 10,  6, 13] ]
+
+Cluster 7: [(28) [  7] (29) [  8,  7, 11] (30) [  9,  7, 12] (31) [ 10,  7, 13] ]
+
+Cluster 8: [(32) [ 14] ]
+
+Cluster 9: [(33) [ 15] ]
+
+Cluster 10: [(34) [ 16] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10
+  0  0  1  0  0  1  0  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  1
+  2  1  1  0  1  1  0  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  1
+  8  1  1  1  1  1  1  1  1  0  0  0
+  9  1  1  1  1  1  1  1  1  0  0  0
+ 10  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 85 rows, 880 columns, and 3790 nonzeros.
+Reduced MIP has 880 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+Presolve time =    0.05 sec.
+Probing time =    0.02 sec.
+Clique table members: 5930.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       75.5390       75.5390      111    0.00%
+Elapsed real time =   0.10 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.05
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.05 sec.
+
+Sol status: Optimal
+
+Obj Val: 75.539
+x(0, 16, 0)
+x(16, 34, 0)
+x(32, 0, 0)
+x(4, 31, 1)
+x(9, 14, 1)
+x(14, 24, 1)
+x(20, 9, 1)
+x(24, 4, 1)
+x(31, 34, 1)
+x(33, 20, 1)
+
+Solution by nodes: 
+Vehicle 0: 14 - 0 - 4 - 16
+Vehicle 1: 15 - 5 - 8 - 2 - 11 - 9 - 3 - 12 - 6 - 1 - 10 - 7 - 13 - 16
+
+
+Total time: 2.48250431778929
+
+Total passenger time: 0.947115716753022
+
+Total parcel time: 0.650569948186528
+
+Total combined transportation time: 0.586632124352332
+
+Total idle time: 0.298186528497409
+
+Total distance: 12.529
+
+Total passenger distance: 2.196
+
+Total parcel distance: 2.906
+
+Total combined transportation distance: 1.672
+
+Total idle distance: 5.755
+Solving:  grubhub-11-7.tsp :
+
+Cluster 0: [(0) [  0] (1) [  8,  0, 11] (2) [  9,  0, 12] (3) [ 10,  0, 13] ]
+
+Cluster 1: [(4) [  1] (5) [  8,  1, 11] (6) [  9,  1, 12] (7) [ 10,  1, 13] ]
+
+Cluster 2: [(8) [  2] (9) [  8,  2, 11] (10) [  9,  2, 12] (11) [ 10,  2, 13] ]
+
+Cluster 3: [(12) [  3] (13) [  8,  3, 11] (14) [  9,  3, 12] (15) [ 10,  3, 13] ]
+
+Cluster 4: [(16) [  4] (17) [  8,  4, 11] (18) [  9,  4, 12] (19) [ 10,  4, 13] ]
+
+Cluster 5: [(20) [  5] (21) [  8,  5, 11] (22) [  9,  5, 12] (23) [ 10,  5, 13] ]
+
+Cluster 6: [(24) [  6] (25) [  8,  6, 11] (26) [  9,  6, 12] (27) [ 10,  6, 13] ]
+
+Cluster 7: [(28) [  7] (29) [  8,  7, 11] (30) [  9,  7, 12] (31) [ 10,  7, 13] ]
+
+Cluster 8: [(32) [ 14] ]
+
+Cluster 9: [(33) [ 15] ]
+
+Cluster 10: [(34) [ 16] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10
+  0  0  1  0  0  1  0  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  1
+  2  1  1  0  1  1  0  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  1
+  8  1  1  1  1  1  1  1  1  0  0  0
+  9  1  1  1  1  1  1  1  1  0  0  0
+ 10  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 85 rows, 884 columns, and 3810 nonzeros.
+Reduced MIP has 884 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+Presolve time =    0.05 sec.
+Probing time =    0.02 sec.
+Clique table members: 5995.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       76.0070       76.0070      117    0.00%
+Elapsed real time =   0.09 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.04
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.04 sec.
+
+Sol status: Optimal
+
+Obj Val: 76.007
+x(3, 30, 0)
+x(13, 3, 0)
+x(30, 34, 0)
+x(32, 13, 0)
+x(4, 16, 1)
+x(8, 24, 1)
+x(16, 34, 1)
+x(20, 8, 1)
+x(24, 4, 1)
+x(33, 20, 1)
+
+Solution by nodes: 
+Vehicle 0: 14 - 8 - 3 - 11 - 10 - 0 - 13 - 9 - 7 - 12 - 16
+Vehicle 1: 15 - 5 - 2 - 6 - 1 - 4 - 16
+
+
+Total time: 2.39732297063903
+
+Total passenger time: 0.948721934369603
+
+Total parcel time: 0.649274611398964
+
+Total combined transportation time: 0.573367875647668
+
+Total idle time: 0.225958549222798
+
+Total distance: 10.885
+
+Total passenger distance: 2.227
+
+Total parcel distance: 2.881
+
+Total combined transportation distance: 1.416
+
+Total idle distance: 4.361
+Solving:  grubhub-11-8.tsp :
+
+Cluster 0: [(0) [  0] (1) [  8,  0, 11] (2) [  9,  0, 12] (3) [ 10,  0, 13] ]
+
+Cluster 1: [(4) [  1] (5) [  8,  1, 11] (6) [  9,  1, 12] (7) [ 10,  1, 13] ]
+
+Cluster 2: [(8) [  2] (9) [  8,  2, 11] (10) [  9,  2, 12] (11) [ 10,  2, 13] ]
+
+Cluster 3: [(12) [  3] (13) [  8,  3, 11] (14) [  9,  3, 12] (15) [ 10,  3, 13] ]
+
+Cluster 4: [(16) [  4] (17) [  8,  4, 11] (18) [  9,  4, 12] (19) [ 10,  4, 13] ]
+
+Cluster 5: [(20) [  5] (21) [  8,  5, 11] (22) [  9,  5, 12] (23) [ 10,  5, 13] ]
+
+Cluster 6: [(24) [  6] (25) [  8,  6, 11] (26) [  9,  6, 12] (27) [ 10,  6, 13] ]
+
+Cluster 7: [(28) [  7] (29) [  8,  7, 11] (30) [  9,  7, 12] (31) [ 10,  7, 13] ]
+
+Cluster 8: [(32) [ 14] ]
+
+Cluster 9: [(33) [ 15] ]
+
+Cluster 10: [(34) [ 16] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10
+  0  0  1  0  0  1  0  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  1
+  2  1  1  0  1  1  0  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  1
+  8  1  1  1  1  1  1  1  1  0  0  0
+  9  1  1  1  1  1  1  1  1  0  0  0
+ 10  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 85 rows, 882 columns, and 3800 nonzeros.
+Reduced MIP has 882 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.06 sec.
+Probing time =    0.02 sec.
+Clique table members: 6024.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       79.7090       79.7090      113    0.00%
+Elapsed real time =   0.10 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.04
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.04 sec.
+
+Sol status: Optimal
+
+Obj Val: 79.709
+x(0, 24, 0)
+x(15, 0, 0)
+x(16, 34, 0)
+x(24, 16, 0)
+x(32, 15, 0)
+x(4, 30, 1)
+x(9, 4, 1)
+x(20, 9, 1)
+x(30, 34, 1)
+x(33, 20, 1)
+
+Solution by nodes: 
+Vehicle 0: 14 - 10 - 3 - 13 - 0 - 6 - 4 - 16
+Vehicle 1: 15 - 5 - 8 - 2 - 11 - 1 - 9 - 7 - 12 - 16
+
+
+Total time: 2.38768566493955
+
+Total passenger time: 0.968981001727116
+
+Total parcel time: 0.65580310880829
+
+Total combined transportation time: 0.591295336787565
+
+Total idle time: 0.17160621761658
+
+Total distance: 10.699
+
+Total passenger distance: 2.618
+
+Total parcel distance: 3.007
+
+Total combined transportation distance: 1.762
+
+Total idle distance: 3.312
+Solving:  grubhub-11-9.tsp :
+
+Cluster 0: [(0) [  0] (1) [  8,  0, 11] (2) [  9,  0, 12] (3) [ 10,  0, 13] ]
+
+Cluster 1: [(4) [  1] (5) [  8,  1, 11] (6) [  9,  1, 12] (7) [ 10,  1, 13] ]
+
+Cluster 2: [(8) [  2] (9) [  8,  2, 11] (10) [  9,  2, 12] (11) [ 10,  2, 13] ]
+
+Cluster 3: [(12) [  3] (13) [  8,  3, 11] (14) [  9,  3, 12] (15) [ 10,  3, 13] ]
+
+Cluster 4: [(16) [  4] (17) [  8,  4, 11] (18) [  9,  4, 12] (19) [ 10,  4, 13] ]
+
+Cluster 5: [(20) [  5] (21) [  8,  5, 11] (22) [  9,  5, 12] (23) [ 10,  5, 13] ]
+
+Cluster 6: [(24) [  6] (25) [  8,  6, 11] (26) [  9,  6, 12] (27) [ 10,  6, 13] ]
+
+Cluster 7: [(28) [  7] (29) [  8,  7, 11] (30) [  9,  7, 12] (31) [ 10,  7, 13] ]
+
+Cluster 8: [(32) [ 14] ]
+
+Cluster 9: [(33) [ 15] ]
+
+Cluster 10: [(34) [ 16] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10
+  0  0  1  0  0  1  0  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  1
+  2  1  1  0  1  1  0  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  1
+  8  1  1  1  1  1  1  1  1  0  0  0
+  9  1  1  1  1  1  1  1  1  0  0  0
+ 10  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 85 rows, 880 columns, and 3790 nonzeros.
+Reduced MIP has 880 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.05 sec.
+Probing time =    0.02 sec.
+Clique table members: 5930.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       78.5860       78.5860      109    0.00%
+Elapsed real time =   0.11 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.06
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.06 sec.
+
+Sol status: Optimal
+
+Obj Val: 78.586
+x(0, 24, 0)
+x(13, 0, 0)
+x(20, 13, 0)
+x(24, 30, 0)
+x(30, 34, 0)
+x(32, 20, 0)
+x(4, 19, 1)
+x(8, 4, 1)
+x(19, 34, 1)
+x(33, 8, 1)
+
+Solution by nodes: 
+Vehicle 0: 14 - 5 - 8 - 3 - 11 - 0 - 6 - 9 - 7 - 12 - 16
+Vehicle 1: 15 - 2 - 1 - 10 - 4 - 13 - 16
+
+
+Total time: 2.42618307426598
+
+Total passenger time: 0.960690846286701
+
+Total parcel time: 0.725440414507772
+
+Total combined transportation time: 0.592331606217616
+
+Total idle time: 0.147720207253886
+
+Total distance: 11.442
+
+Total passenger distance: 2.458
+
+Total parcel distance: 4.351
+
+Total combined transportation distance: 1.782
+
+Total idle distance: 2.851
+Solving:  grubhub-12-0.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 12] (2) [ 10,  0, 13] (3) [ 11,  0, 14] ]
+
+Cluster 1: [(4) [  1] (5) [  9,  1, 12] (6) [ 10,  1, 13] (7) [ 11,  1, 14] ]
+
+Cluster 2: [(8) [  2] (9) [  9,  2, 12] (10) [ 10,  2, 13] (11) [ 11,  2, 14] ]
+
+Cluster 3: [(12) [  3] (13) [  9,  3, 12] (14) [ 10,  3, 13] (15) [ 11,  3, 14] ]
+
+Cluster 4: [(16) [  4] (17) [  9,  4, 12] (18) [ 10,  4, 13] (19) [ 11,  4, 14] ]
+
+Cluster 5: [(20) [  5] (21) [  9,  5, 12] (22) [ 10,  5, 13] (23) [ 11,  5, 14] ]
+
+Cluster 6: [(24) [  6] (25) [  9,  6, 12] (26) [ 10,  6, 13] (27) [ 11,  6, 14] ]
+
+Cluster 7: [(28) [  7] (29) [  9,  7, 12] (30) [ 10,  7, 13] (31) [ 11,  7, 14] ]
+
+Cluster 8: [(32) [  8] (33) [  9,  8, 12] (34) [ 10,  8, 13] (35) [ 11,  8, 14] ]
+
+Cluster 9: [(36) [ 15] ]
+
+Cluster 10: [(37) [ 16] ]
+
+Cluster 11: [(38) [ 17] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1108 columns, and 4816 nonzeros.
+Reduced MIP has 1108 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.06 sec.
+Probing time =    0.02 sec.
+Clique table members: 7360.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       83.0950    20                     83.0950      123         
+*     0+    0                           83.0240       83.0950      123    0.09%
+      0     0        cutoff             83.0240       83.0240      123    0.00%
+Elapsed real time =   0.22 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.16
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.16 sec.
+
+Sol status: Optimal
+
+Obj Val: 83.024
+x(1, 27, 0)
+x(4, 16, 0)
+x(8, 1, 0)
+x(16, 38, 0)
+x(20, 8, 0)
+x(27, 4, 0)
+x(36, 20, 0)
+x(14, 32, 1)
+x(28, 38, 1)
+x(32, 28, 1)
+x(37, 14, 1)
+
+Solution by nodes: 
+Vehicle 0: 15 - 5 - 2 - 9 - 0 - 12 - 11 - 6 - 14 - 1 - 4 - 17
+Vehicle 1: 16 - 10 - 3 - 13 - 8 - 7 - 17
+
+
+Total time: 2.69036269430052
+
+Total passenger time: 1.15440414507772
+
+Total parcel time: 0.642435233160622
+
+Total combined transportation time: 0.583834196891192
+
+Total idle time: 0.309689119170984
+
+Total distance: 13.324
+
+Total passenger distance: 2.98
+
+Total parcel distance: 2.749
+
+Total combined transportation distance: 1.618
+
+Total idle distance: 5.977
+Solving:  grubhub-12-1.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 12] (2) [ 10,  0, 13] (3) [ 11,  0, 14] ]
+
+Cluster 1: [(4) [  1] (5) [  9,  1, 12] (6) [ 10,  1, 13] (7) [ 11,  1, 14] ]
+
+Cluster 2: [(8) [  2] (9) [  9,  2, 12] (10) [ 10,  2, 13] (11) [ 11,  2, 14] ]
+
+Cluster 3: [(12) [  3] (13) [  9,  3, 12] (14) [ 10,  3, 13] (15) [ 11,  3, 14] ]
+
+Cluster 4: [(16) [  4] (17) [  9,  4, 12] (18) [ 10,  4, 13] (19) [ 11,  4, 14] ]
+
+Cluster 5: [(20) [  5] (21) [  9,  5, 12] (22) [ 10,  5, 13] (23) [ 11,  5, 14] ]
+
+Cluster 6: [(24) [  6] (25) [  9,  6, 12] (26) [ 10,  6, 13] (27) [ 11,  6, 14] ]
+
+Cluster 7: [(28) [  7] (29) [  9,  7, 12] (30) [ 10,  7, 13] (31) [ 11,  7, 14] ]
+
+Cluster 8: [(32) [  8] (33) [  9,  8, 12] (34) [ 10,  8, 13] (35) [ 11,  8, 14] ]
+
+Cluster 9: [(36) [ 15] ]
+
+Cluster 10: [(37) [ 16] ]
+
+Cluster 11: [(38) [ 17] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1100 columns, and 4776 nonzeros.
+Reduced MIP has 1100 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.07 sec.
+Probing time =    0.02 sec.
+Clique table members: 7357.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       82.2130       82.2130      127    0.00%
+Elapsed real time =   0.12 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.05
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.05 sec.
+
+Sol status: Optimal
+
+Obj Val: 82.213
+x(1, 26, 0)
+x(7, 28, 0)
+x(8, 12, 0)
+x(12, 1, 0)
+x(20, 8, 0)
+x(26, 7, 0)
+x(28, 38, 0)
+x(36, 20, 0)
+x(16, 38, 1)
+x(32, 16, 1)
+x(37, 32, 1)
+
+Solution by nodes: 
+Vehicle 0: 15 - 5 - 2 - 3 - 9 - 0 - 12 - 10 - 6 - 13 - 11 - 1 - 14 - 7 - 17
+Vehicle 1: 16 - 8 - 4 - 17
+
+
+Total time: 2.68170984455959
+
+Total passenger time: 1.1380829015544
+
+Total parcel time: 0.755181347150259
+
+Total combined transportation time: 0.576373056994819
+
+Total idle time: 0.212072538860104
+
+Total distance: 13.157
+
+Total passenger distance: 2.665
+
+Total parcel distance: 4.925
+
+Total combined transportation distance: 1.474
+
+Total idle distance: 4.093
+Solving:  grubhub-12-2.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 12] (2) [ 10,  0, 13] (3) [ 11,  0, 14] ]
+
+Cluster 1: [(4) [  1] (5) [  9,  1, 12] (6) [ 10,  1, 13] (7) [ 11,  1, 14] ]
+
+Cluster 2: [(8) [  2] (9) [  9,  2, 12] (10) [ 10,  2, 13] (11) [ 11,  2, 14] ]
+
+Cluster 3: [(12) [  3] (13) [  9,  3, 12] (14) [ 10,  3, 13] (15) [ 11,  3, 14] ]
+
+Cluster 4: [(16) [  4] (17) [  9,  4, 12] (18) [ 10,  4, 13] (19) [ 11,  4, 14] ]
+
+Cluster 5: [(20) [  5] (21) [  9,  5, 12] (22) [ 10,  5, 13] (23) [ 11,  5, 14] ]
+
+Cluster 6: [(24) [  6] (25) [  9,  6, 12] (26) [ 10,  6, 13] (27) [ 11,  6, 14] ]
+
+Cluster 7: [(28) [  7] (29) [  9,  7, 12] (30) [ 10,  7, 13] (31) [ 11,  7, 14] ]
+
+Cluster 8: [(32) [  8] (33) [  9,  8, 12] (34) [ 10,  8, 13] (35) [ 11,  8, 14] ]
+
+Cluster 9: [(36) [ 15] ]
+
+Cluster 10: [(37) [ 16] ]
+
+Cluster 11: [(38) [ 17] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1104 columns, and 4798 nonzeros.
+Reduced MIP has 1104 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.07 sec.
+Probing time =    0.02 sec.
+Clique table members: 7291.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       83.1080       83.1080       95    0.00%
+Elapsed real time =   0.12 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.05
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.05 sec.
+
+Sol status: Optimal
+
+Obj Val: 83.108
+x(4, 29, 0)
+x(24, 4, 0)
+x(29, 38, 0)
+x(32, 24, 0)
+x(36, 32, 0)
+x(3, 18, 1)
+x(8, 12, 1)
+x(12, 3, 1)
+x(18, 38, 1)
+x(20, 8, 1)
+x(37, 20, 1)
+
+Solution by nodes: 
+Vehicle 0: 15 - 8 - 6 - 1 - 9 - 7 - 12 - 17
+Vehicle 1: 16 - 5 - 2 - 3 - 11 - 0 - 14 - 10 - 4 - 13 - 17
+
+
+Total time: 2.5559585492228
+
+Total passenger time: 1.14735751295337
+
+Total parcel time: 0.623523316062176
+
+Total combined transportation time: 0.558031088082901
+
+Total idle time: 0.227046632124352
+
+Total distance: 10.73
+
+Total passenger distance: 2.844
+
+Total parcel distance: 2.384
+
+Total combined transportation distance: 1.12
+
+Total idle distance: 4.382
+Solving:  grubhub-12-3.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 12] (2) [ 10,  0, 13] (3) [ 11,  0, 14] ]
+
+Cluster 1: [(4) [  1] (5) [  9,  1, 12] (6) [ 10,  1, 13] (7) [ 11,  1, 14] ]
+
+Cluster 2: [(8) [  2] (9) [  9,  2, 12] (10) [ 10,  2, 13] (11) [ 11,  2, 14] ]
+
+Cluster 3: [(12) [  3] (13) [  9,  3, 12] (14) [ 10,  3, 13] (15) [ 11,  3, 14] ]
+
+Cluster 4: [(16) [  4] (17) [  9,  4, 12] (18) [ 10,  4, 13] (19) [ 11,  4, 14] ]
+
+Cluster 5: [(20) [  5] (21) [  9,  5, 12] (22) [ 10,  5, 13] (23) [ 11,  5, 14] ]
+
+Cluster 6: [(24) [  6] (25) [  9,  6, 12] (26) [ 10,  6, 13] (27) [ 11,  6, 14] ]
+
+Cluster 7: [(28) [  7] (29) [  9,  7, 12] (30) [ 10,  7, 13] (31) [ 11,  7, 14] ]
+
+Cluster 8: [(32) [  8] (33) [  9,  8, 12] (34) [ 10,  8, 13] (35) [ 11,  8, 14] ]
+
+Cluster 9: [(36) [ 15] ]
+
+Cluster 10: [(37) [ 16] ]
+
+Cluster 11: [(38) [ 17] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1100 columns, and 4776 nonzeros.
+Reduced MIP has 1100 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.07 sec.
+Probing time =    0.02 sec.
+Clique table members: 7357.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       80.0890       80.0890      136    0.00%
+Elapsed real time =   0.13 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.06
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.06 sec.
+
+Sol status: Optimal
+
+Obj Val: 80.089
+x(0, 4, 0)
+x(4, 28, 0)
+x(11, 13, 0)
+x(13, 0, 0)
+x(22, 11, 0)
+x(28, 38, 0)
+x(36, 22, 0)
+x(16, 38, 1)
+x(24, 16, 1)
+x(32, 24, 1)
+x(37, 32, 1)
+
+Solution by nodes: 
+Vehicle 0: 15 - 10 - 5 - 13 - 11 - 2 - 14 - 9 - 3 - 12 - 0 - 1 - 7 - 17
+Vehicle 1: 16 - 8 - 6 - 4 - 17
+
+
+Total time: 2.6399481865285
+
+Total passenger time: 1.09528497409326
+
+Total parcel time: 0.69020725388601
+
+Total combined transportation time: 0.592227979274611
+
+Total idle time: 0.262227979274611
+
+Total distance: 12.351
+
+Total passenger distance: 1.839
+
+Total parcel distance: 3.671
+
+Total combined transportation distance: 1.78
+
+Total idle distance: 5.061
+Solving:  grubhub-12-4.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 12] (2) [ 10,  0, 13] (3) [ 11,  0, 14] ]
+
+Cluster 1: [(4) [  1] (5) [  9,  1, 12] (6) [ 10,  1, 13] (7) [ 11,  1, 14] ]
+
+Cluster 2: [(8) [  2] (9) [  9,  2, 12] (10) [ 10,  2, 13] (11) [ 11,  2, 14] ]
+
+Cluster 3: [(12) [  3] (13) [  9,  3, 12] (14) [ 10,  3, 13] (15) [ 11,  3, 14] ]
+
+Cluster 4: [(16) [  4] (17) [  9,  4, 12] (18) [ 10,  4, 13] (19) [ 11,  4, 14] ]
+
+Cluster 5: [(20) [  5] (21) [  9,  5, 12] (22) [ 10,  5, 13] (23) [ 11,  5, 14] ]
+
+Cluster 6: [(24) [  6] (25) [  9,  6, 12] (26) [ 10,  6, 13] (27) [ 11,  6, 14] ]
+
+Cluster 7: [(28) [  7] (29) [  9,  7, 12] (30) [ 10,  7, 13] (31) [ 11,  7, 14] ]
+
+Cluster 8: [(32) [  8] (33) [  9,  8, 12] (34) [ 10,  8, 13] (35) [ 11,  8, 14] ]
+
+Cluster 9: [(36) [ 15] ]
+
+Cluster 10: [(37) [ 16] ]
+
+Cluster 11: [(38) [ 17] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1094 columns, and 4748 nonzeros.
+Reduced MIP has 1094 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.06 sec.
+Probing time =    0.02 sec.
+Clique table members: 7187.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       80.8473    27                     80.8473      176         
+*     0+    0                           79.2790       80.8473      176    1.98%
+*     0     0      integral     0       80.8420       Cuts: 5      190    0.00%
+      0     0        cutoff             80.8420       80.8420      190    0.00%
+Elapsed real time =   0.23 sec. (tree size =  0.00 MB, solutions = 2)
+
+Clique cuts applied:  1
+Zero-half cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.17
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.17 sec.
+
+Sol status: Optimal
+
+Obj Val: 80.842
+x(0, 4, 0)
+x(4, 16, 0)
+x(16, 38, 0)
+x(20, 0, 0)
+x(36, 20, 0)
+x(9, 14, 1)
+x(14, 32, 1)
+x(27, 28, 1)
+x(28, 38, 1)
+x(32, 27, 1)
+x(37, 9, 1)
+
+Solution by nodes: 
+Vehicle 0: 15 - 5 - 0 - 1 - 4 - 17
+Vehicle 1: 16 - 9 - 2 - 12 - 10 - 3 - 13 - 8 - 11 - 6 - 14 - 7 - 17
+
+
+Total time: 2.78487046632124
+
+Total passenger time: 1.11326424870466
+
+Total parcel time: 0.730414507772021
+
+Total combined transportation time: 0.573056994818653
+
+Total idle time: 0.368134715025907
+
+Total distance: 15.148
+
+Total passenger distance: 2.186
+
+Total parcel distance: 4.447
+
+Total combined transportation distance: 1.41
+
+Total idle distance: 7.105
+Solving:  grubhub-12-5.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 12] (2) [ 10,  0, 13] (3) [ 11,  0, 14] ]
+
+Cluster 1: [(4) [  1] (5) [  9,  1, 12] (6) [ 10,  1, 13] (7) [ 11,  1, 14] ]
+
+Cluster 2: [(8) [  2] (9) [  9,  2, 12] (10) [ 10,  2, 13] (11) [ 11,  2, 14] ]
+
+Cluster 3: [(12) [  3] (13) [  9,  3, 12] (14) [ 10,  3, 13] (15) [ 11,  3, 14] ]
+
+Cluster 4: [(16) [  4] (17) [  9,  4, 12] (18) [ 10,  4, 13] (19) [ 11,  4, 14] ]
+
+Cluster 5: [(20) [  5] (21) [  9,  5, 12] (22) [ 10,  5, 13] (23) [ 11,  5, 14] ]
+
+Cluster 6: [(24) [  6] (25) [  9,  6, 12] (26) [ 10,  6, 13] (27) [ 11,  6, 14] ]
+
+Cluster 7: [(28) [  7] (29) [  9,  7, 12] (30) [ 10,  7, 13] (31) [ 11,  7, 14] ]
+
+Cluster 8: [(32) [  8] (33) [  9,  8, 12] (34) [ 10,  8, 13] (35) [ 11,  8, 14] ]
+
+Cluster 9: [(36) [ 15] ]
+
+Cluster 10: [(37) [ 16] ]
+
+Cluster 11: [(38) [ 17] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1090 columns, and 4730 nonzeros.
+Reduced MIP has 1090 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.06 sec.
+Probing time =    0.02 sec.
+Clique table members: 7189.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       88.8470       88.8470       97    0.00%
+Elapsed real time =   0.12 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.06
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.06 sec.
+
+Sol status: Optimal
+
+Obj Val: 88.847
+x(0, 32, 0)
+x(10, 12, 0)
+x(12, 0, 0)
+x(16, 38, 0)
+x(32, 16, 0)
+x(36, 10, 0)
+x(4, 31, 1)
+x(21, 24, 1)
+x(24, 4, 1)
+x(31, 38, 1)
+x(37, 21, 1)
+
+Solution by nodes: 
+Vehicle 0: 15 - 10 - 2 - 13 - 3 - 0 - 8 - 4 - 17
+Vehicle 1: 16 - 9 - 5 - 12 - 6 - 1 - 11 - 7 - 14 - 17
+
+
+Total time: 2.8139378238342
+
+Total passenger time: 1.16761658031088
+
+Total parcel time: 0.786735751295337
+
+Total combined transportation time: 0.587772020725389
+
+Total idle time: 0.271813471502591
+
+Total distance: 15.709
+
+Total passenger distance: 3.235
+
+Total parcel distance: 5.534
+
+Total combined transportation distance: 1.694
+
+Total idle distance: 5.246
+Solving:  grubhub-12-6.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 12] (2) [ 10,  0, 13] (3) [ 11,  0, 14] ]
+
+Cluster 1: [(4) [  1] (5) [  9,  1, 12] (6) [ 10,  1, 13] (7) [ 11,  1, 14] ]
+
+Cluster 2: [(8) [  2] (9) [  9,  2, 12] (10) [ 10,  2, 13] (11) [ 11,  2, 14] ]
+
+Cluster 3: [(12) [  3] (13) [  9,  3, 12] (14) [ 10,  3, 13] (15) [ 11,  3, 14] ]
+
+Cluster 4: [(16) [  4] (17) [  9,  4, 12] (18) [ 10,  4, 13] (19) [ 11,  4, 14] ]
+
+Cluster 5: [(20) [  5] (21) [  9,  5, 12] (22) [ 10,  5, 13] (23) [ 11,  5, 14] ]
+
+Cluster 6: [(24) [  6] (25) [  9,  6, 12] (26) [ 10,  6, 13] (27) [ 11,  6, 14] ]
+
+Cluster 7: [(28) [  7] (29) [  9,  7, 12] (30) [ 10,  7, 13] (31) [ 11,  7, 14] ]
+
+Cluster 8: [(32) [  8] (33) [  9,  8, 12] (34) [ 10,  8, 13] (35) [ 11,  8, 14] ]
+
+Cluster 9: [(36) [ 15] ]
+
+Cluster 10: [(37) [ 16] ]
+
+Cluster 11: [(38) [ 17] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1100 columns, and 4780 nonzeros.
+Reduced MIP has 1100 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.07 sec.
+Probing time =    0.03 sec.
+Clique table members: 7168.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       86.5200       86.5200      119    0.00%
+Elapsed real time =   0.15 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.08
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.08 sec.
+
+Sol status: Optimal
+
+Obj Val: 86.52
+x(0, 32, 0)
+x(7, 17, 0)
+x(8, 12, 0)
+x(12, 0, 0)
+x(17, 38, 0)
+x(22, 8, 0)
+x(32, 7, 0)
+x(36, 22, 0)
+x(24, 28, 1)
+x(28, 38, 1)
+x(37, 24, 1)
+
+Solution by nodes: 
+Vehicle 0: 15 - 10 - 5 - 13 - 2 - 3 - 0 - 8 - 11 - 1 - 14 - 9 - 4 - 12 - 17
+Vehicle 1: 16 - 6 - 7 - 17
+
+
+Total time: 2.79015544041451
+
+Total passenger time: 1.18331606217617
+
+Total parcel time: 0.716839378238342
+
+Total combined transportation time: 0.581450777202072
+
+Total idle time: 0.308549222797928
+
+Total distance: 15.25
+
+Total passenger distance: 3.538
+
+Total parcel distance: 4.185
+
+Total combined transportation distance: 1.572
+
+Total idle distance: 5.955
+Solving:  grubhub-12-7.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 12] (2) [ 10,  0, 13] (3) [ 11,  0, 14] ]
+
+Cluster 1: [(4) [  1] (5) [  9,  1, 12] (6) [ 10,  1, 13] (7) [ 11,  1, 14] ]
+
+Cluster 2: [(8) [  2] (9) [  9,  2, 12] (10) [ 10,  2, 13] (11) [ 11,  2, 14] ]
+
+Cluster 3: [(12) [  3] (13) [  9,  3, 12] (14) [ 10,  3, 13] (15) [ 11,  3, 14] ]
+
+Cluster 4: [(16) [  4] (17) [  9,  4, 12] (18) [ 10,  4, 13] (19) [ 11,  4, 14] ]
+
+Cluster 5: [(20) [  5] (21) [  9,  5, 12] (22) [ 10,  5, 13] (23) [ 11,  5, 14] ]
+
+Cluster 6: [(24) [  6] (25) [  9,  6, 12] (26) [ 10,  6, 13] (27) [ 11,  6, 14] ]
+
+Cluster 7: [(28) [  7] (29) [  9,  7, 12] (30) [ 10,  7, 13] (31) [ 11,  7, 14] ]
+
+Cluster 8: [(32) [  8] (33) [  9,  8, 12] (34) [ 10,  8, 13] (35) [ 11,  8, 14] ]
+
+Cluster 9: [(36) [ 15] ]
+
+Cluster 10: [(37) [ 16] ]
+
+Cluster 11: [(38) [ 17] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1102 columns, and 4786 nonzeros.
+Reduced MIP has 1102 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.06 sec.
+Probing time =    0.03 sec.
+Clique table members: 7162.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       88.8400       88.8400       87    0.00%
+Elapsed real time =   0.13 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.07
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.07 sec.
+
+Sol status: Optimal
+
+Obj Val: 88.84
+x(0, 24, 0)
+x(4, 29, 0)
+x(8, 0, 0)
+x(24, 4, 0)
+x(29, 38, 0)
+x(36, 8, 0)
+x(12, 34, 1)
+x(19, 38, 1)
+x(20, 12, 1)
+x(34, 19, 1)
+x(37, 20, 1)
+
+Solution by nodes: 
+Vehicle 0: 15 - 2 - 0 - 6 - 1 - 9 - 7 - 12 - 17
+Vehicle 1: 16 - 5 - 3 - 10 - 8 - 13 - 11 - 4 - 14 - 17
+
+
+Total time: 2.58621761658031
+
+Total passenger time: 1.18735751295337
+
+Total parcel time: 0.649689119170984
+
+Total combined transportation time: 0.574922279792746
+
+Total idle time: 0.174248704663212
+
+Total distance: 11.314
+
+Total passenger distance: 3.616
+
+Total parcel distance: 2.889
+
+Total combined transportation distance: 1.446
+
+Total idle distance: 3.363
+Solving:  grubhub-12-8.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 12] (2) [ 10,  0, 13] (3) [ 11,  0, 14] ]
+
+Cluster 1: [(4) [  1] (5) [  9,  1, 12] (6) [ 10,  1, 13] (7) [ 11,  1, 14] ]
+
+Cluster 2: [(8) [  2] (9) [  9,  2, 12] (10) [ 10,  2, 13] (11) [ 11,  2, 14] ]
+
+Cluster 3: [(12) [  3] (13) [  9,  3, 12] (14) [ 10,  3, 13] (15) [ 11,  3, 14] ]
+
+Cluster 4: [(16) [  4] (17) [  9,  4, 12] (18) [ 10,  4, 13] (19) [ 11,  4, 14] ]
+
+Cluster 5: [(20) [  5] (21) [  9,  5, 12] (22) [ 10,  5, 13] (23) [ 11,  5, 14] ]
+
+Cluster 6: [(24) [  6] (25) [  9,  6, 12] (26) [ 10,  6, 13] (27) [ 11,  6, 14] ]
+
+Cluster 7: [(28) [  7] (29) [  9,  7, 12] (30) [ 10,  7, 13] (31) [ 11,  7, 14] ]
+
+Cluster 8: [(32) [  8] (33) [  9,  8, 12] (34) [ 10,  8, 13] (35) [ 11,  8, 14] ]
+
+Cluster 9: [(36) [ 15] ]
+
+Cluster 10: [(37) [ 16] ]
+
+Cluster 11: [(38) [ 17] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1100 columns, and 4776 nonzeros.
+Reduced MIP has 1100 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.07 sec.
+Probing time =    0.02 sec.
+Clique table members: 7357.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       84.1328    17                     84.1328      139         
+*     0+    0                           84.0810       84.1328      139    0.06%
+*     0+    0                           84.0950       84.1328      145    0.04%
+      0     0        cutoff             84.0950       84.1328      145    0.04%
+Elapsed real time =   0.15 sec. (tree size =  0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.09
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.09 sec.
+
+Sol status: Optimal
+
+Obj Val: 84.095
+x(2, 32, 0)
+x(12, 2, 0)
+x(27, 28, 0)
+x(28, 38, 0)
+x(32, 27, 0)
+x(36, 12, 0)
+x(4, 16, 1)
+x(8, 4, 1)
+x(16, 38, 1)
+x(21, 8, 1)
+x(37, 21, 1)
+
+Solution by nodes: 
+Vehicle 0: 15 - 3 - 10 - 0 - 13 - 8 - 11 - 6 - 14 - 7 - 17
+Vehicle 1: 16 - 9 - 5 - 12 - 2 - 1 - 4 - 17
+
+
+Total time: 2.6600518134715
+
+Total passenger time: 1.14917098445596
+
+Total parcel time: 0.74300518134715
+
+Total combined transportation time: 0.554093264248705
+
+Total idle time: 0.213782383419689
+
+Total distance: 12.739
+
+Total passenger distance: 2.879
+
+Total parcel distance: 4.69
+
+Total combined transportation distance: 1.044
+
+Total idle distance: 4.126
+Solving:  grubhub-12-9.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 12] (2) [ 10,  0, 13] (3) [ 11,  0, 14] ]
+
+Cluster 1: [(4) [  1] (5) [  9,  1, 12] (6) [ 10,  1, 13] (7) [ 11,  1, 14] ]
+
+Cluster 2: [(8) [  2] (9) [  9,  2, 12] (10) [ 10,  2, 13] (11) [ 11,  2, 14] ]
+
+Cluster 3: [(12) [  3] (13) [  9,  3, 12] (14) [ 10,  3, 13] (15) [ 11,  3, 14] ]
+
+Cluster 4: [(16) [  4] (17) [  9,  4, 12] (18) [ 10,  4, 13] (19) [ 11,  4, 14] ]
+
+Cluster 5: [(20) [  5] (21) [  9,  5, 12] (22) [ 10,  5, 13] (23) [ 11,  5, 14] ]
+
+Cluster 6: [(24) [  6] (25) [  9,  6, 12] (26) [ 10,  6, 13] (27) [ 11,  6, 14] ]
+
+Cluster 7: [(28) [  7] (29) [  9,  7, 12] (30) [ 10,  7, 13] (31) [ 11,  7, 14] ]
+
+Cluster 8: [(32) [  8] (33) [  9,  8, 12] (34) [ 10,  8, 13] (35) [ 11,  8, 14] ]
+
+Cluster 9: [(36) [ 15] ]
+
+Cluster 10: [(37) [ 16] ]
+
+Cluster 11: [(38) [ 17] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 95 rows, 1100 columns, and 4776 nonzeros.
+Reduced MIP has 1100 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.02 sec.
+Tried aggregator 1 time.
+Presolve time =    0.06 sec.
+Probing time =    0.03 sec.
+Clique table members: 7357.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       84.7830       84.7830      131    0.00%
+Elapsed real time =   0.13 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.07
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.07 sec.
+
+Sol status: Optimal
+
+Obj Val: 84.783
+x(7, 28, 0)
+x(14, 7, 0)
+x(21, 14, 0)
+x(28, 38, 0)
+x(36, 21, 0)
+x(0, 32, 1)
+x(8, 0, 1)
+x(16, 38, 1)
+x(24, 16, 1)
+x(32, 24, 1)
+x(37, 8, 1)
+
+Solution by nodes: 
+Vehicle 0: 15 - 9 - 5 - 12 - 10 - 3 - 13 - 11 - 1 - 14 - 7 - 17
+Vehicle 1: 16 - 2 - 0 - 8 - 6 - 4 - 17
+
+
+Total time: 2.69611398963731
+
+Total passenger time: 1.15056994818653
+
+Total parcel time: 0.753367875647668
+
+Total combined transportation time: 0.602694300518135
+
+Total idle time: 0.189481865284974
+
+Total distance: 13.435
+
+Total passenger distance: 2.906
+
+Total parcel distance: 4.89
+
+Total combined transportation distance: 1.982
+
+Total idle distance: 3.657
+Solving:  grubhub-13-0.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 13] (2) [ 10,  0, 14] (3) [ 11,  0, 15] (4) [ 12,  0, 16] ]
+
+Cluster 1: [(5) [  1] (6) [  9,  1, 13] (7) [ 10,  1, 14] (8) [ 11,  1, 15] (9) [ 12,  1, 16] ]
+
+Cluster 2: [(10) [  2] (11) [  9,  2, 13] (12) [ 10,  2, 14] (13) [ 11,  2, 15] (14) [ 12,  2, 16] ]
+
+Cluster 3: [(15) [  3] (16) [  9,  3, 13] (17) [ 10,  3, 14] (18) [ 11,  3, 15] (19) [ 12,  3, 16] ]
+
+Cluster 4: [(20) [  4] (21) [  9,  4, 13] (22) [ 10,  4, 14] (23) [ 11,  4, 15] (24) [ 12,  4, 16] ]
+
+Cluster 5: [(25) [  5] (26) [  9,  5, 13] (27) [ 10,  5, 14] (28) [ 11,  5, 15] (29) [ 12,  5, 16] ]
+
+Cluster 6: [(30) [  6] (31) [  9,  6, 13] (32) [ 10,  6, 14] (33) [ 11,  6, 15] (34) [ 12,  6, 16] ]
+
+Cluster 7: [(35) [  7] (36) [  9,  7, 13] (37) [ 10,  7, 14] (38) [ 11,  7, 15] (39) [ 12,  7, 16] ]
+
+Cluster 8: [(40) [  8] (41) [  9,  8, 13] (42) [ 10,  8, 14] (43) [ 11,  8, 15] (44) [ 12,  8, 16] ]
+
+Cluster 9: [(45) [ 17] ]
+
+Cluster 10: [(46) [ 18] ]
+
+Cluster 11: [(47) [ 19] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 71 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 112 rows, 1619 columns, and 7270 nonzeros.
+Reduced MIP has 1619 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.06 sec.
+Probing time =    0.02 sec.
+Clique table members: 11092.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       88.5030    25                     88.5030      164         
+      0     0       88.5030    14                     Cuts: 4      166         
+      0     0       88.5030    25                     Cuts: 3      167         
+      0     0       88.5030    28                     Cuts: 3      174         
+*     0+    0                           86.6520       88.5030      174    2.14%
+*     0+    0                           87.3570       88.5030      174    1.31%
+*     0+    0                           88.2470       88.5030      174    0.29%
+      0     0        cutoff             88.2470       88.2470      174    0.00%
+Elapsed real time =   0.53 sec. (tree size =  0.00 MB, solutions = 3)
+
+Cover cuts applied:  1
+Zero-half cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.47
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.47 sec.
+
+Sol status: Optimal
+
+Obj Val: 88.247
+x(5, 20, 0)
+x(13, 15, 0)
+x(15, 41, 0)
+x(20, 47, 0)
+x(41, 5, 0)
+x(45, 13, 0)
+x(0, 34, 1)
+x(25, 0, 1)
+x(34, 37, 1)
+x(37, 47, 1)
+x(46, 25, 1)
+
+Solution by nodes: 
+Vehicle 0: 17 - 11 - 2 - 15 - 3 - 9 - 8 - 13 - 1 - 4 - 19
+Vehicle 1: 18 - 5 - 0 - 12 - 6 - 16 - 10 - 7 - 14 - 19
+
+
+Total time: 2.89469775474957
+
+Total passenger time: 0.948203799654577
+
+Total parcel time: 0.931951640759931
+
+Total combined transportation time: 0.745682210708117
+
+Total idle time: 0.268860103626943
+
+Total distance: 14.051
+
+Total passenger distance: 2.217
+
+Total parcel distance: 5.12
+
+Total combined transportation distance: 1.525
+
+Total idle distance: 5.189
+Solving:  grubhub-13-1.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 13] (2) [ 10,  0, 14] (3) [ 11,  0, 15] (4) [ 12,  0, 16] ]
+
+Cluster 1: [(5) [  1] (6) [  9,  1, 13] (7) [ 10,  1, 14] (8) [ 11,  1, 15] (9) [ 12,  1, 16] ]
+
+Cluster 2: [(10) [  2] (11) [  9,  2, 13] (12) [ 10,  2, 14] (13) [ 11,  2, 15] (14) [ 12,  2, 16] ]
+
+Cluster 3: [(15) [  3] (16) [  9,  3, 13] (17) [ 10,  3, 14] (18) [ 11,  3, 15] (19) [ 12,  3, 16] ]
+
+Cluster 4: [(20) [  4] (21) [  9,  4, 13] (22) [ 10,  4, 14] (23) [ 11,  4, 15] (24) [ 12,  4, 16] ]
+
+Cluster 5: [(25) [  5] (26) [  9,  5, 13] (27) [ 10,  5, 14] (28) [ 11,  5, 15] (29) [ 12,  5, 16] ]
+
+Cluster 6: [(30) [  6] (31) [  9,  6, 13] (32) [ 10,  6, 14] (33) [ 11,  6, 15] (34) [ 12,  6, 16] ]
+
+Cluster 7: [(35) [  7] (36) [  9,  7, 13] (37) [ 10,  7, 14] (38) [ 11,  7, 15] (39) [ 12,  7, 16] ]
+
+Cluster 8: [(40) [  8] (41) [  9,  8, 13] (42) [ 10,  8, 14] (43) [ 11,  8, 15] (44) [ 12,  8, 16] ]
+
+Cluster 9: [(45) [ 17] ]
+
+Cluster 10: [(46) [ 18] ]
+
+Cluster 11: [(47) [ 19] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 71 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 112 rows, 1613 columns, and 7246 nonzeros.
+Reduced MIP has 1613 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.05 sec.
+Probing time =    0.02 sec.
+Clique table members: 10640.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       91.8060    23                     91.8060      155         
+      0     0       91.8060    22                     Cuts: 4      162         
+*     0+    0                           90.5530       91.8060      162    1.38%
+      0     0       91.8060    27       90.5530       Cuts: 6      171    1.38%
+*     0+    0                           91.1480       91.8060      171    0.72%
+*     0+    0                           91.1760       91.8060      171    0.69%
+*     0+    0                           91.6680       91.8060      171    0.15%
+      0     0        cutoff             91.6680       91.6680      171    0.00%
+Elapsed real time =   0.38 sec. (tree size =  0.00 MB, solutions = 4)
+
+Zero-half cuts applied:  4
+
+Root node processing (before b&c):
+  Real time             =    0.33
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.33 sec.
+
+Sol status: Optimal
+
+Obj Val: 91.668
+x(5, 39, 0)
+x(26, 43, 0)
+x(39, 47, 0)
+x(43, 5, 0)
+x(45, 26, 0)
+x(2, 30, 1)
+x(10, 15, 1)
+x(15, 2, 1)
+x(20, 47, 1)
+x(30, 20, 1)
+x(46, 10, 1)
+
+Solution by nodes: 
+Vehicle 0: 17 - 9 - 5 - 13 - 11 - 8 - 15 - 1 - 12 - 7 - 16 - 19
+Vehicle 1: 18 - 2 - 3 - 10 - 0 - 14 - 6 - 4 - 19
+
+
+Total time: 2.95423143350604
+
+Total passenger time: 0.943333333333333
+
+Total parcel time: 0.922677029360967
+
+Total combined transportation time: 0.801226252158895
+
+Total idle time: 0.28699481865285
+
+Total distance: 15.2
+
+Total passenger distance: 2.123
+
+Total parcel distance: 4.941
+
+Total combined transportation distance: 2.597
+
+Total idle distance: 5.539
+Solving:  grubhub-13-2.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 13] (2) [ 10,  0, 14] (3) [ 11,  0, 15] (4) [ 12,  0, 16] ]
+
+Cluster 1: [(5) [  1] (6) [  9,  1, 13] (7) [ 10,  1, 14] (8) [ 11,  1, 15] (9) [ 12,  1, 16] ]
+
+Cluster 2: [(10) [  2] (11) [  9,  2, 13] (12) [ 10,  2, 14] (13) [ 11,  2, 15] (14) [ 12,  2, 16] ]
+
+Cluster 3: [(15) [  3] (16) [  9,  3, 13] (17) [ 10,  3, 14] (18) [ 11,  3, 15] (19) [ 12,  3, 16] ]
+
+Cluster 4: [(20) [  4] (21) [  9,  4, 13] (22) [ 10,  4, 14] (23) [ 11,  4, 15] (24) [ 12,  4, 16] ]
+
+Cluster 5: [(25) [  5] (26) [  9,  5, 13] (27) [ 10,  5, 14] (28) [ 11,  5, 15] (29) [ 12,  5, 16] ]
+
+Cluster 6: [(30) [  6] (31) [  9,  6, 13] (32) [ 10,  6, 14] (33) [ 11,  6, 15] (34) [ 12,  6, 16] ]
+
+Cluster 7: [(35) [  7] (36) [  9,  7, 13] (37) [ 10,  7, 14] (38) [ 11,  7, 15] (39) [ 12,  7, 16] ]
+
+Cluster 8: [(40) [  8] (41) [  9,  8, 13] (42) [ 10,  8, 14] (43) [ 11,  8, 15] (44) [ 12,  8, 16] ]
+
+Cluster 9: [(45) [ 17] ]
+
+Cluster 10: [(46) [ 18] ]
+
+Cluster 11: [(47) [ 19] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 71 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 112 rows, 1615 columns, and 7254 nonzeros.
+Reduced MIP has 1615 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.06 sec.
+Probing time =    0.03 sec.
+Clique table members: 10664.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       90.7350    11                     90.7350      167         
+*     0+    0                           90.3700       90.7350      167    0.40%
+*     0+    0                           90.4270       90.7350      167    0.34%
+*     0+    0                           90.7320       90.7350      167    0.00%
+
+Root node processing (before b&c):
+  Real time             =    0.10
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.10 sec.
+
+Sol status: Optimal
+
+Obj Val: 90.732
+x(6, 20, 0)
+x(10, 15, 0)
+x(15, 33, 0)
+x(20, 47, 0)
+x(25, 10, 0)
+x(33, 6, 0)
+x(45, 25, 0)
+x(4, 40, 1)
+x(37, 47, 1)
+x(40, 37, 1)
+x(46, 4, 1)
+
+Solution by nodes: 
+Vehicle 0: 17 - 5 - 2 - 3 - 11 - 6 - 15 - 9 - 1 - 13 - 4 - 19
+Vehicle 1: 18 - 12 - 0 - 16 - 8 - 10 - 7 - 14 - 19
+
+
+Total time: 2.9032469775475
+
+Total passenger time: 0.952815198618307
+
+Total parcel time: 0.909360967184802
+
+Total combined transportation time: 0.787495682210708
+
+Total idle time: 0.253575129533679
+
+Total distance: 14.216
+
+Total passenger distance: 2.306
+
+Total parcel distance: 4.684
+
+Total combined transportation distance: 2.332
+
+Total idle distance: 4.894
+Solving:  grubhub-13-3.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 13] (2) [ 10,  0, 14] (3) [ 11,  0, 15] (4) [ 12,  0, 16] ]
+
+Cluster 1: [(5) [  1] (6) [  9,  1, 13] (7) [ 10,  1, 14] (8) [ 11,  1, 15] (9) [ 12,  1, 16] ]
+
+Cluster 2: [(10) [  2] (11) [  9,  2, 13] (12) [ 10,  2, 14] (13) [ 11,  2, 15] (14) [ 12,  2, 16] ]
+
+Cluster 3: [(15) [  3] (16) [  9,  3, 13] (17) [ 10,  3, 14] (18) [ 11,  3, 15] (19) [ 12,  3, 16] ]
+
+Cluster 4: [(20) [  4] (21) [  9,  4, 13] (22) [ 10,  4, 14] (23) [ 11,  4, 15] (24) [ 12,  4, 16] ]
+
+Cluster 5: [(25) [  5] (26) [  9,  5, 13] (27) [ 10,  5, 14] (28) [ 11,  5, 15] (29) [ 12,  5, 16] ]
+
+Cluster 6: [(30) [  6] (31) [  9,  6, 13] (32) [ 10,  6, 14] (33) [ 11,  6, 15] (34) [ 12,  6, 16] ]
+
+Cluster 7: [(35) [  7] (36) [  9,  7, 13] (37) [ 10,  7, 14] (38) [ 11,  7, 15] (39) [ 12,  7, 16] ]
+
+Cluster 8: [(40) [  8] (41) [  9,  8, 13] (42) [ 10,  8, 14] (43) [ 11,  8, 15] (44) [ 12,  8, 16] ]
+
+Cluster 9: [(45) [ 17] ]
+
+Cluster 10: [(46) [ 18] ]
+
+Cluster 11: [(47) [ 19] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 71 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 112 rows, 1609 columns, and 7222 nonzeros.
+Reduced MIP has 1609 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.06 sec.
+Probing time =    0.02 sec.
+Clique table members: 10618.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       86.3840       86.3840      212    0.00%
+Elapsed real time =   0.14 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.08
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.08 sec.
+
+Sol status: Optimal
+
+Obj Val: 86.384
+x(0, 40, 0)
+x(19, 0, 0)
+x(33, 36, 0)
+x(36, 47, 0)
+x(40, 33, 0)
+x(45, 19, 0)
+x(5, 20, 1)
+x(10, 5, 1)
+x(20, 47, 1)
+x(27, 10, 1)
+x(46, 27, 1)
+
+Solution by nodes: 
+Vehicle 0: 17 - 12 - 3 - 16 - 0 - 8 - 11 - 6 - 15 - 9 - 7 - 13 - 19
+Vehicle 1: 18 - 10 - 5 - 14 - 2 - 1 - 4 - 19
+
+
+Total time: 3.00252158894646
+
+Total passenger time: 0.954421416234888
+
+Total parcel time: 0.991796200345423
+
+Total combined transportation time: 0.785993091537133
+
+Total idle time: 0.270310880829016
+
+Total distance: 16.132
+
+Total passenger distance: 2.337
+
+Total parcel distance: 6.275
+
+Total combined transportation distance: 2.303
+
+Total idle distance: 5.217
+Solving:  grubhub-13-4.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 13] (2) [ 10,  0, 14] (3) [ 11,  0, 15] (4) [ 12,  0, 16] ]
+
+Cluster 1: [(5) [  1] (6) [  9,  1, 13] (7) [ 10,  1, 14] (8) [ 11,  1, 15] (9) [ 12,  1, 16] ]
+
+Cluster 2: [(10) [  2] (11) [  9,  2, 13] (12) [ 10,  2, 14] (13) [ 11,  2, 15] (14) [ 12,  2, 16] ]
+
+Cluster 3: [(15) [  3] (16) [  9,  3, 13] (17) [ 10,  3, 14] (18) [ 11,  3, 15] (19) [ 12,  3, 16] ]
+
+Cluster 4: [(20) [  4] (21) [  9,  4, 13] (22) [ 10,  4, 14] (23) [ 11,  4, 15] (24) [ 12,  4, 16] ]
+
+Cluster 5: [(25) [  5] (26) [  9,  5, 13] (27) [ 10,  5, 14] (28) [ 11,  5, 15] (29) [ 12,  5, 16] ]
+
+Cluster 6: [(30) [  6] (31) [  9,  6, 13] (32) [ 10,  6, 14] (33) [ 11,  6, 15] (34) [ 12,  6, 16] ]
+
+Cluster 7: [(35) [  7] (36) [  9,  7, 13] (37) [ 10,  7, 14] (38) [ 11,  7, 15] (39) [ 12,  7, 16] ]
+
+Cluster 8: [(40) [  8] (41) [  9,  8, 13] (42) [ 10,  8, 14] (43) [ 11,  8, 15] (44) [ 12,  8, 16] ]
+
+Cluster 9: [(45) [ 17] ]
+
+Cluster 10: [(46) [ 18] ]
+
+Cluster 11: [(47) [ 19] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 71 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 112 rows, 1623 columns, and 7294 nonzeros.
+Reduced MIP has 1623 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.06 sec.
+Probing time =    0.04 sec.
+Clique table members: 10720.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       90.7690       90.7690      169    0.00%
+Elapsed real time =   0.15 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.09
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.09 sec.
+
+Sol status: Optimal
+
+Obj Val: 90.769
+x(0, 40, 0)
+x(5, 23, 0)
+x(11, 0, 0)
+x(23, 47, 0)
+x(40, 5, 0)
+x(45, 11, 0)
+x(15, 30, 1)
+x(29, 15, 1)
+x(30, 37, 1)
+x(37, 47, 1)
+x(46, 29, 1)
+
+Solution by nodes: 
+Vehicle 0: 17 - 9 - 2 - 13 - 0 - 8 - 1 - 11 - 4 - 15 - 19
+Vehicle 1: 18 - 12 - 5 - 16 - 3 - 6 - 10 - 7 - 14 - 19
+
+
+Total time: 2.89583765112263
+
+Total passenger time: 0.992918825561313
+
+Total parcel time: 0.884283246977548
+
+Total combined transportation time: 0.756563039723662
+
+Total idle time: 0.262072538860104
+
+Total distance: 14.073
+
+Total passenger distance: 3.08
+
+Total parcel distance: 4.2
+
+Total combined transportation distance: 1.735
+
+Total idle distance: 5.058
+Solving:  grubhub-13-5.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 13] (2) [ 10,  0, 14] (3) [ 11,  0, 15] (4) [ 12,  0, 16] ]
+
+Cluster 1: [(5) [  1] (6) [  9,  1, 13] (7) [ 10,  1, 14] (8) [ 11,  1, 15] (9) [ 12,  1, 16] ]
+
+Cluster 2: [(10) [  2] (11) [  9,  2, 13] (12) [ 10,  2, 14] (13) [ 11,  2, 15] (14) [ 12,  2, 16] ]
+
+Cluster 3: [(15) [  3] (16) [  9,  3, 13] (17) [ 10,  3, 14] (18) [ 11,  3, 15] (19) [ 12,  3, 16] ]
+
+Cluster 4: [(20) [  4] (21) [  9,  4, 13] (22) [ 10,  4, 14] (23) [ 11,  4, 15] (24) [ 12,  4, 16] ]
+
+Cluster 5: [(25) [  5] (26) [  9,  5, 13] (27) [ 10,  5, 14] (28) [ 11,  5, 15] (29) [ 12,  5, 16] ]
+
+Cluster 6: [(30) [  6] (31) [  9,  6, 13] (32) [ 10,  6, 14] (33) [ 11,  6, 15] (34) [ 12,  6, 16] ]
+
+Cluster 7: [(35) [  7] (36) [  9,  7, 13] (37) [ 10,  7, 14] (38) [ 11,  7, 15] (39) [ 12,  7, 16] ]
+
+Cluster 8: [(40) [  8] (41) [  9,  8, 13] (42) [ 10,  8, 14] (43) [ 11,  8, 15] (44) [ 12,  8, 16] ]
+
+Cluster 9: [(45) [ 17] ]
+
+Cluster 10: [(46) [ 18] ]
+
+Cluster 11: [(47) [ 19] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 71 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 112 rows, 1611 columns, and 7236 nonzeros.
+Reduced MIP has 1611 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.06 sec.
+Probing time =    0.03 sec.
+Clique table members: 10640.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       88.2280    19                     88.2280      150         
+*     0+    0                           87.6150       88.2280      150    0.70%
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 10 rows and 1039 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 8 substitutions.
+Reduced MIP has 94 rows, 564 columns, and 2597 nonzeros.
+Reduced MIP has 564 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+Represolve time =    0.06 sec.
+Probing time =    0.01 sec.
+Clique table members: 3860.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           87.6150       88.2280      321    0.70%
+      0     0       88.2280    10       87.6150       88.2280      321    0.70%
+*     0+    0                           87.8420       88.2280      321    0.44%
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 11 rows and 286 columns.
+MIP Presolve modified 6 coefficients.
+Aggregator did 4 substitutions.
+Reduced MIP has 79 rows, 274 columns, and 1249 nonzeros.
+Reduced MIP has 274 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 14 vars, tightened 0 bounds.
+Probing time =    0.03 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 14 columns.
+MIP Presolve modified 1 coefficients.
+Reduced MIP has 79 rows, 260 columns, and 1180 nonzeros.
+Reduced MIP has 260 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 2 vars, tightened 0 bounds.
+Probing time =    0.04 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 4 columns.
+Reduced MIP has 76 rows, 256 columns, and 1145 nonzeros.
+Reduced MIP has 256 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+Represolve time =    0.11 sec.
+Probing time =    0.01 sec.
+Clique table members: 1838.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           87.8420       88.2280      418    0.44%
+      0     0       88.2280    19       87.8420       88.2280      418    0.44%
+      0     2       88.2280    19       87.8420       88.2280      418    0.44%
+Elapsed real time =   0.43 sec. (tree size =  0.01 MB, solutions = 2)
+*     1     1      integral     0       88.1740       88.2280      436    0.06%
+
+Root node processing (before b&c):
+  Real time             =    0.37
+Parallel b&c, 2 threads:
+  Real time             =    0.01
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.38 sec.
+
+Sol status: Optimal
+
+Obj Val: 88.174
+x(0, 20, 0)
+x(11, 18, 0)
+x(18, 0, 0)
+x(20, 47, 0)
+x(45, 11, 0)
+x(5, 37, 1)
+x(29, 40, 1)
+x(30, 5, 1)
+x(37, 47, 1)
+x(40, 30, 1)
+x(46, 29, 1)
+
+Solution by nodes: 
+Vehicle 0: 17 - 9 - 2 - 13 - 11 - 3 - 15 - 0 - 4 - 19
+Vehicle 1: 18 - 12 - 5 - 16 - 8 - 6 - 1 - 10 - 7 - 14 - 19
+
+
+Total time: 3.05112262521589
+
+Total passenger time: 0.951882556131261
+
+Total parcel time: 0.944749568221071
+
+Total combined transportation time: 0.792625215889465
+
+Total idle time: 0.361865284974093
+
+Total distance: 17.07
+
+Total passenger distance: 2.288
+
+Total parcel distance: 5.367
+
+Total combined transportation distance: 2.431
+
+Total idle distance: 6.984
+Solving:  grubhub-13-6.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 13] (2) [ 10,  0, 14] (3) [ 11,  0, 15] (4) [ 12,  0, 16] ]
+
+Cluster 1: [(5) [  1] (6) [  9,  1, 13] (7) [ 10,  1, 14] (8) [ 11,  1, 15] (9) [ 12,  1, 16] ]
+
+Cluster 2: [(10) [  2] (11) [  9,  2, 13] (12) [ 10,  2, 14] (13) [ 11,  2, 15] (14) [ 12,  2, 16] ]
+
+Cluster 3: [(15) [  3] (16) [  9,  3, 13] (17) [ 10,  3, 14] (18) [ 11,  3, 15] (19) [ 12,  3, 16] ]
+
+Cluster 4: [(20) [  4] (21) [  9,  4, 13] (22) [ 10,  4, 14] (23) [ 11,  4, 15] (24) [ 12,  4, 16] ]
+
+Cluster 5: [(25) [  5] (26) [  9,  5, 13] (27) [ 10,  5, 14] (28) [ 11,  5, 15] (29) [ 12,  5, 16] ]
+
+Cluster 6: [(30) [  6] (31) [  9,  6, 13] (32) [ 10,  6, 14] (33) [ 11,  6, 15] (34) [ 12,  6, 16] ]
+
+Cluster 7: [(35) [  7] (36) [  9,  7, 13] (37) [ 10,  7, 14] (38) [ 11,  7, 15] (39) [ 12,  7, 16] ]
+
+Cluster 8: [(40) [  8] (41) [  9,  8, 13] (42) [ 10,  8, 14] (43) [ 11,  8, 15] (44) [ 12,  8, 16] ]
+
+Cluster 9: [(45) [ 17] ]
+
+Cluster 10: [(46) [ 18] ]
+
+Cluster 11: [(47) [ 19] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 71 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 112 rows, 1609 columns, and 7228 nonzeros.
+Reduced MIP has 1609 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.05 sec.
+Probing time =    0.02 sec.
+Clique table members: 10728.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       83.4640       83.4640      149    0.00%
+Elapsed real time =   0.14 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.08
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.08 sec.
+
+Sol status: Optimal
+
+Obj Val: 83.464
+x(5, 20, 0)
+x(20, 47, 0)
+x(28, 40, 0)
+x(30, 5, 0)
+x(40, 30, 0)
+x(45, 28, 0)
+x(0, 36, 1)
+x(12, 19, 1)
+x(19, 0, 1)
+x(36, 47, 1)
+x(46, 12, 1)
+
+Solution by nodes: 
+Vehicle 0: 17 - 11 - 5 - 15 - 8 - 6 - 1 - 4 - 19
+Vehicle 1: 18 - 10 - 2 - 14 - 12 - 3 - 16 - 0 - 9 - 7 - 13 - 19
+
+
+Total time: 3.04987910189983
+
+Total passenger time: 0.982245250431779
+
+Total parcel time: 0.999516407599309
+
+Total combined transportation time: 0.73454231433506
+
+Total idle time: 0.333575129533679
+
+Total distance: 17.046
+
+Total passenger distance: 2.874
+
+Total parcel distance: 6.424
+
+Total combined transportation distance: 1.31
+
+Total idle distance: 6.438
+Solving:  grubhub-13-7.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 13] (2) [ 10,  0, 14] (3) [ 11,  0, 15] (4) [ 12,  0, 16] ]
+
+Cluster 1: [(5) [  1] (6) [  9,  1, 13] (7) [ 10,  1, 14] (8) [ 11,  1, 15] (9) [ 12,  1, 16] ]
+
+Cluster 2: [(10) [  2] (11) [  9,  2, 13] (12) [ 10,  2, 14] (13) [ 11,  2, 15] (14) [ 12,  2, 16] ]
+
+Cluster 3: [(15) [  3] (16) [  9,  3, 13] (17) [ 10,  3, 14] (18) [ 11,  3, 15] (19) [ 12,  3, 16] ]
+
+Cluster 4: [(20) [  4] (21) [  9,  4, 13] (22) [ 10,  4, 14] (23) [ 11,  4, 15] (24) [ 12,  4, 16] ]
+
+Cluster 5: [(25) [  5] (26) [  9,  5, 13] (27) [ 10,  5, 14] (28) [ 11,  5, 15] (29) [ 12,  5, 16] ]
+
+Cluster 6: [(30) [  6] (31) [  9,  6, 13] (32) [ 10,  6, 14] (33) [ 11,  6, 15] (34) [ 12,  6, 16] ]
+
+Cluster 7: [(35) [  7] (36) [  9,  7, 13] (37) [ 10,  7, 14] (38) [ 11,  7, 15] (39) [ 12,  7, 16] ]
+
+Cluster 8: [(40) [  8] (41) [  9,  8, 13] (42) [ 10,  8, 14] (43) [ 11,  8, 15] (44) [ 12,  8, 16] ]
+
+Cluster 9: [(45) [ 17] ]
+
+Cluster 10: [(46) [ 18] ]
+
+Cluster 11: [(47) [ 19] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 71 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 112 rows, 1621 columns, and 7284 nonzeros.
+Reduced MIP has 1621 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.05 sec.
+Probing time =    0.03 sec.
+Clique table members: 10842.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       90.2160       90.2160      149    0.00%
+Elapsed real time =   0.13 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.08
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.08 sec.
+
+Sol status: Optimal
+
+Obj Val: 90.216
+x(1, 44, 0)
+x(5, 20, 0)
+x(20, 47, 0)
+x(25, 1, 0)
+x(44, 5, 0)
+x(45, 25, 0)
+x(13, 17, 1)
+x(17, 30, 1)
+x(30, 35, 1)
+x(35, 47, 1)
+x(46, 13, 1)
+
+Solution by nodes: 
+Vehicle 0: 17 - 5 - 9 - 0 - 13 - 12 - 8 - 16 - 1 - 4 - 19
+Vehicle 1: 18 - 11 - 2 - 15 - 10 - 3 - 14 - 6 - 7 - 19
+
+
+Total time: 2.86459412780656
+
+Total passenger time: 0.984006908462867
+
+Total parcel time: 0.854490500863558
+
+Total combined transportation time: 0.786511226252159
+
+Total idle time: 0.239585492227979
+
+Total distance: 13.47
+
+Total passenger distance: 2.908
+
+Total parcel distance: 3.625
+
+Total combined transportation distance: 2.313
+
+Total idle distance: 4.624
+Solving:  grubhub-13-8.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 13] (2) [ 10,  0, 14] (3) [ 11,  0, 15] (4) [ 12,  0, 16] ]
+
+Cluster 1: [(5) [  1] (6) [  9,  1, 13] (7) [ 10,  1, 14] (8) [ 11,  1, 15] (9) [ 12,  1, 16] ]
+
+Cluster 2: [(10) [  2] (11) [  9,  2, 13] (12) [ 10,  2, 14] (13) [ 11,  2, 15] (14) [ 12,  2, 16] ]
+
+Cluster 3: [(15) [  3] (16) [  9,  3, 13] (17) [ 10,  3, 14] (18) [ 11,  3, 15] (19) [ 12,  3, 16] ]
+
+Cluster 4: [(20) [  4] (21) [  9,  4, 13] (22) [ 10,  4, 14] (23) [ 11,  4, 15] (24) [ 12,  4, 16] ]
+
+Cluster 5: [(25) [  5] (26) [  9,  5, 13] (27) [ 10,  5, 14] (28) [ 11,  5, 15] (29) [ 12,  5, 16] ]
+
+Cluster 6: [(30) [  6] (31) [  9,  6, 13] (32) [ 10,  6, 14] (33) [ 11,  6, 15] (34) [ 12,  6, 16] ]
+
+Cluster 7: [(35) [  7] (36) [  9,  7, 13] (37) [ 10,  7, 14] (38) [ 11,  7, 15] (39) [ 12,  7, 16] ]
+
+Cluster 8: [(40) [  8] (41) [  9,  8, 13] (42) [ 10,  8, 14] (43) [ 11,  8, 15] (44) [ 12,  8, 16] ]
+
+Cluster 9: [(45) [ 17] ]
+
+Cluster 10: [(46) [ 18] ]
+
+Cluster 11: [(47) [ 19] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 71 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 112 rows, 1619 columns, and 7270 nonzeros.
+Reduced MIP has 1619 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.05 sec.
+Probing time =    0.03 sec.
+Clique table members: 11279.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       90.7420       90.7420      134    0.00%
+Elapsed real time =   0.13 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.08
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.08 sec.
+
+Sol status: Optimal
+
+Obj Val: 90.742
+x(5, 37, 0)
+x(15, 40, 0)
+x(37, 47, 0)
+x(40, 5, 0)
+x(45, 15, 0)
+x(4, 30, 1)
+x(13, 4, 1)
+x(21, 47, 1)
+x(25, 13, 1)
+x(30, 21, 1)
+x(46, 25, 1)
+
+Solution by nodes: 
+Vehicle 0: 17 - 3 - 8 - 1 - 10 - 7 - 14 - 19
+Vehicle 1: 18 - 5 - 11 - 2 - 15 - 12 - 0 - 16 - 6 - 9 - 4 - 13 - 19
+
+
+Total time: 2.98905008635579
+
+Total passenger time: 0.960898100172711
+
+Total parcel time: 0.972677029360967
+
+Total combined transportation time: 0.782210708117444
+
+Total idle time: 0.273264248704663
+
+Total distance: 15.872
+
+Total passenger distance: 2.462
+
+Total parcel distance: 5.906
+
+Total combined transportation distance: 2.23
+
+Total idle distance: 5.274
+Solving:  grubhub-13-9.tsp :
+
+Cluster 0: [(0) [  0] (1) [  9,  0, 13] (2) [ 10,  0, 14] (3) [ 11,  0, 15] (4) [ 12,  0, 16] ]
+
+Cluster 1: [(5) [  1] (6) [  9,  1, 13] (7) [ 10,  1, 14] (8) [ 11,  1, 15] (9) [ 12,  1, 16] ]
+
+Cluster 2: [(10) [  2] (11) [  9,  2, 13] (12) [ 10,  2, 14] (13) [ 11,  2, 15] (14) [ 12,  2, 16] ]
+
+Cluster 3: [(15) [  3] (16) [  9,  3, 13] (17) [ 10,  3, 14] (18) [ 11,  3, 15] (19) [ 12,  3, 16] ]
+
+Cluster 4: [(20) [  4] (21) [  9,  4, 13] (22) [ 10,  4, 14] (23) [ 11,  4, 15] (24) [ 12,  4, 16] ]
+
+Cluster 5: [(25) [  5] (26) [  9,  5, 13] (27) [ 10,  5, 14] (28) [ 11,  5, 15] (29) [ 12,  5, 16] ]
+
+Cluster 6: [(30) [  6] (31) [  9,  6, 13] (32) [ 10,  6, 14] (33) [ 11,  6, 15] (34) [ 12,  6, 16] ]
+
+Cluster 7: [(35) [  7] (36) [  9,  7, 13] (37) [ 10,  7, 14] (38) [ 11,  7, 15] (39) [ 12,  7, 16] ]
+
+Cluster 8: [(40) [  8] (41) [  9,  8, 13] (42) [ 10,  8, 14] (43) [ 11,  8, 15] (44) [ 12,  8, 16] ]
+
+Cluster 9: [(45) [ 17] ]
+
+Cluster 10: [(46) [ 18] ]
+
+Cluster 11: [(47) [ 19] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11
+  0  0  1  0  0  1  0  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  0  0  1
+  9  1  1  1  1  1  1  1  1  1  0  0  0
+ 10  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 3 times.
+MIP Presolve eliminated 1 rows and 71 columns.
+MIP Presolve modified 10 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 112 rows, 1609 columns, and 7226 nonzeros.
+Reduced MIP has 1609 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.06 sec.
+Probing time =    0.02 sec.
+Clique table members: 10615.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       88.5975    21                     88.5975      117         
+*     0+    0                           84.4850       88.5975      117    4.87%
+*     0+    0                           88.5790       88.5975      117    0.02%
+      0     0        cutoff             88.5790       88.5790      117    0.00%
+Elapsed real time =   0.31 sec. (tree size =  0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.25
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.25 sec.
+
+Sol status: Optimal
+
+Obj Val: 88.579
+x(8, 20, 0)
+x(20, 47, 0)
+x(25, 40, 0)
+x(40, 8, 0)
+x(45, 25, 0)
+x(0, 31, 1)
+x(10, 17, 1)
+x(17, 0, 1)
+x(31, 39, 1)
+x(39, 47, 1)
+x(46, 10, 1)
+
+Solution by nodes: 
+Vehicle 0: 17 - 5 - 8 - 11 - 1 - 15 - 4 - 19
+Vehicle 1: 18 - 2 - 10 - 3 - 14 - 0 - 9 - 6 - 13 - 12 - 7 - 16 - 19
+
+
+Total time: 2.81096718480138
+
+Total passenger time: 0.970639032815199
+
+Total parcel time: 0.8213298791019
+
+Total combined transportation time: 0.74594127806563
+
+Total idle time: 0.273056994818653
+
+Total distance: 12.435
+
+Total passenger distance: 2.65
+
+Total parcel distance: 2.985
+
+Total combined transportation distance: 1.53
+
+Total idle distance: 5.27
+Solving:  grubhub-14-0.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 10,  0, 14] (2) [ 11,  0, 15] (3) [ 12,  0, 16] (4) [ 13,  0, 17] ]
+
+Cluster 1: [(5) [  1] (6) [ 10,  1, 14] (7) [ 11,  1, 15] (8) [ 12,  1, 16] (9) [ 13,  1, 17] ]
+
+Cluster 2: [(10) [  2] (11) [ 10,  2, 14] (12) [ 11,  2, 15] (13) [ 12,  2, 16] (14) [ 13,  2, 17] ]
+
+Cluster 3: [(15) [  3] (16) [ 10,  3, 14] (17) [ 11,  3, 15] (18) [ 12,  3, 16] (19) [ 13,  3, 17] ]
+
+Cluster 4: [(20) [  4] (21) [ 10,  4, 14] (22) [ 11,  4, 15] (23) [ 12,  4, 16] (24) [ 13,  4, 17] ]
+
+Cluster 5: [(25) [  5] (26) [ 10,  5, 14] (27) [ 11,  5, 15] (28) [ 12,  5, 16] (29) [ 13,  5, 17] ]
+
+Cluster 6: [(30) [  6] (31) [ 10,  6, 14] (32) [ 11,  6, 15] (33) [ 12,  6, 16] (34) [ 13,  6, 17] ]
+
+Cluster 7: [(35) [  7] (36) [ 10,  7, 14] (37) [ 11,  7, 15] (38) [ 12,  7, 16] (39) [ 13,  7, 17] ]
+
+Cluster 8: [(40) [  8] (41) [ 10,  8, 14] (42) [ 11,  8, 15] (43) [ 12,  8, 16] (44) [ 13,  8, 17] ]
+
+Cluster 9: [(45) [  9] (46) [ 10,  9, 14] (47) [ 11,  9, 15] (48) [ 12,  9, 16] (49) [ 13,  9, 17] ]
+
+Cluster 10: [(50) [ 18] ]
+
+Cluster 11: [(51) [ 19] ]
+
+Cluster 12: [(52) [ 20] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12
+  0  0  1  0  0  1  0  1  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  1
+ 10  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 126 rows, 2098 columns, and 9436 nonzeros.
+Reduced MIP has 2098 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.03 sec.
+Clique table members: 13798.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       96.0150       96.0150      233    0.00%
+Elapsed real time =   0.15 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.12
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.12 sec.
+
+Sol status: Optimal
+
+Obj Val: 96.015
+x(5, 39, 0)
+x(13, 16, 0)
+x(16, 40, 0)
+x(32, 45, 0)
+x(39, 52, 0)
+x(40, 32, 0)
+x(45, 5, 0)
+x(50, 13, 0)
+x(0, 20, 1)
+x(20, 52, 1)
+x(25, 0, 1)
+x(51, 25, 1)
+
+Solution by nodes: 
+Vehicle 0: 18 - 12 - 2 - 16 - 10 - 3 - 14 - 8 - 11 - 6 - 15 - 9 - 1 - 13 - 7 - 17 - 20
+Vehicle 1: 19 - 5 - 0 - 4 - 20
+
+
+Total time: 3.06208981001727
+
+Total passenger time: 1.16373056994819
+
+Total parcel time: 0.887443868739206
+
+Total combined transportation time: 0.757599309153713
+
+Total idle time: 0.253316062176166
+
+Total distance: 14.065
+
+Total passenger distance: 3.16
+
+Total parcel distance: 4.261
+
+Total combined transportation distance: 1.755
+
+Total idle distance: 4.889
+Solving:  grubhub-14-1.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 10,  0, 14] (2) [ 11,  0, 15] (3) [ 12,  0, 16] (4) [ 13,  0, 17] ]
+
+Cluster 1: [(5) [  1] (6) [ 10,  1, 14] (7) [ 11,  1, 15] (8) [ 12,  1, 16] (9) [ 13,  1, 17] ]
+
+Cluster 2: [(10) [  2] (11) [ 10,  2, 14] (12) [ 11,  2, 15] (13) [ 12,  2, 16] (14) [ 13,  2, 17] ]
+
+Cluster 3: [(15) [  3] (16) [ 10,  3, 14] (17) [ 11,  3, 15] (18) [ 12,  3, 16] (19) [ 13,  3, 17] ]
+
+Cluster 4: [(20) [  4] (21) [ 10,  4, 14] (22) [ 11,  4, 15] (23) [ 12,  4, 16] (24) [ 13,  4, 17] ]
+
+Cluster 5: [(25) [  5] (26) [ 10,  5, 14] (27) [ 11,  5, 15] (28) [ 12,  5, 16] (29) [ 13,  5, 17] ]
+
+Cluster 6: [(30) [  6] (31) [ 10,  6, 14] (32) [ 11,  6, 15] (33) [ 12,  6, 16] (34) [ 13,  6, 17] ]
+
+Cluster 7: [(35) [  7] (36) [ 10,  7, 14] (37) [ 11,  7, 15] (38) [ 12,  7, 16] (39) [ 13,  7, 17] ]
+
+Cluster 8: [(40) [  8] (41) [ 10,  8, 14] (42) [ 11,  8, 15] (43) [ 12,  8, 16] (44) [ 13,  8, 17] ]
+
+Cluster 9: [(45) [  9] (46) [ 10,  9, 14] (47) [ 11,  9, 15] (48) [ 12,  9, 16] (49) [ 13,  9, 17] ]
+
+Cluster 10: [(50) [ 18] ]
+
+Cluster 11: [(51) [ 19] ]
+
+Cluster 12: [(52) [ 20] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12
+  0  0  1  0  0  1  0  1  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  1
+ 10  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 126 rows, 2116 columns, and 9526 nonzeros.
+Reduced MIP has 2116 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.04 sec.
+Clique table members: 14107.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       96.9360    12                     96.9360      160         
+*     0+    0                           92.7090       96.9360      160    4.56%
+      0     0       96.9360    29       92.7090       Cuts: 2      162    4.56%
+*     0+    0                           94.9660       96.9360      162    2.07%
+      0     0       96.9105    23       94.9660       Cuts: 7      178    2.05%
+      0     0       96.9105    10       94.9660       Cuts: 2      183    2.05%
+*     0+    0                           96.8960       96.9105      185    0.01%
+      0     0        cutoff             96.8960       96.8960      185    0.00%
+Elapsed real time =   0.70 sec. (tree size =  0.00 MB, solutions = 3)
+
+Cover cuts applied:  4
+Zero-half cuts applied:  5
+
+Root node processing (before b&c):
+  Real time             =    0.66
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.66 sec.
+
+Sol status: Optimal
+
+Obj Val: 96.896
+x(17, 44, 0)
+x(26, 17, 0)
+x(30, 35, 0)
+x(35, 52, 0)
+x(44, 30, 0)
+x(50, 26, 0)
+x(0, 45, 1)
+x(8, 20, 1)
+x(10, 0, 1)
+x(20, 52, 1)
+x(45, 8, 1)
+x(51, 10, 1)
+
+Solution by nodes: 
+Vehicle 0: 18 - 10 - 5 - 14 - 11 - 3 - 15 - 13 - 8 - 17 - 6 - 7 - 20
+Vehicle 1: 19 - 2 - 0 - 9 - 12 - 1 - 16 - 4 - 20
+
+
+Total time: 3.06172711571675
+
+Total passenger time: 1.16435233160622
+
+Total parcel time: 0.825267702936097
+
+Total combined transportation time: 0.773039723661485
+
+Total idle time: 0.299067357512953
+
+Total distance: 14.058
+
+Total passenger distance: 3.172
+
+Total parcel distance: 3.061
+
+Total combined transportation distance: 2.053
+
+Total idle distance: 5.772
+Solving:  grubhub-14-2.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 10,  0, 14] (2) [ 11,  0, 15] (3) [ 12,  0, 16] (4) [ 13,  0, 17] ]
+
+Cluster 1: [(5) [  1] (6) [ 10,  1, 14] (7) [ 11,  1, 15] (8) [ 12,  1, 16] (9) [ 13,  1, 17] ]
+
+Cluster 2: [(10) [  2] (11) [ 10,  2, 14] (12) [ 11,  2, 15] (13) [ 12,  2, 16] (14) [ 13,  2, 17] ]
+
+Cluster 3: [(15) [  3] (16) [ 10,  3, 14] (17) [ 11,  3, 15] (18) [ 12,  3, 16] (19) [ 13,  3, 17] ]
+
+Cluster 4: [(20) [  4] (21) [ 10,  4, 14] (22) [ 11,  4, 15] (23) [ 12,  4, 16] (24) [ 13,  4, 17] ]
+
+Cluster 5: [(25) [  5] (26) [ 10,  5, 14] (27) [ 11,  5, 15] (28) [ 12,  5, 16] (29) [ 13,  5, 17] ]
+
+Cluster 6: [(30) [  6] (31) [ 10,  6, 14] (32) [ 11,  6, 15] (33) [ 12,  6, 16] (34) [ 13,  6, 17] ]
+
+Cluster 7: [(35) [  7] (36) [ 10,  7, 14] (37) [ 11,  7, 15] (38) [ 12,  7, 16] (39) [ 13,  7, 17] ]
+
+Cluster 8: [(40) [  8] (41) [ 10,  8, 14] (42) [ 11,  8, 15] (43) [ 12,  8, 16] (44) [ 13,  8, 17] ]
+
+Cluster 9: [(45) [  9] (46) [ 10,  9, 14] (47) [ 11,  9, 15] (48) [ 12,  9, 16] (49) [ 13,  9, 17] ]
+
+Cluster 10: [(50) [ 18] ]
+
+Cluster 11: [(51) [ 19] ]
+
+Cluster 12: [(52) [ 20] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12
+  0  0  1  0  0  1  0  1  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  1
+ 10  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 126 rows, 2096 columns, and 9426 nonzeros.
+Reduced MIP has 2096 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.03 sec.
+Clique table members: 14073.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       99.2170       99.2170      208    0.00%
+Elapsed real time =   0.14 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.10
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.10 sec.
+
+Sol status: Optimal
+
+Obj Val: 99.217
+x(15, 45, 0)
+x(35, 52, 0)
+x(45, 35, 0)
+x(50, 15, 0)
+x(4, 42, 1)
+x(5, 21, 1)
+x(10, 4, 1)
+x(21, 52, 1)
+x(28, 10, 1)
+x(30, 5, 1)
+x(42, 30, 1)
+x(51, 28, 1)
+
+Solution by nodes: 
+Vehicle 0: 18 - 3 - 9 - 7 - 20
+Vehicle 1: 19 - 12 - 5 - 16 - 2 - 13 - 0 - 17 - 11 - 8 - 15 - 6 - 1 - 10 - 4 - 14 - 20
+
+
+Total time: 3.32488773747841
+
+Total passenger time: 1.20559585492228
+
+Total parcel time: 0.978791018998273
+
+Total combined transportation time: 0.777806563039724
+
+Total idle time: 0.362694300518135
+
+Total distance: 19.137
+
+Total passenger distance: 3.968
+
+Total parcel distance: 6.024
+
+Total combined transportation distance: 2.145
+
+Total idle distance: 7
+Solving:  grubhub-14-3.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 10,  0, 14] (2) [ 11,  0, 15] (3) [ 12,  0, 16] (4) [ 13,  0, 17] ]
+
+Cluster 1: [(5) [  1] (6) [ 10,  1, 14] (7) [ 11,  1, 15] (8) [ 12,  1, 16] (9) [ 13,  1, 17] ]
+
+Cluster 2: [(10) [  2] (11) [ 10,  2, 14] (12) [ 11,  2, 15] (13) [ 12,  2, 16] (14) [ 13,  2, 17] ]
+
+Cluster 3: [(15) [  3] (16) [ 10,  3, 14] (17) [ 11,  3, 15] (18) [ 12,  3, 16] (19) [ 13,  3, 17] ]
+
+Cluster 4: [(20) [  4] (21) [ 10,  4, 14] (22) [ 11,  4, 15] (23) [ 12,  4, 16] (24) [ 13,  4, 17] ]
+
+Cluster 5: [(25) [  5] (26) [ 10,  5, 14] (27) [ 11,  5, 15] (28) [ 12,  5, 16] (29) [ 13,  5, 17] ]
+
+Cluster 6: [(30) [  6] (31) [ 10,  6, 14] (32) [ 11,  6, 15] (33) [ 12,  6, 16] (34) [ 13,  6, 17] ]
+
+Cluster 7: [(35) [  7] (36) [ 10,  7, 14] (37) [ 11,  7, 15] (38) [ 12,  7, 16] (39) [ 13,  7, 17] ]
+
+Cluster 8: [(40) [  8] (41) [ 10,  8, 14] (42) [ 11,  8, 15] (43) [ 12,  8, 16] (44) [ 13,  8, 17] ]
+
+Cluster 9: [(45) [  9] (46) [ 10,  9, 14] (47) [ 11,  9, 15] (48) [ 12,  9, 16] (49) [ 13,  9, 17] ]
+
+Cluster 10: [(50) [ 18] ]
+
+Cluster 11: [(51) [ 19] ]
+
+Cluster 12: [(52) [ 20] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12
+  0  0  1  0  0  1  0  1  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  1
+ 10  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 126 rows, 2092 columns, and 9410 nonzeros.
+Reduced MIP has 2092 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.03 sec.
+Clique table members: 14407.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       95.2667    31                     95.2667      253         
+*     0+    0                           95.1000       95.2667      253    0.18%
+*     0+    0                           95.1860       95.2667      278    0.08%
+      0     0        cutoff             95.1860       95.2667      278    0.08%
+Elapsed real time =   0.17 sec. (tree size =  0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.14
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.14 sec.
+
+Sol status: Optimal
+
+Obj Val: 95.186
+x(12, 15, 0)
+x(15, 30, 0)
+x(30, 45, 0)
+x(35, 52, 0)
+x(45, 35, 0)
+x(50, 12, 0)
+x(3, 40, 1)
+x(9, 21, 1)
+x(21, 52, 1)
+x(25, 3, 1)
+x(40, 9, 1)
+x(51, 25, 1)
+
+Solution by nodes: 
+Vehicle 0: 18 - 11 - 2 - 15 - 3 - 6 - 9 - 7 - 20
+Vehicle 1: 19 - 5 - 12 - 0 - 16 - 8 - 13 - 1 - 17 - 10 - 4 - 14 - 20
+
+
+Total time: 3.21146804835924
+
+Total passenger time: 1.16658031088083
+
+Total parcel time: 0.950293609671848
+
+Total combined transportation time: 0.79293609671848
+
+Total idle time: 0.301658031088083
+
+Total distance: 16.948
+
+Total passenger distance: 3.215
+
+Total parcel distance: 5.474
+
+Total combined transportation distance: 2.437
+
+Total idle distance: 5.822
+Solving:  grubhub-14-4.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 10,  0, 14] (2) [ 11,  0, 15] (3) [ 12,  0, 16] (4) [ 13,  0, 17] ]
+
+Cluster 1: [(5) [  1] (6) [ 10,  1, 14] (7) [ 11,  1, 15] (8) [ 12,  1, 16] (9) [ 13,  1, 17] ]
+
+Cluster 2: [(10) [  2] (11) [ 10,  2, 14] (12) [ 11,  2, 15] (13) [ 12,  2, 16] (14) [ 13,  2, 17] ]
+
+Cluster 3: [(15) [  3] (16) [ 10,  3, 14] (17) [ 11,  3, 15] (18) [ 12,  3, 16] (19) [ 13,  3, 17] ]
+
+Cluster 4: [(20) [  4] (21) [ 10,  4, 14] (22) [ 11,  4, 15] (23) [ 12,  4, 16] (24) [ 13,  4, 17] ]
+
+Cluster 5: [(25) [  5] (26) [ 10,  5, 14] (27) [ 11,  5, 15] (28) [ 12,  5, 16] (29) [ 13,  5, 17] ]
+
+Cluster 6: [(30) [  6] (31) [ 10,  6, 14] (32) [ 11,  6, 15] (33) [ 12,  6, 16] (34) [ 13,  6, 17] ]
+
+Cluster 7: [(35) [  7] (36) [ 10,  7, 14] (37) [ 11,  7, 15] (38) [ 12,  7, 16] (39) [ 13,  7, 17] ]
+
+Cluster 8: [(40) [  8] (41) [ 10,  8, 14] (42) [ 11,  8, 15] (43) [ 12,  8, 16] (44) [ 13,  8, 17] ]
+
+Cluster 9: [(45) [  9] (46) [ 10,  9, 14] (47) [ 11,  9, 15] (48) [ 12,  9, 16] (49) [ 13,  9, 17] ]
+
+Cluster 10: [(50) [ 18] ]
+
+Cluster 11: [(51) [ 19] ]
+
+Cluster 12: [(52) [ 20] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12
+  0  0  1  0  0  1  0  1  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  1
+ 10  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 126 rows, 2102 columns, and 9458 nonzeros.
+Reduced MIP has 2102 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.03 sec.
+Clique table members: 14713.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       99.3230       99.3230      121    0.00%
+Elapsed real time =   0.12 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.09
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.09 sec.
+
+Sol status: Optimal
+
+Obj Val: 99.323
+x(6, 38, 0)
+x(30, 6, 0)
+x(38, 52, 0)
+x(50, 30, 0)
+x(2, 40, 1)
+x(10, 15, 1)
+x(15, 2, 1)
+x(20, 52, 1)
+x(29, 10, 1)
+x(40, 45, 1)
+x(45, 20, 1)
+x(51, 29, 1)
+
+Solution by nodes: 
+Vehicle 0: 18 - 6 - 10 - 1 - 14 - 12 - 7 - 16 - 20
+Vehicle 1: 19 - 13 - 5 - 17 - 2 - 3 - 11 - 0 - 15 - 8 - 9 - 4 - 20
+
+
+Total time: 3.06343696027634
+
+Total passenger time: 1.19010362694301
+
+Total parcel time: 0.863557858376511
+
+Total combined transportation time: 0.757754749568221
+
+Total idle time: 0.252020725388601
+
+Total distance: 14.091
+
+Total passenger distance: 3.669
+
+Total parcel distance: 3.8
+
+Total combined transportation distance: 1.758
+
+Total idle distance: 4.864
+Solving:  grubhub-14-5.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 10,  0, 14] (2) [ 11,  0, 15] (3) [ 12,  0, 16] (4) [ 13,  0, 17] ]
+
+Cluster 1: [(5) [  1] (6) [ 10,  1, 14] (7) [ 11,  1, 15] (8) [ 12,  1, 16] (9) [ 13,  1, 17] ]
+
+Cluster 2: [(10) [  2] (11) [ 10,  2, 14] (12) [ 11,  2, 15] (13) [ 12,  2, 16] (14) [ 13,  2, 17] ]
+
+Cluster 3: [(15) [  3] (16) [ 10,  3, 14] (17) [ 11,  3, 15] (18) [ 12,  3, 16] (19) [ 13,  3, 17] ]
+
+Cluster 4: [(20) [  4] (21) [ 10,  4, 14] (22) [ 11,  4, 15] (23) [ 12,  4, 16] (24) [ 13,  4, 17] ]
+
+Cluster 5: [(25) [  5] (26) [ 10,  5, 14] (27) [ 11,  5, 15] (28) [ 12,  5, 16] (29) [ 13,  5, 17] ]
+
+Cluster 6: [(30) [  6] (31) [ 10,  6, 14] (32) [ 11,  6, 15] (33) [ 12,  6, 16] (34) [ 13,  6, 17] ]
+
+Cluster 7: [(35) [  7] (36) [ 10,  7, 14] (37) [ 11,  7, 15] (38) [ 12,  7, 16] (39) [ 13,  7, 17] ]
+
+Cluster 8: [(40) [  8] (41) [ 10,  8, 14] (42) [ 11,  8, 15] (43) [ 12,  8, 16] (44) [ 13,  8, 17] ]
+
+Cluster 9: [(45) [  9] (46) [ 10,  9, 14] (47) [ 11,  9, 15] (48) [ 12,  9, 16] (49) [ 13,  9, 17] ]
+
+Cluster 10: [(50) [ 18] ]
+
+Cluster 11: [(51) [ 19] ]
+
+Cluster 12: [(52) [ 20] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12
+  0  0  1  0  0  1  0  1  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  1
+ 10  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 126 rows, 2100 columns, and 9446 nonzeros.
+Reduced MIP has 2100 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.03 sec.
+Probing time =    0.03 sec.
+Clique table members: 14605.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       95.5510       95.5510      261    0.00%
+Elapsed real time =   0.14 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.11
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.11 sec.
+
+Sol status: Optimal
+
+Obj Val: 95.551
+x(0, 44, 0)
+x(16, 0, 0)
+x(27, 16, 0)
+x(38, 52, 0)
+x(44, 38, 0)
+x(50, 27, 0)
+x(5, 20, 1)
+x(10, 30, 1)
+x(20, 52, 1)
+x(30, 45, 1)
+x(45, 5, 1)
+x(51, 10, 1)
+
+Solution by nodes: 
+Vehicle 0: 18 - 11 - 5 - 15 - 10 - 3 - 14 - 0 - 13 - 8 - 17 - 12 - 7 - 16 - 20
+Vehicle 1: 19 - 2 - 6 - 9 - 1 - 4 - 20
+
+
+Total time: 3.0666493955095
+
+Total passenger time: 1.19212435233161
+
+Total parcel time: 0.925008635578584
+
+Total combined transportation time: 0.725578583765112
+
+Total idle time: 0.223937823834197
+
+Total distance: 14.153
+
+Total passenger distance: 3.708
+
+Total parcel distance: 4.986
+
+Total combined transportation distance: 1.137
+
+Total idle distance: 4.322
+Solving:  grubhub-14-6.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 10,  0, 14] (2) [ 11,  0, 15] (3) [ 12,  0, 16] (4) [ 13,  0, 17] ]
+
+Cluster 1: [(5) [  1] (6) [ 10,  1, 14] (7) [ 11,  1, 15] (8) [ 12,  1, 16] (9) [ 13,  1, 17] ]
+
+Cluster 2: [(10) [  2] (11) [ 10,  2, 14] (12) [ 11,  2, 15] (13) [ 12,  2, 16] (14) [ 13,  2, 17] ]
+
+Cluster 3: [(15) [  3] (16) [ 10,  3, 14] (17) [ 11,  3, 15] (18) [ 12,  3, 16] (19) [ 13,  3, 17] ]
+
+Cluster 4: [(20) [  4] (21) [ 10,  4, 14] (22) [ 11,  4, 15] (23) [ 12,  4, 16] (24) [ 13,  4, 17] ]
+
+Cluster 5: [(25) [  5] (26) [ 10,  5, 14] (27) [ 11,  5, 15] (28) [ 12,  5, 16] (29) [ 13,  5, 17] ]
+
+Cluster 6: [(30) [  6] (31) [ 10,  6, 14] (32) [ 11,  6, 15] (33) [ 12,  6, 16] (34) [ 13,  6, 17] ]
+
+Cluster 7: [(35) [  7] (36) [ 10,  7, 14] (37) [ 11,  7, 15] (38) [ 12,  7, 16] (39) [ 13,  7, 17] ]
+
+Cluster 8: [(40) [  8] (41) [ 10,  8, 14] (42) [ 11,  8, 15] (43) [ 12,  8, 16] (44) [ 13,  8, 17] ]
+
+Cluster 9: [(45) [  9] (46) [ 10,  9, 14] (47) [ 11,  9, 15] (48) [ 12,  9, 16] (49) [ 13,  9, 17] ]
+
+Cluster 10: [(50) [ 18] ]
+
+Cluster 11: [(51) [ 19] ]
+
+Cluster 12: [(52) [ 20] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12
+  0  0  1  0  0  1  0  1  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  1
+ 10  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 126 rows, 2094 columns, and 9418 nonzeros.
+Reduced MIP has 2094 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.03 sec.
+Clique table members: 14173.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      102.3717    27                    102.3717      206         
+*     0+    0                          101.7740      102.3717      206    0.59%
+*     0+    0                          101.8950      102.3717      206    0.47%
+
+Repeating presolve.
+Tried aggregator 3 times.
+MIP Presolve eliminated 41 rows and 1718 columns.
+MIP Presolve modified 5 coefficients.
+Aggregator did 6 substitutions.
+Reduced MIP has 79 rows, 370 columns, and 1659 nonzeros.
+Reduced MIP has 370 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 4 vars, tightened 0 bounds.
+Probing time =    0.05 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 4 columns.
+Reduced MIP has 79 rows, 366 columns, and 1635 nonzeros.
+Reduced MIP has 366 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+Represolve time =    0.11 sec.
+Probing time =    0.01 sec.
+Clique table members: 2554.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          101.8950      102.3717      338    0.47%
+      0     0      102.3717    21      101.8950      102.3717      338    0.47%
+*     0+    0                          102.1980      102.3717      338    0.17%
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 12 rows and 256 columns.
+MIP Presolve modified 18 coefficients.
+Aggregator did 9 substitutions.
+Reduced MIP has 57 rows, 101 columns, and 458 nonzeros.
+Reduced MIP has 101 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 16 vars, tightened 0 bounds.
+Probing time =    0.00 sec.
+Tried aggregator 2 times.
+MIP Presolve eliminated 13 rows and 27 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 42 rows, 72 columns, and 334 nonzeros.
+Reduced MIP has 72 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.00 sec.
+Tried aggregator 2 times.
+MIP Presolve eliminated 1 rows and 2 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 39 rows, 68 columns, and 324 nonzeros.
+Reduced MIP has 68 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing time =    0.00 sec.
+Tried aggregator 1 time.
+Represolve time =    0.03 sec.
+Probing time =    0.00 sec.
+Clique table members: 589.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.00 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          102.1980      102.3717      368    0.17%
+      0     0        cutoff            102.1980                    368    0.00%
+
+Root node processing (before b&c):
+  Real time             =    0.38
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.38 sec.
+
+Sol status: Optimal
+
+Obj Val: 102.198
+x(11, 45, 0)
+x(25, 11, 0)
+x(35, 52, 0)
+x(45, 35, 0)
+x(50, 25, 0)
+x(2, 40, 1)
+x(9, 23, 1)
+x(15, 2, 1)
+x(23, 52, 1)
+x(30, 9, 1)
+x(40, 30, 1)
+x(51, 15, 1)
+
+Solution by nodes: 
+Vehicle 0: 18 - 5 - 10 - 2 - 14 - 9 - 7 - 20
+Vehicle 1: 19 - 3 - 11 - 0 - 15 - 8 - 6 - 13 - 1 - 17 - 12 - 4 - 16 - 20
+
+
+Total time: 3.16918825561313
+
+Total passenger time: 1.17751295336788
+
+Total parcel time: 0.907702936096718
+
+Total combined transportation time: 0.800915371329879
+
+Total idle time: 0.283056994818653
+
+Total distance: 16.132
+
+Total passenger distance: 3.426
+
+Total parcel distance: 4.652
+
+Total combined transportation distance: 2.591
+
+Total idle distance: 5.463
+Solving:  grubhub-14-7.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 10,  0, 14] (2) [ 11,  0, 15] (3) [ 12,  0, 16] (4) [ 13,  0, 17] ]
+
+Cluster 1: [(5) [  1] (6) [ 10,  1, 14] (7) [ 11,  1, 15] (8) [ 12,  1, 16] (9) [ 13,  1, 17] ]
+
+Cluster 2: [(10) [  2] (11) [ 10,  2, 14] (12) [ 11,  2, 15] (13) [ 12,  2, 16] (14) [ 13,  2, 17] ]
+
+Cluster 3: [(15) [  3] (16) [ 10,  3, 14] (17) [ 11,  3, 15] (18) [ 12,  3, 16] (19) [ 13,  3, 17] ]
+
+Cluster 4: [(20) [  4] (21) [ 10,  4, 14] (22) [ 11,  4, 15] (23) [ 12,  4, 16] (24) [ 13,  4, 17] ]
+
+Cluster 5: [(25) [  5] (26) [ 10,  5, 14] (27) [ 11,  5, 15] (28) [ 12,  5, 16] (29) [ 13,  5, 17] ]
+
+Cluster 6: [(30) [  6] (31) [ 10,  6, 14] (32) [ 11,  6, 15] (33) [ 12,  6, 16] (34) [ 13,  6, 17] ]
+
+Cluster 7: [(35) [  7] (36) [ 10,  7, 14] (37) [ 11,  7, 15] (38) [ 12,  7, 16] (39) [ 13,  7, 17] ]
+
+Cluster 8: [(40) [  8] (41) [ 10,  8, 14] (42) [ 11,  8, 15] (43) [ 12,  8, 16] (44) [ 13,  8, 17] ]
+
+Cluster 9: [(45) [  9] (46) [ 10,  9, 14] (47) [ 11,  9, 15] (48) [ 12,  9, 16] (49) [ 13,  9, 17] ]
+
+Cluster 10: [(50) [ 18] ]
+
+Cluster 11: [(51) [ 19] ]
+
+Cluster 12: [(52) [ 20] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12
+  0  0  1  0  0  1  0  1  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  1
+ 10  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 126 rows, 2102 columns, and 9458 nonzeros.
+Reduced MIP has 2102 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.04 sec.
+Clique table members: 13919.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       95.7900    23                     95.7900      217         
+      0     0       95.7900    21                     Cuts: 9      223         
+      0     0       95.7855    16                     Cuts: 4      235         
+*     0+    0                           95.3200       95.7855      235    0.49%
+*     0+    0                           95.7130       95.7855      235    0.08%
+      0     0        cutoff             95.7130       95.7130      235    0.00%
+Elapsed real time =   0.47 sec. (tree size =  0.00 MB, solutions = 2)
+
+Cover cuts applied:  1
+Zero-half cuts applied:  8
+
+Root node processing (before b&c):
+  Real time             =    0.42
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.42 sec.
+
+Sol status: Optimal
+
+Obj Val: 95.713
+x(14, 15, 0)
+x(15, 30, 0)
+x(22, 52, 0)
+x(30, 45, 0)
+x(45, 22, 0)
+x(50, 14, 0)
+x(0, 41, 1)
+x(8, 35, 1)
+x(25, 0, 1)
+x(35, 52, 1)
+x(41, 8, 1)
+x(51, 25, 1)
+
+Solution by nodes: 
+Vehicle 0: 18 - 13 - 2 - 17 - 3 - 6 - 9 - 11 - 4 - 15 - 20
+Vehicle 1: 19 - 5 - 0 - 10 - 8 - 14 - 12 - 1 - 16 - 7 - 20
+
+
+Total time: 3.1027115716753
+
+Total passenger time: 1.14673575129534
+
+Total parcel time: 0.896252158894646
+
+Total combined transportation time: 0.747236614853195
+
+Total idle time: 0.312487046632124
+
+Total distance: 14.849
+
+Total passenger distance: 2.832
+
+Total parcel distance: 4.431
+
+Total combined transportation distance: 1.555
+
+Total idle distance: 6.031
+Solving:  grubhub-14-8.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 10,  0, 14] (2) [ 11,  0, 15] (3) [ 12,  0, 16] (4) [ 13,  0, 17] ]
+
+Cluster 1: [(5) [  1] (6) [ 10,  1, 14] (7) [ 11,  1, 15] (8) [ 12,  1, 16] (9) [ 13,  1, 17] ]
+
+Cluster 2: [(10) [  2] (11) [ 10,  2, 14] (12) [ 11,  2, 15] (13) [ 12,  2, 16] (14) [ 13,  2, 17] ]
+
+Cluster 3: [(15) [  3] (16) [ 10,  3, 14] (17) [ 11,  3, 15] (18) [ 12,  3, 16] (19) [ 13,  3, 17] ]
+
+Cluster 4: [(20) [  4] (21) [ 10,  4, 14] (22) [ 11,  4, 15] (23) [ 12,  4, 16] (24) [ 13,  4, 17] ]
+
+Cluster 5: [(25) [  5] (26) [ 10,  5, 14] (27) [ 11,  5, 15] (28) [ 12,  5, 16] (29) [ 13,  5, 17] ]
+
+Cluster 6: [(30) [  6] (31) [ 10,  6, 14] (32) [ 11,  6, 15] (33) [ 12,  6, 16] (34) [ 13,  6, 17] ]
+
+Cluster 7: [(35) [  7] (36) [ 10,  7, 14] (37) [ 11,  7, 15] (38) [ 12,  7, 16] (39) [ 13,  7, 17] ]
+
+Cluster 8: [(40) [  8] (41) [ 10,  8, 14] (42) [ 11,  8, 15] (43) [ 12,  8, 16] (44) [ 13,  8, 17] ]
+
+Cluster 9: [(45) [  9] (46) [ 10,  9, 14] (47) [ 11,  9, 15] (48) [ 12,  9, 16] (49) [ 13,  9, 17] ]
+
+Cluster 10: [(50) [ 18] ]
+
+Cluster 11: [(51) [ 19] ]
+
+Cluster 12: [(52) [ 20] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12
+  0  0  1  0  0  1  0  1  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  1
+ 10  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 126 rows, 2092 columns, and 9410 nonzeros.
+Reduced MIP has 2092 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.03 sec.
+Clique table members: 14383.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       99.3793    32                     99.3793      174         
+*     0+    0                           93.9630       99.3793      174    5.76%
+      0     0       99.3448    39       93.9630       Cuts: 8      186    5.73%
+*     0+    0                           94.3940       99.3448      186    5.24%
+      0     0       99.3448    37       94.3940       Cuts: 5      191    5.24%
+*     0+    0                           99.2740       99.3448      196    0.07%
+      0     0        cutoff             99.2740       99.2740      196    0.00%
+Elapsed real time =   0.69 sec. (tree size =  0.00 MB, solutions = 3)
+
+Clique cuts applied:  2
+Cover cuts applied:  6
+Zero-half cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.65
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.65 sec.
+
+Sol status: Optimal
+
+Obj Val: 99.274
+x(0, 40, 0)
+x(5, 20, 0)
+x(10, 18, 0)
+x(18, 0, 0)
+x(20, 52, 0)
+x(27, 10, 0)
+x(40, 5, 0)
+x(50, 27, 0)
+x(31, 45, 1)
+x(39, 52, 1)
+x(45, 39, 1)
+x(51, 31, 1)
+
+Solution by nodes: 
+Vehicle 0: 18 - 11 - 5 - 15 - 2 - 12 - 3 - 16 - 0 - 8 - 1 - 4 - 20
+Vehicle 1: 19 - 10 - 6 - 14 - 9 - 13 - 7 - 17 - 20
+
+
+Total time: 3.27053540587219
+
+Total passenger time: 1.18134715025907
+
+Total parcel time: 0.969412780656304
+
+Total combined transportation time: 0.770708117443869
+
+Total idle time: 0.349067357512953
+
+Total distance: 18.088
+
+Total passenger distance: 3.5
+
+Total parcel distance: 5.843
+
+Total combined transportation distance: 2.008
+
+Total idle distance: 6.737
+Solving:  grubhub-14-9.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 10,  0, 14] (2) [ 11,  0, 15] (3) [ 12,  0, 16] (4) [ 13,  0, 17] ]
+
+Cluster 1: [(5) [  1] (6) [ 10,  1, 14] (7) [ 11,  1, 15] (8) [ 12,  1, 16] (9) [ 13,  1, 17] ]
+
+Cluster 2: [(10) [  2] (11) [ 10,  2, 14] (12) [ 11,  2, 15] (13) [ 12,  2, 16] (14) [ 13,  2, 17] ]
+
+Cluster 3: [(15) [  3] (16) [ 10,  3, 14] (17) [ 11,  3, 15] (18) [ 12,  3, 16] (19) [ 13,  3, 17] ]
+
+Cluster 4: [(20) [  4] (21) [ 10,  4, 14] (22) [ 11,  4, 15] (23) [ 12,  4, 16] (24) [ 13,  4, 17] ]
+
+Cluster 5: [(25) [  5] (26) [ 10,  5, 14] (27) [ 11,  5, 15] (28) [ 12,  5, 16] (29) [ 13,  5, 17] ]
+
+Cluster 6: [(30) [  6] (31) [ 10,  6, 14] (32) [ 11,  6, 15] (33) [ 12,  6, 16] (34) [ 13,  6, 17] ]
+
+Cluster 7: [(35) [  7] (36) [ 10,  7, 14] (37) [ 11,  7, 15] (38) [ 12,  7, 16] (39) [ 13,  7, 17] ]
+
+Cluster 8: [(40) [  8] (41) [ 10,  8, 14] (42) [ 11,  8, 15] (43) [ 12,  8, 16] (44) [ 13,  8, 17] ]
+
+Cluster 9: [(45) [  9] (46) [ 10,  9, 14] (47) [ 11,  9, 15] (48) [ 12,  9, 16] (49) [ 13,  9, 17] ]
+
+Cluster 10: [(50) [ 18] ]
+
+Cluster 11: [(51) [ 19] ]
+
+Cluster 12: [(52) [ 20] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12
+  0  0  1  0  0  1  0  1  1  1  1  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  1
+ 10  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 11  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 126 rows, 2106 columns, and 9480 nonzeros.
+Reduced MIP has 2106 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.03 sec.
+Clique table members: 14285.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       97.6495    12                     97.6495      235         
+*     0+    0                           94.4400       97.6495      235    3.40%
+      0     0       97.6495    23       94.4400       Cuts: 4      238    3.40%
+*     0+    0                           96.7170       97.6495      238    0.96%
+*     0+    0                           97.5900       97.6495      238    0.06%
+      0     0        cutoff             97.5900       97.5900      238    0.00%
+Elapsed real time =   0.39 sec. (tree size =  0.00 MB, solutions = 3)
+
+Cover cuts applied:  1
+Zero-half cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =    0.36
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.36 sec.
+
+Sol status: Optimal
+
+Obj Val: 97.59
+x(8, 37, 0)
+x(11, 19, 0)
+x(19, 40, 0)
+x(25, 11, 0)
+x(37, 52, 0)
+x(40, 45, 0)
+x(45, 8, 0)
+x(50, 25, 0)
+x(0, 30, 1)
+x(20, 52, 1)
+x(30, 20, 1)
+x(51, 0, 1)
+
+Solution by nodes: 
+Vehicle 0: 18 - 5 - 10 - 2 - 14 - 13 - 3 - 17 - 8 - 9 - 12 - 1 - 16 - 11 - 7 - 15 - 20
+Vehicle 1: 19 - 0 - 6 - 4 - 20
+
+
+Total time: 3.09509499136442
+
+Total passenger time: 1.18015544041451
+
+Total parcel time: 0.880967184801382
+
+Total combined transportation time: 0.77692573402418
+
+Total idle time: 0.257046632124352
+
+Total distance: 14.702
+
+Total passenger distance: 3.477
+
+Total parcel distance: 4.136
+
+Total combined transportation distance: 2.128
+
+Total idle distance: 4.961
+Solving:  grubhub-15-0.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 11,  0, 15] (2) [ 12,  0, 16] (3) [ 13,  0, 17] (4) [ 14,  0, 18] ]
+
+Cluster 1: [(5) [  1] (6) [ 11,  1, 15] (7) [ 12,  1, 16] (8) [ 13,  1, 17] (9) [ 14,  1, 18] ]
+
+Cluster 2: [(10) [  2] (11) [ 11,  2, 15] (12) [ 12,  2, 16] (13) [ 13,  2, 17] (14) [ 14,  2, 18] ]
+
+Cluster 3: [(15) [  3] (16) [ 11,  3, 15] (17) [ 12,  3, 16] (18) [ 13,  3, 17] (19) [ 14,  3, 18] ]
+
+Cluster 4: [(20) [  4] (21) [ 11,  4, 15] (22) [ 12,  4, 16] (23) [ 13,  4, 17] (24) [ 14,  4, 18] ]
+
+Cluster 5: [(25) [  5] (26) [ 11,  5, 15] (27) [ 12,  5, 16] (28) [ 13,  5, 17] (29) [ 14,  5, 18] ]
+
+Cluster 6: [(30) [  6] (31) [ 11,  6, 15] (32) [ 12,  6, 16] (33) [ 13,  6, 17] (34) [ 14,  6, 18] ]
+
+Cluster 7: [(35) [  7] (36) [ 11,  7, 15] (37) [ 12,  7, 16] (38) [ 13,  7, 17] (39) [ 14,  7, 18] ]
+
+Cluster 8: [(40) [  8] (41) [ 11,  8, 15] (42) [ 12,  8, 16] (43) [ 13,  8, 17] (44) [ 14,  8, 18] ]
+
+Cluster 9: [(45) [  9] (46) [ 11,  9, 15] (47) [ 12,  9, 16] (48) [ 13,  9, 17] (49) [ 14,  9, 18] ]
+
+Cluster 10: [(50) [ 10] (51) [ 11, 10, 15] (52) [ 12, 10, 16] (53) [ 13, 10, 17] (54) [ 14, 10, 18] ]
+
+Cluster 11: [(55) [ 19] ]
+
+Cluster 12: [(56) [ 20] ]
+
+Cluster 13: [(57) [ 21] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13
+  0  0  1  0  0  1  0  1  1  1  1  0  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  0  1
+ 10  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+ 11  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 13  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 138 rows, 2506 columns, and 11324 nonzeros.
+Reduced MIP has 2506 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.05 sec.
+Probing time =    0.03 sec.
+Clique table members: 16495.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      105.4140      105.4140      148    0.00%
+Elapsed real time =   0.17 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.12
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.12 sec.
+
+Sol status: Optimal
+
+Obj Val: 105.414
+x(5, 35, 0)
+x(15, 45, 0)
+x(35, 57, 0)
+x(45, 5, 0)
+x(55, 15, 0)
+x(0, 40, 1)
+x(13, 54, 1)
+x(20, 57, 1)
+x(27, 13, 1)
+x(31, 20, 1)
+x(40, 31, 1)
+x(54, 0, 1)
+x(56, 27, 1)
+
+Solution by nodes: 
+Vehicle 0: 19 - 3 - 9 - 1 - 7 - 21
+Vehicle 1: 20 - 12 - 5 - 16 - 13 - 2 - 17 - 14 - 10 - 18 - 0 - 8 - 11 - 6 - 15 - 4 - 21
+
+
+Total time: 3.36321243523316
+
+Total passenger time: 1.36433506044905
+
+Total parcel time: 0.889101899827289
+
+Total combined transportation time: 0.778998272884283
+
+Total idle time: 0.330777202072539
+
+Total distance: 16.66
+
+Total passenger distance: 3.815
+
+Total parcel distance: 4.293
+
+Total combined transportation distance: 2.168
+
+Total idle distance: 6.384
+Solving:  grubhub-15-1.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 11,  0, 15] (2) [ 12,  0, 16] (3) [ 13,  0, 17] (4) [ 14,  0, 18] ]
+
+Cluster 1: [(5) [  1] (6) [ 11,  1, 15] (7) [ 12,  1, 16] (8) [ 13,  1, 17] (9) [ 14,  1, 18] ]
+
+Cluster 2: [(10) [  2] (11) [ 11,  2, 15] (12) [ 12,  2, 16] (13) [ 13,  2, 17] (14) [ 14,  2, 18] ]
+
+Cluster 3: [(15) [  3] (16) [ 11,  3, 15] (17) [ 12,  3, 16] (18) [ 13,  3, 17] (19) [ 14,  3, 18] ]
+
+Cluster 4: [(20) [  4] (21) [ 11,  4, 15] (22) [ 12,  4, 16] (23) [ 13,  4, 17] (24) [ 14,  4, 18] ]
+
+Cluster 5: [(25) [  5] (26) [ 11,  5, 15] (27) [ 12,  5, 16] (28) [ 13,  5, 17] (29) [ 14,  5, 18] ]
+
+Cluster 6: [(30) [  6] (31) [ 11,  6, 15] (32) [ 12,  6, 16] (33) [ 13,  6, 17] (34) [ 14,  6, 18] ]
+
+Cluster 7: [(35) [  7] (36) [ 11,  7, 15] (37) [ 12,  7, 16] (38) [ 13,  7, 17] (39) [ 14,  7, 18] ]
+
+Cluster 8: [(40) [  8] (41) [ 11,  8, 15] (42) [ 12,  8, 16] (43) [ 13,  8, 17] (44) [ 14,  8, 18] ]
+
+Cluster 9: [(45) [  9] (46) [ 11,  9, 15] (47) [ 12,  9, 16] (48) [ 13,  9, 17] (49) [ 14,  9, 18] ]
+
+Cluster 10: [(50) [ 10] (51) [ 11, 10, 15] (52) [ 12, 10, 16] (53) [ 13, 10, 17] (54) [ 14, 10, 18] ]
+
+Cluster 11: [(55) [ 19] ]
+
+Cluster 12: [(56) [ 20] ]
+
+Cluster 13: [(57) [ 21] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13
+  0  0  1  0  0  1  0  1  1  1  1  0  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  0  1
+ 10  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+ 11  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 13  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 138 rows, 2520 columns, and 11394 nonzeros.
+Reduced MIP has 2520 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.05 sec.
+Probing time =    0.04 sec.
+Clique table members: 17401.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.04 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      106.8220      106.8220      253    0.00%
+Elapsed real time =   0.20 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.15
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.15 sec.
+
+Sol status: Optimal
+
+Obj Val: 106.822
+x(10, 51, 0)
+x(29, 10, 0)
+x(35, 57, 0)
+x(40, 45, 0)
+x(45, 35, 0)
+x(51, 40, 0)
+x(55, 29, 0)
+x(0, 30, 1)
+x(7, 23, 1)
+x(15, 0, 1)
+x(23, 57, 1)
+x(30, 7, 1)
+x(56, 15, 1)
+
+Solution by nodes: 
+Vehicle 0: 19 - 14 - 5 - 18 - 2 - 11 - 10 - 15 - 8 - 9 - 7 - 21
+Vehicle 1: 20 - 3 - 0 - 6 - 12 - 1 - 16 - 13 - 4 - 17 - 21
+
+
+Total time: 3.26652849740933
+
+Total passenger time: 1.31246977547496
+
+Total parcel time: 0.922625215889465
+
+Total combined transportation time: 0.801278065630397
+
+Total idle time: 0.230155440414508
+
+Total distance: 14.794
+
+Total passenger distance: 2.814
+
+Total parcel distance: 4.94
+
+Total combined transportation distance: 2.598
+
+Total idle distance: 4.442
+Solving:  grubhub-15-2.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 11,  0, 15] (2) [ 12,  0, 16] (3) [ 13,  0, 17] (4) [ 14,  0, 18] ]
+
+Cluster 1: [(5) [  1] (6) [ 11,  1, 15] (7) [ 12,  1, 16] (8) [ 13,  1, 17] (9) [ 14,  1, 18] ]
+
+Cluster 2: [(10) [  2] (11) [ 11,  2, 15] (12) [ 12,  2, 16] (13) [ 13,  2, 17] (14) [ 14,  2, 18] ]
+
+Cluster 3: [(15) [  3] (16) [ 11,  3, 15] (17) [ 12,  3, 16] (18) [ 13,  3, 17] (19) [ 14,  3, 18] ]
+
+Cluster 4: [(20) [  4] (21) [ 11,  4, 15] (22) [ 12,  4, 16] (23) [ 13,  4, 17] (24) [ 14,  4, 18] ]
+
+Cluster 5: [(25) [  5] (26) [ 11,  5, 15] (27) [ 12,  5, 16] (28) [ 13,  5, 17] (29) [ 14,  5, 18] ]
+
+Cluster 6: [(30) [  6] (31) [ 11,  6, 15] (32) [ 12,  6, 16] (33) [ 13,  6, 17] (34) [ 14,  6, 18] ]
+
+Cluster 7: [(35) [  7] (36) [ 11,  7, 15] (37) [ 12,  7, 16] (38) [ 13,  7, 17] (39) [ 14,  7, 18] ]
+
+Cluster 8: [(40) [  8] (41) [ 11,  8, 15] (42) [ 12,  8, 16] (43) [ 13,  8, 17] (44) [ 14,  8, 18] ]
+
+Cluster 9: [(45) [  9] (46) [ 11,  9, 15] (47) [ 12,  9, 16] (48) [ 13,  9, 17] (49) [ 14,  9, 18] ]
+
+Cluster 10: [(50) [ 10] (51) [ 11, 10, 15] (52) [ 12, 10, 16] (53) [ 13, 10, 17] (54) [ 14, 10, 18] ]
+
+Cluster 11: [(55) [ 19] ]
+
+Cluster 12: [(56) [ 20] ]
+
+Cluster 13: [(57) [ 21] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13
+  0  0  1  0  0  1  0  1  1  1  1  0  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  0  1
+ 10  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+ 11  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 13  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 138 rows, 2500 columns, and 11298 nonzeros.
+Reduced MIP has 2500 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.04 sec.
+Clique table members: 16468.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      106.2255    18                    106.2255      186         
+*     0+    0                          101.5800      106.2255      186    4.57%
+*     0+    0                          106.0320      106.2255      186    0.18%
+*     0+    0                          106.0670      106.2255      186    0.15%
+*     0+    0                          106.2040      106.2255      186    0.02%
+      0     0        cutoff            106.2040      106.2040      186    0.00%
+Elapsed real time =   0.40 sec. (tree size =  0.00 MB, solutions = 4)
+
+Root node processing (before b&c):
+  Real time             =    0.36
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.36 sec.
+
+Sol status: Optimal
+
+Obj Val: 106.204
+x(0, 40, 0)
+x(22, 57, 0)
+x(40, 22, 0)
+x(50, 0, 0)
+x(55, 50, 0)
+x(6, 39, 1)
+x(10, 15, 1)
+x(15, 30, 1)
+x(28, 10, 1)
+x(30, 45, 1)
+x(39, 57, 1)
+x(45, 6, 1)
+x(56, 28, 1)
+
+Solution by nodes: 
+Vehicle 0: 19 - 10 - 0 - 8 - 12 - 4 - 16 - 21
+Vehicle 1: 20 - 13 - 5 - 17 - 2 - 3 - 6 - 9 - 11 - 1 - 15 - 14 - 7 - 18 - 21
+
+
+Total time: 3.33181347150259
+
+Total passenger time: 1.38552677029361
+
+Total parcel time: 0.885112262521589
+
+Total combined transportation time: 0.759620034542314
+
+Total idle time: 0.301554404145078
+
+Total distance: 16.054
+
+Total passenger distance: 4.224
+
+Total parcel distance: 4.216
+
+Total combined transportation distance: 1.794
+
+Total idle distance: 5.82
+Solving:  grubhub-15-3.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 11,  0, 15] (2) [ 12,  0, 16] (3) [ 13,  0, 17] (4) [ 14,  0, 18] ]
+
+Cluster 1: [(5) [  1] (6) [ 11,  1, 15] (7) [ 12,  1, 16] (8) [ 13,  1, 17] (9) [ 14,  1, 18] ]
+
+Cluster 2: [(10) [  2] (11) [ 11,  2, 15] (12) [ 12,  2, 16] (13) [ 13,  2, 17] (14) [ 14,  2, 18] ]
+
+Cluster 3: [(15) [  3] (16) [ 11,  3, 15] (17) [ 12,  3, 16] (18) [ 13,  3, 17] (19) [ 14,  3, 18] ]
+
+Cluster 4: [(20) [  4] (21) [ 11,  4, 15] (22) [ 12,  4, 16] (23) [ 13,  4, 17] (24) [ 14,  4, 18] ]
+
+Cluster 5: [(25) [  5] (26) [ 11,  5, 15] (27) [ 12,  5, 16] (28) [ 13,  5, 17] (29) [ 14,  5, 18] ]
+
+Cluster 6: [(30) [  6] (31) [ 11,  6, 15] (32) [ 12,  6, 16] (33) [ 13,  6, 17] (34) [ 14,  6, 18] ]
+
+Cluster 7: [(35) [  7] (36) [ 11,  7, 15] (37) [ 12,  7, 16] (38) [ 13,  7, 17] (39) [ 14,  7, 18] ]
+
+Cluster 8: [(40) [  8] (41) [ 11,  8, 15] (42) [ 12,  8, 16] (43) [ 13,  8, 17] (44) [ 14,  8, 18] ]
+
+Cluster 9: [(45) [  9] (46) [ 11,  9, 15] (47) [ 12,  9, 16] (48) [ 13,  9, 17] (49) [ 14,  9, 18] ]
+
+Cluster 10: [(50) [ 10] (51) [ 11, 10, 15] (52) [ 12, 10, 16] (53) [ 13, 10, 17] (54) [ 14, 10, 18] ]
+
+Cluster 11: [(55) [ 19] ]
+
+Cluster 12: [(56) [ 20] ]
+
+Cluster 13: [(57) [ 21] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13
+  0  0  1  0  0  1  0  1  1  1  1  0  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  0  1
+ 10  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+ 11  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 13  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 138 rows, 2496 columns, and 11282 nonzeros.
+Reduced MIP has 2496 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.04 sec.
+Clique table members: 17434.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      107.6020      107.6020      243    0.00%
+Elapsed real time =   0.17 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.13
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.13 sec.
+
+Sol status: Optimal
+
+Obj Val: 107.602
+x(4, 43, 0)
+x(10, 51, 0)
+x(22, 57, 0)
+x(25, 10, 0)
+x(43, 22, 0)
+x(51, 4, 0)
+x(55, 25, 0)
+x(5, 35, 1)
+x(15, 30, 1)
+x(30, 45, 1)
+x(35, 57, 1)
+x(45, 5, 1)
+x(56, 15, 1)
+
+Solution by nodes: 
+Vehicle 0: 19 - 5 - 2 - 11 - 10 - 15 - 14 - 0 - 18 - 13 - 8 - 17 - 12 - 4 - 16 - 21
+Vehicle 1: 20 - 3 - 6 - 9 - 1 - 7 - 21
+
+
+Total time: 3.47512953367876
+
+Total passenger time: 1.36749568221071
+
+Total parcel time: 0.969879101899828
+
+Total combined transportation time: 0.770759930915371
+
+Total idle time: 0.36699481865285
+
+Total distance: 18.82
+
+Total passenger distance: 3.876
+
+Total parcel distance: 5.852
+
+Total combined transportation distance: 2.009
+
+Total idle distance: 7.083
+Solving:  grubhub-15-4.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 11,  0, 15] (2) [ 12,  0, 16] (3) [ 13,  0, 17] (4) [ 14,  0, 18] ]
+
+Cluster 1: [(5) [  1] (6) [ 11,  1, 15] (7) [ 12,  1, 16] (8) [ 13,  1, 17] (9) [ 14,  1, 18] ]
+
+Cluster 2: [(10) [  2] (11) [ 11,  2, 15] (12) [ 12,  2, 16] (13) [ 13,  2, 17] (14) [ 14,  2, 18] ]
+
+Cluster 3: [(15) [  3] (16) [ 11,  3, 15] (17) [ 12,  3, 16] (18) [ 13,  3, 17] (19) [ 14,  3, 18] ]
+
+Cluster 4: [(20) [  4] (21) [ 11,  4, 15] (22) [ 12,  4, 16] (23) [ 13,  4, 17] (24) [ 14,  4, 18] ]
+
+Cluster 5: [(25) [  5] (26) [ 11,  5, 15] (27) [ 12,  5, 16] (28) [ 13,  5, 17] (29) [ 14,  5, 18] ]
+
+Cluster 6: [(30) [  6] (31) [ 11,  6, 15] (32) [ 12,  6, 16] (33) [ 13,  6, 17] (34) [ 14,  6, 18] ]
+
+Cluster 7: [(35) [  7] (36) [ 11,  7, 15] (37) [ 12,  7, 16] (38) [ 13,  7, 17] (39) [ 14,  7, 18] ]
+
+Cluster 8: [(40) [  8] (41) [ 11,  8, 15] (42) [ 12,  8, 16] (43) [ 13,  8, 17] (44) [ 14,  8, 18] ]
+
+Cluster 9: [(45) [  9] (46) [ 11,  9, 15] (47) [ 12,  9, 16] (48) [ 13,  9, 17] (49) [ 14,  9, 18] ]
+
+Cluster 10: [(50) [ 10] (51) [ 11, 10, 15] (52) [ 12, 10, 16] (53) [ 13, 10, 17] (54) [ 14, 10, 18] ]
+
+Cluster 11: [(55) [ 19] ]
+
+Cluster 12: [(56) [ 20] ]
+
+Cluster 13: [(57) [ 21] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13
+  0  0  1  0  0  1  0  1  1  1  1  0  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  0  1
+ 10  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+ 11  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 13  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 138 rows, 2506 columns, and 11324 nonzeros.
+Reduced MIP has 2506 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.05 sec.
+Probing time =    0.03 sec.
+Clique table members: 16495.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      102.6350      102.6350      229    0.00%
+Elapsed real time =   0.17 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.12
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.12 sec.
+
+Sol status: Optimal
+
+Obj Val: 102.635
+x(0, 46, 0)
+x(5, 35, 0)
+x(12, 53, 0)
+x(29, 12, 0)
+x(35, 57, 0)
+x(46, 5, 0)
+x(53, 0, 0)
+x(55, 29, 0)
+x(15, 40, 1)
+x(20, 57, 1)
+x(30, 20, 1)
+x(40, 30, 1)
+x(56, 15, 1)
+
+Solution by nodes: 
+Vehicle 0: 19 - 14 - 5 - 18 - 12 - 2 - 16 - 13 - 10 - 17 - 0 - 11 - 9 - 15 - 1 - 7 - 21
+Vehicle 1: 20 - 3 - 8 - 6 - 4 - 21
+
+
+Total time: 3.29953367875648
+
+Total passenger time: 1.29407599309154
+
+Total parcel time: 0.939827288428325
+
+Total combined transportation time: 0.755474956822107
+
+Total idle time: 0.310155440414508
+
+Total distance: 15.431
+
+Total passenger distance: 2.459
+
+Total parcel distance: 5.272
+
+Total combined transportation distance: 1.714
+
+Total idle distance: 5.986
+Solving:  grubhub-15-5.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 11,  0, 15] (2) [ 12,  0, 16] (3) [ 13,  0, 17] (4) [ 14,  0, 18] ]
+
+Cluster 1: [(5) [  1] (6) [ 11,  1, 15] (7) [ 12,  1, 16] (8) [ 13,  1, 17] (9) [ 14,  1, 18] ]
+
+Cluster 2: [(10) [  2] (11) [ 11,  2, 15] (12) [ 12,  2, 16] (13) [ 13,  2, 17] (14) [ 14,  2, 18] ]
+
+Cluster 3: [(15) [  3] (16) [ 11,  3, 15] (17) [ 12,  3, 16] (18) [ 13,  3, 17] (19) [ 14,  3, 18] ]
+
+Cluster 4: [(20) [  4] (21) [ 11,  4, 15] (22) [ 12,  4, 16] (23) [ 13,  4, 17] (24) [ 14,  4, 18] ]
+
+Cluster 5: [(25) [  5] (26) [ 11,  5, 15] (27) [ 12,  5, 16] (28) [ 13,  5, 17] (29) [ 14,  5, 18] ]
+
+Cluster 6: [(30) [  6] (31) [ 11,  6, 15] (32) [ 12,  6, 16] (33) [ 13,  6, 17] (34) [ 14,  6, 18] ]
+
+Cluster 7: [(35) [  7] (36) [ 11,  7, 15] (37) [ 12,  7, 16] (38) [ 13,  7, 17] (39) [ 14,  7, 18] ]
+
+Cluster 8: [(40) [  8] (41) [ 11,  8, 15] (42) [ 12,  8, 16] (43) [ 13,  8, 17] (44) [ 14,  8, 18] ]
+
+Cluster 9: [(45) [  9] (46) [ 11,  9, 15] (47) [ 12,  9, 16] (48) [ 13,  9, 17] (49) [ 14,  9, 18] ]
+
+Cluster 10: [(50) [ 10] (51) [ 11, 10, 15] (52) [ 12, 10, 16] (53) [ 13, 10, 17] (54) [ 14, 10, 18] ]
+
+Cluster 11: [(55) [ 19] ]
+
+Cluster 12: [(56) [ 20] ]
+
+Cluster 13: [(57) [ 21] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13
+  0  0  1  0  0  1  0  1  1  1  1  0  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  0  1
+ 10  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+ 11  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 13  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 138 rows, 2504 columns, and 11314 nonzeros.
+Reduced MIP has 2504 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.05 sec.
+Probing time =    0.04 sec.
+Clique table members: 16830.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      108.1720      108.1720      133    0.00%
+Elapsed real time =   0.18 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.13
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.13 sec.
+
+Sol status: Optimal
+
+Obj Val: 108.172
+x(4, 33, 0)
+x(5, 35, 0)
+x(10, 52, 0)
+x(25, 10, 0)
+x(33, 5, 0)
+x(35, 57, 0)
+x(52, 4, 0)
+x(55, 25, 0)
+x(15, 40, 1)
+x(20, 57, 1)
+x(40, 46, 1)
+x(46, 20, 1)
+x(56, 15, 1)
+
+Solution by nodes: 
+Vehicle 0: 19 - 5 - 2 - 12 - 10 - 16 - 14 - 0 - 18 - 13 - 6 - 17 - 1 - 7 - 21
+Vehicle 1: 20 - 3 - 8 - 11 - 9 - 15 - 4 - 21
+
+
+Total time: 3.36642487046632
+
+Total passenger time: 1.38708117443869
+
+Total parcel time: 0.892469775474957
+
+Total combined transportation time: 0.775785837651123
+
+Total idle time: 0.311088082901554
+
+Total distance: 16.722
+
+Total passenger distance: 4.254
+
+Total parcel distance: 4.358
+
+Total combined transportation distance: 2.106
+
+Total idle distance: 6.004
+Solving:  grubhub-15-6.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 11,  0, 15] (2) [ 12,  0, 16] (3) [ 13,  0, 17] (4) [ 14,  0, 18] ]
+
+Cluster 1: [(5) [  1] (6) [ 11,  1, 15] (7) [ 12,  1, 16] (8) [ 13,  1, 17] (9) [ 14,  1, 18] ]
+
+Cluster 2: [(10) [  2] (11) [ 11,  2, 15] (12) [ 12,  2, 16] (13) [ 13,  2, 17] (14) [ 14,  2, 18] ]
+
+Cluster 3: [(15) [  3] (16) [ 11,  3, 15] (17) [ 12,  3, 16] (18) [ 13,  3, 17] (19) [ 14,  3, 18] ]
+
+Cluster 4: [(20) [  4] (21) [ 11,  4, 15] (22) [ 12,  4, 16] (23) [ 13,  4, 17] (24) [ 14,  4, 18] ]
+
+Cluster 5: [(25) [  5] (26) [ 11,  5, 15] (27) [ 12,  5, 16] (28) [ 13,  5, 17] (29) [ 14,  5, 18] ]
+
+Cluster 6: [(30) [  6] (31) [ 11,  6, 15] (32) [ 12,  6, 16] (33) [ 13,  6, 17] (34) [ 14,  6, 18] ]
+
+Cluster 7: [(35) [  7] (36) [ 11,  7, 15] (37) [ 12,  7, 16] (38) [ 13,  7, 17] (39) [ 14,  7, 18] ]
+
+Cluster 8: [(40) [  8] (41) [ 11,  8, 15] (42) [ 12,  8, 16] (43) [ 13,  8, 17] (44) [ 14,  8, 18] ]
+
+Cluster 9: [(45) [  9] (46) [ 11,  9, 15] (47) [ 12,  9, 16] (48) [ 13,  9, 17] (49) [ 14,  9, 18] ]
+
+Cluster 10: [(50) [ 10] (51) [ 11, 10, 15] (52) [ 12, 10, 16] (53) [ 13, 10, 17] (54) [ 14, 10, 18] ]
+
+Cluster 11: [(55) [ 19] ]
+
+Cluster 12: [(56) [ 20] ]
+
+Cluster 13: [(57) [ 21] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13
+  0  0  1  0  0  1  0  1  1  1  1  0  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  0  1
+ 10  1  1  0  1  1  0  1  1  1  1  0  0  0  1
+ 11  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 13  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 138 rows, 2514 columns, and 11362 nonzeros.
+Reduced MIP has 2514 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.05 sec.
+Probing time =    0.04 sec.
+Clique table members: 16862.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.03 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      107.2240      107.2240      203    0.00%
+Elapsed real time =   0.17 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.12
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.12 sec.
+
+Sol status: Optimal
+
+Obj Val: 107.224
+x(9, 20, 0)
+x(10, 50, 0)
+x(15, 30, 0)
+x(20, 57, 0)
+x(28, 10, 0)
+x(30, 9, 0)
+x(50, 15, 0)
+x(55, 28, 0)
+x(0, 40, 1)
+x(37, 57, 1)
+x(40, 46, 1)
+x(46, 37, 1)
+x(56, 0, 1)
+
+Solution by nodes: 
+Vehicle 0: 19 - 13 - 5 - 17 - 2 - 10 - 3 - 6 - 14 - 1 - 18 - 4 - 21
+Vehicle 1: 20 - 0 - 8 - 11 - 9 - 15 - 12 - 7 - 16 - 21
+
+
+Total time: 3.33782383419689
+
+Total passenger time: 1.33314335060449
+
+Total parcel time: 0.916822107081175
+
+Total combined transportation time: 0.796148531951641
+
+Total idle time: 0.291709844559585
+
+Total distance: 16.17
+
+Total passenger distance: 3.213
+
+Total parcel distance: 4.828
+
+Total combined transportation distance: 2.499
+
+Total idle distance: 5.63
+Solving:  grubhub-15-7.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 11,  0, 15] (2) [ 12,  0, 16] (3) [ 13,  0, 17] (4) [ 14,  0, 18] ]
+
+Cluster 1: [(5) [  1] (6) [ 11,  1, 15] (7) [ 12,  1, 16] (8) [ 13,  1, 17] (9) [ 14,  1, 18] ]
+
+Cluster 2: [(10) [  2] (11) [ 11,  2, 15] (12) [ 12,  2, 16] (13) [ 13,  2, 17] (14) [ 14,  2, 18] ]
+
+Cluster 3: [(15) [  3] (16) [ 11,  3, 15] (17) [ 12,  3, 16] (18) [ 13,  3, 17] (19) [ 14,  3, 18] ]
+
+Cluster 4: [(20) [  4] (21) [ 11,  4, 15] (22) [ 12,  4, 16] (23) [ 13,  4, 17] (24) [ 14,  4, 18] ]
+
+Cluster 5: [(25) [  5] (26) [ 11,  5, 15] (27) [ 12,  5, 16] (28) [ 13,  5, 17] (29) [ 14,  5, 18] ]
+
+Cluster 6: [(30) [  6] (31) [ 11,  6, 15] (32) [ 12,  6, 16] (33) [ 13,  6, 17] (34) [ 14,  6, 18] ]
+
+Cluster 7: [(35) [  7] (36) [ 11,  7, 15] (37) [ 12,  7, 16] (38) [ 13,  7, 17] (39) [ 14,  7, 18] ]
+
+Cluster 8: [(40) [  8] (41) [ 11,  8, 15] (42) [ 12,  8, 16] (43) [ 13,  8, 17] (44) [ 14,  8, 18] ]
+
+Cluster 9: [(45) [  9] (46) [ 11,  9, 15] (47) [ 12,  9, 16] (48) [ 13,  9, 17] (49) [ 14,  9, 18] ]
+
+Cluster 10: [(50) [ 10] (51) [ 11, 10, 15] (52) [ 12, 10, 16] (53) [ 13, 10, 17] (54) [ 14, 10, 18] ]
+
+Cluster 11: [(55) [ 19] ]
+
+Cluster 12: [(56) [ 20] ]
+
+Cluster 13: [(57) [ 21] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13
+  0  0  1  0  0  1  0  1  1  1  1  0  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  0  1
+ 10  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+ 11  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 13  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 138 rows, 2512 columns, and 11354 nonzeros.
+Reduced MIP has 2512 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.03 sec.
+Clique table members: 17512.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      105.2980      105.2980      188    0.00%
+Elapsed real time =   0.17 sec. (tree size =  0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.12
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.12 sec.
+
+Sol status: Optimal
+
+Obj Val: 105.298
+x(10, 15, 0)
+x(15, 30, 0)
+x(20, 57, 0)
+x(27, 10, 0)
+x(30, 45, 0)
+x(45, 20, 0)
+x(55, 27, 0)
+x(3, 41, 1)
+x(9, 35, 1)
+x(35, 57, 1)
+x(41, 9, 1)
+x(50, 3, 1)
+x(56, 50, 1)
+
+Solution by nodes: 
+Vehicle 0: 19 - 12 - 5 - 16 - 2 - 3 - 6 - 9 - 4 - 21
+Vehicle 1: 20 - 10 - 13 - 0 - 17 - 11 - 8 - 15 - 14 - 1 - 18 - 7 - 21
+
+
+Total time: 3.2919170984456
+
+Total passenger time: 1.31003454231433
+
+Total parcel time: 0.899205526770294
+
+Total combined transportation time: 0.807547495682211
+
+Total idle time: 0.275129533678756
+
+Total distance: 15.284
+
+Total passenger distance: 2.767
+
+Total parcel distance: 4.488
+
+Total combined transportation distance: 2.719
+
+Total idle distance: 5.31
+Solving:  grubhub-15-8.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 11,  0, 15] (2) [ 12,  0, 16] (3) [ 13,  0, 17] (4) [ 14,  0, 18] ]
+
+Cluster 1: [(5) [  1] (6) [ 11,  1, 15] (7) [ 12,  1, 16] (8) [ 13,  1, 17] (9) [ 14,  1, 18] ]
+
+Cluster 2: [(10) [  2] (11) [ 11,  2, 15] (12) [ 12,  2, 16] (13) [ 13,  2, 17] (14) [ 14,  2, 18] ]
+
+Cluster 3: [(15) [  3] (16) [ 11,  3, 15] (17) [ 12,  3, 16] (18) [ 13,  3, 17] (19) [ 14,  3, 18] ]
+
+Cluster 4: [(20) [  4] (21) [ 11,  4, 15] (22) [ 12,  4, 16] (23) [ 13,  4, 17] (24) [ 14,  4, 18] ]
+
+Cluster 5: [(25) [  5] (26) [ 11,  5, 15] (27) [ 12,  5, 16] (28) [ 13,  5, 17] (29) [ 14,  5, 18] ]
+
+Cluster 6: [(30) [  6] (31) [ 11,  6, 15] (32) [ 12,  6, 16] (33) [ 13,  6, 17] (34) [ 14,  6, 18] ]
+
+Cluster 7: [(35) [  7] (36) [ 11,  7, 15] (37) [ 12,  7, 16] (38) [ 13,  7, 17] (39) [ 14,  7, 18] ]
+
+Cluster 8: [(40) [  8] (41) [ 11,  8, 15] (42) [ 12,  8, 16] (43) [ 13,  8, 17] (44) [ 14,  8, 18] ]
+
+Cluster 9: [(45) [  9] (46) [ 11,  9, 15] (47) [ 12,  9, 16] (48) [ 13,  9, 17] (49) [ 14,  9, 18] ]
+
+Cluster 10: [(50) [ 10] (51) [ 11, 10, 15] (52) [ 12, 10, 16] (53) [ 13, 10, 17] (54) [ 14, 10, 18] ]
+
+Cluster 11: [(55) [ 19] ]
+
+Cluster 12: [(56) [ 20] ]
+
+Cluster 13: [(57) [ 21] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13
+  0  0  1  0  0  1  0  1  1  1  1  0  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  0  1
+ 10  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+ 11  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 13  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 138 rows, 2504 columns, and 11318 nonzeros.
+Reduced MIP has 2504 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.04 sec.
+Clique table members: 16463.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      108.0920    14                    108.0920      162         
+      0     0      108.0920    25                     Cuts: 8      165         
+*     0+    0                          108.0720      108.0920      165    0.02%
+
+Cover cuts applied:  1
+Zero-half cuts applied:  7
+
+Root node processing (before b&c):
+  Real time             =    0.32
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.32 sec.
+
+Sol status: Optimal
+
+Obj Val: 108.072
+x(3, 45, 0)
+x(5, 39, 0)
+x(15, 3, 0)
+x(26, 15, 0)
+x(39, 57, 0)
+x(45, 5, 0)
+x(55, 26, 0)
+x(10, 52, 1)
+x(20, 57, 1)
+x(30, 20, 1)
+x(40, 30, 1)
+x(52, 40, 1)
+x(56, 10, 1)
+
+Solution by nodes: 
+Vehicle 0: 19 - 11 - 5 - 15 - 3 - 13 - 0 - 17 - 9 - 1 - 14 - 7 - 18 - 21
+Vehicle 1: 20 - 2 - 12 - 10 - 16 - 8 - 6 - 4 - 21
+
+
+Total time: 3.3839378238342
+
+Total passenger time: 1.39604490500864
+
+Total parcel time: 0.93873920552677
+
+Total combined transportation time: 0.763298791018998
+
+Total idle time: 0.285854922279793
+
+Total distance: 17.06
+
+Total passenger distance: 4.427
+
+Total parcel distance: 5.251
+
+Total combined transportation distance: 1.865
+
+Total idle distance: 5.517
+Solving:  grubhub-15-9.tsp :
+
+Cluster 0: [(0) [  0] (1) [ 11,  0, 15] (2) [ 12,  0, 16] (3) [ 13,  0, 17] (4) [ 14,  0, 18] ]
+
+Cluster 1: [(5) [  1] (6) [ 11,  1, 15] (7) [ 12,  1, 16] (8) [ 13,  1, 17] (9) [ 14,  1, 18] ]
+
+Cluster 2: [(10) [  2] (11) [ 11,  2, 15] (12) [ 12,  2, 16] (13) [ 13,  2, 17] (14) [ 14,  2, 18] ]
+
+Cluster 3: [(15) [  3] (16) [ 11,  3, 15] (17) [ 12,  3, 16] (18) [ 13,  3, 17] (19) [ 14,  3, 18] ]
+
+Cluster 4: [(20) [  4] (21) [ 11,  4, 15] (22) [ 12,  4, 16] (23) [ 13,  4, 17] (24) [ 14,  4, 18] ]
+
+Cluster 5: [(25) [  5] (26) [ 11,  5, 15] (27) [ 12,  5, 16] (28) [ 13,  5, 17] (29) [ 14,  5, 18] ]
+
+Cluster 6: [(30) [  6] (31) [ 11,  6, 15] (32) [ 12,  6, 16] (33) [ 13,  6, 17] (34) [ 14,  6, 18] ]
+
+Cluster 7: [(35) [  7] (36) [ 11,  7, 15] (37) [ 12,  7, 16] (38) [ 13,  7, 17] (39) [ 14,  7, 18] ]
+
+Cluster 8: [(40) [  8] (41) [ 11,  8, 15] (42) [ 12,  8, 16] (43) [ 13,  8, 17] (44) [ 14,  8, 18] ]
+
+Cluster 9: [(45) [  9] (46) [ 11,  9, 15] (47) [ 12,  9, 16] (48) [ 13,  9, 17] (49) [ 14,  9, 18] ]
+
+Cluster 10: [(50) [ 10] (51) [ 11, 10, 15] (52) [ 12, 10, 16] (53) [ 13, 10, 17] (54) [ 14, 10, 18] ]
+
+Cluster 11: [(55) [ 19] ]
+
+Cluster 12: [(56) [ 20] ]
+
+Cluster 13: [(57) [ 21] ]
+
+Feasible arcs between clusters:
+     0  1  2  3  4  5  6  7  8  9 10 11 12 13
+  0  0  1  0  0  1  0  1  1  1  1  0  0  0  1
+  1  0  0  0  0  1  0  0  1  0  0  0  0  0  1
+  2  1  1  0  1  1  0  1  1  1  1  1  0  0  1
+  3  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+  4  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  5  1  1  1  1  1  0  1  1  1  1  1  0  0  1
+  6  0  1  0  0  1  0  0  1  0  1  0  0  0  1
+  7  0  0  0  0  0  0  0  0  0  0  0  0  0  1
+  8  0  1  0  0  1  0  1  1  0  1  0  0  0  1
+  9  0  1  0  0  1  0  0  1  0  0  0  0  0  1
+ 10  1  1  0  0  1  0  1  1  1  1  0  0  0  1
+ 11  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 12  1  1  1  1  1  1  1  1  1  1  1  0  0  0
+ 13  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 138 rows, 2504 columns, and 11316 nonzeros.
+Reduced MIP has 2504 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.04 sec.
+Probing time =    0.04 sec.
+Clique table members: 16801.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.02 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      103.6705    23                    103.6705      133         
+      0     0      103.6705    21                 ZeroHalf: 1      136         
+*     0+    0                          100.2560      103.6705      136    3.41%
+*     0+    0                          101.6070      103.6705      136    2.03%
+*     0+    0                          103.5660      103.6705      136    0.10%
+      0     0        cutoff            103.5660      103.5660      136    0.00%
+Elapsed real time =   0.40 sec. (tree size =  0.00 MB, solutions = 3)
+
+Zero-half cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.35
+Parallel b&c, 2 threads:
+  Real time             =    0.00
+  Sync time (average)   =    0.00
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    0.35 sec.
+
+Sol status: Optimal
+
+Obj Val: 103.566
+x(21, 57, 0)
+x(40, 21, 0)
+x(50, 40, 0)
+x(55, 50, 0)
+x(0, 30, 1)
+x(8, 35, 1)
+x(12, 19, 1)
+x(19, 0, 1)
+x(25, 12, 1)
+x(30, 45, 1)
+x(35, 57, 1)
+x(45, 8, 1)
+x(56, 25, 1)
+
+Solution by nodes: 
+Vehicle 0: 19 - 10 - 8 - 11 - 4 - 15 - 21
+Vehicle 1: 20 - 5 - 12 - 2 - 16 - 14 - 3 - 18 - 0 - 6 - 9 - 13 - 1 - 17 - 7 - 21
+
+
+Total time: 3.48611398963731
+
+Total passenger time: 1.3553713298791
+
+Total parcel time: 0.881951640759931
+
+Total combined transportation time: 0.802003454231433
+
+Total idle time: 0.446787564766839
+
+Total distance: 19.032
+
+Total passenger distance: 3.642
+
+Total parcel distance: 4.155
+
+Total combined transportation distance: 2.612
+
+Total idle distance: 8.623

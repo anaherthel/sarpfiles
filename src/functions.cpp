@@ -48,17 +48,18 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
     if (problem->scen == "2A"){
         vector<int> delNodes;
         int counter = 0;
-        for (int i = 0; i < inst->n; i++){
+        for (int i = 0; i < inst->n; i++){//i is a passenger request
             bStat->bundle.push_back(i);
             bStat->label.push_back(0);
+            bStat->label2.push_back(-1);
             bStat->mainNode.push_back(i);
             bStat->bundleVec.push_back(bStat->bundle);
             // clusters.push_back(bStat->bundle);
             clusters.push_back(bStat->bundleVec.size()-1);
             bStat->bundle.clear();
-            for (int j = 0; j < clsParcel[i].size(); j++){
-                if (clsParcel[i][j].parcelreq < inst->n + inst->m){
-                    if (clsParcel[i][j].poslabel == 0){
+            for (int j = 0; j < clsParcel[i].size(); j++){//j from the set of closest parcels to i
+                if (clsParcel[i][j].parcelreq < inst->n + inst->m){//if it is a pickup request
+                    if (clsParcel[i][j].poslabel == 0){//if it is positioned before the passenger
                         bStat->bundle.push_back(clsParcel[i][j].parcelreq);
                         bStat->bundle.push_back(i);
                         bStat->label.push_back(1);
@@ -121,6 +122,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
             bStat->bundle.push_back(i);
             bStat->bundleVec.push_back(bStat->bundle);
             bStat->label.push_back(3);
+            bStat->label2.push_back(-1);
             bStat->mainNode.push_back(i);
             // clusters.push_back(bStat->bundle);
             clusters.push_back(bStat->bundleVec.size()-1);
@@ -137,6 +139,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
             bStat->bundle.push_back(nodeVec.size() - 1);
             bStat->bundleVec.push_back(bStat->bundle);
             bStat->label.push_back(4);
+            bStat->label2.push_back(-1);
             bStat->mainNode.push_back(delNodes[i]);
             // clusters.push_back(bStat->bundle);
             clusters.push_back(bStat->bundleVec.size()-1);
@@ -146,6 +149,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
         bStat->bundle.push_back(nodeVec.size() - 1);
         bStat->bundleVec.push_back(bStat->bundle);
         bStat->label.push_back(3);
+        bStat->label2.push_back(-1);
         bStat->mainNode.push_back(nodeVec.size() - 1);
         // clusters.push_back(bStat->bundle);
         clusters.push_back(bStat->bundleVec.size()-1);
@@ -379,14 +383,17 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
                         }
                     } 
                 }
-                for(int j = setN + 1; j < setN + inst->endCluster; j++){//for the dummy nodes with delivery
+                for(int j = setN + inst->K; j < setN + inst->endCluster; j++){//for the dummy nodes with delivery
                     // cout << "here";
                     // getchar();
-                    if (bStat->label[i] == 0 || bStat->label[i] == 1){
+                    if (bStat->label[i] == 0){
                         // if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) < bStat->bundleStart[j]){
                            bStat->bArcs[i][j] = true;
                         // }
-                    }  
+                    }
+                    else if (bStat->label[i] == 1 && bStat->label2[i] == 0){
+                        bStat->bArcs[i][j] = true;
+                    }
                 }
                 if (bStat->label[i] == 0 || bStat->label[i] == 2){//for the dummy final node
                     bStat->bArcs[i][bStat->bundleVec.size()-1] = true;
@@ -395,13 +402,9 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
             else if (i >= setN){ //if bundle i is a starting point
                 for (int j = 0; j < setN; j++){
                     if (bStat->label[j] == 0 || bStat->label[j] == 1){
-                        cout << j << ": ";
                         if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
                             bStat->bArcs[i][j] = true;
-                            cout <<"yes";
-                            getchar();
                         }
-                        cout << endl;                    
                     }
                 }
             }
@@ -438,8 +441,9 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
     int clusterA = 0;
     int clusterB;
     int setN;
+    int setS;
+    // int setf;
     int ref;
-
     if (p < 0){
         if(problem->scen == "1A"){
             ref = inst->m;
@@ -448,6 +452,7 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
         else if (problem->scen == "2A"){
             ref = 4*inst->m;
             setN = bStat->bundleVec.size() - inst->K - inst->endCluster;
+            setS = bStat->bundleVec.size() - inst->endCluster;
         }
     }
 
@@ -462,8 +467,23 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
             }           
         }
         else{
-            clusterA++;
+            if(problem->scen == "1A"){
+                clusterA++;
+            }
+            else if(problem->scen == "2A"){
+                if (i < setS){
+                    clusterA++;
+                }
+                else{
+                    if(i == setS){
+                        clusterA++;
+                        // cout << "i: " << i << " - cA: " << clusterA;
+                        // getchar();
+                    }
+                }
+            }
         }
+
         clusterB = 0;
         for (int j = 0; j < bStat->bundleVec.size(); j++){
             if (j < setN){
@@ -472,22 +492,46 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
                 }                
             }
             else{
-                clusterB++;
+                if(problem->scen == "1A"){
+                    clusterB++;
+                }
+                else if(problem->scen == "2A"){
+                    if (j < setS){
+                        clusterB++;
+                        // cout << "j: " << j << " - cB: " << clusterB;
+                        // getchar();
+                    }
+                    else{
+                        if(j == setS){
+                            clusterB++;
+                            // cout << "j: " << j << " - cB: " << clusterB;
+                            // getchar();
+                        }
+                    }
+                }
             }
             if (clusterA == clusterB){
                 continue;
             }
             else{
                 if (bStat->bArcs[i][j]){
+                    // cout << i << " " << j << endl;
+                    // cout << clusterA << " " << clusterB << endl;
+                    // getchar();
                     cArcs[clusterA][clusterB] = true;
                     cFArc.first = i;
                     cFArc.second = j;
+                    // cout << "something" << endl;
+                    // getchar();
                     cArcMinus[clusterB].push_back(cFArc);
                     cArcPlus[clusterA].push_back(cFArc);
+                    // cout << "other thing" << endl;
+                    // getchar();
                 }
             }
         }
     }
+
 }
 
 void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem){
@@ -510,7 +554,7 @@ void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat
     }
 
     else if (problem->scen == "2A"){
-        int setN = bStat->bundleVec.size() - inst->K - 1;
+        int setN = bStat->bundleVec.size() - inst->K - inst->endCluster;
         for (int i = 0; i < setN; i++){
             if (bStat->bundleVec[i].size() <= 1){
                 continue;
@@ -526,6 +570,24 @@ void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat
                     }
                 }                
             }   
+        }
+        for (int i = setN; i < bStat->bundleVec.size(); i++){
+            if (bStat->bundleVec[i].size() <= 1){
+                continue;
+            }
+            else{
+                parcelReq = bStat->bundleVec[i][0];
+                bStat->parcelBundleVec[parcelReq - inst->n].push_back(i);
+                // for (int j = 0; j < bStat->bundleVec[i].size(); j++){
+                //     if (bStat->bundleVec[i][j] < inst->n){
+                //         continue;
+                //     }
+                //     else{
+                //         parcelReq = bStat->bundleVec[i][j];
+                //         bStat->parcelBundleVec[parcelReq - inst->n].push_back(i);
+                //     }
+                // }                
+            }     
         }         
     }
 }
@@ -543,11 +605,11 @@ void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeV
         if (bStat->bundleVec[i].size() > 1){
             if(problem->scen == "2A"){
                 if (bStat->label[i] == 4){//if the bundle is of type delivery-dummy
-                    cout << "Inside starting times:" << endl;
-                    cout << i << ": ";
+                    // cout << "Inside starting times:" << endl;
+                    // cout << i << ": ";
                     bundleTime = nodeVec[bStat->bundleVec[i][0]].e;
                     bStat->bundleStart.push_back(bundleTime);
-                    cout << bStat->bundleStart.size() << endl;
+                    // cout << bStat->bundleStart.size() << endl;
                     continue;   
                 }
             }
@@ -812,7 +874,8 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
 
     vector< pair <int, int> > auxVec;
     pair<int, int> auxPair;
-    int setN = bStat->bundleVec.size() - inst->K - 1;
+    // int setN = bStat->bundleVec.size() - inst->K - 1;
+    int setN = bStat->bundleVec.size() - inst->K - inst->endCluster;
     int currSP;
     vector<int> orderVec;
 
@@ -840,6 +903,7 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                 }
             }
             else{
+
                 for (int j = 0; j < auxVec.size(); j++){
                     // if(auxVec[j].first == sStat->solOrder[k].back()){
                     if(auxVec[j].first == orderVec.back()){
@@ -850,6 +914,8 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                     }
                 }
             }
+            // cout << "innode3" << endl;
+            // getchar();            
         // cout<< "auxvec size: " << auxVec.size();
         // getchar();
         }
@@ -867,8 +933,6 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
             }
         }
     }
-
-
     cout << "\nSolution by nodes: " << endl;
 
     for (int k = 0; k < inst->K; k++){
