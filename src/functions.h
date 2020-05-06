@@ -44,7 +44,7 @@ struct bundleStat{
 	vector<double> bundleStart;
     vector <int> lastElement;
     vector<int> firstElement;
-    vector<int> label; //0- purely passenger; 1- parcel pickup req; 2- parcel delivery req; 3- starting/dummy; 4 - delivery/dummy
+    vector<int> label; //0- purely passenger; 1- parcel pickup req; 2- parcel delivery req; 3- starting/dummy; 4 - delivery/dummy; 5 - start-pickup
     vector<int> label2;//1 if parcel is after passenger request in the bundle, 0 if it is before, -1 non parcel bundles.
     vector<int> mainNode;
     vector<int> activePU;

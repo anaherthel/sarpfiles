@@ -15,7 +15,6 @@
 
 using namespace std;
 
-//x(hours) = Euc_dist/vmed
 int main (int argc, char *argv[]) {
 
 	double **distMatrix;
@@ -100,15 +99,15 @@ int main (int argc, char *argv[]) {
 	vector< vector< pair<int,int> > > cArcPlus;
 	vector< vector< pair<int,int> > > cArcMinus;
 
- // 	cout << "\nDistance Matrix: " << endl;
+ 	cout << "\nDistance Matrix: " << endl;
 
-	// for (int i = 0; i < inst.V + inst.dummy; i++){
-	// 	for (int j = 0; j < inst.V + inst.dummy; j++){
-	// 		cout << setw(5) << distMatrix[i][j] << " ";
-	// 	}
-	// 	cout << endl;
-	// }
-	// getchar();
+	for (int i = 0; i < inst.V + inst.dummy; i++){
+		for (int j = 0; j < inst.V + inst.dummy; j++){
+			cout << setw(5) << distMatrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+	getchar();
 
 	makeBundles(&inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, &problem);
 	// cout << "\nBundle Vector: [";
@@ -159,7 +158,6 @@ int main (int argc, char *argv[]) {
 	// getchar();
 
 	makeParcelBundles(&inst, nodeVec, &bStat, &problem);
-
 
 	// cout << "\nParcel Bundles: " << endl;
 
@@ -228,7 +226,6 @@ int main (int argc, char *argv[]) {
 
 	makeBundleReference(&inst, distMatrix, nodeVec, &bStat);
 
-	
 	// cout << "\nfirst element Vector: [";
 	// for (int i = 0; i < bStat.firstElement.size(); i++){
 	// 	cout << bStat.firstElement[i] << " ";
@@ -242,7 +239,6 @@ int main (int argc, char *argv[]) {
 	// }
 	// cout << endl;
 	// getchar();
-
 
 	// cout << "\nBundle Times: ";
 	// for (int i = 0; i < bStat.bundleStart.size(); i++){
@@ -260,13 +256,13 @@ int main (int argc, char *argv[]) {
 
 	// getchar();
 
-	// cout << "\nBundle Service Times: ";
-	// for (int i = 0; i < bStat.bundleServVec.size(); i++){
-	// 	cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
-	// }
-	// cout << endl;
+	cout << "\nBundle Service Times: ";
+	for (int i = 0; i < bStat.bundleServVec.size(); i++){
+		cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
+	}
+	cout << endl;
 
-	// getchar();
+	getchar();
 
 
 	feasibleBundleArcs(&inst, distMatrix, nodeVec, &bStat, p, &problem);

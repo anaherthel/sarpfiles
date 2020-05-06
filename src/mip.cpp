@@ -9,7 +9,7 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 	char var[100];
 	IloEnv env;
 	IloModel model(env, "bSARP");
-	int setN = bStat->bundleVec.size() - inst->K - inst->endCluster;
+	int setN = bStat->bundleVec.size() - (inst->startCluster*inst->K) - inst->endCluster;
 	int csetN = clusterVec.size() - inst->K - 1;
 	int currSP;
 	int currParcel;
