@@ -57,6 +57,15 @@ struct bParcelStruct{
 	bool poslabel; //1 if parcel is after passenger request in the bundle, 0 if it is before.
 };
 
+struct nodeArcsStruct{
+	vector< vector<bool> > arcs;
+	pair<int, int> fArc;
+	vector< vector< pair<int,int> > > arcPlus;
+	vector< vector< pair<int,int> > > arcMinus;
+	vector< pair<int,int> > arcNN;
+	vector< pair<int,int> > arcPP;
+};
+
 struct solStats{
 	double solprofit;
 	double tParcel;
@@ -76,7 +85,9 @@ struct solStats{
 	bool feasible;
 };
 
-void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem, vector< pair<int,int> > &arcNN);
+// void feasibleArcs (instanceStat *inst, vector<nodeStat> &nodeVec, vector< vector<bool> > &arcs, pair<int, int> &fArc, vector< vector< pair<int,int> > > &arcPlus, vector< vector< pair<int,int> > > &arcMinus, probStat* problem, vector< pair<int,int> > &arcNN);
+void initArcs (instanceStat *inst, nodeArcsStruct *nas);
+void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem);
 
 void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<int> &clusters, vector< vector<int> > &clusterVec, vector< vector<bParcelStruct> > &clsParcel, probStat* problem);
 void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<double> &passProfit);

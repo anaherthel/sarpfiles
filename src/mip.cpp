@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat){
+void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat){
 
 	//MIP
 	//Creating environment and model 
@@ -313,6 +313,69 @@ void mip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleSt
 			cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
 		}
 	}	
+
+	env.end();
+}
+
+void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat){
+	//MIP
+	//Creating environment and model 
+	char var[100];
+	IloEnv env;
+	IloModel model(env, "nSARP");
+	int currSP;
+
+	//Creating variables
+	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
+
+	for (int i = 0; i < nodeVec.size(); i++){
+		x[i] = IloArray <IloBoolVarArray> (env, nodeVec.size());
+		for(int j = 0; j < nodeVec.size(); ++j){
+			if (nas->arcs[i][j] != true){
+				continue; // If arc i to j is invalid
+			} 
+
+			x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
+
+			for(int k = 0; k < inst->K; k++){
+				sprintf(var, "x(%d,%d,%d)", i, j, k);
+				x[i][j][k].setName(var);
+				model.add(x[i][j][k]);
+			}
+		}	
+	}
+
+	IloExpr objFunction(env);
+
+	// for (int i = 0; i < nas->arcPP; i++){
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		objFunction += bStat->bundleProfVec[bStat->bArcVec[i].first] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
+	// 		//objFunction += bStat->bundleProfVec[bStat->bArcVec[i].second] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
+	// 	}
+	// }
+
+	// for (int i = 0; i < bStat->bArcVec.size(); i++){
+	// 	lastElOfi = bStat->bundleVec[bStat->bArcVec[i].first][bStat->bundleVec[bStat->bArcVec[i].first].size() - 1];
+	// 	firstElOfj = bStat->bundleVec[bStat->bArcVec[i].second][0];
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		objFunction -= (double)mdist[lastElOfi][firstElOfj] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
+	// 	}
+	// }
+
+	// model.add(IloMaximize(env, objFunction));
+
+
+	IloCplex nSARP(model);
+	nSARP.exportModel("nSARP.lp");
+
+
+	// nSARP.solve();
+	// cout << "\nSol status: " << nSARP.getStatus() << endl;
+	// // sStat->feasible = nSARP.isPrimalFeasible();
+
+	// cout << "\nObj Val: " << setprecision(15) << nSARP.getObjValue() << endl;
+
+	// sStat->solprofit = nSARP.getObjValue();
 
 	env.end();
 }
