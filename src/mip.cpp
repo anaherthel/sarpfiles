@@ -345,29 +345,85 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}	
 	}
 
+	IloArray <IloBoolVarArray> y(env, nodeVec.size());
+
+	for (int i = 0; i < nodeVec.size(); i++){
+		y[i] = IloBoolVarArray (env); (env, nodeVec.size());
+		
+		for(int j = 0; j < nodeVec.size(); ++j){
+ 
+
+			x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
+
+			for(int k = 0; k < inst->K; k++){
+				sprintf(var, "x(%d,%d,%d)", i, j, k);
+				x[i][j][k].setName(var);
+				model.add(x[i][j][k]);
+			}
+		}	
+	}
+
+
 	IloExpr objFunction(env);
 
-	// for (int i = 0; i < nas->arcPP; i++){
-	// 	for (int k = 0; k < inst->K; k++){
-	// 		objFunction += bStat->bundleProfVec[bStat->bArcVec[i].first] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
-	// 		//objFunction += bStat->bundleProfVec[bStat->bArcVec[i].second] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
-	// 	}
-	// }
+	for (int i = 0; i < nas->arcNplus.size(); i++){
+		for (int k = 0; k < inst->K; k++){
+			objFunction += nodeVec[nas->arcNplus[i].first].profit * x[nas->arcNplus[i].first][nas->arcNplus[i].second][k];
+		}
+	}
 
-	// for (int i = 0; i < bStat->bArcVec.size(); i++){
-	// 	lastElOfi = bStat->bundleVec[bStat->bArcVec[i].first][bStat->bundleVec[bStat->bArcVec[i].first].size() - 1];
-	// 	firstElOfj = bStat->bundleVec[bStat->bArcVec[i].second][0];
-	// 	for (int k = 0; k < inst->K; k++){
-	// 		objFunction -= (double)mdist[lastElOfi][firstElOfj] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
-	// 	}
-	// }
+	for (int i = 0; i < nas->arcPP.size(); i++){
+		for (int k = 0; k < inst->K; k++){
+			objFunction += nodeVec[nas->arcPP[i].first].profit * x[nas->arcPP[i].first][nas->arcPP[i].second][k];
+		}
+	}
 
-	// model.add(IloMaximize(env, objFunction));
+	for (int i = 0; i < nas->allArcs.size(); i++){
+		for (int k = 0; k < inst->K; k++){
+			objFunction -= (double)mdist[nas->allArcs[i].first][nas->allArcs[i].second] * x[nas->allArcs[i].first][nas->allArcs[i].second][k];
+		}
+	}
+
+	model.add(IloMaximize(env, objFunction));
 
 
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
 
+	//Creating constraints
+
+	//Constraint 1 - All passenger nodes must be visited
+
+	for (int i = 0; i < inst->n; i++){
+		IloExpr exp(env);
+		for (int k = 0; k < inst->K; k++){
+			for (int j = 0; j < nas->arcPlus[i].size(); j++){
+				exp += x[nas->arcPlus[i][j].first][nas->arcPlus[i][j].second][k];
+			}
+		}
+		sprintf (var, "Constraint1_%d", i);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	//Constraint 2 - Relationship between visit variable and parcel node arcs
+
+	for (int i = inst->n; i < inst->n + 2*inst->m; i++){
+		IloExpr exp(env);
+		IloExpr exp2(env);
+		for (int k = 0; k < inst->K; k++){
+			for (int j = 0; j < nas->arcPlus[i].size(); j++){
+				exp += x[nas->arcPlus[i][j].first][nas->arcPlus[i][j].second][k];
+			}
+		}
+		exp2 += y[nas->arcPlus[i][j].first];
+
+		sprintf (var, "Constraint2_%d", i);
+		IloRange cons = (exp - exp2 == 0);
+		cons.setName(var);
+		model.add(cons);
+	}
 
 	// nSARP.solve();
 	// cout << "\nSol status: " << nSARP.getStatus() << endl;

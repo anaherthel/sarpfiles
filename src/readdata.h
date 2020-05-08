@@ -59,7 +59,6 @@ struct instanceStat{
 	int nCluster;
 	int endCluster;
 	int startCluster;
-
 };
 
 struct probStat{
@@ -69,7 +68,7 @@ struct probStat{
 	string scen;
 };
 
-void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, vector<double> &passProfit);
+void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem);
 double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J);
 double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
 double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit);

@@ -34,7 +34,7 @@ int main (int argc, char *argv[]) {
 	// pair<int, int> fArc;
 	// vector< pair<int,int> > arcVec;
 	// vector< pair<int,int> > nodummyarcVec;
-	vector<double> nodeProfit;
+	// vector<double> nodeProfit;
 
 	vector< pair<int,int> > auxVec;
 
@@ -42,12 +42,11 @@ int main (int argc, char *argv[]) {
 	int Q = 5;
 	vector<int> vecOfInt;
 
-	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, nodeProfit);
-	cout << "after read data" << endl;
-	getchar();
-	// for (int i = 0; i < inst.V; i++){
-	// 	cout << "profit " << i << ": " << nodeVec[i].profit << endl;
-	// }
+	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem);
+
+	for (int i = 0; i < inst.V; i++){
+		cout << "profit " << i << ": " << nodeVec[i].profit << endl;
+	}
 	
 	// for (int i = 0; i < inst.n; i++){
 	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;

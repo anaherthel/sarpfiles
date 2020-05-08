@@ -59,10 +59,12 @@ struct bParcelStruct{
 
 struct nodeArcsStruct{
 	vector< vector<bool> > arcs;
+	vector< pair<int,int> > allArcs;
 	pair<int, int> fArc;
 	vector< vector< pair<int,int> > > arcPlus;
 	vector< vector< pair<int,int> > > arcMinus;
 	vector< pair<int,int> > arcNN;
+	vector< pair<int,int> > arcNplus;
 	vector< pair<int,int> > arcPP;
 };
 

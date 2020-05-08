@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, vector<double> &passProfit){
+void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem){
     
     if (argc < 3) {
         cout << "\nMissing parameters\n";
