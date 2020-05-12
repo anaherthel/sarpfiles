@@ -2,6 +2,7 @@
 #include "functions.h"
 #include <cstdlib>
 #include <stdio.h>
+//maybe later it is necessary to add the maximum driving time.
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem){
     
@@ -44,6 +45,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     ifstream in(instance, ios::in);
 
+    
     if( !in ) {
         cout << "the file could not be opened\n";
         exit (1);
@@ -110,7 +112,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             if (vload[i] < -2.0){
                 vxf[i - m - n] = vxs[i];
                 vyf[i - m - n] = vys[i];
-
             }
         }
 
@@ -193,7 +194,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->m = m;
         inst->V = V;
         inst->service = service;
-
+        inst->T = nodeVec[V + inst->dummy - 1].l;
+        
         for (int i = 0; i < V; i++){
             node->xs = vxs[i];
             node->ys = vys[i];
@@ -267,10 +269,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         m /= 2; 
 
         V = n + 2*m + K;
-        // cout << "V: " << V << endl;
-        // cout << "\n" << n << " " << m << endl;
-        // getchar();
-
+ 
         while ( file.compare("EDGE_WEIGHT_FORMAT") != 0 && file.compare("EDGE_WEIGHT_FORMAT") != 0 ){
             in >> file;
         }
@@ -323,7 +322,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
         }
 
-        // //maybe we needed to adjust the corner (relying on the -0 being f)
+        // maybe we needed to adjust the corner (relying on the -0 being f)
 
         //erase unused
         for (int j = 0; j < refpoint; j++){
@@ -397,6 +396,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double *profit = new double[V + inst->dummy];
         double *e = new double[V + inst->dummy];
         double *l = new double[V + inst->dummy];
+        int *w = new int[V + inst->dummy];
 
         //calculate deltas
         for(int i = 0; i < V + inst->dummy; i++){
@@ -405,15 +405,23 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 delta[i] = 2 * service + (((tempData[2*i][2*i+1])/1000)/inst->vmed);
                 // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
                 profit[i] = inst->gamma2 + inst->mu2*(tempData[2*i][2*i+1]/1000) - (tempData[2*i][2*i+1]/1000);    
+                w[i] = 0;
             }
             else if (i < V - K){
                 delta[i] = service;
                 if (i < n + m){
                     profit[i] = inst->gamma + inst->mu*(tempData[i + n][i + n + m]/1000);
+                    w[i] = 1;
+                }
+                else if (i < n + 2*m){
+                    profit[i] = 0;
+                    w[i] = -1;
                 }
                 else{
-                    profit[i] = 0;
+                   profit[i] = 0;
+                   w[i] = 0;
                 }
+                
             }
             else if (i >= V - K){
                 delta[i] = 0;
@@ -454,6 +462,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->l = l[i]/60;
             node->delta = delta[i];
             node->profit = profit[i];
+            node->load = w[i];
             nodeVec.push_back(*node);
         }
 
@@ -481,6 +490,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->m = m;
         inst->V = V;
         inst->service = service;
+        inst->T = nodeVec[V + inst->dummy - 1].l;
 
         delete[] profit;
         delete[] delta;
@@ -653,6 +663,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double *profit = new double[V + inst->dummy];
         double *e = new double[V + inst->dummy];
         double *l = new double[V + inst->dummy];
+        int *w = new int[V + inst->dummy];      
 
         int reference = n;
         //calculate deltas
@@ -662,15 +673,23 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 delta[i] = 2 * service + (((tempData[2*i][2*i+1])/1000)/inst->vmed);
                 // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
                 profit[i] = inst->gamma2 + inst->mu2*(tempData[2*i][2*i+1]/1000) - (tempData[2*i][2*i+1]/1000);    
+                w[i] = 0;
             }
             else if (i < V - K){
                 delta[i] = service;
                 if (i < n + m){
                     profit[i] = inst->gamma + inst->mu*(tempData[i + n][i + n + m]/1000);
+                    w[i] = 1;
+                }
+                else if (i < n + 2*m){
+                    profit[i] = 0;
+                    w[i] = -1;
                 }
                 else{
-                    profit[i] = 0;
+                   profit[i] = 0;
+                   w[i] = 0;
                 }
+                
             }
             else if (i >= V - K){
                 delta[i] = 0;
@@ -711,6 +730,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->l = l[i]/60;
             node->delta = delta[i];
             node->profit = profit[i];
+            node->load = w[i];
             nodeVec.push_back(*node);
         }
 
@@ -738,6 +758,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->m = m;
         inst->V = V;
         inst->service = service;
+        inst->T = nodeVec[V + inst->dummy - 1].l;
 
         delete[] profit;
         delete[] delta;

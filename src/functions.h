@@ -66,6 +66,8 @@ struct nodeArcsStruct{
 	vector< pair<int,int> > arcNN;
 	vector< pair<int,int> > arcNplus;
 	vector< pair<int,int> > arcPP;
+	vector< pair<int,int> > arcnf;
+
 };
 
 struct solStats{

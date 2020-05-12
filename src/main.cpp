@@ -39,14 +39,18 @@ int main (int argc, char *argv[]) {
 	vector< pair<int,int> > auxVec;
 
 	int p = -1; //number of parcel requests to be associated with a passenger request(1A) or the number of best matchings
-	int Q = 5;
 	vector<int> vecOfInt;
 
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem);
 
-	for (int i = 0; i < inst.V; i++){
-		cout << "profit " << i << ": " << nodeVec[i].profit << endl;
-	}
+	// for (int i = 0; i < inst.V; i++){
+	// 	cout << "profit " << i << ": " << nodeVec[i].profit << endl;
+	// }
+
+	// for (int i = 0; i < inst.V; i++){
+	// 	cout << "later " << i << ": " << nodeVec[i].l << endl;
+	// }
+	// getchar();
 	
 	// for (int i = 0; i < inst.n; i++){
 	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;

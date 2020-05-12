@@ -16,6 +16,7 @@ void initArcs (instanceStat *inst, nodeArcsStruct *nas){
         auxVec.clear();
     }
 
+
     // cout << "Node arcs all false: " << endl;
     // for (int i = 0; i < nas->arcs.size(); i++){
     //     if (i == 0){
@@ -52,6 +53,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                         }
                         nas->arcNplus.push_back(nas->fArc);
                         nas->allArcs.push_back(nas->fArc);
+                        nas->arcnf.push_back(nas->fArc);
                     }
                 }
                 for (int j = inst->V; j < inst->V + inst->dummy; j++){
@@ -74,6 +76,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                     nas->arcPlus[i].push_back(nas->fArc);
                     nas->arcPP.push_back(nas->fArc);
                     nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
                 }
             }
             else if (i < inst->n + 2*inst->m){
@@ -85,6 +88,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                         nas->arcMinus[j].push_back(nas->fArc);
                         nas->arcPlus[i].push_back(nas->fArc);
                         nas->allArcs.push_back(nas->fArc);
+                        nas->arcnf.push_back(nas->fArc);
                     }                    
                 }
 
@@ -106,6 +110,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                     nas->arcMinus[j].push_back(nas->fArc);
                     nas->arcPlus[i].push_back(nas->fArc);
                     nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
                 }
             }          
         }
