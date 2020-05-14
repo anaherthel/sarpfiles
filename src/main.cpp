@@ -43,18 +43,18 @@ int main (int argc, char *argv[]) {
 
 	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem);
 
-	// for (int i = 0; i < inst.V; i++){
-	// 	cout << "profit " << i << ": " << nodeVec[i].profit << endl;
-	// }
+	for (int i = 0; i < inst.V; i++){
+		cout << "load " << i << ": " << nodeVec[i].load << endl;
+	}
 
 	// for (int i = 0; i < inst.V; i++){
 	// 	cout << "later " << i << ": " << nodeVec[i].l << endl;
 	// }
 	// getchar();
 	
-	// for (int i = 0; i < inst.n; i++){
-	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
-	// }
+	for (int i = 0; i < inst.n; i++){
+		cout << "delta " << i << ": " << nodeVec[i].delta << endl;
+	}
 
 	// for (int i = 0; i < inst.n; i++){
 	// 	clsParcel.push_back(auxbpsvec);
@@ -256,7 +256,9 @@ int main (int argc, char *argv[]) {
 	// }
 	mipnode(&inst, nodeVec, distMatrix, &problem, &nas, &sStat);
 	// nodeSolution (&inst, distMatrix, &bStat, nodeVec, &sStat);
-
+	
+	viewSol (&inst, distMatrix, nodeVec, &sStat);
+	
 	// solStatIni(&sStat);
 
 	// mipSolStats (&inst, distMatrix, &bStat, nodeVec, &sStat);

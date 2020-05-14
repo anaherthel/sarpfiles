@@ -2275,3 +2275,376 @@ x(32,16,0)                    1.000000
 x(36,10,0)                    1.000000
 x(37,21,1)                    1.000000
 All other variables in the range 1-1093 are 0.
+
+Log started (V12.4.0.0) Thu May 14 16:39:52 2020
+
+
+Problem 'nSARP.lp' read.
+Read time =    0.10 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 65 rows and 25 columns.
+MIP Presolve modified 164 coefficients.
+Reduced MIP has 82 rows, 64 columns, and 286 nonzeros.
+Reduced MIP has 54 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 4 vars, tightened 0 bounds.
+Probing time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 9 rows and 5 columns.
+MIP Presolve modified 4 coefficients.
+Reduced MIP has 73 rows, 59 columns, and 251 nonzeros.
+Reduced MIP has 50 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.05 sec.
+Probing time =    0.00 sec.
+Clique table members: 116.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.06 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       41.7552     8                     41.7552       22         
+      0     0       41.0340    18                    Cuts: 19       46         
+      0     0       40.9830     6                    Cuts: 11       61         
+*     0+    0                           40.8370       40.9830       61    0.36%
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 20 rows and 20 columns.
+MIP Presolve modified 29 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 52 rows, 38 columns, and 144 nonzeros.
+Reduced MIP has 30 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 5 vars, tightened 4 bounds.
+Probing time =    0.00 sec.
+Tried aggregator 2 times.
+MIP Presolve eliminated 51 rows and 37 columns.
+MIP Presolve modified 4 coefficients.
+Aggregator did 1 substitutions.
+All rows and columns eliminated.
+Represolve time =    0.00 sec.
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  4.0837000000e+01
+Solution time =    0.27 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 2.58 ticks  (9.72 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(0,7,0)                      1.000000
+x(1,6,0)                      1.000000
+x(2,3,0)                      1.000000
+x(3,5,0)                      1.000000
+x(4,1,0)                      1.000000
+x(5,0,0)                      1.000000
+x(7,4,0)                      1.000000
+x(8,2,0)                      1.000000
+y(4,0)                        1.000000
+y(5,0)                        1.000000
+x(6,9,0)                      1.000000
+y(0,0)                        1.000000
+b(0)                         11.900000
+y(1,0)                        1.000000
+b(1)                         15.983333
+y(2,0)                        1.000000
+b(2)                         10.250000
+y(3,0)                        1.000000
+b(3)                         11.450000
+b(4)                         15.859067
+b(5)                         11.806615
+y(6,0)                        1.000000
+b(6)                         16.231399
+y(7,0)                        1.000000
+b(7)                         12.144335
+y(8,0)                        1.000000
+b(9)                         24.000000
+w(0)                          1.000000
+w(1)                          1.000000
+w(6)                          1.000000
+w(7)                          1.000000
+All other variables in the range 1-89 are 0.
+
+Log started (V12.4.0.0) Thu May 14 16:45:40 2020
+
+
+Problem 'nSARP.lp' read.
+Read time =    0.01 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 112 rows and 45 columns.
+MIP Presolve modified 487 coefficients.
+Reduced MIP has 241 rows, 153 columns, and 880 nonzeros.
+Reduced MIP has 134 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 6 vars, tightened 0 bounds.
+Probing time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 15 rows and 6 columns.
+MIP Presolve modified 42 coefficients.
+Reduced MIP has 226 rows, 147 columns, and 826 nonzeros.
+Reduced MIP has 128 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.01 sec.
+Probing time =    0.00 sec.
+Clique table members: 385.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       69.5731    20                     69.5731       51         
+      0     0       68.7311    30                    Cuts: 22       89         
+      0     0       68.5395    27                    Cuts: 21      118         
+      0     0       68.5099    32                     Cuts: 9      130         
+      0     0       68.4753    32                    Cuts: 19      142         
+      0     0       68.4497    35                    Cuts: 30      158         
+      0     0       68.4330    36                    Cuts: 14      173         
+      0     0       68.4213    30                    Cuts: 12      183         
+      0     0       68.4095    26                    Cuts: 12      194         
+      0     0       68.3915    36                    Cuts: 14      202         
+      0     0       68.3834    36                    Cuts: 17      208         
+      0     0       68.3677    25                    Cuts: 14      215         
+      0     0       68.3531    40                    Cuts: 15      234         
+      0     0       68.3342    41                    Cuts: 16      250         
+      0     0       68.3283    32                    Cuts: 17      259         
+      0     0       68.3238    34                     Cuts: 9      268         
+*     0+    0                           52.6320       68.3238      268   29.81%
+      0     2       68.3238    34       52.6320       68.3238      268   29.81%
+Elapsed real time =   0.35 sec. (tree size =  0.01 MB, solutions = 1)
+*     4+    4                           67.2730       68.2980      358    1.52%
+*   191   128      integral     0       67.2870       68.1635     2472    1.30%
+*   366+  217                           67.3950       68.1107     4091    1.06%
+*  1059+  468                           67.5330       67.9708    10565    0.65%
+*  1077   470      integral     0       67.6260       67.9708    10712    0.51%
+*  1425   389      integral     0       67.6560       67.9043    13702    0.37%
+
+Clique cuts applied:  9
+Implied bound cuts applied:  160
+Flow cuts applied:  4
+Mixed integer rounding cuts applied:  11
+Zero-half cuts applied:  19
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.34
+Parallel b&c, 2 threads:
+  Real time             =    1.38
+  Sync time (average)   =    0.02
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    1.72 sec.
+
+Solution pool: 7 solutions saved.
+
+MIP - Integer optimal, tolerance (0.0001/1e-06):  Objective =  6.7656000000e+01
+Current MIP best bound =  6.7659939059e+01 (gap = 0.00393906, 0.01%)
+Solution time =    1.74 sec.  Iterations = 17928  Nodes = 2150 (5)
+Deterministic time = 255.85 ticks  (146.93 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(0,6,0)                      1.000000
+x(1,4,0)                      1.000000
+x(2,10,0)                     1.000000
+x(3,0,0)                      1.000000
+x(4,12,0)                     1.000000
+x(5,7,0)                      1.000000
+x(6,11,0)                     1.000000
+x(7,2,0)                      1.000000
+x(8,5,0)                      1.000000
+x(9,3,0)                      1.000000
+x(10,9,0)                     1.000000
+x(11,1,0)                     1.000000
+x(13,8,0)                     1.000000
+y(7,0)                        1.000000
+y(8,0)                        1.000000
+y(9,0)                        1.000000
+x(12,14,0)                    1.000000
+y(0,0)                        1.000000
+b(0)                         11.900000
+y(1,0)                        1.000000
+b(1)                         15.983333
+y(2,0)                        1.000000
+b(2)                         10.250000
+y(3,0)                        1.000000
+b(3)                         11.450000
+y(4,0)                        1.000000
+b(4)                         16.666667
+y(5,0)                        1.000000
+b(5)                          9.350000
+y(6,0)                        1.000000
+b(6)                         12.916667
+b(7)                          9.584905
+b(8)                          9.231330
+b(9)                         11.337651
+y(10,0)                       1.000000
+b(10)                        10.456718
+y(11,0)                       1.000000
+b(11)                        13.105872
+y(12,0)                       1.000000
+b(12)                        16.859655
+y(13,0)                       1.000000
+b(14)                        24.000000
+w(0)                          2.000000
+w(1)                          2.000000
+w(2)                          2.000000
+w(3)                          2.000000
+w(4)                          2.000000
+w(5)                          1.000000
+w(6)                          2.000000
+w(7)                          1.000000
+w(9)                          1.000000
+w(10)                         2.000000
+w(11)                         2.000000
+w(12)                         2.000000
+All other variables in the range 1-198 are 0.
+
+Log started (V12.4.0.0) Thu May 14 16:59:58 2020
+
+
+Log started (V12.4.0.0) Thu May 14 17:01:51 2020
+
+
+Log started (V12.4.0.0) Thu May 14 17:02:08 2020
+
+No problem exists.
+
+Problem 'nSARP.lp' read.
+Read time =    0.01 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 112 rows and 45 columns.
+MIP Presolve modified 487 coefficients.
+Reduced MIP has 241 rows, 153 columns, and 880 nonzeros.
+Reduced MIP has 134 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 6 vars, tightened 0 bounds.
+Probing time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 15 rows and 6 columns.
+MIP Presolve modified 42 coefficients.
+Reduced MIP has 226 rows, 147 columns, and 826 nonzeros.
+Reduced MIP has 128 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.01 sec.
+Probing time =    0.00 sec.
+Clique table members: 385.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       69.5731    20                     69.5731       51         
+      0     0       68.7311    30                    Cuts: 22       89         
+      0     0       68.5395    27                    Cuts: 21      118         
+      0     0       68.5099    32                     Cuts: 9      130         
+      0     0       68.4753    32                    Cuts: 19      142         
+      0     0       68.4497    35                    Cuts: 30      158         
+      0     0       68.4330    36                    Cuts: 14      173         
+      0     0       68.4213    30                    Cuts: 12      183         
+      0     0       68.4095    26                    Cuts: 12      194         
+      0     0       68.3915    36                    Cuts: 14      202         
+      0     0       68.3834    36                    Cuts: 17      208         
+      0     0       68.3677    25                    Cuts: 14      215         
+      0     0       68.3531    40                    Cuts: 15      234         
+      0     0       68.3342    41                    Cuts: 16      250         
+      0     0       68.3283    32                    Cuts: 17      259         
+      0     0       68.3238    34                     Cuts: 9      268         
+*     0+    0                           52.6320       68.3238      268   29.81%
+      0     2       68.3238    34       52.6320       68.3238      268   29.81%
+Elapsed real time =   0.49 sec. (tree size =  0.01 MB, solutions = 1)
+*     4+    4                           67.2730       68.2980      358    1.52%
+*   191   128      integral     0       67.2870       68.1635     2472    1.30%
+*   366+  217                           67.3950       68.1107     4091    1.06%
+*  1059+  468                           67.5330       67.9708    10565    0.65%
+*  1077   470      integral     0       67.6260       67.9708    10712    0.51%
+*  1425   389      integral     0       67.6560       67.9043    13702    0.37%
+
+Clique cuts applied:  9
+Implied bound cuts applied:  160
+Flow cuts applied:  4
+Mixed integer rounding cuts applied:  11
+Zero-half cuts applied:  19
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.47
+Parallel b&c, 2 threads:
+  Real time             =    1.27
+  Sync time (average)   =    0.01
+  Wait time (average)   =    0.00
+                          -------
+Total (root+branch&cut) =    1.74 sec.
+
+Solution pool: 7 solutions saved.
+
+MIP - Integer optimal, tolerance (0.0001/1e-06):  Objective =  6.7656000000e+01
+Current MIP best bound =  6.7659939059e+01 (gap = 0.00393906, 0.01%)
+Solution time =    1.76 sec.  Iterations = 17928  Nodes = 2150 (5)
+Deterministic time = 255.85 ticks  (145.66 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(0,6,0)                      1.000000
+x(1,4,0)                      1.000000
+x(2,10,0)                     1.000000
+x(3,0,0)                      1.000000
+x(4,12,0)                     1.000000
+x(5,7,0)                      1.000000
+x(6,11,0)                     1.000000
+x(7,2,0)                      1.000000
+x(8,5,0)                      1.000000
+x(9,3,0)                      1.000000
+x(10,9,0)                     1.000000
+x(11,1,0)                     1.000000
+x(13,8,0)                     1.000000
+y(7,0)                        1.000000
+y(8,0)                        1.000000
+y(9,0)                        1.000000
+x(12,14,0)                    1.000000
+y(0,0)                        1.000000
+b(0)                         11.900000
+y(1,0)                        1.000000
+b(1)                         15.983333
+y(2,0)                        1.000000
+b(2)                         10.250000
+y(3,0)                        1.000000
+b(3)                         11.450000
+y(4,0)                        1.000000
+b(4)                         16.666667
+y(5,0)                        1.000000
+b(5)                          9.350000
+y(6,0)                        1.000000
+b(6)                         12.916667
+b(7)                          9.584905
+b(8)                          9.231330
+b(9)                         11.337651
+y(10,0)                       1.000000
+b(10)                        10.456718
+y(11,0)                       1.000000
+b(11)                        13.105872
+y(12,0)                       1.000000
+b(12)                        16.859655
+y(13,0)                       1.000000
+b(14)                        24.000000
+w(0)                          2.000000
+w(1)                          2.000000
+w(2)                          2.000000
+w(3)                          2.000000
+w(4)                          2.000000
+w(5)                          1.000000
+w(6)                          2.000000
+w(7)                          1.000000
+w(9)                          1.000000
+w(10)                         2.000000
+w(11)                         2.000000
+w(12)                         2.000000
+All other variables in the range 1-198 are 0.
+
+Incumbent solution
+The variable 'x(0,10,0)' is 0.

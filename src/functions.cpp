@@ -1196,6 +1196,7 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
 }
 
 
+
 void mipSolStats (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
 
     int load;
@@ -1373,4 +1374,72 @@ void printStats(instanceStat *inst, bundleStat *bStat, solStats *sStat){
         cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
         cout << "\nTotal idle distance: " << sStat->dNone << endl;
     // }
+}
+
+
+void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat){
+    bool inserted;
+
+    vector< pair <int, int> > auxVec;
+    pair<int, int> auxPair;
+    // int setN = bStat->bundleVec.size() - inst->K - 1;
+    int currSP;
+    vector<int> orderVec;
+
+    for (int k = 0; k < inst->K; k++){
+        currSP = inst->V - inst->K + k;
+        for (int i = 0; i < sStat->solvec[k].size(); i++){
+            auxPair.first = sStat->solvec[k][i].first;
+            auxPair.second = sStat->solvec[k][i].second;            
+            auxVec.push_back(auxPair);
+        }
+        // cout<< "here1";
+        // getchar();
+        while(!auxVec.empty()){
+            if (sStat->solOrder[k].empty()){
+                for (int i = 0; i < auxVec.size(); i++){
+                    if (auxVec[i].first == currSP){
+                        sStat->solOrder[k].push_back(auxVec[i].first);
+                        sStat->solOrder[k].push_back(auxVec[i].second);
+
+                        auxVec.erase(auxVec.begin()+i);
+
+                    }
+                }
+            }
+            else{
+
+                for (int j = 0; j < auxVec.size(); j++){
+                    if(auxVec[j].first == sStat->solOrder[k].back()){
+                        sStat->solOrder[k].push_back(auxVec[j].second);
+
+                        auxVec.erase(auxVec.begin()+j);
+                    }
+                }
+            }
+            // cout << "innode3" << endl;
+            // getchar();            
+        // cout<< "auxvec size: " << auxVec.size();
+        // getchar();
+        }
+        // cout<< "here3";
+        // getchar();
+    }
+
+    cout << "\nSolution: " << endl;
+
+    for (int k = 0; k < inst->K; k++){
+        cout << "Vehicle " << k << ": ";
+        for (int i = 0; i < sStat->solInNode[k].size(); i++){
+            if (i < sStat->solInNode[k].size() - 1){
+                cout << sStat->solInNode[k][i] << " - ";
+            }
+            else{
+                cout << sStat->solInNode[k][i];
+            }
+        }
+        cout << endl;
+    }
+    cout << endl;
+    // getchar();    
 }
