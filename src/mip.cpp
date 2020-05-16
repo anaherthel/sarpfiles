@@ -273,17 +273,20 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	IloModel model(env, "nSARP");
 	int currSP;
 	long M = 2*inst->T;
+	long M2 = 2*(inst->n + inst->m + 1);
 	long W = 2*inst->m;
 	int Q;
+
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
-	
+
 	if (problem->scen == "1A" || problem->scen == "2A"){
 		Q = 1;
 	}
 	else if (problem->scen == "1B" || problem->scen == "2B"){
-		Q = 2;
+		Q = inst->m;
 	}
+
 
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
@@ -332,6 +335,14 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		w[i].setName(var);
 		model.add(w[i]);
 		
+	}
+
+	//Position variable
+	IloNumVarArray P(env, nodeVec.size(), 0, nodeVec.size());
+	for (int i = 0; i < nodeVec.size(); i++){
+		sprintf(var, "P(%d)", i);
+		P[i].setName(var);
+		model.add(P[i]);	
 	}	
 
 	IloExpr objFunction(env);
@@ -521,11 +532,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		IloRange cons1 = (exp - exp2 <= 0);
 		cons1.setName(var);
 		model.add(cons1);
-				
-
 	}
-
-
 	//Constraints 11 and 12 - bound the service beginning time by the earlier and later service times for each node
 
 	for (int i = 0; i < inst->n; i++){
@@ -545,6 +552,49 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 
 	}
+
+	//Constraint 13 and 14 - sequence constraints
+
+	for (int i = 0; i < nas->allArcs.size(); i++){
+		IloExpr exp(env);
+		IloExpr exp2(env);
+		IloExpr exp3(env);
+		IloExpr sumX(env);
+
+		for (int k = 0; k < inst->K; k++){
+			sumX += x[nas->allArcs[i].first][nas->allArcs[i].second][k];
+		}
+
+		exp = P[nas->allArcs[i].first];
+		exp2 = M2*(sumX - 1) + P[nas->allArcs[i].second] - 1;
+		exp3 = M2*(1 - sumX) + P[nas->allArcs[i].second] - 1;
+		
+		sprintf (var, "Constraint13_%d", i);
+		IloRange cons1 = (exp  - exp2 >= 0);
+		cons1.setName(var);
+		model.add(cons1);
+
+		sprintf (var, "Constraint14_%d", i);
+		IloRange cons2 = (exp - exp3 <= 0);
+		cons2.setName(var);
+		model.add(cons2);	
+	}
+
+	//Constraint 15 - bound number of passenger visits transporting parcel
+
+	if (problem->scen == "1A" || problem->scen == "1B"){
+		
+		for (int i = inst->n; i < inst->n + inst->m; i++){
+			IloExpr exp(env);
+			exp = P[i + inst->m] - P[i] - 1;
+
+			sprintf (var, "Constraint15_%d", i);
+			IloRange cons1 = (exp == 1);
+			cons1.setName(var);
+			model.add(cons1);					
+		}
+	}
+
 
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
@@ -577,11 +627,14 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}	
 	}
 
-	for (int k = 0; k < inst->K; k++){
-		for (int i = 0; i < sStat->solvec[k].size(); i++){
-			cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
-		}
-	}
+	// for (int k = 0; k < inst->K; k++){
+	// 	for (int i = 0; i < sStat->solvec[k].size(); i++){
+	// 		cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
+	// 	}
+	// }
+
+
+
 
 	env.end();
 }

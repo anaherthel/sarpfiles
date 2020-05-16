@@ -522,7 +522,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         
         in >> instV;
 
-        m = floor(instV * 0.3);
+        m = floor(instV * 0.5);
         
         if (m % 2 != 0){
             m--;

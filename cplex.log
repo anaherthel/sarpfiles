@@ -2648,3 +2648,106 @@ All other variables in the range 1-198 are 0.
 
 Incumbent solution
 The variable 'x(0,10,0)' is 0.
+
+Log started (V12.4.0.0) Sat May 16 17:27:28 2020
+
+
+Log started (V12.4.0.0) Sat May 16 17:27:39 2020
+
+
+Problem 'nSARP.lp' read.
+Read time =    0.10 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 77 rows and 25 columns.
+MIP Presolve modified 372 coefficients.
+Reduced MIP has 186 rows, 74 columns, and 598 nonzeros.
+Reduced MIP has 54 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 4 vars, tightened 0 bounds.
+Probing time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 17 rows and 5 columns.
+MIP Presolve modified 28 coefficients.
+Reduced MIP has 169 rows, 69 columns, and 539 nonzeros.
+Reduced MIP has 50 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.08 sec.
+Probing time =    0.01 sec.
+Clique table members: 116.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.04 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       41.7535     8                     41.7535       29         
+      0     0       41.0340    18                    Cuts: 35       69         
+      0     0       40.9827     6                    Cuts: 28       84         
+*     0+    0                           40.8370       40.9827       84    0.36%
+      0     0       40.9776    19       40.8370      Cuts: 12       94    0.34%
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 57 rows and 22 columns.
+MIP Presolve modified 53 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 111 rows, 46 columns, and 320 nonzeros.
+Reduced MIP has 29 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 4 vars, tightened 0 bounds.
+Probing time =    0.00 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 111 rows and 46 columns.
+All rows and columns eliminated.
+Represolve time =    0.01 sec.
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective =  4.0837000000e+01
+Solution time =    0.42 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 6.30 ticks  (15.02 ticks/sec)
+
+
+Incumbent solution
+Variable Name           Solution Value
+x(0,7,0)                      1.000000
+x(1,6,0)                      1.000000
+x(2,3,0)                      1.000000
+x(3,5,0)                      1.000000
+x(4,1,0)                      1.000000
+x(5,0,0)                      1.000000
+x(7,4,0)                      1.000000
+x(8,2,0)                      1.000000
+y(4,0)                        1.000000
+y(5,0)                        1.000000
+x(6,9,0)                      1.000000
+y(0,0)                        1.000000
+b(0)                         11.900000
+y(1,0)                        1.000000
+b(1)                         15.983333
+y(2,0)                        1.000000
+b(2)                         10.250000
+y(3,0)                        1.000000
+b(3)                         11.450000
+b(4)                         15.859067
+b(5)                         11.806615
+y(6,0)                        1.000000
+b(6)                         16.231399
+y(7,0)                        1.000000
+b(7)                         12.144335
+y(8,0)                        1.000000
+b(9)                         24.000000
+w(0)                          1.000000
+w(1)                          1.000000
+w(6)                          1.000000
+w(7)                          1.000000
+P(0)                          5.000000
+P(1)                          8.000000
+P(2)                          2.000000
+P(3)                          3.000000
+P(4)                          7.000000
+P(5)                          4.000000
+P(6)                          9.000000
+P(7)                          6.000000
+P(9)                         10.000000
+P(8)                          1.000000
+All other variables in the range 1-99 are 0.

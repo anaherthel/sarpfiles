@@ -40,8 +40,8 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
 
     if (problem->scen == "1A" || problem->scen == "2A"){
         for (int i = 0; i < inst->V; i++){
-            if (i < inst->n){
-                for(int j = 0; j < inst->n + 2*inst->m; j++){
+            if (i < inst->n){//i is a passenger req
+                for(int j = 0; j < inst->n + 2*inst->m; j++){// j is a parcel req (pu or del)
                     if(i != j){
                         nas->arcs[i][j] = true;
                         nas->fArc.first = i;
@@ -56,7 +56,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                         nas->arcnf.push_back(nas->fArc);
                     }
                 }
-                for (int j = inst->V; j < inst->V + inst->dummy; j++){
+                for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
                     nas->fArc.second = j;
@@ -67,8 +67,8 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                 }
             }
 
-            else if (i < inst->n + inst->m){
-                for (int j = 0; j < inst->n; j++){
+            else if (i < inst->n + inst->m){//i is a parcel pickup node
+                for (int j = 0; j < inst->n; j++){ //j is a passenger node
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
                     nas->fArc.second = j;
@@ -79,8 +79,8 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                     nas->arcnf.push_back(nas->fArc);
                 }
             }
-            else if (i < inst->n + 2*inst->m){
-                for (int j = 0; j < inst->n + inst->m; j++){
+            else if (i < inst->n + 2*inst->m){// i is a parcel delivery node
+                for (int j = 0; j < inst->n + inst->m; j++){//j is a passenger node or parcel pickup node
                     if (j + inst->m != i){
                         nas->arcs[i][j] = true;
                         nas->fArc.first = i;
@@ -92,7 +92,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                     }                    
                 }
 
-                for (int j = inst->V; j < inst->V + inst->dummy; j++){
+                for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
                     nas->fArc.second = j;
@@ -102,8 +102,8 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                 }
             }
 
-            else if (i < inst->V + inst->dummy){
-                for (int j = 0; j < inst->n + inst->m; j++){
+            else if (i < inst->V + inst->dummy){ // i is a starting node
+                for (int j = 0; j < inst->n + inst->m; j++){//j is a passenger or parcel pickup node
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
                     nas->fArc.second = j;
@@ -115,83 +115,83 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
             }          
         }
     }
-    // if (problem->scen == "1B" || problem->scen == "2B"){
-    //     for (int i = 0; i < inst->V; i++){
-    //         if (i < inst->n){
-    //             for(int j = 0; j < inst->n + 2*inst->m; j++){
-    //                 if(i != j){
-    //                     arcs[i][j] = true;
-    //                     fArc.first = i;
-    //                     fArc.second = j;
-    //                     arcMinus[j].push_back(fArc);
-    //                     arcPlus[i].push_back(fArc);
-    //                 }
-    //             }
-    //             for (int j = inst->V; j < inst->V + inst->dummy; j++){
-    //                 arcs[i][j] = true;
-    //                 fArc.first = i;
-    //                 fArc.second = j;
-    //                 arcMinus[j].push_back(fArc);
-    //                 arcPlus[i].push_back(fArc);
-    //             }
-    //         }
+    else if (problem->scen == "1B" || problem->scen == "2B"){
+        for (int i = 0; i < inst->V; i++){
+            if (i < inst->n){//i is a passenger req
+                for(int j = 0; j < inst->n + 2*inst->m; j++){// j is a parcel req (pu or del)
+                    if(i != j){
+                        nas->arcs[i][j] = true;
+                        nas->fArc.first = i;
+                        nas->fArc.second = j;
+                        nas->arcMinus[j].push_back(nas->fArc);
+                        nas->arcPlus[i].push_back(nas->fArc);
+                        if (j < inst->n){
+                            nas->arcNN.push_back(nas->fArc);
+                        }
+                        nas->arcNplus.push_back(nas->fArc);
+                        nas->allArcs.push_back(nas->fArc);
+                        nas->arcnf.push_back(nas->fArc);
+                    }
+                }
+                for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->arcNplus.push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                }
+            }
 
-    //         else if (i > inst->n - 1){
-    //             if (i < inst->n + inst->m){
-    //                 for (int j = 0; j < inst->n + inst->m; j++){
-    //                     if (i != j){
-    //                         if (j != i + inst->m){
-    //                             arcs[i][j] = true;
-    //                             fArc.first = i;
-    //                             fArc.second = j;
-    //                             arcMinus[j].push_back(fArc);
-    //                             arcPlus[i].push_back(fArc);
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //             else if (i > inst->n + inst->m - 1){
-    //                 if (i < inst->n + 2*inst->m){
-    //                     for (int j = 0; j < inst->n + 2*inst->m; j++){
-    //                         if (i != j){
-    //                             if (j + inst->m != i){
-    //                                 arcs[i][j] = true;
-    //                                 fArc.first = i;
-    //                                 fArc.second = j;
-    //                                 arcMinus[j].push_back(fArc);
-    //                                 arcPlus[i].push_back(fArc);
-    //                             }
-    //                         }
-    //                     }
-    //                     for (int j = inst->V; j < inst->V + inst->dummy; j++){
-    //                         arcs[i][j] = true;
-    //                         fArc.first = i;
-    //                         fArc.second = j;
-    //                         arcMinus[j].push_back(fArc);
-    //                         arcPlus[i].push_back(fArc);
-    //                     }
-    //                 }
+            else if (i < inst->n + inst->m){//i is a parcel pickup node
+                for (int j = 0; j < inst->n + inst->m; j++){ //j is a passenger or parcel pickup node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->arcPP.push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
+                }
+            }
+            else if (i < inst->n + 2*inst->m){// i is a parcel delivery node
+                for (int j = 0; j < inst->n + 2*inst->m; j++){//j is a passenger node or parcel node (pu or del)
+                    if (j + inst->m != i){
+                        nas->arcs[i][j] = true;
+                        nas->fArc.first = i;
+                        nas->fArc.second = j;
+                        nas->arcMinus[j].push_back(nas->fArc);
+                        nas->arcPlus[i].push_back(nas->fArc);
+                        nas->allArcs.push_back(nas->fArc);
+                        nas->arcnf.push_back(nas->fArc);
+                    }                    
+                }
 
-    //                 else if (i > inst->n + 2* inst->m - 1){
-    //                     for (int j = 0; j < inst->n + inst->m; j++){
-    //                         arcs[i][j] = true;
-    //                         fArc.first = i;
-    //                         fArc.second = j;
-    //                         arcMinus[j].push_back(fArc);
-    //                         arcPlus[i].push_back(fArc);
-    //                     }
-    //                     // for (int j = inst->V; j < inst->V + inst->dummy; j++){
-    //                     //     arcs[i][j] = true;
-    //                     //     fArc.first = i;
-    //                     //     fArc.second = j;
-    //                     //     arcMinus[j].push_back(fArc);
-    //                     //     arcPlus[i].push_back(fArc);
-    //                     // }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+                for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                }
+            }
+
+            else if (i < inst->V + inst->dummy){ // i is a starting node
+                for (int j = 0; j < inst->n + inst->m; j++){//j is a passenger or parcel pickup node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
+                }
+            }          
+        }
+    }
 }
 
 void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<int> &clusters, vector< vector<int> > &clusterVec, vector< vector<bParcelStruct> > &clsParcel, probStat* problem){
@@ -1382,12 +1382,18 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
 
     vector< pair <int, int> > auxVec;
     pair<int, int> auxPair;
+    vector<int> auxSolOrder;
     // int setN = bStat->bundleVec.size() - inst->K - 1;
     int currSP;
     vector<int> orderVec;
 
     for (int k = 0; k < inst->K; k++){
+        sStat->solOrder.push_back(auxSolOrder);
+    }
+
+    for (int k = 0; k < inst->K; k++){
         currSP = inst->V - inst->K + k;
+
         for (int i = 0; i < sStat->solvec[k].size(); i++){
             auxPair.first = sStat->solvec[k][i].first;
             auxPair.second = sStat->solvec[k][i].second;            
@@ -1395,8 +1401,13 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
         }
         // cout<< "here1";
         // getchar();
+        // cout << "auxVec: " << endl;
+        // for (int i = 0; i < auxVec.size(); i++){
+        //     cout << auxVec[i].first << " " << auxVec[i].second << endl;
+        // }
         while(!auxVec.empty()){
             if (sStat->solOrder[k].empty()){
+
                 for (int i = 0; i < auxVec.size(); i++){
                     if (auxVec[i].first == currSP){
                         sStat->solOrder[k].push_back(auxVec[i].first);
@@ -1416,9 +1427,7 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
                         auxVec.erase(auxVec.begin()+j);
                     }
                 }
-            }
-            // cout << "innode3" << endl;
-            // getchar();            
+            }       
         // cout<< "auxvec size: " << auxVec.size();
         // getchar();
         }
@@ -1430,12 +1439,12 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
 
     for (int k = 0; k < inst->K; k++){
         cout << "Vehicle " << k << ": ";
-        for (int i = 0; i < sStat->solInNode[k].size(); i++){
-            if (i < sStat->solInNode[k].size() - 1){
-                cout << sStat->solInNode[k][i] << " - ";
+        for (int i = 0; i < sStat->solOrder[k].size(); i++){
+            if (i < sStat->solOrder[k].size() - 1){
+                cout << sStat->solOrder[k][i] << " - ";
             }
             else{
-                cout << sStat->solInNode[k][i];
+                cout << sStat->solOrder[k][i];
             }
         }
         cout << endl;
