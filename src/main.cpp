@@ -11,7 +11,8 @@
 #include <ctime>
 #include "readdata.h"
 #include "functions.h"
-#include "mip.h"
+#include "modelnode.h"
+#include "modelbundle.h"
 
 using namespace std;
 
@@ -29,69 +30,57 @@ int main (int argc, char *argv[]) {
 	nodeArcsStruct nas;
 
 	vector<nodeStat> nodeVec;
-	// vector<bool> arcRow;
-	// vector< vector<bool> > arcs;
-	// pair<int, int> fArc;
-	// vector< pair<int,int> > arcVec;
-	// vector< pair<int,int> > nodummyarcVec;
-	// vector<double> nodeProfit;
 
 	vector< pair<int,int> > auxVec;
 
 	int p = -1; //number of parcel requests to be associated with a passenger request(1A) or the number of best matchings
 	vector<int> vecOfInt;
 
-	readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem);
+	// readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem);
 
-	for (int i = 0; i < inst.V; i++){
-		cout << "load " << i << ": " << nodeVec[i].load << endl;
-	}
+	nodeMethod(argc, argv, &node, &inst, distMatrix, nodeVec, &nas, &problem, &sStat);
 
-	// for (int i = 0; i < inst.V; i++){
-	// 	cout << "later " << i << ": " << nodeVec[i].l << endl;
-	// }
-	// getchar();
-	
-	for (int i = 0; i < inst.n; i++){
-		cout << "delta " << i << ": " << nodeVec[i].delta << endl;
-	}
 
 	// for (int i = 0; i < inst.n; i++){
 	// 	clsParcel.push_back(auxbpsvec);
 	// }
 
-	cout << "\nDistance Matrix: " << endl;
+	// cout << "\nDistance Matrix: " << endl;
 
-	for (int i = 0; i < inst.V + inst.dummy; i++){
-		for (int j = 0; j < inst.V + inst.dummy; j++){
-			cout << setw(5) << distMatrix[i][j] << " ";
-		}
-		cout << endl;
-	}
-	getchar();
+	// for (int i = 0; i < inst.V + inst.dummy; i++){
+	// 	for (int j = 0; j < inst.V + inst.dummy; j++){
+	// 		cout << setw(5) << distMatrix[i][j] << " ";
+	// 	}
+	// 	cout << endl;
+	// }
+	// // getchar();
 
-	initArcs(&inst, &nas);
-	feasibleArcs (&inst, &nas, &problem);
+	// initArcs(&inst, &nas);
+	// feasibleArcs (&inst, &nas, &problem);
 	
-	cout<< "\nFeasible arcs between nodes:" << endl;
-    for (int i = 0; i < nas.arcs.size(); i++){
-        if (i == 0){
-            cout << setw(3) << " ";
-        }
-        cout << setw(3) << std::right << i << " ";
-    }
-    cout << endl;
-    for(int i = 0; i < nas.arcs.size(); i++){
-        cout << setw(3) << std::right << i;
-        for(int j = 0; j < nas.arcs[i].size(); j++){
-            cout << setw(3) <<  nas.arcs[i][j] << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
+	// cout<< "\nFeasible arcs between nodes:" << endl;
+ //    for (int i = 0; i < nas.arcs.size(); i++){
+ //        if (i == 0){
+ //            cout << setw(3) << " ";
+ //        }
+ //        cout << setw(3) << std::right << i << " ";
+ //    }
+ //    cout << endl;
+ //    for(int i = 0; i < nas.arcs.size(); i++){
+ //        cout << setw(3) << std::right << i;
+ //        for(int j = 0; j < nas.arcs[i].size(); j++){
+ //            cout << setw(3) <<  nas.arcs[i][j] << " ";
+ //        }
+ //        cout << endl;
+ //    }
+ //    cout << endl;
 
 	// getchar();
-
+ //    cout << "arcs NN: " << endl;
+	// for (int i = 0; i < nas.arcNN.size(); i++){
+	// 	cout << nas.arcNN[i].first << " - " << nas.arcNN[i].second << " | | ";
+	// }
+	// getchar();
 	// cout << "Arcs that leave a pickup: " << endl;
 
 	// for (int i = 0; i < nas.arcPP.size(); i++){
@@ -254,10 +243,12 @@ int main (int argc, char *argv[]) {
 
 	// 	mip(&inst, nodeVec, distMatrix, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, &problem, &sStat);
 	// }
-	mipnode(&inst, nodeVec, distMatrix, &problem, &nas, &sStat);
+
+	// mipnode(&inst, nodeVec, distMatrix, &problem, &nas, &sStat);
+	
 	// nodeSolution (&inst, distMatrix, &bStat, nodeVec, &sStat);
 	
-	viewSol (&inst, distMatrix, nodeVec, &sStat);
+	// viewSol (&inst, distMatrix, nodeVec, &sStat);
 	
 	// solStatIni(&sStat);
 
@@ -266,11 +257,6 @@ int main (int argc, char *argv[]) {
 	// cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
 
 	// printStats(&inst, &bStat, &sStat);
-
-	for ( int i = 0; i < inst.V + inst.dummy; i++) {
-		delete[] distMatrix[i];
-	}
-	delete[] distMatrix;
 
 	return 0;
 }

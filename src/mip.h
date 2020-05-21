@@ -24,10 +24,12 @@
 #include <unistd.h>
 #include "readdata.h"
 #include "functions.h"
+#include "modelnode.h"
+#include "modelbundle.h"
+
 
 using namespace std;
 
 void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat);
-void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat);
 
 #endif

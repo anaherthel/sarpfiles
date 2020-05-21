@@ -1,21 +1,22 @@
 #include "readdata.h"
 #include "functions.h"
+#include "modelnode.h"
 #include <cstdlib>
 #include <stdio.h>
 //maybe later it is necessary to add the maximum driving time.
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem){
     
-    if (argc < 3) {
+    if (argc < 4) {
         cout << "\nMissing parameters\n";
         // cout << " ./exeSARP [Instance] [Optimization strategy] [Scenario]"<< endl;
-        cout << " ./exeSARP [Instance] [Scenario]"<< endl;
+        cout << " ./exeSARP [Instance] [Scenario] [Parcel percentage]"<< endl;
         exit(1);
     }
     
-    if (argc > 3) {
+    if (argc > 4) {
         cout << "\nToo many parameters\n";
-        cout << " ./exeSARP [Instance] [Scenario]" << endl;
+        cout << " ./exeSARP [Instance] [Scenario] [Parcel percentage]" << endl;
         exit(1);
     }  
 
@@ -37,6 +38,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     int V;
     int originalV;
     int dummy;
+    string parcelArg;
+    double parcelP;
 
     string instType;
 
@@ -52,7 +55,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     }
 
     instType = getInstanceType(argv);
-
+    parcelArg = argv[3];
+    parcelP = stod(parcelArg)/100;
+    
     if (instType == "sf_data"){
 
         in >> K;
@@ -258,7 +263,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         
         in >> instV;
 
-        m = floor(instV * 0.3);
+        m = floor(instV * parcelP);
         
         if (m % 2 != 0){
             m--;
@@ -426,6 +431,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             else if (i >= V - K){
                 delta[i] = 0;
                 profit[i] = 0;
+                w[i] = 0;
             }
         }
 
@@ -522,7 +528,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         
         in >> instV;
 
-        m = floor(instV * 0.5);
+        m = floor(instV * parcelP);
         
         if (m % 2 != 0){
             m--;
@@ -694,6 +700,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             else if (i >= V - K){
                 delta[i] = 0;
                 profit[i] = 0;
+                w[i] = 0;
             }
         }
 

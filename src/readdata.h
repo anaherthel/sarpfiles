@@ -22,7 +22,6 @@
 #include <sys/time.h>
 #include <ctime>
 #include <unistd.h>
-// #include "functions.h"
 
 using namespace std;
 

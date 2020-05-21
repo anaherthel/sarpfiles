@@ -1,1 +1,2 @@
-obj/readdata.o: src/readdata.cpp src/readdata.h src/functions.h
+obj/readdata.o: src/readdata.cpp src/readdata.h src/functions.h \
+ src/modelnode.h
