@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances/grubhub_1'
-output='testgh_1.txt'
+dirInstancias='Instances/grubhub'
+output='testgh2405.txt'
 #runs=10
 
 cat /dev/null > $output
@@ -15,7 +15,7 @@ do
 			echo "Solving: " ${arquivo} ":" >> $output #output pra saber que instancia ta sendo rodada
 			echo "Scenario: " $i >> $output
 			echo "ParcelP: " $j >> $output
-			./exeSARP ${dirInstancias}/${arquivo} $i $j >> $output
+			./exeSARP ${dirInstancias}/${arquivo} $i $j node >> $output
 		done
 	done
 done
