@@ -219,7 +219,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
 
 }
 
-void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<double> &passProfit){
+void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
     double cost;
     double service;
 
@@ -987,4 +987,513 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
     }
     cout << endl;
     // getchar();
+}
+
+void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
+	bundleStat bStat;
+	vector< pair<int,int> > auxVec;
+	vector< vector<bParcelStruct> > clsParcel;
+	vector<int> vecOfInt;
+	vector<bParcelStruct> auxbpsvec;
+
+	vector< vector< pair<int,int> > > arcPlus;
+	vector< vector< pair<int,int> > > arcMinus;
+	vector< pair<int,int> > arcNN;
+	
+	vector< vector<int> >clusterVec;
+	vector<int> clusters;
+
+	vector<bool> cArcRow;
+	pair<int, int> cFArc;
+	vector< vector<bool> > cArcs;
+	vector< pair<int,int> > cArcVec;
+	vector< vector< pair<int,int> > > cArcPlus;
+	vector< vector< pair<int,int> > > cArcMinus;
+
+	int p = -1; //number of parcel requests to be associated with a passenger request(1A) or the number of best matchings
+	int Q = 5;
+
+	// readData(argc, argv, node, inst, nodeVec, &mdist, problem);
+
+	for (int i = 0; i < inst->n; i++){
+		clsParcel.push_back(auxbpsvec);
+	}
+
+	makeSmallerProblem(inst, nodeVec, mdist, p, clsParcel, problem, Q);
+
+ // 	cout << "\nDistance Matrix: " << endl;
+
+	// for (int i = 0; i < inst->V + inst->dummy; i++){
+	// 	for (int j = 0; j < inst->V + inst->dummy; j++){
+	// 		cout << setw(5) << mdist[i][j] << " ";
+	// 	}
+	// 	cout << endl;
+	// }
+
+	makeBundles(inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, problem);
+
+	cout << "\nBundle Vector: [";
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		cout << "[";
+		for (int j = 0; j < bStat.bundleVec[i].size(); j++){
+			cout << setw(3) << std:: right << bStat.bundleVec[i][j];
+			if (j < bStat.bundleVec[i].size() - 1){
+                cout << ", ";
+            }
+		}
+		cout << "],";
+	}
+	cout << "]" << endl;
+
+
+	if (problem->scen == "1A"){
+		for (int i = 0; i < inst->m; i++){
+			bStat.parcelBundleVec.push_back(bStat.parcelBundle);
+		}
+	}
+
+	else if (problem->scen == "2A"){
+		for (int i = 0; i < 2*inst->m; i++){
+			bStat.parcelBundleVec.push_back(bStat.parcelBundle);
+		}
+	}
+
+	makeParcelBundles(inst, nodeVec, &bStat, problem);
+
+	// cout << "\nParcel Bundles: " << endl;
+
+	// for (int i = 0 ; i < bStat.parcelBundleVec.size(); i++){
+	// 	cout << i + inst->n << ": ";
+	// 	for(int j = 0; j < bStat.parcelBundleVec[i].size(); j++){
+	// 		cout << bStat.parcelBundleVec[i][j] << " ";
+	// 	}
+	// 	cout << endl;
+	// }
+	// cout << endl;
+	// getchar();
+
+	bundleProfit(inst, mdist, nodeVec, &bStat);
+
+	// cout << "\nBundle Profit: [";
+	// for (int i = 0; i < bStat.bundleProfVec.size(); i++){
+	// 	cout << setw(3) << std:: right << bStat.bundleProfVec[i];
+	// 	if (i < bStat.bundleProfVec.size() - 1){
+ //            cout << ", ";
+ //        }
+	// }
+	// cout << endl;
+
+	// getchar();
+
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		for (int j = 0; j < bStat.bundleVec.size(); j++){
+			bStat.bArcRow.push_back(false);
+		}
+		bStat.bArcs.push_back(bStat.bArcRow);
+		bStat.bArcRow.clear();
+	}
+	
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		auxVec.push_back(bStat.bFArc);
+	}
+	auxVec.clear();
+
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		bStat.bArcMinus.push_back(auxVec);
+		bStat.bArcPlus.push_back(auxVec);
+	}
+
+	makeStartTimes(inst, mdist, nodeVec, &bStat, problem);
+
+	makeBundleReference(inst, mdist, nodeVec, &bStat);
+
+
+	cout << "\nBundle Service Times: ";
+	for (int i = 0; i < bStat.bundleServVec.size(); i++){
+		cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
+	}
+	cout << endl;
+
+	getchar();
+
+
+	feasibleBundleArcs(inst, mdist, nodeVec, &bStat, p, problem);
+
+	// cout<< "\nFeasible arcs between bundles:" << endl;
+	// for (int i = 0; i < bStat.bundleVec.size(); i++){
+	// 	if (i == 0){
+	// 		cout << setw(3) << " ";
+	// 	}
+	// 	cout << setw(3) << std::right << i;
+	// }
+	// cout << endl;
+
+	// for (int i = 0; i < bStat.bundleVec.size(); i++){
+	// 	cout << setw(3) << std::right << i;
+	// 	for (int j = 0; j < bStat.bundleVec.size(); j++){
+	// 		cout << setw(3) << std:: right << bStat.bArcs[i][j];
+	// 	}
+	// 	cout << endl;
+	// }
+	// getchar();
+
+	for (int i = 0; i < clusterVec.size(); i++){
+		for (int j = 0; j < clusterVec.size(); j++){
+			cArcRow.push_back(false);
+		}
+		cArcs.push_back(cArcRow);
+	}
+	
+	for (int i = 0; i < clusterVec.size(); i++){
+		auxVec.push_back(cFArc);
+	}
+	auxVec.clear();
+
+	for (int i = 0; i < clusterVec.size(); i++){
+		cArcMinus.push_back(auxVec);
+		cArcPlus.push_back(auxVec);
+	}
+
+	for (int i = 0; i < clusterVec.size(); i++){
+		cout << "\nCluster " << i << ": [";
+		for(int k = 0; k < clusterVec[i].size(); k++){
+			cout << "(" << clusterVec[i][k] << ") " << "[";
+			for (int j = 0; j < bStat.bundleVec[clusterVec[i][k]].size(); j++){
+				cout << setw(3) << std:: right << bStat.bundleVec[clusterVec[i][k]][j];
+	            if (j < bStat.bundleVec[clusterVec[i][k]].size() - 1){
+					cout << ",";
+				}
+				else{
+					cout << "] ";
+				}
+			}
+			
+		}
+		cout << "]" << endl;
+	}
+
+	feasibleClusterArcs(inst, nodeVec, &bStat, clusterVec, cFArc, cArcs, cArcPlus, cArcMinus, p, problem);
+
+	// cout<< "\nFeasible arcs between clusters:" << endl;
+	// for (int i = 0; i < clusterVec.size(); i++){
+	// 	if (i == 0){
+	// 		cout << setw(3) << " ";
+	// 	}
+	// 	cout << setw(3) << std::right << i;
+	// }
+	// cout << endl;
+	// for (int i = 0; i < clusterVec.size(); i++){
+	// 	cout << setw(3) << std::right << i;
+	// 	for (int j = 0; j < clusterVec.size(); j++){
+	// 		cout << setw(3) << std:: right << cArcs[i][j];
+	// 	}
+	// 	cout << endl;
+	// }
+
+	// // getchar();
+
+	for (int i = 0; i < bStat.bundleVec.size(); i++){
+		for (int j = 0; j < bStat.bundleVec.size(); j++){
+			if(bStat.bArcs[i][j]){
+				bStat.bFArc.first = i;
+				bStat.bFArc.second = j;
+				bStat.bArcVec.push_back(bStat.bFArc);
+			}
+		}
+	}
+
+
+	for (int i = 0; i < clusterVec.size(); i++){
+		for (int j = 0; j < clusterVec.size(); j++){
+			if(cArcs[i][j]){
+				cFArc.first = i;
+				cFArc.second = j;
+				cArcVec.push_back(cFArc);
+			}
+		}
+	}
+	
+	mipbundle(inst, nodeVec, mdist, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, problem, sStat);
+	
+	if(sStat->feasible){
+		nodeSolution (inst, mdist, &bStat, nodeVec, sStat);
+
+		solStatIni(sStat);
+
+		mipSolStats (inst, mdist, nodeVec, sStat);
+
+		// // cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
+
+		printStats(inst, sStat);
+	}
+
+	for ( int i = 0; i < inst->V + inst->dummy; i++) {
+		delete[] mdist[i];
+	}
+	delete[] mdist;
+}
+
+void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat){
+
+	//MIP
+	//Creating environment and model 
+	char var[100];
+	IloEnv env;
+	IloModel model(env, "bSARP");
+	int setN = bStat->bundleVec.size() - (inst->startCluster*inst->K) - inst->endCluster;
+	int csetN = clusterVec.size() - inst->K - 1;
+	int currSP;
+	int currParcel;
+	int currCluster;
+	vector< pair<int, int> > auxPairVec;
+	pair<int, int> auxPair;
+
+	//Creating variables
+	IloArray <IloArray <IloBoolVarArray> > x(env, bStat->bundleVec.size());
+
+	for (int i = 0; i < bStat->bundleVec.size(); i++){
+		x[i] = IloArray <IloBoolVarArray> (env, bStat->bundleVec.size());
+		for(int j = 0; j < bStat->bundleVec.size(); ++j){
+			if (bStat->bArcs[i][j] != true){
+				continue; // If arc i to j is invalid
+			} 
+
+			x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
+
+			for(int k = 0; k < inst->K; k++){
+				sprintf(var, "x(%d,%d,%d)", i, j, k);
+				x[i][j][k].setName(var);
+				model.add(x[i][j][k]);
+			}
+		}	
+	}
+
+	//Creating objective function
+	
+	IloExpr objFunction(env);
+
+	for (int i = 0; i < bStat->bArcVec.size(); i++){
+		for (int k = 0; k < inst->K; k++){
+			objFunction += bStat->bundleProfVec[bStat->bArcVec[i].first] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
+			//objFunction += bStat->bundleProfVec[bStat->bArcVec[i].second] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
+		}
+	}
+	int lastElOfi;
+	int firstElOfj;
+	for (int i = 0; i < bStat->bArcVec.size(); i++){
+		lastElOfi = bStat->bundleVec[bStat->bArcVec[i].first][bStat->bundleVec[bStat->bArcVec[i].first].size() - 1];
+		firstElOfj = bStat->bundleVec[bStat->bArcVec[i].second][0];
+		for (int k = 0; k < inst->K; k++){
+			objFunction -= (double)mdist[lastElOfi][firstElOfj] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
+		}
+	}
+
+	model.add(IloMaximize(env, objFunction));
+
+	//Creating constraints
+
+	//Constraint 1 - Only one arc leaves the cluster
+
+	for (int i = 0; i < csetN; i++){
+		IloExpr exp(env);
+		for (int k = 0; k < inst->K; k++){
+			for (int j = 0; j < cArcPlus[i].size(); j++){
+				exp += x[cArcPlus[i][j].first][cArcPlus[i][j].second][k];
+			}
+		}
+		sprintf (var, "Constraint1_%d", i);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	// Constraint 2 - Only one arc comes into the cluster
+
+	for (int i = 0; i < csetN; i++){
+		IloExpr exp(env);
+		for (int k = 0; k < inst->K; k++){
+			for (int j = 0; j < cArcMinus[i].size(); j++){
+				exp += x[cArcMinus[i][j].first][cArcMinus[i][j].second][k];
+			}
+		}
+		sprintf (var, "Constraint2_%d", i);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	// Constraint 3 - Each vehicle leaves its starting node
+	
+	for (int k = 0; k < inst->K; k++){
+		IloExpr exp(env);
+		currSP = setN + k;
+		for (int i = 0; i < bStat->bArcPlus[currSP].size(); i++){
+			exp += x[bStat->bArcPlus[currSP][i].first][bStat->bArcPlus[currSP][i].second][k];
+		}
+		sprintf (var, "Constraint3_%d", k);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	// Constraint 4 - All vehicles end the trip at the dummy node f
+	
+	//Old version of constraint
+	// for (int k = 0; k < inst->K; k++){
+	// 	IloExpr exp(env);
+	// 	for (int i = 0; i < bStat->bArcMinus[bStat->bundleVec.size()-1].size(); i++){
+	// 		exp += x[bStat->bArcMinus[bStat->bundleVec.size()-1][i].first][bStat->bArcMinus[bStat->bundleVec.size()-1][i].second][k];
+	// 	}
+	// 	sprintf (var, "Constraint4_%d", k);
+	// 	IloRange cons = (exp == 1);
+	// 	cons.setName(var);
+	// 	model.add(cons);
+	// }	
+	//new version of constraint
+	for (int k = 0; k < inst->K; k++){
+		IloExpr exp(env);
+		for (int j = 0; j < clusterVec.back().size(); j++){
+			for (int i = 0; i < bStat->bArcMinus[clusterVec.back()[j]].size(); i++){
+				exp += x[bStat->bArcMinus[clusterVec.back()[j]][i].first][bStat->bArcMinus[clusterVec.back()[j]][i].second][k];
+			}
+		}
+		sprintf (var, "Constraint4_%d", k);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	//Constraint 5 - No parcel can be served more than once
+
+	for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
+		IloExpr exp(env);
+		currParcel = inst->n + i;
+		for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
+			for (int l = 0; l < bStat->bArcPlus[bStat->parcelBundleVec[i][j]].size(); l++){
+				for (int k = 0; k < inst->K; k++){
+					exp += x[bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].first][bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].second][k];
+				}
+			}
+		}
+		sprintf (var, "Constraint5_%d", currParcel);
+		IloRange cons = (exp <= 1);
+		cons.setName(var);
+		model.add(cons);
+	}	
+
+	//Constraint 6 - Flow conservation between clusters(bundles)
+
+	for (int i = 0; i < setN; i++){
+		for (int k = 0; k < inst->K; k++){
+			IloExpr exp1(env);
+			IloExpr exp2(env);
+
+			for (int j = 0; j < bStat->bArcPlus[i].size(); j++){
+				// cout << bStat->bArcPlus[i][j].first << " " << bStat->bArcPlus[i][j].second << "||";
+
+				exp1 += x[bStat->bArcPlus[i][j].first][bStat->bArcPlus[i][j].second][k];
+			}
+
+			for (int j = 0; j < bStat->bArcMinus[i].size(); j++){
+				exp2 += x[bStat->bArcMinus[i][j].first][bStat->bArcMinus[i][j].second][k];
+			}
+
+			sprintf (var, "Constraint6_%d_%d", i, k);
+			IloRange cons = (exp1 - exp2 == 0);
+			cons.setName(var);
+			model.add(cons);			
+		}
+	}
+
+	if (problem->scen == "2A"){
+		//Constraint 7 - if a pickup bundle is visited, the corresponding delivery bundle must also be visited by the same vehicle
+		for (int i = 0; i < inst->m; i++){
+			for (int k = 0; k < inst->K; k++){
+				IloExpr exp1(env);
+				IloExpr exp2(env);
+				currParcel = inst->n + i;
+				for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
+					// for (int l = 0; l < bStat->bArcPlus[bStat->parcelBundleVec[i][j]].size(); l++){
+					// 	cout << bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].first << " " << bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].second << "||";
+					// 	exp1 += x[bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].first][bStat->bArcPlus[bStat->parcelBundleVec[i][j]][l].second][k];
+					// 	cout << exp1 << endl;
+					// }
+					// cout << "First part: ";
+					for (int l = 0; l < bStat->bArcMinus[bStat->parcelBundleVec[i][j]].size(); l++){
+						// cout << bStat->bArcMinus[bStat->parcelBundleVec[i][j]][l].first << " " << bStat->bArcMinus[bStat->parcelBundleVec[i][j]][l].second << endl;
+						
+						int u = bStat->bArcMinus[bStat->parcelBundleVec[i][j]][l].first;
+						int v = bStat->bArcMinus[bStat->parcelBundleVec[i][j]][l].second;
+						
+						exp1 += x[u][v][k];
+						// cout << exp1 << endl;
+					}				
+				}
+								
+				// for (int j = 0; j < bStat->parcelBundleVec[i + inst->m].size(); j++){
+				// 	for (int l = 0; l < bStat->bArcMinus[bStat->parcelBundleVec[i + inst->m][j]].size(); l++){
+				// 		exp2 += x[bStat->bArcMinus[bStat->parcelBundleVec[i + inst->m][j]][l].first][bStat->bArcMinus[bStat->parcelBundleVec[i + inst->m][j]][l].second][k];
+				// 	}
+				// }
+				// cout << "Second part: ";
+
+				for (int j = 0; j < bStat->parcelBundleVec[i + inst->m].size(); j++){
+					for (int l = 0; l < bStat->bArcMinus[bStat->parcelBundleVec[i + inst->m][j]].size(); l++){
+						// cout << bStat->bArcMinus[bStat->parcelBundleVec[i + inst->m][j]][l].first << " " << bStat->bArcMinus[bStat->parcelBundleVec[i + inst->m][j]][l].second << endl;
+
+						int u = bStat->bArcMinus[bStat->parcelBundleVec[i + inst->m][j]][l].first;
+						int v = bStat->bArcMinus[bStat->parcelBundleVec[i + inst->m][j]][l].second;
+						
+						exp2 += x[u][v][k];
+					}
+				}
+				sprintf (var, "Constraint7_%d_%d", currParcel, k);
+				IloRange cons = (exp1 - exp2 == 0);
+				cons.setName(var);
+				model.add(cons);			
+			}			
+		}
+	}
+
+
+	IloCplex bSARP(model);
+	bSARP.exportModel("bSARP.lp");
+
+	bSARP.solve();
+	cout << "\nSol status: " << bSARP.getStatus() << endl;
+	sStat->feasible = bSARP.isPrimalFeasible();
+
+	if(sStat->feasible){
+		cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
+
+		sStat->solprofit = bSARP.getObjValue();
+
+		for (int k = 0; k < inst->K; k++){
+	 		sStat->solvec.push_back(auxPairVec);
+		}
+
+		for (int i = 0; i < bStat->bundleVec.size(); i++){
+			for(int j = 0; j < bStat->bundleVec.size(); ++j){
+				for (int k = 0; k < inst->K; k++){
+					if (bStat->bArcs[i][j] == true){
+						if (bSARP.getValue(x[i][j][k]) > 0.5){
+							auxPair.first = i;
+							auxPair.second = j;
+							sStat->solvec[k].push_back(auxPair);
+							// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
+							// getchar();
+						}
+					}
+				}
+			}	
+		}
+		
+		for (int k = 0; k < inst->K; k++){
+			for (int i = 0; i < sStat->solvec[k].size(); i++){
+				cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
+			}
+		}		
+	}
+
+	env.end();
 }

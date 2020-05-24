@@ -13,6 +13,10 @@ void solStatIni(solStats *sStat){
     sStat->dPass = 0;
     sStat->dBoth = 0;
     sStat->dNone = 0;
+
+    sStat->solOrder.clear();
+    // sStat->solInNode.clear();
+    // sStat->solvec.clear();
 }
 
 void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat){

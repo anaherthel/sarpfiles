@@ -204,6 +204,8 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
     int currSP;
     vector<int> orderVec;
 
+	solStatIni(sStat);
+
     for (int k = 0; k < inst->K; k++){
         sStat->solOrder.push_back(auxSolOrder);
     }
@@ -222,6 +224,7 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
         // for (int i = 0; i < auxVec.size(); i++){
         //     cout << auxVec[i].first << " " << auxVec[i].second << endl;
         // }
+
         while(!auxVec.empty()){
             if (sStat->solOrder[k].empty()){
 
@@ -252,8 +255,9 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
         // getchar();
     }
 
-    cout << "\nSolution: " << endl;
+    cout << "\nNumber of Vehicles: " << inst->K << endl;
 
+    cout << "\nSolution: " << endl;
     for (int k = 0; k < inst->K; k++){
         cout << "Vehicle " << k << ": ";
         for (int i = 0; i < sStat->solOrder[k].size(); i++){
@@ -337,8 +341,10 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 				sprintf(var, "x(%d,%d,%d)", i, j, k);
 				x[i][j][k].setName(var);
 				model.add(x[i][j][k]);
+				// cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
+
 			}
-		}	
+		}
 	}
 	
 	//creates boolean variable (y_i = 1 if node i is visited; 0 cc)
@@ -353,7 +359,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 	}
 
-	// Variable start of service time
+		// Variable start of service time
 	IloNumVarArray b(env, nodeVec.size(), 0, inst->T);
 	for (int i = 0; i < nodeVec.size(); i++){
 		sprintf(var, "b(%d)", i);
@@ -421,7 +427,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	// //Constraint 2 - Relationship between visit variable and parcel node arcs
 	// //A parcel request can be denied
 
-	// for (int i = inst->n; i < inst->n + 2*inst->m; i++){
 	for (int i = inst->n; i < inst->n + inst->m; i++){
 
 		IloExpr exp(env);
@@ -653,90 +658,103 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	
 	nSARP.solve();
 	cout << "\nSol status: " << nSARP.getStatus() << endl;
-	// sStat->feasible = nSARP.isPrimalFeasible();
+	sStat->feasible = nSARP.isPrimalFeasible();
 
-	cout << "\nObj Val: " << setprecision(15) << nSARP.getObjValue() << endl;
+	if (sStat->feasible){
+		cout << "\nObj Val: " << setprecision(15) << nSARP.getObjValue() << endl;
 
-	sStat->solprofit = nSARP.getObjValue();
-	
-	for (int k = 0; k < inst->K; k++){
- 		sStat->solvec.push_back(auxPairVec);
-	}
+		sStat->solprofit = nSARP.getObjValue();
+		
+		for (int k = 0; k < inst->K; k++){
+	 		sStat->solvec.push_back(auxPairVec);
+		}
 
-	for (int i = 0; i < nodeVec.size(); i++){
-		for(int j = 0; j < nodeVec.size(); ++j){
-			for (int k = 0; k < inst->K; k++){
-				if (nas->arcs[i][j] == true){
-					if (nSARP.getValue(x[i][j][k]) > 0.5){
-						auxPair.first = i;
-						auxPair.second = j;
-						sStat->solvec[k].push_back(auxPair);
-						// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
-						// getchar();
+		for (int i = 0; i < nodeVec.size(); i++){
+			for(int j = 0; j < nodeVec.size(); ++j){
+				for (int k = 0; k < inst->K; k++){
+					if (nas->arcs[i][j] == true){
+						if (nSARP.getValue(x[i][j][k]) > 0.5){
+							auxPair.first = i;
+							auxPair.second = j;
+							sStat->solvec[k].push_back(auxPair);
+							// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
+							// getchar();
+						}
 					}
 				}
-			}
-		}	
-	}
-
-	for (int k = 0; k < inst->K; k++){
-		for (int i = 0; i < sStat->solvec[k].size(); i++){
-			cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
+			}	
 		}
+
+		for (int k = 0; k < inst->K; k++){
+			for (int i = 0; i < sStat->solvec[k].size(); i++){
+				cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
+			}
+		}
+
 	}
-
-
-
 
 	env.end();
 }
 
-void nodeMethod (int argc, char** argv, nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, nodeArcsStruct *nas, probStat* problem, solStats *sStat){
+void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
 	
-	readData(argc, argv, node, inst, nodeVec, &mdist, problem);
+	nodeArcsStruct nas;
 	
-	for (int i = 0; i < inst->V; i++){
-		cout << "load " << i << ": " << nodeVec[i].load << endl;
-	}
-
+	// for (int i = 0; i < inst->V; i++){
+	// 	cout << "load " << i << ": " << nodeVec[i].load << endl;
+	// }
 	
-	for (int i = 0; i < inst->n; i++){
-		cout << "delta " << i << ": " << nodeVec[i].delta << endl;
-	}
+	// for (int i = 0; i < inst->n; i++){
+	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
+	// }
 
-	cout << "\nDistance Matrix: " << endl;
+	// cout << "\nDistance Matrix: " << endl;
 
-	for (int i = 0; i < inst->V + inst->dummy; i++){
-		for (int j = 0; j < inst->V + inst->dummy; j++){
-			cout << setw(5) << mdist[i][j] << " ";
-		}
-		cout << endl;
-	}
+	// for (int i = 0; i < inst->V + inst->dummy; i++){
+	// 	for (int j = 0; j < inst->V + inst->dummy; j++){
+	// 		cout << setw(5) << mdist[i][j] << " ";
+	// 	}
+	// 	cout << endl;
+	// }
 	// getchar();
 
-	initArcs(inst, nas);
-	feasibleArcs (inst, nas, problem);
+	initArcs(inst, &nas);
+	feasibleArcs (inst, &nas, problem);
 
-	cout<< "\nFeasible arcs between nodes:" << endl;
-    for (int i = 0; i < nas->arcs.size(); i++){
-        if (i == 0){
-            cout << setw(3) << " ";
-        }
-        cout << setw(3) << std::right << i << " ";
-    }
-    cout << endl;
-    for(int i = 0; i < nas->arcs.size(); i++){
-        cout << setw(3) << std::right << i;
-        for(int j = 0; j < nas->arcs[i].size(); j++){
-            cout << setw(3) <<  nas->arcs[i][j] << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
+	// cout<< "\nFeasible arcs between nodes:" << endl;
+ //    for (int i = 0; i < nas.arcs.size(); i++){
+ //        if (i == 0){
+ //            cout << setw(3) << " ";
+ //        }
+ //        cout << setw(3) << std::right << i << " ";
+ //    }
+ //    cout << endl;
+ //    for(int i = 0; i < nas.arcs.size(); i++){
+ //        cout << setw(3) << std::right << i;
+ //        for(int j = 0; j < nas.arcs[i].size(); j++){
+ //            cout << setw(3) <<  nas.arcs[i][j] << " ";
+ //        }
+ //        cout << endl;
+ //    }
+ //    cout << endl;
 
-	mipnode(inst, nodeVec, mdist, problem, nas, sStat);
+ //    cout << "arcs NN: " << endl;
+	// for (int i = 0; i < nas.arcNN.size(); i++){
+	// 	cout << nas.arcNN[i].first << " - " << nas.arcNN[i].second << " | | ";
+	// }
+	// getchar();
+	// cout << "Arcs that leave a pickup: " << endl;
 
-	viewSol (inst, mdist, nodeVec, sStat);
+	// for (int i = 0; i < nas.arcPP.size(); i++){
+	// 	cout<< nas.arcPP[i].first << "-" << nas.arcPP[i].second << "  |  ";
+	// }
+	// cout << endl;
+
+	mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
+
+	if(sStat->feasible){
+		viewSol (inst, mdist, nodeVec, sStat);
+	}
 
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
 		delete[] mdist[i];

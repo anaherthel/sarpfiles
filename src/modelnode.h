@@ -43,6 +43,6 @@ void initArcs (instanceStat *inst, nodeArcsStruct *nas);
 void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem);
 void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat);
 void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat);
-void nodeMethod (int argc, char** argv, nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, nodeArcsStruct *nas, probStat* problem, solStats *sStat);
+void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat);
 
 #endif
