@@ -4,8 +4,8 @@ ifeq ($(N_BITS),32)
    SYSTEM  = x86_sles10_4.1
    BITS_OPTION = -m32
 else
-   SYSTEM  = x86-64_sles10_4.1
-   #SYSTEM = x86-64_linux
+#   SYSTEM  = x86-64_sles10_4.1
+   SYSTEM = x86-64_linux
    
    BITS_OPTION = -m64
 endif
@@ -14,22 +14,13 @@ endif
 LIBFORMAT = static_pic
 
 ####diretorios com as libs do cplex
-#no extra compiling messages
-CPLEXDIR      = /usr/ilog/cplex
-#CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio127/cplex
-
-#Use this on personal
-#CPLEXDIR      = /opt/ibm/ILOG/CPLEX_Studio_Community1263/cplex
+#CPLEXDIR      = /usr/ilog/cplex
+CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio127/cplex
 #Use this on office pc
 #CPLEXDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/cplex
 
-
-#no extra compiling messages
-CONCERTDIR    = /usr/ilog/concert
-#CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio127/concert
-
-#Use this on personal
-#CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio_Community1263/concert  <<
+#CONCERTDIR    = /usr/ilog/concert
+CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio127/concert
 #Use this on office pc
 #CONCERTDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/concert
 
