@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances/grubhub'
-output='testgh2405.txt'
+output='testgh2505.txt'
 #runs=10
 
 cat /dev/null > $output
