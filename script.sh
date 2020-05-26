@@ -20,7 +20,7 @@
 #	done
 #done
 
-dirInstancias='Instances/gh15'
+dirInstancias='Instances/grubhub'
 output='testgh151Bfrom3.txt'
 #runs=10
 
