@@ -28,7 +28,7 @@ cat /dev/null > $output
 
 for i in 1B
 do
-	for j in 20 30
+	for j in 30
 	do
 		for arquivo in `ls ${dirInstancias}` #lista todos os arquivos na pasta que contem as instancias que vc quer rodar
 		do
