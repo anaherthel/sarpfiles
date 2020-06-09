@@ -4,8 +4,8 @@ ifeq ($(N_BITS),32)
    SYSTEM  = x86_sles10_4.1
    BITS_OPTION = -m32
 else
-   SYSTEM  = x86-64_sles10_4.1
-#   SYSTEM = x86-64_linux
+#   SYSTEM  = x86-64_sles10_4.1
+   SYSTEM = x86-64_linux
    
    BITS_OPTION = -m64
 endif
