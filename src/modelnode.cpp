@@ -752,10 +752,16 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// cout << endl;
 
 	mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
-
+	
+	
 	if(sStat->feasible){
 		viewSol (inst, mdist, nodeVec, sStat);
-	}
+
+		mipSolStats (inst, mdist, nodeVec, sStat);
+
+		printStats(inst, sStat);
+	}		
+
 
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
 		delete[] mdist[i];
