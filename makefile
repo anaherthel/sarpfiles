@@ -15,12 +15,14 @@ LIBFORMAT = static_pic
 
 ####diretorios com as libs do cplex
 #CPLEXDIR      = /usr/ilog/cplex
+
 CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio127/cplex
 #Use this on office pc
 #CPLEXDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/cplex
 
 #CONCERTDIR    = /usr/ilog/concert
 CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio127/concert
+
 #Use this on office pc
 #CONCERTDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/concert
 

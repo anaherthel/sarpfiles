@@ -15,7 +15,7 @@ void solStatIni(solStats *sStat){
     sStat->dNone = 0;
 
     sStat->solOrder.clear();
-    // sStat->solInNode.clear();
+    // sStat->solOrder.clear();
     // sStat->solvec.clear();
 }
 
@@ -30,10 +30,10 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
     
     for (int k = 0; k < inst->K; k++){
         load = 0;
-        for (int i = 0; i < sStat->solInNode[k].size() - 2; i++){
-            // dij = mdist[sStat->solInNode[k][i]][sStat->solInNode[k][i + 1]];
-            currNode = sStat->solInNode[k][i];
-            nextNode = sStat->solInNode[k][i + 1];
+        for (int i = 0; i < sStat->solOrder[k].size() - 2; i++){
+            // dij = mdist[sStat->solOrder[k][i]][sStat->solOrder[k][i + 1]];
+            currNode = sStat->solOrder[k][i];
+            nextNode = sStat->solOrder[k][i + 1];
             dij = mdist[currNode][nextNode];
             if(currNode < inst->n){
                 if(nextNode < inst->n){
@@ -55,7 +55,7 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                     }
                 }
 
-                else if (sStat->solInNode[k][i + 1] < inst->n + inst->m){
+                else if (sStat->solOrder[k][i + 1] < inst->n + inst->m){
                     if (load > 0){
                         sStat->tParcel += dij/inst->vmed;
                         sStat->tParcel += inst->service;
@@ -72,7 +72,7 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                     }
                 }
 
-                else if (sStat->solInNode[k][i + 1] < inst->n + 2*inst->m){
+                else if (sStat->solOrder[k][i + 1] < inst->n + 2*inst->m){
                     sStat->tParcel += dij/inst->vmed;
                     sStat->tParcel += inst->service;
                     load--;
