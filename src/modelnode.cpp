@@ -739,11 +739,11 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
  //    }
  //    cout << endl;
 
-    cout << "arcs NN: " << endl;
-	for (int i = 0; i < nas.arcNN.size(); i++){
-		cout << nas.arcNN[i].first << " - " << nas.arcNN[i].second << " | | ";
-	}
-	getchar();
+ //    cout << "arcs NN: " << endl;
+	// for (int i = 0; i < nas.arcNN.size(); i++){
+	// 	cout << nas.arcNN[i].first << " - " << nas.arcNN[i].second << " | | ";
+	// }
+	// getchar();
 	// cout << "Arcs that leave a pickup: " << endl;
 
 	// for (int i = 0; i < nas.arcPP.size(); i++){
