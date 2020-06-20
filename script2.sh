@@ -20,8 +20,8 @@
 #	done
 #done
 
-dirInstancias='Instances/grubhub'
-output='testserverunsolv1.txt'
+dirInstancias='Instances/grubhub2'
+output='testserverunsolv2.txt'
 #runs=10
 
 cat /dev/null > $output

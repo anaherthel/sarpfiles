@@ -501,6 +501,263 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     }
 
+    else if (instType == "grubhub2"){
+
+        K = 1;
+
+        // bool increaseK = false;
+        // K = 2;
+        service = 5; //for some reason, service = 5/60 did not work
+        service = service/60;
+        int refpoint = K + 1;
+        int instV;
+        dummy = 1;
+        inst->dummy = dummy;
+        inst->vmed = 19.3;
+
+        int seed = 1234;
+        srand(seed);
+
+        vector <vector <double> > tempData;
+        vector<double> auxtempdata;
+
+        vector <vector <double> > realData;
+
+        while ( file.compare("DIMENSION:") != 0 && file.compare("DIMENSION") != 0 ){
+            in >> file;
+        }
+        
+        in >> instV;
+
+        m = floor(instV * parcelP);
+        
+        if (m % 2 != 0){
+            m--;
+        }
+
+        n = (instV - refpoint - m)/2;
+
+        m /= 2; 
+
+        V = n + 2*m + K;
+        // cout << "V: " << V << endl;
+        // cout << "\n" << n << " " << m << endl;
+        // getchar();
+
+        while ( file.compare("EDGE_WEIGHT_FORMAT") != 0 && file.compare("EDGE_WEIGHT_FORMAT") != 0 ){
+            in >> file;
+        }
+
+        in >> file;
+        in >> ewf;
+
+        while (file.compare("EDGE_WEIGHT_SECTION") != 0){
+            in >> file;
+        }
+        
+        for (int i = 0; i < instV + refpoint; i++){
+            for(int j = 0; j < instV + refpoint; j++){
+                auxtempdata.push_back(0);
+            }
+            tempData.push_back(auxtempdata);
+            auxtempdata.clear();
+        }
+
+        for (int i = 0; i < V + inst->dummy; i++){
+            for(int j = 0; j < V + inst->dummy; j++){
+                auxtempdata.push_back(0);
+            }
+            realData.push_back(auxtempdata);
+            auxtempdata.clear();
+        }
+
+        if (ewf == "LOWER_DIAG_ROW"){
+           for (int i = 0; i < instV; i++) {
+                for (int j = 0; j < i + 1; j++) {
+                    in >> tempData[i][j];
+                    if (i > 0){
+                        tempData[j][i] = tempData[i][j];                        
+                    }
+                }
+            }
+        }
+        
+        //adjusting rows
+        for (int i = 0; i < instV; i++){
+            for (int j = 0; j < refpoint; j++){
+                tempData[instV + j][i] = tempData[j][i];
+            }
+        }
+
+        //adjusting columns
+        for (int i = 0; i < instV; i++){
+            for (int j = 0; j < refpoint; j++){
+                tempData[i][instV + j] = tempData[i][j];
+            }
+        }
+
+        // //maybe we needed to adjust the corner (relying on the -0 being f)
+
+        //erase unused
+        for (int j = 0; j < refpoint; j++){
+            tempData.erase(tempData.begin());
+        }
+
+        for (int i = 0; i < instV; i++){
+            for (int j = 0; j < refpoint; j++){
+                tempData[i].erase(tempData[i].begin());
+            }   
+        }
+
+        //collapsing passenger nodes
+
+        for (int i = 0; i < V + inst->dummy; i++){
+            for (int j = 0; j < V + inst->dummy; j++){
+                if (i == j){
+                    realData[i][j] = 0;
+                }
+                else{
+                    if (i < n){
+                        if (j < n){
+                            realData[i][j] = (tempData[2*i+1][2*j])/1000;
+                        }
+                        else{
+                            realData[i][j] = (tempData[2*i+1][n+j])/1000;
+                        }
+                    }
+                    else{
+                        if (j < n){
+                            realData[i][j] = (tempData[n+i][2*j])/1000;
+                        }
+                        else{
+                            realData[i][j] = (tempData[n+i][n+j])/1000;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (trialK > 1){
+            if (trialK >= K){
+                K = trialK;
+            }
+            else{
+                trialK = K;
+            } 
+            for (int l = 0; l < K -1; l++){
+                vector<double> distRow;
+                vector<double> dummyRow;
+
+                double valueDist;
+                
+                for (int i = 0; i < V + inst->dummy; i++){
+                    valueDist = realData[i][realData[i].size() - 2];
+                    realData[i].insert(realData[i].begin() + realData[i].size() - 1, valueDist);
+                }
+
+                for (int i = 0; i < V + inst->dummy; i++){
+                    distRow.push_back(realData[V - 1][i]);
+                    dummyRow.push_back(realData[V][i]);
+                }
+                distRow.push_back(0);
+                dummyRow.push_back(0); 
+
+                realData.pop_back();
+
+                realData.push_back(distRow);
+                realData.push_back(dummyRow);
+                V++;
+            }
+        }
+        cout << "temp date size: " << tempData.size();
+        cout << "aux data size: " << auxtempdata.size();
+
+        double *delta = new double[V + inst->dummy];
+        double *profit = new double[V + inst->dummy];
+        double *e = new double[V + inst->dummy];
+        double *l = new double[V + inst->dummy];
+        int *w = new int[V + inst->dummy];      
+
+        int reference = n;
+        //calculate deltas
+        for(int i = 0; i < V + inst->dummy; i++){
+            if (i < n){
+                // cout << i << ": " << (tempData[2*i][2*i+1]);
+                delta[i] = 2 * service + (((tempData[2*i][2*i+1])/1000)/inst->vmed);
+                // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
+                profit[i] = inst->gamma2 + inst->mu2*(tempData[2*i][2*i+1]/1000) - (tempData[2*i][2*i+1]/1000);    
+                w[i] = 0;
+            }
+            else if (i < V - K){
+                delta[i] = service;
+                if (i < n + m){
+                    profit[i] = inst->gamma + inst->mu*(tempData[i + n][i + n + m]/1000);
+                    w[i] = 1;
+                }
+                else if (i < n + 2*m){
+                    profit[i] = 0;
+                    w[i] = -1;
+                }
+                else{
+                   profit[i] = 0;
+                   w[i] = 0;
+                }
+                
+            }
+            else if (i >= V - K){
+                delta[i] = 0;
+                profit[i] = 0;
+                w[i] = 0;
+            }
+        }
+
+        for (int i = 0; i < V + inst->dummy; i++){
+            if(i < n){
+                e[i] = 540 + rand() % 480;
+                l[i] = e[i];
+            }
+            else if (i < V + inst->dummy - 1){
+                e[i] = 540;
+                l[i] = 1020;
+            }
+            else{
+                e[i] = 0;
+                l[i] = 1440;
+            }
+        }
+
+        for (int i = 0; i < V + inst->dummy; i++){
+            node->e = e[i]/60;
+            node->l = l[i]/60;
+            node->delta = delta[i];
+            node->profit = profit[i];
+            node->load = w[i];
+            nodeVec.push_back(*node);
+        }
+
+        double **dist = new double*[V + inst->dummy];
+        for (int i= 0; i < V + inst->dummy; i++){
+            dist[i] = new double [V + inst->dummy];
+        }
+
+        for(int i = 0; i < V + inst->dummy; i++){
+            for (int j = 0; j < V + inst->dummy; j++){
+                dist[i][j] = realData[i][j];
+            }
+        }
+        *Mdist = dist;
+        inst->K = K;
+        inst->n = n;
+        inst->m = m;
+        inst->V = V;
+        inst->service = service;
+        inst->T = nodeVec[V + inst->dummy - 1].l;
+
+        delete[] profit;
+        delete[] delta;
+
+    }
+
     if(problem->scen == "1A" || "1B"){
         inst->nCluster = inst->n + inst->K + inst->dummy;
     }
