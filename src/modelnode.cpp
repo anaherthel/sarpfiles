@@ -348,15 +348,12 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	}
 	
 	//creates boolean variable (y_i = 1 if node i is visited; 0 cc)
-	IloArray <IloBoolVarArray> y(env, nodeVec.size()); 
+	IloBoolVarArray y(env, nodeVec.size()); 
 
 	for (int i = 0; i < nodeVec.size(); i++){
-		y[i] = IloBoolVarArray (env, inst->K);
-		for (int k = 0; k < inst->K; k++){
-			sprintf(var, "y(%d,%d)", i, k);
-			y[i][k].setName(var);
-			model.add(y[i][k]);
-		}
+		sprintf(var, "y(%d)", i);
+		y[i].setName(var);
+		model.add(y[i]);
 	}
 
 		// Variable start of service time
@@ -383,7 +380,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	// 	P[i].setName(var);
 	// 	model.add(P[i]);	
 	// }	
-
+//**
 	IloExpr objFunction(env);
 
 	for (int i = 0; i < nas->arcNplus.size(); i++){
@@ -424,8 +421,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		model.add(cons);
 	}
 
-	// //Constraint 2 - Relationship between visit variable and parcel node arcs
-	// //A parcel request can be denied
+	//Constraint 2 - Relationship between visit variable and parcel node arcs
+	//A parcel request can be denied
 
 	for (int i = inst->n; i < inst->n + inst->m; i++){
 
@@ -435,14 +432,15 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 			for (int j = 0; j < nas->arcPlus[i].size(); j++){
 				exp += x[i][nas->arcPlus[i][j].second][k];
 			}
-			exp2 += y[i][k];
 		}
 
+        exp2 += y[i];
 		sprintf (var, "Constraint2_%d", i);
 		IloRange cons = (exp - exp2 == 0);
 		cons.setName(var);
 		model.add(cons);
 	}
+
 
 	// //Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle
 
@@ -515,16 +513,26 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	// //Constraint 7 - tie service begining to node visit
 
-	for (int i = 0; i < inst->V; i++){
-		for (int k = 0; k < inst->K; k++){
-			IloExpr exp(env);
-			exp = b[i] - M * y[i][k]; 
-			sprintf (var, "Constraint7_%d_%d", i, k);
-			IloRange cons = (exp <= 0);
-			cons.setName(var);
-			model.add(cons);
-		}
-	}
+	// for (int i = 0; i < inst->V; i++){
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		IloExpr exp(env);
+	// 		exp = b[i] - M * y[i][k]; 
+	// 		sprintf (var, "Constraint7_%d_%d", i, k);
+	// 		IloRange cons = (exp <= 0);
+	// 		cons.setName(var);
+	// 		model.add(cons);
+	// 	}
+	// }
+
+    for (int i = 0; i < inst->V; i++){
+        IloExpr exp(env);
+        exp = b[i] - M * y[i]; 
+        sprintf (var, "Constraint7_%d", i);
+        IloRange cons = (exp <= 0);
+        cons.setName(var);
+        model.add(cons);
+    }
+
 
 	// //Constraint 8 - service of pickup must come before the delivery
 
@@ -610,47 +618,47 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 	}
 
-	// //Constraint 13 and 14 - sequence constraints
+	// // //Constraint 13 and 14 - sequence constraints
 
-	// for (int i = 0; i < nas->allArcs.size(); i++){
-	// 	IloExpr exp(env);
-	// 	IloExpr exp2(env);
-	// 	IloExpr exp3(env);
-	// 	IloExpr sumX(env);
+	// // for (int i = 0; i < nas->allArcs.size(); i++){
+	// // 	IloExpr exp(env);
+	// // 	IloExpr exp2(env);
+	// // 	IloExpr exp3(env);
+	// // 	IloExpr sumX(env);
 
-	// 	for (int k = 0; k < inst->K; k++){
-	// 		sumX += x[nas->allArcs[i].first][nas->allArcs[i].second][k];
-	// 	}
+	// // 	for (int k = 0; k < inst->K; k++){
+	// // 		sumX += x[nas->allArcs[i].first][nas->allArcs[i].second][k];
+	// // 	}
 
-	// 	exp = P[nas->allArcs[i].first];
-	// 	exp2 = M2*(sumX - 1) + P[nas->allArcs[i].second] - 1;
-	// 	exp3 = M2*(1 - sumX) + P[nas->allArcs[i].second] - 1;
+	// // 	exp = P[nas->allArcs[i].first];
+	// // 	exp2 = M2*(sumX - 1) + P[nas->allArcs[i].second] - 1;
+	// // 	exp3 = M2*(1 - sumX) + P[nas->allArcs[i].second] - 1;
 		
-	// 	sprintf (var, "Constraint13_%d", i);
-	// 	IloRange cons1 = (exp  - exp2 >= 0);
-	// 	cons1.setName(var);
-	// 	model.add(cons1);
+	// // 	sprintf (var, "Constraint13_%d", i);
+	// // 	IloRange cons1 = (exp  - exp2 >= 0);
+	// // 	cons1.setName(var);
+	// // 	model.add(cons1);
 
-	// 	sprintf (var, "Constraint14_%d", i);
-	// 	IloRange cons2 = (exp - exp3 <= 0);
-	// 	cons2.setName(var);
-	// 	model.add(cons2);	
-	// }
+	// // 	sprintf (var, "Constraint14_%d", i);
+	// // 	IloRange cons2 = (exp - exp3 <= 0);
+	// // 	cons2.setName(var);
+	// // 	model.add(cons2);	
+	// // }
 
-	// Constraint 15 - bound number of passenger visits transporting parcel
+	// // Constraint 15 - bound number of passenger visits transporting parcel
 
-	// if (problem->scen == "1A"){
+	// // if (problem->scen == "1A"){
 		
-	// 	for (int i = inst->n; i < inst->n + inst->m; i++){
-	// 		IloExpr exp(env);
-	// 		exp = P[i + inst->m] - P[i] - 1;
+	// // 	for (int i = inst->n; i < inst->n + inst->m; i++){
+	// // 		IloExpr exp(env);
+	// // 		exp = P[i + inst->m] - P[i] - 1;
 
-	// 		sprintf (var, "Constraint15_%d", i);
-	// 		IloRange cons1 = (exp == 1);
-	// 		cons1.setName(var);
-	// 		model.add(cons1);					
-	// 	}
-	// }
+	// // 		sprintf (var, "Constraint15_%d", i);
+	// // 		IloRange cons1 = (exp == 1);
+	// // 		cons1.setName(var);
+	// // 		model.add(cons1);					
+	// // 	}
+	// // }
 
 
 	IloCplex nSARP(model);

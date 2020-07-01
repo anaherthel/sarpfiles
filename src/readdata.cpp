@@ -412,8 +412,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 V++;
             }
         }
-        cout << "temp date size: " << tempData.size();
-        cout << "aux data size: " << auxtempdata.size();
+
 
         double *delta = new double[V + inst->dummy];
         double *profit = new double[V + inst->dummy];
@@ -764,6 +763,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     else if(problem->scen == "2A" || "2B"){
         inst->nCluster = inst->n + inst->K + inst->dummy;
     }
+
+    cout << "\nsize of n: " << inst->n << endl;
+    cout << "\nsize of m: " << inst->m << endl;
 }
 
 double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J){

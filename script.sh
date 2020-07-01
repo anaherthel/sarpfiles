@@ -21,14 +21,14 @@
 #done
 
 dirInstancias='Instances/grubhub'
-output='testserverunsolv1.txt'
+output='tfix2-121A-2B0-30.txt'
 #runs=10
 
 cat /dev/null > $output
 
-for i in 1B 2B
+for i in 1A 2A 1B 2B
 do
-	for j in 30
+	for j in 0 10 20 30
 	do
 		for arquivo in `ls ${dirInstancias}` #lista todos os arquivos na pasta que contem as instancias que vc quer rodar
 		do
