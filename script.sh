@@ -21,12 +21,12 @@
 #done
 
 dirInstancias='Instances/grubhub'
-output='tfix13-151A-2A0-30.txt'
+output='tfix13-151B-2B0-30.txt'
 #runs=10
 
 cat /dev/null > $output
 
-for i in 1A 2A
+for i in 1B 2B
 do
 	for j in 0 10 20 30
 	do

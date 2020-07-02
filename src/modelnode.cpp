@@ -665,7 +665,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	nSARP.exportModel("nSARP.lp");
 	nSARP.setParam(IloCplex::Threads, 8);
     
-	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
+	// nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
 
 	nSARP.solve();
 	cout << "\nSol status: " << nSARP.getStatus() << endl;
