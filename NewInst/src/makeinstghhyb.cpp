@@ -22,12 +22,12 @@
 using namespace std;
 
 
-double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J);
+double CalcDistEuc (double X1, double Y1, double X2, double Y2);
 
 void readData (int argc, char** argv, double ***Mdist);
 
-double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J){
-    return sqrt(pow(Xf[I] - Xs[J], 2) + pow(Yf[I] - Ys[J], 2));
+double CalcDistEuc (double X1, double Y1, double X2, double Y2){
+    return sqrt ( pow ( X1 - X2, 2 ) + pow ( Y1 - Y2, 2 ) );
 }
 
 void readData (int argc, char** argv, double ***Mdist){
@@ -53,9 +53,9 @@ void readData (int argc, char** argv, double ***Mdist){
     int s1;
     int s2;
 
-    pair<int, int> coordinate;
+    pair<double, double> coordinate;
 
-    vector< pair <int, int> > coordVec;
+    vector< pair <double, double> > coordVec;
 
     int refpoint = 2;
 
@@ -67,13 +67,15 @@ void readData (int argc, char** argv, double ***Mdist){
     vector <vector <double> > tempData;
     vector<double> auxtempdata;
 
-    vector< pair <int, int> > start;
+    vector< pair <double, double> > start;
 
     vector <vector <double> > realData;
 
     vector<double> service;
 
     vector< vector<double> > dist;
+
+    vector<double> rowvec;
     char *instance1; 
     char *instance2; 
 
@@ -131,7 +133,6 @@ void readData (int argc, char** argv, double ***Mdist){
         }
 
     }
-
 
     ifstream in2(instance2, ios::in);
 
@@ -196,11 +197,45 @@ void readData (int argc, char** argv, double ***Mdist){
 
     //Adjust coordinates
 
-    for (int i = 0; i < coordVec.size(); i++){
-        for (int j = 0; j < coordVec.size(); j++){
-            dist[i][j] = floor ( CalcDistEuc ( x, y, i, j ) + 0.5 );
+    for (int i = 0; i < n+2*m; i++){
+        if (i < n){
+            service.push_back(0);
+        }
+        for (int j = 0; j < n+2*m; j++){
+            rowvec.push_back(0);
+        }
+        dist.push_back(rowvec);
+        rowvec.clear();
+    }
+
+    for (int i = 0; i < 2*n; i++){
+        if(i % 2 == 0){
+            service[i/2] = floor( CalcDistEuc ( coordVec[i].first, coordVec[i].second, coordVec[i+1].first, coordVec[i+1].second ) + 0.5 );
         }
     }
+
+    cout << "service: " << endl;
+    for (int i = 0; i < service.size(); i++){
+        cout << service[i] << " ";
+    }
+
+    for (int i = 0; i < coordVec.size(); i++){
+        for (int j = 0; j < coordVec.size(); j++){
+
+            dist[i][j] = floor ( CalcDistEuc ( coordVec[i].first, coordVec[i].second, coordVec[j].first, coordVec[j].second ) + 0.5 );
+
+        }
+    }
+
+    cout << "dist matrix: " << endl;
+
+    for (int i = 0; i < dist.size(); i++){
+        for(int j = 0; j < dist[i].size(); j++){
+            cout << setw(5) << dist[i][j] << " "; 
+        }
+        cout << endl;
+    }
+    getchar();
 
 
 
