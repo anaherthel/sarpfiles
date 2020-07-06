@@ -21,14 +21,14 @@
 
 using namespace std;
 
-struct coordSt{
-	string label;
-	double coordx;
-	double coordy;
-};
+
+double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J);
 
 void readData (int argc, char** argv, double ***Mdist);
 
+double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J){
+    return sqrt(pow(Xf[I] - Xs[J], 2) + pow(Yf[I] - Ys[J], 2));
+}
 
 void readData (int argc, char** argv, double ***Mdist){
 
@@ -44,16 +44,18 @@ void readData (int argc, char** argv, double ***Mdist){
         exit(1);
     }  
 
-   	coordSt coordinate;
-
-   	vector<coordSt> coordVec1;
-	vector<coordSt> coordVec2;
+ //   	vector<coordSt> coordVec1;
+	// vector<coordSt> coordVec2;
 
 	string file1;
 	string file2;
 
     int s1;
     int s2;
+
+    pair<int, int> coordinate;
+
+    vector< pair <int, int> > coordVec;
 
     int refpoint = 2;
 
@@ -65,12 +67,13 @@ void readData (int argc, char** argv, double ***Mdist){
     vector <vector <double> > tempData;
     vector<double> auxtempdata;
 
-    vector<double> start;
+    vector< pair <int, int> > start;
 
     vector <vector <double> > realData;
 
     vector<double> service;
 
+    vector< vector<double> > dist;
     char *instance1; 
     char *instance2; 
 
@@ -93,44 +96,42 @@ void readData (int argc, char** argv, double ***Mdist){
 
     n = (s1 - 2)/2;
 
-    for (int i = 0; i < s1; i++){
-        for(int j = 0; j < s1; j++){
-            auxtempdata.push_back(0);
-        }
-        tempData.push_back(auxtempdata);
-        auxtempdata.clear();
-    }
-
-    for (int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            auxtempdata.push_back(0);
-        }
-        realData.push_back(auxtempdata);
-        auxtempdata.clear();
-    }
+    cout << "n: " << n << endl;
+    getchar();
 
     while (file1.compare("NODE_COORD_SECTION") != 0){
         in1 >> file1;
     }
 
-    for (int i = 0; i < s1; i++){
-    	coordVec1.push_back(coordinate);
+    for (int i = 0; i < s1 - 2; i++){
+    	coordVec.push_back(coordinate);
     }
 
 
     for (int i = 0; i < s1; i++){
 
-        in1 >> coordVec1[i].label;
-        in1 >> coordVec1[i].coordx;
-        in1 >> coordVec1[i].coordy;
+        if (i == 0){
+            in1 >> file1;
+            in1 >> coordinate.first;
+            in1 >> coordinate.second;
+            start.push_back(coordinate);
+        }
+
+        else if (i == 1){
+            in1 >> file1;
+            in1 >> file1;
+            in1 >> file1;
+        }
+        
+        else{
+            in1 >> file1;
+            in1 >> coordVec[i - 2].first;
+            in1 >> coordVec[i - 2].second;
+
+        }
 
     }
 
-    cout << "Coords of 1: " << endl;
-   	for (int i = 0; i < coordVec1.size(); i++){
-    	cout << coordVec1[i].label << " " << coordVec1[i].coordx << " " << coordVec1[i].coordy << endl;
-    }
-    getchar();
 
     ifstream in2(instance2, ios::in);
 
@@ -150,37 +151,58 @@ void readData (int argc, char** argv, double ***Mdist){
     getchar();
 
     m = (s2 - 2)/2;
-
-    for (int i = 0; i < s2; i++){
-        for(int j = 0; j < s2; j++){
-            auxtempdata.push_back(0);
-        }
-        tempData.push_back(auxtempdata);
-        auxtempdata.clear();
-    }
+    cout << "m: " << m << endl;
+    getchar();
 
     while (file2.compare("NODE_COORD_SECTION") != 0){
         in2 >> file2;
     }
 
-    for (int i = 0; i < s2; i++){
-    	coordVec2.push_back(coordinate);
+    for (int i = 0; i < s2 - 2; i++){
+    	coordVec.push_back(coordinate);
     }
 
+    for (int i = s1 - 2; i < s1+s2 - 2; i++){
 
-    for (int i = 0; i < s2; i++){
+        if (i == s1 - 2){
+            in2 >> file2;
+            in2 >> coordinate.first;
+            in2 >> coordinate.second;
+            start.push_back(coordinate);
+        }
+        else if (i == s1 - 1){
+            in2 >> file2;
+            in2 >> file2;
+            in2 >> file2;
+        }
 
-        in1 >> coordVec2[i].label;
-        in1 >> coordVec2[i].coordx;
-        in1 >> coordVec2[i].coordy;
-
+        else{
+            in2 >> file2;
+            in2 >> coordVec[i - 2].first;
+            in2 >> coordVec[i - 2].second;            
+        }
     }
 
-    cout << "Coords of 2: " << endl;
-   	for (int i = 0; i < coordVec2.size(); i++){
-    	cout << coordVec2[i].label << " " << coordVec2[i].coordx << " " << coordVec2[i].coordy << endl;
+    cout << "Coords of both: " << endl;
+   	for (int i = 0; i < coordVec.size(); i++){
+    	cout << coordVec[i].first << " " << coordVec[i].second << endl;
     }
     getchar();
+
+    cout << "Starting points: " << endl;
+    for(int i = 0; i < start.size(); i++){
+        cout << start[i].first << " " << start[i].second << endl;
+    }
+
+    //Adjust coordinates
+
+    for (int i = 0; i < coordVec.size(); i++){
+        for (int j = 0; j < coordVec.size(); j++){
+            dist[i][j] = floor ( CalcDistEuc ( x, y, i, j ) + 0.5 );
+        }
+    }
+
+
 
     // for (int i = 0; i < s1; i++) {
     //     for (int j = 0; j < i + 1; j++) {
