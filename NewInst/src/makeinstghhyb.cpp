@@ -74,6 +74,7 @@ void readData (int argc, char** argv, double ***Mdist){
     vector<double> service;
 
     vector< vector<double> > dist;
+    vector< vector<double> > realdist;
 
     vector<double> rowvec;
     char *instance1; 
@@ -184,27 +185,50 @@ void readData (int argc, char** argv, double ***Mdist){
         }
     }
 
+    for(int i = 0; i < start.size(); i++){
+        coordVec.push_back(start[i]);
+    }
+
     cout << "Coords of both: " << endl;
    	for (int i = 0; i < coordVec.size(); i++){
     	cout << coordVec[i].first << " " << coordVec[i].second << endl;
     }
     getchar();
 
-    cout << "Starting points: " << endl;
-    for(int i = 0; i < start.size(); i++){
-        cout << start[i].first << " " << start[i].second << endl;
-    }
+    // cout << "Starting points: " << endl;
+    // for(int i = 0; i < start.size(); i++){
+    //     cout << start[i].first << " " << start[i].second << endl;
+    // }
 
     //Adjust coordinates
 
-    for (int i = 0; i < n+2*m; i++){
+    // for (int i = 0; i < n+2*m; i++){
+    //     if (i < n){
+    //         service.push_back(0);
+    //     }
+    //     for (int j = 0; j < n+2*m; j++){
+    //         rowvec.push_back(0);
+    //     }
+    //     dist.push_back(rowvec);
+    //     rowvec.clear();
+    // }
+
+    for (int i = 0; i < coordVec.size(); i++){
         if (i < n){
             service.push_back(0);
         }
-        for (int j = 0; j < n+2*m; j++){
+        for (int j = 0; j < coordVec.size(); j++){
             rowvec.push_back(0);
         }
         dist.push_back(rowvec);
+        rowvec.clear();
+    }
+
+    for (int i = 0; i < n + 2*m + 2; i++){
+        for (int j = 0; j < n + 2*m + 2; j++){
+            rowvec.push_back(0);
+        }
+        realdist.push_back(rowvec);
         rowvec.clear();
     }
 
@@ -221,9 +245,7 @@ void readData (int argc, char** argv, double ***Mdist){
 
     for (int i = 0; i < coordVec.size(); i++){
         for (int j = 0; j < coordVec.size(); j++){
-
-            dist[i][j] = floor ( CalcDistEuc ( coordVec[i].first, coordVec[i].second, coordVec[j].first, coordVec[j].second ) + 0.5 );
-
+            dist[i][j] = floor ( CalcDistEuc (coordVec[i].first, coordVec[i].second, coordVec[j].first, coordVec[j].second) + 0.5 );                   
         }
     }
 
@@ -232,6 +254,100 @@ void readData (int argc, char** argv, double ***Mdist){
     for (int i = 0; i < dist.size(); i++){
         for(int j = 0; j < dist[i].size(); j++){
             cout << setw(5) << dist[i][j] << " "; 
+        }
+        cout << endl;
+    }
+    getchar();
+
+    
+
+    for (int i = 0; i < n + 2*m + 2; i++){
+        for (int j = 0; j < n + 2*m + 2; j++){
+            if (i == j){
+                realdist[i][j] = 0;
+            }
+            else{
+                if (i < n){
+                    if (j < n){
+                        realdist[i][j] = (dist[2*i+1][2*j]);
+                    }
+                    else{
+                        realdist[i][j] = (dist[2*i+1][n+j]);
+                    }
+                }
+                else{
+                    if (j < n){
+                        realdist[i][j] = (dist[n+i][2*j]);
+                    }
+                    else{
+                        realdist[i][j] = (dist[n+i][n+j]);
+                    }
+                }
+            }
+        }
+    }
+
+    // double x1, x2, y1, y2;
+    // int ci, cj;
+
+    // for (int i = 0; i < n + 2*m; i++){
+    //     for (int j = 0; j < n + 2*m; j++){
+    //         if (i < n){
+    //             if (i % 2 == 0){
+    //                 if (j < n){
+    //                     if (j % 2 == 0){
+    //                         cout << "making matrix: ";
+    //                         cout << i+1 << endl;
+    //                         x1 = coordVec[i+1].first;
+    //                         y1 = coordVec[i+1].second;
+    //                         x2 = coordVec[j].first;
+    //                         y2 = coordVec[j].second;
+                        
+    //                         dist[i][j] = floor ( CalcDistEuc (x1, y1, x2, y2) + 0.5 );                   
+
+    //                         cout << "\nDistance between " << i << " " << j << ": " << dist[ci][cj]; 
+    //                         cout << "\n ci: " << ci << "- cj: " << cj << endl; 
+    //                         getchar();
+    //                     }
+    //                 }
+    //                 else if (j % 2 != 0){
+    //                     continue;
+    //                 }                   
+    //             }
+
+    //             else{
+    //                 continue;
+    //             }
+    //         }
+
+    //         else{
+    //             cout << "making matrix: ";
+    //             cout << i+1 << endl;
+    //             x1 = coordVec[i].first;
+    //             y1 = coordVec[i].second;
+    //             x2 = coordVec[j].first;
+    //             y2 = coordVec[j].second;
+            
+    //             dist[ci][cj] = floor ( CalcDistEuc (x1, y1, x2, y2) + 0.5 );                   
+    //             ci++;
+    //             cj++;
+    //             cout << "\nDistance between " << i << " " << j << ": " << dist[ci][cj]; 
+    //             cout << "\n ci: " << ci << "- cj: " << cj << endl; 
+    //             getchar();             
+    //         }
+    //     }
+
+    // }
+
+
+
+
+
+    cout << "collapsed dist matrix: " << endl;
+
+    for (int i = 0; i < realdist.size(); i++){
+        for(int j = 0; j < realdist[i].size(); j++){
+            cout << setw(5) << realdist[i][j] << " "; 
         }
         cout << endl;
     }
