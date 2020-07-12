@@ -100,7 +100,6 @@ void readData (int argc, char** argv, double ***Mdist){
     n = (s1 - 2)/2;
 
     cout << "n: " << n << endl;
-    getchar();
 
     while (file1.compare("NODE_COORD_SECTION") != 0){
         in1 >> file1;
@@ -150,7 +149,6 @@ void readData (int argc, char** argv, double ***Mdist){
     in2 >> s2;
 
     cout << "s2: " << s2 << endl;
-    getchar();
 
     m = (s2 - 2)/2;
     cout << "m: " << m << endl;
@@ -185,409 +183,135 @@ void readData (int argc, char** argv, double ***Mdist){
         }
     }
 
+
+    cout << "Coords of both: " << endl;
+    for (int i = 0; i < coordVec.size(); i++){
+        cout << i << ": " << coordVec[i].first << " " << coordVec[i].second << endl;
+    }
+    getchar();
+
+    int count;
+    pair<double, double> chosen;
+
+    cout << "Coordvec size: " << coordVec.size() << endl;
+    getchar();
+
+    //rearranging pickup and delivery
+
+    for (int i = 2; i < 2*m; i++){
+        if (i % 2 == 0){
+            count = 1;
+            chosen = coordVec[2*n + i];
+
+            coordVec.erase(coordVec.begin() + 2*n + i);
+            coordVec.insert(coordVec.begin() + 2*n + count, chosen);
+
+            count++;              
+        }
+    }
+
+
     for(int i = 0; i < start.size(); i++){
         coordVec.push_back(start[i]);
     }
 
     cout << "Coords of both: " << endl;
    	for (int i = 0; i < coordVec.size(); i++){
-    	cout << coordVec[i].first << " " << coordVec[i].second << endl;
+    	cout << i << ": " << coordVec[i].first << " " << coordVec[i].second << endl;
     }
     getchar();
 
-    // cout << "Starting points: " << endl;
-    // for(int i = 0; i < start.size(); i++){
-    //     cout << start[i].first << " " << start[i].second << endl;
-    // }
-
-    //Adjust coordinates
-
-    // for (int i = 0; i < n+2*m; i++){
+    // for (int i = 0; i < coordVec.size(); i++){
     //     if (i < n){
     //         service.push_back(0);
     //     }
-    //     for (int j = 0; j < n+2*m; j++){
+    //     for (int j = 0; j < coordVec.size(); j++){
     //         rowvec.push_back(0);
     //     }
     //     dist.push_back(rowvec);
     //     rowvec.clear();
     // }
 
-    for (int i = 0; i < coordVec.size(); i++){
-        if (i < n){
-            service.push_back(0);
-        }
-        for (int j = 0; j < coordVec.size(); j++){
-            rowvec.push_back(0);
-        }
-        dist.push_back(rowvec);
-        rowvec.clear();
-    }
+    // for (int i = 0; i < n + 2*m + 2; i++){
+    //     for (int j = 0; j < n + 2*m + 2; j++){
+    //         rowvec.push_back(0);
+    //     }
+    //     realdist.push_back(rowvec);
+    //     rowvec.clear();
+    // }
 
-    for (int i = 0; i < n + 2*m + 2; i++){
-        for (int j = 0; j < n + 2*m + 2; j++){
-            rowvec.push_back(0);
-        }
-        realdist.push_back(rowvec);
-        rowvec.clear();
-    }
+    // for (int i = 0; i < 2*n; i++){
+    //     if(i % 2 == 0){
+    //         service[i/2] = floor( CalcDistEuc ( coordVec[i].first, coordVec[i].second, coordVec[i+1].first, coordVec[i+1].second ) + 0.5 );
+    //     }
+    // }
 
-    for (int i = 0; i < 2*n; i++){
-        if(i % 2 == 0){
-            service[i/2] = floor( CalcDistEuc ( coordVec[i].first, coordVec[i].second, coordVec[i+1].first, coordVec[i+1].second ) + 0.5 );
-        }
-    }
+    // cout << "service: " << endl;
+    // for (int i = 0; i < service.size(); i++){
+    //     cout << service[i] << " ";
+    // }
 
-    cout << "service: " << endl;
-    for (int i = 0; i < service.size(); i++){
-        cout << service[i] << " ";
-    }
+    // for (int i = 0; i < coordVec.size(); i++){
+    //     for (int j = 0; j < coordVec.size(); j++){
+    //         dist[i][j] = floor ( CalcDistEuc (coordVec[i].first, coordVec[i].second, coordVec[j].first, coordVec[j].second) + 0.5 );                   
+    //     }
+    // }
 
-    for (int i = 0; i < coordVec.size(); i++){
-        for (int j = 0; j < coordVec.size(); j++){
-            dist[i][j] = floor ( CalcDistEuc (coordVec[i].first, coordVec[i].second, coordVec[j].first, coordVec[j].second) + 0.5 );                   
-        }
-    }
+    // cout << "dist matrix: " << endl;
 
-    cout << "dist matrix: " << endl;
+    // for (int i = 0; i < dist.size(); i++){
+    //     for(int j = 0; j < dist[i].size(); j++){
+    //         cout << setw(5) << dist[i][j] << " "; 
+    //     }
+    //     cout << endl;
+    // }
+    // getchar();
 
-    for (int i = 0; i < dist.size(); i++){
-        for(int j = 0; j < dist[i].size(); j++){
-            cout << setw(5) << dist[i][j] << " "; 
-        }
-        cout << endl;
-    }
-    getchar();
+    // cout << "\ncoord Vec size: " << coordVec.size() << endl;
+    // cout << "\ndist size: " << dist.size() << endl;
 
-    
+    // getchar();
 
-    for (int i = 0; i < n + 2*m + 2; i++){
-        for (int j = 0; j < n + 2*m + 2; j++){
-            if (i == j){
-                realdist[i][j] = 0;
-            }
-            else{
-                if (i < n){
-                    if (j < n){
-                        realdist[i][j] = (dist[2*i+1][2*j]);
-                    }
-                    else{
-                        realdist[i][j] = (dist[2*i+1][n+j]);
-                    }
-                }
-                else{
-                    if (j < n){
-                        realdist[i][j] = (dist[n+i][2*j]);
-                    }
-                    else{
-                        realdist[i][j] = (dist[n+i][n+j]);
-                    }
-                }
-            }
-        }
-    }
-
-    // double x1, x2, y1, y2;
-    // int ci, cj;
-
-    // for (int i = 0; i < n + 2*m; i++){
-    //     for (int j = 0; j < n + 2*m; j++){
-    //         if (i < n){
-    //             if (i % 2 == 0){
+    // for (int i = 0; i < n + 2*m + 2; i++){
+    //     for (int j = 0; j < n + 2*m + 2; j++){
+    //         if (i == j){
+    //             realdist[i][j] = 0;
+    //         }
+    //         else{
+    //             if (i < n){
     //                 if (j < n){
-    //                     if (j % 2 == 0){
-    //                         cout << "making matrix: ";
-    //                         cout << i+1 << endl;
-    //                         x1 = coordVec[i+1].first;
-    //                         y1 = coordVec[i+1].second;
-    //                         x2 = coordVec[j].first;
-    //                         y2 = coordVec[j].second;
-                        
-    //                         dist[i][j] = floor ( CalcDistEuc (x1, y1, x2, y2) + 0.5 );                   
-
-    //                         cout << "\nDistance between " << i << " " << j << ": " << dist[ci][cj]; 
-    //                         cout << "\n ci: " << ci << "- cj: " << cj << endl; 
-    //                         getchar();
-    //                     }
+    //                     realdist[i][j] = (dist[2*i+1][2*j]);
     //                 }
-    //                 else if (j % 2 != 0){
-    //                     continue;
-    //                 }                   
+    //                 else{
+    //                     realdist[i][j] = (dist[2*i+1][n+j]);
+    //                 }
     //             }
-
     //             else{
-    //                 continue;
+    //                 if (j < n){
+    //                     realdist[i][j] = (dist[n+i][2*j]);
+    //                 }
+    //                 else{
+    //                     realdist[i][j] = (dist[n+i][n+j]);
+    //                 }
     //             }
     //         }
-
-    //         else{
-    //             cout << "making matrix: ";
-    //             cout << i+1 << endl;
-    //             x1 = coordVec[i].first;
-    //             y1 = coordVec[i].second;
-    //             x2 = coordVec[j].first;
-    //             y2 = coordVec[j].second;
-            
-    //             dist[ci][cj] = floor ( CalcDistEuc (x1, y1, x2, y2) + 0.5 );                   
-    //             ci++;
-    //             cj++;
-    //             cout << "\nDistance between " << i << " " << j << ": " << dist[ci][cj]; 
-    //             cout << "\n ci: " << ci << "- cj: " << cj << endl; 
-    //             getchar();             
-    //         }
-    //     }
-
-    // }
-
-
-
-
-
-    cout << "collapsed dist matrix: " << endl;
-
-    for (int i = 0; i < realdist.size(); i++){
-        for(int j = 0; j < realdist[i].size(); j++){
-            cout << setw(5) << realdist[i][j] << " "; 
-        }
-        cout << endl;
-    }
-    getchar();
-
-
-
-    // for (int i = 0; i < s1; i++) {
-    //     for (int j = 0; j < i + 1; j++) {
-    //         in1 >> tempData[i][j];
-    //         // cout << tempData[i][j];
-    //         // getchar();
-    //         if (i > 0){
-    //             tempData[j][i] = tempData[i][j];                        
-    //         }
     //     }
     // }
 
 
 
- //    // //adjusting rows
- //    // for (int i = 0; i < s1; i++){
- //    //     for (int j = 0; j < refpoint; j++){
- //    //         tempData[s1 + j][i] = tempData[j][i];
- //    //     }
- //    // }
 
- //    // //adjusting columns
- //    // for (int i = 0; i < s1; i++){
- //    //     for (int j = 0; j < refpoint; j++){
- //    //         tempData[i][s1 + j] = tempData[i][j];
- //    //     }
- //    // }
+    // cout << "collapsed dist matrix: " << endl;
 
- //    // //maybe we needed to adjust the corner (relying on the -0 being f)
-
- //    cout << "Matrix1:" << endl;
- //    for (int i = 0; i < s1; i++){
- //   		for(int j = 0; j < s1; j++){
- //   			cout << setw(5) << tempData[i][j] << " ";
- //   		}
- //   		cout << endl;
- //    }
-
-	// cout << endl;
-
-	// getchar();
-
-	// //save starting point
-
-	// for(int i = 0; i < tempData[0].size(); i++){
-	// 	if(i % 2 == 0){
-	// 		start.push_back(tempData[0][i]);
-	// 	}
-	// }
-
-	// //fix starting point
-
-	// start.push_back(start[0]);
-	// start.erase(start.begin());
-
- //    //erase unused
- //    for (int j = 0; j < refpoint; j++){
- //        tempData.erase(tempData.begin());
- //    }
-
- //    for (int i = 0; i < s1; i++){
- //        for (int j = 0; j < refpoint; j++){
- //            tempData[i].erase(tempData[i].begin());
- //        }   
- //    }
-
- //    cout << "Matrix2:" << endl;
- //    for (int i = 0; i < tempData.size(); i++){
- //   		for(int j = 0; j < tempData[i].size(); j++){
- //   			cout << setw(5) << tempData[i][j] << " ";
- //   		}
- //   		cout << endl;
- //    }
-
-	// cout << endl;
-
-	// getchar();
-
- //    // collapsing passenger nodes
-
- //    for (int i = 0; i < n; i++){
- //        for (int j = 0; j < n; j++){
- //            if (i == j){
- //                realData[i][j] = 0;
- //            }
- //            else{
- //              realData[i][j] = (tempData[2*i+1][2*j])/1000;
- //            }
- //        }
- //    }
-
- //    cout << "Matrix3:" << endl;
- //    for (int i = 0; i < realData.size(); i++){
- //   		for(int j = 0; j < realData[i].size(); j++){
- //   			cout << setw(5) << realData[i][j] << " ";
- //   		}
- //   		cout << endl;
- //    }
-
-	// cout << endl;
-
-	// getchar();
-
-
- //    double delta;
-
- //    for(int i = 0; i < n; i++){
- //        // cout << i << ": " << (tempData[2*i][2*i+1]);
- //        delta = (tempData[2*i][2*i+1])/1000;
- //        service.push_back(delta);
- //        // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
- //    }
-
-
-
-    // if (trialK > 1){
-    //     if (trialK >= K){
-    //         K = trialK;
+    // for (int i = 0; i < realdist.size(); i++){
+    //     for(int j = 0; j < realdist[i].size(); j++){
+    //         cout << setw(5) << realdist[i][j] << " "; 
     //     }
-    //     else{
-    //         trialK = K;
-    //     } 
-    //     for (int l = 0; l < K -1; l++){
-    //         vector<double> distRow;
-    //         vector<double> dummyRow;
-
-    //         double valueDist;
-            
-    //         for (int i = 0; i < V + inst->dummy; i++){
-    //             valueDist = realData[i][realData[i].size() - 2];
-    //             realData[i].insert(realData[i].begin() + realData[i].size() - 1, valueDist);
-    //         }
-
-    //         for (int i = 0; i < V + inst->dummy; i++){
-    //             distRow.push_back(realData[V - 1][i]);
-    //             dummyRow.push_back(realData[V][i]);
-    //         }
-    //         distRow.push_back(0);
-    //         dummyRow.push_back(0); 
-
-    //         realData.pop_back();
-
-    //         realData.push_back(distRow);
-    //         realData.push_back(dummyRow);
-    //         V++;
-    //     }
+    //     cout << endl;
     // }
+    // getchar();
 
 
-    // double *delta = new double[V + inst->dummy];
-    // double *profit = new double[V + inst->dummy];
-    // double *e = new double[V + inst->dummy];
-    // double *l = new double[V + inst->dummy];
-    // int *w = new int[V + inst->dummy];      
-
-    // int reference = n;
-    // //calculate deltas
-    // for(int i = 0; i < V + inst->dummy; i++){
-    //     if (i < n){
-    //         // cout << i << ": " << (tempData[2*i][2*i+1]);
-    //         delta[i] = 2 * service + (((tempData[2*i][2*i+1])/1000)/inst->vmed);
-    //         // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
-    //         profit[i] = inst->gamma2 + inst->mu2*(tempData[2*i][2*i+1]/1000) - (tempData[2*i][2*i+1]/1000);    
-    //         w[i] = 0;
-    //     }
-    //     else if (i < V - K){
-    //         delta[i] = service;
-    //         if (i < n + m){
-    //             profit[i] = inst->gamma + inst->mu*(tempData[i + n][i + n + m]/1000);
-    //             w[i] = 1;
-    //         }
-    //         else if (i < n + 2*m){
-    //             profit[i] = 0;
-    //             w[i] = -1;
-    //         }
-    //         else{
-    //            profit[i] = 0;
-    //            w[i] = 0;
-    //         }
-            
-    //     }
-    //     else if (i >= V - K){
-    //         delta[i] = 0;
-    //         profit[i] = 0;
-    //         w[i] = 0;
-    //     }
-    // }
-
-    // for (int i = 0; i < V + inst->dummy; i++){
-    //     if(i < n){
-    //         e[i] = 540 + rand() % 480;
-    //         l[i] = e[i];
-    //     }
-    //     else if (i < V + inst->dummy - 1){
-    //         e[i] = 540;
-    //         l[i] = 1020;
-    //     }
-    //     else{
-    //         e[i] = 0;
-    //         l[i] = 1440;
-    //     }
-    // }
-
-    // for (int i = 0; i < V + inst->dummy; i++){
-    //     node->e = e[i]/60;
-    //     node->l = l[i]/60;
-    //     node->delta = delta[i];
-    //     node->profit = profit[i];
-    //     node->load = w[i];
-    //     nodeVec.push_back(*node);
-    // }
-
-    // double **dist = new double*[V + inst->dummy];
-    // for (int i= 0; i < V + inst->dummy; i++){
-    //     dist[i] = new double [V + inst->dummy];
-    // }
-
-    // for(int i = 0; i < V + inst->dummy; i++){
-    //     for (int j = 0; j < V + inst->dummy; j++){
-    //         dist[i][j] = realData[i][j];
-    //     }
-    // }
-    // *Mdist = dist;
-    // inst->K = K;
-    // inst->n = n;
-    // inst->m = m;
-    // inst->V = V;
-    // inst->service = service;
-    // inst->T = nodeVec[V + inst->dummy - 1].l;
-
-    // delete[] profit;
-    // delete[] delta;
-
-    // ifstream in2(instance2, ios::in);   
 
 
 }

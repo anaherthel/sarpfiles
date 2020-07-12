@@ -342,7 +342,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 				x[i][j][k].setName(var);
 				model.add(x[i][j][k]);
 				// cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
-
 			}
 		}
 	}
@@ -663,7 +662,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
-	nSARP.setParam(IloCplex::Threads, 8);
+	// nSARP.setParam(IloCplex::Threads, 8);
     
 	// nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
 
@@ -761,9 +760,9 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// }
 	// cout << endl;
 
+
 	mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
-	
-	
+
 	if(sStat->feasible){
 		viewSol (inst, mdist, nodeVec, sStat);
 
@@ -771,7 +770,6 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 
 		printStats(inst, sStat);
 	}		
-
 
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
 		delete[] mdist[i];

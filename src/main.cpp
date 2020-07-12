@@ -27,7 +27,9 @@ int main (int argc, char *argv[]) {
 	solStats sStat;
 	vector<nodeStat> nodeVec;
 	sStat.feasible = false;
+	
 
+	
 	while (!sStat.feasible){
 		nodeVec.clear();
 

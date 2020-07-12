@@ -284,8 +284,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         V = n + 2*m + K;
         // cout << "V: " << V << endl;
-        // cout << "\n" << n << " " << m << endl;
-        // getchar();
+        cout << "\nn: " << n << " m: " << m << endl;
+        getchar();
 
         while ( file.compare("EDGE_WEIGHT_FORMAT") != 0 && file.compare("EDGE_WEIGHT_FORMAT") != 0 ){
             in >> file;
@@ -350,6 +350,125 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             for (int j = 0; j < refpoint; j++){
                 tempData[i].erase(tempData[i].begin());
             }   
+        }
+
+        // cout << "\nDistance Matrix BEFORE: " << endl;
+        // getchar();
+        // for (int i = 0; i < tempData.size(); i++){
+        //     for (int j = 0; j < tempData[i].size(); j++){
+        //         cout << setw(5) << tempData[i][j] << " ";
+        //     }
+        //     cout << endl;
+        // }
+        // getchar();
+
+        vector<double> dRow;
+        vector<double> pRow;
+
+        vector< vector<double> > deliveries;
+        vector< vector<double> > pickups;
+
+        for (int i = 0; i < 2*m; i++){
+            for (int j = 0; j < tempData.size(); j++){
+                if (i % 2 != 0){
+                    dRow.push_back(tempData[2*n + i][j]);
+                }
+                else{
+                    pRow.push_back(tempData[2*n + i][j]);
+                }
+            }
+            if (i % 2 != 0){
+                deliveries.push_back(dRow);
+                dRow.clear();
+            }
+            else{
+                pickups.push_back(pRow);
+                pRow.clear();
+            }
+        }
+
+        //Organize columns in dettached rows
+        int count;
+        double chosen;
+
+        for (int j = 0; j < pickups.size(); j++){
+            count = 1;
+            for (int i = 2; i < 2*m; i++){
+                if (i % 2 == 0){
+                    // cout << "First i: " << i << "- j: " << j << endl;
+                    // getchar();
+                    chosen = pickups[j][2*n + i];
+                    // getchar();
+                    // cout << "chosen " << chosen << " i: " << i << "- j: " << j << endl;
+                    // getchar();
+                    pickups[j].erase(pickups[j].begin() + 2*n + i);
+                    pickups[j].insert(pickups[j].begin() + 2*n + count, chosen);
+                    // cout << "\nPickups verify: ";
+                    // for (int k = 0; k < pickups[j].size(); k++){
+                    //     cout << pickups[j][k] << " "; 
+                    // }
+                    // cout << endl;
+                    // getchar();
+                    count++;
+                }
+            }
+        }
+
+
+        for (int j = 0; j < deliveries.size(); j++){
+            count = 1;
+            for (int i = 2; i < 2*m; i++){
+                if (i % 2 == 0){
+                    chosen = deliveries[j][2*n + i];
+                    deliveries[j].erase(deliveries[j].begin() + 2*n + i);
+                    deliveries[j].insert(deliveries[j].begin() + 2*n + count, chosen);
+                    count++;
+                }
+            }
+        }
+
+        for (int j = 0; j < tempData.size(); j++){
+            for (int i = 0; i < 2*m; i++){
+                tempData[j].erase(tempData[j].begin()+2*n); 
+            }
+        }
+
+        tempData.erase(tempData.begin()+2*n, tempData.begin()+2*n+2*m);  
+
+        for (int i = deliveries.size() - 1; i >= 0; i--){
+            tempData.insert(tempData.begin()+2*n, deliveries[i]);
+        }
+
+        for (int i = pickups.size() - 1; i >= 0; i--){
+            tempData.insert(tempData.begin()+2*n, pickups[i]);
+        }
+
+        for (int k = deliveries.size() - 1; k >= 0; k--){
+            for (int j = 0; j < deliveries[k].size(); j++){
+                if (j < 2*n){
+                    tempData[j].insert(tempData[j].begin()+2*n, deliveries[k][j]);
+                }
+                else if (j < 2*n+2*m){
+                    continue;
+                }
+                else{
+                    tempData[j].insert(tempData[j].begin()+2*n, deliveries[k][j]);
+                }
+            }
+        }
+
+        for (int k = pickups.size() - 1; k >= 0; k--){
+            for (int j = 0; j < pickups[k].size(); j++){
+                if (j < 2*n){
+                    tempData[j].insert(tempData[j].begin()+2*n, pickups[k][j]);
+                }
+                else if (j < 2*n+2*m){
+                    continue;
+                }
+                else{
+                    tempData[j].insert(tempData[j].begin()+2*n, pickups[k][j]);
+                }
+            }
         }
 
         //collapsing passenger nodes
@@ -453,6 +572,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
         }
 
+
+
         for (int i = 0; i < V + inst->dummy; i++){
             if(i < n){
                 e[i] = 540 + rand() % 480;
@@ -487,6 +608,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 dist[i][j] = realData[i][j];
             }
         }
+
         *Mdist = dist;
         inst->K = K;
         inst->n = n;
@@ -606,6 +728,115 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             for (int j = 0; j < refpoint; j++){
                 tempData[i].erase(tempData[i].begin());
             }   
+        }
+
+        vector<double> dRow;
+        vector<double> pRow;
+
+        vector< vector<double> > deliveries;
+        vector< vector<double> > pickups;
+
+        for (int i = 0; i < 2*m; i++){
+            for (int j = 0; j < tempData.size(); j++){
+                if (i % 2 != 0){
+                    dRow.push_back(tempData[2*n + i][j]);
+                }
+                else{
+                    pRow.push_back(tempData[2*n + i][j]);
+                }
+            }
+            if (i % 2 != 0){
+                deliveries.push_back(dRow);
+                dRow.clear();
+            }
+            else{
+                pickups.push_back(pRow);
+                pRow.clear();
+            }
+        }
+        
+        //Organize columns in dettached rows
+        int count;
+        double chosen;
+
+        for (int j = 0; j < pickups.size(); j++){
+            count = 1;
+            for (int i = 2; i < 2*m; i++){
+                if (i % 2 == 0){
+                    // cout << "First i: " << i << "- j: " << j << endl;
+                    // getchar();
+                    chosen = pickups[j][2*n + i];
+                    // getchar();
+                    // cout << "chosen " << chosen << " i: " << i << "- j: " << j << endl;
+                    // getchar();
+                    pickups[j].erase(pickups[j].begin() + 2*n + i);
+                    pickups[j].insert(pickups[j].begin() + 2*n + count, chosen);
+                    // cout << "\nPickups verify: ";
+                    // for (int k = 0; k < pickups[j].size(); k++){
+                    //     cout << pickups[j][k] << " "; 
+                    // }
+                    // cout << endl;
+                    // getchar();
+                    count++;
+                }
+            }
+        }
+
+
+        for (int j = 0; j < deliveries.size(); j++){
+            count = 1;
+            for (int i = 2; i < 2*m; i++){
+                if (i % 2 == 0){
+                    chosen = deliveries[j][2*n + i];
+                    deliveries[j].erase(deliveries[j].begin() + 2*n + i);
+                    deliveries[j].insert(deliveries[j].begin() + 2*n + count, chosen);
+                    count++;
+                }
+            }
+        }
+
+        for (int j = 0; j < tempData.size(); j++){
+            for (int i = 0; i < 2*m; i++){
+                tempData[j].erase(tempData[j].begin()+2*n); 
+            }
+        }
+
+        tempData.erase(tempData.begin()+2*n, tempData.begin()+2*n+2*m);  
+
+        for (int i = deliveries.size() - 1; i >= 0; i--){
+            tempData.insert(tempData.begin()+2*n, deliveries[i]);
+        }
+
+        for (int i = pickups.size() - 1; i >= 0; i--){
+            tempData.insert(tempData.begin()+2*n, pickups[i]);
+        }
+
+        for (int k = deliveries.size() - 1; k >= 0; k--){
+            for (int j = 0; j < deliveries[k].size(); j++){
+                if (j < 2*n){
+                    tempData[j].insert(tempData[j].begin()+2*n, deliveries[k][j]);
+                }
+                else if (j < 2*n+2*m){
+                    continue;
+                }
+                else{
+                    tempData[j].insert(tempData[j].begin()+2*n, deliveries[k][j]);
+                }
+            }
+        }
+
+        for (int k = pickups.size() - 1; k >= 0; k--){
+            for (int j = 0; j < pickups[k].size(); j++){
+                if (j < 2*n){
+                    tempData[j].insert(tempData[j].begin()+2*n, pickups[k][j]);
+                }
+                else if (j < 2*n+2*m){
+                    continue;
+                }
+                else{
+                    tempData[j].insert(tempData[j].begin()+2*n, pickups[k][j]);
+                }
+            }
         }
 
         //collapsing passenger nodes
