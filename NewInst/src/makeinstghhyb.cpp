@@ -193,23 +193,16 @@ void readData (int argc, char** argv, double ***Mdist){
     int count;
     pair<double, double> chosen;
 
-    cout << "Coordvec size: " << coordVec.size() << endl;
-    getchar();
-
     //rearranging pickup and delivery
-
+    count = 1;
     for (int i = 2; i < 2*m; i++){
         if (i % 2 == 0){
-            count = 1;
             chosen = coordVec[2*n + i];
-
             coordVec.erase(coordVec.begin() + 2*n + i);
             coordVec.insert(coordVec.begin() + 2*n + count, chosen);
-
-            count++;              
+            count++;
         }
     }
-
 
     for(int i = 0; i < start.size(); i++){
         coordVec.push_back(start[i]);

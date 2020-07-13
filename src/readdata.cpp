@@ -284,8 +284,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         V = n + 2*m + K;
         // cout << "V: " << V << endl;
-        cout << "\nn: " << n << " m: " << m << endl;
-        getchar();
+        cout << "\nn: " << n << " m: " << m << endl; 
+
 
         while ( file.compare("EDGE_WEIGHT_FORMAT") != 0 && file.compare("EDGE_WEIGHT_FORMAT") != 0 ){
             in >> file;

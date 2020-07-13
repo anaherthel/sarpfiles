@@ -35,7 +35,11 @@ CONCERTLIBDIR = $(CONCERTDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
 #GUROBILIB =$(GUROBIDIR)/lib/
 
 #### define o compilador
+#office
+#CPPC = g++-4.8
+#home/laser
 CPPC = g++
+
 #############################
 
 #### opcoes de compilacao e includes
