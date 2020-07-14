@@ -532,7 +532,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
         }
 
-
         double *delta = new double[V + inst->dummy];
         double *profit = new double[V + inst->dummy];
         double *e = new double[V + inst->dummy];
@@ -571,8 +570,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 w[i] = 0;
             }
         }
-
-
 
         for (int i = 0; i < V + inst->dummy; i++){
             if(i < n){
@@ -987,6 +984,184 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] delta;
 
     }
+
+    else if (instType == "hybgrub"){
+
+        // bool increaseK = false;
+        // K = 2;
+        service = 5; //for some reason, service = 5/60 did not work
+        service = service/60;
+        int refpoint = K + 1;
+        int V;
+        dummy = 1;
+        inst->dummy = dummy;
+        inst->vmed = 19.3;
+
+        int seed = 1234;
+        srand(seed);
+
+        vector <vector <double> > realData;
+        vector<double> auxvec;
+
+        vector<double> serviceVec;
+
+        in >> file;
+        in >> V;
+        in >> file;
+        in >> n;
+        in >> file;
+        in >> m;
+        in >> file;
+        in >> K;
+        in >> file;
+
+        for (int i = 0; i < n; i++){
+            serviceVec.push_back(0);
+        }
+
+        for (int i = 0; i < n; i++){
+            in >> serviceVec[i];
+            serviceVec[i] = serviceVec[i]/1000;
+        }
+        
+       
+        for (int i = 0; i < V + inst->dummy; i++){
+            for(int j = 0; j < V + inst->dummy; j++){
+                auxvec.push_back(0);
+            }
+            realData.push_back(auxvec);
+            auxvec.clear();
+        }
+
+        in >> file >> file;
+        
+        for (int i = 0; i < V + inst->dummy; i++) {
+            for (int j = 0; j < V + inst->dummy; j++) {
+                in >> realData[i][j];
+                realData[i][j] = realData[i][j]/1000;
+            }
+        }
+
+        if (trialK > 2){
+            if (trialK >= K){
+                K = trialK;
+            }
+            else{
+                trialK = K;
+            } 
+            for (int l = 0; l < K - 1; l++){
+                vector<double> distRow;
+                vector<double> dummyRow;
+
+                double valueDist;
+                
+                for (int i = 0; i < V + inst->dummy; i++){
+                    valueDist = realData[i][realData[i].size() - 3];
+                    realData[i].insert(realData[i].begin() + realData[i].size() - 1, valueDist);
+                }
+
+                for (int i = 0; i < V + inst->dummy; i++){
+                    distRow.push_back(realData[V - 1][i]);
+                    dummyRow.push_back(realData[V][i]);
+                }
+                distRow.push_back(0);
+                dummyRow.push_back(0); 
+
+                realData.pop_back();
+
+                realData.push_back(distRow);
+                realData.push_back(dummyRow);
+                V++;
+            }
+        }
+
+        double *delta = new double[V + inst->dummy];
+        double *profit = new double[V + inst->dummy];
+        double *e = new double[V + inst->dummy];
+        double *l = new double[V + inst->dummy];
+        int *w = new int[V + inst->dummy]; 
+        
+        for(int i = 0; i < V + inst->dummy; i++){
+            if (i < n){
+                // cout << i << ": " << (tempData[2*i][2*i+1]);
+                delta[i] = 2 * service + (serviceVec[i]/inst->vmed);
+                // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
+                profit[i] = inst->gamma2 + inst->mu2*(serviceVec[i]) - (serviceVec[i]);    
+                w[i] = 0;
+            }
+            else if (i < V - K){
+                delta[i] = service;
+                if (i < n + m){
+                    profit[i] = inst->gamma + inst->mu*(realData[i][i + m]);
+                    w[i] = 1;
+                }
+                else if (i < n + 2*m){
+                    profit[i] = 0;
+                    w[i] = -1;
+                }
+                else{
+                   profit[i] = 0;
+                   w[i] = 0;
+                }
+                
+            }
+            else if (i >= V - K){
+                delta[i] = 0;
+                profit[i] = 0;
+                w[i] = 0;
+            }
+        }
+
+        double **dist = new double*[V + inst->dummy];
+        for (int i= 0; i < V + inst->dummy; i++){
+            dist[i] = new double [V + inst->dummy];
+        }
+
+        for(int i = 0; i < V + inst->dummy; i++){
+            for (int j = 0; j < V + inst->dummy; j++){
+                dist[i][j] = realData[i][j];
+            }
+        }
+
+        *Mdist = dist;
+        inst->K = K;
+        inst->n = n;
+        inst->m = m;
+        inst->V = V;
+        inst->service = service;
+        inst->T = nodeVec[V + inst->dummy - 1].l;
+   
+        for (int i = 0; i < V + inst->dummy; i++){
+            if(i < n){
+                e[i] = 540 + rand() % 480;
+                l[i] = e[i];
+            }
+            else if (i < V + inst->dummy - 1){
+                e[i] = 540;
+                l[i] = 1020;
+            }
+            else{
+                e[i] = 0;
+                l[i] = 1440;
+            }
+        }
+
+        for (int i = 0; i < V + inst->dummy; i++){
+            node->e = e[i]/60;
+            node->l = l[i]/60;
+            node->delta = delta[i];
+            node->profit = profit[i];
+            node->load = w[i];
+            nodeVec.push_back(*node);
+        }
+
+        delete[] profit;
+        delete[] delta;
+        delete[] w;
+        delete[] e;
+        delete[] l;
+    }
+
 
     if(problem->scen == "1A" || "1B"){
         inst->nCluster = inst->n + inst->K + inst->dummy;

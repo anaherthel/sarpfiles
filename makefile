@@ -4,8 +4,8 @@ ifeq ($(N_BITS),32)
    SYSTEM  = x86_sles10_4.1
    BITS_OPTION = -m32
 else
-   SYSTEM  = x86-64_sles10_4.1
-#   SYSTEM = x86-64_linux
+   #SYSTEM  = x86-64_sles10_4.1
+   SYSTEM = x86-64_linux
    
    BITS_OPTION = -m64
 endif
@@ -14,17 +14,17 @@ endif
 LIBFORMAT = static_pic
 
 ####diretorios com as libs do cplex
-CPLEXDIR      = /usr/ilog/cplex
+#CPLEXDIR      = /usr/ilog/cplex
 
 #CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio127/cplex
 #Use this on office pc
-#CPLEXDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/cplex
+CPLEXDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/cplex
 
-CONCERTDIR    = /usr/ilog/concert
+#CONCERTDIR    = /usr/ilog/concert
 #CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio127/concert
 
 #Use this on office pc
-#CONCERTDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/concert
+CONCERTDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/concert
 
 CPLEXLIBDIR   = $(CPLEXDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
 CONCERTLIBDIR = $(CONCERTDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
@@ -36,9 +36,9 @@ CONCERTLIBDIR = $(CONCERTDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
 
 #### define o compilador
 #office
-#CPPC = g++-4.8
+CPPC = g++-4.8
 #home/laser
-CPPC = g++
+#CPPC = g++
 
 #############################
 
