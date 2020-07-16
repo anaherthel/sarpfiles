@@ -16,15 +16,19 @@ LIBFORMAT = static_pic
 ####diretorios com as libs do cplex
 #CPLEXDIR      = /usr/ilog/cplex
 
-#CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio127/cplex
+CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio127/cplex
 #Use this on office pc
-CPLEXDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/cplex
+#CPLEXDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/cplex
+#HPLaptop
+#CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio1210/cplex
 
 #CONCERTDIR    = /usr/ilog/concert
-#CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio127/concert
+CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio127/concert
 
 #Use this on office pc
-CONCERTDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/concert
+#CONCERTDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/concert
+#HPLaptop
+#CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio1210/concert
 
 CPLEXLIBDIR   = $(CPLEXDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
 CONCERTLIBDIR = $(CONCERTDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
@@ -36,9 +40,9 @@ CONCERTLIBDIR = $(CONCERTDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
 
 #### define o compilador
 #office
-CPPC = g++-4.8
+#CPPC = g++-4.8
 #home/laser
-#CPPC = g++
+CPPC = g++
 
 #############################
 
@@ -52,7 +56,7 @@ CCFLAGS = $(CCOPT) -I$(CPLEXINCDIR) -I$(CONCERTINCDIR) #-I$(GUROBIINC)
 #### flags do linker
 #CCLNFLAGS = -L$(CPLEXLIBDIR) -lilocplex -lcplex -L$(CONCERTLIBDIR) -lconcert -L$(GUROBILIB) -lgurobi_c++ -lgurobi55 -lgmpxx -lgmp -lm -lpthread        #Without lgmpxx  
 #CCLNFLAGS = -L$(CPLEXLIBDIR) -lilocplex -lcplex -L$(CONCERTLIBDIR) -lconcert -L$(GUROBILIB) -lgurobi_c++ -lgurobi55 -lm -lpthread        #Without lgmpxx        
-CCLNFLAGS = -L$(CPLEXLIBDIR) -lilocplex -lcplex -L$(CONCERTLIBDIR) -lconcert -lm -lpthread                                                         #Without Gurobi and lgmpxx
+CCLNFLAGS = -L$(CPLEXLIBDIR) -lilocplex -lcplex -L$(CONCERTLIBDIR) -lconcert -lm -lpthread -ldl                                                         #Without Gurobi and lgmpxx
 #############################
 
 #### diretorios com os source files e com os objs files

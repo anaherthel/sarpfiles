@@ -1080,7 +1080,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double *e = new double[V + inst->dummy];
         double *l = new double[V + inst->dummy];
         int *w = new int[V + inst->dummy]; 
-        
+
         for(int i = 0; i < V + inst->dummy; i++){
             if (i < n){
                 // cout << i << ": " << (tempData[2*i][2*i+1]);
@@ -1111,26 +1111,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 w[i] = 0;
             }
         }
-
-        double **dist = new double*[V + inst->dummy];
-        for (int i= 0; i < V + inst->dummy; i++){
-            dist[i] = new double [V + inst->dummy];
-        }
-
-        for(int i = 0; i < V + inst->dummy; i++){
-            for (int j = 0; j < V + inst->dummy; j++){
-                dist[i][j] = realData[i][j];
-            }
-        }
-
-        *Mdist = dist;
-        inst->K = K;
-        inst->n = n;
-        inst->m = m;
-        inst->V = V;
-        inst->service = service;
-        inst->T = nodeVec[V + inst->dummy - 1].l;
-   
+ 
         for (int i = 0; i < V + inst->dummy; i++){
             if(i < n){
                 e[i] = 540 + rand() % 480;
@@ -1155,11 +1136,33 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
 
+        double **dist = new double*[V + inst->dummy];
+        for (int i= 0; i < V + inst->dummy; i++){
+            dist[i] = new double [V + inst->dummy];
+        }
+
+
+        for(int i = 0; i < V + inst->dummy; i++){
+            for (int j = 0; j < V + inst->dummy; j++){
+                dist[i][j] = realData[i][j];
+            }
+        }
+
+        *Mdist = dist;
+        inst->K = K;
+        inst->n = n;
+        inst->m = m;
+        inst->V = V;
+        inst->service = service;
+        inst->T = nodeVec[V + inst->dummy - 1].l;
+
+
         delete[] profit;
         delete[] delta;
         delete[] w;
         delete[] e;
         delete[] l;
+
     }
 
 

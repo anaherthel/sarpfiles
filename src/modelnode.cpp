@@ -314,6 +314,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	long W = 2*inst->m + 1;
 	int Q;
  	
+    
+
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
 
