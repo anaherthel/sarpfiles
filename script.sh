@@ -33,7 +33,7 @@ do
 		echo "Solving: " ${arquivo} ":" >> $output #output pra saber que instancia ta sendo rodada
 		echo "Scenario: " $i >> $output
 		echo "ParcelP: " $j >> $output
-		./exeSARP ${dirInstancias}/${arquivo} $i $j node >> $output
+		./exeSARP ${dirInstancias}/${arquivo} $i 0 node >> $output
 	done
 done
 
