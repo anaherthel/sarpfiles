@@ -1085,12 +1085,14 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             if (i < n){
                 // cout << i << ": " << (tempData[2*i][2*i+1]);
                 delta[i] = 2 * service + (serviceVec[i]/inst->vmed);
+
                 // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
                 profit[i] = inst->gamma2 + inst->mu2*(serviceVec[i]) - (serviceVec[i]);    
                 w[i] = 0;
             }
             else if (i < V - K){
                 delta[i] = service;
+
                 if (i < n + m){
                     profit[i] = inst->gamma + inst->mu*(realData[i][i + m]);
                     w[i] = 1;
@@ -1126,7 +1128,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 l[i] = 1440;
             }
         }
+        
+        for (int i = 0; i < V + inst->dummy; i++){
+            cout << "\nearlier times: " << i << ": "<< e[i] << endl;    
+        }
 
+        getchar();
+        
         for (int i = 0; i < V + inst->dummy; i++){
             node->e = e[i]/60;
             node->l = l[i]/60;
@@ -1156,6 +1164,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->service = service;
         inst->T = nodeVec[V + inst->dummy - 1].l;
 
+
+        cout << "\nhyb instance: K: " << inst->K << " -n: " << inst->n << " -m: " << inst->m << " -V: " << inst->V << " -T: " << endl;
+        getchar();
 
         delete[] profit;
         delete[] delta;
