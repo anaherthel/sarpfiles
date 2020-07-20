@@ -28,6 +28,8 @@ void readData (int argc, char** argv, double ***Mdist);
 
 string getInstanceType (char **argv, int i);
 
+string getInstanceType2 (char **argv, int i);
+
 double CalcDistEuc (double X1, double Y1, double X2, double Y2){
     return sqrt ( pow ( X1 - X2, 2 ) + pow ( Y1 - Y2, 2 ) );
 }
@@ -89,7 +91,7 @@ void readData (int argc, char** argv, double ***Mdist){
     instance2 = argv[2];
 
     it1 = getInstanceType(argv, 1);
-    it2 = getInstanceType(argv, 2);
+    it2 = getInstanceType2(argv, 2);
 
     // cout << "\nit1: " << it1 << " - it2: " << it2 << endl;
     // getchar();
@@ -160,7 +162,9 @@ void readData (int argc, char** argv, double ***Mdist){
 
         in2 >> s2;
 
-        m = (s2 - 2)/2;
+        // m = (s2 - 2)/2;
+        m = 3;
+        s2 = m*2 + 2;
 
         while (file2.compare("NODE_COORD_SECTION") != 0){
             in2 >> file2;
@@ -281,6 +285,31 @@ void readData (int argc, char** argv, double ***Mdist){
         rowvec.push_back(0);
         realdist.push_back(rowvec);
 
+        // //to screen
+
+        // cout << "DIMENSION: " << n + 2*m + 2;
+        // cout << "\nN: " << n;
+        // cout << "\nM: " << m;
+        // cout << "\nK: " << 2;
+
+        // cout << endl;
+
+        // cout << "\nSERVICE: " << endl;
+        // for (int i = 0; i < service.size(); i++){
+        //     cout << service[i] << " ";
+        // }
+        // cout << endl;
+
+        // cout << "\nDIST MATRIX: " << endl;
+
+        // for (int i = 0; i < realdist.size(); i++){
+        //     for(int j = 0; j < realdist[i].size(); j++){
+        //         cout << setw(5) << realdist[i][j] << " "; 
+        //     }
+        //     cout << endl;
+        // }
+        // getchar();
+
         //output
         string outputname;
 
@@ -328,6 +357,23 @@ string getInstanceType (char **argv, int i){
     string InstanceType;
 
     InstanceType.append(filename, loc+1, loc2-loc-1 );
+
+    return InstanceType;
+}
+
+string getInstanceType2 (char **argv, int i){
+
+    string filename(argv[i]);
+
+    string::size_type loc = filename.find_last_of("-");
+
+    string::size_type loc2 = filename.find_last_of(".", filename.size());
+    string InstanceType;
+    
+    InstanceType.append("03-");
+    
+    InstanceType.append(filename, loc+1, loc2-loc-1 );
+
 
     return InstanceType;
 }

@@ -1129,11 +1129,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
         }
         
-        for (int i = 0; i < V + inst->dummy; i++){
-            cout << "\nearlier times: " << i << ": "<< e[i] << endl;    
-        }
+        // for (int i = 0; i < V + inst->dummy; i++){
+        //     cout << "\nearlier times: " << i << ": "<< e[i] << endl;    
+        // }
 
-        getchar();
+        // getchar();
         
         for (int i = 0; i < V + inst->dummy; i++){
             node->e = e[i]/60;
@@ -1165,8 +1165,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->T = nodeVec[V + inst->dummy - 1].l;
 
 
-        cout << "\nhyb instance: K: " << inst->K << " -n: " << inst->n << " -m: " << inst->m << " -V: " << inst->V << " -T: " << endl;
-        getchar();
+        // cout << "\nhyb instance: K: " << inst->K << " -n: " << inst->n << " -m: " << inst->m << " -V: " << inst->V << " -T: " << endl;
+        // getchar();
 
         delete[] profit;
         delete[] delta;
