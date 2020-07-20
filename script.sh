@@ -21,7 +21,7 @@
 #done
 
 dirInstancias='Instances/hybgrub'
-output='thyb20-301A-2B.txt'
+output='thyb181A-2B.txt'
 #runs=10
 
 cat /dev/null > $output
