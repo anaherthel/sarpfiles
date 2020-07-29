@@ -1014,8 +1014,8 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 	makeBundles(inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, problem);
 
 	
-    cout << "\nNumber of Vehicles: " << inst->K;
-    getchar();
+    // cout << "\nNumber of Vehicles: " << inst->K;
+    // getchar();
 
     cout << "\nBundle Vector: [";
 	for (int i = 0; i < bStat.bundleVec.size(); i++){

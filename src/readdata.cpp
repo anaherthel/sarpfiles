@@ -1056,14 +1056,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 trialK = K;
             }
 
-            cout << "\nnumber of K: " << K << endl;
-            getchar();
-
-
             for (int valK = 3; valK <= K; valK++){
-
-                cout << "\nhere";
-                getchar();
 
                 if (valK % 2 != 0){
                      
@@ -1078,17 +1071,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                         realData[i].insert(realData[i].begin() + realData[i].size() - 1, valueDist);
                     }
 
-                    cout << "\nSize of real data: " << realData.size() << endl;
-                    getchar();
-                    cout << "\nNumber 1: Distance Matrix (inside read data): " << endl;
+                    // cout << "\nSize of real data: " << realData.size() << endl;
+                    // getchar();
+                    // cout << "\nNumber 1: Distance Matrix (inside read data): " << endl;
 
-                    for (int i = 0; i < realData.size(); i++){
-                        for (int j = 0; j < realData[i].size(); j++){
-                            cout << setw(5) << realData[i][j] << " ";
-                        }
-                        cout << endl;
-                    }
-                    getchar();
+                    // for (int i = 0; i < realData.size(); i++){
+                    //     for (int j = 0; j < realData[i].size(); j++){
+                    //         cout << setw(5) << realData[i][j] << " ";
+                    //     }
+                    //     cout << endl;
+                    // }
+                    // getchar();
 
                     for (int i = 0; i < V + inst->dummy; i++){
                         distRow.push_back(realData[posK1][i]);
@@ -1114,17 +1107,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                         realData[i].insert(realData[i].begin() + realData[i].size() - 1, valueDist);
                     }
 
-                    cout << "\nSize of real data: " << realData.size() << endl;
-                    getchar();
-                    cout << "\nNumber 2: Distance Matrix (inside read data): " << endl;
+                    // cout << "\nSize of real data: " << realData.size() << endl;
+                    // getchar();
+                    // cout << "\nNumber 2: Distance Matrix (inside read data): " << endl;
 
-                    for (int i = 0; i < realData.size(); i++){
-                        for (int j = 0; j < realData[i].size(); j++){
-                            cout << setw(5) << realData[i][j] << " ";
-                        }
-                        cout << endl;
-                    }
-                    getchar();
+                    // for (int i = 0; i < realData.size(); i++){
+                    //     for (int j = 0; j < realData[i].size(); j++){
+                    //         cout << setw(5) << realData[i][j] << " ";
+                    //     }
+                    //     cout << endl;
+                    // }
+                    // getchar();
 
                     for (int i = 0; i < V + inst->dummy; i++){
                         distRow.push_back(realData[V - 1][i]);
@@ -1139,20 +1132,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     realData.push_back(dummyRow);
                     V++;
                 }
-                cout << "\nhere2";
-                getchar();
             }
             
 
-            cout << "\nDistance Matrix (inside read data): " << endl;
+            // cout << "\nDistance Matrix (inside read data): " << endl;
 
-            for (int i = 0; i < realData.size(); i++){
-                for (int j = 0; j < realData[i].size(); j++){
-                    cout << setw(5) << realData[i][j] << " ";
-                }
-                cout << endl;
-            }
-            getchar();
+            // for (int i = 0; i < realData.size(); i++){
+            //     for (int j = 0; j < realData[i].size(); j++){
+            //         cout << setw(5) << realData[i][j] << " ";
+            //     }
+            //     cout << endl;
+            // }
+            // getchar();
         }
 
         double *delta = new double[V + inst->dummy];
