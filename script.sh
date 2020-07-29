@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#dirInstancias='Instances/grubhub'
-#output='testgh2505.txt'
+#dirInstancias='Instances/sf_data'
+#output='test.txt'
 ##runs=10
 
 #cat /dev/null > $output
@@ -20,8 +20,8 @@
 #	done
 #done
 
-dirInstancias='Instances/hybgrub'
-output='thybbundle18-301A.txt'
+dirInstancias='Instances/sf_data'
+output='tsfdatalarge.txt'
 #runs=10
 
 cat /dev/null > $output

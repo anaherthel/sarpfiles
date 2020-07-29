@@ -1607,7 +1607,7 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
 	IloCplex bSARP(model);
 	bSARP.exportModel("bSARP.lp");
-    bSARP.setParam(IloCplex::Threads, 8);
+	bSARP.setParam(IloCplex::Threads, 8);
 
 	bSARP.solve();
 	cout << "\nSol status: " << bSARP.getStatus() << endl;
