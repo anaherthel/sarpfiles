@@ -178,45 +178,6 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
         inst->endCluster = delNodes.size() + 1;
         inst->startCluster = pickNodes.size() + 1;
     }
-
-//*******
-//For 1B:
-//*******
-    // else if (problem->scen == "1B"){
-    //     int counter = 0;
-    //     for (int i = 0; i < inst->n; i++){
-    //         bStat->bundle.push_back(i);
-    //         bStat->bundleVec.push_back(bStat->bundle);
-    //         // clusters.push_back(bStat->bundle);
-    //         clusters.push_back(bStat->bundleVec.size()-1);
-    //         bStat->bundle.clear();
-    //         for (int j = 0; j < clsParcel[i].size(); j++){
-    //             bStat->bundle.push_back(clsParcel[i][j]);
-    //             bStat->bundle.push_back(i);
-    //             bStat->bundle.push_back(clsParcel[i][j]+inst->m);
-    //             bStat->bundleTimes.push_back(nodeVec[clsParcel[i][j]].delta + nodeVec[i].delta + nodeVec[clsParcel[i][j]+inst->m].delta);
-    //             bStat->bundleVec.push_back(bStat->bundle);
-    //             // clusters.push_back(bStat->bundle);
-    //             clusters.push_back(bStat->bundleVec.size()-1);
-    //             bStat->bundle.clear();
-    //         }
-    //         clusterVec.push_back(clusters);
-    //         clusters.clear();
-    //     }
-
-    //     for (int i = 2*inst->m + inst->n; i < nodeVec.size(); i++){
-    //         bStat->bundle.push_back(i);
-    //         bStat->bundleVec.push_back(bStat->bundle);
-    //         // clusters.push_back(bStat->bundle);
-    //         clusters.push_back(bStat->bundleVec.size()-1);
-    //         bStat->bundle.clear();
-            
-    //         clusterVec.push_back(clusters);
-    //         clusters.clear();
-    //     }
-    // }
-
-
 }
 
 void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
@@ -986,6 +947,34 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
         cout << endl;
     }
     cout << endl;
+
+    cout << "\nSolution structure: " << endl;
+    for (int k = 0; k < inst->K; k++){
+        cout << "Vehicle " << k << ": ";
+        for (int i = 0; i < sStat->solInNode[k].size(); i++){
+            if (i < sStat->solInNode[k].size() - 1){
+                if (sStat->solInNode[k][i] < inst->n){
+                    cout << "d" << " - ";
+                }
+                else if (sStat->solInNode[k][i] < inst->n + inst->m){
+                    cout << "P" << " - ";
+                }
+                else if (sStat->solInNode[k][i] < inst->n + 2*inst->m){
+                    cout << "D" << " - ";
+                }
+                else if (sStat->solInNode[k][i] < inst->n + 2*inst->m + inst->K){
+                    cout << "S" << " - ";
+                }                                      
+            }
+            else{
+
+                cout << "f";
+            }
+        }
+        cout << endl;
+    }
+    cout << endl;   
+    // getchar(); 
     // getchar();
 }
 
@@ -1021,18 +1010,14 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 
 	makeSmallerProblem(inst, nodeVec, mdist, p, clsParcel, problem, Q);
 
- // 	cout << "\nDistance Matrix: " << endl;
-
-	// for (int i = 0; i < inst->V + inst->dummy; i++){
-	// 	for (int j = 0; j < inst->V + inst->dummy; j++){
-	// 		cout << setw(5) << mdist[i][j] << " ";
-	// 	}
-	// 	cout << endl;
-	// }
 
 	makeBundles(inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, problem);
 
-	cout << "\nBundle Vector: [";
+	
+    cout << "\nNumber of Vehicles: " << inst->K;
+    getchar();
+
+    cout << "\nBundle Vector: [";
 	for (int i = 0; i < bStat.bundleVec.size(); i++){
 		cout << "[";
 		for (int j = 0; j < bStat.bundleVec[i].size(); j++){
@@ -1044,6 +1029,8 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 		cout << "],";
 	}
 	cout << "]" << endl;
+
+
 
 
 	if (problem->scen == "1A"){
@@ -1108,13 +1095,13 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 	makeBundleReference(inst, mdist, nodeVec, &bStat);
 
 
-	cout << "\nBundle Service Times: ";
-	for (int i = 0; i < bStat.bundleServVec.size(); i++){
-		cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
-	}
-	cout << endl;
+	// cout << "\nBundle Service Times: ";
+	// for (int i = 0; i < bStat.bundleServVec.size(); i++){
+	// 	cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
+	// }
+	// cout << endl;
 
-	getchar();
+	// getchar();
 
 
 	feasibleBundleArcs(inst, mdist, nodeVec, &bStat, p, problem);
@@ -1220,7 +1207,7 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 
 		solStatIni(sStat);
 
-		mipSolStats (inst, mdist, nodeVec, sStat);
+		mipSolStats2 (inst, mdist, &bStat, nodeVec, sStat);
 
 		// // cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
 
@@ -1231,6 +1218,168 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 		delete[] mdist[i];
 	}
 	delete[] mdist;
+}
+
+void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
+
+    int load;
+    double distPass;
+    // load = 0;
+    double dij;
+    int currNode;
+    int nextNode;
+    
+    for (int k = 0; k < inst->K; k++){
+        load = 0;
+        for (int i = 0; i < sStat->solInNode[k].size() - 2; i++){
+            // dij = mdist[sStat->solInNode[k][i]][sStat->solInNode[k][i + 1]];
+            currNode = sStat->solInNode[k][i];
+            nextNode = sStat->solInNode[k][i + 1];
+            dij = mdist[currNode][nextNode];
+            if(currNode < inst->n){
+                if(nextNode < inst->n){
+                    if (load > 0){
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tBoth += nodeVec[nextNode].delta;   
+
+                        sStat->dParcel += dij;
+                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                        sStat->dBoth += distPass;
+                    }  
+                    else{
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tPass += nodeVec[nextNode].delta;
+
+                        sStat->dNone += dij;
+                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                        sStat->dPass += distPass;
+                    }
+                }
+
+                else if (sStat->solInNode[k][i + 1] < inst->n + inst->m){
+                    if (load > 0){
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+                        load++;
+
+                        sStat->dParcel += dij;
+                    }  
+                    else{
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+                        load++;
+
+                        sStat->dNone += dij;
+                    }
+                }
+
+                else if (sStat->solInNode[k][i + 1] < inst->n + 2*inst->m){
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load--;
+
+                    sStat->dParcel += dij;
+                }
+            }
+            else if (currNode < inst->n + inst->m){
+                if (nextNode < inst->n){
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tBoth += nodeVec[nextNode].delta;
+
+                    sStat->dParcel += dij;
+                    distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                    sStat->dBoth += distPass;  
+                }
+                else if(nextNode < inst->n + inst->m){
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load++;
+
+                    sStat->dParcel += dij;         
+                }
+                else if (nextNode < inst->n + 2*inst->m){
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load--;
+
+                    sStat->dParcel += dij;
+                }
+            }
+            else if (currNode < inst->n + 2*inst->m){
+                if(nextNode < inst->n){
+                    if (load > 0){
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tBoth += nodeVec[nextNode].delta; 
+
+                        sStat->dParcel += dij;
+                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                        sStat->dBoth += distPass;                           
+                    }  
+                    else{
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tPass += nodeVec[nextNode].delta;
+
+                        sStat->dNone += dij;
+                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                        sStat->dPass += distPass;
+                                               
+                    }   
+                }
+                else if(nextNode < inst->n + inst->m){
+                    if (load > 0){
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+                        load++;
+
+                        sStat->dParcel += dij;
+                    }  
+                    else{
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+                        load++;
+
+                        sStat->dNone += dij;
+                    }                  
+                }
+                else if (nextNode < inst->n + 2*inst->m){
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load--;
+
+                    sStat->dParcel += dij;
+                }
+            }
+            else{
+                if(nextNode < inst->n){
+                    sStat->tNone += dij/inst->vmed;
+                    sStat->tPass += nodeVec[nextNode].delta;
+                    load = 0;
+
+                    sStat->dNone += dij;
+                    distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                    sStat->dPass += distPass;  
+                }
+                else if(nextNode < inst->n + inst->m){
+                    sStat->tNone += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load++;
+
+                    sStat->dNone += dij;
+                }
+            }
+            // cout << "\nTotal passenger time: " << sStat->tPass << endl;
+            // cout << "\nTotal parcel time: " << sStat->tParcel << endl;
+            // cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
+            // cout << "\nTotal idle time: " << sStat->tNone << endl;
+
+            // cout << "\nTotal passenger distance: " << sStat->dPass << endl;
+            // cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
+            // cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
+            // cout << "\nTotal idle distance: " << sStat->dNone << endl;
+            // getchar();
+
+        }
+    }
 }
 
 void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat){
@@ -1458,6 +1607,7 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
 	IloCplex bSARP(model);
 	bSARP.exportModel("bSARP.lp");
+    bSARP.setParam(IloCplex::Threads, 8);
 
 	bSARP.solve();
 	cout << "\nSol status: " << bSARP.getStatus() << endl;
