@@ -21,7 +21,7 @@
 #done
 
 dirInstancias='Instances/hygrub'
-output='thyb181A-2B.txt'
+output='thybbundle18-301A.txt'
 #runs=10
 
 cat /dev/null > $output
