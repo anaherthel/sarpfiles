@@ -20,8 +20,8 @@
 #	done
 #done
 
-dirInstancias='Instances/sf_data'
-output='tsfdatalarge.txt'
+dirInstancias='Instances/hygrub'
+output='thyb181A-2B.txt'
 #runs=10
 
 cat /dev/null > $output
