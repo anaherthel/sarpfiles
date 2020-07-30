@@ -20,7 +20,7 @@
 #	done
 #done
 
-dirInstancias='Instances/hygrub'
+dirInstancias='Instances/hybgrub'
 output='thybbundle18-301A.txt'
 #runs=10
 
