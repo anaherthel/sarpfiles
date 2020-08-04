@@ -737,9 +737,9 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
         cout << endl;
 
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
-        }
+//        for (int i = 0; i < nodeVec.size(); i++){
+  //          cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
+    //    }
 
 
         for (int i = 0; i < nodeVec.size(); i++){
@@ -772,14 +772,14 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
 	// }
 
-	cout << "\nDistance Matrix: " << endl;
+//	cout << "\nDistance Matrix: " << endl;
 
-	for (int i = 0; i < inst->V + inst->dummy; i++){
-		for (int j = 0; j < inst->V + inst->dummy; j++){
-			cout << setw(5) << mdist[i][j] << " ";
-		}
-		cout << endl;
-	}
+//	for (int i = 0; i < inst->V + inst->dummy; i++){
+//		for (int j = 0; j < inst->V + inst->dummy; j++){
+//			cout << setw(5) << mdist[i][j] << " ";
+//		}
+//		cout << endl;
+//	}
 	// getchar();
 
 	initArcs(inst, &nas);
