@@ -32,6 +32,7 @@ struct solStats{
 	double tPass;
 	double tBoth;
 	double tNone;
+	double tStill;
 
 	double dParcel;
 	double dPass;
@@ -41,6 +42,9 @@ struct solStats{
     vector< vector<int> > solOrder;
 	vector< vector<int> > solInNode;
 	vector< vector< pair<int, int> > > solvec;
+
+	vector<double> solBegin;
+	vector<double> solLoad;
 
 	bool feasible;
 };

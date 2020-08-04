@@ -239,8 +239,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] slatitude;
         delete[] slongitude;
         delete[] flatitude;
-        delete[] flongitude;
-   
+        delete[] flongitude;   
     }
 
     else if (instType == "grubhub"){
@@ -594,6 +593,21 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
 
+        // cout << "\nLoad vector: " << endl;
+
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << i << ": " << nodeVec[i].load << " ||| " << endl;
+        // }
+        // getchar();
+
+        // cout << "\nDelta vector: " << endl;
+
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << i << ": " << nodeVec[i].delta << " || ";
+        // }
+        // cout << endl;
+        // getchar();
+
         double **dist = new double*[V + inst->dummy];
         for (int i= 0; i < V + inst->dummy; i++){
             dist[i] = new double [V + inst->dummy];
@@ -615,7 +629,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         delete[] profit;
         delete[] delta;
+        
+        // cout << "\nStarting times: " << endl;
 
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << i << ": " << nodeVec[i].e << " || ";
+        // }
     }
 
     else if (instType == "grubhub2"){

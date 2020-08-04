@@ -8,13 +8,15 @@ void solStatIni(solStats *sStat){
     sStat->tPass = 0;
     sStat->tBoth = 0;
     sStat->tNone = 0;
-
+    sStat->tStill = 0;
+    
     sStat->dParcel = 0;
     sStat->dPass = 0;
     sStat->dBoth = 0;
     sStat->dNone = 0;
 
     sStat->solOrder.clear();
+
     // sStat->solOrder.clear();
     // sStat->solvec.clear();
 }
@@ -25,6 +27,8 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
     double distPass;
     // load = 0;
     double dij;
+    double stop;
+    double tij;
     int currNode;
     int nextNode;
     
@@ -35,6 +39,18 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
             currNode = sStat->solOrder[k][i];
             nextNode = sStat->solOrder[k][i + 1];
             dij = mdist[currNode][nextNode];
+            tij = mdist[currNode][nextNode]/inst->vmed;
+            stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+            
+            // cout << "b - " << currNode << ": " << sStat->solBegin[currNode] << "; b - " << nextNode << ": " << sStat->solBegin[nextNode] << "; delta: " << nodeVec[currNode].delta << endl;
+            // getchar();
+
+            sStat->tStill += stop;
+
+            // cout << "\nTesting idle still time: " << endl;
+            // cout << "tij: " << tij << " || stop: " << stop << " || sStat->tStill: " << sStat->tStill << endl;
+            // getchar();
+
             if(currNode < inst->n){
                 if(nextNode < inst->n){
                     if (load > 0){
@@ -166,6 +182,8 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                     sStat->dNone += dij;
                 }
             }
+
+
             // cout << "\nTotal passenger time: " << sStat->tPass << endl;
             // cout << "\nTotal parcel time: " << sStat->tParcel << endl;
             // cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
@@ -188,14 +206,20 @@ void printStats(instanceStat *inst, solStats *sStat){
         cout << "\nTotal passenger time: " << sStat->tPass << endl;
         cout << "\nTotal parcel time: " << sStat->tParcel << endl;
         cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
-        cout << "\nTotal idle time: " << sStat->tNone << endl;
+        cout << "\nTotal idle time driving: " << sStat->tNone << endl;
 
         cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
         cout << "\nTotal passenger distance: " << sStat->dPass << endl;
         cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
         cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
         cout << "\nTotal idle distance: " << sStat->dNone << endl;
+
+        cout << "\nTotal idle time still: " << sStat->tStill << endl;
+
+        cout << "\nComplete idle time: " << sStat->tStill + sStat->tNone << endl;
     // }
+
 }
+
 
 

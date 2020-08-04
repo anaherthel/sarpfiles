@@ -311,10 +311,10 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	int currSP;
 	long M = 2*inst->T;
 	long M2 = 2*(inst->n + inst->m + 1);
-	long W = 2*inst->m + 1;
+	long W = inst->m + 1;
 	int Q;
  	
-    
+
 
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
@@ -367,6 +367,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	//Load variable
 	IloNumVarArray w(env, nodeVec.size(), 0, Q);
+
 	for (int i = 0; i < nodeVec.size(); i++){
 		sprintf(var, "w(%d)", i);
 		w[i].setName(var);
@@ -563,26 +564,33 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	}
 
-	// //Constraints 10 - load constraints
+	//Constraints 10 - load constraints
 
-	for (int i = 0; i < nas->arcnf.size(); i++){
+	for (int i = 0; i < nas->allArcs.size(); i++){
 		
 		IloExpr exp(env);
 		IloExpr exp2(env);
 		IloExpr sumX(env);
+
 		for (int k = 0; k < inst->K; k++){
-			sumX += x[nas->arcnf[i].first][nas->arcnf[i].second][k];
+			sumX += x[nas->allArcs[i].first][nas->allArcs[i].second][k];
 		}
-		exp = w[nas->arcnf[i].first] + nodeVec[nas->arcnf[i].first].load - W*(1 - sumX);
-		exp2 = w[nas->arcnf[i].second];
-		sprintf (var, "Constraint10_%d", i);
-		IloRange cons1 = (exp - exp2 <= 0);
+
+		exp = w[nas->allArcs[i].first] + nodeVec[nas->allArcs[i].second].load - W*(1 - sumX);
+		exp2 = w[nas->allArcs[i].second];
+		
+        sprintf (var, "Constraint10_%d_%d", nas->allArcs[i].first, nas->allArcs[i].second);
+		
+        IloRange cons1 = (exp2 - exp >= 0);
 		cons1.setName(var);
 		model.add(cons1);
 	}
+
+
+
 	//Constraints 11 and 12 - bound the service beginning time by the earlier and later service times for each node
 
-	for (int i = 0; i < inst->n; i++){
+	for (int i = 0; i < nodeVec.size(); i++){
 		for (int k = 0; k < inst->K; k++){
 			IloExpr exp(env);
 			exp = b[i];
@@ -618,6 +626,16 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 		}
 	}
+
+    //test constraint
+
+    IloExpr exp(env);
+    exp = w[nodeVec.size()-1];
+
+    sprintf (var, "Constraint14");
+    IloRange cons1 = (exp == 0);
+    cons1.setName(var);
+    model.add(cons1);
 
 	// // //Constraint 13 and 14 - sequence constraints
 
@@ -703,6 +721,40 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 			}
 		}
 
+
+        // for (int i = 0; i < inst->V + inst->dummy; i++){
+        //     sStat->solBegin.push_back(0);
+        // }
+
+        for (int i = 0; i < nodeVec.size(); i++){
+            if (nSARP.getValue(b[i]) > 0.5){
+                sStat->solBegin.push_back(nSARP.getValue(b[i]));
+            }
+            else {
+                sStat->solBegin.push_back(0);
+            }
+        }
+
+        cout << endl;
+
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
+        }
+
+
+        for (int i = 0; i < nodeVec.size(); i++){
+            if (nSARP.getValue(w[i]) > 0.5){
+                sStat->solLoad.push_back(nSARP.getValue(w[i]));
+            }
+            else {
+                sStat->solLoad.push_back(0);
+            }
+        }
+
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << "w(" << i << "): " << sStat->solLoad[i] << endl;
+        // }
+
 	}
 
 	env.end();
@@ -720,14 +772,14 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
 	// }
 
-	// cout << "\nDistance Matrix: " << endl;
+	cout << "\nDistance Matrix: " << endl;
 
-	// for (int i = 0; i < inst->V + inst->dummy; i++){
-	// 	for (int j = 0; j < inst->V + inst->dummy; j++){
-	// 		cout << setw(5) << mdist[i][j] << " ";
-	// 	}
-	// 	cout << endl;
-	// }
+	for (int i = 0; i < inst->V + inst->dummy; i++){
+		for (int j = 0; j < inst->V + inst->dummy; j++){
+			cout << setw(5) << mdist[i][j] << " ";
+		}
+		cout << endl;
+	}
 	// getchar();
 
 	initArcs(inst, &nas);
