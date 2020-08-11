@@ -1386,7 +1386,7 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
         }
     }
 
-    stillTimeBundle(inst, mdist, bStat, nodeVec, sStat);
+    // stillTimeBundle(inst, mdist, bStat, nodeVec, sStat);
 
 }
 
@@ -1659,61 +1659,61 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	env.end();
 }
 
-void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
+// void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
 
 
-    double stillTime = 0;
-    double tij;
-    double tbegin;
+//     double stillTime = 0;
+//     double tij;
+//     double tbegin;
 
-    int currNode;
-    int nextNode;
+//     int currNode;
+//     int nextNode;
 
-//  tij = mdist[currNode][nextNode]/inst->vmed;
+// //  tij = mdist[currNode][nextNode]/inst->vmed;
 
 
-    vector<double> beginTimes;
+//     vector<double> beginTimes;
 
-    for (int i = 0; i < nodeVec.size(); i++){
-        if (i < inst->n){
-            beginTimes.push_back(nodeVec[i].e);
-        }
-        else{
-            beginTimes.push_back(0);
-        }
+//     for (int i = 0; i < nodeVec.size(); i++){
+//         if (i < inst->n){
+//             beginTimes.push_back(nodeVec[i].e);
+//         }
+//         else{
+//             beginTimes.push_back(0);
+//         }
 
-    }   
+//     }   
 
-    for (int k = 0; k < inst->K; k++){
-        for (int i = 0; i < sStat->solInNode[k].size() - 2; i++){
-            currNode = sStat->solOrder[k][i];
-            nextNode = sStat->solOrder[k][i + 1];
+//     for (int k = 0; k < inst->K; k++){
+//         for (int i = 0; i < sStat->solInNode[k].size() - 2; i++){
+//             currNode = sStat->solOrder[k][i];
+//             nextNode = sStat->solOrder[k][i + 1];
 
-            if (currNode < inst->n){
-                if(nextNode < inst->V - inst->K - 1){
-                    // beginTimes[nextNode] = beginTimes[currNode]
-                    continue;
-                }
-                else if (nextNode < inst->V - inst->K){
-                    beginTimes[nextNode] = nodeVec[nextNode].e;
-                }
-                else{
-                    beginTimes[nextNode] = nodeVec[nextNode].e;
-                }
-            }
-            else if (currNode < 2*inst->m){
+//             if (currNode < inst->n){
+//                 if(nextNode < inst->V - inst->K - 1){
+//                     // beginTimes[nextNode] = beginTimes[currNode]
+//                     continue;
+//                 }
+//                 else if (nextNode < inst->V - inst->K){
+//                     beginTimes[nextNode] = nodeVec[nextNode].e;
+//                 }
+//                 else{
+//                     beginTimes[nextNode] = nodeVec[nextNode].e;
+//                 }
+//             }
+//             else if (currNode < 2*inst->m){
 
-            }
-            else{
+//             }
+//             else{
 
-            }
+//             }
 
-        }
-    }
+//         }
+//     }
 
-    for (int i = 0 ; i < beginTimes.size(); i++){
-        cout << i << ": " << beginTimes[i] << " ";
-    }
-    getchar();
+//     for (int i = 0 ; i < beginTimes.size(); i++){
+//         cout << i << ": " << beginTimes[i] << " ";
+//     }
+//     getchar();
 
-} 
+// } 
