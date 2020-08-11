@@ -630,11 +630,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] profit;
         delete[] delta;
         
-        // cout << "\nStarting times: " << endl;
+        cout << "\nStarting times: " << endl;
 
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << i << ": " << nodeVec[i].e << " || ";
-        // }
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << i << ": " << nodeVec[i].e << " || ";
+        }
     }
 
     else if (instType == "grubhub2"){

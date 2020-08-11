@@ -1017,18 +1017,18 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     // cout << "\nNumber of Vehicles: " << inst->K;
     // getchar();
 
-    cout << "\nBundle Vector: [";
-	for (int i = 0; i < bStat.bundleVec.size(); i++){
-		cout << "[";
-		for (int j = 0; j < bStat.bundleVec[i].size(); j++){
-			cout << setw(3) << std:: right << bStat.bundleVec[i][j];
-			if (j < bStat.bundleVec[i].size() - 1){
-                cout << ", ";
-            }
-		}
-		cout << "],";
-	}
-	cout << "]" << endl;
+ //    cout << "\nBundle Vector: [";
+	// for (int i = 0; i < bStat.bundleVec.size(); i++){
+	// 	cout << "[";
+	// 	for (int j = 0; j < bStat.bundleVec[i].size(); j++){
+	// 		cout << setw(3) << std:: right << bStat.bundleVec[i][j];
+	// 		if (j < bStat.bundleVec[i].size() - 1){
+ //                cout << ", ";
+ //            }
+	// 	}
+	// 	cout << "],";
+	// }
+	// cout << "]" << endl;
 
 
 
@@ -1228,14 +1228,18 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
     double dij;
     int currNode;
     int nextNode;
-    
+
+    double stop;
+    double tij;
+
     for (int k = 0; k < inst->K; k++){
         load = 0;
         for (int i = 0; i < sStat->solInNode[k].size() - 2; i++){
             // dij = mdist[sStat->solInNode[k][i]][sStat->solInNode[k][i + 1]];
             currNode = sStat->solInNode[k][i];
             nextNode = sStat->solInNode[k][i + 1];
-            dij = mdist[currNode][nextNode];
+            dij = mdist[currNode][nextNode];            
+
             if(currNode < inst->n){
                 if(nextNode < inst->n){
                     if (load > 0){
@@ -1367,6 +1371,7 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                     sStat->dNone += dij;
                 }
             }
+
             // cout << "\nTotal passenger time: " << sStat->tPass << endl;
             // cout << "\nTotal parcel time: " << sStat->tParcel << endl;
             // cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
@@ -1380,6 +1385,9 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
 
         }
     }
+
+    stillTimeBundle(inst, mdist, bStat, nodeVec, sStat);
+
 }
 
 void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat){
@@ -1644,9 +1652,68 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 			}
 		}		
 	   
-   
+
 
     }
 
 	env.end();
 }
+
+void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
+
+
+    double stillTime = 0;
+    double tij;
+    double tbegin;
+
+    int currNode;
+    int nextNode;
+
+//  tij = mdist[currNode][nextNode]/inst->vmed;
+
+
+    vector<double> beginTimes;
+
+    for (int i = 0; i < nodeVec.size(); i++){
+        if (i < inst->n){
+            beginTimes.push_back(nodeVec[i].e);
+        }
+        else{
+            beginTimes.push_back(0);
+        }
+
+    }   
+
+    for (int k = 0; k < inst->K; k++){
+        for (int i = 0; i < sStat->solInNode[k].size() - 2; i++){
+            currNode = sStat->solOrder[k][i];
+            nextNode = sStat->solOrder[k][i + 1];
+
+            if (currNode < inst->n){
+                if(nextNode < inst->V - inst->K - 1){
+                    // beginTimes[nextNode] = beginTimes[currNode]
+                    continue;
+                }
+                else if (nextNode < inst->V - inst->K){
+                    beginTimes[nextNode] = nodeVec[nextNode].e;
+                }
+                else{
+                    beginTimes[nextNode] = nodeVec[nextNode].e;
+                }
+            }
+            else if (currNode < 2*inst->m){
+
+            }
+            else{
+
+            }
+
+        }
+    }
+
+    for (int i = 0 ; i < beginTimes.size(); i++){
+        cout << i << ": " << beginTimes[i] << " ";
+    }
+    getchar();
+
+} 
