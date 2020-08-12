@@ -21,12 +21,12 @@
 #done
 
 dirInstancias='Instances/hybgrub'
-output='ttimesnode1A-2Bs18.txt'
+output='tbundles1As18.txt'
 #runs=10
 
 cat /dev/null > $output
 
-for i in 1A 2A 1B 2B
+for i in 1A
 do
 	#for j in 0 10 20 30
 	#do	
