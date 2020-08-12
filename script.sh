@@ -21,7 +21,7 @@
 #done
 
 dirInstancias='Instances/hybgrub'
-output='tbundles1As18.txt'
+output='tbundles1As20.txt'
 #runs=10
 
 cat /dev/null > $output
