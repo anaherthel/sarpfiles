@@ -1251,16 +1251,16 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                         sStat->dBoth += distPass;
                     }  
                     else{
-                        sStat->tNone += dij/inst->vmed;
+                        sStat->tNoneP += dij/inst->vmed;
                         sStat->tPass += nodeVec[nextNode].delta;
 
-                        sStat->dNone += dij;
+                        sStat->dNoneP += dij;
                         distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
                         sStat->dPass += distPass;
                     }
                 }
 
-                else if (sStat->solInNode[k][i + 1] < inst->n + inst->m){
+                else if (nextNode < inst->n + inst->m){
                     if (load > 0){
                         sStat->tParcel += dij/inst->vmed;
                         sStat->tParcel += inst->service;
@@ -1269,15 +1269,15 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                         sStat->dParcel += dij;
                     }  
                     else{
-                        sStat->tNone += dij/inst->vmed;
+                        sStat->tNoneG += dij/inst->vmed;
                         sStat->tParcel += inst->service;
                         load++;
 
-                        sStat->dNone += dij;
+                        sStat->dNoneG += dij;
                     }
                 }
 
-                else if (sStat->solInNode[k][i + 1] < inst->n + 2*inst->m){
+                else if (nextNode < inst->n + 2*inst->m){
                     sStat->tParcel += dij/inst->vmed;
                     sStat->tParcel += inst->service;
                     load--;
@@ -1320,10 +1320,10 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                         sStat->dBoth += distPass;                           
                     }  
                     else{
-                        sStat->tNone += dij/inst->vmed;
+                        sStat->tNoneP += dij/inst->vmed;
                         sStat->tPass += nodeVec[nextNode].delta;
 
-                        sStat->dNone += dij;
+                        sStat->dNoneP += dij;
                         distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
                         sStat->dPass += distPass;
                                                
@@ -1338,11 +1338,11 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                         sStat->dParcel += dij;
                     }  
                     else{
-                        sStat->tNone += dij/inst->vmed;
+                        sStat->tNoneG += dij/inst->vmed;
                         sStat->tParcel += inst->service;
                         load++;
 
-                        sStat->dNone += dij;
+                        sStat->dNoneG += dij;
                     }                  
                 }
                 else if (nextNode < inst->n + 2*inst->m){
@@ -1355,20 +1355,20 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
             }
             else{
                 if(nextNode < inst->n){
-                    sStat->tNone += dij/inst->vmed;
+                    sStat->tNoneP += dij/inst->vmed;
                     sStat->tPass += nodeVec[nextNode].delta;
                     load = 0;
 
-                    sStat->dNone += dij;
+                    sStat->dNoneP += dij;
                     distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
                     sStat->dPass += distPass;  
                 }
                 else if(nextNode < inst->n + inst->m){
-                    sStat->tNone += dij/inst->vmed;
+                    sStat->tNoneG += dij/inst->vmed;
                     sStat->tParcel += inst->service;
                     load++;
 
-                    sStat->dNone += dij;
+                    sStat->dNoneG += dij;
                 }
             }
 
