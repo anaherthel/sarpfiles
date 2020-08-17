@@ -255,7 +255,7 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
 void printStats(instanceStat *inst, solStats *sStat){
     // for (int i = 0; i < inst->K; i++){
 
-        cout << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone << endl;
+        cout << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNoneP + sStat->tNoneG << endl;
         cout << "\nTotal passenger time: " << sStat->tPass << endl;
         cout << "\nTotal parcel time: " << sStat->tParcel << endl;
         cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
@@ -263,7 +263,7 @@ void printStats(instanceStat *inst, solStats *sStat){
         cout << "\nTotal idle time goods: " << sStat->tNoneG << endl;
 
 
-        cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
+        cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNoneP + sStat->tNoneG << endl;
         cout << "\nTotal passenger distance: " << sStat->dPass << endl;
         cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
         cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
