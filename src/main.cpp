@@ -19,7 +19,7 @@ using namespace std;
 int main (int argc, char *argv[]) {
 	double **distMatrix;
 	
-	int trialK = 1;
+	int trialK = 2;
 
 	nodeStat node;
 	instanceStat inst;
