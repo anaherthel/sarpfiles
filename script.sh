@@ -63,7 +63,7 @@ do
 done
 
 dirInstancias='Instances/hyb30'
-output='bttimesH25.txt'
+output='bttimesH30.txt'
 #runs=10
 
 cat /dev/null > $output

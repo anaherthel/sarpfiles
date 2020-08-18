@@ -1003,7 +1003,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     }
 
-    else if (instType == "hybgrub"){
+    else if (instType == "hybgrub" || instType == "hyb20" || instType == "hyb25" || instType == "hyb30"){
 
         // bool increaseK = false;
         // K = 2;
