@@ -13,13 +13,14 @@
 #include "functions.h"
 #include "modelnode.h"
 #include "modelbundle.h"
+#include "modeltwostage.h"
 
 using namespace std;
 
 int main (int argc, char *argv[]) {
 	double **distMatrix;
 	
-	int trialK = 2;
+	int trialK = 1;
 
 	nodeStat node;
 	instanceStat inst;
@@ -30,7 +31,7 @@ int main (int argc, char *argv[]) {
 	
 
 	
-	while (!sStat.feasible){
+	// while (!sStat.feasible){
 		nodeVec.clear();
 
 		readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK);
@@ -42,15 +43,19 @@ int main (int argc, char *argv[]) {
 		else if (problem.model == "bundle"){
 			bundleMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
 		}
+
+		else if (problem.model == "twostage"){
+			twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			
+		}
 		
 		if (trialK < inst.n){
 			trialK++;	
 		}
-		else{
-			break;
-		}
+		// else{
+		// 	break;
+		// }
 
-	}
+	// }
 
 	return 0;
 }

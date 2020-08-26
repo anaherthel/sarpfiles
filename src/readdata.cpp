@@ -1,6 +1,7 @@
 #include "readdata.h"
 #include "functions.h"
 #include "modelnode.h"
+#include "modeltwostage.h"
 #include <cstdlib>
 #include <stdio.h>
 //maybe later it is necessary to add the maximum driving time.
@@ -209,6 +210,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->yf = vyf[i];
             node->delta = delta[i];
             node->profit = profit[i];
+            node->index = i;
             nodeVec.push_back(*node);
         }
 
@@ -223,6 +225,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->yf = 0;
             node->delta = 0;
             node->profit = 0;
+            node->index = V + i;
             nodeVec.push_back(*node);
         }
 
@@ -581,7 +584,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             else{
                 e[i] = 0;
                 l[i] = 1440;
-            }
+            } 
         }
 
         for (int i = 0; i < V + inst->dummy; i++){
@@ -590,6 +593,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->delta = delta[i];
             node->profit = profit[i];
             node->load = w[i];
+            node->index = i;
             nodeVec.push_back(*node);
         }
 
@@ -630,11 +634,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] profit;
         delete[] delta;
         
-        cout << "\nStarting times: " << endl;
+        // cout << "\nStarting times: " << endl;
 
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << i << ": " << nodeVec[i].e << " || ";
-        }
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << i << ": " << nodeVec[i].e << " || ";
+        // }
     }
 
     else if (instType == "grubhub2"){
@@ -977,6 +981,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->delta = delta[i];
             node->profit = profit[i];
             node->load = w[i];
+            node->index = i;
             nodeVec.push_back(*node);
         }
 
@@ -1231,6 +1236,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->delta = delta[i];
             node->profit = profit[i];
             node->load = w[i];
+            node->index = i;
             nodeVec.push_back(*node);
         }
 

@@ -15,25 +15,6 @@ void initArcs (instanceStat *inst, nodeArcsStruct *nas){
         nas->arcMinus.push_back(auxPairVec);
         auxVec.clear();
     }
-
-
-    // cout << "Node arcs all false: " << endl;
-    // for (int i = 0; i < nas->arcs.size(); i++){
-    //     if (i == 0){
-    //         cout << setw(3) << " ";
-    //     }
-    //     cout << setw(3) << std::right << i << " ";
-    // }
-    // cout << endl;
-    // for(int i = 0; i < nas->arcs.size(); i++){
-    //     cout << setw(3) << std::right << i;
-    //     for(int j = 0; j < nas->arcs[i].size(); j++){
-    //         cout << setw(3) << nas->arcs[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
-    // cout << endl;
-    // getchar();
 }
 
 void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
@@ -56,6 +37,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                         nas->arcnf.push_back(nas->fArc);
                     }
                 }
+
                 for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
@@ -79,6 +61,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                     nas->arcnf.push_back(nas->fArc);
                 }
             }
+
             else if (i < inst->n + 2*inst->m){// i is a parcel delivery node
                 for (int j = 0; j < inst->n + inst->m; j++){//j is a passenger node or parcel pickup node
                     if (j + inst->m != i){
