@@ -91,9 +91,6 @@ void prepVecs(instanceStat *inst, tsArcsStruct *tsas, vector<nodeStat> &p1vec, v
 
 }
 
-
-
-
 void mipts(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat){
 	//MIP
 	//Creating environment and model 

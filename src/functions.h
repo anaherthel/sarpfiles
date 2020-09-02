@@ -31,16 +31,16 @@ struct solStats{
 	double tParcel;
 	double tPass;
 	double tBoth;
-	double tNoneP;
-	double tNoneG;
+	double tNone;
+
 	double tStillP;
 	double tStillG;
+	double tStill;
 
 	double dParcel;
 	double dPass;
 	double dBoth;
-	double dNoneP;
-	double dNoneG;
+	double dNone;
 
     vector< vector<int> > solOrder;
 	vector< vector<int> > solInNode;

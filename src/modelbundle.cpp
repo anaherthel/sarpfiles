@@ -978,248 +978,6 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
     // getchar();
 }
 
-void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
-	bundleStat bStat;
-	vector< pair<int,int> > auxVec;
-	vector< vector<bParcelStruct> > clsParcel;
-	vector<int> vecOfInt;
-	vector<bParcelStruct> auxbpsvec;
-
-	vector< vector< pair<int,int> > > arcPlus;
-	vector< vector< pair<int,int> > > arcMinus;
-	vector< pair<int,int> > arcNN;
-	
-	vector< vector<int> >clusterVec;
-	vector<int> clusters;
-
-	vector<bool> cArcRow;
-	pair<int, int> cFArc;
-	vector< vector<bool> > cArcs;
-	vector< pair<int,int> > cArcVec;
-	vector< vector< pair<int,int> > > cArcPlus;
-	vector< vector< pair<int,int> > > cArcMinus;
-
-	int p = -1; //number of parcel requests to be associated with a passenger request(1A) or the number of best matchings
-	int Q = 5;
-
-	// readData(argc, argv, node, inst, nodeVec, &mdist, problem);
-
-	for (int i = 0; i < inst->n; i++){
-		clsParcel.push_back(auxbpsvec);
-	}
-
-	makeSmallerProblem(inst, nodeVec, mdist, p, clsParcel, problem, Q);
-
-
-	makeBundles(inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, problem);
-
-	
-    // cout << "\nNumber of Vehicles: " << inst->K;
-    // getchar();
-
- //    cout << "\nBundle Vector: [";
-	// for (int i = 0; i < bStat.bundleVec.size(); i++){
-	// 	cout << "[";
-	// 	for (int j = 0; j < bStat.bundleVec[i].size(); j++){
-	// 		cout << setw(3) << std:: right << bStat.bundleVec[i][j];
-	// 		if (j < bStat.bundleVec[i].size() - 1){
- //                cout << ", ";
- //            }
-	// 	}
-	// 	cout << "],";
-	// }
-	// cout << "]" << endl;
-
-
-
-
-	if (problem->scen == "1A"){
-		for (int i = 0; i < inst->m; i++){
-			bStat.parcelBundleVec.push_back(bStat.parcelBundle);
-		}
-	}
-
-	else if (problem->scen == "2A"){
-		for (int i = 0; i < 2*inst->m; i++){
-			bStat.parcelBundleVec.push_back(bStat.parcelBundle);
-		}
-	}
-
-	makeParcelBundles(inst, nodeVec, &bStat, problem);
-
-	// cout << "\nParcel Bundles: " << endl;
-
-	// for (int i = 0 ; i < bStat.parcelBundleVec.size(); i++){
-	// 	cout << i + inst->n << ": ";
-	// 	for(int j = 0; j < bStat.parcelBundleVec[i].size(); j++){
-	// 		cout << bStat.parcelBundleVec[i][j] << " ";
-	// 	}
-	// 	cout << endl;
-	// }
-	// cout << endl;
-	// getchar();
-
-	bundleProfit(inst, mdist, nodeVec, &bStat);
-
-	// cout << "\nBundle Profit: [";
-	// for (int i = 0; i < bStat.bundleProfVec.size(); i++){
-	// 	cout << setw(3) << std:: right << bStat.bundleProfVec[i];
-	// 	if (i < bStat.bundleProfVec.size() - 1){
- //            cout << ", ";
- //        }
-	// }
-	// cout << endl;
-
-	// getchar();
-
-	for (int i = 0; i < bStat.bundleVec.size(); i++){
-		for (int j = 0; j < bStat.bundleVec.size(); j++){
-			bStat.bArcRow.push_back(false);
-		}
-		bStat.bArcs.push_back(bStat.bArcRow);
-		bStat.bArcRow.clear();
-	}
-	
-	for (int i = 0; i < bStat.bundleVec.size(); i++){
-		auxVec.push_back(bStat.bFArc);
-	}
-	auxVec.clear();
-
-	for (int i = 0; i < bStat.bundleVec.size(); i++){
-		bStat.bArcMinus.push_back(auxVec);
-		bStat.bArcPlus.push_back(auxVec);
-	}
-
-	makeStartTimes(inst, mdist, nodeVec, &bStat, problem);
-
-	makeBundleReference(inst, mdist, nodeVec, &bStat);
-
-
-	// cout << "\nBundle Service Times: ";
-	// for (int i = 0; i < bStat.bundleServVec.size(); i++){
-	// 	cout <<	i  << ": " <<	bStat.bundleServVec[i] << ", ";
-	// }
-	// cout << endl;
-
-	// getchar();
-
-
-	feasibleBundleArcs(inst, mdist, nodeVec, &bStat, p, problem);
-
-	// cout<< "\nFeasible arcs between bundles:" << endl;
-	// for (int i = 0; i < bStat.bundleVec.size(); i++){
-	// 	if (i == 0){
-	// 		cout << setw(3) << " ";
-	// 	}
-	// 	cout << setw(3) << std::right << i;
-	// }
-	// cout << endl;
-
-	// for (int i = 0; i < bStat.bundleVec.size(); i++){
-	// 	cout << setw(3) << std::right << i;
-	// 	for (int j = 0; j < bStat.bundleVec.size(); j++){
-	// 		cout << setw(3) << std:: right << bStat.bArcs[i][j];
-	// 	}
-	// 	cout << endl;
-	// }
-	// getchar();
-
-	for (int i = 0; i < clusterVec.size(); i++){
-		for (int j = 0; j < clusterVec.size(); j++){
-			cArcRow.push_back(false);
-		}
-		cArcs.push_back(cArcRow);
-	}
-	
-	for (int i = 0; i < clusterVec.size(); i++){
-		auxVec.push_back(cFArc);
-	}
-	auxVec.clear();
-
-	for (int i = 0; i < clusterVec.size(); i++){
-		cArcMinus.push_back(auxVec);
-		cArcPlus.push_back(auxVec);
-	}
-
-	for (int i = 0; i < clusterVec.size(); i++){
-		cout << "\nCluster " << i << ": [";
-		for(int k = 0; k < clusterVec[i].size(); k++){
-			cout << "(" << clusterVec[i][k] << ") " << "[";
-			for (int j = 0; j < bStat.bundleVec[clusterVec[i][k]].size(); j++){
-				cout << setw(3) << std:: right << bStat.bundleVec[clusterVec[i][k]][j];
-	            if (j < bStat.bundleVec[clusterVec[i][k]].size() - 1){
-					cout << ",";
-				}
-				else{
-					cout << "] ";
-				}
-			}
-			
-		}
-		cout << "]" << endl;
-	}
-
-	feasibleClusterArcs(inst, nodeVec, &bStat, clusterVec, cFArc, cArcs, cArcPlus, cArcMinus, p, problem);
-
-	// cout<< "\nFeasible arcs between clusters:" << endl;
-	// for (int i = 0; i < clusterVec.size(); i++){
-	// 	if (i == 0){
-	// 		cout << setw(3) << " ";
-	// 	}
-	// 	cout << setw(3) << std::right << i;
-	// }
-	// cout << endl;
-	// for (int i = 0; i < clusterVec.size(); i++){
-	// 	cout << setw(3) << std::right << i;
-	// 	for (int j = 0; j < clusterVec.size(); j++){
-	// 		cout << setw(3) << std:: right << cArcs[i][j];
-	// 	}
-	// 	cout << endl;
-	// }
-
-	// // getchar();
-
-	for (int i = 0; i < bStat.bundleVec.size(); i++){
-		for (int j = 0; j < bStat.bundleVec.size(); j++){
-			if(bStat.bArcs[i][j]){
-				bStat.bFArc.first = i;
-				bStat.bFArc.second = j;
-				bStat.bArcVec.push_back(bStat.bFArc);
-			}
-		}
-	}
-
-
-	for (int i = 0; i < clusterVec.size(); i++){
-		for (int j = 0; j < clusterVec.size(); j++){
-			if(cArcs[i][j]){
-				cFArc.first = i;
-				cFArc.second = j;
-				cArcVec.push_back(cFArc);
-			}
-		}
-	}
-	
-	mipbundle(inst, nodeVec, mdist, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, problem, sStat);
-	
-	if(sStat->feasible){
-		nodeSolution (inst, mdist, &bStat, nodeVec, sStat);
-
-		solStatIni(sStat);
-
-		mipSolStats2 (inst, mdist, &bStat, nodeVec, sStat);
-
-		// // cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
-
-		printStats(inst, sStat);
-	}
-
-	for ( int i = 0; i < inst->V + inst->dummy; i++) {
-		delete[] mdist[i];
-	}
-	delete[] mdist;
-}
-
 void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
 
     int load;
@@ -1251,10 +1009,10 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                         sStat->dBoth += distPass;
                     }  
                     else{
-                        sStat->tNoneP += dij/inst->vmed;
+                        sStat->tNone += dij/inst->vmed;
                         sStat->tPass += nodeVec[nextNode].delta;
 
-                        sStat->dNoneP += dij;
+                        sStat->dNone += dij;
                         distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
                         sStat->dPass += distPass;
                     }
@@ -1269,11 +1027,11 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                         sStat->dParcel += dij;
                     }  
                     else{
-                        sStat->tNoneG += dij/inst->vmed;
+                        sStat->tNone += dij/inst->vmed;
                         sStat->tParcel += inst->service;
                         load++;
 
-                        sStat->dNoneG += dij;
+                        sStat->dNone += dij;
                     }
                 }
 
@@ -1320,10 +1078,10 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                         sStat->dBoth += distPass;                           
                     }  
                     else{
-                        sStat->tNoneP += dij/inst->vmed;
+                        sStat->tNone += dij/inst->vmed;
                         sStat->tPass += nodeVec[nextNode].delta;
 
-                        sStat->dNoneP += dij;
+                        sStat->dNone += dij;
                         distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
                         sStat->dPass += distPass;
                                                
@@ -1338,11 +1096,11 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                         sStat->dParcel += dij;
                     }  
                     else{
-                        sStat->tNoneG += dij/inst->vmed;
+                        sStat->tNone += dij/inst->vmed;
                         sStat->tParcel += inst->service;
                         load++;
 
-                        sStat->dNoneG += dij;
+                        sStat->dNone += dij;
                     }                  
                 }
                 else if (nextNode < inst->n + 2*inst->m){
@@ -1355,20 +1113,20 @@ void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector
             }
             else{
                 if(nextNode < inst->n){
-                    sStat->tNoneP += dij/inst->vmed;
+                    sStat->tNone += dij/inst->vmed;
                     sStat->tPass += nodeVec[nextNode].delta;
                     load = 0;
 
-                    sStat->dNoneP += dij;
+                    sStat->dNone += dij;
                     distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
                     sStat->dPass += distPass;  
                 }
                 else if(nextNode < inst->n + inst->m){
-                    sStat->tNoneG += dij/inst->vmed;
+                    sStat->tNone += dij/inst->vmed;
                     sStat->tParcel += inst->service;
                     load++;
 
-                    sStat->dNoneG += dij;
+                    sStat->dNone += dij;
                 }
             }
 
@@ -1655,65 +1413,326 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
 
     }
-
+    
 	env.end();
 }
 
-// void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
+void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
 
 
-//     double stillTime = 0;
-//     double tij;
-//     double tbegin;
+    double stillTime = 0;
+    double tij;
+    double tbegin;
 
-//     int currNode;
-//     int nextNode;
-
-// //  tij = mdist[currNode][nextNode]/inst->vmed;
+    int currNode;
+    int nextNode;
 
 
-//     vector<double> beginTimes;
+    vector<double> beginTimes;
 
-//     for (int i = 0; i < nodeVec.size(); i++){
-//         if (i < inst->n){
-//             beginTimes.push_back(nodeVec[i].e);
-//         }
-//         else{
-//             beginTimes.push_back(0);
-//         }
+    for (int i = 0; i < nodeVec.size(); i++){
+        if (i < inst->n){
+            beginTimes.push_back(nodeVec[i].e);
+        }
+        else if (i >= inst->n + 2* inst->m){
+            beginTimes.push_back(nodeVec[i].e);
+        }
+        else{
+            beginTimes.push_back(0);
+        }
 
-//     }   
+    }
 
-//     for (int k = 0; k < inst->K; k++){
-//         for (int i = 0; i < sStat->solInNode[k].size() - 2; i++){
-//             currNode = sStat->solOrder[k][i];
-//             nextNode = sStat->solOrder[k][i + 1];
 
-//             if (currNode < inst->n){
-//                 if(nextNode < inst->V - inst->K - 1){
-//                     // beginTimes[nextNode] = beginTimes[currNode]
-//                     continue;
-//                 }
-//                 else if (nextNode < inst->V - inst->K){
-//                     beginTimes[nextNode] = nodeVec[nextNode].e;
-//                 }
-//                 else{
-//                     beginTimes[nextNode] = nodeVec[nextNode].e;
-//                 }
-//             }
-//             else if (currNode < 2*inst->m){
+    for (int k = 0; k < inst->K; k++){
+        for (int i = 0; i < sStat->solInNode[k].size() - 2; i++){
+            currNode = sStat->solInNode[k][i];
+            nextNode = sStat->solInNode[k][i + 1];
 
-//             }
-//             else{
+            cout << "currNode: " << currNode << " - nextNode: " << nextNode << endl; 
+            getchar();
 
-//             }
+            if (nextNode >= inst->n){
+                if(nextNode < inst->n + 2*inst->m){
+                    tij = mdist[currNode][nextNode]/inst->vmed;
+                    cout << "tij: " << tij;
+                    getchar();
 
-//         }
-//     }
+                    beginTimes[nextNode] = beginTimes[currNode] + tij + nodeVec[nextNode].delta;
+                }
+            }
 
-//     for (int i = 0 ; i < beginTimes.size(); i++){
-//         cout << i << ": " << beginTimes[i] << " ";
-//     }
-//     getchar();
 
-// } 
+
+            // if (currNode < inst->n){
+            //     if(nextNode < inst->V - inst->K - 1){
+            //         // beginTimes[nextNode] = beginTimes[currNode]
+            //         continue;
+            //     }
+            //     else if (nextNode < inst->V - inst->K){
+            //         beginTimes[nextNode] = nodeVec[nextNode].e;
+            //     }
+            //     else{
+            //         beginTimes[nextNode] = nodeVec[nextNode].e;
+            //     }
+            // }
+            // else if (currNode < 2*inst->m){
+
+            // }
+            // else{
+
+            // }
+
+        }
+    }
+
+    for (int i = 0 ; i < beginTimes.size(); i++){
+        cout << i << ": " << beginTimes[i] << " ";
+    }
+    getchar();
+
+} 
+
+void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
+    bundleStat bStat;
+    vector< pair<int,int> > auxVec;
+    vector< vector<bParcelStruct> > clsParcel;
+    vector<int> vecOfInt;
+    vector<bParcelStruct> auxbpsvec;
+
+    vector< vector< pair<int,int> > > arcPlus;
+    vector< vector< pair<int,int> > > arcMinus;
+    vector< pair<int,int> > arcNN;
+    
+    vector< vector<int> >clusterVec;
+    vector<int> clusters;
+
+    vector<bool> cArcRow;
+    pair<int, int> cFArc;
+    vector< vector<bool> > cArcs;
+    vector< pair<int,int> > cArcVec;
+    vector< vector< pair<int,int> > > cArcPlus;
+    vector< vector< pair<int,int> > > cArcMinus;
+
+    int p = -1; //number of parcel requests to be associated with a passenger request(1A) or the number of best matchings
+    int Q = 5;
+
+    // readData(argc, argv, node, inst, nodeVec, &mdist, problem);
+
+    for (int i = 0; i < inst->n; i++){
+        clsParcel.push_back(auxbpsvec);
+    }
+
+    makeSmallerProblem(inst, nodeVec, mdist, p, clsParcel, problem, Q);
+
+
+    makeBundles(inst, nodeVec, &bStat, clusters, clusterVec, clsParcel, problem);
+
+    
+    // cout << "\nNumber of Vehicles: " << inst->K;
+    // getchar();
+
+ //    cout << "\nBundle Vector: [";
+    // for (int i = 0; i < bStat.bundleVec.size(); i++){
+    //  cout << "[";
+    //  for (int j = 0; j < bStat.bundleVec[i].size(); j++){
+    //      cout << setw(3) << std:: right << bStat.bundleVec[i][j];
+    //      if (j < bStat.bundleVec[i].size() - 1){
+ //                cout << ", ";
+ //            }
+    //  }
+    //  cout << "],";
+    // }
+    // cout << "]" << endl;
+
+
+
+
+    if (problem->scen == "1A"){
+        for (int i = 0; i < inst->m; i++){
+            bStat.parcelBundleVec.push_back(bStat.parcelBundle);
+        }
+    }
+
+    else if (problem->scen == "2A"){
+        for (int i = 0; i < 2*inst->m; i++){
+            bStat.parcelBundleVec.push_back(bStat.parcelBundle);
+        }
+    }
+
+    makeParcelBundles(inst, nodeVec, &bStat, problem);
+
+    // cout << "\nParcel Bundles: " << endl;
+
+    // for (int i = 0 ; i < bStat.parcelBundleVec.size(); i++){
+    //  cout << i + inst->n << ": ";
+    //  for(int j = 0; j < bStat.parcelBundleVec[i].size(); j++){
+    //      cout << bStat.parcelBundleVec[i][j] << " ";
+    //  }
+    //  cout << endl;
+    // }
+    // cout << endl;
+    // getchar();
+
+    bundleProfit(inst, mdist, nodeVec, &bStat);
+
+    // cout << "\nBundle Profit: [";
+    // for (int i = 0; i < bStat.bundleProfVec.size(); i++){
+    //  cout << setw(3) << std:: right << bStat.bundleProfVec[i];
+    //  if (i < bStat.bundleProfVec.size() - 1){
+ //            cout << ", ";
+ //        }
+    // }
+    // cout << endl;
+
+    // getchar();
+
+    for (int i = 0; i < bStat.bundleVec.size(); i++){
+        for (int j = 0; j < bStat.bundleVec.size(); j++){
+            bStat.bArcRow.push_back(false);
+        }
+        bStat.bArcs.push_back(bStat.bArcRow);
+        bStat.bArcRow.clear();
+    }
+    
+    for (int i = 0; i < bStat.bundleVec.size(); i++){
+        auxVec.push_back(bStat.bFArc);
+    }
+    auxVec.clear();
+
+    for (int i = 0; i < bStat.bundleVec.size(); i++){
+        bStat.bArcMinus.push_back(auxVec);
+        bStat.bArcPlus.push_back(auxVec);
+    }
+
+    makeStartTimes(inst, mdist, nodeVec, &bStat, problem);
+
+    makeBundleReference(inst, mdist, nodeVec, &bStat);
+
+
+    // cout << "\nBundle Service Times: ";
+    // for (int i = 0; i < bStat.bundleServVec.size(); i++){
+    //  cout << i  << ": " <<   bStat.bundleServVec[i] << ", ";
+    // }
+    // cout << endl;
+
+    // getchar();
+
+
+    feasibleBundleArcs(inst, mdist, nodeVec, &bStat, p, problem);
+
+    // cout<< "\nFeasible arcs between bundles:" << endl;
+    // for (int i = 0; i < bStat.bundleVec.size(); i++){
+    //  if (i == 0){
+    //      cout << setw(3) << " ";
+    //  }
+    //  cout << setw(3) << std::right << i;
+    // }
+    // cout << endl;
+
+    // for (int i = 0; i < bStat.bundleVec.size(); i++){
+    //  cout << setw(3) << std::right << i;
+    //  for (int j = 0; j < bStat.bundleVec.size(); j++){
+    //      cout << setw(3) << std:: right << bStat.bArcs[i][j];
+    //  }
+    //  cout << endl;
+    // }
+    // getchar();
+
+    for (int i = 0; i < clusterVec.size(); i++){
+        for (int j = 0; j < clusterVec.size(); j++){
+            cArcRow.push_back(false);
+        }
+        cArcs.push_back(cArcRow);
+    }
+    
+    for (int i = 0; i < clusterVec.size(); i++){
+        auxVec.push_back(cFArc);
+    }
+    auxVec.clear();
+
+    for (int i = 0; i < clusterVec.size(); i++){
+        cArcMinus.push_back(auxVec);
+        cArcPlus.push_back(auxVec);
+    }
+
+    for (int i = 0; i < clusterVec.size(); i++){
+        cout << "\nCluster " << i << ": [";
+        for(int k = 0; k < clusterVec[i].size(); k++){
+            cout << "(" << clusterVec[i][k] << ") " << "[";
+            for (int j = 0; j < bStat.bundleVec[clusterVec[i][k]].size(); j++){
+                cout << setw(3) << std:: right << bStat.bundleVec[clusterVec[i][k]][j];
+                if (j < bStat.bundleVec[clusterVec[i][k]].size() - 1){
+                    cout << ",";
+                }
+                else{
+                    cout << "] ";
+                }
+            }
+            
+        }
+        cout << "]" << endl;
+    }
+
+    feasibleClusterArcs(inst, nodeVec, &bStat, clusterVec, cFArc, cArcs, cArcPlus, cArcMinus, p, problem);
+
+    // cout<< "\nFeasible arcs between clusters:" << endl;
+    // for (int i = 0; i < clusterVec.size(); i++){
+    //  if (i == 0){
+    //      cout << setw(3) << " ";
+    //  }
+    //  cout << setw(3) << std::right << i;
+    // }
+    // cout << endl;
+    // for (int i = 0; i < clusterVec.size(); i++){
+    //  cout << setw(3) << std::right << i;
+    //  for (int j = 0; j < clusterVec.size(); j++){
+    //      cout << setw(3) << std:: right << cArcs[i][j];
+    //  }
+    //  cout << endl;
+    // }
+
+    // // getchar();
+
+    for (int i = 0; i < bStat.bundleVec.size(); i++){
+        for (int j = 0; j < bStat.bundleVec.size(); j++){
+            if(bStat.bArcs[i][j]){
+                bStat.bFArc.first = i;
+                bStat.bFArc.second = j;
+                bStat.bArcVec.push_back(bStat.bFArc);
+            }
+        }
+    }
+
+
+    for (int i = 0; i < clusterVec.size(); i++){
+        for (int j = 0; j < clusterVec.size(); j++){
+            if(cArcs[i][j]){
+                cFArc.first = i;
+                cFArc.second = j;
+                cArcVec.push_back(cFArc);
+            }
+        }
+    }
+    
+    mipbundle(inst, nodeVec, mdist, &bStat, clusterVec, cArcVec, cArcPlus, cArcMinus, problem, sStat);
+    
+    if(sStat->feasible){
+        nodeSolution (inst, mdist, &bStat, nodeVec, sStat);
+        
+        stillTimeBundle(inst, mdist, &bStat, nodeVec, sStat);
+
+        solStatIni(sStat);
+
+        mipSolStats2 (inst, mdist, &bStat, nodeVec, sStat);
+
+        // // cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
+
+        printStats(inst, sStat);
+    }
+
+    for ( int i = 0; i < inst->V + inst->dummy; i++) {
+        delete[] mdist[i];
+    }
+    delete[] mdist;
+}

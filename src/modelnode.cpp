@@ -620,6 +620,44 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
     cons1.setName(var);
     model.add(cons1);
 
+    //Forcing constraints
+
+    // sprintf (var, "Constraint15");
+    // cons1 = (x[4][2][0] == 1);
+    // cons1.setName(var);
+    // model.add(cons1);
+    
+    // sprintf (var, "Constraint16");
+    // cons1 = (x[2][0][0] == 1);
+    // cons1.setName(var);
+    // model.add(cons1);
+
+    // sprintf (var, "Constraint15");
+    // cons1 = (x[4][0][0] == 1);
+    // cons1.setName(var);
+    // model.add(cons1);
+
+    // sprintf (var, "Constraint16");
+    // cons1 = (x[0][1][0] == 1);
+    // cons1.setName(var);
+    // model.add(cons1);
+
+
+    // sprintf (var, "Constraint17");
+    // cons1 = (x[1][5][0] == 1);
+    // cons1.setName(var);
+    // model.add(cons1);
+
+    // sprintf (var, "Constraint18");
+    // cons1 = (x[1][3][0] == 1);
+    // cons1.setName(var);
+    // model.add(cons1);
+
+    // sprintf (var, "Constraint19");
+    // cons1 = (x[3][5][0] == 1);
+    // cons1.setName(var);
+    // model.add(cons1);
+
 	// // //Constraint 13 and 14 - sequence constraints
 
 	// // for (int i = 0; i < nas->allArcs.size(); i++){
@@ -720,9 +758,9 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
         cout << endl;
 
-//        for (int i = 0; i < nodeVec.size(); i++){
-  //          cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
-    //    }
+       for (int i = 0; i < nodeVec.size(); i++){
+           cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
+       }
 
 
         for (int i = 0; i < nodeVec.size(); i++){
@@ -755,35 +793,36 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
 	// }
 
-//	cout << "\nDistance Matrix: " << endl;
+	cout << "\nDistance Matrix: " << endl;
 
-//	for (int i = 0; i < inst->V + inst->dummy; i++){
-//		for (int j = 0; j < inst->V + inst->dummy; j++){
-//			cout << setw(5) << mdist[i][j] << " ";
-//		}
-//		cout << endl;
-//	}
-	// getchar();
+	for (int i = 0; i < inst->V + inst->dummy; i++){
+		for (int j = 0; j < inst->V + inst->dummy; j++){
+			cout << setw(5) << mdist[i][j] << " ";
+		}
+		cout << endl;
+	}
+	getchar();
 
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem);
 
-	// cout<< "\nFeasible arcs between nodes:" << endl;
- //    for (int i = 0; i < nas.arcs.size(); i++){
- //        if (i == 0){
- //            cout << setw(3) << " ";
- //        }
- //        cout << setw(3) << std::right << i << " ";
- //    }
- //    cout << endl;
- //    for(int i = 0; i < nas.arcs.size(); i++){
- //        cout << setw(3) << std::right << i;
- //        for(int j = 0; j < nas.arcs[i].size(); j++){
- //            cout << setw(3) <<  nas.arcs[i][j] << " ";
- //        }
- //        cout << endl;
- //    }
- //    cout << endl;
+	cout<< "\nFeasible arcs between nodes:" << endl;
+    for (int i = 0; i < nas.arcs.size(); i++){
+        if (i == 0){
+            cout << setw(3) << " ";
+        }
+        cout << setw(3) << std::right << i << " ";
+    }
+    cout << endl;
+    for(int i = 0; i < nas.arcs.size(); i++){
+        cout << setw(3) << std::right << i;
+        for(int j = 0; j < nas.arcs[i].size(); j++){
+            cout << setw(3) <<  nas.arcs[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+    getchar();
 
  //    cout << "arcs NN: " << endl;
 	// for (int i = 0; i < nas.arcNN.size(); i++){

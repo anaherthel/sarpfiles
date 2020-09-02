@@ -51,9 +51,9 @@ int main (int argc, char *argv[]) {
 		if (trialK < inst.n){
 			trialK++;	
 		}
-		// else{
-		// 	break;
-		// }
+	// 	else{
+	// 		break;
+	// 	}
 
 	// }
 

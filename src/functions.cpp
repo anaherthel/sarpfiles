@@ -7,17 +7,17 @@ void solStatIni(solStats *sStat){
     sStat->tParcel = 0;
     sStat->tPass = 0;
     sStat->tBoth = 0;
-    sStat->tNoneP = 0;
-    sStat->tNoneG = 0;
+    sStat->tNone = 0;
 
     sStat->tStillP = 0;
     sStat->tStillG = 0;
+    sStat->tStill = 0;
+
 
     sStat->dParcel = 0;
     sStat->dPass = 0;
     sStat->dBoth = 0;
-    sStat->dNoneP = 0;
-    sStat->dNoneG = 0;
+    sStat->dNone = 0;
 
     sStat->solOrder.clear();
 
@@ -67,12 +67,12 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                         sStat->dBoth += distPass;
                     }  
                     else{
-                        // sStat->tNone += dij/inst->vmed;
-                        sStat->tNoneP += dij/inst->vmed;
+                        sStat->tNone += dij/inst->vmed;
+                        // sStat->tNoneP += dij/inst->vmed;
 
                         sStat->tPass += nodeVec[nextNode].delta;
 
-                        sStat->dNoneP += dij;
+                        sStat->dNone += dij;
 
                         distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
                         sStat->dPass += distPass;
@@ -92,11 +92,11 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                         sStat->dParcel += dij;
                     }  
                     else{
-                        sStat->tNoneG += dij/inst->vmed;
+                        sStat->tNone += dij/inst->vmed;
                         sStat->tParcel += inst->service;
                         load++;
 
-                        sStat->dNoneG += dij;
+                        sStat->dNone += dij;
                     }
                     stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
 
@@ -162,10 +162,10 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                         sStat->dBoth += distPass;                           
                     }  
                     else{
-                        sStat->tNoneP += dij/inst->vmed;
+                        sStat->tNone += dij/inst->vmed;
                         sStat->tPass += nodeVec[nextNode].delta;
 
-                        sStat->dNoneP += dij;
+                        sStat->dNone += dij;
                         distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
                         sStat->dPass += distPass;
                                                
@@ -185,11 +185,11 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                         sStat->dParcel += dij;
                     }  
                     else{
-                        sStat->tNoneG += dij/inst->vmed;
+                        sStat->tNone += dij/inst->vmed;
                         sStat->tParcel += inst->service;
                         load++;
 
-                        sStat->dNoneG += dij;
+                        sStat->dNone += dij;
                     }
 
                     stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
@@ -210,11 +210,11 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
             }
             else{
                 if(nextNode < inst->n){
-                    sStat->tNoneP += dij/inst->vmed;
+                    sStat->tNone += dij/inst->vmed;
                     sStat->tPass += nodeVec[nextNode].delta;
                     load = 0;
 
-                    sStat->dNoneP += dij;
+                    sStat->dNone += dij;
                     distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
                     sStat->dPass += distPass;  
 
@@ -223,11 +223,11 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                     sStat->tStillP += stop; 
                 }
                 else if(nextNode < inst->n + inst->m){
-                    sStat->tNoneG += dij/inst->vmed;
+                    sStat->tNone += dij/inst->vmed;
                     sStat->tParcel += inst->service;
                     load++;
 
-                    sStat->dNoneG += dij;
+                    sStat->dNone += dij;
 
                     stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
 
@@ -255,24 +255,22 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
 void printStats(instanceStat *inst, solStats *sStat){
     // for (int i = 0; i < inst->K; i++){
 
-        cout << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNoneP + sStat->tNoneG << endl;
+        cout << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone << endl;
         cout << "\nTotal passenger time: " << sStat->tPass << endl;
         cout << "\nTotal parcel time: " << sStat->tParcel << endl;
         cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
-        cout << "\nTotal idle time passenger: " << sStat->tNoneP << endl;
-        cout << "\nTotal idle time goods: " << sStat->tNoneG << endl;
+        cout << "\nTotal idle time: " << sStat->tNone << endl;
 
 
-        cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNoneP + sStat->tNoneG << endl;
+        cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
         cout << "\nTotal passenger distance: " << sStat->dPass << endl;
         cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
         cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
-        cout << "\nTotal idle distance passenger: " << sStat->dNoneP << endl;
-        cout << "\nTotal idle distance goods: " << sStat->dNoneG << endl;
+        cout << "\nTotal idle distance: " << sStat->dNone << endl;
 
         cout << "\nWaiting time passenger: " << sStat->tStillP << endl;
         cout << "\nWaiting time goods: " << sStat->tStillG << endl;
-
+        cout << "\nTotal waiting time: " << sStat->tStillG + sStat->tStillP << endl;
     // }
 
 }

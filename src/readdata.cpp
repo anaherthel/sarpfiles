@@ -88,6 +88,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double *flatitude = new double [V + inst->dummy];
         double *flongitude = new double [V + inst->dummy];
         double *profit = new double[V+inst->dummy];
+        double *trip = new double[V+inst->dummy];
 
         double **dist = new double*[V + inst->dummy];
         for (int i= 0; i < V + inst->dummy; i++){
@@ -116,7 +117,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             in >> tempNode >> vxs[i] >> vys[i] >> tempNode >> vload[i] >> ve[i] >> vl[i];
         }
 
-        ve[ve.size()-1] = 0;
+        // ve[ve.size()-1] = 0;
 
         for (int i = 0; i < vxs.size(); i++){
             vxf.push_back(vxs[i]);
@@ -134,18 +135,25 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         vxf.erase(vxf.begin());
         vyf.erase(vyf.begin());
         ve.erase(ve.begin());
+        vl.erase(vl.begin());
 
         for (int i = 0; i < n; i++){
             vxs.erase(vxs.begin() + n + m);
             vys.erase(vys.begin() + n + m);
             vload.erase(vload.begin() + n + m);
             ve.erase(ve.begin() + n + m);
+            vl.erase(vl.begin() + n + m);
             vxf.erase(vxf.begin() + n + m);
             vyf.erase(vyf.begin() + n + m);
         }
 
         for (int i = 0; i < n; i++){
             vl[i] = ve[i];
+        }
+
+        for (int i = n; i < n + 2*m; i++){
+            ve[i] = 0;
+   
         }
 
         for (int i = 1; i < K; i++){
@@ -157,20 +165,37 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             vxf.push_back(vxf[vxf.size()-1]);
             vyf.push_back(vyf[vyf.size()-1]);
         }
+
+        for (int i = 0; i < n; i++){
+            vload[i] = 0;
+        }
+
+
+        cout << "\nve: " << endl;
+        for (int i = 0; i < ve.size(); i++){
+            cout << ve[i] << endl;
+        }
+        getchar();
         // Calculate distance matrix (Geolocation)
 
-        CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
-        
+        // CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
+
         double singleProfit;
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
-                delta[i] = (2 * (service)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
-                profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+                // delta[i] = (2 * (service)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
+                // trip[i] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+               
+                delta[i] = (2 * (service)) + (calcEucDist(vxs, vys, vxf, vyf, i, i))/inst->vmed;
+                trip[i] = calcEucDist(vxs, vys, vxf, vyf, i, i);
+                profit[i] = inst->gamma2 + inst->mu2*calcEucDist(vxs, vys, vxf, vyf, i, i) - calcEucDist(vxs, vys, vxf, vyf, i, i);
+                // profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
             }
             else if (i < V - K){ 
                 delta[i] = service;
                 if (i < n + m){
-                    profit[i] = inst->gamma + inst->mu*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
+                    // profit[i] = inst->gamma + inst->mu*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
+                    profit[i] = inst->gamma + inst->mu*calcEucDist(vxs, vys, vxf, vyf, i, i+m);
                 }
                 else{
                     profit[i] = 0;
@@ -187,7 +212,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 else{
                     if (i < V){
                         if (j < V){
-                            dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
+                            // dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
+                            dist[i][j] = calcEucDist(vxs, vys, vxf, vyf, i, j);
                         }
                         else if (j >= V){
                             dist[i][j] = 0;
@@ -214,13 +240,14 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
 
-        //Adding dummy nodes
+        // Adding dummy nodes
         for (int i = 0; i < inst->dummy; i++){
             node->xs = 0;
             node->ys = 0;
             node->load = 0;
-            node->e = 0;
-            node->l = 14*60;
+            node->e = 9;
+            // node->l = 14*60;
+            node->l = 17;
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
@@ -228,6 +255,14 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->index = V + i;
             nodeVec.push_back(*node);
         }
+        
+        cout << "Earlier: \n{";
+
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << nodeVec[i].e << " } {";
+        }
+        cout << endl;
+        getchar();
 
         *Mdist = dist;
         inst->K = K;
@@ -577,12 +612,16 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 e[i] = 540 + rand() % 480;
                 l[i] = e[i];
             }
+            else if (i < inst->n + 2*inst->m){
+                e[i] = 0;
+                l[i] = 1020;                
+            }
             else if (i < V + inst->dummy - 1){
                 e[i] = 540;
                 l[i] = 1020;
             }
             else{
-                e[i] = 0;
+                e[i] = 540;
                 l[i] = 1440;
             } 
         }
@@ -634,11 +673,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] profit;
         delete[] delta;
         
-        // cout << "\nStarting times: " << endl;
+        cout << "\nStarting times: " << endl;
 
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << i << ": " << nodeVec[i].e << " || ";
-        // }
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << i << ": " << nodeVec[i].e << " || ";
+        }
     }
 
     else if (instType == "grubhub2"){
@@ -965,14 +1004,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 e[i] = 540 + rand() % 480;
                 l[i] = e[i];
             }
+            else if (i < inst->n + 2*inst->m){
+                e[i] = 0;
+                l[i] = 1020;                
+            }
             else if (i < V + inst->dummy - 1){
                 e[i] = 540;
                 l[i] = 1020;
             }
             else{
-                e[i] = 0;
+                e[i] = 540;
                 l[i] = 1440;
-            }
+            } 
         }
 
         for (int i = 0; i < V + inst->dummy; i++){
@@ -1214,14 +1257,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 e[i] = 540 + rand() % 480;
                 l[i] = e[i];
             }
+            else if (i < inst->n + 2*inst->m){
+                e[i] = 0;
+                l[i] = 1020;                
+            }
             else if (i < V + inst->dummy - 1){
                 e[i] = 540;
                 l[i] = 1020;
             }
             else{
-                e[i] = 0;
+                e[i] = 540;
                 l[i] = 1440;
-            }
+            } 
         }
         
         // for (int i = 0; i < V + inst->dummy; i++){
@@ -1284,7 +1331,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     cout << "\nsize of m: " << inst->m << endl;
 }
 
-double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J){
+double calcEucDist (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
     return sqrt(pow(Xf[I] - Xs[J], 2) + pow(Yf[I] - Ys[J], 2));
 }
 
