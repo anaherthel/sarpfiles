@@ -21,19 +21,22 @@
 
 using namespace std;
 
+struct NodesStruct{
+    double dist;
+    int index;
+};
 
 double CalcDistEuc (double X1, double Y1, double X2, double Y2);
 void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm, vector<int> &vecOfLambda);
 double fRand(double fMin, double fMax);
+bool compareDist(const NodesStruct &a, const NodesStruct &b);
+
+
+
 
 double CalcDistEuc (double X1, double Y1, double X2, double Y2){
     return sqrt ( pow ( X1 - X2, 2 ) + pow ( Y1 - Y2, 2 ) );
 }
-
-struct nodeArcsStruct{
-    vector<double> closestDist;
-    vector<int> closestNode;
-};
 
 void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm, vector<int> &vecOfLambda){
 
@@ -58,21 +61,18 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
 
     vector< pair <double, double> > coordVec;
 
+    vector<NodesStruct> closeVec;
+    NodesStruct nodeVar;
+    
+    vector<int> unclassVec;
+    vector<int> passVec;
+    vector<int> parcVec;
+    vector<int> depotNode;
+
     int seed = 1234;
     srand(seed);
 
-    // vector <vector <double> > tempData;
-    // vector<double> auxtempdata;
-
-    // vector< pair <double, double> > start;
-
-    // vector <vector <double> > realData;
-
-    // vector<double> service;
-
     vector< vector<double> > dist;
-    // vector< vector<double> > realdist;
-
     vector<double> rowvec;
 
     //Generate random points:
@@ -108,230 +108,100 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
 
     int totalPoints;
     double lb = 0;
-    double ub = 10;
+    double ub = 20;
 
     for (int i = 0; i < dimVec.size(); i++){
-        totalPoints = dimVec[i].first + dimVec[i].second + 1;
+        totalPoints = (dimVec[i].first + dimVec[i].second)*2 + 1;
 
-        coordinate.first = fRand(lb, ub);
-        coordinate.second = fRand(lb, ub);
+        for (int j = 0; j < totalPoints; j++){
+            coordinate.first = fRand(lb, ub);
+            coordinate.second = fRand(lb, ub);
 
-        cout <<  "coordinates: " << std::fixed << std::setprecision(3) << coordinate.first << ", " << std::fixed << setprecision(3) << coordinate.second << endl;
+            coordVec.push_back(coordinate);           
+        }
+    
+        for (int j = 0; j < coordVec.size(); j++){
+            for (int k = 0; k < coordVec.size(); k++){
+                rowvec.push_back(0);
+            }
+            dist.push_back(rowvec);
+            rowvec.clear();
+        }
+
+
+        for (int j = 0; j < coordVec.size(); j++){
+            for (int k = 0; k < coordVec.size(); k++){
+                if(j == k){
+                   dist[j][k] = 0;
+                }
+                else{
+                    dist[j][k] = CalcDistEuc(coordVec[j].first, coordVec[j].second, coordVec[k].first, coordVec[k].second);
+                }
+            }
+        }
+
+
+        cout << "Coordinates: " << endl;
+
+        for (int j = 0; j < coordVec.size(); j++){
+            cout << setw(5) << coordVec[j].first << " " << setw(5) << coordVec[j].second << endl;
+        }
+
+        cout << endl;
+
         getchar();
+
+        cout<< "Distance Matrix: " << endl;
+
+        for (int j = 0; j < dist.size(); j++){
+            for(int k = 0; k < dist[j].size(); k++){
+                cout << setw(6) << dist[j][k] << " ";
+            }
+            cout << endl;
+        }
+
+        cout << endl;
+        getchar();
+
+        //Get closest nodes
+        
+        for (int j = 0 ; j < totalPoints; j++){
+            unclassVec.push_back(j);
+        }
+        
+        for (int j = 0; j < dist.size(); j++){
+            for (int k = 0; k < dist[j].size(); k++){
+                if (dist[j][k] > 0){
+                    nodeVar.index = k;
+                    nodeVar.dist = dist[j][k];
+                    closeVec.push_back(nodeVar);                               
+                }
+
+            }
+        
+            sort(closeVec.begin(), closeVec.end(), compareDist);
+
+
+
+            cout << "Ordered vec: " << endl;
+
+            for(int l = 0; l < closeVec.size(); l++){
+                cout << closeVec[l].index << " - " <<  closeVec[l].dist << " // ";
+            }
+
+
+            cout << endl;
+            getchar();
+
+
+        }
+
+        //Sort 
+
+
+
     }
 
-
-    // if (it1 != it2){
-    //     ifstream in1(instance1, ios::in);
-
-        
-    //     if( !in1 ) {
-    //         cout << "the file could not be opened\n";
-    //         exit (1);
-    //     }
-
-    //     while ( file1.compare("DIMENSION:") != 0 && file1.compare("DIMENSION") != 0 ){
-    //         in1 >> file1;
-    //     }
-
-    //     in1 >> s1;
-
-    //     n = (s1 - 2)/2;
-
-    //     while (file1.compare("NODE_COORD_SECTION") != 0){
-    //         in1 >> file1;
-    //     }
-
-    //     for (int i = 0; i < s1 - 2; i++){
-    //         coordVec.push_back(coordinate);
-    //     }
-
-
-    //     for (int i = 0; i < s1; i++){
-
-    //         if (i == 0){
-    //             in1 >> file1;
-    //             in1 >> coordinate.first;
-    //             in1 >> coordinate.second;
-    //             start.push_back(coordinate);
-    //         }
-
-    //         else if (i == 1){
-    //             in1 >> file1;
-    //             in1 >> file1;
-    //             in1 >> file1;
-    //         }
-            
-    //         else{
-    //             in1 >> file1;
-    //             in1 >> coordVec[i - 2].first;
-    //             in1 >> coordVec[i - 2].second;
-
-    //         }
-
-    //     }
-
-    //     ifstream in2(instance2, ios::in);
-
-        
-    //     if( !in2 ) {
-    //         cout << "the file could not be opened\n";
-    //         exit (1);
-    //     }
-
-    //     while ( file2.compare("DIMENSION:") != 0 && file2.compare("DIMENSION") != 0 ){
-    //         in2 >> file2;
-    //     }
-
-    //     in2 >> s2;
-
-    //     // m = (s2 - 2)/2;
-    //     m = 3;
-    //     s2 = m*2 + 2;
-
-    //     while (file2.compare("NODE_COORD_SECTION") != 0){
-    //         in2 >> file2;
-    //     }
-
-    //     for (int i = 0; i < s2 - 2; i++){
-    //         coordVec.push_back(coordinate);
-    //     }
-
-    //     for (int i = s1 - 2; i < s1+s2 - 2; i++){
-
-    //         if (i == s1 - 2){
-    //             in2 >> file2;
-    //             in2 >> coordinate.first;
-    //             in2 >> coordinate.second;
-    //             start.push_back(coordinate);
-    //         }
-    //         else if (i == s1 - 1){
-    //             in2 >> file2;
-    //             in2 >> file2;
-    //             in2 >> file2;
-    //         }
-
-    //         else{
-    //             in2 >> file2;
-    //             in2 >> coordVec[i - 2].first;
-    //             in2 >> coordVec[i - 2].second;            
-    //         }
-    //     }
-
-    //     int count;
-    //     pair<double, double> chosen;
-
-    //     //rearranging pickup and delivery
-    //     count = 1;
-    //     for (int i = 2; i < 2*m; i++){
-    //         if (i % 2 == 0){
-    //             chosen = coordVec[2*n + i];
-    //             coordVec.erase(coordVec.begin() + 2*n + i);
-    //             coordVec.insert(coordVec.begin() + 2*n + count, chosen);
-    //             count++;
-    //         }
-    //     }
-
-    //     for(int i = 0; i < start.size(); i++){
-    //         coordVec.push_back(start[i]);
-    //     }
-
-    //     for (int i = 0; i < coordVec.size(); i++){
-    //         if (i < n){
-    //             service.push_back(0);
-    //         }
-    //         for (int j = 0; j < coordVec.size(); j++){
-    //             rowvec.push_back(0);
-    //         }
-    //         dist.push_back(rowvec);
-    //         rowvec.clear();
-    //     }
-
-    //     for (int i = 0; i < n + 2*m + 2; i++){
-    //         for (int j = 0; j < n + 2*m + 2; j++){
-    //             rowvec.push_back(0);
-    //         }
-    //         realdist.push_back(rowvec);
-    //         rowvec.clear();
-    //     }
-
-
-    //     for (int i = 0; i < 2*n; i++){
-    //         if(i % 2 == 0){
-    //             service[i/2] = floor( CalcDistEuc ( coordVec[i].first, coordVec[i].second, coordVec[i+1].first, coordVec[i+1].second ) + 0.5 );
-    //         }
-    //     }
-
-    //     for (int i = 0; i < coordVec.size(); i++){
-    //         for (int j = 0; j < coordVec.size(); j++){
-    //             dist[i][j] = floor ( CalcDistEuc (coordVec[i].first, coordVec[i].second, coordVec[j].first, coordVec[j].second) + 0.5 );                   
-    //         }
-    //     }
-    //     cout << endl;
-
-    //     //Shrink matrix
-
-    //     for (int i = 0; i < n + 2*m + 2; i++){
-    //         for (int j = 0; j < n + 2*m + 2; j++){
-    //             if (i == j){
-    //                 realdist[i][j] = 0;
-    //             }
-    //             else{
-    //                 if (i < n){
-    //                     if (j < n){
-    //                         realdist[i][j] = (dist[2*i+1][2*j]);
-    //                     }
-    //                     else{
-    //                         realdist[i][j] = (dist[2*i+1][n+j]);
-    //                     }
-    //                 }
-    //                 else{
-    //                     if (j < n){
-    //                         realdist[i][j] = (dist[n+i][2*j]);
-    //                     }
-    //                     else{
-    //                         realdist[i][j] = (dist[n+i][n+j]);
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-
-
-    //     //adding dummy node
-
-    //     for (int i = 0; i < realdist.size(); i++){
-    //         realdist[i].push_back(0);
-    //         rowvec.push_back(0);
-    //     }
-
-    //     rowvec.push_back(0);
-    //     realdist.push_back(rowvec);
-
-    //     // //to screen
-
-    //     // cout << "DIMENSION: " << n + 2*m + 2;
-    //     // cout << "\nN: " << n;
-    //     // cout << "\nM: " << m;
-    //     // cout << "\nK: " << 2;
-
-    //     // cout << endl;
-
-    //     // cout << "\nSERVICE: " << endl;
-    //     // for (int i = 0; i < service.size(); i++){
-    //     //     cout << service[i] << " ";
-    //     // }
-    //     // cout << endl;
-
-    //     // cout << "\nDIST MATRIX: " << endl;
-
-    //     // for (int i = 0; i < realdist.size(); i++){
-    //     //     for(int j = 0; j < realdist[i].size(); j++){
-    //     //         cout << setw(5) << realdist[i][j] << " "; 
-    //     //     }
-    //     //     cout << endl;
-    //     // }
-    //     // getchar();
 
     //     //output
     //     string outputname;
@@ -410,3 +280,6 @@ double fRand(double fMin, double fMax){
     return fMin + f * (fMax - fMin);
 }
 
+bool compareDist(const NodesStruct &a, const NodesStruct &b){
+    return a.dist < b.dist;
+}
