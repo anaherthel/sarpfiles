@@ -622,41 +622,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
     //Forcing constraints
 
-    // sprintf (var, "Constraint15");
-    // cons1 = (x[4][2][0] == 1);
-    // cons1.setName(var);
-    // model.add(cons1);
-    
-    // sprintf (var, "Constraint16");
-    // cons1 = (x[2][0][0] == 1);
-    // cons1.setName(var);
-    // model.add(cons1);
 
-    // sprintf (var, "Constraint15");
-    // cons1 = (x[4][0][0] == 1);
-    // cons1.setName(var);
-    // model.add(cons1);
-
-    // sprintf (var, "Constraint16");
-    // cons1 = (x[0][1][0] == 1);
-    // cons1.setName(var);
-    // model.add(cons1);
-
-
-    // sprintf (var, "Constraint17");
-    // cons1 = (x[1][5][0] == 1);
-    // cons1.setName(var);
-    // model.add(cons1);
-
-    // sprintf (var, "Constraint18");
-    // cons1 = (x[1][3][0] == 1);
-    // cons1.setName(var);
-    // model.add(cons1);
-
-    // sprintf (var, "Constraint19");
-    // cons1 = (x[3][5][0] == 1);
-    // cons1.setName(var);
-    // model.add(cons1);
 
 	// // //Constraint 13 and 14 - sequence constraints
 
