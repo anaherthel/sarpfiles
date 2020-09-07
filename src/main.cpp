@@ -31,7 +31,7 @@ int main (int argc, char *argv[]) {
 	
 
 	
-	while (!sStat.feasible){
+	// while (!sStat.feasible){
 		nodeVec.clear();
 
 		readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK);
@@ -48,14 +48,14 @@ int main (int argc, char *argv[]) {
 			twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			
 		}
 		
-		if (trialK < inst.n){
-			trialK++;	
-		}
-		else{
-			break;
-		}
+	// 	if (trialK < inst.n){
+	// 		trialK++;	
+	// 	}
+	// 	else{
+	// 		break;
+	// 	}
 
-	}
+	// }
 
 	return 0;
 }

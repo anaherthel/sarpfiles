@@ -116,6 +116,7 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
         if (vecOfn[i] < 15){
             dimensions.first = vecOfn[i];
             dimensions.second = 20;
+            // dimensions.second = 4;
 
             dimVec.push_back(dimensions);
         }
@@ -165,17 +166,17 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
 
             // getchar();
 
-            // cout<< "Distance Matrix: " << endl;
+            cout<< "Distance Matrix: " << endl;
 
-            // for (int j = 0; j < dist.size(); j++){
-            //     for(int k = 0; k < dist[j].size(); k++){
-            //         cout << setw(6) << dist[j][k] << " ";
-            //     }
-            //     cout << endl;
-            // }
+            for (int j = 0; j < dist.size(); j++){
+                for(int k = 0; k < dist[j].size(); k++){
+                    cout << setw(6) << dist[j][k] << " ";
+                }
+                cout << endl;
+            }
 
-            // cout << endl;
-            // getchar();
+            cout << endl;
+            getchar();
 
             //Get closest nodes
             int lambda;
@@ -281,6 +282,9 @@ int main (int argc, char *argv[]) {
             vecOfm.push_back(i);
         }
     }
+
+    // vecOfn.push_back(6);
+    // vecOfm.push_back(4);
 
     vecOfLambda.push_back(2);
     vecOfLambda.push_back(5);

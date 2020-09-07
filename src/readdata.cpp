@@ -68,12 +68,16 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> m;
 
         // K = 11;
+
         if (trialK >= K){
             K = trialK;
         }
         else{
             trialK = K;
         }
+        
+        cout << "K: " << K;
+        getchar();
 
         service = service/60;
         V = n + 2*m + K;
@@ -256,13 +260,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
         
-        // cout << "Earlier: \n{";
+        cout << "Earlier: \n{";
 
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << nodeVec[i].e << " } {";
-        // }
-        // cout << endl;
-        // getchar();
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << nodeVec[i].e << " } {";
+        }
+        cout << endl;
+        getchar();
 
         *Mdist = dist;
         inst->K = K;

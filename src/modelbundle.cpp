@@ -1449,14 +1449,14 @@ void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vect
             currNode = sStat->solInNode[k][i];
             nextNode = sStat->solInNode[k][i + 1];
 
-            cout << "currNode: " << currNode << " - nextNode: " << nextNode << endl; 
-            getchar();
+            // cout << "currNode: " << currNode << " - nextNode: " << nextNode << endl; 
+            // getchar();
 
             if (nextNode >= inst->n){
                 if(nextNode < inst->n + 2*inst->m){
                     tij = mdist[currNode][nextNode]/inst->vmed;
-                    cout << "tij: " << tij;
-                    getchar();
+                    // cout << "tij: " << tij;
+                    // getchar();
 
                     beginTimes[nextNode] = beginTimes[currNode] + tij + nodeVec[nextNode].delta;
                 }
@@ -1486,10 +1486,10 @@ void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vect
         }
     }
 
-    for (int i = 0 ; i < beginTimes.size(); i++){
-        cout << i << ": " << beginTimes[i] << " ";
-    }
-    getchar();
+    // for (int i = 0 ; i < beginTimes.size(); i++){
+    //     cout << i << ": " << beginTimes[i] << " ";
+    // }
+    // getchar();
 
 } 
 
