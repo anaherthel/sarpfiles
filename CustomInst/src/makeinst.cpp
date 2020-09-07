@@ -26,13 +26,24 @@ struct NodesStruct{
     int index;
 };
 
+struct CandStruct{
+    int index;
+    int realInd;
+    bool chosen;
+    int label1;
+    int label2;
+    //l1: 1 - customer; 2 - parcel; 3 - depot
+    //l2: 1 - pickup; 2 - delivery; 3 - depot
+};
+
 double CalcDistEuc (double X1, double Y1, double X2, double Y2);
 void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm, vector<int> &vecOfLambda);
 double fRand(double fMin, double fMax);
 bool compareDist(const NodesStruct &a, const NodesStruct &b);
-
-
-
+void classNodes(int n, int m, int *lambda, NodesStruct nodeVar, vector<NodesStruct> closeVec, vector< vector<double> > &dist, vector<int> unclassVec, vector<CandStruct> &nodeVec);
+void organizeNodes(int n, int m, vector<CandStruct> nodeVec, vector<CandStruct> &orgNodes);
+bool compareIndex(const CandStruct &a, const CandStruct &b);
+void createTimesLoad(int n, int m, vector< pair<double, double> > &tsVec, vector<CandStruct> &orgNodes, vector<int> &loadVec);
 
 double CalcDistEuc (double X1, double Y1, double X2, double Y2){
     return sqrt ( pow ( X1 - X2, 2 ) + pow ( Y1 - Y2, 2 ) );
@@ -61,21 +72,34 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
 
     vector< pair <double, double> > coordVec;
 
+    vector<int> loadVec;
+
     vector<NodesStruct> closeVec;
     NodesStruct nodeVar;
+    CandStruct candidate;
     
-    vector<int> unclassVec;
-    vector<int> passVec;
-    vector<int> parcVec;
-    vector<int> depotNode;
+    pair<double, double> timeStamps;
+    vector< pair<double, double> > tsVec;
 
+    vector<int> unclassVec;
+    vector<CandStruct> nodeVec;
+    vector<CandStruct> orgNodes;
+    
     int seed = 1234;
     srand(seed);
 
     vector< vector<double> > dist;
     vector<double> rowvec;
 
+    string strN, strM, strP;
+
     //Generate random points:
+
+    candidate.index = 999;
+    candidate.realInd = 999;
+    candidate.chosen = 0;
+    candidate.label1 = 0;
+    candidate.label2 = 0;
 
     for (int i = 0; i < vecOfn.size(); i++){
         for (int j = 0; j < vecOfm.size(); j++){
@@ -97,146 +121,146 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
         }
     }
 
-    // cout << "Test if dimensions vec is ok: " << endl;
-
-    // for (int i = 0; i < dimVec.size(); i++){
-    //     cout << dimVec[i].first << " + " << dimVec[i].second << endl;
-    // }
-
-    // cout << endl;
-    // getchar();
-
     int totalPoints;
     double lb = 0;
     double ub = 20;
+    for (int p = 1; p < 5; p++){
+        for (int i = 0; i < dimVec.size(); i++){
+            totalPoints = (dimVec[i].first + dimVec[i].second)*2 + 1;
 
-    for (int i = 0; i < dimVec.size(); i++){
-        totalPoints = (dimVec[i].first + dimVec[i].second)*2 + 1;
+            for (int j = 0; j < totalPoints; j++){
+                coordinate.first = fRand(lb, ub);
+                coordinate.second = fRand(lb, ub);
 
-        for (int j = 0; j < totalPoints; j++){
-            coordinate.first = fRand(lb, ub);
-            coordinate.second = fRand(lb, ub);
-
-            coordVec.push_back(coordinate);           
-        }
-    
-        for (int j = 0; j < coordVec.size(); j++){
-            for (int k = 0; k < coordVec.size(); k++){
-                rowvec.push_back(0);
-            }
-            dist.push_back(rowvec);
-            rowvec.clear();
-        }
-
-
-        for (int j = 0; j < coordVec.size(); j++){
-            for (int k = 0; k < coordVec.size(); k++){
-                if(j == k){
-                   dist[j][k] = 0;
-                }
-                else{
-                    dist[j][k] = CalcDistEuc(coordVec[j].first, coordVec[j].second, coordVec[k].first, coordVec[k].second);
-                }
-            }
-        }
-
-
-        cout << "Coordinates: " << endl;
-
-        for (int j = 0; j < coordVec.size(); j++){
-            cout << setw(5) << coordVec[j].first << " " << setw(5) << coordVec[j].second << endl;
-        }
-
-        cout << endl;
-
-        getchar();
-
-        cout<< "Distance Matrix: " << endl;
-
-        for (int j = 0; j < dist.size(); j++){
-            for(int k = 0; k < dist[j].size(); k++){
-                cout << setw(6) << dist[j][k] << " ";
-            }
-            cout << endl;
-        }
-
-        cout << endl;
-        getchar();
-
-        //Get closest nodes
-        
-        for (int j = 0 ; j < totalPoints; j++){
-            unclassVec.push_back(j);
-        }
-        
-        for (int j = 0; j < dist.size(); j++){
-            for (int k = 0; k < dist[j].size(); k++){
-                if (dist[j][k] > 0){
-                    nodeVar.index = k;
-                    nodeVar.dist = dist[j][k];
-                    closeVec.push_back(nodeVar);                               
-                }
-
+                coordVec.push_back(coordinate);           
             }
         
-            sort(closeVec.begin(), closeVec.end(), compareDist);
-
-
-
-            cout << "Ordered vec: " << endl;
-
-            for(int l = 0; l < closeVec.size(); l++){
-                cout << closeVec[l].index << " - " <<  closeVec[l].dist << " // ";
+            for (int j = 0; j < coordVec.size(); j++){
+                for (int k = 0; k < coordVec.size(); k++){
+                    rowvec.push_back(0);
+                }
+                dist.push_back(rowvec);
+                rowvec.clear();
             }
 
 
-            cout << endl;
-            getchar();
+            for (int j = 0; j < coordVec.size(); j++){
+                for (int k = 0; k < coordVec.size(); k++){
+                    if(j == k){
+                       dist[j][k] = 0;
+                    }
+                    else{
+                        dist[j][k] = CalcDistEuc(coordVec[j].first, coordVec[j].second, coordVec[k].first, coordVec[k].second);
+                    }
+                }
+            }
 
+            // cout << "Coordinates: " << endl;
 
-        }
+            // for (int j = 0; j < coordVec.size(); j++){
+            //     cout << j << "\t" << setw(5) << coordVec[j].first << " " << setw(5) << coordVec[j].second << endl;
+            // }
 
-        //Sort 
+            // cout << endl;
 
+            // getchar();
 
+            // cout<< "Distance Matrix: " << endl;
 
+            // for (int j = 0; j < dist.size(); j++){
+            //     for(int k = 0; k < dist[j].size(); k++){
+            //         cout << setw(6) << dist[j][k] << " ";
+            //     }
+            //     cout << endl;
+            // }
+
+            // cout << endl;
+            // getchar();
+
+            //Get closest nodes
+            int lambda;
+
+            for (int l = 0; l < vecOfLambda.size(); l++){
+
+                for (int j = 0; j < totalPoints; j++){
+                    unclassVec.push_back(j);
+                }
+
+                for (int j = 0; j < totalPoints; j++){
+                    nodeVec.push_back(candidate);
+                }
+
+                lambda = vecOfLambda[l];
+                classNodes(dimVec[i].first, dimVec[i].second, &lambda, nodeVar, closeVec, dist, unclassVec, nodeVec);
+                
+                organizeNodes(dimVec[i].first, dimVec[i].second, nodeVec, orgNodes);
+
+                for (int j = 0; j < orgNodes.size(); j++){
+                    tsVec.push_back(timeStamps);
+                    loadVec.push_back(999);
+                }
+
+                createTimesLoad(dimVec[i].first, dimVec[i].second, tsVec, orgNodes, loadVec);
+
+                //output
+                string outputname;
+
+                string instclass;
+
+                if (lambda == 2){
+                    instclass = 'A';
+                }
+                else if (lambda == 5){
+                    instclass = 'B';
+                }
+                else if (lambda == 0){
+                    instclass = 'C';
+                }
+
+                strN = to_string(dimVec[i].first);
+                strM = to_string(dimVec[i].second);
+                strP = to_string(p);
+
+                outputname = "sarp-" + strN + "-" + strM + "-" + instclass + "-" + strP + ".txt";
+                cout << "output: " << outputname << endl;
+                getchar();
+
+                ofstream ofile;
+
+                ofile.open(outputname);
+                
+                ofile << 1 << "\t" << 5 << "\t" << dimVec[i].first << "\t" << dimVec[i].second << endl;
+
+                for (int i = 0; i < orgNodes.size(); i++){
+                    if (i < 1){
+                        ofile << i << "\t" << setw(9) << fixed << setprecision(4) << coordVec[orgNodes[i].realInd].first << "\t" << setw(9) << coordVec[orgNodes[i].realInd].second << "\t" << 0 << "\t" << loadVec[i] << "\t" << fixed << setprecision(0) << tsVec[i].first << "\t" << tsVec[i].second << endl;
+                    }
+                    else if (i <= dimVec[i].first){//customer pickup
+                        ofile << i << "\t" << setw(9) << fixed << setprecision(4) << coordVec[orgNodes[i].realInd].first << "\t" << setw(9) << coordVec[orgNodes[i].realInd].second << "\t" << 0 << "\t" << loadVec[i] << "\t" << fixed << setprecision(0) << tsVec[i].first << "\t" << tsVec[i].second << endl;
+                    }  
+                    else if(i <= dimVec[i].first + dimVec[i].second){//parcel pickup
+                        ofile << i << "\t" << setw(9) << fixed << setprecision(4) << coordVec[orgNodes[i].realInd].first << "\t" << setw(9) << coordVec[orgNodes[i].realInd].second << "\t" << 0 << "\t" << loadVec[i] << "\t" << fixed << setprecision(0) << tsVec[i].first << "\t" << tsVec[i].second << endl;
+                    }
+                    else if(i <= 2*dimVec[i].first + dimVec[i].second){//customer delivery
+                        ofile << i << "\t" << setw(9) << fixed << setprecision(4) << coordVec[orgNodes[i].realInd].first << "\t" << setw(9) << coordVec[orgNodes[i].realInd].second << "\t" << 0 << "\t" << loadVec[i] << "\t" << fixed << setprecision(0) << tsVec[i].first << "\t" << tsVec[i].second << endl;
+                    }
+                    else if(i <= 2*dimVec[i].first + 2*dimVec[i].second){//parcel delivery
+                        ofile << i << "\t" << setw(9) << fixed << setprecision(4) << coordVec[orgNodes[i].realInd].first << "\t" << setw(9) << coordVec[orgNodes[i].realInd].second << "\t" << 0 << "\t" << loadVec[i] << "\t" << fixed << setprecision(0) << tsVec[i].first << "\t" << tsVec[i].second << endl;
+                    }
+                    else{
+                         ofile << i << "\t" << setw(9) << fixed << setprecision(4) << coordVec[orgNodes[i].realInd].first << "\t" << setw(9) << coordVec[orgNodes[i].realInd].second << "\t" << 0 << "\t" << loadVec[i] << "\t" << fixed << setprecision(0) << tsVec[i].first << "\t" << tsVec[i].second << endl;
+                    }
+                }
+                unclassVec.clear();
+                nodeVec.clear();
+                tsVec.clear();
+                orgNodes.clear();
+            }
+
+            coordVec.clear();
+            dist.clear();
+        }        
     }
-
-
-    //     //output
-    //     string outputname;
-
-    //     outputname = "grubhub-" + it1 + "-" + it2 + ".tsp";
-    //     // cout << "output: " << outputname << endl;
-
-    //     ofstream ofile;
-
-    //     ofile.open(outputname);
-        
-    //     ofile << "DIMENSION: " << n + 2*m + 2;
-    //     ofile << "\nN: " << n;
-    //     ofile << "\nM: " << m;
-    //     ofile << "\nK: " << 2;
-
-    //     ofile << endl;
-
-    //     ofile << "\nSERVICE: " << endl;
-    //     for (int i = 0; i < service.size(); i++){
-    //         ofile << service[i] << " ";
-    //     }
-    //     ofile << endl;
-
-    //     ofile << "\nDIST MATRIX: " << endl;
-
-    //     for (int i = 0; i < realdist.size(); i++){
-    //         for(int j = 0; j < realdist[i].size(); j++){
-    //             ofile << setw(5) << realdist[i][j] << " "; 
-    //         }
-    //         ofile << endl;
-    //     }
-
-    // }
-
 
 }
 
@@ -260,15 +284,8 @@ int main (int argc, char *argv[]) {
 
     vecOfLambda.push_back(2);
     vecOfLambda.push_back(5);
+    vecOfLambda.push_back(0);
 
-    // cout << "Vec of M: " << endl;
-
-    // for (int i = 0; i < vecOfm.size(); i++){
-    //     cout << vecOfm[i] << endl;
-    // }
-    // cout << endl;
-
-    // getchar();
 	genPoints(argc, argv, vecOfn, vecOfm, vecOfLambda);
 
     return 0;
@@ -282,4 +299,249 @@ double fRand(double fMin, double fMax){
 
 bool compareDist(const NodesStruct &a, const NodesStruct &b){
     return a.dist < b.dist;
+}
+
+bool compareIndex(const CandStruct &a, const CandStruct &b){
+    if(a.index == b.index){
+        return a.label2 < b.label2;    
+    }
+    else{
+        return a.index < b.index; 
+    }
+
+}
+void classNodes(int n, int m, int *lambda, NodesStruct nodeVar, vector<NodesStruct> closeVec, vector< vector<double> > &dist, vector<int> unclassVec, vector<CandStruct> &nodeVec){
+    // vector<int> candidateVec;
+    int number;
+    int chosenDel;
+
+    int candPU;
+
+    int limit;
+
+    // cout << "Testing the sizes: n: " << n << " - m: " << m << endl;
+    // getchar();
+
+    for (int i = 0; i < n; i++){
+
+        candPU = unclassVec[0];
+
+        nodeVec[candPU].index = i;
+        nodeVec[candPU].realInd = candPU;
+        nodeVec[candPU].chosen = 1;
+        nodeVec[candPU].label1 = 1;
+        nodeVec[candPU].label2 = 1;
+
+        unclassVec.erase(unclassVec.begin());
+
+        closeVec.clear();
+
+        for (int k = 0; k < unclassVec.size(); k++){
+            if (dist[candPU][unclassVec[k]] > 0){
+                nodeVar.index = unclassVec[k];
+                nodeVar.dist = dist[candPU][unclassVec[k]];
+                closeVec.push_back(nodeVar);                               
+            }
+        }
+
+        sort(closeVec.begin(), closeVec.end(), compareDist);
+
+        if (*lambda > 0){
+            limit = *lambda;
+        }
+        else{
+            limit = unclassVec.size();
+        }
+
+        number = rand() % limit;
+
+        chosenDel = closeVec[number].index;
+        nodeVec[chosenDel].index = i;
+        nodeVec[chosenDel].realInd = chosenDel;
+        nodeVec[chosenDel].chosen = 1;
+        nodeVec[chosenDel].label1 = 1;
+        nodeVec[chosenDel].label2 = 2;
+
+        for (int j = 0; j < unclassVec.size(); j++){
+            if (unclassVec[j] == chosenDel){
+                unclassVec.erase(unclassVec.begin() + j);
+            }
+        }
+    }
+    
+    for (int i = n; i < n + m; i++){
+
+        candPU = unclassVec[0];
+
+        nodeVec[candPU].index = i;
+        nodeVec[candPU].realInd = candPU;
+        nodeVec[candPU].chosen = 1;
+        nodeVec[candPU].label1 = 2;
+        nodeVec[candPU].label2 = 1;
+
+        unclassVec.erase(unclassVec.begin());
+
+        closeVec.clear();
+
+        for (int k = 0; k < unclassVec.size(); k++){
+            if (dist[candPU][unclassVec[k]] > 0){
+                nodeVar.index = unclassVec[k];
+                nodeVar.dist = dist[candPU][unclassVec[k]];
+                closeVec.push_back(nodeVar);                               
+            }
+        }
+
+        sort(closeVec.begin(), closeVec.end(), compareDist);
+
+        if (*lambda > 0){
+            limit = *lambda;
+        }
+        else{
+            limit = unclassVec.size();
+        }
+
+        number = rand() % limit;
+        
+        chosenDel = closeVec[number].index;
+        nodeVec[chosenDel].index = i;
+        nodeVec[chosenDel].realInd = chosenDel;
+        nodeVec[chosenDel].chosen = 1;
+        nodeVec[chosenDel].label1 = 2;
+        nodeVec[chosenDel].label2 = 2;
+
+        for (int j = 0; j < unclassVec.size(); j++){
+            if (unclassVec[j] == chosenDel){
+                unclassVec.erase(unclassVec.begin() + j);
+            }
+        }
+    }
+
+
+    candPU = unclassVec[0];
+
+    nodeVec[candPU].index = n + m;
+    nodeVec[candPU].realInd = candPU;
+    nodeVec[candPU].chosen = 1;
+    nodeVec[candPU].label1 = 3;
+    nodeVec[candPU].label2 = 3;
+}
+
+void organizeNodes(int n, int m, vector<CandStruct> nodeVec, vector<CandStruct> &orgNodes){
+
+    vector<CandStruct> auxVec;
+    CandStruct lastNode;
+
+    for (int i = 0; i < nodeVec.size(); i++){
+        auxVec.push_back(nodeVec[i]);
+    }
+
+    sort(auxVec.begin(), auxVec.end(), compareIndex);
+
+    // cout << "Ordered auxVec: " << endl;
+
+    // for (int i = 0; i < auxVec.size(); i++){
+    //     cout << i << ": " << auxVec[i].index << " - " << auxVec[i].label1 << " - " << auxVec[i].label2 << endl;
+    // }
+    // getchar();
+
+    lastNode = auxVec.back();
+    orgNodes.push_back(lastNode);
+        
+    auxVec.pop_back();
+
+    for (int i = 0; i < auxVec.size(); i++){
+        if(i < 2*n){
+            if(i % 2 == 0){
+                orgNodes.push_back(auxVec[i]);
+            }
+        }
+    }
+
+    for (int i = 0; i < auxVec.size(); i++){
+        if(i >= 2*n){
+            if(i % 2 == 0){
+                orgNodes.push_back(auxVec[i]);
+            }
+        }
+    }
+
+
+    for (int i = 0; i < auxVec.size(); i++){
+        if(i < 2*n){
+            if(i % 2 != 0){
+                orgNodes.push_back(auxVec[i]);
+            }
+        }
+    }
+
+    for (int i = 0; i < auxVec.size(); i++){
+        if(i >= 2*n){
+            if(i % 2 != 0){
+                orgNodes.push_back(auxVec[i]);
+            }
+        }
+    }
+    
+    orgNodes.push_back(lastNode);
+
+    // cout << "FINAL ORDERED : " << endl;
+    // for (int i = 0; i < orgNodes.size(); i++){
+    //     cout << i << ": " << orgNodes[i].index << " - " << orgNodes[i].realInd << " - " << orgNodes[i].label1 << " - " << orgNodes[i].label2 << endl;
+    // }  
+    // getchar();
+}
+
+void createTimesLoad(int n, int m, vector< pair<double, double> > &tsVec, vector<CandStruct> &orgNodes, vector<int> &loadVec)
+{
+    for (int i = 0; i < tsVec.size(); i++){
+        if (i == 0){
+            tsVec[i].first = 540;
+            tsVec[i].second = 1140;
+            continue;
+        }
+        else if(i <= n){
+            tsVec[i].first = 540 + rand() % 480;
+            tsVec[i].second = tsVec[i].first;
+            continue;
+        }
+        else if (i <= n + m){
+            tsVec[i].first = 540;
+            tsVec[i].second = 1020;
+            continue;                          
+        }
+        else if (i <= 2*n + m){
+            tsVec[i].first = tsVec[i - n - m].first + 60;
+            tsVec[i].second = tsVec[i].first;
+            continue;            
+        }
+        else if (i <= 2*n + 2*m){
+            tsVec[i].first = 540;
+            tsVec[i].second = 1020;
+            continue;            
+        } 
+        else{
+            tsVec[i].first = 540;
+            tsVec[i].second = 1140;
+            continue;            
+        }
+    }
+
+    for (int i = 0; i < orgNodes.size(); i++){
+        if(orgNodes[i].label1 == 1){
+            loadVec[i] = 3;
+            if (orgNodes[i].label2 == 2){
+                loadVec[i] = loadVec[i]*(-1);
+            }
+        }
+        else if(orgNodes[i].label1 == 2){
+            loadVec[i] = 1;
+            if (orgNodes[i].label2 == 2){
+                loadVec[i] = loadVec[i]*(-1);
+            }           
+        }
+        else{
+            loadVec[i] = 0;
+        }
+    }
+
 }

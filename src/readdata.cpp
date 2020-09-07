@@ -60,7 +60,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     parcelArg = argv[3];
     parcelP = stod(parcelArg)/100;
     
-    if (instType == "sf_data"){
+    if (instType == "sf_data" || instType == "csarp"){
 
         in >> K;
         in >> service;
@@ -171,11 +171,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
 
-        cout << "\nve: " << endl;
-        for (int i = 0; i < ve.size(); i++){
-            cout << ve[i] << endl;
-        }
-        getchar();
+        // cout << "\nve: " << endl;
+        // for (int i = 0; i < ve.size(); i++){
+        //     cout << ve[i] << endl;
+        // }
+        // getchar();
         // Calculate distance matrix (Geolocation)
 
         // CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
@@ -256,13 +256,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
         
-        cout << "Earlier: \n{";
+        // cout << "Earlier: \n{";
 
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << nodeVec[i].e << " } {";
-        }
-        cout << endl;
-        getchar();
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << nodeVec[i].e << " } {";
+        // }
+        // cout << endl;
+        // getchar();
 
         *Mdist = dist;
         inst->K = K;
