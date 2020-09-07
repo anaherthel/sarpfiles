@@ -497,6 +497,15 @@ void organizeNodes(int n, int m, vector<CandStruct> nodeVec, vector<CandStruct> 
 
 void createTimesLoad(int n, int m, vector< pair<double, double> > &tsVec, vector<CandStruct> &orgNodes, vector<int> &loadVec)
 {
+
+    vector<double> auxts;
+    double initts;
+
+    for (int i = 0; i < n; i++){
+        initts = 560 + rand() % 480;
+        auxts.push_back(initts);
+    }
+
     for (int i = 0; i < orgNodes.size(); i++){
         if (orgNodes[i].label1 == 3){
             tsVec[i].first = 540;
@@ -504,9 +513,17 @@ void createTimesLoad(int n, int m, vector< pair<double, double> > &tsVec, vector
             continue;
         }
         else if(orgNodes[i].label1 == 1){
-            tsVec[i].first = 560 + rand() % 480;
-            tsVec[i].second = tsVec[i].first;
-            continue;
+            if (orgNodes[i].label2 == 1){
+                tsVec[i].first = 560 + rand() % 480;
+                tsVec[i].second = tsVec[i].first;
+                continue;               
+            }
+            else if (orgNodes[i].label2 == 2){
+                tsVec[i].first = tsVec[i - n].first + rand() % 480;
+                tsVec[i].second = tsVec[i].first;
+                continue;                   
+            }
+
         }
         else if (orgNodes[i].label1 == 2){
             tsVec[i].first = 540;
