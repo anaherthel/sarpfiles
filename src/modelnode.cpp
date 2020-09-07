@@ -670,8 +670,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
 	nSARP.setParam(IloCplex::Threads, 8);
-    
-	// nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
+	nSARP.setParam(IloCplex::Param::TimeLimit, 3600);
 
 	nSARP.solve();
 	cout << "\nSol status: " << nSARP.getStatus() << endl;
@@ -772,23 +771,23 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem);
 
-	cout<< "\nFeasible arcs between nodes:" << endl;
-    for (int i = 0; i < nas.arcs.size(); i++){
-        if (i == 0){
-            cout << setw(3) << " ";
-        }
-        cout << setw(3) << std::right << i << " ";
-    }
-    cout << endl;
-    for(int i = 0; i < nas.arcs.size(); i++){
-        cout << setw(3) << std::right << i;
-        for(int j = 0; j < nas.arcs[i].size(); j++){
-            cout << setw(3) <<  nas.arcs[i][j] << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
-    getchar();
+	// cout<< "\nFeasible arcs between nodes:" << endl;
+ //    for (int i = 0; i < nas.arcs.size(); i++){
+ //        if (i == 0){
+ //            cout << setw(3) << " ";
+ //        }
+ //        cout << setw(3) << std::right << i << " ";
+ //    }
+ //    cout << endl;
+ //    for(int i = 0; i < nas.arcs.size(); i++){
+ //        cout << setw(3) << std::right << i;
+ //        for(int j = 0; j < nas.arcs[i].size(); j++){
+ //            cout << setw(3) <<  nas.arcs[i][j] << " ";
+ //        }
+ //        cout << endl;
+ //    }
+ //    cout << endl;
+ //    getchar();
 
  //    cout << "arcs NN: " << endl;
 	// for (int i = 0; i < nas.arcNN.size(); i++){
