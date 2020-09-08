@@ -182,24 +182,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // getchar();
         // Calculate distance matrix (Geolocation)
 
-        // CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
+        CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
 
         double singleProfit;
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
-                // delta[i] = (2 * (service)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
-                // trip[i] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
-               
-                delta[i] = (2 * (service)) + (calcEucDist(vxs, vys, vxf, vyf, i, i))/inst->vmed;
-                trip[i] = calcEucDist(vxs, vys, vxf, vyf, i, i);
-                profit[i] = inst->gamma2 + inst->mu2*calcEucDist(vxs, vys, vxf, vyf, i, i) - calcEucDist(vxs, vys, vxf, vyf, i, i);
-                // profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+                delta[i] = (2 * (service)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
+                trip[i] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+                profit[i] = inst->gamma2 + inst->mu2*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
             }
             else if (i < V - K){ 
                 delta[i] = service;
                 if (i < n + m){
-                    // profit[i] = inst->gamma + inst->mu*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
-                    profit[i] = inst->gamma + inst->mu*calcEucDist(vxs, vys, vxf, vyf, i, i+m);
+                    profit[i] = inst->gamma + inst->mu*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
                 }
                 else{
                     profit[i] = 0;
@@ -216,8 +211,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 else{
                     if (i < V){
                         if (j < V){
-                            // dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
-                            dist[i][j] = calcEucDist(vxs, vys, vxf, vyf, i, j);
+                            dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
                         }
                         else if (j >= V){
                             dist[i][j] = 0;
