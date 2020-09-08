@@ -76,8 +76,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             trialK = K;
         }
         
-        cout << "K: " << K;
-        getchar();
+        cout << "K: " << K << endl;
+        // getchar();
 
         service = service/60;
         V = n + 2*m + K;
@@ -260,13 +260,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
         
-        cout << "Earlier: \n{";
+        // cout << "Earlier: \n{";
 
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << nodeVec[i].e << " } {";
-        }
-        cout << endl;
-        getchar();
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << nodeVec[i].e << " } {";
+        // }
+        // cout << endl;
+        // getchar();
 
         *Mdist = dist;
         inst->K = K;
@@ -299,7 +299,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             trialK = K;
         }
         
-        cout << "K: " << K;
+        cout << "K: " << K << endl;
         // getchar();
 
         service = service/60;
@@ -358,7 +358,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //     cout << i << ": " << vxf[i] << endl;
         // }
         // cout << endl;
-        
+
         for (int i = 0; i < n; i++){
             vxs.erase(vxs.begin() + n);
             vys.erase(vys.begin() + n);
