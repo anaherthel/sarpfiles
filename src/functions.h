@@ -42,6 +42,8 @@ struct solStats{
 	double dBoth;
 	double dNone;
 
+	int servedParcels;
+	
     vector< vector<int> > solOrder;
 	vector< vector<int> > solInNode;
 	vector< vector< pair<int, int> > > solvec;

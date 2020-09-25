@@ -265,6 +265,7 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
                 }
                 else if (sStat->solOrder[k][i] < inst->n + inst->m){
                     cout << "P" << " - ";
+                    sStat->servedParcels++;
                 }
                 else if (sStat->solOrder[k][i] < inst->n + 2*inst->m){
                     cout << "D" << " - ";
@@ -622,7 +623,27 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
     //Forcing constraints
 
+    // exp = x[0][1][0];
 
+    // sprintf (var, "Constraint15");
+    // cons1 = (exp == 1);
+    // cons1.setName(var);
+    // model.add(cons1); 
+
+
+    // exp = x[1][5][0];
+
+    // sprintf (var, "Constraint16");
+    // cons1 = (exp == 1);
+    // cons1.setName(var);
+    // model.add(cons1); 
+
+    // exp = x[4][0][0];
+
+    // sprintf (var, "Constraint17");
+    // cons1 = (exp == 1);
+    // cons1.setName(var);
+    // model.add(cons1); 
 
 	// // //Constraint 13 and 14 - sequence constraints
 

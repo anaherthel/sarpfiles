@@ -50,13 +50,15 @@ struct instanceStat{
     int V;
     int dummy;
     double service;
-   	double gamma = 4; //initial fare for parcels
-	double mu = 2; //fare per km for parcels
+    // double inipar = ;
+    // double inipas = ;
+   	double minpar = 5; //initial fare for parcels
+	double parkm = 0.51; //fare per km for parcels
 	double vmed;
 	// double vmed = 19.3;
 	// double vmed = 9;
-	double gamma2 = 7; //initial fare for passengers
-	double mu2 = 4; //fare per km for passengers
+	double minpas = 9; //initial fare for passengers
+	double paskm = 1.03; //fare per km for passengers
 	int nCluster;
 	int endCluster;
 	int startCluster;

@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -42,11 +43,11 @@ def write_matrix(matrix, filename):
             f.write("\n")
             
 
-coordinates = read_coordinates('debug_coords2.txt')
+coordinates = read_coordinates('debug_coords3.txt')
 
 p.plot_coordinates(coordinates)
 
 # Now calculate the distance matrix using the euclidean distance.
 matrix = calc_matrix(coordinates)
 
-write_matrix(matrix, 'debug_matrix2.txt')
+write_matrix(matrix, 'debug_matrix3.txt')

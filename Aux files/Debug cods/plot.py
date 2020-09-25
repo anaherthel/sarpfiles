@@ -7,17 +7,54 @@ Created on Fri Nov 10 09:06:24 2017
 
 import matplotlib.pyplot as plt
 
+# def plot_coordinates(coordinates):
+#     labels = [label for label in range(len(coordinates))]
+#     x = [x for x, _ in coordinates]
+#     y = [y for _, y in coordinates]
+#     plt.plot(x, y, 'ro')
+#     plt.plot(x[-1], y[-1], 'gs')
+#     plt.plot(x[-2], y[-2], 'gs')
+#     plt.margins(0.2)
+#     plt.show()
+#     # Use plt.show() to plot in the spyder console.
+#     # Comment it out and uncomment one of the plt.savefig() lines
+#     # to save to a png/pdf file
+#     for i, c in enumerate(coordinates):
+#         # x, y = c
+        
+#         plt.annotate(i, (x[i], y[i]))
+        
+#         # , withdash=True,
+#         #    dashdirection=1,
+#         #    dashlength=5,
+#         #    dashpad=5,
+#         #    rotation=0,
+#         #    dashrotation=15,
+#         #    dashpush=10,
+#         #    )
+#     plt.margins(0.2)
+#     plt.show()
+#     # plt.savefig('map.png')
+#     # plt.savefig('map.pdf')  
+
 def plot_coordinates(coordinates):
     x = [x for x, _ in coordinates]
     y = [y for _, y in coordinates]
     plt.plot(x, y, 'ro')
-    plt.plot(x[-1], y[-1], 'gs')
-    plt.plot(x[-2], y[-2], 'gs')
-    plt.margins(0.2)
-    plt.show()
+    # plt.plot(x[-1], y[-1], 'gs')
     # Use plt.show() to plot in the spyder console.
     # Comment it out and uncomment one of the plt.savefig() lines
     # to save to a png/pdf file
+    for i, c in enumerate(coordinates):
+        # x, y = c
+        
+        plt.annotate(i, # this is the text
+                     (c[0],c[1]), # this is the point to label
+                     textcoords="offset points", # how to position the text
+                     xytext=(0,10), # distance from text to points (x,y)
+                     ha='center') # horizontal alignment can be left, right or center        
+
+    plt.margins(0.2)
     plt.show()
     # plt.savefig('map.png')
     # plt.savefig('map.pdf')  

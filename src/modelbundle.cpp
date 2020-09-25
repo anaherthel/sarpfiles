@@ -958,6 +958,8 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                 }
                 else if (sStat->solInNode[k][i] < inst->n + inst->m){
                     cout << "P" << " - ";
+                    sStat->servedParcels++;
+
                 }
                 else if (sStat->solInNode[k][i] < inst->n + 2*inst->m){
                     cout << "D" << " - ";
