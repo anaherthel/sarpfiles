@@ -52,16 +52,20 @@ struct instanceStat{
     double service;
     // double inipar = ;
     // double inipas = ;
-   	double minpar = 5; //initial fare for parcels
-	double parkm = 0.51; //fare per km for parcels
+	double minpas = 7; //initial fare for passengers
+	double paskm = 4; //fare per km for passengers
+
+   	double minpar = 4; //initial fare for parcels
+	double parkm = 2; //fare per km for parcels
 	double vmed;
 	// double vmed = 19.3;
 	// double vmed = 9;
-	double minpas = 9; //initial fare for passengers
-	double paskm = 1.03; //fare per km for passengers
 	int nCluster;
 	int endCluster;
 	int startCluster;
+	bool preInst;
+	string InstName;
+
 };
 
 struct probStat{
@@ -78,5 +82,6 @@ double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vect
 double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit);
 double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flongit, int I, int J);
 string getInstanceType (char **argv);
+string getInstName (char **argv);
 
 #endif

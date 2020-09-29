@@ -428,7 +428,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	}
 
 
-	// //Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle
+	// // //Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle
 
 	for (int i = inst->n; i < inst->n + inst->m; i++){
 		for (int k = 0; k < inst->K; k++){
@@ -450,7 +450,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 	}
 
-	// //Constraint 4 - Flow conservation
+	// // //Constraint 4 - Flow conservation
 
 	for (int i = 0; i < inst->n + 2*inst->m; i++){
 		for (int k = 0; k < inst->K; k++){
@@ -471,7 +471,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 			model.add(cons);
 		}
 	}
-	// //Constraint 5 - The route of every vehicle has to start at its starting position
+	// // //Constraint 5 - The route of every vehicle has to start at its starting position
 
 	for (int k = 0; k < inst->K; k++){
 		IloExpr exp(env);
@@ -484,7 +484,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		model.add(cons);
 	}
 
-	// //Constraint 6 - The route of every vehicle has to end at dummy node f
+	// // //Constraint 6 - The route of every vehicle has to end at dummy node f
 
 	for (int k = 0; k < inst->K; k++){
 		IloExpr exp(env);
@@ -611,7 +611,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 	}
 
-    //test constraint
+ //    //test constraint
 
     IloExpr exp(env);
     exp = w[nodeVec.size()-1];
@@ -620,6 +620,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
     IloRange cons1 = (exp == 0);
     cons1.setName(var);
     model.add(cons1);
+
+    //*******************************
 
     //Forcing constraints
 
@@ -744,10 +746,10 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
         cout << endl;
 
+
        for (int i = 0; i < nodeVec.size(); i++){
            cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
        }
-
 
         for (int i = 0; i < nodeVec.size(); i++){
             if (nSARP.getValue(w[i]) > 0.5){
@@ -767,6 +769,32 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	env.end();
 }
 
+void output(instanceStat *inst, vector<nodeStat> &nodeVec,  solStats *sStat){
+
+    //output
+    string btoutputname;
+
+    btoutputname = "bt-" + inst->InstName + ".txt";
+    cout << "output bt: " << btoutputname << endl;
+    getchar();
+
+    ofstream ofile;
+
+    ofile.open(btoutputname);
+    
+    // ofile << K << "\t" << 5 << "\t" << dimVec[i].first << "\t" << dimVec[i].second << endl;
+
+    for (int i = 0; i < inst->n; i++){
+        cout << i << "\t" << setw(9) << fixed << setprecision(4) << sStat->solBegin[i] << endl;
+    }
+    getchar();
+
+    // for (int i = 0; i < inst->n; i++){
+    //     ofile << i << "\t" << setw(9) << fixed << setprecision(4) << sStat->solBegin[i] << endl;
+
+    // }
+}
+
 void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
 	
 	nodeArcsStruct nas;
@@ -779,15 +807,15 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
 	// }
 
-	// cout << "\nDistance Matrix: " << endl;
+	cout << "\nDistance Matrix: " << endl;
 
-	// for (int i = 0; i < inst->V + inst->dummy; i++){
-	// 	for (int j = 0; j < inst->V + inst->dummy; j++){
-	// 		cout << setw(5) << mdist[i][j] << " ";
-	// 	}
-	// 	cout << endl;
-	// }
-	// getchar();
+	for (int i = 0; i < inst->V + inst->dummy; i++){
+		for (int j = 0; j < inst->V + inst->dummy; j++){
+			cout << setw(5) << mdist[i][j] << " ";
+		}
+		cout << endl;
+	}
+	getchar();
 
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem);
@@ -825,14 +853,21 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 
 	mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
 
+    // mtznode(inst, nodeVec, mdist, problem, &nas, sStat);
+
 	if(sStat->feasible){
 		viewSol (inst, mdist, nodeVec, sStat);
 
 		mipSolStats (inst, mdist, nodeVec, sStat);
 
 		printStats(inst, sStat);
-	}		
+	}
 
+    if (inst->preInst == 1)	{
+        output(inst, nodeVec,  sStat);
+    }
+
+    
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
 		delete[] mdist[i];
 	}

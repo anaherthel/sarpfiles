@@ -21,6 +21,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         exit(1);
     }  
 
+
+    inst->preInst = 0;
+    inst->InstName = getInstName(argv);
+
+    cout << "Instance Name: " << inst->InstName;
+    getchar();
     // if (argv[2] == "sim"){
     //     problem->sim = true;
     // }
@@ -506,6 +512,7 @@ if (instType == "debug"){
         in >> n;
         in >> m;
 
+        inst->preInst = 1;
         // K = 11;
 
         if (trialK < K){
@@ -586,9 +593,9 @@ if (instType == "debug"){
         }
 
 
-        for (int i = 0; i < n; i++){
-            vl[i] = ve[i];
-        }
+        // for (int i = 0; i < n; i++){
+        //     vl[i] = ve[i];
+        // }
 
         for (int i = n; i < n + 2*m; i++){
             ve[i] = 0;
@@ -688,13 +695,14 @@ if (instType == "debug"){
             nodeVec.push_back(*node);
         }
         
-        // cout << "Earlier: \n{";
+        cout << "Earlier // Later: " << endl;
 
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << nodeVec[i].e << " } {";
-        // }
-        // cout << endl;
-        // getchar();
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
+        }
+        cout << endl;
+        getchar();
+
 
         *Mdist = dist;
         inst->K = K;
@@ -1086,8 +1094,10 @@ if (instType == "debug"){
 
         for (int i = 0; i < V + inst->dummy; i++){
             if(i < n){
-                e[i] = 540 + rand() % 480;
-                l[i] = e[i];
+                // e[i] = 540 + rand() % 480;
+                // l[i] = e[i];
+                e[i] = 540;
+                l[i] = 1020;
             }
             else if (i < inst->n + 2*inst->m){
                 e[i] = 0;
@@ -1251,4 +1261,17 @@ string getInstanceType (char **argv){
     InstanceType.append(filename, loc+1, loc2-loc-1 );
 
     return InstanceType;
+}
+
+string getInstName (char **argv){
+
+    string filename(argv[1]);
+
+    string::size_type loc = filename.find_last_of("/");
+    string::size_type loc2 = filename.find_first_of(".");
+    string InstanceName;
+
+    InstanceName.append(filename, loc+1, loc2-loc-1 );
+
+    return InstanceName;
 }
