@@ -369,11 +369,13 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 //**
 	IloExpr objFunction(env);
 
-	for (int i = 0; i < nas->arcNplus.size(); i++){
-		for (int k = 0; k < inst->K; k++){
-			objFunction += nodeVec[nas->arcNplus[i].first].profit * x[nas->arcNplus[i].first][nas->arcNplus[i].second][k];
-		}
-	}
+    // for (int i = 0; i < nas->arcNplus.size(); i++){
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		objFunction += nodeVec[nas->arcNplus[i].first].profit * x[nas->arcNplus[i].first][nas->arcNplus[i].second][k];
+	// 	}
+	// }
+
+    objFunction += inst->totalCustomProfit;
 
 	for (int i = 0; i < nas->arcPP.size(); i++){
 		for (int k = 0; k < inst->K; k++){
@@ -383,7 +385,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	for (int i = 0; i < nas->allArcs.size(); i++){
 		for (int k = 0; k < inst->K; k++){
-			objFunction -= (double)mdist[nas->allArcs[i].first][nas->allArcs[i].second] * x[nas->allArcs[i].first][nas->allArcs[i].second][k];
+			objFunction -= (double)inst->costkm*mdist[nas->allArcs[i].first][nas->allArcs[i].second] * x[nas->allArcs[i].first][nas->allArcs[i].second][k];
 		}
 	}
 
@@ -693,9 +695,13 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
 	nSARP.setParam(IloCplex::Threads, 8);
-	nSARP.setParam(IloCplex::Param::TimeLimit, 3600);
+	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
 
+    IloNum start;
+    IloNum time;
+    start = nSARP.getTime();
 	nSARP.solve();
+    time = nSARP.getTime() - start;
 	cout << "\nSol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
 
@@ -703,6 +709,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		cout << "\nObj Val: " << setprecision(15) << nSARP.getObjValue() << endl;
 
 		sStat->solprofit = nSARP.getObjValue();
+
+        cout << "\nSolving Time: " << setprecision(15) << time << endl;
 		
 		for (int k = 0; k < inst->K; k++){
 	 		sStat->solvec.push_back(auxPairVec);
@@ -726,7 +734,12 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 		for (int k = 0; k < inst->K; k++){
 			for (int i = 0; i < sStat->solvec[k].size(); i++){
-				cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
+                if (sStat->solvec[k][i].first >= inst->n){
+                    sStat->pProfit += nodeVec[sStat->solvec[k][i].first].profit;
+                }
+                sStat->costs += (double)inst->costkm*mdist[sStat->solvec[k][i].first][sStat->solvec[k][i].second];
+                cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
+
 			}
 		}
 
@@ -747,9 +760,9 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         cout << endl;
 
 
-       for (int i = 0; i < nodeVec.size(); i++){
-           cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
-       }
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
+        }
 
         for (int i = 0; i < nodeVec.size(); i++){
             if (nSARP.getValue(w[i]) > 0.5){
@@ -764,19 +777,22 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         //     cout << "w(" << i << "): " << sStat->solLoad[i] << endl;
         // }
 
+        cout << "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
+        cout << "Parcel profit: " << sStat->pProfit << endl;
+        cout << "Costs: " << sStat->costs << endl;
+
 	}
 
 	env.end();
 }
 
-void output(instanceStat *inst, vector<nodeStat> &nodeVec,  solStats *sStat){
+void output(instanceStat *inst, vector<nodeStat> &nodeVec,  solStats *sStat, probStat* problem){
 
     //output
     string btoutputname;
 
-    btoutputname = "bt-" + inst->InstName + ".txt";
-    cout << "output bt: " << btoutputname << endl;
-    getchar();
+    btoutputname = "bt-" + inst->InstName + "-" + problem->scen + ".txt";
+    // cout << "output bt: " << btoutputname << endl;
 
     ofstream ofile;
 
@@ -785,10 +801,8 @@ void output(instanceStat *inst, vector<nodeStat> &nodeVec,  solStats *sStat){
     // ofile << K << "\t" << 5 << "\t" << dimVec[i].first << "\t" << dimVec[i].second << endl;
 
     for (int i = 0; i < inst->n; i++){
-        cout << i << "\t" << setw(9) << fixed << setprecision(4) << sStat->solBegin[i] << endl;
+        ofile << i << "\t" << setw(9) << fixed << setprecision(4) << sStat->solBegin[i] << endl;
     }
-    getchar();
-
     // for (int i = 0; i < inst->n; i++){
     //     ofile << i << "\t" << setw(9) << fixed << setprecision(4) << sStat->solBegin[i] << endl;
 
@@ -807,15 +821,15 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
 	// }
 
-	cout << "\nDistance Matrix: " << endl;
+	// cout << "\nDistance Matrix: " << endl;
 
-	for (int i = 0; i < inst->V + inst->dummy; i++){
-		for (int j = 0; j < inst->V + inst->dummy; j++){
-			cout << setw(5) << mdist[i][j] << " ";
-		}
-		cout << endl;
-	}
-	getchar();
+	// for (int i = 0; i < inst->V + inst->dummy; i++){
+	// 	for (int j = 0; j < inst->V + inst->dummy; j++){
+	// 		cout << setw(5) << mdist[i][j] << " ";
+	// 	}
+	// 	cout << endl;
+	// }
+	// getchar();
 
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem);
@@ -861,12 +875,11 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 		mipSolStats (inst, mdist, nodeVec, sStat);
 
 		printStats(inst, sStat);
+
+        if (inst->preInst == 1) {
+            output(inst, nodeVec,  sStat, problem);
+        }
 	}
-
-    if (inst->preInst == 1)	{
-        output(inst, nodeVec,  sStat);
-    }
-
     
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
 		delete[] mdist[i];

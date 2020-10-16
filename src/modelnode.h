@@ -45,6 +45,6 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
 void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat);
 void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat);
 void mtznode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat);
-void output(instanceStat *inst, vector<nodeStat> &nodeVec, solStats *sStat);
+void output(instanceStat *inst, vector<nodeStat> &nodeVec, solStats *sStat, probStat* problem);
 
 #endif

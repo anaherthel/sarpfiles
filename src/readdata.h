@@ -52,11 +52,13 @@ struct instanceStat{
     double service;
     // double inipar = ;
     // double inipas = ;
-	double minpas = 7; //initial fare for passengers
-	double paskm = 4; //fare per km for passengers
+	double minpas = 3.24; //initial fare for passengers
+	double paskm = 1.03; //fare per km for passengers
 
-   	double minpar = 4; //initial fare for parcels
-	double parkm = 2; //fare per km for parcels
+   	double minpar = 1.62; //initial fare for parcels
+	double parkm = 0.52; //fare per km for parcels
+
+	double costkm = 0.46;
 	double vmed;
 	// double vmed = 19.3;
 	// double vmed = 9;
@@ -65,6 +67,8 @@ struct instanceStat{
 	int startCluster;
 	bool preInst;
 	string InstName;
+
+	double totalCustomProfit;
 
 };
 

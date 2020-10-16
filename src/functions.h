@@ -52,6 +52,10 @@ struct solStats{
 	vector<double> solLoad;
 
 	bool feasible;
+
+	double pProfit;
+	double costs;
+
 };
 
 void solStatIni(solStats *sStat);

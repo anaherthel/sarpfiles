@@ -23,6 +23,9 @@ void solStatIni(solStats *sStat){
 
     sStat->servedParcels = 0;
 
+    sStat->pProfit = 0;
+    sStat->costs = 0;
+
     // sStat->solOrder.clear();
     // sStat->solvec.clear();
 }

@@ -507,7 +507,7 @@ void createTimesLoad(int n, int m, vector< pair<double, double> > &tsVec, vector
     double initts;
 
     for (int i = 0; i < n; i++){
-        initts = 560 + rand() % 480;
+        initts = 540 + rand() % 480;
         auxts.push_back(initts);
     }
 

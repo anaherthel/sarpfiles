@@ -25,8 +25,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     inst->preInst = 0;
     inst->InstName = getInstName(argv);
 
-    cout << "Instance Name: " << inst->InstName;
-    getchar();
+    // cout << "Instance Name: " << inst->InstName;
+    // getchar();
     // if (argv[2] == "sim"){
     //     problem->sim = true;
     // }
@@ -64,7 +64,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     instType = getInstanceType(argv);
     parcelArg = argv[3];
-    parcelP = stod(parcelArg)/100;
+    parcelP = stod(parcelArg)/100; //string to double
     
     if (instType == "sf_data"){
 
@@ -83,7 +83,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
         
         cout << "K: " << K << endl;
-        getchar();
+        // getchar();
 
         service = service/60;
         V = n + 2*m + K;
@@ -185,7 +185,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < ve.size(); i++){
             cout << ve[i] << endl;
         }
-        getchar();
+        // getchar();
 
         // Calculate distance matrix (Geolocation)
 
@@ -195,7 +195,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
                 delta[i] = (2 * (service)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
-                profit[i] = inst->minpas + inst->paskm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+                profit[i] = inst->minpas + inst->paskm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - inst->costkm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
             }
             else if (i < V - K){ 
                 delta[i] = service;
@@ -260,6 +260,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
         
+
         // cout << "Earlier: \n{";
 
         // for (int i = 0; i < nodeVec.size(); i++){
@@ -276,6 +277,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->service = service;
         inst->T = nodeVec[V + inst->dummy - 1].l;
 
+
+        inst->totalCustomProfit = 0;
+
+        for (int i = 0; i < n; i++){
+            inst->totalCustomProfit += nodeVec[i].profit;
+        }
+
+        // cout << "\ntotal profit: " << inst->totalCustomProfit;
+
+        // getchar();
+
         delete[] profit;
         delete[] delta;
         delete[] slatitude;
@@ -285,7 +297,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] trip;
     }
 
-if (instType == "debug"){
+    if (instType == "debug"){
 
         in >> K;
         in >> service;
@@ -301,8 +313,8 @@ if (instType == "debug"){
             trialK = K;
         }
         
-        cout << "K: " << K << endl;
-        getchar();
+        // cout << "K: " << K << endl;
+        // getchar();
 
         service = service/60;
         V = n + 2*m + K;
@@ -400,11 +412,11 @@ if (instType == "debug"){
         }
 
 
-        cout << "\nve: " << endl;
-        for (int i = 0; i < ve.size(); i++){
-            cout << ve[i] << endl;
-        }
-        getchar();
+        // cout << "\nve: " << endl;
+        // for (int i = 0; i < ve.size(); i++){
+        //     cout << ve[i] << endl;
+        // }
+        // getchar();
 
         // Calculate distance matrix (Geolocation)
 
@@ -414,8 +426,13 @@ if (instType == "debug"){
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
                 delta[i] = (2 * (service)) + (calcEucDist(vxs, vys, vxf, vyf, i, i))/inst->vmed;
+
                 trip[i] = calcEucDist(vxs, vys, vxf, vyf, i, i);
-                profit[i] = inst->minpas + inst->paskm*calcEucDist(vxs, vys, vxf, vyf, i, i) - calcEucDist(vxs, vys, vxf, vyf, i, i);
+                // cout << "Trip:" << endl;
+                // cout << i << ": " << trip[i] << endl;
+                profit[i] = inst->minpas + inst->paskm*calcEucDist(vxs, vys, vxf, vyf, i, i) - inst->costkm*calcEucDist(vxs, vys, vxf, vyf, i, i);
+                // cout << "Profit: " << endl;
+                // cout << i << ": " << profit[i] << endl;
             }
             else if (i < V - K){ 
                 delta[i] = service;
@@ -449,7 +466,7 @@ if (instType == "debug"){
                 }
             }
         }
-
+        // getchar();
         for (int i = 0; i < V; i++){
             node->xs = vxs[i];
             node->ys = vys[i];
@@ -496,6 +513,16 @@ if (instType == "debug"){
         inst->service = service;
         inst->T = nodeVec[V + inst->dummy - 1].l;
 
+        inst->totalCustomProfit = 0;
+
+        for (int i = 0; i < n; i++){
+            inst->totalCustomProfit += nodeVec[i].profit;
+        }
+
+        // cout << "\ntotal profit: " << inst->totalCustomProfit;
+
+        // getchar();
+
         delete[] profit;
         delete[] delta;
         delete[] slatitude;
@@ -521,10 +548,9 @@ if (instType == "debug"){
         else{
             trialK = K;
         }
-        
+
         cout << "K: " << K << endl;
         // getchar();
-
         service = service/60;
         V = n + 2*m + K;
 
@@ -630,7 +656,7 @@ if (instType == "debug"){
             if (i < n){ 
                 delta[i] = (2 * (service)) + (calcEucDist(vxs, vys, vxf, vyf, i, i))/inst->vmed;
                 trip[i] = calcEucDist(vxs, vys, vxf, vyf, i, i);
-                profit[i] = inst->minpas + inst->paskm*calcEucDist(vxs, vys, vxf, vyf, i, i) - calcEucDist(vxs, vys, vxf, vyf, i, i);
+                profit[i] = inst->minpas + inst->paskm*calcEucDist(vxs, vys, vxf, vyf, i, i) - inst->costkm*calcEucDist(vxs, vys, vxf, vyf, i, i);
             }
             else if (i < V - K){ 
                 delta[i] = service;
@@ -701,7 +727,8 @@ if (instType == "debug"){
             cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
         }
         cout << endl;
-        getchar();
+        // getchar();
+
 
 
         *Mdist = dist;
@@ -711,6 +738,16 @@ if (instType == "debug"){
         inst->V = V;
         inst->service = service;
         inst->T = nodeVec[V + inst->dummy - 1].l;
+
+        inst->totalCustomProfit = 0;
+
+        for (int i = 0; i < n; i++){
+            inst->totalCustomProfit += nodeVec[i].profit;
+        }
+
+        // cout << "\ntotal profit: " << inst->totalCustomProfit;
+
+        // getchar();
 
         delete[] profit;
         delete[] delta;
@@ -761,7 +798,7 @@ if (instType == "debug"){
         cout << "\nn: " << n << " m: " << m << endl; 
 
 
-        while ( file.compare("EDGE_WEIGHT_FORMAT") != 0 && file.compare("EDGE_WEIGHT_FORMAT") != 0 ){
+        while ( file.compare("EDGE_WEIGHT_FORMAT") != 0){
             in >> file;
         }
 
@@ -1066,7 +1103,7 @@ if (instType == "debug"){
                 // cout << i << ": " << (tempData[2*i][2*i+1]);
                 delta[i] = 2 * service + (((tempData[2*i][2*i+1])/1000)/inst->vmed);
                 // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
-                profit[i] = inst->minpas + inst->paskm*(tempData[2*i][2*i+1]/1000) - (tempData[2*i][2*i+1]/1000);    
+                profit[i] = inst->minpas + inst->paskm*(tempData[2*i][2*i+1]/1000) - inst->costkm*(tempData[2*i][2*i+1]/1000);    
                 w[i] = 0;
             }
             else if (i < V - K){
@@ -1093,21 +1130,22 @@ if (instType == "debug"){
         }
 
         for (int i = 0; i < V + inst->dummy; i++){
+
             if(i < n){
-                // e[i] = 540 + rand() % 480;
-                // l[i] = e[i];
-                e[i] = 540;
-                l[i] = 1020;
+                e[i] = 540 + rand() % 480;
+                l[i] = e[i];
+                // e[i] = 540;
+                // l[i] = 1020;
             }
-            else if (i < inst->n + 2*inst->m){
+            else if (i >= n && i < n + 2*m){
                 e[i] = 0;
-                l[i] = 1020;                
+                l[i] = 1020;
             }
-            else if (i < V + inst->dummy - 1){
+            else if (i >= n + 2*m && i < V + inst->dummy - 1){
                 e[i] = 540;
                 l[i] = 1020;
             }
-            else{
+            else if (i >= V + inst->dummy - 1){
                 e[i] = 540;
                 l[i] = 1020;
             } 
@@ -1182,14 +1220,25 @@ if (instType == "debug"){
         inst->service = service;
         inst->T = nodeVec[V + inst->dummy - 1].l;
 
+        inst->totalCustomProfit = 0;
+
+        for (int i = 0; i < n; i++){
+            inst->totalCustomProfit += nodeVec[i].profit;
+        }
+
+        // cout << "\ntotal profit: " << inst->totalCustomProfit;
+
+        // getchar();
+
         delete[] profit;
         delete[] delta;
         
-        cout << "\nStarting times: " << endl;
+        // cout << "\nStarting times: " << endl;
 
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << i << ": " << nodeVec[i].e << " || ";
-        }
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << i << ": " << nodeVec[i].e << " || ";
+        // }
+        // cout << endl << endl;
     }
 
     if(problem->scen == "1A" || "1B"){
