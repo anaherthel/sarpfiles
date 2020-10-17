@@ -1010,6 +1010,32 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         //collapsing passenger nodes
 
+        // for (int i = 0; i < V + inst->dummy; i++){
+        //     for (int j = 0; j < V + inst->dummy; j++){
+        //         if (i == j){
+        //             realData[i][j] = 0;
+        //         }
+        //         else{
+        //             if (i < n){
+        //                 if (j < n){
+        //                     realData[i][j] = (tempData[2*i+1][2*j])/1000;
+        //                 }
+        //                 else{
+        //                     realData[i][j] = (tempData[2*i+1][n+j])/1000;
+        //                 }
+        //             }
+        //             else{
+        //                 if (j < n){
+        //                     realData[i][j] = (tempData[n+i][2*j])/1000;
+        //                 }
+        //                 else{
+        //                     realData[i][j] = (tempData[n+i][n+j])/1000;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+
         for (int i = 0; i < V + inst->dummy; i++){
             for (int j = 0; j < V + inst->dummy; j++){
                 if (i == j){
@@ -1018,18 +1044,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 else{
                     if (i < n){
                         if (j < n){
-                            realData[i][j] = (tempData[2*i+1][2*j])/1000;
+                            realData[i][j] = (tempData[2*i+1][2*j])/100;
                         }
                         else{
-                            realData[i][j] = (tempData[2*i+1][n+j])/1000;
+                            realData[i][j] = (tempData[2*i+1][n+j])/100;
                         }
                     }
                     else{
                         if (j < n){
-                            realData[i][j] = (tempData[n+i][2*j])/1000;
+                            realData[i][j] = (tempData[n+i][2*j])/100;
                         }
                         else{
-                            realData[i][j] = (tempData[n+i][n+j])/1000;
+                            realData[i][j] = (tempData[n+i][n+j])/100;
                         }
                     }
                 }
@@ -1101,15 +1127,20 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for(int i = 0; i < V + inst->dummy; i++){
             if (i < n){
                 // cout << i << ": " << (tempData[2*i][2*i+1]);
-                delta[i] = 2 * service + (((tempData[2*i][2*i+1])/1000)/inst->vmed);
+                // delta[i] = 2 * service + (((tempData[2*i][2*i+1])/1000)/inst->vmed);
+                delta[i] = 2 * service + (((tempData[2*i][2*i+1])/100)/inst->vmed);
+
                 // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
-                profit[i] = inst->minpas + inst->paskm*(tempData[2*i][2*i+1]/1000) - inst->costkm*(tempData[2*i][2*i+1]/1000);    
+
+                // profit[i] = inst->minpas + inst->paskm*(tempData[2*i][2*i+1]/1000) - inst->costkm*(tempData[2*i][2*i+1]/1000);    
+                profit[i] = inst->minpas + inst->paskm*(tempData[2*i][2*i+1]/100) - inst->costkm*(tempData[2*i][2*i+1]/100);    
                 w[i] = 0;
             }
             else if (i < V - K){
                 delta[i] = service;
                 if (i < n + m){
-                    profit[i] = inst->minpar + inst->parkm*(tempData[i + n][i + n + m]/1000);
+                    // profit[i] = inst->minpar + inst->parkm*(tempData[i + n][i + n + m]/1000);
+                    profit[i] = inst->minpar + inst->parkm*(tempData[i + n][i + n + m]/100);
                     w[i] = 1;
                 }
                 else if (i < n + 2*m){
