@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances/grubhub'
-output='nGHSnewof.txt'
+output='nGHSnewofset1.txt'
 #runs=10
 
 cat /dev/null > $output

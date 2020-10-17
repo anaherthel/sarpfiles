@@ -55,8 +55,8 @@ struct instanceStat{
 	double minpas = 3.24; //initial fare for passengers
 	double paskm = 1.03; //fare per km for passengers
 
-   	double minpar = 1.62; //initial fare for parcels
-	double parkm = 0.52; //fare per km for parcels
+   	double minpar = 2.74; //initial fare for parcels
+	double parkm = 0.83; //fare per km for parcels
 
 	double costkm = 0.46;
 	double vmed;
