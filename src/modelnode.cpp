@@ -187,7 +187,7 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
     int currSP;
     vector<int> orderVec;
 
-	solStatIni(sStat);
+	// solStatIni(sStat);
 
     for (int k = 0; k < inst->K; k++){
         sStat->solOrder.push_back(auxSolOrder);
@@ -706,11 +706,12 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	sStat->feasible = nSARP.isPrimalFeasible();
 
 	if (sStat->feasible){
+        solStatIni(sStat);
 		cout << "\nObj Val: " << setprecision(15) << nSARP.getObjValue() << endl;
 
 		sStat->solprofit = nSARP.getObjValue();
 
-        cout << "\nSolving Time: " << setprecision(15) << time << endl;
+        cout << "\nSolve Time: " << setprecision(15) << time << endl;
 		
 		for (int k = 0; k < inst->K; k++){
 	 		sStat->solvec.push_back(auxPairVec);
@@ -821,15 +822,15 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
 	// }
 
-	 // cout << "\nDistance Matrix: " << endl;
+    cout << "\nDistance Matrix: " << endl;
 
-	 // for (int i = 0; i < inst->V + inst->dummy; i++){
-	 // 	for (int j = 0; j < inst->V + inst->dummy; j++){
-	 // 		cout << setw(5) << mdist[i][j] << " ";
-	 // 	}
-	 // 	cout << endl;
-	 // }
-	 // getchar();
+    for (int i = 0; i < inst->V + inst->dummy; i++){
+    	for (int j = 0; j < inst->V + inst->dummy; j++){
+    		cout << setw(5) << mdist[i][j] << " ";
+    	}
+    	cout << endl;
+    }
+    getchar();
 
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem);

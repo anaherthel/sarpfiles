@@ -59,9 +59,9 @@ struct instanceStat{
 	double parkm = 0.83; //fare per km for parcels
 
 	double costkm = 0.46;
-	double vmed;
+	// double vmed;
 	// double vmed = 19.3;
-	// double vmed = 9;
+	double vmed = 19.3;
 	int nCluster;
 	int endCluster;
 	int startCluster;

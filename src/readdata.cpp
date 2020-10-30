@@ -89,7 +89,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         V = n + 2*m + K;
 
         originalV = 2*n + 2*m + 2; 
-        inst->vmed = 19.3;
+        // inst->vmed = 19.3;
         inst->dummy = 1;
 
         double *delta = new double[V + inst->dummy];
@@ -280,6 +280,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         inst->totalCustomProfit = 0;
 
+        // if (problem->model == "node"){
+        //     for (int i = 0; i < n; i++){
+        //         inst->totalCustomProfit += nodeVec[i].profit;
+        //     }
+        // }
+
+
         for (int i = 0; i < n; i++){
             inst->totalCustomProfit += nodeVec[i].profit;
         }
@@ -320,7 +327,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         V = n + 2*m + K;
 
         originalV = 2*n + 2*m + 2; 
-        inst->vmed = 19.3;
+        // inst->vmed = 19.3;
         inst->dummy = 1;
 
         double *delta = new double[V + inst->dummy];
@@ -411,16 +418,24 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             vload[i] = 0;
         }
 
+        cout << "Vector of vxf:" << endl;
 
-        // cout << "\nve: " << endl;
-        // for (int i = 0; i < ve.size(); i++){
-        //     cout << ve[i] << endl;
-        // }
-        // getchar();
+        for (int i = 0; i < vxf.size(); i++){
+            cout << i << ": " << vxf[i] << endl;
+        }
+        cout << endl;
+
+        getchar();
+
+        cout << "\nve: " << endl;
+        for (int i = 0; i < ve.size(); i++){
+            cout << ve[i] << endl;
+        }
+        getchar();
 
         // Calculate distance matrix (Geolocation)
 
-        CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
+        // CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
 
         double singleProfit;
         for (int i = 0; i < V + inst->dummy; i++){
@@ -515,10 +530,14 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         inst->totalCustomProfit = 0;
 
+        // if (problem->model == "node"){
+        //     for (int i = 0; i < n; i++){
+        //         inst->totalCustomProfit += nodeVec[i].profit;
+        //     }
+        // }
         for (int i = 0; i < n; i++){
             inst->totalCustomProfit += nodeVec[i].profit;
         }
-
         // cout << "\ntotal profit: " << inst->totalCustomProfit;
 
         // getchar();
@@ -555,7 +574,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         V = n + 2*m + K;
 
         originalV = 2*n + 2*m + K; 
-        inst->vmed = 19.3;
+        // inst->vmed = 19.3;
         inst->dummy = 1;
 
         double *delta = new double[V + inst->dummy];
@@ -601,13 +620,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
         }
 
-        // cout << "Vector of vxf:" << endl;
-
-        // for (int i = 0; i < vxf.size(); i++){
-        //     cout << i << ": " << vxf[i] << endl;
-        // }
-        // cout << endl;
-
         for (int i = 0; i < n; i++){
             vxs.erase(vxs.begin() + n);
             vys.erase(vys.begin() + n);
@@ -638,6 +650,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //     vyf.push_back(vyf[vyf.size()-1]);
         // }
 
+        // cout << "Vector of vxf:" << endl;
+
+        // for (int i = 0; i < vxf.size(); i++){
+        //     cout << i << ": " << vxf[i] << endl;
+        // }
+        // cout << endl;       
+
+        // getchar();
+
         for (int i = 0; i < n; i++){
             vload[i] = 0;
         }
@@ -655,7 +676,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < V + inst->dummy; i++){
             if (i < n){ 
                 delta[i] = (2 * (service)) + (calcEucDist(vxs, vys, vxf, vyf, i, i))/inst->vmed;
-                trip[i] = calcEucDist(vxs, vys, vxf, vyf, i, i);
                 profit[i] = inst->minpas + inst->paskm*calcEucDist(vxs, vys, vxf, vyf, i, i) - inst->costkm*calcEucDist(vxs, vys, vxf, vyf, i, i);
             }
             else if (i < V - K){ 
@@ -721,12 +741,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
         
-        cout << "Earlier // Later: " << endl;
+        // cout << "Earlier // Later: " << endl;
 
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
-        }
-        cout << endl;
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
+        // }
+        // cout << endl;
         // getchar();
 
 
@@ -741,10 +761,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         inst->totalCustomProfit = 0;
 
+        // if (problem->model == "node"){
+        //     for (int i = 0; i < n; i++){
+        //         inst->totalCustomProfit += nodeVec[i].profit;
+        //     }
+        // }
+
         for (int i = 0; i < n; i++){
             inst->totalCustomProfit += nodeVec[i].profit;
         }
-
         // cout << "\ntotal profit: " << inst->totalCustomProfit;
 
         // getchar();
@@ -767,7 +792,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         int instV;
         dummy = 1;
         inst->dummy = dummy;
-        inst->vmed = 19.3; //(km/h)
+        // inst->vmed = 19.3; //(km/h)
 
         int seed = 1234;
         srand(seed);
@@ -1253,10 +1278,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         inst->totalCustomProfit = 0;
 
+        // if (problem->model == "node"){
+        //     for (int i = 0; i < n; i++){
+        //         inst->totalCustomProfit += nodeVec[i].profit;
+        //     }
+        // }
+
         for (int i = 0; i < n; i++){
             inst->totalCustomProfit += nodeVec[i].profit;
         }
-
         // cout << "\ntotal profit: " << inst->totalCustomProfit;
 
         // getchar();

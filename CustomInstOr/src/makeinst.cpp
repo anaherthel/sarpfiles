@@ -101,27 +101,35 @@ void genPoints (int argc, char** argv, int K, vector<int> &vecOfn, vector<int> &
     candidate.label1 = 0;
     candidate.label2 = 0;
 
-    for (int i = 0; i < vecOfn.size(); i++){
-        for (int j = 0; j < vecOfm.size(); j++){
+    // for (int i = 0; i < vecOfn.size(); i++){
+    //     for (int j = 0; j < vecOfm.size(); j++){
 
-            if (vecOfn[i] + vecOfm[j] > 15){
-                if (vecOfn[i] + vecOfm[j] < 35){
-                    dimensions.first = vecOfn[i];
-                    dimensions.second = vecOfm[j];
+    //         if (vecOfn[i] + vecOfm[j] > 15){
+    //             if (vecOfn[i] + vecOfm[j] < 35){
+    //                 dimensions.first = vecOfn[i];
+    //                 dimensions.second = vecOfm[j];
 
-                    dimVec.push_back(dimensions);   
-                }             
-            }
-        }
-        if (vecOfn[i] < 15){
-            dimensions.first = vecOfn[i];
-            dimensions.second = 20;
-            // dimensions.second = 4;
+    //                 dimVec.push_back(dimensions);   
+    //             }             
+    //         }
+    //     }
+    //     if (vecOfn[i] < 15){
+    //         dimensions.first = vecOfn[i];
+    //         dimensions.second = 20;
+    //         // dimensions.second = 3;
 
-            dimVec.push_back(dimensions);
-        }
-    }
+    //         dimVec.push_back(dimensions);
+    //     }
+    // }
 
+    dimensions.first = vecOfn[0];
+    dimensions.second = vecOfm[0];
+
+    dimVec.push_back(dimensions);
+
+    cout << "Dimensions: " << endl;
+    cout << dimVec[0].first << " " << dimVec[0].second << endl;
+    getchar();
 
     int totalPoints;
     double lb = 0;
@@ -258,28 +266,28 @@ int main (int argc, char *argv[]) {
     vector<int> vecOfLambda;
     int K;
 
-    for (int i = 10; i < 25; i++){
-        if (i % 5 == 0){
-            vecOfn.push_back(i);
-        }
-    }
+    // for (int i = 10; i < 25; i++){
+    //     if (i % 5 == 0){
+    //         vecOfn.push_back(i);
+    //     }
+    // }
 	
-    for (int i = 5; i < 20; i++){
-        if (i % 5 == 0){
-            vecOfm.push_back(i);
-        }
-    }
+    // for (int i = 5; i < 20; i++){
+    //     if (i % 5 == 0){
+    //         vecOfm.push_back(i);
+    //     }
+    // }
 
 
-    // vecOfn.push_back(5);
+    vecOfn.push_back(5);
     
-    // vecOfm.push_back(3);
+    vecOfm.push_back(10);
 
     // vecOfn.push_back(6);
     // vecOfm.push_back(4);
 
-    vecOfLambda.push_back(2);
-    vecOfLambda.push_back(5);
+    // vecOfLambda.push_back(2);
+    // vecOfLambda.push_back(5);
     vecOfLambda.push_back(0);
 
 	genPoints(argc, argv, K, vecOfn, vecOfm, vecOfLambda);
@@ -505,10 +513,16 @@ void createTimesLoad(int n, int m, vector< pair<double, double> > &tsVec, vector
 
     vector<double> auxts;
     double initts;
+    double start;
+    int counter = 2;
 
     for (int i = 0; i < n; i++){
-        initts = 540 + rand() % 480;
+        initts = 560 + ((rand() % 60) * ((rand() % 2)));
+        // initts = 540 + ((rand() % 60) * counter);
         auxts.push_back(initts);
+        // cout << "\ninitts: " << initts << endl;
+        // getchar();
+        counter+= 30;
     }
 
     for (int i = 0; i < orgNodes.size(); i++){
@@ -519,12 +533,18 @@ void createTimesLoad(int n, int m, vector< pair<double, double> > &tsVec, vector
         }
         else if(orgNodes[i].label1 == 1){
             if (orgNodes[i].label2 == 1){
-                tsVec[i].first = 560 + rand() % 480;
+                // tsVec[i].first = 560 + rand() % 480;
+                start = rand() % n;
+                tsVec[i].first = auxts[start] + rand() % 480;
+                while(tsVec[i].first > 1020){
+                    tsVec[i].first = auxts[start] + rand() % 480;  
+                }
+                // cout << "\nEarlier time: " << tsVec[i].first << endl;
                 tsVec[i].second = tsVec[i].first;
                 continue;               
             }
             else if (orgNodes[i].label2 == 2){
-                tsVec[i].first = tsVec[i - n].first + rand() % 480;
+                tsVec[i].first = tsVec[i - n].first;
                 tsVec[i].second = tsVec[i].first;
                 continue;                   
             }
