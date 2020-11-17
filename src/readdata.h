@@ -61,15 +61,19 @@ struct instanceStat{
 	double costkm = 0.46;
 	// double vmed;
 	// double vmed = 19.3;
-	double vmed = 19.3;
+	// double vmed = 19.3;
+	double vmed = 41;
 	int nCluster;
 	int endCluster;
 	int startCluster;
 	bool preInst;
 	string InstName;
+	string instType;
 
 	double totalCustomProfit;
 
+	double realAvg = 16;
+	double realStddv = 1.03;
 };
 
 struct probStat{
@@ -81,6 +85,10 @@ struct probStat{
 };
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, int trialK);
+// void readGrubhub (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, int trialK);
+// void readsfData;
+// void readDebug;
+// void readCsarp;
 double calcEucDist (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
 double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
 double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit);

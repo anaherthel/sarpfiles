@@ -14,12 +14,12 @@ void initArcs (instanceStat *inst, nodeArcsStruct *nas){
         nas->arcPlus.push_back(auxPairVec);
         nas->arcMinus.push_back(auxPairVec);
         auxVec.clear();
-    }
-}
+    } 
+} 
 
 void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
 
-    if (problem->scen == "1A" || problem->scen == "2A"){
+    if (problem->scen == "1A" || problem->scen == "2A"){ 
         for (int i = 0; i < inst->V; i++){
             if (i < inst->n){//i is a passenger req
                 for(int j = 0; j < inst->n + 2*inst->m; j++){// j is a parcel req (pu or del)
@@ -627,13 +627,41 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
     //Forcing constraints
 
-    // exp = x[0][1][0];
+    // exp = x[25][13][0];
 
     // sprintf (var, "Constraint15");
     // cons1 = (exp == 1);
     // cons1.setName(var);
     // model.add(cons1); 
 
+    // exp = x[23][14][0];
+
+    // sprintf (var, "Constraint16");
+    // cons1 = (exp == 1);
+    // cons1.setName(var);
+    // model.add(cons1); 
+    
+    // exp = x[26][12][1];
+
+    // sprintf (var, "Constraint17");
+    // cons1 = (exp == 1);
+    // cons1.setName(var);
+    // model.add(cons1); 
+
+    // exp = x[18][5][1];
+
+    // sprintf (var, "Constraint18");
+    // cons1 = (exp == 1);
+    // cons1.setName(var);
+    // model.add(cons1); 
+
+
+    // exp = b[5];
+
+    // sprintf (var, "Constraint19");
+    // cons1 = (exp <= 15.76);
+    // cons1.setName(var);
+    // model.add(cons1); 
 
     // exp = x[1][5][0];
 
@@ -711,7 +739,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 		sStat->solprofit = nSARP.getObjValue();
 
-        cout << "\nSolve Time: " << setprecision(15) << time << endl;
+        cout << "\nSolve Time: " << setprecision(15) << time << endl << endl;
 		
 		for (int k = 0; k < inst->K; k++){
 	 		sStat->solvec.push_back(auxPairVec);
@@ -826,7 +854,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 
     for (int i = 0; i < inst->V + inst->dummy; i++){
     	for (int j = 0; j < inst->V + inst->dummy; j++){
-    		cout << setw(5) << mdist[i][j] << " ";
+    		cout << setw(5) << setprecision(5) << mdist[i][j] << " ";
     	}
     	cout << endl;
     }
@@ -866,7 +894,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// cout << endl;
 
 
-	mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
+    mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
 
     // mtznode(inst, nodeVec, mdist, problem, &nas, sStat);
 

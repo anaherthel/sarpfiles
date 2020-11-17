@@ -42,6 +42,7 @@ struct bundleStat{
 	vector< vector<int> > parcelBundleVec;
 	vector< vector<int> > passBundleVec;
 	vector<double> bundleStart;
+	vector<double> bundleEnd;
     vector <int> lastElement;
     vector<int> firstElement;
     vector<int> label; //0- purely passenger; 1- parcel pickup req; 2- parcel delivery req; 3- starting/dummy; 4 - delivery/dummy; 5 - start-pickup
@@ -71,7 +72,7 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
 void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat);
 void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat);
 void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat);
-// void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat);
+void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat);
 
 
 #endif

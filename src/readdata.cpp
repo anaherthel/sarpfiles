@@ -49,7 +49,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     string parcelArg;
     double parcelP;
 
-    string instType;
+    // string instType;
 
     char *instance; 
     instance = argv[1];
@@ -62,11 +62,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         exit (1);
     }
 
-    instType = getInstanceType(argv);
+    inst->instType = getInstanceType(argv);
     parcelArg = argv[3];
     parcelP = stod(parcelArg)/100; //string to double
     
-    if (instType == "sf_data"){
+    if (inst->instType == "sf_data"){
 
         in >> K;
         in >> service;
@@ -276,7 +276,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->V = V;
         inst->service = service;
         inst->T = nodeVec[V + inst->dummy - 1].l;
-
+        // inst->T = 1440/60;
 
         inst->totalCustomProfit = 0;
 
@@ -304,7 +304,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] trip;
     }
 
-    if (instType == "debug"){
+    if (inst->instType == "debug"){
 
         in >> K;
         in >> service;
@@ -527,6 +527,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->V = V;
         inst->service = service;
         inst->T = nodeVec[V + inst->dummy - 1].l;
+        // inst->T = 1440/60;
 
         inst->totalCustomProfit = 0;
 
@@ -552,7 +553,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     }
 
 
-    else if (instType == "csarp"){
+    else if (inst->instType == "csarp"){
         in >> K;
         in >> service;
         in >> n;
@@ -637,6 +638,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         for (int i = n; i < n + 2*m; i++){
             ve[i] = 0;
+   
+        }
+
+        for (int i = n + m; i < n + 2*m; i++){
+            vl[i] = 1020;
    
         }
 
@@ -749,7 +755,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // cout << endl;
         // getchar();
 
+        // cout << "Service times: " << endl;
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << i << ": " << nodeVec[i].delta << endl;
+        // }
 
+        // getchar();
+
+        // cout << "Profits: " << endl;
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << i << ": " << nodeVec[i].profit << endl;
+        // }
+
+        // getchar();
 
         *Mdist = dist;
         inst->K = K;
@@ -758,6 +776,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->V = V;
         inst->service = service;
         inst->T = nodeVec[V + inst->dummy - 1].l;
+        // inst->T = 1020/60;
 
         inst->totalCustomProfit = 0;
 
@@ -780,9 +799,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     }
 
-    else if (instType == "grubhub"){
+    else if (inst->instType == "grubhub"){
 
         K = 1;
+
+        int scale;
+        int scCounter = 0;
 
         // bool increaseK = false;
         // K = 2;
@@ -1032,6 +1054,30 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 }
             }
         }
+        
+        // cout << "\nDistance Matrix (Pre-adapting): " << endl;
+
+        // for (int i = 0; i < tempData.size(); i++){
+        //     for (int j = 0; j < tempData[i].size(); j++){
+        //         cout << setw(5) << setprecision(5) << tempData[i][j] << " ";
+        //     }
+        //     cout << endl;
+        // }
+        // getchar();
+
+        double curAvg = 0;
+        // double curStddv = 99999999999;
+        scCounter = 0;
+
+        // while (curAvg < inst->realAvg){
+            // scale = 100 - 10*scCounter;
+        scale = 200;
+        distScale(inst, &instV, tempData, &curAvg, &scale);
+
+        //     scCounter++;
+        // }
+
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
         //collapsing passenger nodes
 
@@ -1069,18 +1115,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 else{
                     if (i < n){
                         if (j < n){
-                            realData[i][j] = (tempData[2*i+1][2*j])/300;
+                            realData[i][j] = (tempData[2*i+1][2*j])/scale;
                         }
                         else{
-                            realData[i][j] = (tempData[2*i+1][n+j])/300;
+                            realData[i][j] = (tempData[2*i+1][n+j])/scale;
                         }
                     }
                     else{
                         if (j < n){
-                            realData[i][j] = (tempData[n+i][2*j])/300;
+                            realData[i][j] = (tempData[n+i][2*j])/scale;
                         }
                         else{
-                            realData[i][j] = (tempData[n+i][n+j])/300;
+                            realData[i][j] = (tempData[n+i][n+j])/scale;
                         }
                     }
                 }
@@ -1153,19 +1199,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             if (i < n){
                 // cout << i << ": " << (tempData[2*i][2*i+1]);
                 // delta[i] = 2 * service + (((tempData[2*i][2*i+1])/1000)/inst->vmed);
-                delta[i] = 2 * service + (((tempData[2*i][2*i+1])/300)/inst->vmed);
+                delta[i] = 2 * service + (((tempData[2*i][2*i+1])/scale)/inst->vmed);
 
                 // cout << "i: " << i << " - " << ((tempData[2*i][2*i+1])/1000)/inst->vmed << endl;
 
                 // profit[i] = inst->minpas + inst->paskm*(tempData[2*i][2*i+1]/1000) - inst->costkm*(tempData[2*i][2*i+1]/1000);    
-                profit[i] = inst->minpas + inst->paskm*(tempData[2*i][2*i+1]/300) - inst->costkm*(tempData[2*i][2*i+1]/300);    
+                profit[i] = inst->minpas + inst->paskm*(tempData[2*i][2*i+1]/scale) - inst->costkm*(tempData[2*i][2*i+1]/scale);    
                 w[i] = 0;
             }
             else if (i < V - K){
                 delta[i] = service;
                 if (i < n + m){
                     // profit[i] = inst->minpar + inst->parkm*(tempData[i + n][i + n + m]/1000);
-                    profit[i] = inst->minpar + inst->parkm*(tempData[i + n][i + n + m]/300);
+                    profit[i] = inst->minpar + inst->parkm*(tempData[i + n][i + n + m]/scale);
                     w[i] = 1;
                 }
                 else if (i < n + 2*m){
@@ -1275,6 +1321,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->V = V;
         inst->service = service;
         inst->T = nodeVec[V + inst->dummy - 1].l;
+        // inst->T = 1440/60;
 
         inst->totalCustomProfit = 0;
 
@@ -1300,6 +1347,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //     cout << i << ": " << nodeVec[i].e << " || ";
         // }
         // cout << endl << endl;
+
+
     }
 
     if(problem->scen == "1A" || "1B"){

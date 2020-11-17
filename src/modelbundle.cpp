@@ -64,12 +64,6 @@ void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                 service = nodeVec[bStat->bundleVec[i][0]].delta;
                 bStat->bundleServVec.push_back(service); 
             }
-            // else if (bStat->bundleVec[i][0] >= inst->n + 2*inst->m){
-            //     cost = nodeVec[bStat->bundleVec[i][1]].profit - mdist[bStat->bundleVec[i][0]][bStat->bundleVec[i][1]];
-            //     bStat->bundleProfVec.push_back(cost);
-            //     service = nodeVec[bStat->bundleVec[i][1]].delta;
-            //     bStat->bundleServVec.push_back(service); 
-            // }
             else{
                 for (int j = 0; j < bStat->bundleVec[i].size() - 1; j++){
                     if (bStat->bundleVec[i][j] > inst->n - 1 && bStat->bundleVec[i][j] < inst->n + inst->m){ //parcel pickup
@@ -126,8 +120,10 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
                 for (int j = 0; j < setN; j++){
                     if (i != j){
                         if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){
-                            if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
-                                bStat->bArcs[i][j] = true;
+                            if (bStat->bundleEnd[j] <= inst->T){
+                                if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+                                    bStat->bArcs[i][j] = true;
+                                }                                
                             }
                         }
                     } 
@@ -270,11 +266,13 @@ void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeV
 
     double parcelTime;
     double bundleTime;
+    double endTime;
     bool firstPassenger;
 
     for (int i = 0; i < bStat->bundleVec.size(); i++){
         parcelTime = 0;
         bundleTime = 0;
+        endTime = 0;
         firstPassenger = false;
         if (bStat->bundleVec[i].size() > 1){
             if (bStat->bundleVec[i][0] < inst->n){//if the 1st element of the bundle is a passenger node
@@ -284,25 +282,40 @@ void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeV
                 continue;
             }
             for (int j = 0; j < bStat->bundleVec[i].size() - 1; j++){
+                
                 if (bStat->bundleVec[i][j] >= inst->n){//if the element of the bundle is not a passenger request
                     parcelTime += ((mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]])/inst->vmed) + nodeVec[bStat->bundleVec[i][j]].delta;
 
                     if (bStat->bundleVec[i][j + 1] < inst->n){//if the next element is a passenger
                         bundleTime = nodeVec[bStat->bundleVec[i][j + 1]].e - parcelTime;
+                        endTime += bundleTime + parcelTime;
                         firstPassenger = true;
-                        break;
+                        // break;
+                    }
+
+                    else{
+                        endTime += nodeVec[bStat->bundleVec[i][j]].delta + ((mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]])/inst->vmed);
                     }
                 }
+                else{
+                    endTime += nodeVec[bStat->bundleVec[i][j]].delta + ((mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]])/inst->vmed);
+                }
             }
+
+            endTime += nodeVec[bStat->bundleVec[i].back()].delta;
+            bStat->bundleEnd.push_back(endTime);
+
             if (firstPassenger){
                 bStat->bundleStart.push_back(bundleTime);
             }
-         }
+        }
 
         else{
             firstPassenger = true;
             bundleTime = nodeVec[bStat->bundleVec[i][0]].e;
             bStat->bundleStart.push_back(bundleTime);
+            bundleTime = nodeVec[bStat->bundleVec[i][0]].e + nodeVec[bStat->bundleVec[i][0]].delta;
+            bStat->bundleEnd.push_back(bundleTime);
             continue;
         }
     }
@@ -452,18 +465,29 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
         }
     }
 
+
+    // cout << "Values before: " << endl;
+
+    // cout << "\ncosts: " << sStat->costs << endl;
+    // cout << "\nparcel profit: " << sStat->pProfit << endl;
+
+    // getchar();
     cout << "\nProfits: " << endl;
 
-    for (int k = 0; k < inst->K; k++){
-        for (int i = 0; i < sStat->solInNode[k].size(); i++){
-            if (sStat->solInNode[k][i] < inst->n){
-                inst->totalCustomProfit += nodeVec[sStat->solInNode[k][i]].profit
-            }
 
+    for (int k = 0; k < inst->K; k++){
+        for (int i = 0; i < sStat->solInNode[k].size() - 1; i++){
+            if (sStat->solInNode[k][i] >= inst->n){
+                sStat->pProfit += nodeVec[sStat->solInNode[k][i]].profit;
+                cout << sStat->solInNode[k][i] << ": " << nodeVec[sStat->solInNode[k][i]].profit << endl;
+            }
+            sStat->costs += (double)inst->costkm*mdist[sStat->solInNode[k][i]][sStat->solInNode[k][i+1]];
         }
-        cout << endl;
     }
-    cout << endl;
+
+    cout << "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
+    cout << "Parcel profit: " << sStat->pProfit << endl;
+    cout << "Costs: " << sStat->costs << endl;
 
     cout << "\nSolution by nodes: " << endl;
 
@@ -713,14 +737,20 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 			//objFunction += bStat->bundleProfVec[bStat->bArcVec[i].second] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
 		}
 	}
-	int lastElOfi;
-	int firstElOfj;
+	int lastElOfi; //last element of starting bundle of the arc
+	int firstElOfj; //first element of the ending bundle of the arc
+    //compute costs in between bundles
 	for (int i = 0; i < bStat->bArcVec.size(); i++){
 		lastElOfi = bStat->bundleVec[bStat->bArcVec[i].first][bStat->bundleVec[bStat->bArcVec[i].first].size() - 1];
 		firstElOfj = bStat->bundleVec[bStat->bArcVec[i].second][0];
+        // cout << "Last: " << lastElOfi << " - First: " << firstElOfj;
+        
 		for (int k = 0; k < inst->K; k++){
-			objFunction -= (double)(inst->costkm*mdist[lastElOfi][firstElOfj]) * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
-		}
+            objFunction -= (double)(inst->costkm*mdist[lastElOfi][firstElOfj]) * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
+            // cout << "Cost: " << inst->costkm*mdist[lastElOfi][firstElOfj] << endl;
+            // getchar();
+        }
+
 	}
 
 	model.add(IloMaximize(env, objFunction));
@@ -840,14 +870,31 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 		}
 	}
 
+ //*******************************
+
+    //Forcing constraints
+    // IloExpr exp3(env);
+
+    // exp3 = x[55][17][0];
+
+    // sprintf (var, "Constraint7");
+    // IloRange cons1 = (exp3 == 1);
+    // cons1.setName(var);
+    // model.add(cons1); 
+
+
 	IloCplex bSARP(model);
 	bSARP.exportModel("bSARP.lp");
 	bSARP.setParam(IloCplex::Threads, 8);
 
     bSARP.setParam(IloCplex::Param::TimeLimit, 3600);
 
-
+    IloNum start;
+    IloNum time;
+    start = bSARP.getTime();
 	bSARP.solve();
+    time = bSARP.getTime() - start;
+
 	cout << "\nSol status: " << bSARP.getStatus() << endl;
 	sStat->feasible = bSARP.isPrimalFeasible();
 
@@ -856,6 +903,8 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 		cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
 
 		sStat->solprofit = bSARP.getObjValue();
+
+        cout << "\nSolve Time: " << setprecision(15) << time << endl << endl;
 
 		for (int k = 0; k < inst->K; k++){
 	 		sStat->solvec.push_back(auxPairVec);
@@ -889,79 +938,42 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
 void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
 
+    double timePoint = 0;
+    int cBundle, nBundle;
 
-    double stillTime = 0;
-    double tij;
-    double tbegin;
+    double bbEarlier;
+    double service = 5;
 
-    int currNode;
-    int nextNode;
-
-
-    vector<double> beginTimes;
-
-    for (int i = 0; i < nodeVec.size(); i++){
-        if (i < inst->n){
-            beginTimes.push_back(nodeVec[i].e);
-        }
-        else if (i >= inst->n + 2* inst->m){
-            beginTimes.push_back(nodeVec[i].e);
-        }
-        else{
-            beginTimes.push_back(0);
-        }
-
-    }
-
+    double lastTime = 17;
+    double timeDiff;
+    int setN = bStat->bundleVec.size() - (inst->startCluster*inst->K) - inst->endCluster;
 
     for (int k = 0; k < inst->K; k++){
-        for (int i = 0; i < sStat->solInNode[k].size() - 2; i++){
-            currNode = sStat->solInNode[k][i];
-            nextNode = sStat->solInNode[k][i + 1];
+        // cout << "\nfirst time: " << nodeVec[sStat->solInNode[k][0]].e << endl;
+        // first element of bundle: bStat->bundleVec[cBundle][0];
+        timePoint = 0;
 
-            // cout << "currNode: " << currNode << " - nextNode: " << nextNode << endl; 
-            // getchar();
+        for(int i = 0; i < sStat->solOrder[k].size() - 2; i++){
+            cBundle = sStat->solOrder[k][i];
+            nBundle = sStat->solOrder[k][i+1];
 
-            if (nextNode >= inst->n){
-                if(nextNode < inst->n + 2*inst->m){
-                    tij = mdist[currNode][nextNode]/inst->vmed;
-                    // cout << "tij: " << tij;
-                    // getchar();
+            timePoint = bStat->bundleEnd[cBundle] + (mdist[bStat->lastElement[cBundle]][bStat->firstElement[nBundle]])/inst->vmed;            
 
-                    beginTimes[nextNode] = beginTimes[currNode] + tij + nodeVec[nextNode].delta;
-                }
-            }
-
-
-
-            // if (currNode < inst->n){
-            //     if(nextNode < inst->V - inst->K - 1){
-            //         // beginTimes[nextNode] = beginTimes[currNode]
-            //         continue;
-            //     }
-            //     else if (nextNode < inst->V - inst->K){
-            //         beginTimes[nextNode] = nodeVec[nextNode].e;
-            //     }
-            //     else{
-            //         beginTimes[nextNode] = nodeVec[nextNode].e;
-            //     }
-            // }
-            // else if (currNode < 2*inst->m){
-
-            // }
-            // else{
-
-            // }
-
+            bbEarlier = bStat->bundleStart[nBundle];
+            
+            sStat->tStillG += (bbEarlier - timePoint);
+            timePoint = bStat->bundleEnd[cBundle];
         }
+        //Accounting for the difference btw the waiting time in nodes and in bundles.
+        //In bundles, the delivery of the last parcel is not delayed until the last possible moment.
+        timeDiff = lastTime - bStat->bundleEnd[sStat->solOrder[k][sStat->solOrder[k].size() - 2]];
+        sStat->tStillG += timeDiff;
+
     }
 
-    // for (int i = 0 ; i < beginTimes.size(); i++){
-    //     cout << i << ": " << beginTimes[i] << " ";
-    // }
-    // getchar();
+    sStat->tStill = sStat->tStillG + sStat->tStillP;
 
-} 
+}
 
 void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
     bundleStat bStat;
@@ -1109,12 +1121,20 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     // }
     // getchar();
 
-    cout << "Bundle beginning times: " << endl;
-    for (int i = 0; i < bStat.bundleStart.size(); i++){
-        cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleStart[i];
-        cout << endl;
-    }
-    getchar();
+    // cout << "Bundle beginning times: " << endl;
+    // for (int i = 0; i < bStat.bundleStart.size(); i++){
+    //     cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleStart[i];
+    //     cout << endl;
+    // }
+    // getchar();
+
+
+    // cout << "Bundle ending times: " << endl;
+    // for (int i = 0; i < bStat.bundleEnd.size(); i++){
+    //     cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleEnd[i];
+    //     cout << endl;
+    // }
+    // getchar();
 
     for (int i = 0; i < clusterVec.size(); i++){
         for (int j = 0; j < clusterVec.size(); j++){

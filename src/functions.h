@@ -61,5 +61,6 @@ struct solStats{
 void solStatIni(solStats *sStat);
 void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat);
 void printStats(instanceStat *inst, solStats *sStat);
+void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempData, double *curAvg, int *scale);
 
 #endif

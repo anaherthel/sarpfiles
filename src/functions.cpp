@@ -214,30 +214,31 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                 }
             }
             else{
-                if(nextNode < inst->n){
-                    sStat->tNone += dij/inst->vmed;
-                    sStat->tPass += nodeVec[nextNode].delta;
-                    load = 0;
+                if (nextNode < inst->n + 2*inst->m + inst->K){
+                    if(nextNode < inst->n){
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tPass += nodeVec[nextNode].delta;
+                        load = 0;
 
-                    sStat->dNone += dij;
-                    distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
-                    sStat->dPass += distPass;  
+                        sStat->dNone += dij;
+                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
+                        sStat->dPass += distPass;  
 
-                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+                        stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
 
-                    sStat->tStillP += stop; 
-                }
-                else if(nextNode < inst->n + inst->m){
-                    sStat->tNone += dij/inst->vmed;
-                    sStat->tParcel += inst->service;
-                    load++;
+                        sStat->tStillP += stop; 
+                    }
+                    else if(nextNode < inst->n + inst->m){
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+                        load++;
 
-                    sStat->dNone += dij;
+                        sStat->dNone += dij;
 
-                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+                        stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
 
-                    sStat->tStillG += stop; 
-
+                        sStat->tStillG += stop;
+                    }  
                 }
             }
 
@@ -295,5 +296,53 @@ void printStats(instanceStat *inst, solStats *sStat){
 
 }
 
+void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempData, double *curAvg, int *scale){
+    double distSum, avgDist, totalAvg;
+
+    vector<double> avgVec;
+
+    distSum = 0;
+    // cout << "\nNumber of nodes: " << tempData.size() << " and " << tempData[0].size() << endl;
+
+    cout << "\ncurrent scale: " << *scale << endl;
+    cout << "\ncurrent average: " << *curAvg << endl;
+    getchar();
+
+    // cout << "\nDistance Matrix (Pre-adapting): " << endl;
+
+    // for (int i = 0; i < tempData.size() - 1; i++){
+    //     for (int j = 0; j < tempData[i].size() - 1; j++){
+    //         cout << setw(5) << setprecision(5) << tempData[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+    // getchar();
+
+    for (int i = 0; i < tempData.size() - 1; i++){
+        distSum = 0;
+        for (int j = 0; j < tempData.size() - 1; j++){
+            distSum += (double)(tempData[i][j]/ *scale);
+        }
+        avgDist = distSum/(tempData.size() - 1);
+        avgVec.push_back(avgDist);
+    }
+
+    cout << "\nVector of average distances: " << endl; 
+    for(int i = 0; i < avgVec.size(); i++){
+        cout << i << ": " << avgVec[i] << endl;
+    }
+    getchar();
+
+    distSum = 0;
+
+    for(int i = 0; i < avgVec.size(); i++){
+        distSum += avgVec[i];
+    }
+
+    cout << "\nDistSum: " << distSum << endl;
+    totalAvg = distSum/avgVec.size();
 
 
+    cout << totalAvg << endl;
+    *curAvg = totalAvg;
+}
