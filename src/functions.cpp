@@ -343,7 +343,7 @@ void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempDa
     totalAvg = distSum/avgVec.size();
 
 
-    cout << totalAvg << endl;
-    getchar();
+    // cout << totalAvg << endl;
+    // getchar();
     *curAvg = totalAvg;
 }

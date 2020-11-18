@@ -418,20 +418,20 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             vload[i] = 0;
         }
 
-        cout << "Vector of vxf:" << endl;
+        // cout << "Vector of vxf:" << endl;
 
-        for (int i = 0; i < vxf.size(); i++){
-            cout << i << ": " << vxf[i] << endl;
-        }
-        cout << endl;
+        // for (int i = 0; i < vxf.size(); i++){
+        //     cout << i << ": " << vxf[i] << endl;
+        // }
+        // cout << endl;
 
-        getchar();
+        // getchar();
 
-        cout << "\nve: " << endl;
-        for (int i = 0; i < ve.size(); i++){
-            cout << ve[i] << endl;
-        }
-        getchar();
+        // cout << "\nve: " << endl;
+        // for (int i = 0; i < ve.size(); i++){
+        //     cout << ve[i] << endl;
+        // }
+        // getchar();
 
         // Calculate distance matrix (Geolocation)
 
