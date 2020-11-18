@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances/grubhub'
-output='nGHSnewofnewdist300.txt'
+output='nGHSscaled150.txt'
 #runs=10
 
 cat /dev/null > $output
