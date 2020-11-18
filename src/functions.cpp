@@ -304,9 +304,9 @@ void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempDa
     distSum = 0;
     // cout << "\nNumber of nodes: " << tempData.size() << " and " << tempData[0].size() << endl;
 
-    cout << "\ncurrent scale: " << *scale << endl;
-    cout << "\ncurrent average: " << *curAvg << endl;
-    getchar();
+    // cout << "\ncurrent scale: " << *scale << endl;
+    // cout << "\ncurrent average: " << *curAvg << endl;
+    // getchar();
 
     // cout << "\nDistance Matrix (Pre-adapting): " << endl;
 
@@ -327,11 +327,11 @@ void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempDa
         avgVec.push_back(avgDist);
     }
 
-    cout << "\nVector of average distances: " << endl; 
-    for(int i = 0; i < avgVec.size(); i++){
-        cout << i << ": " << avgVec[i] << endl;
-    }
-    getchar();
+    // cout << "\nVector of average distances: " << endl; 
+    // for(int i = 0; i < avgVec.size(); i++){
+    //     cout << i << ": " << avgVec[i] << endl;
+    // }
+    // getchar();
 
     distSum = 0;
 
@@ -344,5 +344,6 @@ void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempDa
 
 
     cout << totalAvg << endl;
+    getchar();
     *curAvg = totalAvg;
 }

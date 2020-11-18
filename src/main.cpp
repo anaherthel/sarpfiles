@@ -31,7 +31,7 @@ int main (int argc, char *argv[]) {
 	
 
 	
-	// while (!sStat.feasible){
+	while (!sStat.feasible){
 		nodeVec.clear();
 
 		readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK);
@@ -51,11 +51,11 @@ int main (int argc, char *argv[]) {
 		if (trialK < inst.n){
 			trialK++;	
 		}
-		// else{
-		// 	break;
-		// }
+		else{
+			break;
+		}
 
-	// }
+	}
 
 	return 0;
 }

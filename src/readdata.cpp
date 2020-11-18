@@ -1071,7 +1071,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // while (curAvg < inst->realAvg){
             // scale = 100 - 10*scCounter;
-        scale = 200;
+        scale = 150;
         distScale(inst, &instV, tempData, &curAvg, &scale);
 
         //     scCounter++;
