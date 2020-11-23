@@ -132,8 +132,10 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
             }
             else if (i >= setN){
                 for (int j = 0; j < setN; j++){
-                    if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
-                        bStat->bArcs[i][j] = true;
+                    if (bStat->bundleEnd[j] <= inst->T){
+                        if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+                            bStat->bArcs[i][j] = true;
+                        }
                     }
                 }
             }
@@ -964,11 +966,13 @@ void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vect
             sStat->tStillG += (bbEarlier - timePoint);
             timePoint = bStat->bundleEnd[cBundle];
         }
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         //Accounting for the difference btw the waiting time in nodes and in bundles.
         //In bundles, the delivery of the last parcel is not delayed until the last possible moment.
-        timeDiff = lastTime - bStat->bundleEnd[sStat->solOrder[k][sStat->solOrder[k].size() - 2]];
-        sStat->tStillG += timeDiff;
-
+        
+        // timeDiff = lastTime - bStat->bundleEnd[sStat->solOrder[k][sStat->solOrder[k].size() - 2]];
+        // sStat->tStillG += timeDiff;
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     }
 
     sStat->tStill = sStat->tStillG + sStat->tStillP;
@@ -1092,13 +1096,13 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     makeBundleReference(inst, mdist, nodeVec, &bStat);
 
 
-    // cout << "\nBundle Service Times: ";
-    // for (int i = 0; i < bStat.bundleServVec.size(); i++){
-    //  cout << i  << ": " <<   bStat.bundleServVec[i] << ", ";
-    // }
-    // cout << endl;
+    cout << "\nBundle Service Times: ";
+    for (int i = 0; i < bStat.bundleServVec.size(); i++){
+     cout << i  << ": " <<   bStat.bundleServVec[i] << endl;
+    }
+    cout << endl;
 
-    // getchar();
+    getchar();
 
 
     feasibleBundleArcs(inst, mdist, nodeVec, &bStat, p, problem);
@@ -1121,20 +1125,20 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     // }
     // getchar();
 
-    // cout << "Bundle beginning times: " << endl;
-    // for (int i = 0; i < bStat.bundleStart.size(); i++){
-    //     cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleStart[i];
-    //     cout << endl;
-    // }
-    // getchar();
+    cout << "Bundle beginning times: " << endl;
+    for (int i = 0; i < bStat.bundleStart.size(); i++){
+        cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleStart[i];
+        cout << endl;
+    }
+    getchar();
 
 
-    // cout << "Bundle ending times: " << endl;
-    // for (int i = 0; i < bStat.bundleEnd.size(); i++){
-    //     cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleEnd[i];
-    //     cout << endl;
-    // }
-    // getchar();
+    cout << "Bundle ending times: " << endl;
+    for (int i = 0; i < bStat.bundleEnd.size(); i++){
+        cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleEnd[i];
+        cout << endl;
+    }
+    getchar();
 
     for (int i = 0; i < clusterVec.size(); i++){
         for (int j = 0; j < clusterVec.size(); j++){

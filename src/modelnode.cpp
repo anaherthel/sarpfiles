@@ -850,15 +850,31 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
 	// }
 
-    // cout << "\nDistance Matrix: " << endl;
+    cout << "\nDistance Matrix: " << endl;
 
-    // for (int i = 0; i < inst->V + inst->dummy; i++){
-    // 	for (int j = 0; j < inst->V + inst->dummy; j++){
-    // 		cout << setw(5) << setprecision(5) << mdist[i][j] << " ";
-    // 	}
-    // 	cout << endl;
-    // }
-    // getchar();
+    for (int i = 0; i < inst->V + inst->dummy; i++){
+    	for (int j = 0; j < inst->V + inst->dummy; j++){
+    		cout << setw(5) << setprecision(5) << mdist[i][j] << " ";
+    	}
+    	cout << endl;
+    }
+    getchar();
+
+    cout << "\nDelta vector: " << endl;
+
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].delta << endl;
+    }
+    cout << endl;
+    getchar();
+
+    cout << "\nProfit vector: " << endl;
+
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].profit << endl;
+    }
+    cout << endl;
+    getchar();
 
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem);

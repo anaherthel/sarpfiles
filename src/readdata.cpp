@@ -1079,34 +1079,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-        //collapsing passenger nodes
-
-        // for (int i = 0; i < V + inst->dummy; i++){
-        //     for (int j = 0; j < V + inst->dummy; j++){
-        //         if (i == j){
-        //             realData[i][j] = 0;
-        //         }
-        //         else{
-        //             if (i < n){
-        //                 if (j < n){
-        //                     realData[i][j] = (tempData[2*i+1][2*j])/1000;
-        //                 }
-        //                 else{
-        //                     realData[i][j] = (tempData[2*i+1][n+j])/1000;
-        //                 }
-        //             }
-        //             else{
-        //                 if (j < n){
-        //                     realData[i][j] = (tempData[n+i][2*j])/1000;
-        //                 }
-        //                 else{
-        //                     realData[i][j] = (tempData[n+i][n+j])/1000;
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
         for (int i = 0; i < V + inst->dummy; i++){
             for (int j = 0; j < V + inst->dummy; j++){
                 if (i == j){
