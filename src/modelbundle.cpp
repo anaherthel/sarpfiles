@@ -1098,13 +1098,13 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     makeBundleReference(inst, mdist, nodeVec, &bStat);
 
 
-    cout << "\nBundle Service Times: ";
-    for (int i = 0; i < bStat.bundleServVec.size(); i++){
-     cout << i  << ": " <<   bStat.bundleServVec[i] << endl;
-    }
-    cout << endl;
+    // cout << "\nBundle Service Times: ";
+    // for (int i = 0; i < bStat.bundleServVec.size(); i++){
+    //  cout << i  << ": " <<   bStat.bundleServVec[i] << endl;
+    // }
+    // cout << endl;
 
-    getchar();
+    // getchar();
 
 
     feasibleBundleArcs(inst, mdist, nodeVec, &bStat, p, problem);
@@ -1127,20 +1127,20 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     // }
     // getchar();
 
-    cout << "Bundle beginning times: " << endl;
-    for (int i = 0; i < bStat.bundleStart.size(); i++){
-        cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleStart[i];
-        cout << endl;
-    }
-    getchar();
+    // cout << "Bundle beginning times: " << endl;
+    // for (int i = 0; i < bStat.bundleStart.size(); i++){
+    //     cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleStart[i];
+    //     cout << endl;
+    // }
+    // getchar();
 
 
-    cout << "Bundle ending times: " << endl;
-    for (int i = 0; i < bStat.bundleEnd.size(); i++){
-        cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleEnd[i];
-        cout << endl;
-    }
-    getchar();
+    // cout << "Bundle ending times: " << endl;
+    // for (int i = 0; i < bStat.bundleEnd.size(); i++){
+    //     cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleEnd[i];
+    //     cout << endl;
+    // }
+    // getchar();
 
     for (int i = 0; i < clusterVec.size(); i++){
         for (int j = 0; j < clusterVec.size(); j++){
