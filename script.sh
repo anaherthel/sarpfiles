@@ -22,7 +22,7 @@
 #done
 
 dirInstancias='Instances/grubhub'
-output='bGHSscaled150.txt'
+output='bGHSscaled150new.txt'
 #runs=10
 
 cat /dev/null > $output

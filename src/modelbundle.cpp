@@ -491,6 +491,8 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
     cout << "Parcel profit: " << sStat->pProfit << endl;
     cout << "Costs: " << sStat->costs << endl;
 
+    cout << "\nNumber of Vehicles: " << inst->K << endl;
+
     cout << "\nSolution by nodes: " << endl;
 
     for (int k = 0; k < inst->K; k++){
