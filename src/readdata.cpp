@@ -1207,12 +1207,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
             if(i < n){
                 e[i] = 540 + rand() % 420;
-                e[i] += (rand()%2)/2;
+                e[i] += (rand()%240)/2;
                 if (e[i] + delta[i] > 1020){
                     e[i] = 1020;
                 }
-                cout << "e[" << i << "]: " << e[i]/60 << endl;
-                getchar();
+                // cout << "e[" << i << "]: " << e[i]/60 << endl;
+                // getchar();
                 l[i] = e[i];
                 // e[i] = 540;
                 // l[i] = 1020;
