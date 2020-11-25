@@ -1071,7 +1071,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // while (curAvg < inst->realAvg){
             // scale = 100 - 10*scCounter;
-        scale = 150;
+        scale = 50;
         distScale(inst, &instV, tempData, &curAvg, &scale);
 
         //     scCounter++;
@@ -1206,7 +1206,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < V + inst->dummy; i++){
 
             if(i < n){
-                e[i] = 540 + rand() % 480;
+                e[i] = 540 + rand() % 420;
+                e[i] += (rand()%2)/2;
+                if (e[i] + delta[i] > 1020){
+                    e[i] = 1020;
+                }
+                cout << "e[" << i << "]: " << e[i]/60 << endl;
+                getchar();
                 l[i] = e[i];
                 // e[i] = 540;
                 // l[i] = 1020;
@@ -1313,13 +1319,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] profit;
         delete[] delta;
         
-        // cout << "\nStarting times: " << endl;
+        cout << "\nStarting times: " << endl;
 
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << i << ": " << nodeVec[i].e << " || ";
-        // }
-        // cout << endl << endl;
-
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << i << ": " << nodeVec[i].e << " || ";
+        }
+        cout << endl << endl;
+        getchar();
 
     }
 
