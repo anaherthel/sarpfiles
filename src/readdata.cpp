@@ -1454,7 +1454,7 @@ void getInstParam (instanceStat *inst, vector<int> &instParam){
 
     param1.append(inst->InstName, loc+1, loc2-loc-1);
     param2.append(inst->InstName, loc2+1);
-
+ 
     instParam.push_back(stoi(param1));
     instParam.push_back(stoi(param2));
 }
