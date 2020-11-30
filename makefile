@@ -18,17 +18,18 @@ LIBFORMAT = static_pic
 
 #CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio127/cplex
 #Use this on office pc
-CPLEXDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/cplex
+#CPLEXDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/cplex
 #HPLaptop
-#CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio1210/cplex
+CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio127/cplex
 #vsc
 #CPLEXDIR = /home/lv70752/kiefera8/cplex
 
 #CONCERTDIR    = /usr/ilog/concert
-#CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio127/concert
+CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio127/concert
 
 #Use this on office pc
-CONCERTDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/concert
+#
+#CONCERTDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/concert
 #HPLaptop
 #CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio1210/concert
 #vsc
