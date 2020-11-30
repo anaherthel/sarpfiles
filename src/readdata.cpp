@@ -1081,7 +1081,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // while (curAvg < inst->realAvg){
             // scale = 100 - 10*scCounter;
         scale = 50;
-        distScale(inst, &instV, tempData, &curAvg, &scale);
+        // distScale(inst, &instV, tempData, &curAvg, &scale);
 
         //     scCounter++;
         // }
@@ -1337,13 +1337,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] profit;
         delete[] delta;
         
-        cout << "\nStarting times: " << endl;
+        // cout << "\nStarting times: " << endl;
 
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << i << ": " << nodeVec[i].e << " || ";
-        }
-        cout << endl << endl;
-        getchar();
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << i << ": " << nodeVec[i].e << " || ";
+        // }
+        // cout << endl << endl;
+        // getchar();
 
     }
 
@@ -1355,17 +1355,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     }
 
     //Print starting and end times: (debugging)
-    cout << "\nEarlier times: " << endl;
+    // cout << "\nEarlier times: " << endl;
 
-    for (int i = 0; i < nodeVec.size(); i++){
-        cout << i << ": " << nodeVec[i].e << endl;
-    }
+    // for (int i = 0; i < nodeVec.size(); i++){
+    //     cout << i << ": " << nodeVec[i].e << endl;
+    // }
 
-    cout << "\nLater times: " << endl;
+    // cout << "\nLater times: " << endl;
 
-    for (int i = 0; i < nodeVec.size(); i++){
-        cout << i << ": " << nodeVec[i].l << endl;
-    }
+    // for (int i = 0; i < nodeVec.size(); i++){
+    //     cout << i << ": " << nodeVec[i].l << endl;
+    // }
 }
 
 double calcEucDist (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
@@ -1450,10 +1450,15 @@ void getInstParam (instanceStat *inst, vector<int> &instParam){
 
     string::size_type loc = inst->InstName.find_first_of("-");
     string::size_type loc2 = inst->InstName.find_last_of("-");
-    string param1, param2;
+    string param1;
+    string param2;
 
     param1.append(inst->InstName, loc+1, loc2-loc-1);
-    param2.append(inst->InstName.c_str(), loc2+1);
+    // param2.append(inst->InstName.c_str(), loc2+1);
+    param2.append(inst->InstName, loc2+1, inst->InstName.back());
+
+    // cout << "\nParam2: " << param2 << endl;
+    // getchar();
  
     instParam.push_back(stoi(param1));
     instParam.push_back(stoi(param2));
