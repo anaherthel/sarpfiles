@@ -249,9 +249,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xs = 0;
             node->ys = 0;
             node->load = 0;
-            node->e = 9;
+            node->e = 0;
             // node->l = 14*60;
-            node->l = 17;
+            node->l = 24;
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
@@ -275,7 +275,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->m = m;
         inst->V = V;
         inst->service = service;
-        inst->T = nodeVec[V + inst->dummy - 1].l;
+        // inst->T = nodeVec[V + inst->dummy - 1].l;
         // inst->T = 1440/60;
 
         inst->totalCustomProfit = 0;
@@ -503,7 +503,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->load = 0;
             node->e = 9;
             // node->l = 14*60;
-            node->l = 17;
+            node->l = 24;
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
@@ -526,7 +526,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->m = m;
         inst->V = V;
         inst->service = service;
-        inst->T = nodeVec[V + inst->dummy - 1].l;
+        // inst->T = nodeVec[V + inst->dummy - 1].l;
         // inst->T = 1440/60;
 
         inst->totalCustomProfit = 0;
@@ -642,7 +642,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         for (int i = n + m; i < n + 2*m; i++){
-            vl[i] = 1020;
+            vl[i] = 1440;
    
         }
 
@@ -738,7 +738,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->load = 0;
             node->e = 9;
             // node->l = 14*60;
-            node->l = 17;
+            node->l = 24;
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
@@ -775,7 +775,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->m = m;
         inst->V = V;
         inst->service = service;
-        inst->T = nodeVec[V + inst->dummy - 1].l;
+        // inst->T = nodeVec[V + inst->dummy - 1].l;
         // inst->T = 1020/60;
 
         inst->totalCustomProfit = 0;
@@ -816,8 +816,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->dummy = dummy;
         // inst->vmed = 19.3; //(km/h)
 
-        int seed = 1234;
+        vector<int> instParam;
+
+        getInstParam (inst, instParam);
+        long power = pow(2, instParam[1]);
+        // cout << "power: " << power << endl;
+
+        long int seed = instParam[0]*power;
+        // int seed = time(NULL);
         srand(seed);
+        // cout << "Instance seed: " << seed << endl;
+        // getchar();
 
         vector <vector <double> > tempData;
         vector<double> auxtempdata;
@@ -1206,11 +1215,20 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < V + inst->dummy; i++){
 
             if(i < n){
-                e[i] = 540 + rand() % 420;
-                e[i] += (rand()%240)/2;
-                if (e[i] + delta[i] > 1020){
-                    e[i] = 1020;
+                e[i] = rand() % 1440;
+
+                if (e[i] < 60){
+                    e[i] += (rand() % 60)*2;
                 }
+
+                else if (e[i] + (delta[i]*60) > 1440){
+                    e[i] -= delta[i]+(rand() % 60);
+                }
+
+                // e[i] += (rand()%240)/2;
+                // if (e[i] + delta[i] > 1020){
+                //     e[i] = 1020;
+                // }
                 // cout << "e[" << i << "]: " << e[i]/60 << endl;
                 // getchar();
                 l[i] = e[i];
@@ -1219,15 +1237,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
             else if (i >= n && i < n + 2*m){
                 e[i] = 0;
-                l[i] = 1020;
+                l[i] = 1440;
             }
             else if (i >= n + 2*m && i < V + inst->dummy - 1){
-                e[i] = 540;
-                l[i] = 1020;
+                e[i] = 0;
+                l[i] = 1440;
             }
             else if (i >= V + inst->dummy - 1){
-                e[i] = 540;
-                l[i] = 1020;
+                e[i] = 0;
+                l[i] = 1440;
             } 
         }
 
@@ -1298,7 +1316,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->m = m;
         inst->V = V;
         inst->service = service;
-        inst->T = nodeVec[V + inst->dummy - 1].l;
+        // inst->T = nodeVec[V + inst->dummy - 1].l;
         // inst->T = 1440/60;
 
         inst->totalCustomProfit = 0;
@@ -1334,6 +1352,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     }
     else if(problem->scen == "2A" || "2B"){
         inst->nCluster = inst->n + inst->K + inst->dummy;
+    }
+
+    //Print starting and end times: (debugging)
+    cout << "\nEarlier times: " << endl;
+
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].e << endl;
+    }
+
+    cout << "\nLater times: " << endl;
+
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].l << endl;
     }
 }
 
@@ -1410,5 +1441,20 @@ string getInstName (char **argv){
 
     InstanceName.append(filename, loc+1, loc2-loc-1 );
 
+
+
     return InstanceName;
+}
+
+void getInstParam (instanceStat *inst, vector<int> &instParam){
+
+    string::size_type loc = inst->InstName.find_first_of("-");
+    string::size_type loc2 = inst->InstName.find_last_of("-");
+    string param1, param2;
+
+    param1.append(inst->InstName, loc+1, loc2-loc-1);
+    param2.append(inst->InstName, loc2+1);
+
+    instParam.push_back(stoi(param1));
+    instParam.push_back(stoi(param2));
 }

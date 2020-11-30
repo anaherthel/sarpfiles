@@ -46,8 +46,9 @@ struct instanceStat{
     int n;
     int m;
     int K;
-    int T;
+    double T = 24;
     int V;
+    double maxTime = 8;
     int dummy;
     double service;
     // double inipar = ;
@@ -95,5 +96,6 @@ double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, 
 double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flongit, int I, int J);
 string getInstanceType (char **argv);
 string getInstName (char **argv);
+void getInstParam (instanceStat *inst, vector<int> &instParam);
 
 #endif

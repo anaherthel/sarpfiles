@@ -85,8 +85,9 @@ void genPoints (int argc, char** argv, int K, vector<int> &vecOfn, vector<int> &
     vector<CandStruct> nodeVec;
     vector<CandStruct> orgNodes;
     
-    int seed = 1234;
-    srand(seed);
+    long seed;
+    long power;
+    int counter = 0;
 
     vector< vector<double> > dist;
     vector<double> rowvec;
@@ -136,6 +137,11 @@ void genPoints (int argc, char** argv, int K, vector<int> &vecOfn, vector<int> &
     double ub = 10;
     for (int p = 1; p < 5; p++){
         for (int i = 0; i < dimVec.size(); i++){
+            power = pow(dimVec[i].second,p);
+            seed = dimVec[i].first*power;
+
+            srand(seed);
+
             K = dimVec[i].first - 1;
             totalPoints = (dimVec[i].first + dimVec[i].second)*2 + K;
 
@@ -517,28 +523,39 @@ void createTimesLoad(int n, int m, vector< pair<double, double> > &tsVec, vector
     int counter = 2;
 
     for (int i = 0; i < n; i++){
-        initts = 560 + ((rand() % 60) * ((rand() % 2)));
+        // initts = 560 + ((rand() % 60) * ((rand() % 2)));
+        initts = rand() % 720 + ((rand() % 60)*(rand() % 12));
+
+        if (initts < 60){
+            initts += (rand() % 60)*2;
+        }
+
+        else if (initts > 1440){
+            initts -= rand() % 60*2;
+        }
         // initts = 540 + ((rand() % 60) * counter);
         auxts.push_back(initts);
         // cout << "\ninitts: " << initts << endl;
         // getchar();
-        counter+= 30;
+        // counter+= 30;
     }
 
     for (int i = 0; i < orgNodes.size(); i++){
         if (orgNodes[i].label1 == 3){
-            tsVec[i].first = 540;
-            tsVec[i].second = 1140;
+            // tsVec[i].first = 540;
+            tsVec[i].first = 0;
+            // tsVec[i].second = 1140;
+            tsVec[i].second = 1440;
             continue;
         }
         else if(orgNodes[i].label1 == 1){
             if (orgNodes[i].label2 == 1){
                 // tsVec[i].first = 560 + rand() % 480;
                 start = rand() % n;
-                tsVec[i].first = auxts[start] + rand() % 480;
-                while(tsVec[i].first > 1020){
-                    tsVec[i].first = auxts[start] + rand() % 480;  
-                }
+                tsVec[i].first = auxts[start] + rand() % 60;
+                // while(tsVec[i].first > 1020){
+                //     tsVec[i].first = auxts[start] + rand() % 60;  
+                // }
                 // cout << "\nEarlier time: " << tsVec[i].first << endl;
                 tsVec[i].second = tsVec[i].first;
                 continue;               
@@ -551,8 +568,8 @@ void createTimesLoad(int n, int m, vector< pair<double, double> > &tsVec, vector
 
         }
         else if (orgNodes[i].label1 == 2){
-            tsVec[i].first = 540;
-            tsVec[i].second = 1020;
+            tsVec[i].first = 0;
+            tsVec[i].second = 1440;
             continue;                          
         }
     }
