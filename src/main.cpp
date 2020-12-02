@@ -21,6 +21,7 @@ int main (int argc, char *argv[]) {
 	double **distMatrix;
 	
 	int trialK = 1;
+	double trialMulti = 1;
 
 	nodeStat node;
 	instanceStat inst;
@@ -34,7 +35,7 @@ int main (int argc, char *argv[]) {
 	while (!sStat.feasible){
 		nodeVec.clear();
 
-		readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK);
+		readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
 
 		if (problem.model == "node"){
 			nodeMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
@@ -44,17 +45,21 @@ int main (int argc, char *argv[]) {
 			bundleMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
 		}
 
-		else if (problem.model == "twostage"){
-			twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			
-		}
-		
-		if (trialK < inst.n){
-			trialK++;	
-		}
-		else{
-			break;
-		}
+		// else if (problem.model == "twostage"){
+		// 	twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			
+		// }
+		if (trialMulti > 1){
+			if (trialK < inst.n){
+				trialK++;	
+			}
 
+			else{
+				break;
+			}
+		}
+		else {
+			trialMulti = 1.5;
+		}
 	}
 
 	return 0;

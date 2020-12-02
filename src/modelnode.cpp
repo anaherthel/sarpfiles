@@ -723,7 +723,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
 	nSARP.setParam(IloCplex::Threads, 8);
-	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
+	nSARP.setParam(IloCplex::Param::TimeLimit, 3600);
 
     IloNum start;
     IloNum time;

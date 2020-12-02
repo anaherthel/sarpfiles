@@ -6,7 +6,7 @@
 #include <stdio.h>
 //maybe later it is necessary to add the maxiparkmm driving time.
 
-void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, int trialK){
+void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, int trialK, double trialMulti){
     
     if (argc < 5) {
         cout << "\nMissing parameters\n";
@@ -822,7 +822,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         long power = pow(2, instParam[1]);
         // cout << "power: " << power << endl;
 
-        long int seed = instParam[0]*power;
+        long int seed = (instParam[0]*power)*trialMulti;
         // int seed = time(NULL);
         srand(seed);
         // cout << "Instance seed: " << seed << endl;
@@ -1366,6 +1366,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // for (int i = 0; i < nodeVec.size(); i++){
     //     cout << i << ": " << nodeVec[i].l << endl;
     // }
+    cout << "\nDist Multiplier: " << trialMulti << endl;
+    // getchar();
 }
 
 double calcEucDist (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
