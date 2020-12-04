@@ -593,8 +593,22 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 
 	}
-	
-	//Constraint 13  - bound number of passenger visits transporting parcel
+
+    //Constraints 13 - maximum driving time
+
+    for (int i = 0; i < nodeVec.size(); i++){
+        for (int k = 0; k < inst->K; k++){
+            IloExpr exp(env);
+            exp = b[i];
+
+            sprintf (var, "Constraint13_%d_%d", i, k);
+            IloRange cons1 = (exp <= inst->maxTime);
+            cons1.setName(var);
+            model.add(cons1);        
+        }
+
+    }	
+	//Constraint 14  - bound number of passenger visits transporting parcel
 	if (problem->scen == "1A" || problem->scen == "1B"){
 		for (int i = 0; i < nas->arcNN.size(); i++){
 			IloExpr exp(env);
@@ -605,13 +619,15 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 			}
 			exp = 1 - (w[nas->arcNN[i].first]/W);
 
-			sprintf (var, "Constraint13_%d", i);
+			sprintf (var, "Constraint14_%d", i);
 			IloRange cons1 = (sumX - exp <= 0);
 			cons1.setName(var);
 			model.add(cons1);
 
 		}
 	}
+
+
 
  //    //test constraint
 
@@ -850,15 +866,16 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
 	// }
 
-    // cout << "\nDistance Matrix: " << endl;
 
-    // for (int i = 0; i < inst->V + inst->dummy; i++){
-    // 	for (int j = 0; j < inst->V + inst->dummy; j++){
-    // 		cout << setw(5) << setprecision(5) << mdist[i][j] << " ";
-    // 	}
-    // 	cout << endl;
-    // }
-    // getchar();
+    cout << "\nDistance Matrix: " << "Size: " << inst->V + inst->dummy << endl;
+
+    for (int i = 0; i < inst->V + inst->dummy; i++){
+    	for (int j = 0; j < inst->V + inst->dummy; j++){
+    		cout << setw(5) << setprecision(5) << mdist[i][j] << " ";
+    	}
+    	cout << endl;
+    }
+    getchar();
 
     // cout << "\nDelta vector: " << endl;
 

@@ -319,7 +319,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         else{
             trialK = K;
         }
-        
+
         // cout << "K: " << K << endl;
         // getchar();
 
@@ -328,7 +328,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         originalV = 2*n + 2*m + 2; 
         // inst->vmed = 19.3;
-        inst->dummy = 1;
+        inst->dummy = K;
 
         double *delta = new double[V + inst->dummy];
         double *slatitude = new double [V + inst->dummy];
@@ -812,7 +812,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         service = service/60;
         int refpoint = K + 1;
         int instV;
-        dummy = 1;
+        dummy = K;
         inst->dummy = dummy;
         // inst->vmed = 19.3; //(km/h)
 
@@ -1131,7 +1131,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             else{
                 trialK = K;
             } 
-            for (int l = 0; l < K -1; l++){
+            for (int l = 0; l < K - 1; l++){
                 vector<double> distRow;
                 vector<double> dummyRow;
 
@@ -1140,22 +1140,41 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 for (int i = 0; i < V + inst->dummy; i++){
                     valueDist = realData[i][realData[i].size() - 2];
                     realData[i].insert(realData[i].begin() + realData[i].size() - 1, valueDist);
+                    realData[i].push_back(0);
                 }
 
                 for (int i = 0; i < V + inst->dummy; i++){
                     distRow.push_back(realData[V - 1][i]);
                     dummyRow.push_back(realData[V][i]);
                 }
-                distRow.push_back(0);
-                dummyRow.push_back(0); 
+                for (int i = 0; i < trialK; i++){
+                    distRow.push_back(0);
+                    dummyRow.push_back(0);                    
+                }
+
 
                 realData.pop_back();
 
                 realData.push_back(distRow);
-                realData.push_back(dummyRow);
-                V++;
+
+                for (int i = 0; i < trialK; i++){
+                    realData.push_back(dummyRow);
+                }
+
+                V+=2;
+                inst->dummy = trialK;
             }
+            cout << "\nDistance Matrix (Middle): " << "Size: " << realData.size() << endl;
+
+            for (int i = 0; i < realData.size(); i++){
+                for (int j = 0; j < realData[i].size(); j++){
+                    cout << setw(5) << setprecision(5) << realData[i][j] << " ";
+                }
+                cout << endl;
+            }
+            getchar();
         }
+
 
 
         // cout << "Testing matrix(3): " << endl;

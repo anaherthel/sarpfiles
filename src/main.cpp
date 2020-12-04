@@ -48,7 +48,7 @@ int main (int argc, char *argv[]) {
 		// else if (problem.model == "twostage"){
 		// 	twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			
 		// }
-		if (trialMulti > 1){
+		// if (trialMulti > 1){
 			if (trialK < inst.n){
 				trialK++;	
 			}
@@ -56,10 +56,10 @@ int main (int argc, char *argv[]) {
 			else{
 				break;
 			}
-		}
-		else {
-			trialMulti = 1.5;
-		}
+		// }
+		// else {
+		// 	trialMulti = 1.5;
+		// }
 	}
 
 	return 0;
