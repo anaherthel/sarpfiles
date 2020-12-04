@@ -864,6 +864,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         while (file.compare("EDGE_WEIGHT_SECTION") != 0){
             in >> file;
         }
+
         
         for (int i = 0; i < instV + refpoint; i++){
             for(int j = 0; j < instV + refpoint; j++){
@@ -907,7 +908,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
         }
 
-
         // //maybe we needed to adjust the corner (relying on the -0 being f)
 
         //erase unused
@@ -920,6 +920,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 tempData[i].erase(tempData[i].begin());
             }   
         }
+
         // cout << "\nDistance Matrix BEFORE (1): " << endl;
         // for (int i = 0; i < tempData.size(); i++){
         //     for (int j = 0; j < tempData[i].size(); j++){
@@ -1115,7 +1116,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
 
-        // cout << "Testing matrix(2): " << endl;
+        // cout << "Testing matrix(0): " << endl;
         // for (int i = 0; i < realData.size(); i++){
         //     for (int j = 0; j < realData[i].size(); j++){
         //         cout << setw(5) << realData[i][j] << " ";
@@ -1130,61 +1131,39 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
             else{
                 trialK = K;
-            } 
+            }
+
             for (int l = 0; l < K - 1; l++){
                 vector<double> distRow;
                 vector<double> dummyRow;
 
                 double valueDist;
                 
+                int ref2 = l + 1;
+
                 for (int i = 0; i < V + inst->dummy; i++){
-                    valueDist = realData[i][realData[i].size() - 2];
-                    realData[i].insert(realData[i].begin() + realData[i].size() - 1, valueDist);
+                    valueDist = realData[i][realData[i].size() - ref2 - 1];
+                    realData[i].insert(realData[i].begin() + realData[i].size() - ref2, valueDist);
                     realData[i].push_back(0);
                 }
 
-                for (int i = 0; i < V + inst->dummy; i++){
-                    distRow.push_back(realData[V - 1][i]);
+                for (int i = 0; i < V + inst->dummy + 1; i++){
+                    distRow.push_back(realData[V - ref2][i]);
                     dummyRow.push_back(realData[V][i]);
                 }
-                for (int i = 0; i < trialK; i++){
-                    distRow.push_back(0);
-                    dummyRow.push_back(0);                    
-                }
 
+                distRow.push_back(0);
+                dummyRow.push_back(0);                    
 
-                realData.pop_back();
+                realData.insert(realData.begin() + realData.size() - ref2, distRow);
 
-                realData.push_back(distRow);
-
-                for (int i = 0; i < trialK; i++){
-                    realData.push_back(dummyRow);
-                }
-
-                V+=2;
-                inst->dummy = trialK;
+                realData.push_back(dummyRow);
+                
+                V++;
+                inst->dummy++;
+  
             }
-            cout << "\nDistance Matrix (Middle): " << "Size: " << realData.size() << endl;
-
-            for (int i = 0; i < realData.size(); i++){
-                for (int j = 0; j < realData[i].size(); j++){
-                    cout << setw(5) << setprecision(5) << realData[i][j] << " ";
-                }
-                cout << endl;
-            }
-            getchar();
         }
-
-
-
-        // cout << "Testing matrix(3): " << endl;
-        // for (int i = 0; i < realData.size(); i++){
-        //     for (int j = 0; j < realData[i].size(); j++){
-        //         cout << setw(5) << realData[i][j] << " ";
-        //     }
-        //     cout << endl;
-        // }
-        // getchar();
 
         double *delta = new double[V + inst->dummy];
         double *profit = new double[V + inst->dummy];
@@ -1268,6 +1247,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             } 
         }
 
+
         // for (int i = 0; i < V + inst->dummy; i++){
         //     if(i < n){
         //         if(i == 0){
@@ -1292,7 +1272,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //         l[i] = 1020;
         //     } 
         // }
-
         for (int i = 0; i < V + inst->dummy; i++){
             node->e = e[i]/60;
             node->l = l[i]/60;
@@ -1303,26 +1282,28 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
 
+
         // cout << "\nLoad vector: " << endl;
 
         // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << i << ": " << nodeVec[i].load << " ||| " << endl;
+        //     cout << i << ": " << nodeVec[i].load << endl;
         // }
         // getchar();
 
         // cout << "\nDelta vector: " << endl;
 
         // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << i << ": " << nodeVec[i].delta << " || ";
+        //     cout << i << ": " << nodeVec[i].delta << endl;
         // }
-        // cout << endl;
         // getchar();
 
         double **dist = new double*[V + inst->dummy];
         for (int i= 0; i < V + inst->dummy; i++){
             dist[i] = new double [V + inst->dummy];
         }
-
+        cout << "comparing: \nrealDist size: " << realData.size() << endl;
+        cout << "v+dummy: " << V + inst->dummy << endl;
+        getchar();
         for(int i = 0; i < V + inst->dummy; i++){
             for (int j = 0; j < V + inst->dummy; j++){
                 dist[i][j] = realData[i][j];
@@ -1339,6 +1320,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // inst->T = 1440/60;
 
         inst->totalCustomProfit = 0;
+
 
         // if (problem->model == "node"){
         //     for (int i = 0; i < n; i++){
@@ -1363,6 +1345,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // }
         // cout << endl << endl;
         // getchar();
+
 
     }
 

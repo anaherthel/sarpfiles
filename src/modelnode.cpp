@@ -927,7 +927,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// cout << endl;
 
 
-    mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
+    // mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
 
     // mtznode(inst, nodeVec, mdist, problem, &nas, sStat);
 
