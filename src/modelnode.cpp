@@ -17,7 +17,7 @@ void initArcs (instanceStat *inst, nodeArcsStruct *nas){
     } 
 } 
 
-void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
+void newfeasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
 
     if (problem->scen == "1A" || problem->scen == "2A"){ 
         for (int i = 0; i < inst->V; i++){
@@ -185,6 +185,165 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
     }
 }
 
+void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
+
+    if (problem->scen == "1A" || problem->scen == "2A"){ 
+        for (int i = 0; i < inst->V; i++){
+            if (i < inst->n){//i is a passenger req
+                for(int j = 0; j < inst->n + 2*inst->m; j++){// j is a parcel req (pu or del)
+                    if(i != j){
+                        nas->arcs[i][j] = true;
+                        nas->fArc.first = i;
+                        nas->fArc.second = j;
+                        nas->arcMinus[j].push_back(nas->fArc);
+                        nas->arcPlus[i].push_back(nas->fArc);
+                        if (j < inst->n){
+                            nas->arcNN.push_back(nas->fArc);
+                        }
+                        nas->arcNplus.push_back(nas->fArc);
+                        nas->allArcs.push_back(nas->fArc);
+                        nas->arcnf.push_back(nas->fArc);
+                    }
+                }
+
+                for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->arcNplus.push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                }
+            }
+
+            else if (i < inst->n + inst->m){//i is a parcel pickup node
+                for (int j = 0; j < inst->n; j++){ //j is a passenger node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->arcPP.push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
+                }
+            }
+
+            else if (i < inst->n + 2*inst->m){// i is a parcel delivery node
+                for (int j = 0; j < inst->n + inst->m; j++){//j is a passenger node or parcel pickup node
+                    if (j + inst->m != i){
+                        nas->arcs[i][j] = true;
+                        nas->fArc.first = i;
+                        nas->fArc.second = j;
+                        nas->arcMinus[j].push_back(nas->fArc);
+                        nas->arcPlus[i].push_back(nas->fArc);
+                        nas->allArcs.push_back(nas->fArc);
+                        nas->arcnf.push_back(nas->fArc);
+                    }                    
+                }
+
+                for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                }
+            }
+
+            else if (i < inst->V + inst->dummy){ // i is a starting node
+                for (int j = 0; j < inst->n + inst->m; j++){//j is a passenger or parcel pickup node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
+                }
+            }          
+        }
+    }
+    else if (problem->scen == "1B" || problem->scen == "2B"){
+        for (int i = 0; i < inst->V; i++){
+            if (i < inst->n){//i is a passenger req
+                for(int j = 0; j < inst->n + 2*inst->m; j++){// j is a parcel req (pu or del)
+                    if(i != j){
+                        nas->arcs[i][j] = true;
+                        nas->fArc.first = i;
+                        nas->fArc.second = j;
+                        nas->arcMinus[j].push_back(nas->fArc);
+                        nas->arcPlus[i].push_back(nas->fArc);
+                        if (j < inst->n){
+                            nas->arcNN.push_back(nas->fArc);
+                        }
+                        nas->arcNplus.push_back(nas->fArc);
+                        nas->allArcs.push_back(nas->fArc);
+                        nas->arcnf.push_back(nas->fArc);
+                    }
+                }
+                for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->arcNplus.push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                }
+            }
+
+            else if (i < inst->n + inst->m){//i is a parcel pickup node
+                for (int j = 0; j < inst->n + inst->m; j++){ //j is a passenger or parcel pickup node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->arcPP.push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
+                }
+            }
+            else if (i < inst->n + 2*inst->m){// i is a parcel delivery node
+                for (int j = 0; j < inst->n + 2*inst->m; j++){//j is a passenger node or parcel node (pu or del)
+                    if (j + inst->m != i){
+                        nas->arcs[i][j] = true;
+                        nas->fArc.first = i;
+                        nas->fArc.second = j;
+                        nas->arcMinus[j].push_back(nas->fArc);
+                        nas->arcPlus[i].push_back(nas->fArc);
+                        nas->allArcs.push_back(nas->fArc);
+                        nas->arcnf.push_back(nas->fArc);
+                    }                    
+                }
+
+                for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                }
+            }
+
+            else if (i < inst->V + inst->dummy){ // i is a starting node
+                for (int j = 0; j < inst->n + inst->m; j++){//j is a passenger or parcel pickup node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
+                }
+            }          
+        }
+    }
+}
 void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat){
     bool inserted;
 
@@ -899,7 +1058,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 }
 
 void oldmipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat){
-    //MIP
+ //MIP
     //Creating environment and model 
     char var[100];
     IloEnv env;
