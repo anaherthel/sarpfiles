@@ -37,6 +37,10 @@ struct nodeArcsStruct{
 	vector< pair<int,int> > arcNplus;
 	vector< pair<int,int> > arcPP;
 	vector< pair<int,int> > arcnf;
+	vector< pair<int,int> > arcDepot;
+	vector< pair<int,int> > arcReq;
+	vector< pair<int,int> > arcDummy;
+
 };
 
 void initArcs (instanceStat *inst, nodeArcsStruct *nas);
@@ -46,5 +50,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat);
 void mtznode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat);
 void output(instanceStat *inst, vector<nodeStat> &nodeVec, solStats *sStat, probStat* problem);
+void oldmipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat);
 
 #endif

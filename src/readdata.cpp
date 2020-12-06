@@ -812,7 +812,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         service = service/60;
         int refpoint = K + 1;
         int instV;
-        dummy = K;
+        // dummy = K;
+        dummy = 1;
         inst->dummy = dummy;
         // inst->vmed = 19.3; //(km/h)
 
@@ -1065,23 +1066,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
         }
         
-        // cout << "\nDistance Matrix (Pre-adapting): " << endl;
-
-        // for (int i = 0; i < tempData.size(); i++){
-        //     for (int j = 0; j < tempData[i].size(); j++){
-        //         cout << setw(5) << setprecision(5) << tempData[i][j] << " ";
-        //     }
-        //     cout << endl;
-        // }
-        // getchar();
-
         double curAvg = 0;
         // double curStddv = 99999999999;
         scCounter = 0;
 
         // while (curAvg < inst->realAvg){
             // scale = 100 - 10*scCounter;
-        scale = 50;
+        scale = 1000;
         // distScale(inst, &instV, tempData, &curAvg, &scale);
 
         //     scCounter++;
@@ -1210,68 +1201,70 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
         }
 
+        // for (int i = 0; i < V + inst->dummy; i++){
+
+        //     if(i < n){
+        //         e[i] = rand() % 1440;
+
+        //         if (e[i] < 60){
+        //             e[i] += (rand() % 60)*2;
+        //         }
+
+        //         else if (e[i] + (delta[i]*60) > 1440){
+        //             e[i] -= delta[i]+(rand() % 60);
+        //         }
+
+        //         // e[i] += (rand()%240)/2;
+        //         // if (e[i] + delta[i] > 1020){
+        //         //     e[i] = 1020;
+        //         // }
+        //         // cout << "e[" << i << "]: " << e[i]/60 << endl;
+        //         // getchar();
+        //         l[i] = e[i];
+        //         // e[i] = 540;
+        //         // l[i] = 1020;
+        //     }
+        //     else if (i >= n && i < n + 2*m){
+        //         e[i] = 0;
+        //         l[i] = 1440;
+        //     }
+        //     else if (i >= n + 2*m && i < V + inst->dummy - 1){
+        //         e[i] = 0;
+        //         l[i] = 1440;
+        //     }
+        //     else if (i >= V + inst->dummy - 1){
+        //         e[i] = 0;
+        //         l[i] = 1440;
+        //     } 
+        // }
+
+        //for debugging
         for (int i = 0; i < V + inst->dummy; i++){
-
             if(i < n){
-                e[i] = rand() % 1440;
-
-                if (e[i] < 60){
-                    e[i] += (rand() % 60)*2;
+                if(i == 0){
+                    e[i] = 620;
+                    l[i] = e[i];                    
                 }
-
-                else if (e[i] + (delta[i]*60) > 1440){
-                    e[i] -= delta[i]+(rand() % 60);
+                else if(i == 1){
+                    e[i] = 700;
+                    l[i] = e[i];                    
                 }
-
-                // e[i] += (rand()%240)/2;
-                // if (e[i] + delta[i] > 1020){
-                //     e[i] = 1020;
-                // }
-                // cout << "e[" << i << "]: " << e[i]/60 << endl;
-                // getchar();
-                l[i] = e[i];
-                // e[i] = 540;
-                // l[i] = 1020;
             }
-            else if (i >= n && i < n + 2*m){
+            else if (i < n + 2*m){
                 e[i] = 0;
-                l[i] = 1440;
+                l[i] = 1020;                
             }
-            else if (i >= n + 2*m && i < V + inst->dummy - 1){
-                e[i] = 0;
-                l[i] = 1440;
+            else if (i < V + inst->dummy - 1){
+                e[i] = 540;
+                l[i] = 1020;                    
             }
-            else if (i >= V + inst->dummy - 1){
-                e[i] = 0;
-                l[i] = 1440;
+            else{
+                e[i] = 540;
+                l[i] = 1020;
             } 
         }
 
 
-        // for (int i = 0; i < V + inst->dummy; i++){
-        //     if(i < n){
-        //         if(i == 0){
-        //             e[i] = 620;
-        //             l[i] = e[i];                    
-        //         }
-        //         else if(i == 1){
-        //             e[i] = 700;
-        //             l[i] = e[i];                    
-        //         }
-        //     }
-        //     else if (i < n + 2*m){
-        //         e[i] = 0;
-        //         l[i] = 1020;                
-        //     }
-        //     else if (i < V + inst->dummy - 1){
-        //         e[i] = 540;
-        //         l[i] = 1020;                    
-        //     }
-        //     else{
-        //         e[i] = 540;
-        //         l[i] = 1020;
-        //     } 
-        // }
         for (int i = 0; i < V + inst->dummy; i++){
             node->e = e[i]/60;
             node->l = l[i]/60;
@@ -1301,9 +1294,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i= 0; i < V + inst->dummy; i++){
             dist[i] = new double [V + inst->dummy];
         }
-        cout << "comparing: \nrealDist size: " << realData.size() << endl;
-        cout << "v+dummy: " << V + inst->dummy << endl;
-        getchar();
+
         for(int i = 0; i < V + inst->dummy; i++){
             for (int j = 0; j < V + inst->dummy; j++){
                 dist[i][j] = realData[i][j];
@@ -1356,7 +1347,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         inst->nCluster = inst->n + inst->K + inst->dummy;
     }
 
-    //Print starting and end times: (debugging)
+    // Print starting and end times: (debugging)
     // cout << "\nEarlier times: " << endl;
 
     // for (int i = 0; i < nodeVec.size(); i++){

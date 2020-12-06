@@ -63,8 +63,8 @@ struct instanceStat{
 	double costkm = 0.46;
 	// double vmed;
 	// double vmed = 19.3;
-	// double vmed = 19.3;
-	double vmed = 41;
+	double vmed = 19.3;
+	// double vmed = 41;
 	int nCluster;
 	int endCluster;
 	int startCluster;
