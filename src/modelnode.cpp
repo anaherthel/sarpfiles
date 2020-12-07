@@ -5,13 +5,22 @@
 void initArcs (instanceStat *inst, nodeArcsStruct *nas){
     vector<bool> auxVec;
     vector< pair<int,int> > auxPairVec;
+
     vector<int> aux1d;
     vector< vector<int> > aux2d;
+
+    for (int k = 0; k < inst->K; k++){
+        nas->arcPlus.push_back(auxPairVec);
+    }
 
     for(int i = 0; i < inst->V + inst->dummy; i++){
         aux2d.push_back(aux1d);
 
+        nas->vArcPlus.push_back(nas->arcPlus);
+        nas->vArcMinus.push_back(nas->arcPlus);
     }
+
+    nas->arcPlus.clear();
 
     for(int i = 0; i < inst->V + inst->dummy; i++){
         for(int j = 0; j < inst->V + inst->dummy; j++){
@@ -20,11 +29,14 @@ void initArcs (instanceStat *inst, nodeArcsStruct *nas){
         nas->arcs.push_back(auxVec);
         nas->arcPlus.push_back(auxPairVec);
         nas->arcMinus.push_back(auxPairVec);
+        
+
 
         nas->arcV.push_back(aux2d);
         
         auxVec.clear();
     }
+
 
 
 
@@ -222,6 +234,19 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
             }          
         }
     }
+
+    for (int a = 0; a < nas->allArcs.size(); a++){
+        int i = nas->allArcs[a].first;
+        int j = nas->allArcs[a].second;
+
+        for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+            int k = nas->arcV[i][j][k1];
+            nas->vArcPlus[i][k].push_back(nas->allArcs[a]);
+            nas->vArcMinus[j][k].push_back(nas->allArcs[a]);
+        }
+
+    }
+
     // cout << "allowed vehicles: " << endl;
 
     // for (int i = 0; i < nas->arcV.size(); i++){
@@ -499,8 +524,11 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	for (int i = 0; i < inst->n; i++){
 		IloExpr exp(env);
 		for (int k = 0; k < inst->K; k++){
-			for (int j = 0; j < nas->arcPlus[i].size(); j++){
-				exp += x[i][nas->arcPlus[i][j].second][k];
+			for (int a = 0; a < nas->vArcPlus[i][k].size(); a++){
+                int u = nas->vArcPlus[i][k][a].first;
+                int v = nas->vArcPlus[i][k][a].second;
+
+				exp += x[u][v][k];
 			}
 		}
 		sprintf (var, "Constraint1_%d", i);
@@ -517,8 +545,11 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		IloExpr exp(env);
 		IloExpr exp2(env);
 		for (int k = 0; k < inst->K; k++){
-			for (int j = 0; j < nas->arcPlus[i].size(); j++){
-				exp += x[i][nas->arcPlus[i][j].second][k];
+			for (int a = 0; a < nas->vArcPlus[i][k].size(); a++){
+                int u = nas->vArcPlus[i][k][a].first;
+                int v = nas->vArcPlus[i][k][a].second;
+
+				exp += x[u][v][k];
 			}
 		}
 
@@ -537,13 +568,18 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 			IloExpr exp1(env);
 			IloExpr exp2(env);
 			//Left side: arc leaves i
-			for (int j = 0; j < nas->arcPlus[i].size(); j++){
-				exp1 += x[i][nas->arcPlus[i][j].second][k];
+			for (int a = 0; a < nas->vArcPlus[i][k].size(); a++){
+                int u = nas->vArcPlus[i][k][a].first;
+                int v = nas->vArcPlus[i][k][a].second;
+
+				exp1 += x[u][v][k];
 			}
 			//Right side: arc leaves i + m
-			for (int j = 0; j < nas->arcPlus[i + inst->m].size(); j++){
-				exp2 += x[i + inst->m][nas->arcPlus[i + inst->m][j].second][k];
+			for (int a = 0; a < nas->vArcPlus[i + inst->m][k].size(); a++){
+				int u = nas->vArcPlus[i + inst->m][k][a].first;
+                int v = nas->vArcPlus[i + inst->m][k][a].second;
 
+                exp2 += x[u][v][k];
 			}
 			sprintf (var, "Constraint3_%d_%d", i, k);
 			IloRange cons = ((exp1-exp2) == 0);
@@ -559,15 +595,15 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 			IloExpr exp1(env);
 			IloExpr exp2(env);
 			//Left side: arc leaves i
-			for (int b = 0; b < nas->arcPlus[a].size(); b++){
-                int i = nas->arcPlus[a][b].first;
-                int j = nas->arcPlus[a][b].second;
+			for (int b = 0; b < nas->vArcPlus[a][k].size(); b++){
+                int i = nas->vArcPlus[a][k][b].first;
+                int j = nas->vArcPlus[a][k][b].second;
 				exp1 += x[i][j][k];
 			}
 			//Right side: arc enters i
-			for (int b = 0; b < nas->arcMinus[a].size(); b++){
-                int i = nas->arcMinus[a][b].first;
-                int j = nas->arcMinus[a][b].second;
+			for (int b = 0; b < nas->vArcMinus[a][k].size(); b++){
+                int i = nas->vArcMinus[a][k][b].first;
+                int j = nas->vArcMinus[a][k][b].second;
 				exp2 += x[i][j][k];
 
 			}
@@ -583,8 +619,11 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
     for (int k = 0; k < inst->K; k++){
         IloExpr exp(env);
-        for (int i = 0; i < nas->arcPlus[inst->V - inst->K + k].size(); i++){
-            exp += x[nas->arcPlus[inst->V - inst->K + k][i].first][nas->arcPlus[inst->V - inst->K + k][i].second][k];
+        for (int a = 0; a < nas->vArcPlus[inst->V - inst->K + k][k].size(); a++){
+            int u = nas->vArcPlus[inst->V - inst->K + k][k][a].first;
+            int v = nas->vArcPlus[inst->V - inst->K + k][k][a].second;
+
+            exp += x[u][v][k];
         }
         sprintf (var, "Constraint5_%d", k);
         IloRange cons = (exp == 1);
@@ -596,8 +635,11 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	for (int k = 0; k < inst->K; k++){
 		IloExpr exp(env);
-		for (int i = 0; i < nas->arcMinus[inst->V + k].size(); i++){
-			exp += x[nas->arcMinus[inst->V + k][i].first][nas->arcMinus[inst->V + k][i].second][k];
+		for (int a = 0; a < nas->vArcMinus[inst->V + k][k].size(); a++){
+            int u = nas->vArcMinus[inst->V + k][k][a].first;
+            int v = nas->vArcMinus[inst->V + k][k][a].second;
+
+        	exp += x[u][v][k];
 		}
 		sprintf (var, "Constraint6_%d", k);
 		IloRange cons = (exp == 1);
@@ -740,17 +782,18 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
  //    //*******************************
 
+    int threads = 3;
 
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
-	nSARP.setParam(IloCplex::Threads, 8);
-	nSARP.setParam(IloCplex::Param::TimeLimit, 3600);
+	nSARP.setParam(IloCplex::Threads, threads);
+	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
 
     IloNum start;
     IloNum time;
     start = nSARP.getTime();
 	nSARP.solve();
-    time = nSARP.getTime() - start;
+    time = (nSARP.getTime() - start)/threads;
 	cout << "\nSol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
 
@@ -870,15 +913,15 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
 	// }
 
-    cout << "\nDistance Matrix: " << endl;
+    // cout << "\nDistance Matrix: " << endl;
 
-    for (int i = 0; i < inst->V + inst->dummy; i++){
-    	for (int j = 0; j < inst->V + inst->dummy; j++){
-    		cout << setw(5) << setprecision(5) << mdist[i][j] << " ";
-    	}
-    	cout << endl;
-    }
-    getchar();
+    // for (int i = 0; i < inst->V + inst->dummy; i++){
+    // 	for (int j = 0; j < inst->V + inst->dummy; j++){
+    // 		cout << setw(5) << setprecision(5) << mdist[i][j] << " ";
+    // 	}
+    // 	cout << endl;
+    // }
+    // getchar();
 
     // cout << "\nDelta vector: " << endl;
 

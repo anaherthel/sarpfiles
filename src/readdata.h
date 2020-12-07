@@ -49,7 +49,7 @@ struct instanceStat{
     int K;
     double T = 24;
     int V;
-    double maxTime = 20;
+    double maxTime = 8;
     int dummy;
     double service;
     // double inipar = ;
