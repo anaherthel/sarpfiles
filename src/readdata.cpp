@@ -1124,39 +1124,95 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // }
         // getchar();
 
+        // if (trialK > 1){
+        //     if (trialK >= K){
+        //         K = trialK;
+        //     }
+        //     else{
+        //         trialK = K;
+        //     } 
+        //     for (int l = 0; l < K -1; l++){
+        //         vector<double> distRow;
+        //         vector<double> dummyRow;
+
+        //         double valueDist;
+                
+        //         for (int i = 0; i < V + inst->dummy; i++){
+        //             valueDist = realData[i][realData[i].size() - 2];
+        //             realData[i].insert(realData[i].begin() + realData[i].size() - 1, valueDist);
+        //         }
+
+        //         for (int i = 0; i < V + inst->dummy; i++){
+        //             distRow.push_back(realData[V - 1][i]);
+        //             dummyRow.push_back(realData[V][i]);
+        //         }
+        //         distRow.push_back(0);
+        //         dummyRow.push_back(0); 
+
+        //         realData.pop_back();
+
+        //         realData.push_back(distRow);
+        //         realData.push_back(dummyRow);
+        //         V++;
+        //     }
+        // }
+
+        vector<double> distRow;
+        vector<double> dummyRow;
+        vector<double> distColumn;
+
+        // cout << "\nV: " << V << endl;
+        // getchar();
         if (trialK > 1){
             if (trialK >= K){
                 K = trialK;
             }
             else{
                 trialK = K;
-            } 
-            for (int l = 0; l < K -1; l++){
-                vector<double> distRow;
-                vector<double> dummyRow;
+            }
 
-                double valueDist;
-                
-                for (int i = 0; i < V + inst->dummy; i++){
-                    valueDist = realData[i][realData[i].size() - 2];
-                    realData[i].insert(realData[i].begin() + realData[i].size() - 1, valueDist);
-                }
-
-                for (int i = 0; i < V + inst->dummy; i++){
+            for (int i = 0; i < V - 1; i++){
+                distColumn.push_back(realData[i][realData[i].size() - 2]);
+                dummyRow.push_back(realData[V][i]);
+                // if (i < V - 1){
                     distRow.push_back(realData[V - 1][i]);
-                    dummyRow.push_back(realData[V][i]);
-                }
-                distRow.push_back(0);
-                dummyRow.push_back(0); 
+                // }
+                realData[i].pop_back();
+                realData[i].pop_back();
+            }
 
-                realData.pop_back();
+            realData.pop_back();
+            realData.pop_back();
+            V--;
+            inst->dummy--;
+
+            for (int l = 0; l < K; l++){
+                distRow.push_back(0);
+                dummyRow.push_back(0);
+            }
+
+            for (int l = 0; l < K; l++){
+                for (int i = 0; i < distColumn.size(); i++){
+                    realData[i].push_back(distColumn[i]);
+                }
 
                 realData.push_back(distRow);
-                realData.push_back(dummyRow);
+
                 V++;
             }
-        }
 
+            for (int l = 0; l < K; l++){
+                for (int i = 0; i < dummyRow.size(); i++){
+                    realData[i].push_back(dummyRow[i]);
+                }
+                // if (l > 0){
+                    dummyRow.push_back(0);
+                // }
+                realData.push_back(dummyRow);
+                inst->dummy++;
+            }
+
+        }
 
         // cout << "Testing matrix(3): " << endl;
         // for (int i = 0; i < realData.size(); i++){
