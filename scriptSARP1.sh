@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dirInstancias='Instances/grubhub'
+dirInstancias='Instances1/grubhub'
 output='nGHSscaled50-1.txt'
 #runs=10
 

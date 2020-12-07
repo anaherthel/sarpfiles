@@ -782,7 +782,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
  //    //*******************************
 
-    int threads = 3;
+    int threads = 1;
 
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");

@@ -27,6 +27,7 @@ CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio127/cplex
 #CPLEXDIR = /home/lv70752/kiefera8/cplex
 
 #CONCERTDIR    = /usr/ilog/concert
+
 CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio127/concert
 
 #Use this on office pc

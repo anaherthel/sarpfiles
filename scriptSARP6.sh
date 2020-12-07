@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances1/grubhub'
-output='nGHSscaled50-1-1.txt'
+dirInstancias='Instances6/grubhub'
+output='nGHSscaled50-6.txt'
 #runs=10
 
 cat /dev/null > $output
