@@ -37,6 +37,7 @@ struct nodeArcsStruct{
 	vector< pair<int,int> > arcNplus;
 	vector< pair<int,int> > arcPP;
 	vector< pair<int,int> > arcnf;
+	vector< vector< vector<int> > > arcV;
 };
 
 void initArcs (instanceStat *inst, nodeArcsStruct *nas);

@@ -20,7 +20,7 @@ using namespace std;
 int main (int argc, char *argv[]) {
 	double **distMatrix;
 	
-	int trialK = 4;
+	int trialK = 2;
 	double trialMulti = 1;
 
 	nodeStat node;
@@ -48,7 +48,7 @@ int main (int argc, char *argv[]) {
 		// else if (problem.model == "twostage"){
 		// 	twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			
 		// }
-		if (trialMulti > 1){
+		// if (trialMulti > 1){
 			if (trialK < inst.n){
 				trialK++;	
 			}
@@ -56,10 +56,10 @@ int main (int argc, char *argv[]) {
 			else{
 				break;
 			}
-		}
-		else {
-			trialMulti = 1.5;
-		}
+		// }
+		// else {
+		// 	trialMulti = 1.5;
+		// }
 	}
 
 	return 0;
