@@ -1,15 +1,15 @@
 #!/bin/bash
 
-dirInstancias='Instances16/grubhub'
+dirInstancias='Instances11/grubhub'
 output='nGHSscaled50-16.txt'
 #runs=10
 
 cat /dev/null > $output
 
-for i in 1A 2A 1B 2B
+for i in 1B 2B
 #for i in 1A
 do
-	for j in 10 20 30 40
+	for j in 40
 	do
 		for arquivo in `ls ${dirInstancias}` #lista todos os arquivos na pasta que contem as instancias que vc quer rodar
 		do

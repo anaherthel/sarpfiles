@@ -276,7 +276,7 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
             if (flag) {
                 loc = line.find_first_of(":");
                 testStr = line.substr(loc + 2, line.size() - loc - 2);
-                if (testStr == "Optimal" || testStr == "Feasible"){
+                if (testStr == "Optimal" || testStr == "Feasible" || testStr == "Unknown"){
                     optflag = true;
                     inst.stats = line.substr(loc + 2, line.size() - loc - 2);
                     // cout << "Status:" << inst.stats << endl;
@@ -500,11 +500,11 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
         in.close();
 	}
     
-    cout << "Size of vector inst: " << vecInst.size() << endl;
-    cout << "Size of vector dist: " << vecDist.size() << endl;
-    cout << "Size of vector time: " << vecTime.size() << endl;
+    // cout << "Size of vector inst: " << vecInst.size() << endl;
+    // cout << "Size of vector dist: " << vecDist.size() << endl;
+    // cout << "Size of vector time: " << vecTime.size() << endl;
     
-    getchar();
+    // getchar();
 
 
     // cout << "Vec of instance: " << endl;

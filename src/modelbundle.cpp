@@ -382,16 +382,16 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
     }
 
 
-    for (int a = 0; a < cStat->cArcVec.size(); a++){
-        int cA = cStat->cArcVec[a].first;
-        int cB = cStat->cArcVec[a].second;
+    // for (int a = 0; a < cStat->cArcVec.size(); a++){
+    //     int cA = cStat->cArcVec[a].first;
+    //     int cB = cStat->cArcVec[a].second;
 
-        for (int k1 = 0; k1 < cStat->arcV[cA][cB].size(); k1++){
-            int k = cStat->arcV[i][j][k1];
-            cStat->vArcPlus[i][k].push_back(cStat->cArcVec[a]);
-            cStat->vArcMinus[j][k].push_back(cStat->cArcVec[a]);
-        }
-    } 
+    //     for (int k1 = 0; k1 < cStat->arcV[cA][cB].size(); k1++){
+    //         int k = cStat->arcV[i][j][k1];
+    //         cStat->vArcPlus[i][k].push_back(cStat->cArcVec[a]);
+    //         cStat->vArcMinus[j][k].push_back(cStat->cArcVec[a]);
+    //     }
+    // } 
 
 }
 

@@ -738,48 +738,37 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	cout << "\nSol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
 
+    cout << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
+    cout << " Total Time: " << time << endl;
+
+
 	if (sStat->feasible){
-        solStatIni(sStat);
-		cout << "\nObj Val: " << setprecision(15) << nSARP.getObjValue() << endl;
 
-		sStat->solprofit = nSARP.getObjValue();
+        cout << " LB: " << nSARP.getObjValue() << endl;
+        cout << " UB: " << nSARP.getBestObjValue() << endl;
+        sStat->solprofit = nSARP.getObjValue();
+        sStat->time = time;
 
-        cout << "\nSolve Time: " << setprecision(15) << time << endl << endl;
-		
-		for (int k = 0; k < inst->K; k++){
-	 		sStat->solvec.push_back(auxPairVec);
-		}
+        for (int k = 0; k < inst->K; k++){
+            sStat->solvec.push_back(auxPairVec);
+        }
 
-		for (int i = 0; i < nodeVec.size(); i++){
-			for(int j = 0; j < nodeVec.size(); j++){                
+        for (int i = 0; i < nodeVec.size(); i++){
+            for(int j = 0; j < nodeVec.size(); j++){                
                 if (nas->arcs[i][j] == true){
                     for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
                         int k = nas->arcV[i][j][k1];
-						if (nSARP.getValue(x[i][j][k]) > 0.5){
-							auxPair.first = i;
-							auxPair.second = j;
-							sStat->solvec[k].push_back(auxPair);
-							// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
-							// getchar();
-						}
-					}
-				}
-			}	
-		}
-
-		for (int k = 0; k < inst->K; k++){
-			for (int a = 0; a < sStat->solvec[k].size(); a++){
-                int i = sStat->solvec[k][a].first;
-                int j = sStat->solvec[k][a].second;
-                if (i >= inst->n){
-                    sStat->pProfit += nodeVec[i].profit;
+                        if (nSARP.getValue(x[i][j][k]) > 0.5){
+                            auxPair.first = i;
+                            auxPair.second = j;
+                            sStat->solvec[k].push_back(auxPair);
+                            // cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
+                            // getchar();
+                        }
+                    }
                 }
-
-                sStat->costs += (double)inst->costkm*mdist[i][j];
-                cout << "x(" << i << ", " << j << ", " << k << ")" << endl;
-
-			}
-		}
+            }   
+        }
 
         for (int i = 0; i < nodeVec.size(); i++){
             if (nSARP.getValue(b[i]) > 0.5){
@@ -788,13 +777,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             else {
                 sStat->solBegin.push_back(0);
             }
-        }
-
-        cout << endl;
-
-
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
         }
 
         for (int i = 0; i < nodeVec.size(); i++){
@@ -806,13 +788,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             }
         }
 
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << "w(" << i << "): " << sStat->solLoad[i] << endl;
-        // }
-
-        cout << "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
-        cout << "Parcel profit: " << sStat->pProfit << endl;
-        cout << "Costs: " << sStat->costs << endl;
+        printResults(inst, mdist, sStat, nodeVec);
 
 	}
 
@@ -842,6 +818,38 @@ void output(instanceStat *inst, vector<nodeStat> &nodeVec,  solStats *sStat, pro
     // }
 }
 
+void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<nodeStat> &nodeVec){
+        solStatIni(sStat);
+        cout << "\nObj Val: " << setprecision(15) << sStat->solprofit << endl;
+
+        cout << "\nSolve Time: " << setprecision(15) << sStat->time << endl;
+
+        for (int k = 0; k < inst->K; k++){
+            for (int a = 0; a < sStat->solvec[k].size(); a++){
+                int i = sStat->solvec[k][a].first;
+                int j = sStat->solvec[k][a].second;
+                if (i >= inst->n){
+                    sStat->pProfit += nodeVec[i].profit;
+                }
+
+                sStat->costs += (double)inst->costkm*mdist[i][j];
+                cout << "x(" << i << ", " << j << ", " << k << ")" << endl;
+
+            }
+        }
+
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
+        }
+
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << "w(" << i << "): " << sStat->solLoad[i] << endl;
+        // }
+
+        cout << "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
+        cout << "Parcel profit: " << sStat->pProfit << endl;
+        cout << "Costs: " << sStat->costs << endl;
+}
 void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
 	
 	nodeArcsStruct nas;
@@ -935,3 +943,4 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	}
 	delete[] mdist;
 }
+

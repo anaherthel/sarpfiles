@@ -42,6 +42,8 @@ struct solStats{
 	double dBoth;
 	double dNone;
 
+	double time;
+
 	int servedParcels;
 	
     vector< vector<int> > solOrder;
