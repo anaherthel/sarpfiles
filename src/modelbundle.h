@@ -30,26 +30,36 @@ struct bundleStat{
 	vector<int> bundle;
 	vector< vector<int> > bundleVec;
 	vector<double> bundleTimes;
-	pair<int, int> bFArc;
 	vector<double> bundleProfVec;
 	vector<double> bundleServVec;
-	vector<bool> bArcRow;
 	vector< vector<bool> > bArcs;
 	vector< pair<int,int> > bArcVec;
+
 	vector< vector< pair<int,int> > > bArcPlus;
 	vector< vector< pair<int,int> > > bArcMinus;
-	vector<int> parcelBundle;
+	vector< vector< vector< pair<int,int> > > > vArcPlus;
+	vector< vector< vector< pair<int,int> > > > vArcMinus;
+	vector< vector< vector<int> > > arcV;
 	vector< vector<int> > parcelBundleVec;
 	vector< vector<int> > passBundleVec;
 	vector<double> bundleStart;
 	vector<double> bundleEnd;
     vector <int> lastElement;
-    vector<int> firstElement;
-    vector<int> label; //0- purely passenger; 1- parcel pickup req; 2- parcel delivery req; 3- starting/dummy; 4 - delivery/dummy; 5 - start-pickup
-    vector<int> label2;//1 if parcel is after passenger request in the bundle, 0 if it is before, -1 non parcel bundles.
-    vector<int> mainNode;
-    vector<int> activePU;
-    vector<int> activeDL;
+    vector <int> firstElement;
+};
+
+struct clSt{
+	int nCluster;
+	vector<int> clusters;
+	vector< vector<int> > clusterVec;
+	vector< vector< pair<int,int> > > cArcPlus;
+	vector< vector< pair<int,int> > > cArcMinus;
+	vector< vector<bool> > cArcs;
+	vector< vector< vector< pair<int,int> > > > vArcPlus;
+	vector< vector< vector< pair<int,int> > > > vArcMinus;
+	vector< vector< vector<int> > > arcV;
+
+    vector< pair<int,int> > cArcVec;
 };
 
 struct bParcelStruct{
@@ -58,10 +68,12 @@ struct bParcelStruct{
 	bool poslabel; //1 if parcel is after passenger request in the bundle, 0 if it is before.
 };
 
-void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector<int> &clusters, vector< vector<int> > &clusterVec, vector< vector<bParcelStruct> > &clsParcel, probStat* problem);
+void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, vector< vector<bParcelStruct> > &clsParcel, probStat* problem);
 void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
-void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, int p, probStat* problem);
-void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, vector< vector<int> > &clusterVec, pair<int, int> &cFArc, vector< vector<bool> > &cArcs, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, int p, probStat* problem);
+void initVecs (instanceStat *inst, vector< vector<bParcelStruct> > &clsParcel, bundleStat *bStat);
+void initArcs (instanceStat *inst, bundleStat *bStat, clSt *cStat);
+void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem);
+void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem);
 void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem);
 void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem);
 void makeBundleReference (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
@@ -71,7 +83,7 @@ void makeParcelSets (instanceStat *inst, vector<nodeStat> &nodeVec, double **mdi
 void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat);
 void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat);
 void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat);
-void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, vector< vector<int> > &clusterVec, vector< pair<int,int> > &cArcVec, vector< vector< pair<int,int> > > &cArcPlus, vector< vector< pair<int,int> > > &cArcMinus, probStat* problem, solStats *sStat);
+void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, clSt *cStat, probStat* problem, solStats *sStat);
 void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat);
 
 

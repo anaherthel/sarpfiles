@@ -1404,13 +1404,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     }
 
-    if(problem->scen == "1A" || "1B"){
-        inst->nCluster = inst->n + inst->K + inst->dummy;
-    }
-    else if(problem->scen == "2A" || "2B"){
-        inst->nCluster = inst->n + inst->K + inst->dummy;
-    }
-
     //Print starting and end times: (debugging)
     // cout << "\nEarlier times: " << endl;
 

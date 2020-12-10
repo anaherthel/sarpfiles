@@ -403,24 +403,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
 
-	// for (int i = 0; i < nodeVec.size(); i++){
-	// 	x[i] = IloArray <IloBoolVarArray> (env, nodeVec.size());
-	// 	for(int j = 0; j < nodeVec.size(); ++j){
-	// 		if (nas->arcs[i][j] != true){
-	// 			continue; // If arc i to j is invalid
-	// 		} 
-
-	// 		x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
-
-	// 		for(int k = 0; k < inst->K; k++){
-	// 			sprintf(var, "x(%d,%d,%d)", i, j, k);
-	// 			x[i][j][k].setName(var);
-	// 			model.add(x[i][j][k]);
-	// 			// cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
-	// 		}
-	// 	}
-	// }
-
     for (int i = 0; i < nodeVec.size(); i++){
         x[i] = IloArray <IloBoolVarArray> (env, nodeVec.size());
         for(int j = 0; j < nodeVec.size(); ++j){
@@ -466,35 +448,9 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		
 	}
 
-	//Position variable
-	// IloNumVarArray P(env, nodeVec.size(), 0, nodeVec.size());
-	// for (int i = 0; i < nodeVec.size(); i++){
-	// 	sprintf(var, "P(%d)", i);
-	// 	P[i].setName(var);
-	// 	model.add(P[i]);	
-	// }	
-//**
 	IloExpr objFunction(env);
 
-    // for (int i = 0; i < nas->arcNplus.size(); i++){
-	// 	for (int k = 0; k < inst->K; k++){
-	// 		objFunction += nodeVec[nas->arcNplus[i].first].profit * x[nas->arcNplus[i].first][nas->arcNplus[i].second][k];
-	// 	}
-	// }
-
     objFunction += inst->totalCustomProfit;
-
-	// for (int i = 0; i < nas->arcPP.size(); i++){
-	// 	for (int k = 0; k < inst->K; k++){
-	// 		objFunction += nodeVec[nas->arcPP[i].first].profit * x[nas->arcPP[i].first][nas->arcPP[i].second][k];
-	// 	}
-	// }
-
-	// for (int i = 0; i < nas->allArcs.size(); i++){
-	// 	for (int k = 0; k < inst->K; k++){
-	// 		objFunction -= (double)inst->costkm*mdist[nas->allArcs[i].first][nas->allArcs[i].second] * x[nas->allArcs[i].first][nas->allArcs[i].second][k];
-	// 	}
-	// }
 
     for (int a = 0; a < nas->arcPP.size(); a++){
         int i = nas->arcPP[a].first;
@@ -715,40 +671,33 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		model.add(cons1);
 	}
 
-
-
 	//Constraints 11 and 12 - bound the service beginning time by the earlier and later service times for each node
 
 	for (int i = 0; i < nodeVec.size(); i++){
-		for (int k = 0; k < inst->K; k++){
-			IloExpr exp(env);
-			exp = b[i];
+		IloExpr exp(env);
+		exp = b[i];
 
-			sprintf (var, "Constraint11_%d_%d", i, k);
-			IloRange cons1 = (exp <= nodeVec[i].l);
-			cons1.setName(var);
-			model.add(cons1);
-			
-			sprintf (var, "Constraint12_%d_%d", i, k);
-			IloRange cons2 = (nodeVec[i].e <= exp);
-			cons2.setName(var);
-			model.add(cons2);			
-		}
+		sprintf (var, "Constraint11_%d", i);
+		IloRange cons1 = (exp <= nodeVec[i].l);
+		cons1.setName(var);
+		model.add(cons1);
+		
+		sprintf (var, "Constraint12_%d", i);
+		IloRange cons2 = (nodeVec[i].e <= exp);
+		cons2.setName(var);
+		model.add(cons2);			
 	}
 
     //Constraints 13 - maximum driving time
 
     for (int i = fDepot; i < fDummy; i++){
-        // for (int k = 0; k < inst->K; k++){
-            IloExpr exp(env);
-            exp = b[i + inst->K] - b[i];
+        IloExpr exp(env);
+        exp = b[i + inst->K] - b[i];
 
-            sprintf (var, "Constraint13_%d", i);
-            IloRange cons1 = (exp <= inst->maxTime);
-            cons1.setName(var);
-            model.add(cons1);        
-        // }
-
+        sprintf (var, "Constraint13_%d", i);
+        IloRange cons1 = (exp <= inst->maxTime);
+        cons1.setName(var);
+        model.add(cons1);        
     }
 	
 	//Constraint 14  - bound number of passenger visits transporting parcel
@@ -756,11 +705,13 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		for (int i = 0; i < nas->arcNN.size(); i++){
 			IloExpr exp(env);
 			IloExpr sumX(env);
+            int u = nas->arcNN[i].first;
+            int v = nas->arcNN[i].second;
 
 			for (int k = 0; k < inst->K; k++){
-				sumX += x[nas->arcNN[i].first][nas->arcNN[i].second][k];
+				sumX += x[u][v][k];
 			}
-			exp = 1 - (w[nas->arcNN[i].first]/W);
+			exp = 1 - (w[u]/W);
 
 			sprintf (var, "Constraint14_%d", i);
 			IloRange cons1 = (sumX - exp <= 0);
@@ -769,16 +720,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 		}
 	}
-
- // //    //test constraint
-
- //    // IloExpr exp(env);
- //    // exp = w[nodeVec.size()-1];
-
- //    // sprintf (var, "Constraint15");
- //    // IloRange cons1 = (exp == 0);
- //    // cons1.setName(var);
- //    // model.add(cons1);
 
  //    //*******************************
 

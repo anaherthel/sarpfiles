@@ -65,9 +65,6 @@ struct instanceStat{
 	// double vmed = 19.3;
 	// double vmed = 19.3;
 	double vmed = 41;
-	int nCluster;
-	int endCluster;
-	int startCluster;
 	bool preInst;
 	string InstName;
 	string instType;
