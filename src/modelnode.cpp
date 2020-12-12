@@ -741,7 +741,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
     cout << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
     cout << " Total Time: " << time << endl;
 
-
 	if (sStat->feasible){
 
         cout << " LB: " << nSARP.getObjValue() << endl;

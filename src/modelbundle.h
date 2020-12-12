@@ -46,6 +46,7 @@ struct bundleStat{
 	vector<double> bundleEnd;
     vector <int> lastElement;
     vector <int> firstElement;
+    vector<int> clofbundle;
 };
 
 struct clSt{

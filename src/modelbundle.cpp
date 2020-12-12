@@ -192,39 +192,57 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
 
     int fDummy = bStat->bundleVec.size() - inst->K;
 
-    for(int i = 0; i < fDummy; i++){
-        if (i > currentCluster*(ref + 1) + ref){
-            currentCluster++;
-        }
-        if(i < setN){//i is not depot or dummy
-            for (int j = 0; j < setN; j++){//j is not depot or dummy
-                if (i != j){
-                    if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){
-                        if (bStat->bundleEnd[j] <= inst->T){
-                            if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
-                                bStat->bArcs[i][j] = true;
-                            }                                
-                        }
-                    }
-                } 
-            }
+    for(int i = 0; i < bStat->bundleVec.size(); i++){
+        if (i < fDummy){
 
-            for (int j = fDummy; j < bStat->bundleVec.size(); j++){//j is dummy node
-                bStat->bArcs[i][j] = true;
-                                  
-            }
-        }
-        else if (i >= setN){//i is a starting point bundle
-            for (int j = 0; j < setN; j++){//j is a request bundle
-                if (bStat->bundleEnd[j] <= inst->T){
-                    if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
-                        bStat->bArcs[i][j] = true;                        
-                    }
+            if(i < setN){//i is not depot or dummy
+                if (i > currentCluster*(ref + 1) + ref){
+                    currentCluster++;
+                }
+                bStat->clofbundle.push_back(currentCluster);
+                for (int j = 0; j < setN; j++){//j is not depot or dummy
+                    if (i != j){
+                        if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){
+                            if (bStat->bundleEnd[j] <= inst->T){
+                                if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+                                    bStat->bArcs[i][j] = true;
+                                }                                
+                            }
+                        }
+                    } 
+                }
+
+                for (int j = fDummy; j < bStat->bundleVec.size(); j++){//j is dummy node
+                    bStat->bArcs[i][j] = true;
+                                      
                 }
             }
-        }  
+            else if (i >= setN){//i is a starting point bundle
+                currentCluster++;
+                bStat->clofbundle.push_back(currentCluster);
+                for (int j = 0; j < setN; j++){//j is a request bundle
+                    if (bStat->bundleEnd[j] <= inst->T){
+                        if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+                            bStat->bArcs[i][j] = true;                        
+                        }
+                    }
+                }
+            }              
+        }
+        else{
+            currentCluster++;
+            bStat->clofbundle.push_back(currentCluster);
+        }
+
     }
 
+    // cout << "list of cluster allocations: " <<endl;
+
+    // for (int i = 0; i < bStat->clofbundle.size(); i++){
+    //     cout << "Bundle: (" << i << ") - " << "cluster: " << bStat->clofbundle[i] << endl;
+    // }
+    // getchar();
+    
     //remove arcs to bundles with same parcel requests
     for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
         for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
@@ -348,38 +366,39 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
                     cStat->cArcPlus[clusterA].push_back(cFArc);
                     // cout << "other thing" << endl;
                     // getchar();
+
                 }
             }
         }
     }
 
-    for (int i = 0; i < cStat->clusterVec.size(); i++){
-        for (int j = 0; j < cStat->clusterVec.size(); j++){
-            if(cStat->cArcs[i][j]){
-                cFArc.first = i;
-                cFArc.second = j;
-                cStat->cArcVec.push_back(cFArc);
+    // for (int i = 0; i < cStat->clusterVec.size(); i++){
+    //     for (int j = 0; j < cStat->clusterVec.size(); j++){
+    //         if(cStat->cArcs[i][j]){
+    //             cFArc.first = i;
+    //             cFArc.second = j;
+    //             cStat->cArcVec.push_back(cFArc);
 
-                if (i < cset){
-                    if (j < cset){
-                        for (int k = 0; k < inst->K; k++){
-                            cStat->arcV[i][j].push_back(k);
-                        }                        
-                    }
-                    else if (j >= fcDummy){
-                        auxK = j - fcDummy;
-                        cStat->arcV[i][j].push_back(auxK);
-                    }
-                }
-                else if (i < fcDummy){
-                    if (j < cset){
-                        auxK = i - cset;
-                        cStat->arcV[i][j].push_back(auxK);
-                    }                    
-                }
-            }
-        }
-    }
+    //             if (i < cset){
+    //                 if (j < cset){
+    //                     for (int k = 0; k < inst->K; k++){
+    //                         cStat->arcV[i][j].push_back(k);
+    //                     }                        
+    //                 }
+    //                 else if (j >= fcDummy){
+    //                     auxK = j - fcDummy;
+    //                     cStat->arcV[i][j].push_back(auxK);
+    //                 }
+    //             }
+    //             else if (i < fcDummy){
+    //                 if (j < cset){
+    //                     auxK = i - cset;
+    //                     cStat->arcV[i][j].push_back(auxK);
+    //                 }                    
+    //             }
+    //         }
+    //     }
+    // }
 
 
     // for (int a = 0; a < cStat->cArcVec.size(); a++){
@@ -391,7 +410,32 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
     //         cStat->vArcPlus[i][k].push_back(cStat->cArcVec[a]);
     //         cStat->vArcMinus[j][k].push_back(cStat->cArcVec[a]);
     //     }
-    // } 
+    // }
+
+    for (int a = 0; a < bStat->bArcVec.size(); a++){
+        int i = bStat->bArcVec[a].first;
+        int j = bStat->bArcVec[a].second;
+        int cA = bStat->clofbundle[i];
+        int cB = bStat->clofbundle[j];
+
+        for (int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
+            int k = bStat->arcV[i][j][k1];
+            cStat->vArcPlus[cA][k].push_back(bStat->bArcVec[a]);
+            cStat->vArcMinus[cB][k].push_back(bStat->bArcVec[a]);
+        }
+    } 
+
+    // cout << "Vector of arcs of cluster traverssed by k: " << endl;
+
+    // for (int i = 0; i < cStat->vArcPlus.size(); i++){
+    //     for (int j = 0; j < cStat->vArcPlus[i].size(); j++){
+    //         for (int k = 0; k < cStat->vArcPlus[i][j].size(); k++){
+    //             cout << "cluster: " << i << " - " << "vehicle: " << j << " - " << "Bundle arc: " << cStat->vArcPlus[i][j][k].first << "-" << cStat->vArcPlus[i][j][k].second << endl;
+    //         }
+    //     }
+    //     cout << endl;
+    // }
+    // getchar();
 
 }
 

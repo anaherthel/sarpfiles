@@ -822,7 +822,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         long power = pow(2, instParam[1]);
         // cout << "power: " << power << endl;
 
-        long int seed = (instParam[0]*power)*trialMulti;
+        // long int seed = (instParam[0]*power)*trialMulti;
+        int seed = (instParam[0]*instParam[0]*power)*trialMulti;
         // int seed = time(NULL);
         srand(seed);
         // cout << "Instance seed: " << seed << endl;
