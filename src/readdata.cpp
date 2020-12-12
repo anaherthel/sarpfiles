@@ -821,9 +821,34 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         getInstParam (inst, instParam);
         long power = pow(2, instParam[1]);
         // cout << "power: " << power << endl;
+        long int seed;
 
-        // long int seed = (instParam[0]*power)*trialMulti;
-        int seed = (instParam[0]*instParam[0]*power)*trialMulti;
+        if (instParam[0] < 14){
+            if (instParam[0] > 12 && instParam[1] == 7){
+                seed = (instParam[0]*power)*trialMulti;//old seed
+            }
+            else{
+                seed = (instParam[0]*instParam[0]*power)*trialMulti;//new seed
+            }                       
+        }
+
+        else if (instParam[0] > 14) {
+            seed = (instParam[0]*power)*trialMulti;//old seed
+        }
+
+        else{
+            if (instParam[1] > 1){
+                seed = (instParam[0]*power)*trialMulti;//old seed         
+            }
+            else{
+                seed = (instParam[0]*instParam[0]*power)*trialMulti;//new seed
+            }
+        }
+
+        for (int i = 0; i < instParam.size(); i++){
+            inst->instParam.push_back(instParam[i]);
+        }
+
         // int seed = time(NULL);
         srand(seed);
         // cout << "Instance seed: " << seed << endl;

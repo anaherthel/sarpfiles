@@ -69,6 +69,7 @@ struct instanceStat{
 	string InstName;
 	string instType;
 
+	vector<int> instParam;
 	double totalCustomProfit;
 
 	double realAvg = 16;

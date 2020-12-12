@@ -38,8 +38,6 @@ void initArcs (instanceStat *inst, nodeArcsStruct *nas){
     }
 
 
-
-
 } 
 
 void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
@@ -723,7 +721,30 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
  //    //*******************************
 
-    int threads = 1;
+    int threads;
+
+    if (inst->instParam[0] < 14){
+        if (inst->instParam[0] > 12 && inst->instParam[1] == 7){
+            threads = 8;
+        }
+        else{
+            threads = 1;
+        }
+    }
+
+    else if (inst->instParam[0] > 14) {
+        threads = 8;
+    }
+
+    else{
+        if (inst->instParam[1] > 1){
+            threads = 8;              
+        }
+        else{
+            threads = 1;
+        }
+    }
+    cout << "\nThreads: " << threads << endl;
 
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
