@@ -723,27 +723,29 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
     int threads;
 
-    if (inst->instParam[0] < 14){
-        if (inst->instParam[0] > 12 && inst->instParam[1] == 7){
-            threads = 8;
-        }
-        else{
-            threads = 1;
-        }
-    }
+    threads = 1;
 
-    else if (inst->instParam[0] > 14) {
-        threads = 8;
-    }
+    // if (inst->instParam[0] < 14){
+    //     if (inst->instParam[0] > 12 && inst->instParam[1] == 7){
+    //         threads = 8;
+    //     }
+    //     else{
+    //         threads = 1;
+    //     }
+    // }
 
-    else{
-        if (inst->instParam[1] > 1){
-            threads = 8;              
-        }
-        else{
-            threads = 1;
-        }
-    }
+    // else if (inst->instParam[0] > 14) {
+    //     threads = 8;
+    // }
+
+    // else{
+    //     if (inst->instParam[1] > 1){
+    //         threads = 8;              
+    //     }
+    //     else{
+    //         threads = 1;
+    //     }
+    // }
     cout << "\nThreads: " << threads << endl;
 
 	IloCplex nSARP(model);
@@ -791,7 +793,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         }
 
         for (int i = 0; i < nodeVec.size(); i++){
-            if (nSARP.getValue(b[i]) > 0.5){
+            if (nSARP.getValue(b[i]) > 0){
                 sStat->solBegin.push_back(nSARP.getValue(b[i]));
             }
             else {
@@ -878,19 +880,19 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// 	cout << "load " << i << ": " << nodeVec[i].load << endl;
 	// }
 	
-	// for (int i = 0; i < inst->n; i++){
-	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
-	// }
+	for (int i = 0; i < inst->n; i++){
+		cout << "delta " << i << ": " << nodeVec[i].delta << endl;
+	}
 
-    // cout << "\nDistance Matrix: " << endl;
+    cout << "\nDistance Matrix: " << endl;
 
-    // for (int i = 0; i < inst->V + inst->dummy; i++){
-    // 	for (int j = 0; j < inst->V + inst->dummy; j++){
-    // 		cout << setw(5) << setprecision(5) << mdist[i][j] << " ";
-    // 	}
-    // 	cout << endl;
-    // }
-    // getchar();
+    for (int i = 0; i < inst->V + inst->dummy; i++){
+    	for (int j = 0; j < inst->V + inst->dummy; j++){
+    		cout << setw(5) << setprecision(5) << mdist[i][j] << " ";
+    	}
+    	cout << endl;
+    }
+    getchar();
 
     // cout << "\nDelta vector: " << endl;
 

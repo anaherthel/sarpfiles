@@ -19,7 +19,7 @@ void solStatIni(solStats *sStat){
     sStat->dBoth = 0;
     sStat->dNone = 0;
 
-    sStat->solOrder.clear();
+    sStat->solOrder.clear();sStat->solOrder.clear();
 
     sStat->servedParcels = 0;
 

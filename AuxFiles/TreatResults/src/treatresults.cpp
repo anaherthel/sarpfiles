@@ -37,6 +37,10 @@ struct instInfoN
     int n;//number of passengers
     int m;//number of parcels
 	int servP;//served parcels
+    double lb; //lower bound
+    double ub; //uppper bound
+    double gap; //gap btw ub lb
+    long int tree; //size of tree
 };
 
 struct distInfo
@@ -84,10 +88,10 @@ void createOutputInst(vector<instInfoN>& vecInst, string instName)
 
     for(int i = 0; i < vecInst.size(); i++){
         if(vecInst[i].name == firstInst){
-            ofile << vecInst[i].pperc << endl;
-            ofile << "Instance,n,m,served,prof Customer,prof Parcel,costs,K,Sol Time,Sol Val,sol Stat" << endl;
+            ofile << vecInst[i].scen << ", " << vecInst[i].pperc << endl;
+            ofile << "Instance,n,m,served,prof Customer,prof Parcel,costs,K,Sol Time,Sol Val,sol Stat,LB,UB,GAP" << endl;
         }
-        ofile << vecInst[i].name << "," << vecInst[i].n << "," << vecInst[i].m << "," << vecInst[i].servP << "," << vecInst[i].pCust << "," << vecInst[i].pParc << "," << vecInst[i].costs << "," << vecInst[i].K << "," << vecInst[i].soltime << "," << vecInst[i].objval << "," << vecInst[i].stats << endl;
+        ofile << vecInst[i].name << "," << vecInst[i].n << "," << vecInst[i].m << "," << vecInst[i].servP << "," << vecInst[i].pCust << "," << vecInst[i].pParc << "," << vecInst[i].costs << "," << vecInst[i].K << "," << vecInst[i].soltime << "," << vecInst[i].objval << "," << vecInst[i].stats << "," << vecInst[i].lb << "," << vecInst[i].ub << "," << vecInst[i].gap << endl;
     } 
 }
 
@@ -276,7 +280,7 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
             if (flag) {
                 loc = line.find_first_of(":");
                 testStr = line.substr(loc + 2, line.size() - loc - 2);
-                if (testStr == "Optimal" || testStr == "Feasible" || testStr == "Unknown"){
+                if (testStr == "Optimal" || testStr == "Feasible" ){
                     optflag = true;
                     inst.stats = line.substr(loc + 2, line.size() - loc - 2);
                     // cout << "Status:" << inst.stats << endl;
@@ -289,6 +293,40 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
             flag = false;
 
             if (optflag){
+
+                flag = substrPosition(line, "Tree_Size");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.tree = stoi(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "tree size:" << inst.tree << endl;
+                    // getchar();
+                }
+                flag = false;
+                
+                flag = substrPosition(line, "LB");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.lb = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "LB:" << inst.lb << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "UB");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.ub = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "UB:" << inst.ub << endl;
+                    // getchar();
+                    inst.gap = (double)((inst.ub - inst.lb)/inst.ub) * 100;
+                    // cout << "GAP:" << inst.gap << endl;
+                    // getchar();
+                }
+                flag = false;
+
                 flag = substrPosition(line, "Obj Val");
 
                 if (flag) {
@@ -486,6 +524,8 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
                 flag = false;
 
             }
+
+
 
             if(okall){
                 vecInst.push_back(inst); //inst done
