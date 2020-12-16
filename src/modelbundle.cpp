@@ -1237,9 +1237,14 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
     // cout << "here" << endl;
     // getchar();
-
+    cout << " Tree_Size: " <<  bSARP.getNnodes() + bSARP.getNnodesLeft() + 1 << endl;
+    cout << " Total Time: " << time << endl;
 
 	if(sStat->feasible){
+
+        cout << " LB: " << bSARP.getObjValue() << endl;
+        cout << " UB: " << bSARP.getBestObjValue() << endl;
+
         solStatIni(sStat);
 		cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
 
