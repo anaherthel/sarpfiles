@@ -1,0 +1,114 @@
+Solving:  grubhub-15-0.tsp :
+Scenario:  2B
+ParcelP:  40
+
+n: 9 m: 6
+
+Dist Multiplier: 1.5
+
+Threads: 8
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 8
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 224 rows and 79 columns.
+MIP Presolve modified 1290 coefficients.
+Reduced MIP has 734 rows, 410 columns, and 2853 nonzeros.
+Reduced MIP has 375 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (2.38 ticks)
+Probing time = 0.01 sec. (1.87 ticks)
+Cover probing fixed 0 vars, tightened 6 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve modified 454 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 733 rows, 409 columns, and 2851 nonzeros.
+Reduced MIP has 375 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (2.54 ticks)
+Probing fixed 3 vars, tightened 6 bounds.
+Probing time = 0.01 sec. (1.94 ticks)
+Clique table members: 1373.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (2.65 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       95.9684    40                     95.9684       95         
+      0     0       92.7410    40                    Cuts: 42      141         
+      0     0       92.0446    40                    Cuts: 44      168         
+      0     0       91.5050    40                    Cuts: 38      196         
+      0     0       91.1147    40                    Cuts: 18      217         
+      0     0       90.8423    40                    Cuts: 32      242         
+Detecting symmetries...
+      0     0       90.7090    40                    Cuts: 18      252         
+      0     0       90.4329    40                    Cuts: 23      276         
+      0     0       90.3156    40                    Cuts: 23      298         
+      0     0       90.2800    40                    Cuts: 15      313         
+      0     0       89.7040    40                    Cuts: 36      365         
+      0     0       89.6191    40                    Cuts: 26      388         
+      0     0       89.3895    40                    Cuts: 20      420         
+      0     0       89.3855    40                    Cuts: 15      433         
+      0     0       89.2662    40                    Cuts: 22      455         
+      0     0       89.2038    40                    Cuts: 16      474         
+      0     0       89.1803    40                    Cuts: 17      482         
+      0     0       89.0612    40                    Cuts: 24      498         
+      0     0       89.0117    40                    Cuts: 10      516         
+      0     0       89.0117    40                    Cuts: 10      521         
+Detecting symmetries...
+      0     2       89.0117    64                     89.0117      521         
+Elapsed time = 0.78 sec. (260.80 ticks, tree = 0.02 MB, solutions = 0)
+   2003  1412       74.0011    36                     87.0084    43763         
+
+Performing restart 1
+
+Repeating presolve.
+Tried aggregator 1 time.
+MIP Presolve eliminated 6 rows and 3 columns.
+MIP Presolve modified 480 coefficients.
+Reduced MIP has 727 rows, 406 columns, and 2560 nonzeros.
+Reduced MIP has 372 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.22 ticks)
+Tried aggregator 1 time.
+MIP Presolve modified 174 coefficients.
+Reduced MIP has 727 rows, 406 columns, and 2560 nonzeros.
+Reduced MIP has 372 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.81 ticks)
+Represolve time = 0.02 sec. (9.71 ticks)
+   3521     0       88.0604    64                    Cuts: 91    83994         
+   3521     0       87.5765    64                    Cuts: 60    84042         
+   3521     0       87.1986    64                    Cuts: 66    84104         
+   3521     0       87.0173    64                    Cuts: 75    84161         
+   3521     0       86.6727    64                    Cuts: 51    84211         
+   3521     0       86.2076    64                    Cuts: 65    84252         
+   3521     0       86.1162    64                    Cuts: 61    84292         
+   3521     0       85.9393    64                    Cuts: 41    84341         
+   3521     0       85.8377    64                    Cuts: 90    84382         
+   3521     0       85.7754    64                    Cuts: 47    84413         
+   3521     0       85.6921    64                    Cuts: 19    84442         
+   3521     0       85.5608    64                    Cuts: 30    84484         
+   3521     0       85.5408    64                    Cuts: 45    84509         
+   3521     0       85.4759    64                    Cuts: 14    84526         
+   3521     0       85.2511    64                    Cuts: 22    84558         
+   3521     0       85.1955    64                    Cuts: 38    84580         
+   3521     0       85.0469    64                    Cuts: 13    84616         
+   3521     0       84.9528    64                    Cuts: 31    84652         
+   3521     0       84.8985    64                    Cuts: 25    84684         
+   3521     0       84.8410    64                    Cuts: 29    84712         
+   3521     0       84.7229    64                    Cuts: 28    84746         
+   3521     0       84.6724    64                     Cuts: 9    84766         
+   3521     0       84.6544    64                    Cuts: 17    84780         
+   3521     0       84.6318    64                     Cuts: 4    84793         
+   3521     0       84.6200    64                    Cuts: 31    84811         
+   3521     0       84.5994    64                    Cuts: 10    84847         
+   3521     0       84.5847    64                    Cuts: 17    84874         
+   3521     0       84.5663    64                    Cuts: 19    84894         
+   3521     0       84.5648    64                     Cuts: 7    84901         
+   3521     0       84.5620    64                    Cuts: 12    84909         
+   3521     0       84.5620    64                 Flowcuts: 1    84910         
+   3521     2       84.5620    76                     84.5620    84910         
+   3840   214       75.9255    50                     84.1602    92545         
+   4928  1081       71.8020    44                     82.3614   115822         
+   6549  2425       69.2974    45                     81.4782   149764         

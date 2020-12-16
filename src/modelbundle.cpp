@@ -1151,7 +1151,14 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
             IloExpr exp1(env);
             IloExpr exp2(env);
             currSP = setN + k;
-            exp1 = u[k];
+            int currDum = fcDummy + k;
+
+            for (int a = 0; a < bStat->vArcMinus[currDum][k].size(); a++){
+                int u = bStat->vArcMinus[currDum][k][a].first;
+                int v = bStat->vArcMinus[currDum][k][a].second;
+
+                exp1 += (bStat->bundleEnd[u])*x[u][v][k];
+            }
             for (int a = 0; a < bStat->vArcPlus[currSP][k].size(); a++){
                 int u = bStat->vArcPlus[currSP][k][a].first;
                 int v = bStat->vArcPlus[currSP][k][a].second;
@@ -1160,42 +1167,42 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
                 exp2 += (bStat->bundleStart[v] - trip)*x[u][v][k];
             }
             sprintf (var, "Constraint7_%d", k);
-            IloRange cons = (exp1 - exp2 == 0);
+            IloRange cons = (exp1 - exp2 <= inst->maxTime);
             cons.setName(var);
             model.add(cons);                
         }
         
     //Constraints 8  - calculating ûk
-        for (int k = 0; k < inst->K; k++){
-            IloExpr exp1(env);
-            IloExpr exp2(env);
-            int currDum = fcDummy + k;
-            exp1 = uf[k];
-            for (int a = 0; a < bStat->vArcMinus[currDum][k].size(); a++){
-                int u = bStat->vArcMinus[currDum][k][a].first;
-                int v = bStat->vArcMinus[currDum][k][a].second;
+        // for (int k = 0; k < inst->K; k++){
+        //     IloExpr exp1(env);
+        //     IloExpr exp2(env);
+        //     int currDum = fcDummy + k;
+        //     exp1 = uf[k];
+        //     for (int a = 0; a < bStat->vArcMinus[currDum][k].size(); a++){
+        //         int u = bStat->vArcMinus[currDum][k][a].first;
+        //         int v = bStat->vArcMinus[currDum][k][a].second;
 
-                exp2 += (bStat->bundleEnd[u])*x[u][v][k];
-            }
-            sprintf (var, "Constraint8_%d", k);
-            IloRange cons = (exp1 - exp2 == 0);
-            cons.setName(var);
-            model.add(cons);
+        //         exp2 += (bStat->bundleEnd[u])*x[u][v][k];
+        //     }
+        //     sprintf (var, "Constraint8_%d", k);
+        //     IloRange cons = (exp1 - exp2 == 0);
+        //     cons.setName(var);
+        //     model.add(cons);
 
-        }
+        // }
             
     //Constraints 9 - max driving time
 
-        for (int k = 0; k < inst->K; k++){
-            IloExpr exp(env);
+        // for (int k = 0; k < inst->K; k++){
+        //     IloExpr exp(env);
 
-            exp = uf[k] - u[k];
+        //     exp = uf[k] - u[k];
 
-            sprintf (var, "Constraint9_%d", k);
-            IloRange cons1 = (exp <= inst->maxTime); 
-            cons1.setName(var);
-            model.add(cons1);
-        }
+        //     sprintf (var, "Constraint9_%d", k);
+        //     IloRange cons1 = (exp <= inst->maxTime); 
+        //     cons1.setName(var);
+        //     model.add(cons1);
+        // }
 
 
  //*******************************
@@ -1280,12 +1287,12 @@ void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vect
     double service = 5;
 
     double timeDiff;
-    int setN = bStat->bundleVec.size() - (2*inst->K);
+    // int setN = bStat->bundleVec.size() - (2*inst->K);
 
     for (int k = 0; k < inst->K; k++){
         // cout << "\nfirst time: " << nodeVec[sStat->solInNode[k][0]].e << endl;
         // first element of bundle: bStat->bundleVec[cBundle][0];
-        timePoint = 0;
+        // timePoint = 0;
 
         for(int i = 1; i < sStat->solOrder[k].size() - 2; i++){//start from 1 bc there is no waiting time between the depot and the first served bundle. (Late departure)
             cBundle = sStat->solOrder[k][i];
@@ -1295,8 +1302,15 @@ void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vect
 
             bbEarlier = bStat->bundleStart[nBundle];
             
-            sStat->tStillG += (bbEarlier - timePoint);
-            timePoint = bStat->bundleEnd[cBundle];
+            if (bStat->firstElement[nBundle] < inst->n){
+                sStat->tStillP += (bbEarlier - timePoint);
+            }
+            else{
+                sStat->tStillG += (bbEarlier - timePoint);
+            }
+            // timePoint = bStat->bundleEnd[cBundle];
+
+            cout << "Current "
         }
         //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         //Accounting for the difference btw the waiting time in nodes and in bundles.
@@ -1327,22 +1341,22 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 
     makeBundles(inst, nodeVec, &bStat, &cStat, clsParcel, problem);
 
-    cout << "\nBundle Vector: [";
+    // cout << "\nBundle Vector: [";
 
-    for (int i = 0; i < bStat.bundleVec.size(); i++){
-        cout << "(" << i << "): [";
-        for (int j = 0; j < bStat.bundleVec[i].size(); j++){
-            cout << bStat.bundleVec[i][j];
-            if (j < bStat.bundleVec[i].size() - 1){
-                cout << ",";
-            }
-            else{
-                cout << "] ";
-            }
-        }
-        cout << endl;
-    }
-    getchar();
+    // for (int i = 0; i < bStat.bundleVec.size(); i++){
+    //     cout << "(" << i << "): [";
+    //     for (int j = 0; j < bStat.bundleVec[i].size(); j++){
+    //         cout << bStat.bundleVec[i][j];
+    //         if (j < bStat.bundleVec[i].size() - 1){
+    //             cout << ",";
+    //         }
+    //         else{
+    //             cout << "] ";
+    //         }
+    //     }
+    //     cout << endl;
+    // }
+    // getchar();
 
     makeParcelBundles(inst, nodeVec, &bStat, problem);
 
@@ -1360,13 +1374,13 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 
     bundleProfit(inst, mdist, nodeVec, &bStat);
 
-    cout << "\nBundle Profit: " << endl;
-    for (int i = 0; i < bStat.bundleProfVec.size(); i++){
-        cout << i << ": " << setw(3) << std:: right << bStat.bundleProfVec[i] << endl;
-    }
-    cout << endl;
+    // cout << "\nBundle Profit: " << endl;
+    // for (int i = 0; i < bStat.bundleProfVec.size(); i++){
+    //     cout << i << ": " << setw(3) << std:: right << bStat.bundleProfVec[i] << endl;
+    // }
+    // cout << endl;
 
-    getchar();
+    // getchar();
 
 
     makeStartTimes(inst, mdist, nodeVec, &bStat, problem);
@@ -1404,20 +1418,20 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     // }
     // getchar();
 
-    cout << "Bundle beginning times: " << endl;
-    for (int i = 0; i < bStat.bundleStart.size(); i++){
-        cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleStart[i];
-        cout << endl;
-    }
-    getchar();
+    // cout << "Bundle beginning times: " << endl;
+    // for (int i = 0; i < bStat.bundleStart.size(); i++){
+    //     cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleStart[i];
+    //     cout << endl;
+    // }
+    // getchar();
 
 
-    cout << "Bundle ending times: " << endl;
-    for (int i = 0; i < bStat.bundleEnd.size(); i++){
-        cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleEnd[i];
-        cout << endl;
-    }
-    getchar();
+    // cout << "Bundle ending times: " << endl;
+    // for (int i = 0; i < bStat.bundleEnd.size(); i++){
+    //     cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleEnd[i];
+    //     cout << endl;
+    // }
+    // getchar();
 
     // for (int i = 0; i < cStat.clusterVec.size(); i++){
     //     cout << "\nCluster " << i << ": [";
