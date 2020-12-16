@@ -669,14 +669,14 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
     // cout << "\nparcel profit: " << sStat->pProfit << endl;
 
     // getchar();
-    cout << "\nProfits: " << endl;
+    // cout << "\nProfits: " << endl;
 
 
     for (int k = 0; k < inst->K; k++){
         for (int i = 0; i < sStat->solInNode[k].size() - 1; i++){
             if (sStat->solInNode[k][i] >= inst->n){
                 sStat->pProfit += nodeVec[sStat->solInNode[k][i]].profit;
-                cout << sStat->solInNode[k][i] << ": " << nodeVec[sStat->solInNode[k][i]].profit << endl;
+                // cout << sStat->solInNode[k][i] << ": " << nodeVec[sStat->solInNode[k][i]].profit << endl;
             }
             sStat->costs += (double)inst->costkm*mdist[sStat->solInNode[k][i]][sStat->solInNode[k][i+1]];
         }
@@ -1235,8 +1235,8 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	cout << "\nSol status: " << bSARP.getStatus() << endl;
 	sStat->feasible = bSARP.isPrimalFeasible();
 
-    cout << "here" << endl;
-    getchar();
+    // cout << "here" << endl;
+    // getchar();
 
 
 	if(sStat->feasible){
@@ -1286,8 +1286,33 @@ void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vect
     double bbEarlier;
     double service = 5;
 
-    double timeDiff;
+    double t1, t2, tdif;
     // int setN = bStat->bundleVec.size() - (2*inst->K);
+
+    // vector<double> timeDiff;
+    double timeDiff;
+
+    int fB, lB, dp, dm;
+
+    for (int k = 0; k < inst->K; k++){
+
+        fB = sStat->solOrder[k][1];
+        lB = sStat->solOrder[k][sStat->solOrder[k].size() - 2];
+        dp = sStat->solOrder[k][0];
+        dm = sStat->solOrder[k][sStat->solOrder[k].size() - 1];
+
+        t1 = bStat->bundleStart[fB] - (mdist[bStat->lastElement[dp]][bStat->firstElement[fB]])/inst->vmed;
+        t2 = bStat->bundleEnd[lB];
+
+        tdif = 8 - (t2 - t1);
+
+        if (bStat->firstElement[fB] < inst->n){
+            sStat->tStillP += tdif;
+        }
+        else{
+            sStat->tStillG += tdif;
+        }
+    }
 
     for (int k = 0; k < inst->K; k++){
         // cout << "\nfirst time: " << nodeVec[sStat->solInNode[k][0]].e << endl;
@@ -1310,8 +1335,9 @@ void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vect
             }
             // timePoint = bStat->bundleEnd[cBundle];
 
-            cout << "Current "
+            // cout << "Current "
         }
+
         //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         //Accounting for the difference btw the waiting time in nodes and in bundles.
         //In bundles, the delivery of the last parcel is not delayed until the last possible moment.
