@@ -253,7 +253,7 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
             }
             flag = false;
 
-            flag = substrPosition(line, "Scenario");
+            flag = substrPosition(line, "Scenario ");
 
             if (flag) {
                 loc = line.find_first_of(":");

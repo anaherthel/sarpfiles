@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirTestes='Testing'
-dirDest='GHscaledResults2'
+dirDest='GHscaledResultsLastR'
 stats='Stats'
 time='Time'
 dist='Dist'

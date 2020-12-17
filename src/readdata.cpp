@@ -822,33 +822,33 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         long power = pow(2, instParam[1]);
         // cout << "power: " << power << endl;
         long int seed;
-        // seed = (instParam[0]*power)*trialMulti;
+        seed = (instParam[0]*power)*trialMulti;
         
-        if (instParam[0] < 14){
-            if (instParam[0] > 12 && instParam[1] == 7){
-                seed = (instParam[0]*power)*trialMulti;//old seed
-            }
-            else{
-                seed = (instParam[0]*instParam[0]*power)*trialMulti;//new seed
-            }                       
-        }
+        // if (instParam[0] < 14){
+        //     if (instParam[0] > 12 && instParam[1] == 7){
+        //         seed = (instParam[0]*power)*trialMulti;//old seed
+        //     }
+        //     else{
+        //         seed = (instParam[0]*instParam[0]*power)*trialMulti;//new seed
+        //     }                       
+        // }
 
-        else if (instParam[0] > 14) {
-            seed = (instParam[0]*power)*trialMulti;//old seed
-        }
+        // else if (instParam[0] > 14) {
+        //     seed = (instParam[0]*power)*trialMulti;//old seed
+        // }
 
-        else{
-            if (instParam[1] > 1){
-                seed = (instParam[0]*power)*trialMulti;//old seed         
-            }
-            else{
-                seed = (instParam[0]*instParam[0]*power)*trialMulti;//new seed
-            }
-        }
+        // else{
+        //     if (instParam[1] > 1){
+        //         seed = (instParam[0]*power)*trialMulti;//old seed         
+        //     }
+        //     else{
+        //         seed = (instParam[0]*instParam[0]*power)*trialMulti;//new seed
+        //     }
+        // }
 
-        for (int i = 0; i < instParam.size(); i++){
-            inst->instParam.push_back(instParam[i]);
-        }
+        // for (int i = 0; i < instParam.size(); i++){
+        //     inst->instParam.push_back(instParam[i]);
+        // }
 
         // int seed = time(NULL);
         srand(seed);
