@@ -52,12 +52,15 @@ struct instanceStat{
     double maxTime = 8;
     int dummy;
     double service;
-    // double inipar = ;
-    // double inipas = ;
-	double minpas = 3.24; //initial fare for passengers
+
+	// double minpas = 3.24; //initial fare for passengers
+	// double paskm = 1.03; //fare per km for passengers
+
+	double minpas = 5; //initial fare for passengers
 	double paskm = 1.03; //fare per km for passengers
 
-   	double minpar = 2.74; //initial fare for parcels
+   	// double minpar = 2.74; //initial fare for parcels
+   	double minpar = 4;
 	double parkm = 0.83; //fare per km for parcels
 
 	double costkm = 0.46;

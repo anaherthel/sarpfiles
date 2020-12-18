@@ -57,6 +57,8 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
 void organizeNodes(Info *info, vector<CandStruct> nodeVec, vector<CandStruct> &orgNodes);
 bool compareIndex(const CandStruct &a, const CandStruct &b);
 void createTimesLoad(Info *info, vector<CandStruct> &orgNodes);
+void createDelta(Info *info, vector<CandStruct> &orgNodes);
+
 
 double CalcDistEuc (double X1, double Y1, double X2, double Y2){
     return sqrt ( pow ( X1 - X2, 2 ) + pow ( Y1 - Y2, 2 ) );
@@ -135,13 +137,15 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
 
     for (int p = 1; p < 5; p++){
         for (int i = 0; i < info->dimVec.size(); i++){
-            long power = pow(2, info->dimVec[i].second);
+            info->n = info->dimVec[i].first;
+            info->m = info->dimVec[i].second;
+            long power = pow(2, info->m);
 
-            info->seed = (info->dimVec[i].first*power)*p;
+            info->seed = (info->n*power)*p;
             srand(info->seed);
                        
-            info->K = info->dimVec[i].first - 1;
-            totalPoints = (info->dimVec[i].first + info->dimVec[i].second)*2 + info->K;
+            info->K = info->n - 1;
+            totalPoints = (info->n + info->m)*2 + info->K;
 
             for (int j = 0; j < totalPoints; j++){
                 coordinate.first = fRand(lb, ub);
@@ -207,9 +211,6 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
 
                 lambda = vecOfLambda[l];
                 classNodes(info, &lambda, nodeVar, closeVec, dist, unclassVec, nodeVec);
-                
-                cout << "before organizing nodes" << endl;
-                getchar();
 
                 organizeNodes(info, nodeVec, orgNodes);
 
@@ -237,8 +238,8 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
                     instclass = 'C';
                 }
 
-                strN = to_string(info->dimVec[i].first);
-                strM = to_string(info->dimVec[i].second);
+                strN = to_string(info->n);
+                strM = to_string(info->m);
                 strP = to_string(p);
 
                 outputname = "sarp-" + strN + "-" + strM + "-" + instclass + "-" + strP + ".txt";
@@ -249,7 +250,7 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
 
                 ofile.open(outputname);
                 
-                ofile << info->K << "\t" << 5 << "\t" << info->dimVec[i].first << "\t" << info->dimVec[i].second << endl;
+                ofile << info->K << "\t" << 5 << "\t" << info->n << "\t" << info->m << endl;
 
                 for (int i = 0; i < orgNodes.size(); i++){
                     ofile << i << "\t" << setw(9) << fixed << setprecision(4) << info->coordVec[orgNodes[i].realInd].first << "\t" << setw(9) << info->coordVec[orgNodes[i].realInd].second << "\t" << info->loadVec[i] << "\t" << fixed << setprecision(0) << info->tsVec[i].first << "\t" << info->tsVec[i].second << endl;
@@ -299,9 +300,6 @@ int main (int argc, char *argv[]) {
     vecOfLambda.push_back(5);
     vecOfLambda.push_back(0);
 
-    cout << "In main" << endl;
-    getchar();
-
 	genPoints(argc, argv, vecOfn, vecOfm, vecOfLambda, &info);
 
     return 0;
@@ -337,11 +335,10 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
 
     srand(info->seed);
 
+    cout << "Info seed: " << info->seed << endl;
+
     // cout << "Testing the sizes: n: " << n << " - m: " << m << endl;
     // getchar();
-
-    cout << "class1" << endl;
-    getchar();
 
     for (int i = 0; i < info->K; i++){
         number = rand() % unclassVec.size();
@@ -354,8 +351,7 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
 
         unclassVec.erase(unclassVec.begin() + number);
     }
-    cout << "class2" << endl;
-    getchar();
+
     for (int i = 0; i < info->n; i++){
 
         candPU = unclassVec[0];
@@ -370,6 +366,7 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
 
         closeVec.clear();
 
+
         for (int k = 0; k < unclassVec.size(); k++){
             if (dist[candPU][unclassVec[k]] > 0){
                 nodeVar.index = unclassVec[k];
@@ -377,8 +374,7 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
                 closeVec.push_back(nodeVar);                               
             }
         }
-    cout << "class3" << endl;
-    getchar();
+
         sort(closeVec.begin(), closeVec.end(), compareDist);
 
         if (*lambda > 0){
@@ -403,8 +399,7 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
             }
         }
     }
-    cout << "class4" << endl;
-    getchar();    
+
     for (int i = info->n; i < (info->n + info->m); i++){
 
         candPU = unclassVec[0];
@@ -426,8 +421,7 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
                 closeVec.push_back(nodeVar);                               
             }
         }
-    cout << "class5" << endl;
-    getchar();
+
         sort(closeVec.begin(), closeVec.end(), compareDist);
 
         if (*lambda > 0){
@@ -442,7 +436,6 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
         chosenDel = closeVec[number].index;
         nodeVec[chosenDel].index = i;
     // vecOfn.push_back(5);
-    
     // vecOfm.push_back(3);
         nodeVec[chosenDel].realInd = chosenDel;
         nodeVec[chosenDel].chosen = 1;
@@ -454,8 +447,6 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
                 unclassVec.erase(unclassVec.begin() + j);
             }
         }
-        cout << "class6" << endl;
-        getchar();
     }
 
     // for (int i = 0; i < K; i++){
@@ -535,16 +526,27 @@ void organizeNodes(Info *info, vector<CandStruct> nodeVec, vector<CandStruct> &o
     getchar();
 }
 
-// void createDelta(Info *info, vector<CandStruct> &orgNodes)
-// {
+void createDelta(Info *info, vector<CandStruct> &orgNodes)
+{
 
-//     for (int i = 0; i < info->n; i++){
-//         for (int j = info->n; j < info->n*2; j++){
-//             int a = orgNodes
-//         }
-//     }
+    pair <double,double> p1, p2;
 
-// }
+    double dist;
+    double delta;
+
+    for (int i = 0; i < info->n; i++){
+        for (int j = info->n; j < info->n*2; j++){
+            p1.first = info->coordVec[orgNodes[i].realInd].first;
+            p1.second = info->coordVec[orgNodes[i].realInd].second;
+            p2.first = info->coordVec[orgNodes[j].realInd].first;
+            p2.second = info->coordVec[orgNodes[j].realInd].second;
+
+            dist = CalcDistEuc(p1.first, p1.second, p2.first, p2.second);
+            delta = dist/info->speed;
+        }
+    }
+
+}
 
 void createTimesLoad(Info *info, vector<CandStruct> &orgNodes)
 {
