@@ -40,7 +40,7 @@ struct Info{
     long int seed;
     int n;
     int m;
-    double speed;
+    double speed = 41;
     int K;
     vector< pair<int, int> > dimVec;
     vector< pair<double, double> > tsVec;
@@ -125,7 +125,7 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
         if (vecOfn[i] < 15){
             dimensions.first = vecOfn[i];
             // dimensions.second = 20;
-            dimensions.second = 3;
+            dimensions.second = 10;
 
             info->dimVec.push_back(dimensions);
         }
@@ -133,15 +133,17 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
 
     int totalPoints;
     double lb = 0;
-    double ub = 10;
+    double ub = 30;
+    int multiplier = 1;
 
     for (int p = 1; p < 5; p++){
         for (int i = 0; i < info->dimVec.size(); i++){
+            multiplier++;
             info->n = info->dimVec[i].first;
             info->m = info->dimVec[i].second;
             long power = pow(2, info->m);
 
-            info->seed = (info->n*power)*p;
+            info->seed = (info->n*power)*multiplier;
             srand(info->seed);
                        
             info->K = info->n - 1;
@@ -196,6 +198,37 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
             // cout << endl;
             // getchar();
 
+            double distSum, avgDist, totalAvg;
+
+            vector<double> avgVec;
+
+            for (int i = 0; i < dist.size(); i++){
+                distSum = 0;
+                for (int j = 0; j < dist[i].size(); j++){
+                    distSum += (double)(dist[i][j]);
+                }
+                avgDist = distSum/(dist.size());
+                avgVec.push_back(avgDist);
+            }
+
+            // cout << "\nVector of average distances: " << endl; 
+            // for(int i = 0; i < avgVec.size(); i++){
+            //     cout << i << ": " << avgVec[i] << endl;
+            // }
+            // getchar();
+
+            distSum = 0;
+
+            for(int i = 0; i < avgVec.size(); i++){
+                distSum += avgVec[i];
+            }
+
+            // cout << "\nDistSum: " << distSum << endl;
+            totalAvg = distSum/avgVec.size();
+
+            cout << "Total average: " << totalAvg << endl;
+            getchar();
+
             //Get closest nodes
             int lambda;
 
@@ -220,7 +253,7 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
                 }
 
 
-
+                createDelta(info, orgNodes);
                 createTimesLoad(info, orgNodes);
 
                 //output
@@ -535,16 +568,25 @@ void createDelta(Info *info, vector<CandStruct> &orgNodes)
     double delta;
 
     for (int i = 0; i < info->n; i++){
-        for (int j = info->n; j < info->n*2; j++){
-            p1.first = info->coordVec[orgNodes[i].realInd].first;
-            p1.second = info->coordVec[orgNodes[i].realInd].second;
-            p2.first = info->coordVec[orgNodes[j].realInd].first;
-            p2.second = info->coordVec[orgNodes[j].realInd].second;
+        int j = info->n + i;
+        p1.first = info->coordVec[orgNodes[i].realInd].first;
+        p1.second = info->coordVec[orgNodes[i].realInd].second;
+        p2.first = info->coordVec[orgNodes[j].realInd].first;
+        p2.second = info->coordVec[orgNodes[j].realInd].second;
 
-            dist = CalcDistEuc(p1.first, p1.second, p2.first, p2.second);
-            delta = dist/info->speed;
-        }
+        dist = CalcDistEuc(p1.first, p1.second, p2.first, p2.second);
+ 
+        delta = (double)dist/info->speed;
+
+        info->delta.push_back(delta);
     }
+
+    // cout <<"Delta vector: " << endl;
+
+    // for (int i = 0; i < info->delta.size(); i++){
+    //     cout << info->delta[i] << endl;
+    // }
+    // getchar();
 
 }
 
@@ -574,15 +616,20 @@ void createTimesLoad(Info *info, vector<CandStruct> &orgNodes)
                 // tsVec[i].first = 560 + rand() % 480;
                 // tsVec[i].second = tsVec[i].first;
                 info->tsVec[i].first = rand() % 1440;
-                // if ()
+                while (info->tsVec[i].first + info->delta[i] > 1440){
+                    info->tsVec[i].first = rand() % 1440;
+                    cout << "Time point for node " << i << ": " << info->tsVec[i].first << endl; 
+                    getchar();
+                }
                 info->tsVec[i].second = info->tsVec[i].first;               
                 continue;               
             }
             else if (orgNodes[i].label2 == 2){//customer delivery
                 // tsVec[i].first = tsVec[i - n].first + rand() % 480;
                 // tsVec[i].second = tsVec[i].first;
-                info->tsVec[i].first = 540;
-                info->tsVec[i].second = 1140;   
+                int pu = i - info->n;
+                info->tsVec[i].first = info->tsVec[pu].first;
+                info->tsVec[i].second = info->tsVec[pu].second;
                 continue;                   
             }
 
