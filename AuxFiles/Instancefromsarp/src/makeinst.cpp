@@ -32,6 +32,7 @@ struct OrStruct{
     vector<double> vload;
     vector<double> ve;
     vector<double> vl;
+    int index;
 }
 
 struct CandStruct{
@@ -92,7 +93,7 @@ void ReadData(int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm, v
     }
 
     for (int i = 0; i < V; i++){
-        in >> tempNode >> NdVec[i].vxs >> NdVec[i].vys >> tempNode >> NdVec[i].vload >> NdVec[i].ve >> NdVec[i].vl;
+        in >> NdVec[i].index >> NdVec[i].vxs >> NdVec[i].vys >> tempNode >> NdVec[i].vload >> NdVec[i].ve >> NdVec[i].vl;
     }
 
     extractData(info, NdVec);
@@ -111,14 +112,14 @@ void extractData(Info *info, vector<OrStruct> &NdVec){
         if (NdVec[i]->load == 3){
             auxnp.push_back(NdVec[i]);
         }
-        else if (NdVec[i]->load == 1){
+        else if (NdVec[i]->vload == 1){
             auxnd.push_back(NdVec[i]);
         }
-        else if (NdVec[i]->load == -3){
+        else if (NdVec[i]->vload == -3){
             auxmp.push_back(NdVec[i]);
 
         }
-        else if (NdVec[i]->load == -1){
+        else if (NdVec[i]->vload == -1){
             auxmd.push_back(NdVec[i]);
         }
         else{
@@ -137,10 +138,30 @@ void extractData(Info *info, vector<OrStruct> &NdVec){
 
         int newV = info->n + info->m + 1;
         int c;
+        int counter = 0;
 
-        for (int j = 0; j < newV; j++){
+        for (int j = 0; j < info->n; j++){
             c = rand() % auxnp.size();
-
+            newvec.insert(newvec.begin() + counter, auxnp[c]);
+            newvec.push_back(auxnd[c]);
+            counter++;
+            cout << "vector populating n: " << endl;
+            for (int v = 0; v < newvec.size(); v++){
+                cout << newvec[v]->index << " " << newvec[v]->vload << endl;
+            }
+            getchar();
+        }
+        counter = 0;
+        for (int j = 0; j < info->m; j++){
+            c = rand() % auxmp.size();
+            newvec.insert(newvec.begin() + info->n + counter, auxmp[c]);
+            newvec.push_back(auxmd[c]);
+            counter++;
+            cout << "vector populating m: " << endl;
+            for (int v = 0; v < newvec.size(); v++){
+                cout << newvec[v]->index << " " << newvec[v]->vload << endl;
+            }
+            getchar();
         }
 
     }
