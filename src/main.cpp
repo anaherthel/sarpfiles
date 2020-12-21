@@ -14,6 +14,7 @@
 #include "modelnode.h"
 #include "modelbundle.h"
 #include "modeltwostage.h"
+#include "mipnode.h"
 
 using namespace std;
 

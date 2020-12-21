@@ -23,51 +23,10 @@
 #include <ctime>
 #include <unistd.h>
 #include "functions.h"
+#include "mipbundle.h"
+#include "bundleData.h"
 
 using namespace std;
-
-struct bundleStat{
-	vector<int> bundle;
-	vector< vector<int> > bundleVec;
-	vector<double> bundleTimes;
-	vector<double> bundleProfVec;
-	vector<double> bundleServVec;
-	vector< vector<bool> > bArcs;
-	vector< pair<int,int> > bArcVec;
-
-	vector< vector< pair<int,int> > > bArcPlus;
-	vector< vector< pair<int,int> > > bArcMinus;
-	vector< vector< vector< pair<int,int> > > > vArcPlus;
-	vector< vector< vector< pair<int,int> > > > vArcMinus;
-	vector< vector< vector<int> > > arcV;
-	vector< vector<int> > parcelBundleVec;
-	vector< vector<int> > passBundleVec;
-	vector<double> bundleStart;
-	vector<double> bundleEnd;
-    vector <int> lastElement;
-    vector <int> firstElement;
-    vector<int> clofbundle;
-};
-
-struct clSt{
-	int nCluster;
-	vector<int> clusters;
-	vector< vector<int> > clusterVec;
-	vector< vector< pair<int,int> > > cArcPlus;
-	vector< vector< pair<int,int> > > cArcMinus;
-	vector< vector<bool> > cArcs;
-	vector< vector< vector< pair<int,int> > > > vArcPlus;
-	vector< vector< vector< pair<int,int> > > > vArcMinus;
-	vector< vector< vector<int> > > arcV;
-
-    vector< pair<int,int> > cArcVec;
-};
-
-struct bParcelStruct{
-	double cost;
-	int parcelreq;
-	bool poslabel; //1 if parcel is after passenger request in the bundle, 0 if it is before.
-};
 
 void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, vector< vector<bParcelStruct> > &clsParcel, probStat* problem);
 void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
@@ -83,8 +42,6 @@ bool compareCosts(const bParcelStruct &a, const bParcelStruct &b);
 void makeParcelSets (instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< vector<int> > &parcelSets);
 void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat);
 void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat);
-void mipSolStats2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat);
-void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, clSt *cStat, probStat* problem, solStats *sStat);
 void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat);
 
 

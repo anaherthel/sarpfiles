@@ -88,16 +88,5 @@ struct probStat{
 };
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, int trialK, double trialMulti);
-// void readGrubhub (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, int trialK);
-// void readsfData;
-// void readDebug;
-// void readCsarp;
-double calcEucDist (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
-double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
-double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit);
-double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flongit, int I, int J);
-string getInstanceType (char **argv);
-string getInstName (char **argv);
-void getInstParam (instanceStat *inst, vector<int> &instParam);
 
 #endif

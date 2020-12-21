@@ -4,7 +4,6 @@
 #include "modeltwostage.h"
 #include <cstdlib>
 #include <stdio.h>
-//maybe later it is necessary to add the maxiparkmm driving time.
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, int trialK, double trialMulti){
     
@@ -21,7 +20,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         exit(1);
     }  
 
-
+    cout << "\nNameOfInst: " << argv[1] << endl;
+    cout << "RunningScen: " << argv[2] << endl;
     inst->preInst = 0;
     inst->InstName = getInstName(argv);
 
@@ -1182,100 +1182,4 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // }
     cout << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
-}
-
-double calcEucDist (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
-    return sqrt(pow(Xf[I] - Xs[J], 2) + pow(Yf[I] - Ys[J], 2));
-}
-
-double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
-    return abs(Xf[I] - Xs[J]) + abs(Yf[I] - Ys[J]);
-}
-
-double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit){
-    double PI = 3.141592, min;
-    int deg;
-    
-    for (int i = 0; i < n; i++) {
-        deg = (int) Xs[i];
-        min = Xs[i] - deg;
-        // slatit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
-        slatit[i] = Xs[i] * PI / 180.0;
-      
-        deg = (int) Xf[i];
-        min = Xf[i] - deg;
-        // flatit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
-        flatit[i] = Xf[i] * PI/ 180.0;
-    }
-    
-    for (int i = 0; i < n; i++) {
-        deg = (int) Ys[i];
-        min = Ys[i] - deg;
-        // slongit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
-        slongit[i] = Ys[i] * PI / 180.0;
-
-        deg = (int) Yf[i];
-        min = Yf[i] - deg;
-        // flongit[i] = PI * (deg + 5.0 * min / 3.0) / 180.0;
-        flongit[i] = Yf[i] * PI / 180;
-    }
-    return 0;
-}
-
-
-double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flongit, int I, int J){
-    double q1, q2, q3, RRR = 6378.388;
-    
-    q1 = cos(flongit[I] - slongit[J]);
-    q2 = cos(flatit[I] - slatit[J]);
-    q3 = cos(flatit[I] + slatit[J]);
-
-    return (RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)));
-    // (int) (RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)));
-}
-
-string getInstanceType (char **argv){
-
-    string filename(argv[1]);
-
-    string::size_type loc = filename.find_first_of("/");
-    string::size_type loc2 = filename.find_last_of("/", filename.size());
-    string InstanceType;
-
-    InstanceType.append(filename, loc+1, loc2-loc-1 );
-
-    return InstanceType;
-}
-
-string getInstName (char **argv){
-
-    string filename(argv[1]);
-
-    string::size_type loc = filename.find_last_of("/");
-    string::size_type loc2 = filename.find_first_of(".");
-    string InstanceName;
-
-    InstanceName.append(filename, loc+1, loc2-loc-1 );
-
-
-
-    return InstanceName;
-}
-
-void getInstParam (instanceStat *inst, vector<int> &instParam){
-
-    string::size_type loc = inst->InstName.find_first_of("-");
-    string::size_type loc2 = inst->InstName.find_last_of("-");
-    string param1;
-    string param2;
-
-    param1.append(inst->InstName, loc+1, loc2-loc-1);
-    // param2.append(inst->InstName.c_str(), loc2+1);
-    param2.append(inst->InstName, loc2+1, inst->InstName.back());
-
-    // cout << "\nParam2: " << param2 << endl;
-    // getchar();
- 
-    instParam.push_back(stoi(param1));
-    instParam.push_back(stoi(param2));
 }
