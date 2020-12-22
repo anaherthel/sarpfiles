@@ -122,13 +122,13 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
                 }             
             }
         }
-        if (vecOfn[i] < 15){
-            dimensions.first = vecOfn[i];
-            // dimensions.second = 20;
-            dimensions.second = 10;
+        // if (vecOfn[i] < 15){
+        //     dimensions.first = vecOfn[i];
+        //     // dimensions.second = 20;
+        //     dimensions.second = 10;
 
-            info->dimVec.push_back(dimensions);
-        }
+        //     info->dimVec.push_back(dimensions);
+        // }
     }
 
     int totalPoints;
@@ -138,12 +138,11 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
 
     for (int p = 1; p < 5; p++){
         for (int i = 0; i < info->dimVec.size(); i++){
-            multiplier++;
             info->n = info->dimVec[i].first;
             info->m = info->dimVec[i].second;
             long power = pow(2, info->m);
 
-            info->seed = (info->n*power)*multiplier;
+            info->seed = (info->n*power);
             srand(info->seed);
                        
             info->K = info->n - 1;
@@ -226,8 +225,8 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
             // cout << "\nDistSum: " << distSum << endl;
             totalAvg = distSum/avgVec.size();
 
-            cout << "Total average: " << totalAvg << endl;
-            getchar();
+            // cout << "Total average: " << totalAvg << endl;
+            // getchar();
 
             //Get closest nodes
             int lambda;
@@ -310,24 +309,24 @@ int main (int argc, char *argv[]) {
     vector<int> vecOfLambda;
 
     Info info;
-    // for (int i = 10; i < 25; i++){
-    //     if (i % 5 == 0){
-    //         vecOfn.push_back(i);
-    //     }
-    // }
+    for (int i = 10; i < 25; i++){
+        if (i % 5 == 0){
+            vecOfn.push_back(i);
+        }
+    }
 	
-    // for (int i = 5; i < 20; i++){
-    //     if (i % 5 == 0){
-    //         vecOfm.push_back(i);
-    //     }
-    // }
+    for (int i = 5; i < 20; i++){
+        if (i % 5 == 0){
+            vecOfm.push_back(i);
+        }
+    }
 
     // vecOfn.push_back(6);
     // vecOfm.push_back(4);
 
-    vecOfn.push_back(5);
+    // vecOfn.push_back(5);
     
-    vecOfm.push_back(3);
+    // vecOfm.push_back(3);
 
     vecOfLambda.push_back(2);
     vecOfLambda.push_back(5);
@@ -552,11 +551,11 @@ void organizeNodes(Info *info, vector<CandStruct> nodeVec, vector<CandStruct> &o
         }
     }
     
-    cout << "FINAL ORDERED : " << endl;
-    for (int i = 0; i < orgNodes.size(); i++){
-        cout << i << ": " << orgNodes[i].index << " - " << orgNodes[i].realInd << " - " << orgNodes[i].label1 << " - " << orgNodes[i].label2 << endl;
-    }  
-    getchar();
+    // cout << "FINAL ORDERED : " << endl;
+    // for (int i = 0; i < orgNodes.size(); i++){
+    //     cout << i << ": " << orgNodes[i].index << " - " << orgNodes[i].realInd << " - " << orgNodes[i].label1 << " - " << orgNodes[i].label2 << endl;
+    // }  
+    // getchar();
 }
 
 void createDelta(Info *info, vector<CandStruct> &orgNodes)
@@ -618,8 +617,8 @@ void createTimesLoad(Info *info, vector<CandStruct> &orgNodes)
                 info->tsVec[i].first = rand() % 1440;
                 while (info->tsVec[i].first + info->delta[i] > 1440){
                     info->tsVec[i].first = rand() % 1440;
-                    cout << "Time point for node " << i << ": " << info->tsVec[i].first << endl; 
-                    getchar();
+                    // cout << "Time point for node " << i << ": " << info->tsVec[i].first << endl; 
+                    // getchar();
                 }
                 info->tsVec[i].second = info->tsVec[i].first;               
                 continue;               

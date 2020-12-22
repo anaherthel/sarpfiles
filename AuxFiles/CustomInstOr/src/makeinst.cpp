@@ -128,9 +128,9 @@ void genPoints (int argc, char** argv, int K, vector<int> &vecOfn, vector<int> &
 
     dimVec.push_back(dimensions);
 
-    cout << "Dimensions: " << endl;
-    cout << dimVec[0].first << " " << dimVec[0].second << endl;
-    getchar();
+    // cout << "Dimensions: " << endl;
+    // cout << dimVec[0].first << " " << dimVec[0].second << endl;
+    // getchar();
 
     int totalPoints;
     double lb = 0;
@@ -272,28 +272,28 @@ int main (int argc, char *argv[]) {
     vector<int> vecOfLambda;
     int K;
 
-    // for (int i = 10; i < 25; i++){
-    //     if (i % 5 == 0){
-    //         vecOfn.push_back(i);
-    //     }
-    // }
+    for (int i = 10; i < 25; i++){
+        if (i % 5 == 0){
+            vecOfn.push_back(i);
+        }
+    }
 	
-    // for (int i = 5; i < 20; i++){
-    //     if (i % 5 == 0){
-    //         vecOfm.push_back(i);
-    //     }
-    // }
+    for (int i = 5; i < 20; i++){
+        if (i % 5 == 0){
+            vecOfm.push_back(i);
+        }
+    }
 
 
-    vecOfn.push_back(5);
+    // vecOfn.push_back(5);
     
-    vecOfm.push_back(10);
+    // vecOfm.push_back(10);
 
     // vecOfn.push_back(6);
     // vecOfm.push_back(4);
 
-    // vecOfLambda.push_back(2);
-    // vecOfLambda.push_back(5);
+    vecOfLambda.push_back(2);
+    vecOfLambda.push_back(5);
     vecOfLambda.push_back(0);
 
 	genPoints(argc, argv, K, vecOfn, vecOfm, vecOfLambda);
