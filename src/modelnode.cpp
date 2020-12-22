@@ -287,6 +287,15 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem){
                     auxK = i - fDepot;
                     nas->arcV[i][j].push_back(auxK);
                 }
+                int j = i + inst->K;
+                nas->arcs[i][j] = true;
+                nas->fArc.first = i;
+                nas->fArc.second = j;
+                nas->arcMinus[j].push_back(nas->fArc);
+                nas->arcPlus[i].push_back(nas->fArc);
+                nas->allArcs.push_back(nas->fArc);
+                auxK = i - fDepot;
+                nas->arcV[i][j].push_back(auxK);
             }          
         }        
     }
