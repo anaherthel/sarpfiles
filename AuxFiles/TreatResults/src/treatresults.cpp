@@ -88,7 +88,8 @@ void createOutputInst(vector<instInfoN>& vecInst, string instName)
 
     for(int i = 0; i < vecInst.size(); i++){
         if(vecInst[i].name == firstInst){
-            ofile << vecInst[i].scen << ", " << vecInst[i].pperc << endl;
+            // ofile << vecInst[i].scen << ", " << vecInst[i].pperc << endl;
+            ofile << vecInst[i].scen << endl;
             ofile << "Instance,n,m,served,prof Customer,prof Parcel,costs,K,Sol Time,Sol Val,sol Stat,LB,UB,GAP" << endl;
         }
         ofile << vecInst[i].name << "," << vecInst[i].n << "," << vecInst[i].m << "," << vecInst[i].servP << "," << vecInst[i].pCust << "," << vecInst[i].pParc << "," << vecInst[i].costs << "," << vecInst[i].K << "," << vecInst[i].soltime << "," << vecInst[i].objval << "," << vecInst[i].stats << "," << vecInst[i].lb << "," << vecInst[i].ub << "," << vecInst[i].gap << endl;
@@ -112,7 +113,8 @@ void createOutputDist(vector<instInfoN>& vecInst, vector<distInfo>& vecDist, str
 
     for(int i = 0; i < vecInst.size(); i++){
         if(vecInst[i].name == firstInst){
-            ofile << vecInst[i].pperc << endl;
+            // ofile << vecInst[i].pperc << endl;
+            ofile << vecInst[i].scen << endl;
             ofile << "Instance,c(km),p(km),b(km),e(km),Total,c(%),p(%),b(%),e(%)" << endl;
         }
         totalDist = vecDist[i].cDist + vecDist[i].pDist + vecDist[i].bDist + vecDist[i].eDist;
@@ -139,7 +141,8 @@ void createOutputTime(vector<instInfoN>& vecInst, vector<timeInfo>& vecTime, str
 
     for(int i = 0; i < vecInst.size(); i++){
         if(vecInst[i].name == firstInst){
-            ofile << vecInst[i].pperc << endl;
+            // ofile << vecInst[i].pperc << endl;
+            ofile << vecInst[i].scen << endl;
             ofile << "Instance,c(h),p(h),b(h),e(h),waitc(h),waitp(h),Total,c(%),p(%),b(%),e(%),waitc(%),waitp(%)" << endl;
         }
         totalTime = vecTime[i].cTime + vecTime[i].pTime + vecTime[i].bTime + vecTime[i].eTime + vecTime[i].cWait + vecTime[i].pWait;
@@ -264,16 +267,16 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
             }
             flag = false;
 
-            flag = substrPosition(line, "ParcelP");
+            // flag = substrPosition(line, "ParcelP");
 
-            if (flag) {
-                loc = line.find_first_of(":");
-                inst.pperc = stoi(line.substr(loc + 1, line.size() - loc - 1)); //string to int
+            // if (flag) {
+            //     loc = line.find_first_of(":");
+            //     inst.pperc = stoi(line.substr(loc + 1, line.size() - loc - 1)); //string to int
 
-                // cout << "Number of parcels:" << inst.pperc << endl;
-                // getchar();
-            }
-            flag = false;
+            //     // cout << "Number of parcels:" << inst.pperc << endl;
+            //     // getchar();
+            // }
+            // flag = false;
 
             flag = substrPosition(line, "Sol status");
 

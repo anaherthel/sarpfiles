@@ -141,8 +141,10 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
             info->n = info->dimVec[i].first;
             info->m = info->dimVec[i].second;
             long power = pow(2, info->m);
+            // info->seed = (info->n*power);//original
 
-            info->seed = (info->n*power);
+            // info->seed = (info->n*info->n*power);//for 15-15 and 20-10
+            info->seed = (info->n*info->n*power*power);//for 20-5
             srand(info->seed);
                        
             info->K = info->n - 1;
@@ -309,20 +311,20 @@ int main (int argc, char *argv[]) {
     vector<int> vecOfLambda;
 
     Info info;
-    for (int i = 10; i < 25; i++){
-        if (i % 5 == 0){
-            vecOfn.push_back(i);
-        }
-    }
+    // for (int i = 10; i < 25; i++){
+    //     if (i % 5 == 0){
+    //         vecOfn.push_back(i);
+    //     }
+    // }
 	
-    for (int i = 5; i < 20; i++){
-        if (i % 5 == 0){
-            vecOfm.push_back(i);
-        }
-    }
+    // for (int i = 5; i < 20; i++){
+    //     if (i % 5 == 0){
+    //         vecOfm.push_back(i);
+    //     }
+    // }
 
-    // vecOfn.push_back(6);
-    // vecOfm.push_back(4);
+    vecOfn.push_back(20);
+    vecOfm.push_back(5);
 
     // vecOfn.push_back(5);
     
