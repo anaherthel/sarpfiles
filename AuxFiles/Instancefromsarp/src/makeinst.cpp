@@ -216,20 +216,18 @@ int main (int argc, char *argv[]) {
     vector<int> vecOfm;
 
     Info info;
-    for (int i = 10; i < 25; i++){
-        if (i % 5 == 0){
-            vecOfn.push_back(i);
-        }
-    }
+    // for (int i = 10; i < 25; i++){
+    //     if (i % 5 == 0){
+    //         vecOfn.push_back(i);
+    //     }
+    // }
 	
-    for (int i = 5; i < 20; i++){
-        if (i % 5 == 0){
-            vecOfm.push_back(i);
-        }
-    }
-
-    // vecOfn.push_back(6);
-    // vecOfm.push_back(4);
+    // for (int i = 5; i < 20; i++){
+    //     if (i % 5 == 0){
+    //         vecOfm.push_back(i);
+    //     }
+    // }
+ 
 
     // vecOfn.push_back(5);
     
@@ -237,16 +235,92 @@ int main (int argc, char *argv[]) {
     
     pair<int, int> dimensions;
 
+    // for (int i = 0; i < vecOfn.size(); i++){
+    //     for (int j = 0; j < vecOfm.size(); j++){
+
+    //         if (vecOfn[i] + vecOfm[j] > 15){
+    //             if (vecOfn[i] + vecOfm[j] < 35){
+    //                 dimensions.first = vecOfn[i];
+    //                 dimensions.second = vecOfm[j];
+
+    //                 info.dimVec.push_back(dimensions);   
+    //             }             
+    //         }
+
+    //         // dimensions.first = vecOfn[i];
+    //         // dimensions.second = vecOfm[j];  
+    //         // info.dimVec.push_back(dimensions);
+
+    //     }
+    //     // if (vecOfn[i] < 15){
+    //     //     dimensions.first = vecOfn[i];
+    //     //     // dimensions.second = 20;
+    //     //     dimensions.second = 10;
+
+    //     //     info.dimVec.push_back(dimensions);
+    //     // }
+    // }
+
+//creating smaller instances <20
+
+    // for (int i = 7; i < 11; i++){
+
+    //     vecOfn.push_back(i);
+    // }
+  
+    // for (int i = 5; i < 8; i++){
+    //     vecOfm.push_back(i);
+    // } 
+
+    // for (int i = 0; i < vecOfn.size(); i++){
+    //     for (int j = 0; j < vecOfm.size(); j++){
+
+    //         if (vecOfn[i] + vecOfm[j] < 20){
+
+    //             dimensions.first = vecOfn[i];
+    //             dimensions.second = vecOfm[j];
+
+    //             info.dimVec.push_back(dimensions);   
+       
+    //         }
+
+    //         // dimensions.first = vecOfn[i];
+    //         // dimensions.second = vecOfm[j];  
+    //         // info.dimVec.push_back(dimensions);
+
+    //     }
+    //     // if (vecOfn[i] < 15){
+    //     //     dimensions.first = vecOfn[i];
+    //     //     // dimensions.second = 20;
+    //     //     dimensions.second = 10;
+
+    //     //     info.dimVec.push_back(dimensions);
+    //     // }
+    // }
+//creating larger instances >30
+
+    for (int i = 20; i < 31; i++){
+        if (i % 5 == 0){
+            vecOfn.push_back(i);
+        }
+    }
+  
+    for (int i = 15; i < 26; i++){
+        if (i % 5 == 0){
+            vecOfm.push_back(i);
+        }
+    } 
+
     for (int i = 0; i < vecOfn.size(); i++){
         for (int j = 0; j < vecOfm.size(); j++){
 
-            if (vecOfn[i] + vecOfm[j] > 15){
-                if (vecOfn[i] + vecOfm[j] < 35){
-                    dimensions.first = vecOfn[i];
-                    dimensions.second = vecOfm[j];
+            if (vecOfn[i] + vecOfm[j] > 30){
 
-                    info.dimVec.push_back(dimensions);   
-                }             
+                dimensions.first = vecOfn[i];
+                dimensions.second = vecOfm[j];
+
+                info.dimVec.push_back(dimensions);   
+       
             }
 
             // dimensions.first = vecOfn[i];

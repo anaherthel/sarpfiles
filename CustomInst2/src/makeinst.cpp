@@ -80,8 +80,6 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
 
     double maxX, maxY;
 
-    pair<int, int> dimensions;
-
     pair<double, double> coordinate;
 
     vector<NodesStruct> closeVec;
@@ -109,27 +107,6 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
     candidate.chosen = 0;
     candidate.label1 = 0;
     candidate.label2 = 0;
-
-    for (int i = 0; i < vecOfn.size(); i++){
-        for (int j = 0; j < vecOfm.size(); j++){
-
-            if (vecOfn[i] + vecOfm[j] > 15){
-                if (vecOfn[i] + vecOfm[j] < 35){
-                    dimensions.first = vecOfn[i];
-                    dimensions.second = vecOfm[j];
-
-                    info->dimVec.push_back(dimensions);   
-                }             
-            }
-        }
-        // if (vecOfn[i] < 15){
-        //     dimensions.first = vecOfn[i];
-        //     // dimensions.second = 20;
-        //     dimensions.second = 10;
-
-        //     info->dimVec.push_back(dimensions);
-        // }
-    }
 
     int totalPoints;
     double lb = 0;
@@ -309,6 +286,7 @@ int main (int argc, char *argv[]) {
     vector<int> vecOfn;
     vector<int> vecOfm;
     vector<int> vecOfLambda;
+    pair<int, int> dimensions;
 
     Info info;
     // for (int i = 10; i < 25; i++){
@@ -323,8 +301,9 @@ int main (int argc, char *argv[]) {
     //     }
     // }
 
-    vecOfn.push_back(20);
-    vecOfm.push_back(5);
+    // vecOfn.push_back(20);
+    // vecOfm.push_back(5);
+
 
     // vecOfn.push_back(5);
     
@@ -333,6 +312,77 @@ int main (int argc, char *argv[]) {
     vecOfLambda.push_back(2);
     vecOfLambda.push_back(5);
     vecOfLambda.push_back(0);
+
+//creating smaller instances <20
+    // for (int i = 7; i < 11; i++){
+
+    //     vecOfn.push_back(i);
+    // }
+  
+    // for (int i = 5; i < 8; i++){
+    //     vecOfm.push_back(i);
+    // } 
+
+    // for (int i = 0; i < vecOfn.size(); i++){
+    //     for (int j = 0; j < vecOfm.size(); j++){
+
+    //        if (vecOfn[i] + vecOfm[j] < 20){
+
+    //             dimensions.first = vecOfn[i];
+    //             dimensions.second = vecOfm[j];
+
+    //             info.dimVec.push_back(dimensions);   
+       
+    //         }
+    //     }
+    //     // if (vecOfn[i] < 15){
+    //     //     dimensions.first = vecOfn[i];
+    //     //     // dimensions.second = 20;
+    //     //     dimensions.second = 10;
+
+    //     //     info->dimVec.push_back(dimensions);
+    //     // }
+    // }
+
+//creating larger instances >30
+
+    for (int i = 20; i < 31; i++){
+        if (i % 5 == 0){
+            vecOfn.push_back(i);
+        }
+    }
+  
+    for (int i = 15; i < 26; i++){
+        if (i % 5 == 0){
+            vecOfm.push_back(i);
+        }
+    } 
+
+    for (int i = 0; i < vecOfn.size(); i++){
+        for (int j = 0; j < vecOfm.size(); j++){
+
+            if (vecOfn[i] + vecOfm[j] > 30){
+
+                dimensions.first = vecOfn[i];
+                dimensions.second = vecOfm[j];
+
+                info.dimVec.push_back(dimensions);   
+       
+            }
+
+            // dimensions.first = vecOfn[i];
+            // dimensions.second = vecOfm[j];  
+            // info.dimVec.push_back(dimensions);
+
+        }
+        // if (vecOfn[i] < 15){
+        //     dimensions.first = vecOfn[i];
+        //     // dimensions.second = 20;
+        //     dimensions.second = 10;
+
+        //     info.dimVec.push_back(dimensions);
+        // }
+    }
 
 	genPoints(argc, argv, vecOfn, vecOfm, vecOfLambda, &info);
 
