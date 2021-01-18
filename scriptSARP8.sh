@@ -1,12 +1,12 @@
 #!/bin/bash
 
 dirInstancias='Instances/csarp'
-output='ncsarp8.txt'
+output='blcsarp1.txt'
 #runs=10
 
 cat /dev/null > $output
 
-for i in 1B
+for i in BL2
 #for i in 1A
 do
 #	for j in 10 20 30 40

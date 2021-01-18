@@ -146,7 +146,6 @@ void createOutputTime(vector<instInfoN>& vecInst, vector<timeInfo>& vecTime, str
             ofile << "Instance,c(h),p(h),b(h),e(h),waitc(h),waitp(h),Total,c(%),p(%),b(%),e(%),waitc(%),waitp(%)" << endl;
         }
         totalTime = vecTime[i].cTime + vecTime[i].pTime + vecTime[i].bTime + vecTime[i].eTime + vecTime[i].cWait + vecTime[i].pWait;
-
         ofile << vecInst[i].name << "," << vecTime[i].cTime << "," << vecTime[i].pTime << "," << vecTime[i].bTime << "," << vecTime[i].eTime << "," << vecTime[i].cWait << "," << vecTime[i].pWait << "," << totalTime << "," << (vecTime[i].cTime/totalTime)*100 << "," << (vecTime[i].pTime/totalTime)*100 << "," << (vecTime[i].bTime/totalTime)*100 << "," << (vecTime[i].eTime/totalTime)*100 << "," << (vecTime[i].cWait/totalTime)*100 << "," << (vecTime[i].pWait/totalTime)*100 << endl;
     } 
 }
@@ -463,26 +462,7 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
                 }
                 flag = false;
                 
-                flag = substrPosition(line, "Waiting time passenger");
-
-                if (flag) {
-                    loc = line.find_first_of(":");
-                    time.cWait = stod(line.substr(loc + 1, line.size() - loc - 1));
-                    // cout << "Wait Time Customer:" << time.cWait << endl;
-                    // getchar();
-                }
-                flag = false;
-                
-                flag = substrPosition(line, "Waiting time goods");
-
-                if (flag) {
-                    loc = line.find_first_of(":");
-                    time.pWait = stod(line.substr(loc + 1, line.size() - loc - 1));
-                    // cout << "Wait Time Parcel:" << time.pWait << endl;
-                    // getchar();
-                }
-                flag = false;
-               
+              
                 //******************************************
 
                 flag = substrPosition(line, "Total passenger distance");
@@ -522,13 +502,33 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
                     dist.eDist = stod(line.substr(loc + 1, line.size() - loc - 1));
                     // cout << "Empty dist:" << dist.eDist << endl;
                     // getchar();
-                    okall = true;
+
+                }
+                flag = false;
+
+                //************************
+                flag = substrPosition(line, "Waiting time passenger");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    time.cWait = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Wait Time Customer:" << time.cWait << endl;
+                    // getchar();
+                }
+                flag = false;
+                
+                flag = substrPosition(line, "Waiting time goods");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    time.pWait = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Wait Time Parcel:" << time.pWait << endl;
+                    // getchar();
+                    okall = true;                    
                 }
                 flag = false;
 
             }
-
-
 
             if(okall){
                 vecInst.push_back(inst); //inst done
@@ -538,7 +538,6 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
             }
 
         }
-
 
         in.close();
 	}
