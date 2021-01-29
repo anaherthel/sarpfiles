@@ -1,12 +1,12 @@
 #!/bin/bash
 
 dirInstancias='Instance8/sf_data'
-output='nssfsarp1.txt'
+output='pcbl2ssfsarp1.txt'
 #runs=10
 
 cat /dev/null > $output
 
-for i in 1A 2A 1B 2B
+for i in PC BL2
 #for i in 1A
 do
 #	for j in 10 20 30 40
