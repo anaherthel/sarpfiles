@@ -1,12 +1,12 @@
 #!/bin/bash
 
 dirInstancias='Instance14/sf_data'
-output='bssfsarp7.txt'
+output='n1ssfsarp7.txt'
 #runs=10
 
 cat /dev/null > $output
 
-for i in 1A
+for i in 1A 2A 1B 2B
 #for i in 1A
 do
 #	for j in 10 20 30 40
@@ -16,7 +16,7 @@ do
 			echo "Solving: " ${arquivo} ":" >> $output #output pra saber que instancia ta sendo rodada
 			echo "Scenario: " $i >> $output
 			echo "ParcelP: " $j >> $output
-			./exeSARP ${dirInstancias}/${arquivo} $i 0 bundle >> $output
+			./exeSARP ${dirInstancias}/${arquivo} $i 0 node >> $output
 		done
 #	done
 done
