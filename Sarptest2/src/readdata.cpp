@@ -191,10 +191,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
 
-        cout << "\nve-vf: " << endl;
-        for (int i = 0; i < ve.size(); i++){
-            cout << ve[i] << "-" << vl[i] << endl;
-        }
+        // cout << "\nve-vf: " << endl;
+        // for (int i = 0; i < ve.size(); i++){
+        //     cout << ve[i] << "-" << vl[i] << endl;
+        // }
 
 
         // getchar();
@@ -572,6 +572,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // cout << "power: " << power << endl;
         long int seed;
         seed = (instParam[0]*power)*trialMulti;
+        // seed = (instParam[0]*instParam[0]*power)*trialMulti;//new seed
+
         
         // if (instParam[0] < 14){
         //     if (instParam[0] > 12 && instParam[1] == 7){

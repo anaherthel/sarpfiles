@@ -6,7 +6,7 @@ output='n1ssfsarp1.txt'
 
 cat /dev/null > $output
 
-for i in 1A 2A 1B 2B
+for i in 1A 2A
 #for i in 1A
 do
 #	for j in 10 20 30 40

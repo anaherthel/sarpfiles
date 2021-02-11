@@ -376,6 +376,21 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 	}
 
+		//Constraint 14  -  no parcel transportation while serving passenger
+	if (problem->scen == "BL2"){
+		for (int i = 0; i < inst->n; i++){
+			IloExpr exp(env);
+
+			exp = w[i];
+
+			sprintf (var, "Constraint14_%d", i);
+			IloRange cons1 = (exp == 0);
+			cons1.setName(var);
+			model.add(cons1);
+
+		}
+	}
+
 	// else if (problem->scen == "BL2"){
 	// 	for (int i = 0; i < nas->arcNN.size(); i++){
 	// 		IloExpr exp(env);

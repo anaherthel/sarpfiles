@@ -1,12 +1,12 @@
 #!/bin/bash
 
 dirInstancias='Instance2/csarp'
-output='bl2csarp2.txt'
+output='pcbl2csarp2.txt'
 #runs=10
 
 cat /dev/null > $output
 
-for i in BL2
+for i in PC BL2
 #for i in 1A
 do
 #	for j in 10 20 30 40

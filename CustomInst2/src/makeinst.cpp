@@ -121,8 +121,8 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
             // info->seed = (info->n*power);//original
 
             // info->seed = (info->n*info->n*power);//for 15-15 and 20-10
-            info->seed = (info->n*info->n*power*power);//for 20-5
-            srand(info->seed);
+            // // info->seed = (info->n*info->n*power*power);//for 20-5
+            // srand(info->seed);
                        
             info->K = info->n - 1;
             totalPoints = (info->n + info->m)*2 + info->K;
@@ -221,6 +221,11 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
                 }
 
                 lambda = vecOfLambda[l];
+
+                info->seed = (info->n*power*(lambda+10)*p);//original
+                // info->seed = (info->n*info->n*power*(lambda+10)*p);//for 15-15 and 20-10
+                // info->seed = (info->n*info->n*power*power);//for 20-5
+                srand(info->seed);
                 classNodes(info, &lambda, nodeVar, closeVec, dist, unclassVec, nodeVec);
 
                 organizeNodes(info, nodeVec, orgNodes);
@@ -229,7 +234,6 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
                     info->tsVec.push_back(timeStamps);
                     info->loadVec.push_back(999);
                 }
-
 
                 createDelta(info, orgNodes);
                 createTimesLoad(info, orgNodes);
@@ -289,25 +293,25 @@ int main (int argc, char *argv[]) {
     pair<int, int> dimensions;
 
     Info info;
-    // for (int i = 10; i < 25; i++){
-    //     if (i % 5 == 0){
-    //         vecOfn.push_back(i);
-    //     }
-    // }
+    for (int i = 10; i < 25; i++){
+        if (i % 5 == 0){
+            vecOfn.push_back(i);
+        }
+    }
 	
-    // for (int i = 5; i < 20; i++){
-    //     if (i % 5 == 0){
-    //         vecOfm.push_back(i);
-    //     }
-    // }
+    for (int i = 5; i < 20; i++){
+        if (i % 5 == 0){
+            vecOfm.push_back(i);
+        }
+    }
 
     // vecOfn.push_back(20);
     // vecOfm.push_back(5);
 
 
-    vecOfn.push_back(10);
+    // vecOfn.push_back(10);
     
-    vecOfm.push_back(15);
+    // vecOfm.push_back(7);
 
     vecOfLambda.push_back(2);
     vecOfLambda.push_back(5);
@@ -330,16 +334,16 @@ int main (int argc, char *argv[]) {
             // info.dimVec.push_back(dimensions);
 
         }
-        // if (vecOfn[i] < 15){
-        //     dimensions.first = vecOfn[i];
-        //     // dimensions.second = 20;
-        //     dimensions.second = 10;
+        if (vecOfn[i] < 15){
+            dimensions.first = vecOfn[i];
+            // dimensions.second = 20;
+            dimensions.second = 10;
 
-        //     info.dimVec.push_back(dimensions);
-        // }
+            info.dimVec.push_back(dimensions);
+        }
     }
 
-//creating smaller instances <20
+// creating smaller instances <20
     // for (int i = 7; i < 11; i++){
 
     //     vecOfn.push_back(i);

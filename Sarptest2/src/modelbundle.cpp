@@ -825,22 +825,22 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 
     makeBundles(inst, nodeVec, &bStat, &cStat, clsParcel, problem);
 
-    // cout << "\nBundle Vector: [";
+    cout << "\nBundle Vector: [";
 
-    // for (int i = 0; i < bStat.bundleVec.size(); i++){
-    //     cout << "(" << i << "): [";
-    //     for (int j = 0; j < bStat.bundleVec[i].size(); j++){
-    //         cout << bStat.bundleVec[i][j];
-    //         if (j < bStat.bundleVec[i].size() - 1){
-    //             cout << ",";
-    //         }
-    //         else{
-    //             cout << "] ";
-    //         }
-    //     }
-    //     cout << endl;
-    // }
-    // getchar();
+    for (int i = 0; i < bStat.bundleVec.size(); i++){
+        cout << "(" << i << "): [";
+        for (int j = 0; j < bStat.bundleVec[i].size(); j++){
+            cout << bStat.bundleVec[i][j];
+            if (j < bStat.bundleVec[i].size() - 1){
+                cout << ",";
+            }
+            else{
+                cout << "] ";
+            }
+        }
+        cout << endl;
+    }
+    getchar();
 
     makeParcelBundles(inst, nodeVec, &bStat, problem);
 
@@ -917,24 +917,24 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     // }
     // getchar();
 
-    // for (int i = 0; i < cStat.clusterVec.size(); i++){
-    //     cout << "\nCluster " << i << ": [";
-    //     for(int k = 0; k < cStat.clusterVec[i].size(); k++){
-    //         cout << "(" << cStat.clusterVec[i][k] << ") " << "[";
-    //         for (int j = 0; j < bStat.bundleVec[cStat.clusterVec[i][k]].size(); j++){
-    //             cout << setw(3) << std:: right << bStat.bundleVec[cStat.clusterVec[i][k]][j];
-    //             if (j < bStat.bundleVec[cStat.clusterVec[i][k]].size() - 1){
-    //                 cout << ",";
-    //             }
-    //             else{
-    //                 cout << "] ";
-    //             }
-    //         }
+    for (int i = 0; i < cStat.clusterVec.size(); i++){
+        cout << "\nCluster " << i << ": [";
+        for(int k = 0; k < cStat.clusterVec[i].size(); k++){
+            cout << "(" << cStat.clusterVec[i][k] << ") " << "[";
+            for (int j = 0; j < bStat.bundleVec[cStat.clusterVec[i][k]].size(); j++){
+                cout << setw(3) << std:: right << bStat.bundleVec[cStat.clusterVec[i][k]][j];
+                if (j < bStat.bundleVec[cStat.clusterVec[i][k]].size() - 1){
+                    cout << ",";
+                }
+                else{
+                    cout << "] ";
+                }
+            }
             
-    //     }
-    //     cout << "]" << endl;
-    // }
-    // getchar();
+        }
+        cout << "]" << endl;
+    }
+    getchar();
     feasibleClusterArcs(inst, nodeVec, &bStat, &cStat, p, problem);
 
     // cout<< "\nFeasible arcs between clusters:" << endl;
