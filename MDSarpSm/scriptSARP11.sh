@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dirInstancias='Instance4/csarp'
+dirInstancias='Instance3/csarp'
 output='nscsarp11.txt'
 #runs=10
 

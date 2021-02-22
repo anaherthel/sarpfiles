@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instance8/sf_data'
-output='lbsfsarp1.txt'
+output='lnsfsarp1.txt'
 #runs=10
 
 cat /dev/null > $output
@@ -16,7 +16,7 @@ do
 			echo "Solving: " ${arquivo} ":" >> $output #output pra saber que instancia ta sendo rodada
 			echo "Scenario: " $i >> $output
 			echo "ParcelP: " $j >> $output
-			./exeSARP ${dirInstancias}/${arquivo} $i 0 bundle >> $output
+			./exeSARP ${dirInstancias}/${arquivo} $i 0 node >> $output
 		done
 #	done
 done

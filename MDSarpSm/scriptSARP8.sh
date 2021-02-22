@@ -1,12 +1,12 @@
 #!/bin/bash
 
-dirInstancias='Instances/csarp'
+dirInstancias='Instance8/csarp'
 output='nscsarp8.txt'
 #runs=10
 
 cat /dev/null > $output
 
-for i in 1B 2B
+for i in 1A 2A
 #for i in 1A
 do
 #	for j in 10 20 30 40
