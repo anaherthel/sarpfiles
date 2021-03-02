@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instance5/csarp'
-output='ncsarp5.txt'
+#dirInstancias='Instance5/csarp'
+output='ncsarp5-1.txt'
 #runs=10
 
 cat /dev/null > $output
@@ -16,7 +16,7 @@ do
 			echo "Solving: " ${arquivo} ":" >> $output #output pra saber que instancia ta sendo rodada
 			echo "Scenario: " $i >> $output
 			echo "ParcelP: " $j >> $output
-			./exeSARP ${dirInstancias}/${arquivo} $i 0 node >> $output
+			./exeSARP Instance5/csarp/sarp-15-15-A-3.txt $i 0 node >> $output
 		done
 #	done
 done
