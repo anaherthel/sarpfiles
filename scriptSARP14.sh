@@ -6,7 +6,7 @@ output='ncsarp14.txt'
 
 cat /dev/null > $output
 
-for i in 1B 2B
+for i in 2B
 #for i in 1A
 do
 #	for j in 10 20 30 40

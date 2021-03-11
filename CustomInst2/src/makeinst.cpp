@@ -224,7 +224,7 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
 
                 // info->seed = (info->n*power*(lambda+10)*p);//original
                 // info->seed = (info->n*info->n*power*(lambda+10)*p);//for 15-15 and 20-10
-                info->seed = (info->n*info->n*power*power*(lambda+10)*p*2);//for 20-5
+                info->seed = (info->n*info->n*power*power*(lambda+100)*p*2);//for 20-5
                 // info->seed = (info->n*info->n*power*(lambda+100)*p*100);//for larger
 
                 srand(info->seed);
