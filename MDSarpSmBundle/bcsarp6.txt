@@ -1,0 +1,2977 @@
+Solving:  sarp-9-5-A-1.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-A-1.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 4 columns.
+MIP Presolve modified 247 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 136 rows, 2209 columns, and 10510 nonzeros.
+Reduced MIP has 2209 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (12.64 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 136 rows, 2209 columns, and 10510 nonzeros.
+Reduced MIP has 2209 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.76 ticks)
+Probing fixed 1337 vars, tightened 0 bounds.
+Probing time = 0.24 sec. (163.92 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     1   1.00000e+37     0                   1920.8205        0         
+
+Root node processing (before b&c):
+  Real time             =    0.36 sec. (228.71 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.36 sec. (228.71 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 2
+ Total Time: 0.36
+
+NameOfInst: Instance6/csarp/sarp-9-5-A-1.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 369 coefficients.
+Reduced MIP has 194 rows, 3315 columns, and 15768 nonzeros.
+Reduced MIP has 3315 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (14.08 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 194 rows, 3315 columns, and 15768 nonzeros.
+Reduced MIP has 3315 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.54 ticks)
+Probing fixed 1100 vars, tightened 0 bounds.
+Probing time = 0.46 sec. (328.28 ticks)
+Clique table members: 5759.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (9.07 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       25.4283    35                     25.4283      217         
+      0     0        cutoff                                        266         
+Elapsed time = 0.67 sec. (486.54 ticks, tree = 0.01 MB, solutions = 0)
+
+GUB cover cuts applied:  3
+Implied bound cuts applied:  2
+Mixed integer rounding cuts applied:  2
+Gomory fractional cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =    0.67 sec. (486.61 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.67 sec. (486.61 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.65
+
+NameOfInst: Instance6/csarp/sarp-9-5-A-1.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 8 columns.
+MIP Presolve modified 493 coefficients.
+Reduced MIP has 251 rows, 4420 columns, and 21025 nonzeros.
+Reduced MIP has 4420 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (17.80 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 251 rows, 4420 columns, and 21025 nonzeros.
+Reduced MIP has 4420 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (12.56 ticks)
+Probing time = 0.01 sec. (8.10 ticks)
+Clique table members: 8717.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (20.14 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       36.7080    50                     36.7080      266         
+      0     0       29.5611    50                    Cuts: 15      478         
+      0     0       27.7936    50                     Cuts: 4      515         
+      0     0       27.3551    50                    Cuts: 20      558         
+      0     0       21.8870    50                    Cuts: 13      663         
+      0     0        cutoff                                        770         
+Elapsed time = 0.48 sec. (413.46 ticks, tree = 0.01 MB, solutions = 0)
+
+GUB cover cuts applied:  8
+Implied bound cuts applied:  2
+Mixed integer rounding cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.48 sec. (413.57 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.48 sec. (413.57 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.47
+
+NameOfInst: Instance6/csarp/sarp-9-5-A-1.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 5
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 10 columns.
+MIP Presolve modified 616 coefficients.
+Reduced MIP has 308 rows, 5525 columns, and 26282 nonzeros.
+Reduced MIP has 5525 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (22.84 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 308 rows, 5525 columns, and 26282 nonzeros.
+Reduced MIP has 5525 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (15.92 ticks)
+Probing fixed 1806 vars, tightened 0 bounds.
+Probing time = 1.26 sec. (879.56 ticks)
+Clique table members: 9714.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.02 sec. (18.09 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       39.5636    35                     39.5636      301         
+      0     0       36.7020    35                    Cuts: 22      374         
+*     0     0      integral     0       36.5970       Cuts: 5      380    0.00%
+      0     0        cutoff             36.5970       36.5970      380    0.00%
+Elapsed time = 1.61 sec. (1148.96 ticks, tree = 0.01 MB, solutions = 1)
+
+GUB cover cuts applied:  4
+Cover cuts applied:  1
+Flow cuts applied:  2
+Gomory fractional cuts applied:  6
+
+Root node processing (before b&c):
+  Real time             =    1.61 sec. (1149.25 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    1.61 sec. (1149.25 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 1.6
+ LB: 36.597
+ UB: 36.597
+
+Obj Val: 36.5969794135886
+
+Solve Time: 1.6
+
+x(14, 19, 0)
+x(19, 59, 0)
+x(54, 14, 0)
+x(0, 29, 1)
+x(29, 60, 1)
+x(36, 0, 1)
+x(55, 36, 1)
+x(42, 61, 2)
+x(56, 42, 2)
+x(33, 62, 3)
+x(57, 33, 3)
+x(6, 48, 4)
+x(48, 63, 4)
+x(58, 6, 4)
+
+
+Customer profit: 49.5552918097844
+Parcel profit: 39.8284714182059
+Costs: 52.7867838144017
+
+Number of Vehicles: 5
+
+Solution by nodes: 
+Vehicle 0: 19 - 10 - 2 - 15 - 9 - 3 - 14 - 24
+Vehicle 1: 20 - 6 - 0 - 13 - 4 - 18 - 25
+Vehicle 2: 21 - 7 - 26
+Vehicle 3: 22 - 11 - 5 - 16 - 27
+Vehicle 4: 23 - 1 - 8 - 28
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - f
+Vehicle 1: S - d - d - P - d - D - f
+Vehicle 2: S - d - f
+Vehicle 3: S - P - d - D - f
+Vehicle 4: S - d - d - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 4
+
+Unserved parcels: 1
+
+*************
+
+Total time: 5.83825426566109
+
+Total passenger time: 1.35788490496847
+
+Total parcel time: 2.07211605160916
+
+Total combined transportation time: 1.01482762433338
+
+Total idle time: 1.39342568475007
+
+*************
+
+Total distance: 150.535091558771
+
+Total passenger distance: 21.5066144370408
+
+Total parcel distance: 57.623424782642
+
+Total combined transportation distance: 14.2745992643354
+
+Total idle distance: 57.130453074753
+
+*************
+
+Waiting time passenger: 18.5553911374074
+
+Waiting time goods: 15.6063545969316
+
+Total waiting time: 34.1617457343389
+Solving:  sarp-9-5-A-2.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-A-2.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 4 columns.
+MIP Presolve modified 264 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 136 rows, 2185 columns, and 10374 nonzeros.
+Reduced MIP has 2185 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (12.50 ticks)
+Found incumbent of value -15.197220 after 0.05 sec. (36.03 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 136 rows, 2185 columns, and 10374 nonzeros.
+Reduced MIP has 2185 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.45 ticks)
+Probing fixed 714 vars, tightened 0 bounds.
+Probing time = 0.21 sec. (147.31 ticks)
+Clique table members: 3882.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (4.55 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -15.1972      990.4459              --- 
+      0     0        1.1999    27      -15.1972        1.1999      131  107.90%
+*     0+    0                           -8.8459        1.1999           113.56%
+      0     0       -5.2353    27       -8.8459      Cuts: 21      178   40.82%
+*     0     0      integral     0       -7.5007       Cuts: 9      224    0.00%
+      0     0        cutoff             -7.5007       -7.5007      224    0.00%
+Elapsed time = 0.34 sec. (247.73 ticks, tree = 0.01 MB, solutions = 3)
+
+GUB cover cuts applied:  2
+Clique cuts applied:  4
+Cover cuts applied:  3
+Flow cuts applied:  1
+Mixed integer rounding cuts applied:  2
+Zero-half cuts applied:  4
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.34 sec. (247.86 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.34 sec. (247.86 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.34
+ LB: -7.50071
+ UB: -7.50071
+
+Obj Val: -7.50070606573832
+
+Solve Time: 0.34
+
+x(1, 56, 0)
+x(18, 1, 0)
+x(24, 30, 0)
+x(30, 18, 0)
+x(42, 24, 0)
+x(54, 42, 0)
+x(6, 57, 1)
+x(12, 6, 1)
+x(36, 12, 1)
+x(53, 36, 1)
+x(55, 53, 1)
+
+
+Customer profit: 52.5624068018704
+Parcel profit: 17.4601144614942
+Costs: 77.5232273291029
+
+Number of Vehicles: 2
+
+Solution by nodes: 
+Vehicle 0: 19 - 7 - 4 - 5 - 3 - 9 - 0 - 14 - 21
+Vehicle 1: 20 - 13 - 8 - 18 - 6 - 2 - 1 - 22
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - P - d - D - f
+Vehicle 1: S - P - d - D - d - d - d - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 2
+
+Unserved parcels: 3
+
+*************
+
+Total time: 6.94517745776349
+
+Total passenger time: 1.89511383718879
+
+Total parcel time: 0.965850863257901
+
+Total combined transportation time: 0.606272846673871
+
+Total idle time: 3.47793991064292
+
+*************
+
+Total distance: 209.585609101636
+
+Total passenger distance: 29.8663339914071
+
+Total parcel distance: 25.9332187269073
+
+Total combined transportation distance: 11.1905200469621
+
+Total idle distance: 142.59553633636
+
+*************
+
+Waiting time passenger: 6.99731230741147
+
+Waiting time goods: 2.05751023482504
+
+Total waiting time: 9.05482254223651
+Solving:  sarp-9-5-A-3.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-A-3.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 9 rows and 126 columns.
+MIP Presolve modified 219 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 127 rows, 1928 columns, and 9145 nonzeros.
+Reduced MIP has 1928 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (11.29 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 127 rows, 1928 columns, and 9145 nonzeros.
+Reduced MIP has 1928 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.79 ticks)
+Probing fixed 1150 vars, tightened 0 bounds.
+Probing time = 0.17 sec. (123.67 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     1   1.00000e+37     0                    610.4039        0         
+
+Root node processing (before b&c):
+  Real time             =    0.23 sec. (164.31 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.23 sec. (164.31 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 2
+ Total Time: 0.23
+
+NameOfInst: Instance6/csarp/sarp-9-5-A-3.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 16 rows and 286 columns.
+MIP Presolve modified 321 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 177 rows, 2793 columns, and 13225 nonzeros.
+Reduced MIP has 2793 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (16.28 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 177 rows, 2793 columns, and 13225 nonzeros.
+Reduced MIP has 2793 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.34 ticks)
+Probing fixed 569 vars, tightened 0 bounds.
+Probing time = 0.37 sec. (269.61 ticks)
+Clique table members: 5452.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (7.88 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       17.2002    27                     17.2002      172         
+      0     0       11.6819    27                    Cuts: 15      247         
+      0     0        5.5665    27                    Cuts: 13      330         
+      0     0        0.0587    27                    Cuts: 10      416         
+      0     0        cutoff                                        779         
+Elapsed time = 0.58 sec. (446.18 ticks, tree = 0.01 MB, solutions = 0)
+
+GUB cover cuts applied:  7
+Clique cuts applied:  9
+Cover cuts applied:  3
+Mixed integer rounding cuts applied:  1
+Zero-half cuts applied:  6
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.58 sec. (446.25 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.58 sec. (446.25 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.58
+
+NameOfInst: Instance6/csarp/sarp-9-5-A-3.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 22 rows and 407 columns.
+MIP Presolve modified 426 coefficients.
+Reduced MIP has 229 rows, 3699 columns, and 17502 nonzeros.
+Reduced MIP has 3699 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (17.09 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 229 rows, 3699 columns, and 17502 nonzeros.
+Reduced MIP has 3699 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (10.87 ticks)
+Probing fixed 736 vars, tightened 0 bounds.
+Probing time = 0.58 sec. (448.06 ticks)
+Clique table members: 6752.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (9.87 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       23.1885    50                     23.1885      177         
+      0     0       21.4490    50                    Cuts: 29      265         
+      0     0       20.6041    50                     Cuts: 7      291         
+*     0+    0                           18.3609       20.6041            12.22%
+Detecting symmetries...
+
+Repeating presolve.
+Tried aggregator 3 times.
+MIP Presolve eliminated 208 rows and 3678 columns.
+MIP Presolve modified 50 coefficients.
+Aggregator did 21 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (4.77 ticks)
+Represolve time = 0.00 sec. (5.15 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.84 sec. (661.10 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.84 sec. (661.10 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.84
+ LB: 18.3609
+ UB: 18.3609
+
+Obj Val: 18.3609130318968
+
+Solve Time: 0.84
+
+x(15, 58, 0)
+x(54, 15, 0)
+x(18, 59, 1)
+x(31, 18, 1)
+x(55, 31, 1)
+x(6, 42, 2)
+x(24, 6, 2)
+x(36, 60, 2)
+x(42, 36, 2)
+x(56, 24, 2)
+x(0, 53, 3)
+x(53, 61, 3)
+x(57, 0, 3)
+
+
+Customer profit: 52.023053891893
+Parcel profit: 22.7099941921127
+Costs: 56.3721350521089
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 19 - 11 - 2 - 16 - 23
+Vehicle 1: 20 - 9 - 5 - 14 - 3 - 24
+Vehicle 2: 21 - 4 - 1 - 7 - 6 - 25
+Vehicle 3: 22 - 0 - 13 - 8 - 18 - 26
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - f
+Vehicle 1: S - P - d - D - d - f
+Vehicle 2: S - d - d - d - d - f
+Vehicle 3: S - d - P - d - D - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 3
+
+Unserved parcels: 2
+
+*************
+
+Total time: 5.96728635466994
+
+Total passenger time: 1.64423726799628
+
+Total parcel time: 1.66719520578823
+
+Total combined transportation time: 0.834070557929827
+
+Total idle time: 1.82178332295561
+
+*************
+
+Total distance: 162.658740541468
+
+Total passenger distance: 26.4137279878473
+
+Total parcel distance: 47.8550034373173
+
+Total combined transportation distance: 13.6968928751229
+
+Total idle distance: 74.6931162411802
+
+*************
+
+Waiting time passenger: 12.8792168228195
+
+Waiting time goods: 13.1534968225105
+
+Total waiting time: 26.0327136453301
+Solving:  sarp-9-5-A-4.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-A-4.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 6 rows and 10 columns.
+MIP Presolve modified 228 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 130 rows, 1893 columns, and 8996 nonzeros.
+Reduced MIP has 1893 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (11.07 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 130 rows, 1893 columns, and 8996 nonzeros.
+Reduced MIP has 1893 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.83 ticks)
+Probing fixed 1232 vars, tightened 0 bounds.
+Probing time = 0.20 sec. (115.20 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     1   1.00000e+37     0                   1897.9729        0         
+
+Root node processing (before b&c):
+  Real time             =    0.28 sec. (152.13 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.28 sec. (152.13 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 2
+ Total Time: 0.28
+
+NameOfInst: Instance6/csarp/sarp-9-5-A-4.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 9 rows and 15 columns.
+MIP Presolve modified 342 coefficients.
+Reduced MIP has 185 rows, 2841 columns, and 13497 nonzeros.
+Reduced MIP has 2841 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (13.18 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 185 rows, 2841 columns, and 13497 nonzeros.
+Reduced MIP has 2841 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.20 ticks)
+Probing fixed 930 vars, tightened 0 bounds.
+Probing time = 0.37 sec. (234.15 ticks)
+Clique table members: 5303.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (11.02 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0        2.9636    36                      2.9636      310         
+      0     0       -2.9157    36                     Cuts: 9      400         
+      0     0       -7.3954    36                    Cuts: 11      458         
+Detecting symmetries...
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 930 columns.
+Aggregator did 3 substitutions.
+Reduced MIP has 182 rows, 1908 columns, and 9015 nonzeros.
+Reduced MIP has 1908 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (7.04 ticks)
+Probing time = 0.01 sec. (5.42 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 182 rows, 1908 columns, and 9015 nonzeros.
+Reduced MIP has 1908 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.39 ticks)
+Represolve time = 0.03 sec. (21.91 ticks)
+Probing time = 0.01 sec. (5.42 ticks)
+Clique table members: 5166.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (11.47 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       -7.3954    39                     -7.3954      754         
+      0     0        cutoff                                       1059         
+Elapsed time = 0.68 sec. (469.18 ticks, tree = 0.01 MB, solutions = 0)
+
+GUB cover cuts applied:  6
+Clique cuts applied:  4
+Implied bound cuts applied:  4
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.68 sec. (469.23 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.68 sec. (469.23 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.66
+
+NameOfInst: Instance6/csarp/sarp-9-5-A-4.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 12 rows and 20 columns.
+MIP Presolve modified 456 coefficients.
+Reduced MIP has 239 rows, 3788 columns, and 17996 nonzeros.
+Reduced MIP has 3788 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (17.34 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 239 rows, 3788 columns, and 17996 nonzeros.
+Reduced MIP has 3788 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (11.08 ticks)
+Probing fixed 1246 vars, tightened 0 bounds.
+Probing time = 0.60 sec. (405.03 ticks)
+Clique table members: 6659.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (11.27 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       27.5284    39                     27.5284      228         
+      0     0       24.4636    39                    Cuts: 19      307         
+      0     0       23.4478    39                    Cuts: 21      349         
+Detecting symmetries...
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 1246 columns.
+Aggregator did 4 substitutions.
+Reduced MIP has 235 rows, 2538 columns, and 11990 nonzeros.
+Reduced MIP has 2538 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.48 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 235 rows, 2538 columns, and 11990 nonzeros.
+Reduced MIP has 2538 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (7.22 ticks)
+Represolve time = 0.04 sec. (23.65 ticks)
+Probing time = 0.01 sec. (6.21 ticks)
+Clique table members: 6494.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (13.85 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       23.4478    53                     23.4478      640         
+      0     0       22.4796    53                    Cuts: 14      705         
+      0     0       22.2567    53                    Cuts: 16      724         
+*     0+    0                           12.2699       22.2567            81.39%
+      0     0       21.7356    53       12.2699      Cuts: 19      756   77.15%
+      0     0       21.4897    53       12.2699      Cuts: 14      775   75.14%
+      0     0       18.6665    53       12.2699       Cuts: 9      831   52.13%
+*     0+    0                           15.5687       18.6665            19.90%
+      0     0       18.0161    53       15.5687      Cuts: 13      857   15.72%
+*     0+    0                           17.4196       18.0161             3.42%
+      0     0        cutoff             17.4196                    864     --- 
+Elapsed time = 1.34 sec. (994.99 ticks, tree = 0.01 MB, solutions = 3)
+
+GUB cover cuts applied:  13
+Clique cuts applied:  5
+Implied bound cuts applied:  1
+Mixed integer rounding cuts applied:  1
+Zero-half cuts applied:  5
+
+Root node processing (before b&c):
+  Real time             =    1.34 sec. (995.20 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    1.34 sec. (995.20 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 1.29
+ LB: 17.4196
+ UB: 17.4196
+
+Obj Val: 17.4195789335226
+
+Solve Time: 1.29
+
+x(18, 46, 0)
+x(36, 18, 0)
+x(46, 58, 0)
+x(54, 36, 0)
+x(8, 59, 1)
+x(24, 8, 1)
+x(55, 24, 1)
+x(5, 15, 2)
+x(15, 60, 2)
+x(56, 5, 2)
+x(30, 61, 3)
+x(48, 30, 3)
+x(57, 48, 3)
+
+
+Customer profit: 47.3122294139092
+Parcel profit: 39.8147415653063
+Costs: 69.7073920456929
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 19 - 6 - 3 - 12 - 7 - 17 - 23
+Vehicle 1: 20 - 4 - 10 - 1 - 15 - 24
+Vehicle 2: 21 - 13 - 0 - 18 - 11 - 2 - 16 - 25
+Vehicle 3: 22 - 8 - 5 - 26
+
+
+Solution structure: 
+Vehicle 0: S - d - d - P - d - D - f
+Vehicle 1: S - d - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - f
+Vehicle 3: S - d - d - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 4
+
+Unserved parcels: 1
+
+*************
+
+Total time: 6.63944289375483
+
+Total passenger time: 1.18411210289834
+
+Total parcel time: 2.05317756743565
+
+Total combined transportation time: 1.09262000723898
+
+Total idle time: 2.30953321618186
+
+*************
+
+Total distance: 183.383825310615
+
+Total passenger distance: 14.3819295521651
+
+Total parcel distance: 56.8469469315282
+
+Total combined transportation distance: 17.464086963465
+
+Total idle distance: 94.6908618634562
+
+*************
+
+Waiting time passenger: 14.9940380360696
+
+Waiting time goods: 10.3665190701756
+
+Total waiting time: 25.3605571062452
+Solving:  sarp-9-5-B-1.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-B-1.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 4 columns.
+MIP Presolve modified 275 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 136 rows, 2249 columns, and 10662 nonzeros.
+Reduced MIP has 2249 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (12.99 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 136 rows, 2249 columns, and 10662 nonzeros.
+Reduced MIP has 2249 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.96 ticks)
+Probing fixed 435 vars, tightened 0 bounds.
+Probing time = 0.27 sec. (191.69 ticks)
+Clique table members: 4577.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (5.23 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       31.2101    17                     31.2101      151         
+      0     0        cutoff                                        408         
+Elapsed time = 0.39 sec. (262.70 ticks, tree = 0.01 MB, solutions = 0)
+
+Root node processing (before b&c):
+  Real time             =    0.39 sec. (262.75 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.39 sec. (262.75 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.39
+
+NameOfInst: Instance6/csarp/sarp-9-5-B-1.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 413 coefficients.
+Reduced MIP has 194 rows, 3375 columns, and 15996 nonzeros.
+Reduced MIP has 3375 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (14.45 ticks)
+Found incumbent of value -14.555101 after 0.04 sec. (29.18 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 194 rows, 3375 columns, and 15996 nonzeros.
+Reduced MIP has 3375 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.58 ticks)
+Probing fixed 538 vars, tightened 0 bounds.
+Probing time = 0.54 sec. (393.00 ticks)
+Clique table members: 7008.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (9.31 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -14.5551     4226.0233              --- 
+      0     0       41.7273    34      -14.5551       41.7273      179  386.69%
+      0     0       40.1767    34      -14.5551      Cuts: 19      209  376.03%
+*     0+    0                           39.8956       40.1767             0.70%
+      0     0       39.9011    34       39.8956       Cuts: 5      221    0.01%
+Detecting symmetries...
+
+Repeating presolve.
+Presolve time = 0.00 sec. (2.98 ticks)
+Represolve time = 0.00 sec. (3.33 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.73 sec. (550.22 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.73 sec. (550.22 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.74
+ LB: 39.8956
+ UB: 39.8956
+
+Obj Val: 39.8956254919052
+
+Solve Time: 0.74
+
+x(6, 36, 0)
+x(15, 6, 0)
+x(25, 15, 0)
+x(36, 57, 0)
+x(42, 25, 0)
+x(54, 42, 0)
+x(34, 58, 1)
+x(55, 34, 1)
+x(0, 48, 2)
+x(18, 0, 2)
+x(48, 59, 2)
+x(56, 18, 2)
+
+
+Customer profit: 56.350191874382
+Parcel profit: 34.7402604446363
+Costs: 51.1948268271131
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 19 - 7 - 9 - 4 - 14 - 11 - 2 - 16 - 1 - 6 - 22
+Vehicle 1: 20 - 12 - 5 - 17 - 23
+Vehicle 2: 21 - 3 - 0 - 8 - 24
+
+
+Solution structure: 
+Vehicle 0: S - d - P - d - D - P - d - D - d - d - f
+Vehicle 1: S - P - d - D - f
+Vehicle 2: S - d - d - d - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 3
+
+Unserved parcels: 2
+
+*************
+
+Total time: 5.8779315318478
+
+Total passenger time: 1.65097111844614
+
+Total parcel time: 1.22682126697425
+
+Total combined transportation time: 1.01249451588771
+
+Total idle time: 1.9876446305397
+
+*************
+
+Total distance: 158.99519280576
+
+Total passenger distance: 26.6898158562917
+
+Total parcel distance: 29.7996719459441
+
+Total combined transportation distance: 21.012275151396
+
+Total idle distance: 81.4934298521279
+
+*************
+
+Waiting time passenger: 9.24524382522313
+
+Waiting time goods: 8.87682464292907
+
+Total waiting time: 18.1220684681522
+Solving:  sarp-9-5-B-2.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-B-2.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 2 rows and 6 columns.
+MIP Presolve modified 262 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 134 rows, 2007 columns, and 9520 nonzeros.
+Reduced MIP has 2007 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (12.25 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 134 rows, 2007 columns, and 9520 nonzeros.
+Reduced MIP has 2007 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.87 ticks)
+Probing fixed 1221 vars, tightened 0 bounds.
+Probing time = 0.16 sec. (100.02 ticks)
+Cover probing fixed 118 vars, tightened 0 bounds.
+Clique table members: 2415.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (1.78 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                         82         
+
+Root node processing (before b&c):
+  Real time             =    0.24 sec. (140.96 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.24 sec. (140.96 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.24
+
+NameOfInst: Instance6/csarp/sarp-9-5-B-2.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 9 columns.
+MIP Presolve modified 393 coefficients.
+Reduced MIP has 191 rows, 3012 columns, and 14283 nonzeros.
+Reduced MIP has 3012 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (15.33 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 191 rows, 3012 columns, and 14283 nonzeros.
+Reduced MIP has 3012 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.63 ticks)
+Probing fixed 1224 vars, tightened 0 bounds.
+Probing time = 0.26 sec. (185.97 ticks)
+Clique table members: 5513.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (9.22 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       18.4420    26                     18.4420      258         
+      0     0        3.0563    26                    Cuts: 19      341         
+      0     0        cutoff                                        405         
+Elapsed time = 0.38 sec. (284.37 ticks, tree = 0.01 MB, solutions = 0)
+
+GUB cover cuts applied:  3
+Cover cuts applied:  1
+Implied bound cuts applied:  5
+Flow cuts applied:  1
+Mixed integer rounding cuts applied:  1
+Zero-half cuts applied:  3
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.39 sec. (284.43 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.39 sec. (284.43 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.38
+
+NameOfInst: Instance6/csarp/sarp-9-5-B-2.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 4 rows and 12 columns.
+MIP Presolve modified 524 coefficients.
+Reduced MIP has 247 rows, 4016 columns, and 19048 nonzeros.
+Reduced MIP has 4016 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (17.21 ticks)
+Found incumbent of value -24.872593 after 0.07 sec. (46.93 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 247 rows, 4016 columns, and 19048 nonzeros.
+Reduced MIP has 4016 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (11.14 ticks)
+Probing fixed 1632 vars, tightened 0 bounds.
+Probing time = 0.46 sec. (320.11 ticks)
+Clique table members: 7971.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (12.69 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -24.8726     2857.7086              --- 
+      0     0       38.5890    42      -24.8726       38.5890      275  255.15%
+      0     0       35.1926    42      -24.8726      Cuts: 18      338  241.49%
+*     0+    0                           26.4778       35.1926            32.91%
+      0     0       30.7187    42       26.4778      Cuts: 16      383   16.02%
+*     0+    0                           29.4185       30.7187             4.42%
+Detecting symmetries...
+
+Repeating presolve.
+Tried aggregator 3 times.
+MIP Presolve eliminated 178 rows and 3932 columns.
+MIP Presolve modified 40 coefficients.
+Aggregator did 19 substitutions.
+Reduced MIP has 50 rows, 65 columns, and 286 nonzeros.
+Reduced MIP has 65 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.10 ticks)
+Probing fixed 47 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.13 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 47 rows and 60 columns.
+MIP Presolve modified 2 coefficients.
+Aggregator did 2 substitutions.
+Reduced MIP has 1 rows, 3 columns, and 3 nonzeros.
+Reduced MIP has 3 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+Probing time = 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 1 rows, 3 columns, and 3 nonzeros.
+Reduced MIP has 3 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.00 ticks)
+Represolve time = 0.01 sec. (8.56 ticks)
+Probing time = 0.00 sec. (0.00 ticks)
+Clique table members: 1.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.00 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           29.4185       30.7187             4.42%
+      0     0        cutoff             29.4185                    383     --- 
+
+Zero-half cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.71 sec. (500.83 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.71 sec. (500.83 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.69
+ LB: 29.4185
+ UB: 29.4185
+
+Obj Val: 29.4184505113844
+
+Solve Time: 0.69
+
+x(6, 18, 0)
+x(18, 58, 0)
+x(54, 6, 0)
+x(17, 24, 1)
+x(24, 30, 1)
+x(30, 59, 1)
+x(55, 17, 1)
+x(0, 60, 2)
+x(42, 0, 2)
+x(56, 42, 2)
+x(36, 61, 3)
+x(51, 36, 3)
+x(57, 51, 3)
+
+
+Customer profit: 68.1800588155361
+Parcel profit: 21.1306258437214
+Costs: 59.8922341478731
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 19 - 1 - 3 - 23
+Vehicle 1: 20 - 13 - 2 - 18 - 4 - 5 - 24
+Vehicle 2: 21 - 7 - 0 - 25
+Vehicle 3: 22 - 11 - 8 - 16 - 6 - 26
+
+
+Solution structure: 
+Vehicle 0: S - d - d - f
+Vehicle 1: S - P - d - D - d - d - f
+Vehicle 2: S - d - d - f
+Vehicle 3: S - P - d - D - d - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 2
+
+Unserved parcels: 3
+
+*************
+
+Total time: 6.67861998097098
+
+Total passenger time: 2.53475706512447
+
+Total parcel time: 0.988283107361986
+
+Total combined transportation time: 0.634907411364017
+
+Total idle time: 2.5206723971205
+
+*************
+
+Total distance: 198.656752553144
+
+Total passenger distance: 56.0917063367701
+
+Total parcel distance: 26.8529407351748
+
+Total combined transportation distance: 12.364537199258
+
+Total idle distance: 103.347568281941
+
+*************
+
+Waiting time passenger: 16.0151964341218
+
+Waiting time goods: 9.3061835849072
+
+Total waiting time: 25.321380019029
+Solving:  sarp-9-5-B-3.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-B-3.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 3 rows and 100 columns.
+MIP Presolve modified 243 coefficients.
+Aggregator did 2 substitutions.
+Reduced MIP has 132 rows, 2065 columns, and 9801 nonzeros.
+Reduced MIP has 2065 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (12.46 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 132 rows, 2065 columns, and 9801 nonzeros.
+Reduced MIP has 2065 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.25 ticks)
+Probing fixed 648 vars, tightened 0 bounds.
+Probing time = 0.23 sec. (145.18 ticks)
+Clique table members: 3746.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (5.40 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        229         
+
+Root node processing (before b&c):
+  Real time             =    0.32 sec. (192.41 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.32 sec. (192.41 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.32
+
+NameOfInst: Instance6/csarp/sarp-9-5-B-3.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 102 columns.
+MIP Presolve modified 369 coefficients.
+Reduced MIP has 191 rows, 3150 columns, and 14955 nonzeros.
+Reduced MIP has 3150 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (13.77 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 191 rows, 3150 columns, and 14955 nonzeros.
+Reduced MIP has 3150 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.87 ticks)
+Probing fixed 1368 vars, tightened 0 bounds.
+Probing time = 0.29 sec. (203.56 ticks)
+Clique table members: 5796.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.02 sec. (16.18 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        548         
+
+Root node processing (before b&c):
+  Real time             =    0.40 sec. (278.54 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.40 sec. (278.54 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.4
+
+NameOfInst: Instance6/csarp/sarp-9-5-B-3.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 5 rows and 168 columns.
+MIP Presolve modified 489 coefficients.
+Reduced MIP has 246 rows, 4167 columns, and 19776 nonzeros.
+Reduced MIP has 4167 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (17.75 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 246 rows, 4167 columns, and 19776 nonzeros.
+Reduced MIP has 4167 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (11.85 ticks)
+Probing fixed 1798 vars, tightened 0 bounds.
+Probing time = 0.49 sec. (348.62 ticks)
+Clique table members: 7457.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (10.13 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       32.7223    48                     32.7223      212         
+      0     0       30.5973    48                    Cuts: 28      278         
+      0     0        cutoff                                        484         
+Elapsed time = 0.77 sec. (565.68 ticks, tree = 0.01 MB, solutions = 0)
+
+GUB cover cuts applied:  6
+Clique cuts applied:  6
+Cover cuts applied:  1
+Implied bound cuts applied:  1
+Flow cuts applied:  1
+Mixed integer rounding cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.77 sec. (565.76 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.77 sec. (565.76 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.77
+
+NameOfInst: Instance6/csarp/sarp-9-5-B-3.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 5
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 8 rows and 269 columns.
+MIP Presolve modified 606 coefficients.
+Reduced MIP has 300 rows, 5148 columns, and 24418 nonzeros.
+Reduced MIP has 5148 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (22.24 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 300 rows, 5148 columns, and 24418 nonzeros.
+Reduced MIP has 5148 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (14.81 ticks)
+Probing fixed 2198 vars, tightened 0 bounds.
+Probing time = 0.74 sec. (530.11 ticks)
+Clique table members: 10096.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (11.91 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       42.2587    44                     42.2587      223         
+      0     0       41.5462    44                    Cuts: 29      252         
+      0     0       39.6325    44                    Cuts: 18      290         
+Detecting symmetries...
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 5 rows and 2203 columns.
+Aggregator did 5 substitutions.
+Reduced MIP has 290 rows, 2940 columns, and 13854 nonzeros.
+Reduced MIP has 2940 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (12.45 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 290 rows, 2940 columns, and 13854 nonzeros.
+Reduced MIP has 2940 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.28 ticks)
+Represolve time = 0.05 sec. (30.46 ticks)
+Probing time = 0.01 sec. (6.22 ticks)
+Clique table members: 9872.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (11.21 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       39.6325    45                     39.6325      533         
+      0     0       38.7091    45                    Cuts: 14      591         
+      0     0       38.0710    45                    Cuts: 15      616         
+      0     0       37.9937    45                    Cuts: 13      620         
+      0     0       36.8998    45                    Cuts: 10      672         
+      0     0       36.4089    45                    Cuts: 14      701         
+      0     0       35.8245    45                    Cuts: 13      718         
+      0     0       33.3618    45                    Cuts: 15      767         
+*     0+    0                           28.6603       33.3618            16.40%
+*     0     0      integral     0       32.6335      Cuts: 13      807    0.00%
+      0     0        cutoff             32.6335       32.6335      807    0.00%
+Elapsed time = 1.53 sec. (1202.42 ticks, tree = 0.01 MB, solutions = 2)
+
+GUB cover cuts applied:  12
+Clique cuts applied:  3
+Cover cuts applied:  1
+Implied bound cuts applied:  1
+Mixed integer rounding cuts applied:  3
+Zero-half cuts applied:  12
+
+Root node processing (before b&c):
+  Real time             =    1.53 sec. (1202.68 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    1.53 sec. (1202.68 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 1.48
+ LB: 32.6335
+ UB: 32.6335
+
+Obj Val: 32.6334670663709
+
+Solve Time: 1.48
+
+x(24, 59, 0)
+x(36, 24, 0)
+x(54, 36, 0)
+x(0, 60, 1)
+x(16, 51, 1)
+x(51, 0, 1)
+x(55, 16, 1)
+x(35, 61, 2)
+x(56, 35, 2)
+x(20, 62, 3)
+x(57, 20, 3)
+x(6, 63, 4)
+x(42, 6, 4)
+x(58, 42, 4)
+
+
+Customer profit: 63.120902433994
+Parcel profit: 47.2370294101114
+Costs: 77.7244647777346
+
+Number of Vehicles: 5
+
+Solution by nodes: 
+Vehicle 0: 19 - 6 - 4 - 24
+Vehicle 1: 20 - 12 - 2 - 17 - 11 - 8 - 16 - 0 - 25
+Vehicle 2: 21 - 13 - 5 - 18 - 26
+Vehicle 3: 22 - 10 - 3 - 15 - 27
+Vehicle 4: 23 - 7 - 1 - 28
+
+
+Solution structure: 
+Vehicle 0: S - d - d - f
+Vehicle 1: S - P - d - D - P - d - D - d - f
+Vehicle 2: S - P - d - D - f
+Vehicle 3: S - P - d - D - f
+Vehicle 4: S - d - d - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 4
+
+Unserved parcels: 1
+
+*************
+
+Total time: 7.7409778462676
+
+Total passenger time: 1.66985198364253
+
+Total parcel time: 2.59878873543298
+
+Total combined transportation time: 1.28333168918562
+
+Total idle time: 2.18900543800646
+
+*************
+
+Total distance: 228.546758363638
+
+Total passenger distance: 34.2972646626772
+
+Total parcel distance: 79.2170048194188
+
+Total combined transportation distance: 25.2832659232773
+
+Total idle distance: 89.749222958265
+
+*************
+
+Waiting time passenger: 15.0915086697596
+
+Waiting time goods: 17.1675134839729
+
+Total waiting time: 32.2590221537324
+Solving:  sarp-9-5-B-4.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-B-4.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 4 columns.
+MIP Presolve modified 252 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 136 rows, 2241 columns, and 10664 nonzeros.
+Reduced MIP has 2241 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (12.80 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 136 rows, 2241 columns, and 10664 nonzeros.
+Reduced MIP has 2241 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.65 ticks)
+Probing fixed 1327 vars, tightened 0 bounds.
+Probing time = 0.20 sec. (138.27 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     1   1.00000e+37     0                   2557.9125        0         
+
+Root node processing (before b&c):
+  Real time             =    0.26 sec. (182.10 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.26 sec. (182.10 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 2
+ Total Time: 0.26
+
+NameOfInst: Instance6/csarp/sarp-9-5-B-4.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 381 coefficients.
+Reduced MIP has 194 rows, 3363 columns, and 16002 nonzeros.
+Reduced MIP has 3363 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (14.24 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 194 rows, 3363 columns, and 16002 nonzeros.
+Reduced MIP has 3363 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.47 ticks)
+Probing fixed 1095 vars, tightened 0 bounds.
+Probing time = 0.37 sec. (274.93 ticks)
+Clique table members: 6038.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (11.20 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       40.4290    41                     40.4290      250         
+*     0+    0                           38.4435       40.4290             5.16%
+      0     0        cutoff             38.4435                    275     --- 
+Elapsed time = 0.47 sec. (352.48 ticks, tree = 0.01 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.47 sec. (352.63 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.47 sec. (352.63 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.48
+ LB: 38.4435
+ UB: 38.4435
+
+Obj Val: 38.4434950241471
+
+Solve Time: 0.48
+
+x(4, 57, 0)
+x(36, 50, 0)
+x(50, 4, 0)
+x(54, 36, 0)
+x(15, 42, 1)
+x(19, 15, 1)
+x(42, 58, 1)
+x(55, 19, 1)
+x(6, 59, 2)
+x(24, 30, 2)
+x(30, 6, 2)
+x(56, 24, 2)
+
+
+Customer profit: 56.8852144407534
+Parcel profit: 41.4277017909859
+Costs: 59.8694212075922
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 19 - 6 - 10 - 8 - 15 - 12 - 0 - 17 - 22
+Vehicle 1: 20 - 9 - 3 - 14 - 11 - 2 - 16 - 7 - 23
+Vehicle 2: 21 - 4 - 5 - 1 - 24
+
+
+Solution structure: 
+Vehicle 0: S - d - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - d - f
+Vehicle 2: S - d - d - d - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 4
+
+Unserved parcels: 1
+
+*************
+
+Total time: 6.5274384412452
+
+Total passenger time: 1.46773560642362
+
+Total parcel time: 2.25890990334002
+
+Total combined transportation time: 1.21862359087006
+
+Total idle time: 1.58216934061149
+
+*************
+
+Total distance: 178.79164275772
+
+Total passenger distance: 26.0104931967019
+
+Total parcel distance: 65.2819727036076
+
+Total combined transportation distance: 22.6302338923391
+
+Total idle distance: 64.8689429650711
+
+*************
+
+Waiting time passenger: 10.3242917701142
+
+Waiting time goods: 7.14826978864063
+
+Total waiting time: 17.4725615587548
+Solving:  sarp-9-5-C-1.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-C-1.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 6 rows and 240 columns.
+MIP Presolve modified 234 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 130 rows, 1951 columns, and 9214 nonzeros.
+Reduced MIP has 1951 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (11.28 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 130 rows, 1951 columns, and 9214 nonzeros.
+Reduced MIP has 1951 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.63 ticks)
+Probing fixed 1125 vars, tightened 0 bounds.
+Probing time = 0.19 sec. (135.07 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     1   1.00000e+37     0                  14241.7393        0         
+
+Root node processing (before b&c):
+  Real time             =    0.25 sec. (173.12 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.25 sec. (173.12 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 2
+ Total Time: 0.24
+
+NameOfInst: Instance6/csarp/sarp-9-5-C-1.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 7 rows and 282 columns.
+MIP Presolve modified 357 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 186 rows, 3007 columns, and 14224 nonzeros.
+Reduced MIP has 3007 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (17.47 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 186 rows, 3007 columns, and 14224 nonzeros.
+Reduced MIP has 3007 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.89 ticks)
+Probing fixed 704 vars, tightened 0 bounds.
+Probing time = 0.44 sec. (310.41 ticks)
+Clique table members: 6126.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (13.56 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      110.5222    55                    110.5222      283         
+      0     0      103.4328    55                    Cuts: 33      466         
+      0     0      101.5017    55                    Cuts: 16      527         
+      0     0        cutoff                                        811         
+Elapsed time = 0.78 sec. (601.50 ticks, tree = 0.01 MB, solutions = 0)
+
+GUB cover cuts applied:  6
+Implied bound cuts applied:  2
+Zero-half cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.78 sec. (601.56 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.78 sec. (601.56 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.77
+
+NameOfInst: Instance6/csarp/sarp-9-5-C-1.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 10 rows and 403 columns.
+MIP Presolve modified 474 coefficients.
+Reduced MIP has 241 rows, 3983 columns, and 18821 nonzeros.
+Reduced MIP has 3983 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (17.60 ticks)
+Found incumbent of value 68.087872 after 0.08 sec. (54.51 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 241 rows, 3983 columns, and 18821 nonzeros.
+Reduced MIP has 3983 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (11.59 ticks)
+Probing fixed 922 vars, tightened 0 bounds.
+Probing time = 0.72 sec. (521.65 ticks)
+Clique table members: 7919.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.02 sec. (21.61 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           68.0879    29408.6436              --- 
+      0     0      116.5535    56       68.0879      116.5535      362   71.18%
+      0     0      112.8004    56       68.0879      Cuts: 33      528   65.67%
+      0     0      111.2236    56       68.0879      Cuts: 16      594   63.35%
+*     0+    0                          110.8057      111.2236             0.38%
+Detecting symmetries...
+
+Repeating presolve.
+Tried aggregator 3 times.
+MIP Presolve eliminated 180 rows and 3922 columns.
+MIP Presolve modified 74 coefficients.
+Aggregator did 28 substitutions.
+Reduced MIP has 33 rows, 33 columns, and 149 nonzeros.
+Reduced MIP has 33 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.81 ticks)
+Probing fixed 33 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.03 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 33 rows and 33 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Represolve time = 0.01 sec. (8.41 ticks)
+
+Root node processing (before b&c):
+  Real time             =    1.03 sec. (784.39 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    1.03 sec. (784.39 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 1.01
+ LB: 110.806
+ UB: 110.806
+
+Obj Val: 110.805694967957
+
+Solve Time: 1.01
+
+x(14, 24, 0)
+x(24, 58, 0)
+x(36, 14, 0)
+x(54, 36, 0)
+x(10, 53, 1)
+x(53, 59, 1)
+x(55, 10, 1)
+x(19, 60, 2)
+x(56, 19, 2)
+x(0, 42, 3)
+x(33, 61, 3)
+x(42, 33, 3)
+x(57, 0, 3)
+
+
+Customer profit: 109.61919775722
+Parcel profit: 87.3908297813539
+Costs: 86.2043325706164
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 19 - 6 - 10 - 2 - 15 - 4 - 23
+Vehicle 1: 20 - 12 - 1 - 17 - 13 - 8 - 18 - 24
+Vehicle 2: 21 - 9 - 3 - 14 - 25
+Vehicle 3: 22 - 0 - 7 - 11 - 5 - 16 - 26
+
+
+Solution structure: 
+Vehicle 0: S - d - P - d - D - d - f
+Vehicle 1: S - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - f
+Vehicle 3: S - d - d - P - d - D - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 5
+
+Unserved parcels: 0
+
+*************
+
+Total time: 10.346923827796
+
+Total passenger time: 2.56231986382994
+
+Total parcel time: 3.01328398628065
+
+Total combined transportation time: 2.38052128966683
+
+Total idle time: 2.39079868801856
+
+*************
+
+Total distance: 328.557210272969
+
+Total passenger distance: 77.7217810836941
+
+Total parcel distance: 89.3779767708399
+
+Total combined transportation distance: 63.4347062096736
+
+Total idle distance: 98.0227462087611
+
+*************
+
+Waiting time passenger: 8.07063263214436
+
+Waiting time goods: 13.5824435400597
+
+Total waiting time: 21.653076172204
+Solving:  sarp-9-5-C-2.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-C-2.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 19 rows and 257 columns.
+MIP Presolve modified 221 coefficients.
+Aggregator did 2 substitutions.
+Reduced MIP has 116 rows, 1509 columns, and 7078 nonzeros.
+Reduced MIP has 1509 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (11.37 ticks)
+Probing fixed 906 vars, tightened 0 bounds.
+Probing time = 0.12 sec. (79.55 ticks)
+Cover probing fixed 99 vars, tightened 240 bounds.
+Presolve time = 0.00 sec. (2.14 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.16 sec. (109.46 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.16 sec. (109.46 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.16
+
+NameOfInst: Instance6/csarp/sarp-9-5-C-2.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 29 rows and 403 columns.
+MIP Presolve modified 328 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 164 rows, 2247 columns, and 10530 nonzeros.
+Reduced MIP has 2247 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (14.77 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 164 rows, 2247 columns, and 10530 nonzeros.
+Reduced MIP has 2247 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.43 ticks)
+Probing fixed 309 vars, tightened 0 bounds.
+Probing time = 0.26 sec. (189.52 ticks)
+Clique table members: 4910.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (8.70 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      117.4797    42                    117.4797      209         
+      0     0      115.1166    42                    Cuts: 28      272         
+      0     0      114.1313    42                    Cuts: 20      322         
+      0     0      111.2527    42                    Cuts: 20      410         
+*     0+    0                          107.1097      111.2527             3.87%
+Detecting symmetries...
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 84 rows and 2082 columns.
+MIP Presolve modified 17 coefficients.
+Aggregator did 2 substitutions.
+Reduced MIP has 78 rows, 163 columns, and 699 nonzeros.
+Reduced MIP has 163 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.99 ticks)
+Probing fixed 46 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (1.04 ticks)
+Tried aggregator 3 times.
+MIP Presolve eliminated 14 rows and 53 columns.
+MIP Presolve modified 40 coefficients.
+Aggregator did 4 substitutions.
+Reduced MIP has 60 rows, 106 columns, and 466 nonzeros.
+Reduced MIP has 106 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.26 ticks)
+Probing fixed 51 vars, tightened 0 bounds.
+Probing changed sense of 1 constraints.
+Probing time = 0.00 sec. (0.44 ticks)
+Cover probing fixed 4 vars, tightened 0 bounds.
+Tried aggregator 4 times.
+MIP Presolve eliminated 24 rows and 65 columns.
+MIP Presolve modified 7 coefficients.
+Aggregator did 12 substitutions.
+Reduced MIP has 24 rows, 29 columns, and 118 nonzeros.
+Reduced MIP has 29 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.48 ticks)
+Probing time = 0.00 sec. (0.07 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 24 rows, 29 columns, and 118 nonzeros.
+Reduced MIP has 29 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.08 ticks)
+Represolve time = 0.02 sec. (8.42 ticks)
+Probing time = 0.00 sec. (0.06 ticks)
+Clique table members: 109.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.11 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          107.1097      111.2527             3.87%
+      0     0        cutoff            107.1097                    432     --- 
+
+GUB cover cuts applied:  3
+Mixed integer rounding cuts applied:  1
+Zero-half cuts applied:  2
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.59 sec. (456.38 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.59 sec. (456.38 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.58
+ LB: 107.11
+ UB: 107.11
+
+Obj Val: 107.109703667961
+
+Solve Time: 0.58
+
+x(6, 57, 0)
+x(25, 6, 0)
+x(54, 25, 0)
+x(16, 48, 1)
+x(36, 58, 1)
+x(48, 36, 1)
+x(55, 16, 1)
+x(2, 18, 2)
+x(18, 42, 2)
+x(30, 59, 2)
+x(42, 30, 2)
+x(56, 2, 2)
+
+
+Customer profit: 115.390655432751
+Parcel profit: 71.0452609306223
+Costs: 79.3262126954117
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 19 - 9 - 4 - 14 - 1 - 22
+Vehicle 1: 20 - 12 - 2 - 17 - 8 - 6 - 23
+Vehicle 2: 21 - 10 - 0 - 15 - 3 - 7 - 5 - 24
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - d - f
+Vehicle 1: S - P - d - D - d - d - f
+Vehicle 2: S - P - d - D - d - d - d - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 3
+
+Unserved parcels: 2
+
+*************
+
+Total time: 9.89585707572418
+
+Total passenger time: 3.78449685637189
+
+Total parcel time: 2.80207929160653
+
+Total combined transportation time: 1.40530440305262
+
+Total idle time: 1.90397652469314
+
+*************
+
+Total distance: 323.730140104691
+
+Total passenger distance: 114.164371111247
+
+Total parcel distance: 94.3852509558675
+
+Total combined transportation distance: 37.1174805251576
+
+Total idle distance: 78.0630375124187
+
+*************
+
+Waiting time passenger: 4.49351526929715
+
+Waiting time goods: 9.61062765497867
+
+Total waiting time: 14.1041429242758
+Solving:  sarp-9-5-C-3.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-C-3.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 8 rows and 12 columns.
+MIP Presolve modified 250 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 128 rows, 1753 columns, and 8318 nonzeros.
+Reduced MIP has 1753 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (10.85 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 128 rows, 1753 columns, and 8318 nonzeros.
+Reduced MIP has 1753 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.16 ticks)
+Probing fixed 1058 vars, tightened 0 bounds.
+Probing time = 0.12 sec. (68.89 ticks)
+Cover probing fixed 217 vars, tightened 57 bounds.
+Clique table members: 3074.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (1.36 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                         51         
+
+Root node processing (before b&c):
+  Real time             =    0.19 sec. (101.90 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.19 sec. (101.90 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.18
+
+NameOfInst: Instance6/csarp/sarp-9-5-C-3.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 12 rows and 18 columns.
+MIP Presolve modified 375 coefficients.
+Reduced MIP has 182 rows, 2631 columns, and 12480 nonzeros.
+Reduced MIP has 2631 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (13.45 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 182 rows, 2631 columns, and 12480 nonzeros.
+Reduced MIP has 2631 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (7.42 ticks)
+Probing fixed 1176 vars, tightened 0 bounds.
+Probing time = 0.19 sec. (119.95 ticks)
+Clique table members: 4736.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (11.40 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       93.3413    36                     93.3413      319         
+      0     0        cutoff                                        474         
+Elapsed time = 0.31 sec. (202.31 ticks, tree = 0.01 MB, solutions = 0)
+
+GUB cover cuts applied:  1
+Cover cuts applied:  1
+Implied bound cuts applied:  3
+Zero-half cuts applied:  1
+Gomory fractional cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.31 sec. (202.37 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.31 sec. (202.37 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.31
+
+NameOfInst: Instance6/csarp/sarp-9-5-C-3.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 16 rows and 24 columns.
+MIP Presolve modified 500 coefficients.
+Reduced MIP has 235 rows, 3508 columns, and 16640 nonzeros.
+Reduced MIP has 3508 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (15.22 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 235 rows, 3508 columns, and 16640 nonzeros.
+Reduced MIP has 3508 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.72 ticks)
+Probing fixed 1568 vars, tightened 0 bounds.
+Probing time = 0.27 sec. (206.78 ticks)
+Clique table members: 6120.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (9.58 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      118.8194    41                    118.8194      239         
+      0     0      116.2910    41                    Cuts: 36      364         
+*     0+    0                          103.1959      116.2910            12.69%
+      0     0      115.7266    41      103.1959      Cuts: 17      402   12.14%
+*     0+    0                          106.3323      115.7266             8.83%
+      0     0        cutoff            106.3323      115.7266      402    8.83%
+Detecting symmetries...
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 39 rows and 2201 columns.
+Aggregator did 11 substitutions.
+Reduced MIP has 185 rows, 1296 columns, and 6054 nonzeros.
+Reduced MIP has 1296 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.50 ticks)
+Probing fixed 75 vars, tightened 0 bounds.
+Probing time = 0.10 sec. (73.95 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 4 rows and 77 columns.
+MIP Presolve modified 4 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 178 rows, 1216 columns, and 5693 nonzeros.
+Reduced MIP has 1216 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.79 ticks)
+Probing time = 0.01 sec. (4.32 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 178 rows, 1216 columns, and 5693 nonzeros.
+Reduced MIP has 1216 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (3.56 ticks)
+Represolve time = 0.15 sec. (106.44 ticks)
+Probing time = 0.01 sec. (4.32 ticks)
+Clique table members: 4205.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (8.37 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          106.3323      115.7266             8.83%
+      0     0      115.7266    60      106.3323      115.7266      685    8.83%
+      0     0      115.0846    60      106.3323      Cuts: 21      729    8.23%
+      0     0      114.8048    60      106.3323      Cuts: 20      769    7.97%
+      0     0      114.4256    60      106.3323      Cuts: 15      783    7.61%
+      0     0      113.5634    60      106.3323       Cuts: 4      820    6.80%
+*     0+    0                          113.4485      113.5634             0.10%
+      0     0        cutoff            113.4485                    820     --- 
+Elapsed time = 0.85 sec. (638.19 ticks, tree = 0.01 MB, solutions = 3)
+
+GUB cover cuts applied:  10
+Clique cuts applied:  3
+Flow cuts applied:  1
+Mixed integer rounding cuts applied:  1
+Gomory fractional cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =    0.85 sec. (638.36 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.85 sec. (638.36 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.86
+ LB: 113.448
+ UB: 113.448
+
+Obj Val: 113.448485463549
+
+Solve Time: 0.86
+
+x(36, 58, 0)
+x(50, 36, 0)
+x(54, 50, 0)
+x(17, 24, 1)
+x(24, 33, 1)
+x(33, 59, 1)
+x(55, 17, 1)
+x(0, 60, 2)
+x(42, 0, 2)
+x(56, 42, 2)
+x(10, 18, 3)
+x(18, 61, 3)
+x(57, 10, 3)
+
+
+Customer profit: 116.043028388482
+Parcel profit: 72.9392743259741
+Costs: 75.5338172509076
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 19 - 10 - 8 - 15 - 6 - 23
+Vehicle 1: 20 - 13 - 2 - 18 - 4 - 11 - 5 - 16 - 24
+Vehicle 2: 21 - 7 - 0 - 25
+Vehicle 3: 22 - 12 - 1 - 17 - 3 - 26
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - d - f
+Vehicle 1: S - P - d - D - d - P - d - D - f
+Vehicle 2: S - d - d - f
+Vehicle 3: S - P - d - D - d - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 4
+
+Unserved parcels: 1
+
+*************
+
+Total time: 9.88935730421007
+
+Total passenger time: 3.0942419399019
+
+Total parcel time: 2.91361804414017
+
+Total combined transportation time: 2.12347429409391
+
+Total idle time: 1.75802302607409
+
+*************
+
+Total distance: 316.630316139279
+
+Total passenger distance: 92.6972528693114
+
+Total parcel distance: 92.1250064764136
+
+Total combined transportation distance: 59.7291127245168
+
+Total idle distance: 72.0789440690376
+
+*************
+
+Waiting time passenger: 8.1358228616661
+
+Waiting time goods: 13.9748198341238
+
+Total waiting time: 22.1106426957899
+Solving:  sarp-9-5-C-4.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance6/csarp/sarp-9-5-C-4.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 2
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 4 columns.
+MIP Presolve modified 252 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 136 rows, 2155 columns, and 10231 nonzeros.
+Reduced MIP has 2155 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (12.97 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 136 rows, 2155 columns, and 10231 nonzeros.
+Reduced MIP has 2155 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.91 ticks)
+Probing fixed 1304 vars, tightened 0 bounds.
+Probing time = 0.23 sec. (154.62 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     1   1.00000e+37     0                  16826.8240        0         
+
+Root node processing (before b&c):
+  Real time             =    0.32 sec. (198.04 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.32 sec. (198.04 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 2
+ Total Time: 0.32
+
+NameOfInst: Instance6/csarp/sarp-9-5-C-4.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 378 coefficients.
+Reduced MIP has 194 rows, 3234 columns, and 15349 nonzeros.
+Reduced MIP has 3234 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (15.48 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 194 rows, 3234 columns, and 15349 nonzeros.
+Reduced MIP has 3234 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.35 ticks)
+Probing fixed 930 vars, tightened 0 bounds.
+Probing time = 0.54 sec. (316.80 ticks)
+Clique table members: 5895.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.03 sec. (27.32 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        591         
+
+Root node processing (before b&c):
+  Real time             =    0.70 sec. (417.42 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.70 sec. (417.42 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.7
+
+NameOfInst: Instance6/csarp/sarp-9-5-C-4.txt
+RunningScen: 1A
+
+n: 9
+m: 5
+K: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 8 columns.
+MIP Presolve modified 504 coefficients.
+Reduced MIP has 251 rows, 4312 columns, and 20465 nonzeros.
+Reduced MIP has 4312 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (19.38 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 251 rows, 4312 columns, and 20465 nonzeros.
+Reduced MIP has 4312 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (12.57 ticks)
+Probing fixed 1240 vars, tightened 0 bounds.
+Probing time = 0.73 sec. (548.44 ticks)
+Clique table members: 7412.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (18.82 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      116.2074    54                    116.2074      316         
+*     0+    0                           84.0289      116.2074            38.29%
+      0     0      108.1841    54       84.0289      Cuts: 32      509   28.75%
+*     0+    0                          102.9171      108.1841             5.12%
+      0     0      105.7890    54      102.9171      Cuts: 17      580    2.79%
+*     0+    0                          104.1451      105.7890             1.58%
+Detecting symmetries...
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 137 rows and 4139 columns.
+MIP Presolve modified 59 coefficients.
+Aggregator did 31 substitutions.
+Reduced MIP has 83 rows, 142 columns, and 687 nonzeros.
+Reduced MIP has 142 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.24 ticks)
+Probing fixed 117 vars, tightened 0 bounds.
+Probing changed sense of 1 constraints.
+Probing time = 0.00 sec. (0.36 ticks)
+Cover probing fixed 6 vars, tightened 11 bounds.
+Tried aggregator 2 times.
+MIP Presolve eliminated 80 rows and 138 columns.
+MIP Presolve modified 5 coefficients.
+Aggregator did 3 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.15 ticks)
+Represolve time = 0.01 sec. (8.19 ticks)
+
+Root node processing (before b&c):
+  Real time             =    1.11 sec. (852.35 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    1.11 sec. (852.35 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 1.07
+ LB: 104.145
+ UB: 104.145
+
+Obj Val: 104.145079364757
+
+Solve Time: 1.07
+
+x(24, 30, 0)
+x(30, 58, 0)
+x(52, 24, 0)
+x(54, 52, 0)
+x(8, 45, 1)
+x(45, 59, 1)
+x(55, 8, 1)
+x(18, 36, 2)
+x(36, 60, 2)
+x(56, 18, 2)
+x(5, 13, 3)
+x(13, 61, 3)
+x(57, 5, 3)
+
+
+Customer profit: 90.3053754761278
+Parcel profit: 104.801773788974
+Costs: 90.9620699003454
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 19 - 12 - 8 - 17 - 4 - 5 - 23
+Vehicle 1: 20 - 10 - 1 - 15 - 11 - 7 - 16 - 24
+Vehicle 2: 21 - 3 - 6 - 25
+Vehicle 3: 22 - 13 - 0 - 18 - 9 - 2 - 14 - 26
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - d - d - f
+Vehicle 1: S - P - d - D - P - d - D - f
+Vehicle 2: S - d - d - f
+Vehicle 3: S - P - d - D - P - d - D - f
+
+
+size of n: 9
+
+size of m: 5
+
+*************
+
+
+Served parcels: 5
+
+Unserved parcels: 0
+
+*************
+
+Total time: 9.77275330340046
+
+Total passenger time: 1.85793370621647
+
+Total parcel time: 3.57731946965015
+
+Total combined transportation time: 2.25847089267646
+
+Total idle time: 2.07902923485738
+
+*************
+
+Total distance: 305.016218772752
+
+Total passenger distance: 48.8419486215419
+
+Total parcel distance: 112.50343158899
+
+Total combined transportation distance: 58.4306399330683
+
+Total idle distance: 85.2401986291526
+
+*************
+
+Waiting time passenger: 10.3543605178341
+
+Waiting time goods: 11.8728861787654
+
+Total waiting time: 22.2272466965995
