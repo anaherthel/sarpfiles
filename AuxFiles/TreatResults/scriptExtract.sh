@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirTestes='Testing'
-dirDest='pcbl2csarpneW'
+dirDest='nsmallcsarpT'
 stats='Stats'
 time='Time'
 dist='Dist'
@@ -11,7 +11,7 @@ mkdir -p ${dirDest}/${stats}
 mkdir -p ${dirDest}/${dist}
 mkdir -p ${dirDest}/${time}
 
-for i in $(ls ${dirTestes}/pcbl2csarp*.txt)
+for i in $(ls ${dirTestes}/nscsarp*.txt)
 	do
 		fileid=$(echo $i | cut -d '/' -f 2 | cut -d '.' -f 1)
 
