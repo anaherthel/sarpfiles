@@ -117,8 +117,9 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
         for (int i = 0; i < info->dimVec.size(); i++){
             info->n = info->dimVec[i].first;
             info->m = info->dimVec[i].second;
-            long power = pow(2, info->m);
-            // info->seed = (info->n*power);//original
+            // long power = pow(2, info->m);
+            long power = 5*info->m;
+            info->seed = (info->n*power);//original
 
             // info->seed = (info->n*info->n*power);//for 15-15 and 20-10
             // // info->seed = (info->n*info->n*power*power);//for 20-5
@@ -622,17 +623,17 @@ int main (int argc, char *argv[]) {
 
 //regular instances
 
-    for (int i = 10; i < 25; i++){
-        if (i % 5 == 0){
-            vecOfn.push_back(i);
-        }
-    }
+    // for (int i = 10; i < 25; i++){
+    //     if (i % 5 == 0){
+    //         vecOfn.push_back(i);
+    //     }
+    // }
     
-    for (int i = 5; i < 20; i++){
-        if (i % 5 == 0){
-            vecOfm.push_back(i);
-        }
-    }
+    // for (int i = 5; i < 20; i++){
+    //     if (i % 5 == 0){
+    //         vecOfm.push_back(i);
+    //     }
+    // }
 
     // vecOfn.push_back(20);
     // vecOfm.push_back(5);
@@ -646,31 +647,31 @@ int main (int argc, char *argv[]) {
     vecOfLambda.push_back(5);
     vecOfLambda.push_back(0);
 
-    for (int i = 0; i < vecOfn.size(); i++){
-        for (int j = 0; j < vecOfm.size(); j++){
+    // for (int i = 0; i < vecOfn.size(); i++){
+    //     for (int j = 0; j < vecOfm.size(); j++){
 
-            // if (vecOfn[i] + vecOfm[j] > 30){
+    //         // if (vecOfn[i] + vecOfm[j] > 30){
 
-                dimensions.first = vecOfn[i];
-                dimensions.second = vecOfm[j];
+    //             dimensions.first = vecOfn[i];
+    //             dimensions.second = vecOfm[j];
 
-                info.dimVec.push_back(dimensions);   
+    //             info.dimVec.push_back(dimensions);   
        
-            // }
+    //         // }
 
-            // dimensions.first = vecOfn[i];
-            // dimensions.second = vecOfm[j];  
-            // info.dimVec.push_back(dimensions);
+    //         // dimensions.first = vecOfn[i];
+    //         // dimensions.second = vecOfm[j];  
+    //         // info.dimVec.push_back(dimensions);
 
-        }
-        if (vecOfn[i] < 15){
-            dimensions.first = vecOfn[i];
-            // dimensions.second = 20;
-            dimensions.second = 10;
+    //     }
+    //     if (vecOfn[i] < 15){
+    //         dimensions.first = vecOfn[i];
+    //         // dimensions.second = 20;
+    //         dimensions.second = 10;
 
-            info.dimVec.push_back(dimensions);
-        }
-    }
+    //         info.dimVec.push_back(dimensions);
+    //     }
+    // }
 
 // creating smaller instances <20
     // for (int i = 7; i < 11; i++){
@@ -681,6 +682,8 @@ int main (int argc, char *argv[]) {
     // for (int i = 5; i < 8; i++){
     //     vecOfm.push_back(i);
     // } 
+    // vecOfn.push_back(8);
+    // vecOfm.push_back(6);
 
     // for (int i = 0; i < vecOfn.size(); i++){
     //     for (int j = 0; j < vecOfm.size(); j++){
@@ -694,13 +697,13 @@ int main (int argc, char *argv[]) {
        
     //         }
     //     }
-    //     // if (vecOfn[i] < 15){
-    //     //     dimensions.first = vecOfn[i];
-    //     //     // dimensions.second = 20;
-    //     //     dimensions.second = 10;
+        // if (vecOfn[i] < 15){
+        //     dimensions.first = vecOfn[i];
+        //     // dimensions.second = 20;
+        //     dimensions.second = 10;
 
-    //     //     info->dimVec.push_back(dimensions);
-    //     // }
+        //     info->dimVec.push_back(dimensions);
+        // }
     // }
 
 //creating larger instances >30
@@ -742,6 +745,59 @@ int main (int argc, char *argv[]) {
     //     //     info.dimVec.push_back(dimensions);
     //     // }
     // }
+
+//creating threshold 
+
+    for (int i = 3; i < 5; i++){
+        // if (i % 5 == 0){
+            vecOfn.push_back(i*10);
+        // }
+    }
+  
+    // for (int i = 3; i < ; i++){
+    //     // if (i % 5 == 0){
+    //         vecOfm.push_back(i*10);
+    //     // }
+    // } 
+    vecOfm.push_back(30);
+    vecOfm.push_back(35);
+
+    for (int i = 0; i < vecOfn.size(); i++){
+        for (int j = 0; j < vecOfm.size(); j++){
+
+            if (vecOfn[i] >= vecOfm[j]){
+
+                if (vecOfn[j] == 40 && vecOfn[i] == 60){
+                    continue;
+                }
+                else{
+                    dimensions.first = vecOfn[i];
+                    dimensions.second = vecOfm[j];
+
+                    info.dimVec.push_back(dimensions);   
+                }
+            }
+
+            // dimensions.first = vecOfn[i];
+            // dimensions.second = vecOfm[j];  
+            // info.dimVec.push_back(dimensions);
+
+        }
+        // if (vecOfn[i] < 15){
+        //     dimensions.first = vecOfn[i];
+        //     // dimensions.second = 20;
+        //     dimensions.second = 10;
+
+        //     info.dimVec.push_back(dimensions);
+        // }
+    }
+
+    cout << "Vec of dimensions: " << endl;
+
+    for (int i = 0; i < info.dimVec.size(); i++){
+        cout << info.dimVec[i].first << " " << info.dimVec[i].second << endl;
+    }
+    getchar();
 
     genPoints(argc, argv, vecOfn, vecOfm, vecOfLambda, &info);
 

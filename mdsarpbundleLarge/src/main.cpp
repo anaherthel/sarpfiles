@@ -21,7 +21,7 @@ using namespace std;
 int main (int argc, char *argv[]) {
 	double **distMatrix;
 	
-	int trialK = 2;
+	int trialK = 20;
 	double trialMulti = 1.5;
 
 	nodeStat node;
@@ -90,12 +90,12 @@ int main (int argc, char *argv[]) {
 		sStat.feasible = false;
 		if (inst.min == true){
 			cout << "here" << endl;
-			getchar();
+			// getchar();
 			// if (trialK < inst.n + inst.m){
 			// 	trialK++;
 			// }
 			cout << "trial K: " << trialK << endl;
-			getchar();
+			// getchar(); 
 
 			readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
 

@@ -46,7 +46,7 @@ struct CandStruct{
 };
 
 struct Info{
-    long int seed;
+    long long seed;
     int n;
     int m;
     double speed = 41;
@@ -299,28 +299,72 @@ int main (int argc, char *argv[]) {
     // }
 //creating larger instances >30
 
-    for (int i = 20; i < 31; i++){
-        if (i % 5 == 0){
-            vecOfn.push_back(i);
-        }
+    // for (int i = 20; i < 31; i++){
+    //     if (i % 5 == 0){
+    //         vecOfn.push_back(i);
+    //     }
+    // }
+  
+    // for (int i = 15; i < 26; i++){
+    //     if (i % 5 == 0){
+    //         vecOfm.push_back(i);
+    //     }
+    // } 
+
+    // for (int i = 0; i < vecOfn.size(); i++){
+    //     for (int j = 0; j < vecOfm.size(); j++){
+
+    //         if (vecOfn[i] + vecOfm[j] > 30){
+
+    //             dimensions.first = vecOfn[i];
+    //             dimensions.second = vecOfm[j];
+
+    //             info.dimVec.push_back(dimensions);   
+       
+    //         }
+
+    //         // dimensions.first = vecOfn[i];
+    //         // dimensions.second = vecOfm[j];  
+    //         // info.dimVec.push_back(dimensions);
+
+    //     }
+    //     // if (vecOfn[i] < 15){
+    //     //     dimensions.first = vecOfn[i];
+    //     //     // dimensions.second = 20;
+    //     //     dimensions.second = 10;
+
+    //     //     info.dimVec.push_back(dimensions);
+    //     // }
+    // }
+
+//create threshold
+
+   for (int i = 4; i < 7; i++){
+        // if (i % 5 == 0){
+            vecOfn.push_back(i*10);
+        // }
     }
   
-    for (int i = 15; i < 26; i++){
-        if (i % 5 == 0){
-            vecOfm.push_back(i);
-        }
+    for (int i = 4; i < 7; i++){
+        // if (i % 5 == 0){
+            vecOfm.push_back(i*10);
+        // }
     } 
 
     for (int i = 0; i < vecOfn.size(); i++){
         for (int j = 0; j < vecOfm.size(); j++){
 
-            if (vecOfn[i] + vecOfm[j] > 30){
+            if (vecOfn[i] >= vecOfm[j]){
 
-                dimensions.first = vecOfn[i];
-                dimensions.second = vecOfm[j];
+                if (vecOfn[j] == 40 && vecOfn[i] == 60){
+                    continue;
+                }
+                else{
+                    dimensions.first = vecOfn[i];
+                    dimensions.second = vecOfm[j];
 
-                info.dimVec.push_back(dimensions);   
-       
+                    info.dimVec.push_back(dimensions);   
+                }
             }
 
             // dimensions.first = vecOfn[i];

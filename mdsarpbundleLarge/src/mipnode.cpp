@@ -13,7 +13,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	long M2 = 2*(inst->n + inst->m + 1);
 	long W = inst->m + 1;
 	int Q;
-	Q = inst->m;
+	// Q = inst->m;
 
     int fDepot = inst->n + 2*inst->m;
     int fDummy = inst->n + 2*inst->m + inst->K;
@@ -22,16 +22,12 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
 
-	// if (problem->scen == "1A" || problem->scen == "2A"){
-	// 	Q = 1;
-	// }
-	// else if (problem->scen == "1B" || problem->scen == "2B"){
-	// 	Q = inst->m;
-	// }
-	// else{
-	// 	Q = inst->m + 1;
-	// }
-
+	if (problem->scen == "1A" || problem->scen == "2A"){
+		Q = 1;
+	}
+	else {
+		Q = inst->m;
+	}
 
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
@@ -370,6 +366,21 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 			sprintf (var, "Constraint14_%d", i);
 			IloRange cons1 = (sumX - exp <= 0);
+			cons1.setName(var);
+			model.add(cons1);
+
+		}
+	}
+
+		//Constraint 14  -  no parcel transportation while serving passenger
+	if (problem->scen == "BL2"){
+		for (int i = 0; i < inst->n; i++){
+			IloExpr exp(env);
+
+			exp = w[i];
+
+			sprintf (var, "Constraint14_%d", i);
+			IloRange cons1 = (exp == 0);
 			cons1.setName(var);
 			model.add(cons1);
 

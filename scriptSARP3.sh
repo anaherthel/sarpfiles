@@ -1,12 +1,12 @@
 #!/bin/bash
 
-dirInstancias='Instance3/csarp'
-output='ncsarp3.txt'
+dirInstancias='InstanceSm/csarp'
+output='redosmcsarp3.txt'
 #runs=10
 
 cat /dev/null > $output
 
-for i in 1A 2A
+for i in PC BL2
 #for i in 1A
 do
 #	for j in 10 20 30 40
