@@ -120,7 +120,7 @@ void genPoints (int argc, char** argv, vector<int> &vecOfn, vector<int> &vecOfm,
             // long power = pow(2, info->m);
             long power = 5*info->m;
             info->seed = (info->n*power);//original
-
+            info->seed = ceil(sqrt(info->seed));
             // info->seed = (info->n*info->n*power);//for 15-15 and 20-10
             // // info->seed = (info->n*info->n*power*power);//for 20-5
             // srand(info->seed);
@@ -748,34 +748,34 @@ int main (int argc, char *argv[]) {
 
 //creating threshold 
 
-    for (int i = 3; i < 5; i++){
-        // if (i % 5 == 0){
-            vecOfn.push_back(i*10);
-        // }
-    }
+    // for (int i = 3; i < 5; i++){
+    //     // if (i % 5 == 0){
+    //         vecOfn.push_back(i*10);
+    //     // }
+    // }
   
     // for (int i = 3; i < ; i++){
     //     // if (i % 5 == 0){
     //         vecOfm.push_back(i*10);
     //     // }
     // } 
+    vecOfn.push_back(30);
     vecOfm.push_back(30);
-    vecOfm.push_back(35);
 
     for (int i = 0; i < vecOfn.size(); i++){
         for (int j = 0; j < vecOfm.size(); j++){
 
             if (vecOfn[i] >= vecOfm[j]){
 
-                if (vecOfn[j] == 40 && vecOfn[i] == 60){
-                    continue;
-                }
-                else{
+                // if (vecOfn[j] == 40 && vecOfn[i] == 60){
+                //     continue;
+                // }
+                // else{
                     dimensions.first = vecOfn[i];
                     dimensions.second = vecOfm[j];
 
                     info.dimVec.push_back(dimensions);   
-                }
+                // }
             }
 
             // dimensions.first = vecOfn[i];
