@@ -21,7 +21,7 @@ using namespace std;
 int main (int argc, char *argv[]) {
 	double **distMatrix;
 	
-	int trialK = 40;
+	int trialK = 10;
 	double trialMulti = 1.5;
 
 	nodeStat node;

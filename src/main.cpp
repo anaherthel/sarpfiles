@@ -15,13 +15,14 @@
 #include "modelbundle.h"
 #include "modeltwostage.h"
 #include "mipnode.h"
+#include "hbundle.h"
 
 using namespace std;
 
 int main (int argc, char *argv[]) {
 	double **distMatrix;
 	
-	int trialK = 3;
+	int trialK = 2;
 	double trialMulti = 1.5;
 
 	nodeStat node;
@@ -29,11 +30,12 @@ int main (int argc, char *argv[]) {
 	probStat problem;
 	solStats sStat;
 	vector<nodeStat> nodeVec;
+	hbundle h;
 	sStat.feasible = false;
 	
 
 	
-	while (!sStat.feasible){
+	// while (!sStat.feasible){
 		nodeVec.clear();
 
 		readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
@@ -46,42 +48,45 @@ int main (int argc, char *argv[]) {
 			bundleMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
 		}
 
+		else if (problem.model == "math"){
+			h.orderRequests(&inst, nodeVec, &distMatrix);
+		}
 		// else if (problem.model == "twostage"){
 		// 	twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			
 		// }
 
-		if (problem.scen == "PC"){
-			if (trialMulti > 1){
-				// if (trialK < inst.n + inst.m){
-				if (trialK < inst.n){
-					trialK++;	
-				}
+		// if (problem.scen == "PC"){
+		// 	if (trialMulti > 1){
+		// 		// if (trialK < inst.n + inst.m){
+		// 		if (trialK < inst.n){
+		// 			trialK++;	
+		// 		}
 
-				else{
-					break;
-				}
-			}
-			else {
-				trialMulti = 1.5;
-			}
-		}
+		// 		else{
+		// 			break;
+		// 		}
+		// 	}
+		// 	else {
+		// 		trialMulti = 1.5;
+		// 	}
+		// }
 
-		else{
-			if (trialMulti > 1){
-				if (trialK < inst.n){
-					trialK++;	
-				}
+		// else{
+		// 	if (trialMulti > 1){
+		// 		if (trialK < inst.n){
+		// 			trialK++;	
+		// 		}
 
-				else{
-					break;
-				}
-			}
-			else {
-				trialMulti = 1.5;
-			}	
-		}
+		// 		else{
+		// 			break;
+		// 		}
+		// 	}
+		// 	else {
+		// 		trialMulti = 1.5;
+		// 	}	
+		// }
 		
-	}
+	// }
 
 	if (problem.scen == "PC"){
 		nodeVec.clear();
@@ -90,12 +95,12 @@ int main (int argc, char *argv[]) {
 		sStat.feasible = false;
 		if (inst.min == true){
 			cout << "here" << endl;
-			// getchar();
+			getchar();
 			// if (trialK < inst.n + inst.m){
 			// 	trialK++;
 			// }
 			cout << "trial K: " << trialK << endl;
-			// getchar(); 
+			getchar();
 
 			readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
 

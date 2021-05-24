@@ -840,7 +840,7 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
         }
         cout << endl;
     }
-    // getchar();
+    getchar();
 
     makeParcelBundles(inst, nodeVec, &bStat, problem);
 
@@ -934,7 +934,7 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
         }
         cout << "]" << endl;
     }
-    // getchar();
+    getchar();
     feasibleClusterArcs(inst, nodeVec, &bStat, &cStat, p, problem);
 
     // cout<< "\nFeasible arcs between clusters:" << endl;

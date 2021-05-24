@@ -15,6 +15,7 @@
 #include "modelbundle.h"
 #include "modeltwostage.h"
 #include "mipnode.h"
+#include "hbundle.h"
 
 using namespace std;
 
@@ -29,6 +30,7 @@ int main (int argc, char *argv[]) {
 	probStat problem;
 	solStats sStat;
 	vector<nodeStat> nodeVec;
+	hbundle h;
 	sStat.feasible = false;
 	
 
@@ -46,6 +48,9 @@ int main (int argc, char *argv[]) {
 			bundleMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
 		}
 
+		else if (problem.model == "math"){
+			h.orderRequests(&inst, nodeVec, &distMatrix);
+		}
 		// else if (problem.model == "twostage"){
 		// 	twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			
 		// }
