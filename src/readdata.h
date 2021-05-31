@@ -79,6 +79,7 @@ struct instanceStat{
 	double realStddv = 1.03;
 
 	bool min;
+
 };
 
 struct probStat{
@@ -87,6 +88,9 @@ struct probStat{
 	bool seq;
 	string scen;
 	string model;
+
+	char p1, p2;
+
 };
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, int trialK, double trialMulti);

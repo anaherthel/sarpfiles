@@ -35,6 +35,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // }
 
     problem->scen = argv[2];
+
+    problem->p1 = problem->scen.at(0);
+    problem->p2 = problem->scen.at(1);
+
     problem->model = argv[4];
 
     string file, ewf;
@@ -1194,6 +1198,16 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // for (int i = 0; i < nodeVec.size(); i++){
     //     cout << i << ": " << nodeVec[i].l << endl;
     // }
-    cout << "\nDist Multiplier: " << trialMulti << endl;
+    // cout << "\nDist Multiplier: " << trialMulti << endl;
+    // getchar();
+
+    // cout << "Dist Matrix: " << endl;
+    // for (int i = 0; i < V + inst->dummy; i++){
+    //     for (int j = 0; j < V + inst->dummy; j++){
+    //         cout << setw(5) << *Mdist[i][j] << " ";
+    //     }
+    //     cout << endl;
+    //     cout << "here";
+    // }
     // getchar();
 }

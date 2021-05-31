@@ -26,6 +26,7 @@
 #include "functions.h"
 #include "modelbundle.h"
 #include "bundleData.h"
+#include "hbundle.h"
 
 
 void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, clSt *cStat, probStat* problem, solStats *sStat);

@@ -24,17 +24,23 @@
 #include <unistd.h>
 #include "readdata.h"
 #include "functions.h"
+#include "bundleData.h"
+#include "modelbundle.h"
 
 class hbundle {
 protected:
 
     vector<nodeStat> twSort;
+    vector<int> twPos;
     vector< vector<int> > proxSort;
+    vector<double> distVec;
 
     int pairings;
 
 public:
-    void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist);
+    void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
+    void buildDistVec(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
+    void buildBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
 };
 
 // ostream & operator<<(ostream &os, const FLPInstance &instance);
