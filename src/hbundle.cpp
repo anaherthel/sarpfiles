@@ -47,12 +47,12 @@ void hbundle::orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, doubl
     //     cout << "Position of " << i << ": " << twPos[i] << endl;
     // }
 
-    // cout << "\nTW sorted passengers: " << endl;
-    // for (int i = 0; i < twSort.size(); i ++){
-    //     cout << twSort[i].index << ": " << twSort[i].e << endl;
+    cout << "\nTW sorted passengers: " << endl;
+    for (int i = 0; i < twSort.size(); i ++){
+        cout << twSort[i].index << ": " << twSort[i].e << endl;
 
-    // }
-    // getchar();
+    }
+    getchar();
 }
 
 void hbundle::buildDistVec(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist){
@@ -125,6 +125,8 @@ void hbundle::buildBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double
     // vector <int> passReq;
     int firstPass;
 
+    int counter1, counter2; //number of pairings done; iterator for the proximity list
+
     bundleStat bStat;
     clSt cStat;
 
@@ -137,92 +139,128 @@ void hbundle::buildBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double
         bStat.bundleVec.push_back(bStat.bundle);
         cStat.clusters.push_back(bStat.bundleVec.size()-1);
         bStat.bundle.clear();
-        bStat.bundle.push_back(i);     
+        bStat.bundle.push_back(i);    
         for (int j = 0; j < pairings; j++){
             firstClose = proxSort[i][j];
-
             bStat.bundle.push_back(firstClose);
-        
+            counter1 = 0;
+            counter2 = 0;
+            
             // cout << "i: " << i << " - closest to: " << firstClose << " which is " << nodeVec[firstClose].load << endl;
             // getchar();
-            for (int k = 0; k < pairings; k++){
-                nextClose = proxSort[firstClose][k];
+            while (counter1 < pairings && counter2 < proxSort[firstClose].size()){
+                nextClose = proxSort[firstClose][counter2];
 
                 if (i != nextClose){
+                    if (nextClose < inst->n){
+                        if (twPos[i] > twPos[nextClose]){
+                            counter2++;
+                            continue;
+                        }
+                    }
                     bStat.bundle.push_back(nextClose);
                     bStat.bundleTimes.push_back(nodeVec[firstClose].delta + nodeVec[i].delta + nodeVec[nextClose].delta);
                     bStat.bundleVec.push_back(bStat.bundle);
                     cStat.clusters.push_back(bStat.bundleVec.size()-1);
                     bStat.bundle.pop_back();
+                    counter1++;
+                    counter2++;
                 }
                 else{
+                    counter2++;
                     continue;
                 }
             }
-            if (bStat.bundle.size() > 1){
-                bStat.bundle.pop_back();
-            }
+
+            bStat.bundle.pop_back();
         }            
         cStat.clusterVec.push_back(cStat.clusters);
         cStat.clusters.clear();
         bStat.bundle.clear();
     }
+
+    // cout << "First part:" << endl;
     
-    for (int i = inst->n; i < inst->n + inst->m*2; i++){
+    // for (int a = 0; a < cStat.clusterVec.size(); a++){
+    //     cout << "\nCluster " << a << ": [";
+    //     for(int b = 0; b < cStat.clusterVec[a].size(); b++){
+    //         cout << "(" << cStat.clusterVec[a][b] << ") " << "[";
+    //         for (int c = 0; c < bStat.bundleVec[cStat.clusterVec[a][b]].size(); c++){
+    //             cout << setw(3) << std:: right << bStat.bundleVec[cStat.clusterVec[a][b]][c];
+    //             if (c < bStat.bundleVec[cStat.clusterVec[a][b]].size() - 1){
+    //                 cout << ",";
+    //             }
+    //             else{
+    //                 cout << "] ";
+    //             }
+    //         }
+            
+    //     }
+    //     cout << "]" << endl;
+    // }
+    // getchar();
+    
+    for (int i = inst->n; i < inst->n + inst->m*2; i++){//i is parcel P or D
         bStat.bundle.push_back(i);     
         for (int j = 0; j < pairings; j++){
+            counter1 = 0;
+            counter2 = 0;
             valid  = 0;
             firstClose = proxSort[i][j];
             bStat.bundle.push_back(firstClose);
             if (firstClose < inst->n){
                 valid = 1;
                 firstPass = firstClose;
-                // passReq.push_back(firstClose);
             }
 
-            // cout << "i: " << i << " - closest to: " << proxSort[i][j] << " which is " << nodeVec[proxSort[i][j]].load << endl;
-            // getchar();
-            for (int k = 0; k < pairings; k++){
-                nextClose = proxSort[firstClose][k];
+            cout << "\n\ni: " << i << " - closest to: " << proxSort[i][j] << " which is " << nodeVec[proxSort[i][j]].load << endl;
+            getchar();
+            while (counter1 < pairings && counter2 < proxSort[firstClose].size()){
+                nextClose = proxSort[firstClose][counter2];
+                cout << "FC: " << firstClose << " - closest to: " << nextClose << " which is " << nodeVec[nextClose].load << endl;
+                getchar();
                 if (nextClose < inst->n){
                     if (firstClose < inst->n){
-                        if (twPos[i] < twPos[firstClose]){
-                            bStat.bundle.push_back(firstClose);
-                        }
-                        else{
+                        if (twPos[firstClose] > twPos[nextClose]){//if both first and next close are passengers, we test their service sequence in time.
+                            counter2++;
                             continue;
                         }
                     }
                     if (!valid){
                         valid = 1;
+                        firstPass = nextClose; //we assign the passenger number to the bundle
                     }
-
-
-                    // passReq.push_back(nextClose);
                 }
                 if (valid){
                     if (i != nextClose){
                         bStat.bundle.push_back(nextClose);
 
-                        for(int l = 0; l < passReq.size(); l++){
-                            cStat.clusterVec[l].push_back(bStat.bundle);
-                            insertPos = cStat.clusterVec[l].size()-1;
-                            // bStat.bundleTimes.push_back(nodeVec[firstClose].delta + nodeVec[i].delta + nodeVec[nextClose].delta);
-                            // bStat.bundleVec.push_back(bStat.bundle);
-                            bStat.bundleTimes.push_back
-
+                        insertPos = 0;
+                        for (int k = 0; k <= firstPass; k++){
+                            insertPos += cStat.clusterVec[k].size();
                         }
+                        bStat.bundleTimes.insert(bStat.bundleTimes.begin() + insertPos, nodeVec[firstClose].delta + nodeVec[i].delta + nodeVec[nextClose].delta);
+                        bStat.bundleVec.insert(bStat.bundleVec.begin() + insertPos, bStat.bundle);
+                        cStat.clusterVec[firstPass].push_back(bStat.bundleVec.size()-1);
+
                         bStat.bundle.pop_back();
+                        counter1++;
+                        counter2++;
                     }
                     else{
+                        counter2++;
                         continue;
                     }
                 }
+                else{
+                    counter2++;
+                }
             }
             bStat.bundle.pop_back();
-        }            
-        cStat.clusterVec.push_back(cStat.clusters);
-        cStat.clusters.clear();
+        } 
+
+        // cStat.clusterVec.push_back(cStat.clusters);
+        // cStat.clusters.clear();
         bStat.bundle.clear();        
     }
 
