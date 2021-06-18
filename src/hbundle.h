@@ -38,9 +38,13 @@ protected:
     int pairings;
 
 public:
-    void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
-    void buildDistVec(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
+    void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
+    void buildDistVec(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
     void buildBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
+    
+    void bTimeTest(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, bundleStat* bStat);
+
+    void orgBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
 };
 
 // ostream & operator<<(ostream &os, const FLPInstance &instance);

@@ -35,11 +35,44 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // }
 
     problem->scen = argv[2];
-
-    problem->p1 = problem->scen.at(0);
-    problem->p2 = problem->scen.at(1);
-
     problem->model = argv[4];
+
+    if (problem->scen == "1A"){
+        if (problem->model == "math"){
+            cout << "\n\nRun this scenario with 'bundle' model.\n";
+            cout << " ./exeSARP [Instance] [Scenario] [Parcel percentage] bundle"<< endl;
+            exit(1);
+        }
+        else{
+            problem->p1 = 0; //1 is multi, 0 is single; p1 refers to customer
+            problem->p2 = 0; //p2 refers to parcel
+            problem->dParcel = 0;//1 allows for direct parcel delivery
+        }
+    }
+    else if (problem->scen == "2A"){
+        problem->p1 = 1; //1 is multi, 0 is single; p1 refers to customer
+        problem->p2 = 0; //p2 refers to parcel
+        problem->dParcel = 0;//1 allows for direct parcel delivery
+    }
+    else if (problem->scen == "1B"){
+        problem->p1 = 0;
+        problem->p2 = 1;
+        problem->dParcel = 0;
+    }
+    else if (problem->scen == "2B"){
+        problem->p1 = 1;
+        problem->p2 = 1;
+        problem->dParcel = 0;        
+    }
+    else if (problem->scen == "2MM"){
+        problem->p1 = 1;
+        problem->p2 = 1;
+        problem->dParcel = 1;        
+    }
+    // else if (problem->scen == "PC"){
+    // }
+    // else if (problem->scen == "BL2"){
+    // }
 
     string file, ewf;
     int n;

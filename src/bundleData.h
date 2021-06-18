@@ -60,6 +60,7 @@ struct clSt{
 	vector< vector< vector< pair<int,int> > > > vArcPlus;
 	vector< vector< vector< pair<int,int> > > > vArcMinus;
 	vector< vector< vector<int> > > arcV;
+	vector<int> clindex;
 
     vector< pair<int,int> > cArcVec;
 };

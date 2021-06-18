@@ -110,7 +110,9 @@ void initVecs (instanceStat *inst, vector< vector<bParcelStruct> > &clsParcel, b
             bStat->parcelBundleVec.push_back(parcelBundle);
         }
     // }
-
+    // if (problem->scen == "1A"){
+    
+    // }
 
 }
 void initArcs (instanceStat *inst, bundleStat *bStat, clSt *cStat){

@@ -89,7 +89,7 @@ struct probStat{
 	string scen;
 	string model;
 
-	char p1, p2;
+	bool p1, p2, dParcel;
 
 };
 
