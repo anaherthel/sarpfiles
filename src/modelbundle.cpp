@@ -459,6 +459,22 @@ void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat
             }
         } 
     }
+    else {
+        for (int i = 0; i < bStat->bundleVec.size(); i++){
+            for (int j = 0; j < bStat->bundleVec[i].size(); j++){
+                if (bStat->bundleVec[i][j] < inst->n){
+                    continue;
+                }
+                else if (bStat->bundleVec[i][j] > inst->n + inst->m - 1){
+                    continue;
+                }
+                else{
+                    parcelReq = bStat->bundleVec[i][j];
+                    bStat->parcelBundleVec[parcelReq - inst->n].push_back(i);
+                }
+            }
+        } 
+    }
 }
 
 void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem){

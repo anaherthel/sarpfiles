@@ -40,11 +40,12 @@ protected:
 public:
     void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
     void buildDistVec(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
-    void buildBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
+    void buildBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem, bundleStat* bStat);
     
-    void bTimeTest(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, bundleStat* bStat);
+    void bTimeTest(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, bundleStat* bStat, bool &valid);
 
-    void orgBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
+    void orgBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, bundleStat* bStat, clSt* cStat, probStat* problem);
+    void hbundleMethod(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist,  probStat *problem);
 };
 
 // ostream & operator<<(ostream &os, const FLPInstance &instance);

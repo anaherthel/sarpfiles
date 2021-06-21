@@ -60,7 +60,9 @@ int main (int argc, char *argv[]) {
 		else if (problem.model == "math"){
 			// h.orderRequests(&inst, nodeVec, distMatrix, &problem);
 			// h.buildDistVec(&inst, nodeVec, distMatrix, &problem);
-			h.buildBundles(&inst, nodeVec, distMatrix, &problem);
+			// h.buildBundles(&inst, nodeVec, distMatrix, &problem);
+			// h.orgBundles(&inst, nodeVec, distMatrix, bStat, &problem);
+			h.hbundleMethod(&inst, nodeVec, distMatrix, &problem);
 		}
 		// else if (problem.model == "twostage"){
 		// 	twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			

@@ -273,7 +273,7 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
             for (int a = 0; a < bStat->vArcPlus[currSP][k].size(); a++){
                 int u = bStat->vArcPlus[currSP][k][a].first;
                 int v = bStat->vArcPlus[currSP][k][a].second;
-                double trip = (mdist[bStat->firstElement[u]][bStat->firstElement[v]])/inst->vmed;
+                double trip = (mdist[bStat->lastElement[u]][bStat->firstElement[v]])/inst->vmed;
 
                 exp2 += (bStat->bundleStart[v] - trip)*x[u][v][k];
             }
