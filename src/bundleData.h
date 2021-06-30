@@ -33,14 +33,14 @@ struct bundleStat{
 	vector<double> bundleTimes;
 	vector<double> bundleProfVec;
 	vector<double> bundleServVec;
-	vector< vector<bool> > bArcs;
-	vector< pair<int,int> > bArcVec;
+	vector< vector<bool> > bArcs; //values of all arcs
+	vector< pair<int,int> > bArcVec; //the indexes of all arcs
 
-	vector< vector< pair<int,int> > > bArcPlus;
-	vector< vector< pair<int,int> > > bArcMinus;
-	vector< vector< vector< pair<int,int> > > > vArcPlus;
+	vector< vector< pair<int,int> > > bArcPlus; //vector of size equal to requests, containing the arcs that start with i.
+	vector< vector< pair<int,int> > > bArcMinus;//vector of size equal to requests, containing the arcs that end with i.
+	vector< vector< vector< pair<int,int> > > > vArcPlus; //arcs leaving i that can be travelled by k. (Vector of pairs contais the  arcs; then vec of size K, then vec of size of bundle)
 	vector< vector< vector< pair<int,int> > > > vArcMinus;
-	vector< vector< vector<int> > > arcV;
+	vector< vector< vector<int> > > arcV; //set of vehicles that can travel arc a
 	vector< vector<int> > parcelBundleVec;
 	vector< vector<int> > passBundleVec;
 	vector<double> bundleStart;
@@ -49,6 +49,8 @@ struct bundleStat{
     vector <int> firstElement;
     vector<int> clofbundle;
 	vector<int> vecofPass;
+	vector< vector<int> > vecofPU;
+	vector< vector<int> > vecofDL;
 };
 
 struct clSt{

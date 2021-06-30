@@ -95,7 +95,7 @@ void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
         }
     } 
 }
-void initVecs (instanceStat *inst, vector< vector<bParcelStruct> > &clsParcel, bundleStat *bStat){
+void initVecs (instanceStat *inst, vector< vector<bParcelStruct> > &clsParcel, bundleStat *bStat, probStat * problem){
 
     vector<bParcelStruct> auxbpsvec;
     vector<int> parcelBundle;
@@ -105,14 +105,16 @@ void initVecs (instanceStat *inst, vector< vector<bParcelStruct> > &clsParcel, b
         clsParcel.push_back(auxbpsvec);
     }
 
-    // if (problem->scen == "1A"){
+    if (problem->scen == "1A"){
         for (int i = 0; i < inst->m; i++){
             bStat->parcelBundleVec.push_back(parcelBundle);
         }
-    // }
-    // if (problem->scen == "1A"){
-    
-    // }
+    }
+    else {
+        for (int i = 0; i < 2*inst->m; i++){
+            bStat->parcelBundleVec.push_back(parcelBundle);
+        }    
+    }
 
 }
 void initArcs (instanceStat *inst, bundleStat *bStat, clSt *cStat){
@@ -196,7 +198,6 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
 
     for(int i = 0; i < bStat->bundleVec.size(); i++){
         if (i < fDummy){
-
             if(i < setN){//i is not depot or dummy
                 if (i > currentCluster*(ref + 1) + ref){
                     currentCluster++;
@@ -215,8 +216,7 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
                 }
 
                 for (int j = fDummy; j < bStat->bundleVec.size(); j++){//j is dummy node
-                    bStat->bArcs[i][j] = true;
-                                      
+                    bStat->bArcs[i][j] = true;                                     
                 }
             }
             else if (i >= setN){//i is a starting point bundle
@@ -465,9 +465,9 @@ void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat
                 if (bStat->bundleVec[i][j] < inst->n){
                     continue;
                 }
-                else if (bStat->bundleVec[i][j] > inst->n + inst->m - 1){
-                    continue;
-                }
+                // else if (bStat->bundleVec[i][j] > inst->n + inst->m - 1){
+                //     continue;
+                // }
                 else{
                     parcelReq = bStat->bundleVec[i][j];
                     bStat->parcelBundleVec[parcelReq - inst->n].push_back(i);
@@ -836,7 +836,7 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     int p = -1; //number of parcel requests to be associated with a passenger request(1A) or the number of best matchings
     int Q = 5;
 
-    initVecs(inst, clsParcel, &bStat);
+    initVecs(inst, clsParcel, &bStat, problem);
 
     makeSmallerProblem(inst, nodeVec, mdist, p, clsParcel, problem, Q);
 

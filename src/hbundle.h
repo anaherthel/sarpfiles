@@ -26,6 +26,7 @@
 #include "functions.h"
 #include "bundleData.h"
 #include "modelbundle.h"
+#include "mipbundle.h"
 
 class hbundle {
 protected:
@@ -38,6 +39,8 @@ protected:
     int pairings;
 
 public:
+    defpairing(instanceStat *inst);
+    
     void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
     void buildDistVec(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
     void buildBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem, bundleStat* bStat);
@@ -45,7 +48,12 @@ public:
     void bTimeTest(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, bundleStat* bStat, bool &valid);
 
     void orgBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, bundleStat* bStat, clSt* cStat, probStat* problem);
-    void hbundleMethod(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist,  probStat *problem);
+    void setBundleArcs(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, bundleStat* bStat, clSt* cStat, probStat *problem);
+
+    void setClusterArcs(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, bundleStat* bStat, clSt* cStat, probStat *problem);
+
+    void hbundleMethod(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist,  probStat *problem, solStats *sStat);
+    ~hbundle();
 };
 
 // ostream & operator<<(ostream &os, const FLPInstance &instance);

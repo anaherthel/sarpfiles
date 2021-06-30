@@ -16,13 +16,15 @@
 #include "modeltwostage.h"
 #include "mipnode.h"
 #include "hbundle.h"
+#include "sarpILS.h"
+#include "sarpConstruction.h"
 
 using namespace std;
 
 int main (int argc, char *argv[]) {
 	double **distMatrix;
 	
-	int trialK = 2;
+	int trialK = 1;
 	double trialMulti = 1.5;
 
 	nodeStat node;
@@ -31,23 +33,22 @@ int main (int argc, char *argv[]) {
 	solStats sStat;
 	vector<nodeStat> nodeVec;
 	hbundle h;
+	sarpConstruction sCon;
+	sarpILS sILS;
 	sStat.feasible = false;
-	
-
 	
 	// while (!sStat.feasible){
 		nodeVec.clear();
 
 		readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
 
-
-		cout << "Dist Matrix: " << endl;
-		for (int i = 0; i < inst.V + inst.dummy; i++){
-		    for (int j = 0; j < inst.V + inst.dummy; j++){
-		        cout << setw(10) << distMatrix[i][j] << " ";
-		    }
-		    cout << endl;
-		}
+		// cout << "Dist Matrix: " << endl;
+		// for (int i = 0; i < inst.V + inst.dummy; i++){
+		//     for (int j = 0; j < inst.V + inst.dummy; j++){
+		//         cout << setw(10) << distMatrix[i][j] << " ";
+		//     }
+		//     cout << endl;
+		// }
 
 		if (problem.model == "node"){
 			nodeMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
@@ -62,7 +63,16 @@ int main (int argc, char *argv[]) {
 			// h.buildDistVec(&inst, nodeVec, distMatrix, &problem);
 			// h.buildBundles(&inst, nodeVec, distMatrix, &problem);
 			// h.orgBundles(&inst, nodeVec, distMatrix, bStat, &problem);
-			h.hbundleMethod(&inst, nodeVec, distMatrix, &problem);
+			// h.hbundleMethod(&inst, nodeVec, distMatrix, &problem, &sStat);
+		}
+
+		else if (problem.model == "sp"){
+			// h.orderRequests(&inst, nodeVec, distMatrix, &problem);
+			// h.buildDistVec(&inst, nodeVec, distMatrix, &problem);
+			// h.buildBundles(&inst, nodeVec, distMatrix, &problem);
+			// h.orgBundles(&inst, nodeVec, distMatrix, bStat, &problem);
+			// sCon.construct
+			// sILS.function();
 		}
 		// else if (problem.model == "twostage"){
 		// 	twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			
