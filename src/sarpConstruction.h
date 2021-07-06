@@ -25,6 +25,8 @@
 #include "readdata.h"
 #include "functions.h"
 #include "hbundle.h"
+#include "sarpRoute.h"
+#include "sarpSolution.h"
 
 class sarpConstruction {
 protected:
@@ -39,15 +41,21 @@ protected:
     vector<int> CLpass;
     vector<int> CLparc;
     
-    vector<Route> routes_;
+    vector<nodeStat> passNodes;
 
 
 public:
-    sarpSolution(const instanceStat *inst);
 
+    sarpSolution solution;
+
+    sarpConstruction(instanceStat *inst, vector<nodeStat> &nodeVec);
+    ~sarpConstruction(){};
+    bool compare(int a, int b);
+    int getRandRequestFromCL();
+    
     void ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
 
-    int getRandRequestFromCL();
+ 
 
     // void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
     // void buildDistVec(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
@@ -67,7 +75,6 @@ public:
     // list<int>::const_iterator unass_begin() const{return unassigned_.begin();}
     // list<int>::iterator unass_end() { return unassigned_.end(); }
     // list<int>::const_iterator unass_end() const { return unassigned_.end(); }
-    ~sarpConstruction();
 };
 
 // ostream & operator<<(ostream &os, const FLPInstance &instance);

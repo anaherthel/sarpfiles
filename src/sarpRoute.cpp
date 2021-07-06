@@ -1,16 +1,128 @@
-#include "Route.h"
+#include "sarpRoute.h"
 
 #include <iterator>
 #include <climits>
 
-Route::Route(){
-    nodes_.push_back(0);
-    nodes_.push_back(0);
+sarpRoute::sarpRoute(instanceStat *inst){
+    nodes_.push_back(inst->n+2*inst->m);
+    nodes_.push_back(inst->n+2*inst->m+1);
     cost_ = 0;
     length_ = 0;
-    load_ = 0;
 }
 
+void sarpRoute::insertRequest(int id, int pos) {
+    this->nodes_.insert(this->nodes_.begin() + pos, id);
+}
+
+void sarpRoute::calcCost(double **Mdist) {
+    this->cost_ = 0;
+    int u, v;
+
+    for (int i = 0; i < getNodesSize() - 1; i++) {
+        u = nodes_[i];
+        v = nodes_[i + 1];
+        this->cost_ += Mdist[u][v];
+    }
+    
+}
+
+bool sarpRoute::fInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int request){
+
+    bool feasible;
+    double totalTime;
+
+    prevReq.push_back(nodes_[0]);
+    postReq.push_back(nodes_[nodes_.size()-1]);
+    firstPass = request;
+    lastPass = request;
+    firstPassPos = 1;
+    lastPassPos = 1;
+
+    starttime = nodeVec[request].e - ((Mdist[nodes_[0]][request])/inst->vmed);
+    endtime = nodeVec[request].e + nodeVec[request].delta;
+
+    totalTime = endtime - starttime;
+
+    cout << "Starting route: " << endl;
+    cout << "Start time: " << starttime << endl;
+    cout << "End time: " << endtime << endl;
+    cout << "Total time: " << totalTime << endl;
+    getchar();
+    
+    if (endtime < inst->T && totalTime < inst->maxTime && starttime > 0){
+        feasible = 1;
+    }
+
+    return feasible;
+
+    // for (int i = 0; i < nodes_.size(); i++){
+    //     if(nodes_[i] < inst->n){
+    //         firstPass = nodes_[i];
+    //         firstPassPos = i;
+    //         break;
+    //     }
+    //     else{
+    //         prevReq.push_back(nodes_[i]);
+    //     }
+    // }
+
+    // for (int i = nodes_.size() - 1; i >= 0; i--){
+    //     if(nodes_[i] < inst->n){
+    //         lastPass = nodes_[i];
+    //         lastPassPos = i;
+    //         break;
+    //     }
+    //     else{
+    //         postReq.insert(postReq.begin(), nodes_[i]);
+    //     }
+    // }
+
+    // cout << "First passenger: " << firstPass << endl;
+    // cout << "Last passenger: " << lastPass << endl;
+    // getchar();
+}
+
+bool sarpRoute::routeTimes(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request){
+    double prevTime, postTime, totalTime;
+
+    bool feasible = 0;
+
+    if (nodes_.size() < 3){
+
+    }
+    //calculating starting times
+    //there will always be the initial depot before any passenger
+
+    for (int i = 0; i < prevReq.size() - 1; i++){
+        prevTime += ((Mdist[prevReq[i]][prevReq[i + 1]])/inst->vmed) + nodeVec[prevReq[i]].delta;    
+    }
+    //if there are requests before the passenger, we add the time from the last prev to the
+    //passenger, as well as the delta for the last of the prev requests.
+
+    prevTime += ((Mdist[prevReq.back()][firstPass])/inst->vmed) + nodeVec[prevReq.back()].delta;
+    starttime = nodeVec[firstPass].e - prevTime;
+
+    if (postReq.size() > 0){
+        for (int i = 0; i < postReq.size() - 1; i++){
+            postTime += ((Mdist[postReq[i]][postReq[i + 1]])/inst->vmed) + nodeVec[postReq[i]].delta;
+        }
+    //if there are requests after the passenger, we add the time from the passenger to the first
+    //post request, as well as the delta for the last of the post requests.
+
+        postTime += ((Mdist[lastPass][postReq[0]])/inst->vmed) + nodeVec[postReq.back()].delta;
+        endtime = nodeVec[lastPass].e + nodeVec[lastPass].delta + postTime;
+    }
+    else{
+        endtime = nodeVec[lastPass].e + nodeVec[lastPass].delta;
+    }
+
+    totalTime = endtime - starttime;
+    if (endtime < inst->T && totalTime < inst->maxTime && starttime > 0){
+        feasible = 1;
+    }
+
+    return feasible;
+}
 // ostream & operator<<(ostream &os, const Route &route){
 //     os << " Route visiting nodes ";
 //     copy(route.begin(), route.end(), ostream_iterator<int>(cout, " "));

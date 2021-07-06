@@ -1381,12 +1381,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     }
 
     // Print starting and end times: (debugging)
-    // cout << "\nEarlier times: " << endl;
+    cout << "\nEarlier times: " << endl;
 
-    // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].e << endl;
-    // }
+    for (int i = 0; i < inst->n; i++){
+        cout << i << ": " << nodeVec[i].e << endl;
+    }
 
+    cout << "\nDeltas: " << endl;
+
+    for (int i = 0; i < inst->n; i++){
+        cout << i << ": " << nodeVec[i].delta << endl;
+    }
     // cout << "\nLater times: " << endl;
 
     // for (int i = 0; i < nodeVec.size(); i++){

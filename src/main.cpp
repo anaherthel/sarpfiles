@@ -32,23 +32,27 @@ int main (int argc, char *argv[]) {
 	probStat problem;
 	solStats sStat;
 	vector<nodeStat> nodeVec;
-	hbundle h;
-	sarpConstruction sCon;
+
 	sarpILS sILS;
 	sStat.feasible = false;
+
+
 	
 	// while (!sStat.feasible){
 		nodeVec.clear();
 
 		readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
+		
+		hbundle h(&inst);
 
-		// cout << "Dist Matrix: " << endl;
-		// for (int i = 0; i < inst.V + inst.dummy; i++){
-		//     for (int j = 0; j < inst.V + inst.dummy; j++){
-		//         cout << setw(10) << distMatrix[i][j] << " ";
-		//     }
-		//     cout << endl;
-		// }
+		sarpConstruction sCon(&inst, nodeVec);
+		cout << "Dist Matrix: " << endl;
+		for (int i = 0; i < inst.V + inst.dummy; i++){
+		    for (int j = 0; j < inst.V + inst.dummy; j++){
+		        cout << setw(10) << distMatrix[i][j] << " ";
+		    }
+		    cout << endl;
+		}
 
 		if (problem.model == "node"){
 			nodeMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
@@ -71,7 +75,7 @@ int main (int argc, char *argv[]) {
 			// h.buildDistVec(&inst, nodeVec, distMatrix, &problem);
 			// h.buildBundles(&inst, nodeVec, distMatrix, &problem);
 			// h.orgBundles(&inst, nodeVec, distMatrix, bStat, &problem);
-			// sCon.construct
+			sCon.ConstrProc(&inst, nodeVec, distMatrix, &problem);
 			// sILS.function();
 		}
 		// else if (problem.model == "twostage"){

@@ -39,7 +39,9 @@ protected:
     int pairings;
 
 public:
-    defpairing(instanceStat *inst);
+    hbundle(instanceStat *inst);
+
+    int size() const { return twSort.size(); };
     
     void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
     void buildDistVec(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);

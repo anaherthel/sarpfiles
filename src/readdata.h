@@ -56,17 +56,10 @@ struct instanceStat{
 	double minpas = 3.24; //initial fare for passengers
 	double paskm = 1.03; //fare per km for passengers
 
-	// double minpas = 5; //initial fare for passengers
-	// double paskm = 1.03; //fare per km for passengers
-
    	double minpar = 2.74; //initial fare for parcels
-   	// double minpar = 4;
 	double parkm = 0.83; //fare per km for parcels
 
 	double costkm = 0.46;
-	// double vmed;
-	// double vmed = 19.3;
-	// double vmed = 19.3;
 	double vmed = 41;
 	bool preInst;
 	string InstName;
@@ -90,7 +83,7 @@ struct probStat{
 	string model;
 
 	bool p1, p2, dParcel;//1 is multi, 0 is single; p1 refers to customer, p2 to parcel, dParcel 1 allows for direct parcel delivery
-
+	int seed;
 };
 
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, int trialK, double trialMulti);

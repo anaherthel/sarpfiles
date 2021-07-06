@@ -1234,6 +1234,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // cout << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
 
+    cout << "\nEarlier times: " << endl;
+
+    for (int i = 0; i < inst->n; i++){
+        cout << i << ": " << nodeVec[i].e << endl;
+    }
+
+    cout << "\nDeltas: " << endl;
+
+    for (int i = 0; i < inst->n; i++){
+        cout << i << ": " << nodeVec[i].delta << endl;
+    }
+
     // cout << "Dist Matrix: " << endl;
     // for (int i = 0; i < V + inst->dummy; i++){
     //     for (int j = 0; j < V + inst->dummy; j++){

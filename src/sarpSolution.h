@@ -1,67 +1,47 @@
-#ifndef SOLUTION_H
-#define SOLUTION_H
+#ifndef SARPSOLUTION_H
+#define SARPSOLUTION_H
 
 #include <algorithm>
 
-#include "../operations/checkers/ArcsChecker.h"
-#include "../operations/checkers/LoadChecker.h"
-#include "../operations/checkers/PairChecker.h"
-#include "../operations/checkers/RideTimeChecker.h"
-#include "../operations/checkers/TimeWindowChecker.h"
-#include "Data.h"
-#include "Route.h"
-#include "Utils.h"
+#include "sarpRoute.h"
 using namespace std;
 
-class Solution {
+class sarpSolution {
    protected:
-    vector<Route *> routes;
+
+    vector<sarpRoute> routes;
     double cost;
 
-    vector<vector<vector<bool>>> pairNeighbStatus;
+    // vector<vector<vector<bool>>> pairNeighbStatus;
 
-    void createRoutesVector();
-    void updateCost();
-    void updateRoutes();
+    // void createRoutesVector();
+    // void updateCost();
+    // void updateRoutes();
 
    public:
-    Data *data;
-    Solution() { this->cost = INT32_MAX; }
-    Solution(Data *data);
-    Solution(Data *data, vector<Route *> routesVec);
-    Solution(const Solution &other);
-    ~Solution();
+    
+    sarpSolution() { this->cost = INT32_MAX; }
+    // Solution(Data *data);
+    // Solution(Data *data, vector<Route *> routesVec);
+    // Solution(const Solution &other);
+    ~sarpSolution(){};
 
     inline double getCost() { return cost; }
-    vector<Route *> getRoutes() { return routes; }
-    Route *getRoute(int idx) { return routes[idx]; }
+    vector<sarpRoute> getRoutes() { return routes; }
+    sarpRoute getRoute(int idx) { return routes[idx]; }
+
     inline int getRoutesSize() const { return this->routes.size(); }
 
-    inline bool getInterNStatus(NEIGHBORHOOD nighborhood,
-                                int route_1_idx,
-                                int route_2_idx) {
-        return pairNeighbStatus[nighborhood][route_1_idx][route_2_idx];
-    }
-    void setPairNeighbStatus(NEIGHBORHOOD nighborhood,
-                             int route_1_idx,
-                             int route_2_idx,
-                             bool value) {
-        pairNeighbStatus[nighborhood][route_1_idx][route_2_idx] = value;
-    }
-    void setPairNeighbStatusAllTrue(int route_1_idx, int route_2_idx);
-    void setPairNeighbStatusAllTrue(int route_idx);
+    void addRoute(sarpRoute* route);
 
-    void update();
-    void updateRoute(int idx);
-    void repairSol();
-    void sortRoutes();
-    void addRoute(Route *route);
-    Route *popRoute();
-    void removeRoute();
-    void check();
-    void clear();
-    void print();
-    bool operator<(const Solution &other) { return (cost < other.cost); }
+    // access routes
+    vector<sarpRoute>::iterator begin() { return routes.begin(); }
+    vector<sarpRoute>::const_iterator begin() const { return routes.begin(); }
+    vector<sarpRoute>::iterator end() { return routes.end(); }
+    vector<sarpRoute>::const_iterator end() const { return routes.end(); }
+
+    // sarpRoute *getRoute(int idx) { return routes[idx]; }
+    // inline int getRoutesSize() const { return this->routes.size(); }s
 };
 
 #endif

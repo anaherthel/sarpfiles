@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <stdio.h>
 
-hbundle::defpairing(instanceStat *inst){
+hbundle::hbundle(instanceStat *inst){
     if ((inst->n + 2*inst->m) >= 30){
         pairings = floor((inst->n + inst->m)*0.1);
     }
@@ -476,7 +476,7 @@ void hbundle::bTimeTest(instanceStat *inst, vector<nodeStat> &nodeVec, double **
     }
     else{
         startTime = nodeVec[bStat->bundle[0]].e;
-        endTime = nodeVec[bStat->bundle.back()].l;
+        endTime = nodeVec[bStat->bundle.back()].l;//this is a problem because a route must have 8 hours of length at tops. Choosing endtime of 24h makes the bundle infeasible.
         deltaTime = prevTime + postTime;
     }
 
