@@ -27,8 +27,10 @@ protected:
     //route id
     int id;
 
+    vector <pair <nodeStat, int> > passandpos; //passengers and their positions in the route
     vector <int> prevReq;
     vector <int> postReq;
+    vector <pair <int, int> > loadofroute; //first:actual load; second:passengers visited while carrying parcels.
 public:
     // default constructor: route with only starting and ending depot visits
     sarpRoute(instanceStat *inst);
@@ -41,23 +43,33 @@ public:
     int lPass() const { return lastPass; };
 
     inline int getNodesSize() { return nodes_.size(); };
+    inline int getLoadSize() { return loadofroute.size(); };
 
     int firstpos() const { return nodes_[1]; };
-    int lastpos() const { return nodes_[nodes_.size()-1]; };
+    int lastpos() const { return nodes_[nodes_.size()-2]; };
 
     inline int getId() { return id; };
 
     vector<int>::iterator begin() { return nodes_.begin(); };
     vector<int>::iterator end() { return nodes_.end(); };
-    void insertRequest(int id, int position);
-    bool routeTimes(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request);
+    bool testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request);
+    bool testScen(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request, probStat* problem);
 
-    void calcCost(double **Mdist);
+    void calcCost(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
 
     //only when the first insertion is a passenger request.
     bool fInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int request);
     // int load() const { return load_; };
-    
+
+    //update starting and end times after insertion or erasing.
+    void updateTimes(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
+
+    //updates passenger list with their positions.
+    void updatePass(instanceStat *inst, vector<nodeStat> &nodeVec);
+
+    void updateLoad(instanceStat *inst, vector<nodeStat> &nodeVec);
+    //determine available positions to add new passenger request 
+    void availablePos(instanceStat *inst, vector<nodeStat> &nodeVec, int request, probStat* problem, vector<int> &positions);
 
     // // evaluate the cost of cheapest insertion of node in this route
     // // return a <position, cost> pair
@@ -65,10 +77,11 @@ public:
     // pair<int, int> cheapestInsertion(const CVRPInstance& inst, int node) const;
 
     // // pre-condition: the insertion is feasible
-    // void insert(const CVRPInstance& inst, int node, int position);
+    void insert(instanceStat *inst, double **Mdist, int node, int position);
 
-    // void erase(const CVRPInstance& inst, int position);
+    void erase(instanceStat *inst, double **Mdist, int position);
 
+    void printLoad();
     // // improve route with 2-opt
     // // returns the number of improvements performed
     // int two_opt(const CVRPInstance& inst);
