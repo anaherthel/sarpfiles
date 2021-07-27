@@ -74,8 +74,8 @@ public:
     // // evaluate the cost of cheapest insertion of node in this route
     // // return a <position, cost> pair
     // // If no insertion is feasible, the cost is INT_MAX
-    // pair<int, int> cheapestInsertion(const CVRPInstance& inst, int node) const;
-
+    pair<int, int> cheapestInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int node, vector<int> &positions);
+    
     // // pre-condition: the insertion is feasible
     void insert(instanceStat *inst, double **Mdist, int node, int position);
 
