@@ -1,10 +1,17 @@
 #include "sarpSolution.h"
 
 
-void sarpSolution::addRoute(sarpRoute* route){
-    routes.push_back(*route);
+void sarpSolution::addRoute(sarpRoute *route){
+    this->routes.push_back(route);
+    this->updateCost();
 }
 
+void sarpSolution::updateCost() {
+    this->cost = 0;
+    for (int i = 0; i < routes.size(); ++i) {
+        this->cost += routes[i]->cost();
+    }
+}
 // Solution::Solution(Data *data) : data(data), cost(__DBL_MAX__) {
 //     this->createRoutesVector();
 //     pairNeighbStatus = vector<vector<vector<bool>>>(

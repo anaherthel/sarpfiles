@@ -9,7 +9,7 @@ using namespace std;
 class sarpSolution {
    protected:
 
-    vector<sarpRoute> routes;
+    vector<sarpRoute *> routes;
     double cost;
 
     // vector<vector<vector<bool>>> pairNeighbStatus;
@@ -27,19 +27,20 @@ class sarpSolution {
     ~sarpSolution(){};
 
     inline double getCost() { return cost; }
-    vector<sarpRoute> getRoutes() { return routes; }
-    sarpRoute getRoute(int idx) { return routes[idx]; }
+    vector<sarpRoute *> getRoutes() { return routes; }
+    sarpRoute *getRoute(int idx) { return routes[idx]; }
 
     inline int getRoutesSize() const { return this->routes.size(); }
 
     void addRoute(sarpRoute* route);
 
     // access routes
-    vector<sarpRoute>::iterator begin() { return routes.begin(); }
-    vector<sarpRoute>::const_iterator begin() const { return routes.begin(); }
-    vector<sarpRoute>::iterator end() { return routes.end(); }
-    vector<sarpRoute>::const_iterator end() const { return routes.end(); }
-
+    vector<sarpRoute *>::iterator begin() { return routes.begin(); }
+    vector<sarpRoute *>::const_iterator begin() const { return routes.begin(); }
+    vector<sarpRoute *>::iterator end() { return routes.end(); }
+    vector<sarpRoute *>::const_iterator end() const { return routes.end(); }
+    
+    void updateCost();
     // sarpRoute *getRoute(int idx) { return routes[idx]; }
     // inline int getRoutesSize() const { return this->routes.size(); }s
 };

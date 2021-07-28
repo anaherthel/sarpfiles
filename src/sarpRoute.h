@@ -8,8 +8,7 @@
 
 class sarpRoute {
 protected:
-    // the route
-    vector<int> nodes_;
+
     // the cost of this route
     double cost_;
     // route length
@@ -32,8 +31,11 @@ protected:
     vector <int> postReq;
     vector <pair <int, int> > loadofroute; //first:actual load; second:passengers visited while carrying parcels.
 public:
+    // the route
+    vector<int> nodes_;
     // default constructor: route with only starting and ending depot visits
     sarpRoute(instanceStat *inst);
+    ~sarpRoute();
         // access route elements
     double cost() const { return cost_; };
     double length() const { return length_; };

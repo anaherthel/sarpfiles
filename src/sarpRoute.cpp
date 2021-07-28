@@ -31,26 +31,31 @@ bool sarpRoute::fInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double
 
     bool feasible;
     double totalTime;
-
-    firstPass = request;
-    lastPass = request;
-    firstPassPos = 1;
-    lastPassPos = 1;
-
-    starttime = nodeVec[request].e - ((Mdist[nodes_[0]][request])/inst->vmed);
-    endtime = nodeVec[request].e + nodeVec[request].delta;
-
-    totalTime = endtime - starttime;
-
-    cout << "Starting route: " << endl;
-    cout << "Start time: " << starttime << endl;
-    cout << "End time: " << endtime << endl;
-    cout << "Total time: " << totalTime << endl;
+    feasible = 1;
+    this->firstPass = request;
+    cout << "Here1" << endl;
     getchar();
+    // this->lastPass = request;
+    // this->firstPassPos = 1;
+    // this->lastPassPos = 1;
+
+    // cout << "Here2" << endl;
+    // getchar();
+    // this->starttime = nodeVec[request].e - ((Mdist[this->nodes_[0]][request])/inst->vmed);
+    // this->endtime = nodeVec[request].e + nodeVec[request].delta;
+
+
+    // totalTime = this->endtime - this->starttime;
+
+    // cout << "Starting route: " << endl;
+    // cout << "Start time: " << this->starttime << endl;
+    // cout << "End time: " << this->endtime << endl;
+    // cout << "Total time: " << totalTime << endl;
+    // getchar();
     
-    if (endtime < inst->T && totalTime < inst->maxTime && starttime > 0){
-        feasible = 1;
-    }
+    // if (endtime < inst->T && totalTime < inst->maxTime && starttime > 0){
+    //     feasible = 1;
+    // }
 
     return feasible;
 }
@@ -145,15 +150,15 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
         }
         else{//parcel
             startingLoop = lastPassPos;
-            postTime = nodeVec[lastPass].e
+            postTime = nodeVec[lastPass].e;
         }
         for(int i = startingLoop; i < nodes_.size(); i++){//both
             postTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) + nodeVec[nodes_[i]].delta;
         }   
         if (request >= inst->n){//request is parcel
-            postTime += ((Mdist[nodes_[position-1]][request])/inst->vmed) 
-                      + ((Mdist[[request]][nodes_[position]])/inst->vmed) 
-                      - ((Mdist[nodes_[position-1]][nodes_[position]])/inst->vmed);
+            postTime += ((Mdist[nodes_[position-1]][request])/inst->vmed)
+                     + ((Mdist[request][nodes_[position]])/inst->vmed)
+                     - ((Mdist[nodes_[position-1]][nodes_[position]])/inst->vmed);
                     
         }        
         if (postTime <= inst->T){
@@ -287,6 +292,9 @@ void sarpRoute::updatePass(instanceStat *inst, vector<nodeStat> &nodeVec){
     }
     lastPass = passandpos.back().first.index;
     lastPassPos = passandpos.back().second;
+
+    cout << "First passenger: " << firstPass << " - position: " << firstPassPos << endl;
+    cout << "Last passenger: " << lastPass << " - position: " << lastPassPos << endl;
 }
 
 void sarpRoute::updateLoad(instanceStat *inst, vector<nodeStat> &nodeVec){
@@ -470,22 +478,22 @@ pair<int, int> sarpRoute::cheapestInsertion(instanceStat *inst, vector<nodeStat>
 }
 
 void sarpRoute::insert(instanceStat *inst, double **Mdist, int node, int position){
-    int delta = Mdist[nodes_[position-1]][node]
-        + Mdist[node][nodes_[position]]
-        - Mdist[nodes_[position-1]][nodes_[position]]; 
-    cost_ += delta;
+    int delta = Mdist[this->nodes_[position-1]][node]
+        + Mdist[node][this->nodes_[position]]
+        - Mdist[this->nodes_[position-1]][this->nodes_[position]]; 
+    this->cost_ += delta;
     // length_ += delta + inst.s();
-    nodes_.insert(nodes_.begin() + position, node);
+    this->nodes_.insert(this->nodes_.begin() + position, node);
 }
 
 void sarpRoute::erase(instanceStat *inst, double **Mdist, int position) {
-    int node = nodes_[position];
-    int delta = Mdist[nodes_[position - 1]][nodes_[position + 1]]
-        - Mdist[nodes_[position - 1]][nodes_[position]]
-        - Mdist[nodes_[position]][nodes_[position + 1]];
+    int node = this->nodes_[position];
+    int delta = Mdist[this->nodes_[position - 1]][this->nodes_[position + 1]]
+        - Mdist[this->nodes_[position - 1]][this->nodes_[position]]
+        - Mdist[this->nodes_[position]][this->nodes_[position + 1]];
     cost_ -= delta;
     // length_ -= delta + inst.s();
-    nodes_.erase(nodes_.begin() + position);
+   this->nodes_.erase(this->nodes_.begin() + position);
 }
 
 void sarpRoute::printLoad(){

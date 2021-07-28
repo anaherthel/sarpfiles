@@ -111,7 +111,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> service;
         in >> n;
         in >> m;
-        K = 3;
+        // K = 3;
+
+        if (problem->model == "sp"){
+            K = n - 1;
+        }
         // K = 11;
 
         if (trialK >= K){
@@ -361,12 +365,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         inst->preInst = 1;
         // K = 11;
-
-        if (trialK < K){
-            K = trialK;
-        }
-        else{
-            trialK = K;
+        if (problem->model != "sp"){
+            if (trialK < K){
+                K = trialK;
+            }
+            else{
+                trialK = K;
+            }
         }
 
         cout << "\nn: " << n;

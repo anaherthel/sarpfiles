@@ -35,8 +35,6 @@ int main (int argc, char *argv[]) {
 
 	sarpILS sILS;
 	sStat.feasible = false;
-
-
 	
 	// while (!sStat.feasible){
 		nodeVec.clear();
