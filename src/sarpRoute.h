@@ -33,10 +33,10 @@ protected:
 public:
     // the route
     vector<int> nodes_;
+
     // default constructor: route with only starting and ending depot visits
-    sarpRoute(instanceStat *inst);
-    ~sarpRoute();
-        // access route elements
+    sarpRoute(instanceStat *inst, int vehicle);
+    // access route elements
     double cost() const { return cost_; };
     double length() const { return length_; };
     double startTime() const { return starttime; };
@@ -76,7 +76,7 @@ public:
     // // evaluate the cost of cheapest insertion of node in this route
     // // return a <position, cost> pair
     // // If no insertion is feasible, the cost is INT_MAX
-    pair<int, int> cheapestInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int node, vector<int> &positions);
+    pair<int, double> cheapestInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int node, vector<int> &positions);
     
     // // pre-condition: the insertion is feasible
     void insert(instanceStat *inst, double **Mdist, int node, int position);

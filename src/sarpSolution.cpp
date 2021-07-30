@@ -2,15 +2,41 @@
 
 
 void sarpSolution::addRoute(sarpRoute *route){
-    this->routes.push_back(route);
+    this->routes.push_back(*route);
     this->updateCost();
+    cout << "vehicles: " << usedK << endl;
+    getchar();
 }
 
 void sarpSolution::updateCost() {
     this->cost = 0;
     for (int i = 0; i < routes.size(); ++i) {
-        this->cost += routes[i]->cost();
+        this->cost += routes[i].cost();
     }
+}
+
+void sarpSolution::updateRoutes(sarpRoute *route, int idr) {
+    this->routes[idr] = *route;
+}
+
+void sarpSolution::updateVehicles(){
+    this->usedK++;
+}
+
+void sarpSolution::printSol(instanceStat *inst) {
+
+    sarpRoute sroute(inst, usedK);
+
+    cout << "SARP Solution: " << endl;
+    getchar();
+    for (int i = 0; i < routes.size(); i++){
+        sroute = routes[i];
+        for(auto j: sroute){
+            cout << j << " - ";
+        }
+        cout << endl;
+    }
+    cout << endl;
 }
 // Solution::Solution(Data *data) : data(data), cost(__DBL_MAX__) {
 //     this->createRoutesVector();

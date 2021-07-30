@@ -43,7 +43,6 @@ protected:
     
     vector<nodeStat> passNodes;
 
-
 public:
 
     sarpSolution solution;

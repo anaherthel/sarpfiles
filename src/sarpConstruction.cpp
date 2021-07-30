@@ -30,28 +30,32 @@ int sarpConstruction::getRandRequestFromCL() {
 
 void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem){
 
-    //Order requests based on TW(?)
+    //Order requests based on TW
     //Define number of random insertions
     //Take random passenger, put on route. If not feasible, create another route
     //Remainder of passengers inserted in greedy manner.
-    int insertions = floor(0.3*nodeVec.size());
+    int insertions = floor(0.3*(inst->n));
+    cout << "insertions: " << insertions << endl;
+    getchar();
     int candidate;
-    int counter = 0;
+    int counter = 1;
     bool feastime = 0;
-    bool feasload = 0;
     int sol_size = 0;
     double best_cost;
-    vector<int> inspositions;
-    int ftestpos, ltestpos;
+    int best_pos;
+    int best_route;
+    vector<int> inspositions; 
     int position;
+    int vehicle;
+    
+    vehicle = solution.getvehicle();
     
     vector<int>::iterator iter;
     
     bool inserted;
     
-    // sarpRoute sroute(inst);
-    
-    sarpRoute *sroute;
+    sarpRoute sroute(inst, vehicle);
+    // sarpRoute sroute;
     
     problem->seed = 12;
     srand(problem->seed);
@@ -83,137 +87,227 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     while(!feastime){
         candidate = getRandRequestFromCL();
 
-        feastime = sroute->fInsertion(inst, nodeVec, Mdist, candidate);
-        
-        cout << "Here" << endl;
-        cout << "feasible? " << feastime << endl;
-        getchar();
+        feastime = sroute.fInsertion(inst, nodeVec, Mdist, candidate);
+
     }
 
-    // sroute->calcCost(inst, nodeVec, Mdist);
-    // sroute->insert(inst, Mdist, candidate, 1);
-    // removeFromCL(candidate);
-    // sroute->updatePass(inst, nodeVec);
-    // sroute->updateLoad(inst, nodeVec);
+
+    sroute.insert(inst, Mdist, candidate, 1);
+    sroute.calcCost(inst, nodeVec, Mdist);
+    removeFromCL(candidate);
+    sroute.updatePass(inst, nodeVec);
+    sroute.updateLoad(inst, nodeVec);
+
+    sroute.printLoad();
+    getchar();
+
+    solution.addRoute(&sroute);
+    solution.updateVehicles();
 
 
-    // cout << "Solution with insertion: " << endl;
-    // for (iter = sroute->begin(); iter != sroute->end(); iter++){
-    //     cout << *iter << " - ";
-    // }
-    // cout << endl;
-    // getchar();
-
-    // sroute->printLoad();
-    // getchar();
-    // solution.addRoute(sroute);
-
-    // solution.getRoute(0)->insert(inst, Mdist, 5, 1);
-
-
-    // sroute = solution.getRoute(0);
-
-    // cout << "TESTING: Solution with insertion: " << endl;
-    // for (iter = sroute->begin(); iter != sroute->end(); iter++){
-    //     cout << *iter << " - ";
-    // }
-    cout << endl << endl;    
-
-    // //random assignments
-    // while(counter < insertions){
-    //     candidate = getRandRequestFromCL();
-    //     cout << "candidate number " << counter << ": "<< candidate  << endl;
-    //     getchar();
-    //     sol_size = solution.getRoutesSize();
-    //     best_cost = 100000;
-    //     inserted = 0;
-    //     feastime = 0;
-    //     feasload = 0;
-    //     //if pair of positions -1 -1, create another route without testing requests.
-    //     for (int rid = 0; rid < sol_size; rid++){
-    //         sroute = solution.getRoute(rid);
-    //         cout << "Current solution: " << endl;
-    //         for (auto a: sroute){
-    //             cout << a << " - ";
-    //         }
-    //         cout << endl;
-    //         getchar();
-    //         inspositions.clear();
-    //         sroute.availablePos(inst, nodeVec, candidate, problem, inspositions);
+    //random assignments
+    while(counter < insertions){
+        candidate = getRandRequestFromCL();
+        // cout << "candidate number " << counter << ": "<< candidate  << endl;
+        // getchar();
+        sol_size = solution.getRoutesSize();
+        inserted = 0;
+        feastime = 0;
+        //if pair of positions -1 -1, create another route without testing requests.
+        for (int rid = 0; rid < sol_size; rid++){
+            sroute = solution.getRoute(rid);
+            // cout << "Current solution: " << endl;
+            // for (auto a: sroute){
+            //     cout << a << " - ";
+            // }
+            // cout << endl;
+            // getchar();
+            inspositions.clear();
+            sroute.availablePos(inst, nodeVec, candidate, problem, inspositions);
             
-    //         /////////////////////////////////////////////
-    //         cout << "Available positions for insertion of candidate " << candidate << endl;
-    //         for(int i = 0; i < inspositions.size(); i++){
-    //             cout << "Insertion positions: " << inspositions[i] << endl;
-    //         }
-    //         ////////////////////////////////////////////
+            /////////////////////////////////////////////
+            // cout << "Available positions for insertion of candidate " << candidate << endl;
+            // for(int i = 0; i < inspositions.size(); i++){
+            //     cout << "Insertion positions: " << inspositions[i] << endl;
+            // }
+            ////////////////////////////////////////////
             
-    //         for (int i = 0; i < inspositions.size(); i++){
+            for (int i = 0; i < inspositions.size(); i++){
 
-    //             int pos = inspositions[i];
-    //             feastime = sroute.testInsertion(inst, nodeVec, Mdist, pos, candidate);
+                int pos = inspositions[i];
+                feastime = sroute.testInsertion(inst, nodeVec, Mdist, pos, candidate);
                 
-    //             if (feastime){
-    //                 solution.getRoute(rid).insert(inst, Mdist, candidate, 1);
-    //                 solution.getRoute(rid).updatePass(inst, nodeVec);
-    //                 solution.getRoute(rid).updateLoad(inst, nodeVec);
-    //                 solution.getRoute(rid).updateTimes(inst, nodeVec, Mdist);
-    //                 inserted = 1;
-    //                 cout << "Solution with insertion: " << endl;
-    //                 for (auto a: sroute){
-    //                     cout << a << " - ";
-    //                 }
-    //                 cout << endl << endl;
-    //                 break;
-    //             }
-    //         }
-    //         if (inserted){
-    //             break;
-    //         }            
-    //     }
+                if (feastime){
+                    sroute.insert(inst, Mdist, candidate, pos);
+                    sroute.updatePass(inst, nodeVec);
+                    sroute.updateLoad(inst, nodeVec);
+                    sroute.updateTimes(inst, nodeVec, Mdist);
+                    solution.updateRoutes(&sroute, rid);
+                    inserted = 1;
+                    // cout << "*****Solution with insertion: " << endl;
+                    // for (auto a: sroute){
+                    //     cout << a << " - ";
+                    // }
+                    // cout << endl << endl;
+                    break;
+                }
+            }
+            if (inserted){
+                break;
+            }            
+        }
 
-    //     if (inserted){
-    //         counter++;
-    //         removeFromCL(candidate);
-    //     }
-    //     else{
-    //         sarpRoute newroute(inst);
-    //         feastime = newroute.fInsertion(inst, nodeVec, Mdist, candidate);
-    //         newroute.calcCost(inst, nodeVec, Mdist);
-    //         newroute.insert(inst, Mdist, candidate, 1);
-    //         newroute.updatePass(inst, nodeVec);
-    //         newroute.updateLoad(inst, nodeVec);
-    //         solution.addRoute(&newroute);
-    //         removeFromCL(candidate);
-    //     } 
-    //     cout << "List of candidates so far: "  << endl;
-    //     for (int c = 0; c < CLpass.size(); c++){
-    //         cout << CLpass[c] << " ";
-    //     }
-    //     cout << endl;
-    //     getchar();
-    // }
-    // sol_size = solution.getRoutesSize();
+        if (inserted){
+            counter++;
+            removeFromCL(candidate);
+        }
+        else{
+            vehicle = solution.getvehicle();
+            sarpRoute newroute(inst, vehicle);
+            feastime = newroute.fInsertion(inst, nodeVec, Mdist, candidate);
+            newroute.calcCost(inst, nodeVec, Mdist);
+            newroute.insert(inst, Mdist, candidate, 1);
+            newroute.updatePass(inst, nodeVec);
+            newroute.updateLoad(inst, nodeVec);
+            solution.addRoute(&newroute);
+            removeFromCL(candidate);
+        } 
+        // cout << "List of candidates so far: "  << endl;
+        // if (CLpass.size() > 0){
+        //     for (int c = 0; c < CLpass.size(); c++){
+        //         cout << CLpass[c] << " ";
+        //     }
+        //     cout << endl;
+        //     getchar();
+        // }
+        // else{        
+        //     cout << "The list is empty."  << endl;
+        // }
+    }
 
-    // cout << "Solution so far: " << endl;
-    // for (int i = 0; i < sol_size; i++){
-    //     sroute = solution.getRoute(i);
-    //     for(auto j: sroute){
-    //         cout << j << " - ";
-    //     }
-    //     cout << endl;
-        
-    // }
-    // cout << endl;
-    // getchar();    
-
+    solution.printSol(inst);
 
 
     //greedy assignments
+    inserted = 1;
+    pair <int, double> cheapestpair;
 
-    // while (insertion && !CL.empty()){
+    while (inserted && !CLpass.empty()){
+        inserted = 0;
 
-    // }
+        for (int cand = 0; cand < CLpass.size(); cand++){
+            candidate = CLpass[cand];
+            cout << "candidate: "<< candidate  << endl;
+            getchar();
+            best_route = -1;
+            sol_size = solution.getRoutesSize();
+            best_cost = 100000;
+            inserted = 0;
+            feastime = 0;
+            best_pos = -1;
+
+            for (int rid = 0; rid < sol_size; rid++){
+                cheapestpair.first = -1;
+                cheapestpair.second = -1;
+                sroute = solution.getRoute(rid);
+                cout << "Current route: " << endl;
+                for (auto a: sroute){
+                    cout << a << " - ";
+                }
+                cout << endl;
+                getchar();
+                inspositions.clear();
+                sroute.availablePos(inst, nodeVec, candidate, problem, inspositions);
+                
+                /////////////////////////////////////////////
+                cout << "Available positions for insertion of candidate " << candidate << endl;
+                for(int i = 0; i < inspositions.size(); i++){
+                    cout << "Insertion positions: " << inspositions[i] << endl;
+                }
+                ////////////////////////////////////////////
+                
+                cheapestpair = sroute.cheapestInsertion(inst, nodeVec, Mdist, candidate, inspositions);
+                cout << "Cheapest pair: " << cheapestpair.first << " - " << cheapestpair.second << endl;
+
+                if (cheapestpair.second > 0 && cheapestpair.second < best_cost){
+                    best_cost = cheapestpair.second;
+                    best_route = rid;
+                    best_pos = cheapestpair.first;
+                    inserted = 1;
+                }
+            }
+
+            cout << "+++++++++++++++++++++++++++++++++++++++++" << endl;
+            cout << "Request: " << candidate << endl;
+            cout << "Best cost: " << best_cost << endl;
+            cout << "Best route: " << best_route << endl;
+            cout << "Best position: " << best_pos<< endl;
+            cout << "+++++++++++++++++++++++++++++++++++++++++" << endl;
+            getchar();
+
+            if (best_cost == 100000){
+                vehicle = solution.getvehicle();
+                sarpRoute newroute(inst, vehicle);
+                feastime = newroute.fInsertion(inst, nodeVec, Mdist, candidate);
+                newroute.calcCost(inst, nodeVec, Mdist);
+                newroute.insert(inst, Mdist, candidate, 1);
+                newroute.updatePass(inst, nodeVec);
+                newroute.updateLoad(inst, nodeVec);
+                solution.addRoute(&newroute);
+                removeFromCL(candidate);
+                solution.updateVehicles();
+                inserted = 1;
+
+                cout << "List of candidates so far: "  << endl;
+                if (CLpass.size() > 0){
+                    for (int c = 0; c < CLpass.size(); c++){
+                        cout << CLpass[c] << " ";
+                    }
+                    cout << endl;
+                    getchar();
+                }
+                else{        
+                    cout << "The list is empty."  << endl;
+                }
+
+                break;
+            }
+
+            else{
+                sroute = solution.getRoute(best_route);
+                sroute.insert(inst, Mdist, candidate, best_pos);
+                sroute.updatePass(inst, nodeVec);
+                sroute.updateLoad(inst, nodeVec);
+                sroute.updateTimes(inst, nodeVec, Mdist);
+                solution.updateRoutes(&sroute, best_route);
+
+                inserted = 1;
+                cout << "*****Route with insertion: " << endl;
+                for (auto a: sroute){
+                    cout << a << " - ";
+                }
+                cout << endl << endl;
+
+                removeFromCL(candidate);
+
+                cout << "List of candidates so far: "  << endl;
+                if (CLpass.size() > 0){
+                    for (int c = 0; c < CLpass.size(); c++){
+                        cout << CLpass[c] << " ";
+                    }
+                    cout << endl;
+                    getchar();
+                }
+                else{        
+                    cout << "The list is empty."  << endl;
+                }
+                break;
+            }
+        }
+    }
+    cout << "Solution with passengers: " << endl;
+    solution.printSol(inst);
+    getchar();
 }
 
 void sarpConstruction::removeFromCL(int id) {
