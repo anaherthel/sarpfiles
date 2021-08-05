@@ -39,7 +39,7 @@ protected:
     // int pairings;
 
     vector<int> CLpass;
-    vector<int> CLparc;
+    vector<int> CLparc;//only pickup requests
     
     vector<nodeStat> passNodes;
 

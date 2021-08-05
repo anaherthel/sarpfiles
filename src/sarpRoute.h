@@ -55,6 +55,9 @@ public:
     vector<int>::iterator begin() { return nodes_.begin(); };
     vector<int>::iterator end() { return nodes_.end(); };
     bool testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request);
+    
+    bool testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int pos1, int pos2, int pu, int dl);
+
     bool testScen(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request, probStat* problem);
 
     void calcCost(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
@@ -78,12 +81,16 @@ public:
     // // If no insertion is feasible, the cost is INT_MAX
     pair<int, double> cheapestInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int node, vector<int> &positions);
     
+    //testing insertion of parcel pickup and delivery simultaneously
+    void cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int node, int node2, vector<int> &positions, vector<int> &positions2, vector< pair<int, double> > &bestMove);
+
     // // pre-condition: the insertion is feasible
     void insert(instanceStat *inst, double **Mdist, int node, int position);
 
     void erase(instanceStat *inst, double **Mdist, int position);
 
     void printLoad();
+
     // // improve route with 2-opt
     // // returns the number of improvements performed
     // int two_opt(const CVRPInstance& inst);

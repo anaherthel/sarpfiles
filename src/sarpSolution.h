@@ -43,6 +43,7 @@ class sarpSolution {
     
     void updateRoutes(sarpRoute *route,  int idr);
 
+    void addCost(double delta);
 
     // access routes
     vector<sarpRoute>::iterator begin() { return routes.begin(); }
