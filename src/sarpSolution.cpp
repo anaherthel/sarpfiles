@@ -44,6 +44,15 @@ void sarpSolution::addtounserved(int candidate) {
 }   
 
 
+void sarpSolution::printCosts(){
+    cout << "Cost of routes: " << endl;
+
+    for (int i = 0; i < this->routes.size(); i++){
+        cout << "Route " << i << ": " << routes[i].cost() << endl;
+    }
+
+    cout << "\nCost of routes: " << this->cost << endl;
+}
 // Solution::Solution(Data *data) : data(data), cost(__DBL_MAX__) {
 //     this->createRoutesVector();
 //     pairNeighbStatus = vector<vector<vector<bool>>>(
