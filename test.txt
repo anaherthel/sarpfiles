@@ -1,0 +1,4794 @@
+
+NameOfInst: Instances/csarp/sarp-7-5-A-1.txt
+RunningScen: 2B
+
+n: 7
+m: 5
+K: 6
+
+Earlier times: 
+0: 9.35
+1: 7.68333
+2: 18.65
+3: 3.45
+4: 12.6833
+5: 5.03333
+6: 5.01667
+
+Deltas: 
+0: 0.319889
+1: 0.1965
+2: 0.236913
+3: 0.204999
+4: 0.493014
+5: 0.222036
+6: 0.295199
+Dist Matrix: 
+         0     24.334    21.8162    18.3616    21.5937    26.1636    26.8948    29.5118    23.4565    2.69098    12.7944    26.4231    30.7567    21.9043     9.4442    4.58552    20.6924    25.8619    18.4346    21.8677    25.3243    14.2031    17.6536          0          0          0          0          0          0 
+   17.7499          0    6.84399    4.99331    17.9318    8.38205      18.89     7.2599    12.6162    24.7891    10.5856    7.29812    7.53054    7.37273    15.6425    19.7742    4.55533    4.00931    12.2903    13.8222    2.50298    21.0605    7.92072          0          0          0          0          0          0 
+   14.7022    7.69616          0    4.83876    21.3683    7.26004    13.2347    11.0769    7.09635    20.9838    8.18961    14.3127    14.2323    3.04788    9.89012     16.518    9.10094    11.3936    15.1859    18.0182    8.03665    13.7937    10.1725          0          0          0          0          0          0 
+   12.8009    6.11453    7.82613          0    15.1513    11.2763    19.5975    11.9803    13.3426    19.8679    5.70815    9.16925    12.2586    8.31529    11.5481    14.8282    3.09518    7.51212    9.01456    11.6301    7.29615    18.2132    3.98334          0          0          0          0          0          0 
+   16.5648    5.73975    11.0881    6.39677          0    13.1377    23.2791    11.3197    16.9416    23.6534    10.1578     4.0517    9.13558     11.629    16.5648    18.5581    2.11694    3.72889    8.19634    9.16289    6.91788    23.3394    5.18872          0          0          0          0          0          0 
+   21.0459    5.32257    4.16315    8.61736    24.0303          0      13.67    4.53884    7.94038    27.6388    13.9953    12.9607    9.32518    4.32534    16.7461    22.9659    10.5339    9.26574    18.1848    19.9964    4.42465     19.687    13.4035          0          0          0          0          0          0 
+   22.9694    20.7204    14.0734     18.766    34.5753     14.949          0    20.8622    8.80105    26.2799    19.6825     28.123    26.0588    13.5649    15.5363    23.9233    23.1337    24.8437    28.4985    31.6929    20.4671    9.93253    23.7401          0          0          0          0          0          0 
+   24.4105     6.0369    8.60931    11.4805    24.6799    5.91765    17.2251          0    12.1111    31.2608    17.1987    11.8268    5.84183    8.83193    20.8759    26.3982    11.7305    8.31382    19.3769    20.4078    4.76151    24.2221    15.1799          0          0          0          0          0          0 
+   20.5061    12.2515    5.85429    11.8038     28.435    6.19733    6.34189    12.1111          0    25.8549    14.8932     19.911    17.2651    5.31323    14.0362    22.0619    15.6773    16.4315    22.2568    24.9608     11.836     13.575     17.222          0          0          0          0          0          0 
+    7.1131    25.8587    23.8639    19.9132     20.985    28.2398     29.488    31.2608    25.8549          0    14.2063    27.2434    32.0965    23.9918     11.821    5.09819    21.7842    27.0288    18.5708    21.7916    26.9154    16.8907    18.5166          0          0          0          0          0          0 
+   7.22092    11.6542    10.8301    5.73838    15.0782    15.0839    20.4604    17.1987    14.8932    14.2063          0    14.1309    17.9661    11.1363    6.88837    9.22762    8.08395    13.1176    9.31179    12.8957    12.7312    14.8505    5.79056          0          0          0          0          0          0 
+   20.2288    7.76051    14.1342    10.3286    13.8637    15.2294    26.1627    11.8268     19.911    27.2434    14.1309          0    7.65937    14.6661    20.6142    22.1789    6.16667    3.71272    10.1386    9.56116    8.53803    27.3116    8.77063          0          0          0          0          0          0 
+   24.9984    6.73265    12.5559    12.5132    21.4807    11.2888    22.8255    5.84183    17.2651    32.0965    17.9661    7.65937          0    12.9542    23.1454    27.0267    10.5428    5.40709    17.1415    17.1533    6.19577    28.0106    14.1393          0          0          0          0          0          0 
+   17.7497    7.15603   0.541067    6.86389    23.4634    4.25937    11.6506    8.83193    5.31323    23.9918    11.1363    14.6661    12.9542          0    12.6961    19.5637    10.4187    11.2882    17.3279    19.8224    6.99105    15.4056    12.2859          0          0          0          0          0          0 
+   7.43679    16.4298    12.6808     10.778    21.2117    16.9323    17.9611    20.8759    14.0362     11.821    6.88837    20.6142    23.1454    12.6961          0    8.47746    14.4482    18.9675    15.9162    19.5848    17.1922    8.39267    12.6569          0          0          0          0          0          0 
+   2.02894    20.8684    19.3765    14.9646    17.1204     23.756    26.4102    26.3982    22.0619    5.09819    9.22762    22.1789    27.0267    19.5637    8.47746          0    16.6867     21.934    13.8641    17.2822    21.9583    15.5527    13.4332          0          0          0          0          0          0 
+   14.6746    5.74582    9.88715     4.4828    13.4979    12.5457    22.0109    11.7305    15.6773    21.7842    8.08395    6.16667    10.5428    10.4187    14.4482    16.6867          0    5.26466    7.73817    9.54286    7.02693    21.3054    3.63024          0          0          0          0          0          0 
+   19.9159    4.18161    10.7726    8.21282    16.5765    11.5359    22.6125    8.31382    16.4315    27.0288    13.1176    3.71272    5.40709    11.2882    18.9675     21.934    5.26466          0    11.8207    12.2526    4.84143    24.9127    8.78799          0          0          0          0          0          0 
+   12.2421    13.4668    16.8407    10.4875    6.18259    20.0838     28.407    19.3769    22.2568    18.5708    9.31179    10.1386    17.1415    17.3279    15.9162    13.8641    7.73817    11.8207          0    3.69225    14.7399    24.1237    5.04741          0          0          0          0          0          0 
+   15.7694    14.8794    19.3055      13.19    4.33603    22.0678    31.2276    20.4078    24.9608    21.7916    12.8957    9.56116    17.1533    19.8224    19.5848    17.2822    9.54286    12.2526    3.69225          0    16.0786     27.742    7.95325          0          0          0          0          0          0 
+   19.9461    1.28463    6.53658    7.00248    20.2628    6.69463    17.8891    4.76151     11.836    26.9154    12.7312    8.53803    6.19577    6.99105    17.1922    21.9583    7.02693    4.84143    14.7399    16.0786          0     21.818    10.4228          0          0          0          0          0          0 
+   15.1802    21.4707    15.6843    16.9835    29.5821    18.8718    14.2984    24.2221     13.575    16.8907    14.8505    27.3116    28.0106    15.4056    8.39267    15.5527    21.3054    24.9127    24.1237     27.742     21.818          0    20.3396          0          0          0          0          0          0 
+   11.4662    9.14328    11.8033    5.44014    11.2147    15.1883    23.4065    15.1799     17.222    18.5166    5.79056    8.77063    14.1393    12.2859    12.6569    13.4332    3.63024    8.78799    5.04741    7.95325    10.4228    20.3396          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+insertions: 2
+Starting route: 
+Start time: 8.86425
+End time: 9.66989
+Total time: 0.805644
+First passenger: 0 - position: 1
+Last passenger: 0 - position: 1
+Load of route: 
+0 - 0 - 0
+Visited Passengers: 
+-1 - 0 - -1vehicles: 0
+First passenger: 5 - position: 1
+Last passenger: 0 - position: 2
+&&&&&&&&&&&&&&&&&&&&&&&&
+Starting time of route: 4.75197
+Endging time of route:  9.66989
+&&&&&&&&&&&&&&&&&&&&&&&&
+SARP Solution: 
+17 - 5 - 0 - 23 - 
+
+
+insertion is feasible
+Delta so far: 7.95324
+Cheapest insertion: 7.95324
+Best position: 1
+First passenger: 3 - position: 1
+Last passenger: 0 - position: 3
+&&&&&&&&&&&&&&&&&&&&&&&&
+Starting time of route: 3.24969
+Endging time of route:  9.66989
+&&&&&&&&&&&&&&&&&&&&&&&&
+Delta so far: 100000
+Cheapest insertion: 100000
+Best position: -1
+Starting route: 
+Start time: 4.32381
+End time: 5.31187
+Total time: 0.988053
+First passenger: 6 - position: 1
+Last passenger: 6 - position: 1
+vehicles: 1
+
+insertion is feasible
+Delta so far: 2.02652
+Cheapest insertion: 2.02652
+Best position: 3
+
+insertion is feasible
+Delta so far: 20.7204
+Cheapest insertion: 20.7204
+Best position: 2
+First passenger: 3 - position: 1
+Last passenger: 0 - position: 4
+&&&&&&&&&&&&&&&&&&&&&&&&
+Starting time of route: 3.24969
+Endging time of route:  9.66989
+&&&&&&&&&&&&&&&&&&&&&&&&
+Delta so far: 100000
+Cheapest insertion: 100000
+Best position: -1
+Delta so far: 100000
+Cheapest insertion: 100000
+Best position: -1
+Starting route: 
+Start time: 12.5776
+End time: 13.1763
+Total time: 0.598771
+First passenger: 4 - position: 1
+Last passenger: 4 - position: 1
+vehicles: 2
+Delta so far: 100000
+Cheapest insertion: 100000
+Best position: -1
+Delta so far: 100000
+Cheapest insertion: 100000
+Best position: -1
+
+insertion is feasible
+Delta so far: 11.0881
+Cheapest insertion: 11.0881
+Best position: 2
+First passenger: 4 - position: 1
+Last passenger: 2 - position: 2
+&&&&&&&&&&&&&&&&&&&&&&&&
+Starting time of route: 12.5776
+Endging time of route:  18.8869
+&&&&&&&&&&&&&&&&&&&&&&&&
+Solution with passengers: 
+SARP Solution: 
+17 - 3 - 5 - 1 - 0 - 23 - 
+18 - 6 - 24 - 
+19 - 4 - 2 - 25 - 
+
+candidate: 7 - candidate2: 12
+Current route: 
+17 - 3 - 5 - 1 - 0 - 23 - 
+Available positions for insertion of candidate1: 7
+1, 2, 3, 4, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 12
+2, 3, 4, 5, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 1 - 2
+
+Previous time: 0.566121
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 12
+
+Position of insertion: 2
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.31266
+
+Next Pass  time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 12.2712
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 1 - 3
+
+Previous time: 0.566121
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 12
+
+Position of insertion: 3
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.73036
+
+Next Pass  time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 10.7353
+Better delta 2.
+New position for dl:3
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 1 - 4
+
+Previous time: 0.566121
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 12
+
+Position of insertion: 4
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.75656
+
+Next Pass  time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 14.7791
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 1 - 5
+
+Previous time: 0.566121
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 30.7567
+
+insertion was feasible
+Total delta so far: 22.3167
+Position 1: 2passenger position: 2
+positions 0: 3
+Available positions for insertion of candidate 2: 12
+3, 4, 5, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 2 - 3
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.17487
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 12
+
+Position of insertion: 3
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.73036
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 10.7353
+Better delta 2.
+New position for dl:3
+*****************************
+pos in middle
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 2 - 4
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.17487
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 12
+
+Position of insertion: 4
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.75656
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 14.7791
+*****************************
+pos in middle
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 2 - 5
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.17487
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 12
+
+Position of insertion: 5
+
+Previous time: 10.5034
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 30.7567
+
+insertion was feasible
+Total delta so far: 17.3569
+Position 1: 3passenger position: 3
+positions 0: 4
+Available positions for insertion of candidate 2: 12
+4, 5, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 3 - 4
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.59665
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 12
+
+Position of insertion: 4
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.75656
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 14.7791
+Better delta 2.
+New position for dl:4
+*****************************
+pos in middle
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 3 - 5
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.59665
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 12
+
+Position of insertion: 5
+
+Previous time: 10.5034
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 30.7567
+
+insertion was feasible
+Total delta so far: 20.0322
+Position 1: 4passenger position: 4
+Available positions for insertion of candidate 2: 12
+5, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 4 - 5
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.73561
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 12
+
+Position of insertion: 5
+
+Previous time: 10.5034
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 30.7567
+Better delta 2.
+New position for dl:5
+
+insertion was feasible
+Total delta so far: 44.6772
+Best move: 
+2 - 6.62167
+3 - 10.7353
+
+
+Best move: 
+PU: 2 - 6.62167
+DL: 3 - 10.7353
+Current route: 
+18 - 6 - 24 - 
+Available positions for insertion of candidate1: 7
+1, 
+***********************************************
+Position 1: 1passenger position: 1
+Available positions for insertion of candidate 2: 12
+2, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 1 - 2
+
+Previous time: 0.976064
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 26.0588
+Better delta 2.
+New position for dl:2
+
+insertion was feasible
+Total delta so far: 34.2537
+Best move: 
+1 - 8.19491
+2 - 26.0588
+
+
+Best move: 
+PU: 1 - 8.19491
+DL: 2 - 26.0588
+Current route: 
+19 - 4 - 2 - 25 - 
+Available positions for insertion of candidate1: 7
+1, 2, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 12
+2, 3, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 1 - 2
+
+Previous time: 1.18303
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 12
+
+Position of insertion: 2
+
+Previous passenger: 4 in position 1
+
+Next passenger: 2 in position 2
+
+Previous time: 13.7887
+
+Next Pass  time: 18.65
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 10.6034
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 1 - 3
+
+Previous time: 1.18303
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 14.2323
+
+insertion was feasible
+Total delta so far: 51.355
+Position 1: 2passenger position: 2
+Available positions for insertion of candidate 2: 12
+3, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 7 - 12
+
+Positions of insertion: 2 - 3
+*****************************
+
+Previous passenger: 4 in position 1
+
+Next passenger: 2 in position 2
+
+Previous time: 13.7458
+
+Service time: 18.65
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 12
+
+Position of insertion: 3
+
+Previous time: 19.3174
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 14.2323
+Better delta 2.
+New position for dl:3
+
+insertion was feasible
+Total delta so far: 23.0732
+Best move: 
+2 - 8.84092
+3 - 14.2323
+
+
+Best move: 
+PU: 2 - 8.84092
+DL: 3 - 14.2323
++++++++++++++++++++++++++++++++++++++++++
+Requests: 7 - 12
+Best cost: 17.3569
+Best route: 0
+Best positions: 2 - 3
++++++++++++++++++++++++++++++++++++++++++
+::::******::::::******::::::
+Request1: 7 - Request2: 12
+Best position 1: 2Best position 2: 3
+::::******::::::******::::::
+&&&&&&&&&&&&&&&&&&&&&&&&
+Starting time of route: 3.24969
+Endging time of route:  10.5469
+&&&&&&&&&&&&&&&&&&&&&&&&
+*****Route with insertion: 
+17 - 3 - 7 - 5 - 12 - 1 - 0 - 23 - 
+
+List of candidates so far: 
+8 9 10 11 
+candidate: 8 - candidate2: 13
+Current route: 
+17 - 3 - 7 - 5 - 12 - 1 - 0 - 23 - 
+Available positions for insertion of candidate1: 8
+1, 2, 3, 4, 5, 6, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 13
+2, 3, 4, 5, 6, 7, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 1 - 2
+
+Previous time: 0.771997
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 13
+
+Position of insertion: 2
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.15656
+
+Next Pass  time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 5.16694
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 1 - 3
+
+Previous time: 0.771997
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 13
+
+Position of insertion: 3
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.5193
+
+Next Pass  time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 7.17365
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 1 - 4
+
+Previous time: 0.771997
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 13
+
+Position of insertion: 4
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.41016
+
+Next Pass  time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 7.95439
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 1 - 5
+
+Previous time: 0.771997
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 13.3776
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 1 - 6
+
+Previous time: 0.771997
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 7.37259
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 1 - 7
+
+Previous time: 0.771997
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 21.9043
+
+insertion was feasible
+Total delta so far: 25.1893
+Position 1: 2passenger position: 2
+positions 0: 3
+Available positions for insertion of candidate 2: 13
+3, 4, 5, 6, 7, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 2 - 3
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.35915
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 3
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.5193
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 7.17365
+Better delta 2.
+New position for dl:3
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 2 - 4
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.35915
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 4
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.41016
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 7.95439
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 2 - 5
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.35915
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 5
+
+Previous time: 10.9565
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 13.3776
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 2 - 6
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.35915
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 6
+
+Previous time: 10.81
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 7.37259
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 2 - 7
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.35915
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 7
+
+Previous time: 11.1644
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 21.9043
+
+insertion was feasible
+Total delta so far: 20.647
+Position 1: 3passenger position: 3
+positions 0: 4
+Available positions for insertion of candidate 2: 13
+4, 5, 6, 7, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 3 - 4
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.64655
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 4
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.41016
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 7.95439
+Better delta 2.
+New position for dl:4
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 3 - 5
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.64655
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 5
+
+Previous time: 10.9565
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 13.3776
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 3 - 6
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.64655
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 6
+
+Previous time: 10.81
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 7.37259
+Better delta 2.
+New position for dl:6
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 3 - 7
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.64655
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 7
+
+Previous time: 11.1644
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 21.9043
+
+insertion was feasible
+Total delta so far: 19.7633
+Position 1: 4passenger position: 4
+positions 0: 5
+Available positions for insertion of candidate 2: 13
+5, 6, 7, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 4 - 5
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.60347
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 5
+
+Previous time: 10.9565
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 13.3776
+Better delta 2.
+New position for dl:5
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 4 - 6
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.60347
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 6
+
+Previous time: 10.81
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 7.37259
+Better delta 2.
+New position for dl:6
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 4 - 7
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.60347
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 7
+
+Previous time: 11.1644
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 21.9043
+
+insertion was feasible
+Total delta so far: 23.2529
+Position 1: 5positions 0: 5
+Available positions for insertion of candidate 2: 13
+6, 7, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 5 - 6
+
+Previous time: 11.449
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 5 - 7
+
+Previous time: 11.8035
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+Position 1: 6positions 0: 6
+Available positions for insertion of candidate 2: 13
+7, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 6 - 7
+
+Previous time: 11.6227
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+Best move: 
+3 - 12.3907
+6 - 7.37259
+
+
+Best move: 
+PU: 3 - 12.3907
+DL: 6 - 7.37259
+Current route: 
+18 - 6 - 24 - 
+Available positions for insertion of candidate1: 8
+1, 
+***********************************************
+Position 1: 1passenger position: 1
+Available positions for insertion of candidate 2: 13
+2, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 1 - 2
+
+Previous time: 0.780862
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 13.5649
+Better delta 2.
+New position for dl:2
+
+insertion was feasible
+Total delta so far: 13.7566
+Best move: 
+1 - 0.191657
+2 - 13.5649
+
+
+Best move: 
+PU: 1 - 0.191657
+DL: 2 - 13.5649
+Current route: 
+19 - 4 - 2 - 25 - 
+Available positions for insertion of candidate1: 8
+1, 2, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 13
+2, 3, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 1 - 2
+
+Previous time: 1.38567
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 13
+
+Position of insertion: 2
+
+Previous passenger: 4 in position 1
+
+Next passenger: 2 in position 2
+
+Previous time: 13.5565
+
+Next Pass  time: 18.65
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 1.08196
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 1 - 3
+
+Previous time: 1.38567
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 3.04788
+
+insertion was feasible
+Total delta so far: 50.1417
+Position 1: 2passenger position: 2
+Available positions for insertion of candidate 2: 13
+3, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 8 - 13
+
+Positions of insertion: 2 - 3
+*****************************
+
+Previous passenger: 4 in position 1
+
+Next passenger: 2 in position 2
+
+Previous time: 13.8157
+
+Service time: 18.65
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 13
+
+Position of insertion: 3
+
+Previous time: 19.0446
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 3.04788
+Better delta 2.
+New position for dl:3
+
+insertion was feasible
+Total delta so far: 14.7557
+Best move: 
+2 - 11.7078
+3 - 3.04788
+
+
+Best move: 
+PU: 2 - 11.7078
+DL: 3 - 3.04788
++++++++++++++++++++++++++++++++++++++++++
+Requests: 8 - 13
+Best cost: 13.7566
+Best route: 1
+Best positions: 1 - 2
++++++++++++++++++++++++++++++++++++++++++
+::::******::::::******::::::
+Request1: 8 - Request2: 13
+Best position 1: 1Best position 2: 2
+::::******::::::******::::::
+&&&&&&&&&&&&&&&&&&&&&&&&
+Starting time of route: 4.47382
+Endging time of route:  5.96406
+&&&&&&&&&&&&&&&&&&&&&&&&
+*****Route with insertion: 
+18 - 8 - 6 - 13 - 24 - 
+
+List of candidates so far: 
+9 10 11 
+candidate: 9 - candidate2: 14
+Current route: 
+17 - 3 - 7 - 5 - 12 - 1 - 0 - 23 - 
+Available positions for insertion of candidate1: 9
+1, 2, 3, 4, 5, 6, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 14
+2, 3, 4, 5, 6, 7, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 1 - 2
+
+Previous time: 1.22826
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 14
+
+Position of insertion: 2
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.52916
+
+Next Pass  time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 20.4438
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 1 - 3
+
+Previous time: 1.22826
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 14
+
+Position of insertion: 3
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 6.12215
+
+Next Pass  time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 31.8906
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 1 - 4
+
+Previous time: 1.22826
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 14
+
+Position of insertion: 4
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.96167
+
+Next Pass  time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 30.5664
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 1 - 5
+
+Previous time: 1.22826
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 32.8426
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 1 - 6
+
+Previous time: 1.22826
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 5.32939
+Better delta 2.
+New position for dl:6
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 1 - 7
+
+Previous time: 1.22826
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 9.4442
+
+insertion was feasible
+Total delta so far: 44.0586
+Position 1: 2passenger position: 2
+positions 0: 3
+Available positions for insertion of candidate 2: 14
+3, 4, 5, 6, 7, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 2 - 3
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.98537
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 14
+
+Position of insertion: 3
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 6.12215
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 31.8906
+Better delta 2.
+New position for dl:3
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 2 - 4
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.98537
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 14
+
+Position of insertion: 4
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.96167
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 30.5664
+Better delta 2.
+New position for dl:4
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 2 - 5
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.98537
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 14
+
+Position of insertion: 5
+
+Previous time: 11.4312
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 2 - 6
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.98537
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 14
+
+Position of insertion: 6
+
+Previous time: 10.7602
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 5.32939
+Better delta 2.
+New position for dl:6
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 2 - 7
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.98537
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 14
+
+Position of insertion: 7
+
+Previous time: 10.8605
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 9.4442
+
+insertion was feasible
+Total delta so far: 44.4778
+Position 1: 3passenger position: 3
+positions 0: 4
+Available positions for insertion of candidate 2: 14
+4, 5, 6, 7, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 3 - 4
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 6.65123
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 14
+
+Position of insertion: 4
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.96167
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 30.5664
+Better delta 2.
+New position for dl:4
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 3 - 5
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 6.65123
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 14
+
+Position of insertion: 5
+
+Previous time: 11.4312
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 3 - 6
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 6.65123
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 14
+
+Position of insertion: 6
+
+Previous time: 10.7602
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 5.32939
+Better delta 2.
+New position for dl:6
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 3 - 7
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 6.65123
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 14
+
+Position of insertion: 7
+
+Previous time: 10.8605
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 9.4442
+
+insertion was feasible
+Total delta so far: 58.9123
+Position 1: 4passenger position: 4
+positions 0: 5
+Available positions for insertion of candidate 2: 14
+5, 6, 7, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 4 - 5
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 9.44566
+
+Service time: 9.35
+*****************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 4 - 6
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 9.44566
+
+Service time: 9.35
+*****************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 4 - 7
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 9.44566
+
+Service time: 9.35
+*****************************
+Position 1: 5positions 0: 5
+Available positions for insertion of candidate 2: 14
+6, 7, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 5 - 6
+
+Previous time: 12.0928
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 5 - 7
+
+Previous time: 12.1932
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+Position 1: 6positions 0: 6
+Available positions for insertion of candidate 2: 14
+7, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 6 - 7
+
+Previous time: 11.289
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+Best move: 
+1 - 38.7292
+6 - 5.32939
+
+
+Best move: 
+PU: 1 - 38.7292
+DL: 6 - 5.32939
+Current route: 
+18 - 8 - 6 - 13 - 24 - 
+Available positions for insertion of candidate1: 9
+1, 2, 3, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 14
+2, 3, 4, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 1 - 2
+
+Previous time: 1.16688
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 25.6554
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 1 - 3
+
+Previous time: 1.16688
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 14.6675
+Better delta 2.
+New position for dl:3
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 1 - 4
+
+Previous time: 1.16688
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 12.6961
+Better delta 2.
+New position for dl:4
+
+insertion was feasible
+Total delta so far: 34.8649
+Position 1: 2positions 0: 2
+Available positions for insertion of candidate 2: 14
+3, 4, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 2 - 3
+
+Previous time: 7.68362
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 14.6675
+Better delta 2.
+New position for dl:3
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 2 - 4
+
+Previous time: 7.63554
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 12.6961
+Better delta 2.
+New position for dl:4
+
+insertion was feasible
+Total delta so far: 61.697
+Position 1: 3positions 0: 3
+Available positions for insertion of candidate 2: 14
+4, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 3 - 4
+
+Previous time: 7.33568
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 12.6961
+Better delta 2.
+New position for dl:4
+
+insertion was feasible
+Total delta so far: 49.4029
+Best move: 
+1 - 22.1688
+4 - 12.6961
+
+
+Best move: 
+PU: 1 - 22.1688
+DL: 4 - 12.6961
+Current route: 
+19 - 4 - 2 - 25 - 
+Available positions for insertion of candidate1: 9
+1, 2, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 14
+2, 3, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 1 - 2
+
+Previous time: 1.12666
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 14
+
+Position of insertion: 2
+
+Previous passenger: 4 in position 1
+
+Next passenger: 2 in position 2
+
+Previous time: 13.973
+
+Next Pass  time: 18.65
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 18.1575
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 1 - 3
+
+Previous time: 1.12666
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 9.89012
+Better delta 2.
+New position for dl:3
+
+insertion was feasible
+Total delta so far: 48.3307
+Position 1: 2passenger position: 2
+Available positions for insertion of candidate 2: 14
+3, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 9 - 14
+
+Positions of insertion: 2 - 3
+*****************************
+
+Previous passenger: 4 in position 1
+
+Next passenger: 2 in position 2
+
+Previous time: 14.4186
+
+Service time: 18.65
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 14
+
+Position of insertion: 3
+
+Previous time: 19.2115
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 9.89012
+Better delta 2.
+New position for dl:3
+
+insertion was feasible
+Total delta so far: 46.3193
+Best move: 
+2 - 36.4292
+3 - 9.89012
+
+
+Best move: 
+PU: 2 - 36.4292
+DL: 3 - 9.89012
++++++++++++++++++++++++++++++++++++++++++
+Requests: 9 - 14
+Best cost: 34.8649
+Best route: 1
+Best positions: 1 - 4
++++++++++++++++++++++++++++++++++++++++++
+::::******::::::******::::::
+Request1: 9 - Request2: 14
+Best position 1: 1Best position 2: 4
+::::******::::::******::::::
+&&&&&&&&&&&&&&&&&&&&&&&&
+Starting time of route: 4.56372
+Endging time of route:  7.071
+&&&&&&&&&&&&&&&&&&&&&&&&
+*****Route with insertion: 
+18 - 9 - 8 - 6 - 13 - 14 - 24 - 
+
+List of candidates so far: 
+10 11 
+candidate: 10 - candidate2: 15
+Current route: 
+17 - 3 - 7 - 5 - 12 - 1 - 0 - 23 - 
+Available positions for insertion of candidate1: 10
+1, 2, 3, 4, 5, 6, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 15
+2, 3, 4, 5, 6, 7, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 2
+
+Previous time: 0.543235
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 15
+
+Position of insertion: 2
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.74386
+
+Next Pass  time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 29.2462
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 3
+
+Previous time: 0.543235
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 15
+
+Position of insertion: 3
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 6.42327
+
+Next Pass  time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 44.2365
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 4
+
+Previous time: 0.543235
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 15
+
+Position of insertion: 4
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 9.20804
+
+Next Pass  time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 40.6675
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 5
+
+Previous time: 0.543235
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 41.1625
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 6
+
+Previous time: 0.543235
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 4.05329
+Better delta 2.
+New position for dl:6
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 7
+
+Previous time: 0.543235
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 4.58552
+
+insertion was feasible
+Total delta so far: 14.6964
+Position 1: 2passenger position: 2
+positions 0: 3
+Available positions for insertion of candidate 2: 15
+3, 4, 5, 6, 7, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 2 - 3
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.29704
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 3
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 6.42327
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 44.2365
+Better delta 2.
+New position for dl:3
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 2 - 4
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.29704
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 4
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 9.20804
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 40.6675
+Better delta 2.
+New position for dl:4
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 2 - 5
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.29704
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 5
+
+Previous time: 11.6342
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 2 - 6
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.29704
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 6
+
+Previous time: 10.7291
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 4.05329
+Better delta 2.
+New position for dl:6
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 2 - 7
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.29704
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 7
+
+Previous time: 10.742
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 4.58552
+
+insertion was feasible
+Total delta so far: 14.9799
+Position 1: 3passenger position: 3
+positions 0: 4
+Available positions for insertion of candidate 2: 15
+4, 5, 6, 7, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 3 - 4
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.98738
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 4
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 9.20804
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 40.6675
+Better delta 2.
+New position for dl:4
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 3 - 5
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.98738
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 5
+
+Previous time: 11.6342
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 3 - 6
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.98738
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 6
+
+Previous time: 10.7291
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 4.05329
+Better delta 2.
+New position for dl:6
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 3 - 7
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.98738
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 7
+
+Previous time: 10.742
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 4.58552
+
+insertion was feasible
+Total delta so far: 30.4182
+Position 1: 4passenger position: 4
+positions 0: 5
+Available positions for insertion of candidate 2: 15
+5, 6, 7, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 4 - 5
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.76825
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 5
+
+Previous time: 11.6342
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 4 - 6
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.76825
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 6
+
+Previous time: 10.7291
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 4.05329
+Better delta 2.
+New position for dl:6
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 4 - 7
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.76825
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 7
+
+Previous time: 10.742
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 4.58552
+
+insertion was feasible
+Total delta so far: 26.6895
+Position 1: 5positions 0: 5
+Available positions for insertion of candidate 2: 15
+6, 7, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 5 - 6
+
+Previous time: 11.3706
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 5 - 7
+
+Previous time: 11.3836
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+Position 1: 6positions 0: 6
+Available positions for insertion of candidate 2: 15
+7, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 6 - 7
+
+Previous time: 10.8267
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 4.58552
+Better delta 2.
+New position for dl:7
+
+insertion was feasible
+Total delta so far: 4.64211
+Best move: 
+6 - 0.0565906
+7 - 4.58552
+
+
+Best move: 
+PU: 6 - 0.0565906
+DL: 7 - 4.58552
+Current route: 
+18 - 9 - 8 - 6 - 13 - 14 - 24 - 
+Available positions for insertion of candidate1: 10
+1, 2, 3, 4, 5, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 15
+2, 3, 4, 5, 6, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 2
+
+Previous time: 0.656945
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 1.30526
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 3
+
+Previous time: 0.656945
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 42.1302
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 4
+
+Previous time: 0.656945
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 29.922
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 5
+
+Previous time: 0.656945
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 15.345
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 6
+
+Previous time: 0.656945
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 8.47746
+
+insertion was feasible
+Total delta so far: 6.25257
+Position 1: 2positions 0: 2
+Available positions for insertion of candidate 2: 15
+3, 4, 5, 6, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 2 - 3
+
+Previous time: 8.34437
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 42.1302
+Better delta 2.
+New position for dl:3
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 2 - 4
+
+Previous time: 8.04661
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 29.922
+Better delta 2.
+New position for dl:4
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 2 - 5
+
+Previous time: 7.69107
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 15.345
+Better delta 2.
+New position for dl:5
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 2 - 6
+
+Previous time: 7.52357
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 8.47746
+Better delta 2.
+New position for dl:6
+
+insertion was feasible
+Total delta so far: 11.7221
+Position 1: 3positions 0: 3
+Available positions for insertion of candidate 2: 15
+4, 5, 6, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 3 - 4
+
+Previous time: 8.67507
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 29.922
+Better delta 2.
+New position for dl:4
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 3 - 5
+
+Previous time: 8.31954
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 15.345
+Better delta 2.
+New position for dl:5
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 3 - 6
+
+Previous time: 8.15204
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 8.47746
+Better delta 2.
+New position for dl:6
+
+insertion was feasible
+Total delta so far: 37.4892
+Position 1: 4positions 0: 4
+Available positions for insertion of candidate 2: 15
+5, 6, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 4 - 5
+
+Previous time: 8.03276
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 15.345
+Better delta 2.
+New position for dl:5
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 4 - 6
+
+Previous time: 7.86526
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 8.47746
+Better delta 2.
+New position for dl:6
+
+insertion was feasible
+Total delta so far: 25.7313
+Position 1: 5positions 0: 5
+Available positions for insertion of candidate 2: 15
+6, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 5 - 6
+
+Previous time: 7.5744
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 8.47746
+Better delta 2.
+New position for dl:6
+
+insertion was feasible
+Total delta so far: 13.806
+Best move: 
+1 - 4.94731
+2 - 1.30526
+
+
+Best move: 
+PU: 1 - 4.94731
+DL: 2 - 1.30526
+Current route: 
+19 - 4 - 2 - 25 - 
+Available positions for insertion of candidate1: 10
+1, 2, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 15
+2, 3, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 2
+
+Previous time: 0.765625
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 15
+
+Position of insertion: 2
+
+Previous passenger: 4 in position 1
+
+Next passenger: 2 in position 2
+
+Previous time: 14.1849
+
+Next Pass  time: 18.65
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 26.8465
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 1 - 3
+
+Previous time: 0.765625
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 16.518
+Better delta 2.
+New position for dl:3
+
+insertion was feasible
+Total delta so far: 40.1559
+Position 1: 2passenger position: 2
+Available positions for insertion of candidate 2: 15
+3, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 10 - 15
+
+Positions of insertion: 2 - 3
+*****************************
+
+Previous passenger: 4 in position 1
+
+Next passenger: 2 in position 2
+
+Previous time: 13.7716
+
+Service time: 18.65
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 15
+
+Position of insertion: 3
+
+Previous time: 19.3731
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 16.518
+Better delta 2.
+New position for dl:3
+
+insertion was feasible
+Total delta so far: 26.4178
+Best move: 
+2 - 9.89978
+3 - 16.518
+
+
+Best move: 
+PU: 2 - 9.89978
+DL: 3 - 16.518
++++++++++++++++++++++++++++++++++++++++++
+Requests: 10 - 15
+Best cost: 4.64211
+Best route: 0
+Best positions: 6 - 7
++++++++++++++++++++++++++++++++++++++++++
+::::******::::::******::::::
+Request1: 10 - Request2: 15
+Best position 1: 6Best position 2: 7
+::::******::::::******::::::
+&&&&&&&&&&&&&&&&&&&&&&&&
+Starting time of route: 3.24969
+Endging time of route:  10.8267
+&&&&&&&&&&&&&&&&&&&&&&&&
+*****Route with insertion: 
+17 - 3 - 7 - 5 - 12 - 1 - 10 - 0 - 15 - 23 - 
+
+List of candidates so far: 
+11 
+candidate: 11 - candidate2: 16
+Current route: 
+17 - 3 - 7 - 5 - 12 - 1 - 10 - 0 - 15 - 23 - 
+Available positions for insertion of candidate1: 11
+1, 2, 3, 4, 5, 6, 7, 8, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 16
+2, 3, 4, 5, 6, 7, 8, 9, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 2
+
+Previous time: 0.425805
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 16
+
+Position of insertion: 2
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.09993
+
+Next Pass  time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 2.84542
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 3
+
+Previous time: 0.425805
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 16
+
+Position of insertion: 3
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.7921
+
+Next Pass  time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 18.3586
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 4
+
+Previous time: 0.425805
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 16
+
+Position of insertion: 4
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.50277
+
+Next Pass  time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 11.7515
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 5
+
+Previous time: 0.425805
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 9.55592
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 6
+
+Previous time: 0.425805
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 2.05372
+Better delta 2.
+New position for dl:6
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 7
+
+Previous time: 0.425805
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 15.5376
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 8
+
+Previous time: 0.425805
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 32.7935
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 9
+
+Previous time: 0.425805
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 16.6867
+
+insertion was feasible
+Total delta so far: 7.88224
+Position 1: 2passenger position: 2
+positions 0: 3
+Available positions for insertion of candidate 2: 16
+3, 4, 5, 6, 7, 8, 9, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 3
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.25043
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 3
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.7921
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 18.3586
+Better delta 2.
+New position for dl:3
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 4
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.25043
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 4
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.50277
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 11.7515
+Better delta 2.
+New position for dl:4
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 5
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.25043
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 5
+
+Previous time: 11.1432
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 9.55592
+Better delta 2.
+New position for dl:5
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 6
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.25043
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 6
+
+Previous time: 10.9602
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 2.05372
+Better delta 2.
+New position for dl:6
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 7
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.25043
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 7
+
+Previous time: 11.289
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 8
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.25043
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 8
+
+Previous time: 11.7099
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 9
+*****************************
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+
+Previous time: 4.25043
+
+Service time: 5.03333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 9
+
+Previous time: 11.3171
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+
+insertion was feasible
+Total delta so far: 11.0694
+Position 1: 3passenger position: 3
+positions 0: 4
+Available positions for insertion of candidate 2: 16
+4, 5, 6, 7, 8, 9, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 3 - 4
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.85991
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 4
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.50277
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 11.7515
+Better delta 2.
+New position for dl:4
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 3 - 5
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.85991
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 5
+
+Previous time: 11.1432
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 9.55592
+Better delta 2.
+New position for dl:5
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 3 - 6
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.85991
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 6
+
+Previous time: 10.9602
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 2.05372
+Better delta 2.
+New position for dl:6
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 3 - 7
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.85991
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 7
+
+Previous time: 11.289
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 3 - 8
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.85991
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 8
+
+Previous time: 11.7099
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 3 - 9
+*****************************
+
+Previous passenger: 5 in position 2
+
+Next passenger: 1 in position 3
+
+Previous time: 5.85991
+
+Service time: 7.68333
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 9
+
+Previous time: 11.3171
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+
+insertion was feasible
+Total delta so far: 23.1922
+Position 1: 4passenger position: 4
+positions 0: 5
+Available positions for insertion of candidate 2: 16
+5, 6, 7, 8, 9, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 4 - 5
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.49163
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 5
+
+Previous time: 11.1432
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 9.55592
+Better delta 2.
+New position for dl:5
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 4 - 6
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.49163
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 6
+
+Previous time: 10.9602
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 2.05372
+Better delta 2.
+New position for dl:6
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 4 - 7
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.49163
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 7
+
+Previous time: 11.289
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 4 - 8
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.49163
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 8
+
+Previous time: 11.7099
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 4 - 9
+*****************************
+
+Previous passenger: 1 in position 3
+
+Next passenger: 0 in position 4
+
+Previous time: 8.49163
+
+Service time: 9.35
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 9
+
+Previous time: 11.3171
+*****************************
+the insertion is feasible from < T.
+DL: the maximum riding time is exceeded.
+
+insertion was feasible
+Total delta so far: 13.3486
+Position 1: 5positions 0: 5
+Available positions for insertion of candidate 2: 16
+6, 7, 8, 9, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 5 - 6
+
+Previous time: 11.2554
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 5 - 7
+
+Previous time: 11.5843
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 5 - 8
+
+Previous time: 12.0051
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 5 - 9
+
+Previous time: 11.6123
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+Position 1: 6positions 0: 6
+Available positions for insertion of candidate 2: 16
+7, 8, 9, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 6 - 7
+
+Previous time: 11.6369
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 6 - 8
+
+Previous time: 12.0577
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 6 - 9
+
+Previous time: 11.6649
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+Position 1: 7positions 0: 7
+Available positions for insertion of candidate 2: 16
+8, 9, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 7 - 8
+
+Previous time: 12.4552
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 7 - 9
+
+Previous time: 12.0623
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+Position 1: 8positions 0: 8
+Available positions for insertion of candidate 2: 16
+9, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 8 - 9
+
+Previous time: 12.474
+*****************************
+the insertion is feasible from part 1.
+p1: the maximum riding time is exceeded.
+Best move: 
+1 - 5.82852
+6 - 2.05372
+
+
+Best move: 
+PU: 1 - 5.82852
+DL: 6 - 2.05372
+Current route: 
+18 - 9 - 8 - 6 - 13 - 14 - 24 - 
+Available positions for insertion of candidate1: 11
+1, 2, 3, 4, 5, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 16
+2, 3, 4, 5, 6, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 2
+
+Previous time: 0.99509
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 11.6066
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 3
+
+Previous time: 0.99509
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 31.3463
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 4
+
+Previous time: 0.99509
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 19.9874
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 5
+
+Previous time: 0.99509
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 12.1707
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 6
+
+Previous time: 0.99509
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 14.4482
+
+insertion was feasible
+Total delta so far: 30.4179
+Position 1: 2positions 0: 2
+Available positions for insertion of candidate 2: 16
+3, 4, 5, 6, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 3
+
+Previous time: 8.52171
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 31.3463
+Better delta 2.
+New position for dl:3
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 4
+
+Previous time: 8.24466
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 19.9874
+Better delta 2.
+New position for dl:4
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 5
+
+Previous time: 8.05401
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 12.1707
+Better delta 2.
+New position for dl:5
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 6
+
+Previous time: 8.10956
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 14.4482
+
+insertion was feasible
+Total delta so far: 33.4703
+Position 1: 3positions 0: 3
+Available positions for insertion of candidate 2: 16
+4, 5, 6, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 3 - 4
+
+Previous time: 8.69423
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 19.9874
+Better delta 2.
+New position for dl:4
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 3 - 5
+
+Previous time: 8.50358
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 12.1707
+Better delta 2.
+New position for dl:5
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 3 - 6
+
+Previous time: 8.55913
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 14.4482
+
+insertion was feasible
+Total delta so far: 51.9025
+Position 1: 4positions 0: 4
+Available positions for insertion of candidate 2: 16
+5, 6, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 4 - 5
+
+Previous time: 8.2473
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 12.1707
+Better delta 2.
+New position for dl:5
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 4 - 6
+
+Previous time: 8.30285
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 14.4482
+
+insertion was feasible
+Total delta so far: 41.395
+Position 1: 5positions 0: 5
+Available positions for insertion of candidate 2: 16
+6, 
+***********************************************
+*****************************
+pos > last passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 5 - 6
+
+Previous time: 8.14089
+*****************************
+the insertion is feasible from part 1.
+
+insertion2 is feasible
+Delta2 so far: 14.4482
+Better delta 2.
+New position for dl:6
+
+insertion was feasible
+Total delta so far: 37.0323
+Best move: 
+1 - 18.8113
+2 - 11.6066
+
+
+Best move: 
+PU: 1 - 18.8113
+DL: 2 - 11.6066
+Current route: 
+19 - 4 - 2 - 25 - 
+Available positions for insertion of candidate1: 11
+1, 2, 
+***********************************************
+Position 1: 1passenger position: 1
+positions 0: 2
+Available positions for insertion of candidate 2: 16
+2, 3, 
+***********************************************
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 2
+
+Previous time: 0.654671
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+*****************************
+pos in middle
+*****************************
+
+Request: 16
+
+Position of insertion: 2
+
+Previous passenger: 4 in position 1
+
+Next passenger: 2 in position 2
+
+Previous time: 13.5525
+
+Next Pass  time: 18.65
+*****************************
+the insertion is feasible from prevtime.
+
+insertion2 is feasible
+Delta2 so far: 0.915978
+Better delta 2.
+New position for dl:2
+*****************************
+pos < first passenger
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 1 - 3
+
+Previous time: 0.654671
+*****************************
+the insertion of both is feasible if both < first pass or if only pos1 < first pass
+the insertion of both is feasible if dl > lastpasspos.
+
+insertion2 is feasible
+Delta2 so far: 9.10094
+
+insertion was feasible
+Total delta so far: 20.0048
+Position 1: 2passenger position: 2
+Available positions for insertion of candidate 2: 16
+3, 
+***********************************************
+*****************************
+pos in middle
+*****************************
+
+Requests: 11 - 16
+
+Positions of insertion: 2 - 3
+*****************************
+
+Previous passenger: 4 in position 1
+
+Next passenger: 2 in position 2
+
+Previous time: 13.7032
+
+Service time: 18.65
+*****************************
+the insertion is feasible from prevtime.
+*****************************
+pos2 > last passenger
+*****************************
+
+DL: 16
+
+Position of insertion: 3
+
+Previous time: 19.1922
+*****************************
+the insertion is feasible from < T.
+
+insertion2 is feasible
+Delta2 so far: 9.10094
+Better delta 2.
+New position for dl:3
+
+insertion was feasible
+Total delta so far: 16.1987
+Best move: 
+2 - 7.09779
+3 - 9.10094
+
+
+Best move: 
+PU: 2 - 7.09779
+DL: 3 - 9.10094
++++++++++++++++++++++++++++++++++++++++++
+Requests: 11 - 16
+Best cost: 7.88224
+Best route: 0
+Best positions: 1 - 6
++++++++++++++++++++++++++++++++++++++++++
+::::******::::::******::::::
+Request1: 11 - Request2: 16
+Best position 1: 1Best position 2: 6
+::::******::::::******::::::
+&&&&&&&&&&&&&&&&&&&&&&&&
+Starting time of route: 3.35945
+Endging time of route:  11.4096
+&&&&&&&&&&&&&&&&&&&&&&&&
+*****Route with insertion: 
+17 - 11 - 3 - 7 - 5 - 12 - 1 - 16 - 10 - 0 - 15 - 23 - 
+
+List of candidates so far: 
+The list is empty.
+Complete solution: 
+SARP Solution: 
+17 - 11 - 3 - 7 - 5 - 12 - 1 - 16 - 10 - 0 - 15 - 23 - 
+18 - 9 - 8 - 6 - 13 - 14 - 24 - 
+19 - 4 - 2 - 25 - 
+

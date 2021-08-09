@@ -38,6 +38,12 @@ void sarpSolution::printSol(instanceStat *inst) {
     }
     cout << endl;
 }
+
+void sarpSolution::addtounserved(int candidate) {
+    unserved.push_back(candidate);
+}   
+
+
 // Solution::Solution(Data *data) : data(data), cost(__DBL_MAX__) {
 //     this->createRoutesVector();
 //     pairNeighbStatus = vector<vector<vector<bool>>>(

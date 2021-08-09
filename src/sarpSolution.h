@@ -17,7 +17,7 @@ class sarpSolution {
 
     int usedK;
     // vector<vector<vector<bool>>> pairNeighbStatus;
-
+    vector <int> unserved;
     // void createRoutesVector();
     // void updateCost();
     // void updateRoutes();
@@ -50,7 +50,15 @@ class sarpSolution {
     vector<sarpRoute>::const_iterator begin() const { return routes.begin(); }
     vector<sarpRoute>::iterator end() { return routes.end(); }
     vector<sarpRoute>::const_iterator end() const { return routes.end(); }
-    
+
+    //access unserved parcels
+    vector<int>::iterator ubegin() { return unserved.begin(); }
+    vector<int>::const_iterator ubegin() const { return unserved.begin(); }
+    vector<int>::iterator uend() { return unserved.end(); }
+    vector<int>::const_iterator uend() const { return unserved.end(); }
+    void addtounserved(int candidate);
+    void clearunserved() { unserved.clear(); }   
+
     void updateCost();
     void updateVehicles();
 

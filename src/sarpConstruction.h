@@ -54,7 +54,7 @@ public:
     
     void ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
 
-    void removeFromCL(int id);
+    void removeFromCL(int id, bool pass);
 
     // void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
     // void buildDistVec(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);

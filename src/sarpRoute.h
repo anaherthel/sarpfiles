@@ -58,14 +58,12 @@ public:
     
     bool testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int pos1, int pos2, int pu, int dl);
 
-    bool testScen(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request, probStat* problem);
-
     void calcCost(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
 
     //only when the first insertion is a passenger request.
     bool fInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int request);
     // int load() const { return load_; };
-
+    bool fInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int pu, int dl);
     //update starting and end times after insertion or erasing.
     void updateTimes(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
 
@@ -82,7 +80,7 @@ public:
     pair<int, double> cheapestInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int node, vector<int> &positions);
     
     //testing insertion of parcel pickup and delivery simultaneously
-    void cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int node, int node2, vector<int> &positions, vector<int> &positions2, vector< pair<int, double> > &bestMove);
+    void cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int node, int node2, vector<int> &positions, vector<int> &positions2, vector< pair<int, double> > &bestMove, probStat* problem);
 
     // // pre-condition: the insertion is feasible
     void insert(instanceStat *inst, double **Mdist, int node, int position);
