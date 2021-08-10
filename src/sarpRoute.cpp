@@ -22,6 +22,9 @@ void sarpRoute::calcCost(instanceStat *inst, vector<nodeStat> &nodeVec, double *
         if (u < inst->n + inst->m){
             revenue += nodeVec[u].profit;
         }
+        else{
+            revenue += nodeVec[u].profit;
+        }
         trvCost += inst->costkm*Mdist[u][v];
     }
     this->cost_ = revenue - trvCost;    
@@ -533,10 +536,10 @@ bool sarpRoute::testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVe
             prevTime += Time2;
         }
 
-        cout << "\nPrevious time: " << prevTime << endl;
-        cout << "\nService time: " << nodeVec[nextPass].e << endl;
-        cout << "*****************************" << endl;
-        getchar();
+        // cout << "\nPrevious time: " << prevTime << endl;
+        // cout << "\nService time: " << nodeVec[nextPass].e << endl;
+        // cout << "*****************************" << endl;
+        // getchar();
 
         if (prevTime <= nodeVec[nextPass].e){
             feasible = 1;
@@ -571,7 +574,7 @@ bool sarpRoute::testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVe
                 feasible = 1;
 
                 totalTime = postTime - starttime;
-                cout << "the insertion is feasible from < T." << endl;
+                // cout << "the insertion is feasible from < T." << endl;
 
                 if (totalTime > inst->maxTime){
                     feasible = 0;
@@ -830,10 +833,10 @@ void sarpRoute::updateTimes(instanceStat *inst, vector<nodeStat> &nodeVec, doubl
 // // returns a <position, cost> pair
 
 pair<int, double> sarpRoute::cheapestInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int node, vector<int> &positions) {
-    double cheapest = 100000;
+    double bestIns = -100000;
     int bestpos = -1;
     bool feasible;
-    double delta = 100000;
+    double delta = -100000;
     int pos;
 
     for(int i = 0; i < positions.size(); i++){
@@ -842,15 +845,15 @@ pair<int, double> sarpRoute::cheapestInsertion(instanceStat *inst, vector<nodeSt
         feasible = testInsertion(inst, nodeVec, Mdist, pos, node);
 
         if (feasible){       
-            delta = Mdist[nodes_[pos-1]][node]
+            delta = nodeVec[node].profit - inst->costkm*(Mdist[nodes_[pos-1]][node]
                 + Mdist[node][nodes_[pos]]
-                - Mdist[nodes_[pos-1]][nodes_[pos]]; 
+                - Mdist[nodes_[pos-1]][nodes_[pos]]); 
         }
 
         // cout << "Delta so far: " << delta << endl;
 
-        if (delta < cheapest){
-            cheapest = delta;
+        if (delta > bestIns){
+            bestIns = delta;
             bestpos = pos;
         }
 
@@ -859,7 +862,7 @@ pair<int, double> sarpRoute::cheapestInsertion(instanceStat *inst, vector<nodeSt
         // getchar();
     }  
 
-    return make_pair(bestpos, cheapest);
+    return make_pair(bestpos, bestIns);
 }
 
 void sarpRoute::cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int node, int node2, vector<int> &positions, vector<int> &positions2, vector< pair<int, double> > &bestMove, probStat* problem) {
@@ -870,15 +873,15 @@ void sarpRoute::cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &no
     // int bestpos1 = -1;
     // int bestpos2 = -1;
     bool feasible;
-    double delta1 = 100000;
-    double delta2 = 100000;
-    double deltaTotal = 100000;
+    double delta1 = -100000;
+    double delta2;
+    double deltaTotal = 0;
     
-    double bestDT = 100000;
+    double bestDT = -100000;
     int pos1, pos2;
 
     pair1.first = -1;
-    pair1.second = 100000;
+    pair1.second = -100000;
 
     for(int i = 0; i < positions.size(); i++){
         bool samePos = 0;
@@ -916,6 +919,15 @@ void sarpRoute::cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &no
         // ////////////////////////////////////////////
         // getchar();
 
+        delta1 = nodeVec[node].profit - inst->costkm*((Mdist[nodes_[pos1-1]][node])
+                + (Mdist[node][nodes_[pos1]])
+                - (Mdist[nodes_[pos1-1]][nodes_[pos1]]));
+
+        // cout << "\nDelta 1: " << delta1 << endl;
+
+        pair1.second = delta1;
+        pair1.first = pos1;                
+
         for (int j = 0; j < positions2.size(); j++){
 
             pos2 = positions2[j];
@@ -927,20 +939,25 @@ void sarpRoute::cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &no
                     continue;
                 }
             }
+            // cout << "\nTesting pair: " << pos1 << " - " << pos2 << endl;
+            // getchar();
+
             feasible = testInsertionParcel(inst, nodeVec, Mdist, pos1, pos2, node, node2);
             
             if (feasible){
                 if (pos1 == pos2){
-
-                    delta2 = (Mdist[nodes_[pos1-1]][node])
+                    samePos = 1;
+                    delta2 = - inst->costkm*((Mdist[nodes_[pos1-1]][node])
                               - (Mdist[nodes_[pos1-1]][nodes_[pos1]])
                               + (Mdist[node][node2])
-                              + (Mdist[node2][nodes_[pos1]]);
+                              + (Mdist[node2][nodes_[pos1]]));
                 }
                 else{
-                    delta2 = Mdist[nodes_[pos2-1]][node2]
+                    samePos = 0;
+                    delta2 = - inst->costkm*(Mdist[nodes_[pos2-1]][node2]
                         + Mdist[node2][nodes_[pos2]]
-                        - Mdist[nodes_[pos2-1]][nodes_[pos2]];
+                        - Mdist[nodes_[pos2-1]][nodes_[pos2]]);
+                        
                 }
                 // cout << "\ninsertion2 is feasible" << endl;
             }
@@ -950,73 +967,60 @@ void sarpRoute::cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &no
 
             // cout << "Delta2 so far: " << delta2 << endl;
 
-            if (delta2 < pair2.second){
-                // cout << "Better delta 2." << endl;
-                // cout << "New position for dl:" << pos2 << endl;
-                pair2.second = delta2;
-                pair2.first = pos2;
-                if (pos1 == pos2){
-                    samePos = 1;
-                }
-                else{
-                    samePos = 0;
-                }
-            }                
-        }       
-
-        if (pair2.first > -1){       
             if (samePos){
-                delta1 = pair2.second;
-                deltaTotal = pair2.second;
+                deltaTotal = nodeVec[node].profit + delta2;
             }
             else{
-                delta1 = (Mdist[nodes_[pos1-1]][node])
-                       + (Mdist[node][nodes_[pos1]])
-                       - (Mdist[nodes_[pos1-1]][nodes_[pos1]]);
-                
-                deltaTotal = delta1 + pair2.second;
+                deltaTotal = delta1 + delta2;
             }
 
-            if (deltaTotal < bestDT){
+            // if (delta2 < pair2.second){
+            //     // cout << "Better delta 2." << endl;
+            //     // cout << "New position for dl:" << pos2 << endl;
+            //     pair2.second = delta2;
+            //     pair2.first = pos2;
+            // }
+
+            if (deltaTotal > bestDT){
                 bestDT = deltaTotal;
                 // cout << "Better delta 1." << endl;
                 // cout << "New position for pu:" << pos1 << endl;                
-                pair1.second = delta1;
-                pair1.first = pos1;
+
                 bestMove[0].first = pair1.first;
                 bestMove[0].second = pair1.second;
-                bestMove[1].first = pair2.first;
-                bestMove[1].second = pair2.second;
-            }
-        }
+                bestMove[1].first = pos2;
+                bestMove[1].second = delta2;
+            }              
+        }       
         positions2.clear();
     }
 
-    cout << "Best move: " << endl;
-    for (int i = 0; i < bestMove.size(); i++){
-        cout << bestMove[i].first << " - " <<bestMove[i].second << endl;
-    }
-    cout << endl << endl;
-    getchar(); 
+    // cout << "Best move: " << endl;
+    // for (int i = 0; i < bestMove.size(); i++){
+    //     cout << bestMove[i].first << " - " <<bestMove[i].second << endl;
+    // }
+    // cout << endl << endl;
+    // getchar(); 
 }
 
-void sarpRoute::insert(instanceStat *inst, double **Mdist, int node, int position){
-    int delta = Mdist[nodes_[position-1]][node]
-        + Mdist[node][nodes_[position]]
-        - Mdist[nodes_[position-1]][nodes_[position]];
+void sarpRoute::insert(instanceStat *inst, double **Mdist, int node, int position, double profit){
+
+    double delta = profit - inst->costkm*(Mdist[this->nodes_[position-1]][node]
+        + Mdist[node][this->nodes_[position]]
+        - Mdist[this->nodes_[position-1]][this->nodes_[position]]);
     
     cout << "Delta: " << delta << endl; 
     getchar();
     cost_ += delta;
     // length_ += delta + inst.s();
-    nodes_.insert(nodes_.begin() + position, node);
+    this->nodes_.insert(this->nodes_.begin() + position, node);
 }
 
-void sarpRoute::erase(instanceStat *inst, double **Mdist, int position) {
+void sarpRoute::erase(instanceStat *inst, double **Mdist, int position, double profit) {
     int node = this->nodes_[position];
-    int delta = Mdist[this->nodes_[position - 1]][this->nodes_[position + 1]]
+    double delta =  profit - inst->costkm*(Mdist[this->nodes_[position - 1]][this->nodes_[position + 1]]
         - Mdist[this->nodes_[position - 1]][this->nodes_[position]]
-        - Mdist[this->nodes_[position]][this->nodes_[position + 1]];
+        - Mdist[this->nodes_[position]][this->nodes_[position + 1]]);
     cost_ -= delta;
     // length_ -= delta + inst.s();
    this->nodes_.erase(this->nodes_.begin() + position);

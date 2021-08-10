@@ -83,9 +83,9 @@ public:
     void cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int node, int node2, vector<int> &positions, vector<int> &positions2, vector< pair<int, double> > &bestMove, probStat* problem);
 
     // // pre-condition: the insertion is feasible
-    void insert(instanceStat *inst, double **Mdist, int node, int position);
+    void insert(instanceStat *inst, double **Mdist, int node, int position, double profit);
 
-    void erase(instanceStat *inst, double **Mdist, int position);
+    void erase(instanceStat *inst, double **Mdist, int position, double profit);
 
     void printLoad();
 
