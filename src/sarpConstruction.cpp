@@ -28,7 +28,7 @@ int sarpConstruction::getRandRequestFromCL() {
     return random_request;
 }
 
-void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem){
+void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem, sarpSolution *solution){
 
     //Order requests based on TW
     //Define number of random insertions
@@ -48,7 +48,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     int position;
     int vehicle;
     
-    vehicle = solution.getvehicle();
+    vehicle = solution->getvehicle();
     
     vector<int>::iterator iter;
     
@@ -103,24 +103,24 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     // sroute.printLoad();
     // getchar();
 
-    solution.addRoute(&sroute);
-    solution.updateVehicles();
-    solution.updateCost();
+    solution->addRoute(&sroute);
+    solution->updateVehicles();
+    solution->updateCost();
 
-    solution.printSol(inst);
-    solution.printCosts();
+    solution->printSol(inst);
+    solution->printCosts();
     getchar();
     //random assignments
     while(counter < insertions){
         candidate = getRandRequestFromCL();
         // cout << "candidate number " << counter << ": "<< candidate  << endl;
         // getchar();
-        sol_size = solution.getRoutesSize();
+        sol_size = solution->getRoutesSize();
         inserted = 0;
         feastime = 0;
         //if pair of positions -1 -1, create another route without testing requests.
         for (int rid = 0; rid < sol_size; rid++){
-            sroute = solution.getRoute(rid);
+            sroute = solution->getRoute(rid);
             // cout << "Current solution: " << endl;
             // for (auto a: sroute){
             //     cout << a << " - ";
@@ -147,8 +147,8 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
                     sroute.updatePass(inst, nodeVec);
                     sroute.updateLoad(inst, nodeVec);
                     sroute.updateTimes(inst, nodeVec, Mdist);
-                    solution.updateRoutes(&sroute, rid);
-                    solution.updateCost();
+                    solution->updateRoutes(&sroute, rid);
+                    solution->updateCost();
                     inserted = 1;
                     // cout << "*****Solution with insertion: " << endl;
                     // for (auto a: sroute){
@@ -168,15 +168,15 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
             removeFromCL(candidate, 1);
         }
         else{
-            vehicle = solution.getvehicle();
+            vehicle = solution->getvehicle();
             sarpRoute newroute(inst, vehicle);
             feastime = newroute.fInsertion(inst, nodeVec, Mdist, candidate);
             newroute.calcCost(inst, nodeVec, Mdist);
             newroute.insert(inst, Mdist, candidate, 1, nodeVec[candidate].profit);
             newroute.updatePass(inst, nodeVec);
             newroute.updateLoad(inst, nodeVec);
-            solution.addRoute(&newroute);
-            solution.updateCost();
+            solution->addRoute(&newroute);
+            solution->updateCost();
             removeFromCL(candidate, 1);
             inserted = 1;
         } 
@@ -193,8 +193,8 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
         // }
     }
 
-    solution.printSol(inst);
-    solution.printCosts();
+    solution->printSol(inst);
+    solution->printCosts();
     getchar();
 
     //greedy assignments
@@ -209,7 +209,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
             // cout << "candidate: "<< candidate  << endl;
             // getchar();
             best_route = -1;
-            sol_size = solution.getRoutesSize();
+            sol_size = solution->getRoutesSize();
             best_cost = -100000;
             inserted = 0;
             feastime = 0;
@@ -218,7 +218,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
             for (int rid = 0; rid < sol_size; rid++){
                 cheapestpair.first = -1;
                 cheapestpair.second = -100000;
-                sroute = solution.getRoute(rid);
+                sroute = solution->getRoute(rid);
                 // cout << "Current route: " << endl;
                 // for (auto a: sroute){
                 //     cout << a << " - ";
@@ -255,29 +255,29 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
             // getchar();
 
             if (best_cost == -100000){
-                vehicle = solution.getvehicle();
+                vehicle = solution->getvehicle();
                 sarpRoute newroute(inst, vehicle);
                 feastime = newroute.fInsertion(inst, nodeVec, Mdist, candidate);
                 newroute.calcCost(inst, nodeVec, Mdist);
                 newroute.insert(inst, Mdist, candidate, 1, nodeVec[candidate].profit);
                 newroute.updatePass(inst, nodeVec);
                 newroute.updateLoad(inst, nodeVec);
-                solution.addRoute(&newroute);
+                solution->addRoute(&newroute);
                 removeFromCL(candidate, 1);
-                solution.updateVehicles();
-                solution.updateCost();
+                solution->updateVehicles();
+                solution->updateCost();
                 inserted = 1;
                 break;
             }
 
             else{
-                sroute = solution.getRoute(best_route);
+                sroute = solution->getRoute(best_route);
                 sroute.insert(inst, Mdist, candidate, best_pos, nodeVec[candidate].profit);
                 sroute.updatePass(inst, nodeVec);
                 sroute.updateLoad(inst, nodeVec);
                 sroute.updateTimes(inst, nodeVec, Mdist);
-                solution.updateRoutes(&sroute, best_route);
-                solution.updateCost();
+                solution->updateRoutes(&sroute, best_route);
+                solution->updateCost();
                 
                 inserted = 1;
                 // cout << "*****Route with insertion: " << endl;
@@ -304,8 +304,8 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
         // }
     }
     cout << "Solution with passengers: " << endl;
-    solution.printSol(inst);
-    solution.printCosts();
+    solution->printSol(inst);
+    solution->printCosts();
     getchar();
 
     //inserting parcels
@@ -336,7 +336,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
             // cout << "candidate: "<< candidate  << " - candidate2: " << candidate2 << endl;
             // getchar();
             best_route = -1;
-            sol_size = solution.getRoutesSize();
+            sol_size = solution->getRoutesSize();
             best_cost = -100000;
             inserted = 0;
             feastime = 0;
@@ -350,7 +350,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
                 cheapestMove[1].first = -1;
                 cheapestMove[1].second = -100000;
 
-                sroute = solution.getRoute(rid);
+                sroute = solution->getRoute(rid);
                 // cout << "Current route: " << endl;
                 // for (auto a: sroute){
                 //     cout << a << " - ";
@@ -405,7 +405,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
 
             if (best_cost == -100000){
                 if (problem->dParcel > 0){
-                    vehicle = solution.getvehicle();
+                    vehicle = solution->getvehicle();
                     sarpRoute newroute(inst, vehicle);
                     feastime = newroute.fInsertionParcel(inst, nodeVec, Mdist, candidate, candidate2);
                     newroute.calcCost(inst, nodeVec, Mdist);
@@ -413,22 +413,22 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
                     newroute.insert(inst, Mdist, candidate2, 2, nodeVec[candidate2].profit);
                     newroute.updatePass(inst, nodeVec);
                     newroute.updateLoad(inst, nodeVec);
-                    solution.addRoute(&newroute);
+                    solution->addRoute(&newroute);
                     removeFromCL(candidate, 0);
-                    solution.updateVehicles();
+                    solution->updateVehicles();
                     inserted = 1;
-                    solution.updateCost();
+                    solution->updateCost();
                     break;
                 }
                 else{
-                    solution.addtounserved(candidate);
+                    solution->addtounserved(candidate);
                     removeFromCL(candidate, 0);
                     break;
                 }
             }
 
             else{
-                sroute = solution.getRoute(best_route);
+                sroute = solution->getRoute(best_route);
 
                 // cout << "::::******::::::******::::::" << endl;
                 // cout << "Request1: " << candidate << " - Request2: " << candidate2 << endl;
@@ -442,8 +442,8 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
                 sroute.updatePass(inst, nodeVec);
                 sroute.updateLoad(inst, nodeVec);
                 sroute.updateTimes(inst, nodeVec, Mdist);
-                solution.updateRoutes(&sroute, best_route);
-                solution.updateCost();
+                solution->updateRoutes(&sroute, best_route);
+                solution->updateCost();
 
                 inserted = 1;
                 // cout << "*****Route with insertion: " << endl;
@@ -459,13 +459,13 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
         }
 
         if (inserted && CLparc.empty()){
-            CLparc.insert(CLparc.end(), solution.ubegin(), solution.uend());
-            solution.clearunserved();
+            CLparc.insert(CLparc.end(), solution->ubegin(), solution->uend());
+            solution->clearunserved();
         }
     }
     cout << "Complete solution: " << endl;
-    solution.printSol(inst);
-    solution.printCosts();
+    solution->printSol(inst);
+    solution->printCosts();
     getchar();
 
     // double testcost = 0;
@@ -473,9 +473,9 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     // double singlecost;
 
     // cout << "Extensive value calculation: " << endl;
-    // sol_size = solution.getRoutesSize();
+    // sol_size = solution->getRoutesSize();
     // for (int rid = 0; rid < sol_size; rid++){
-    //     sroute = solution.getRoute(rid);
+    //     sroute = solution->getRoute(rid);
     //     sroute.calcCost(inst, nodeVec, Mdist);
     //     singlecost = sroute.cost();
     //     cout << "route " << rid << ": " << singlecost << endl;

@@ -24,9 +24,10 @@
 #include <unistd.h>
 #include "readdata.h"
 #include "functions.h"
-// #include "bundleData.h"
-// #include "modelbundle.h"
-// #include "mipbundle.h"
+#include "hbundle.h"
+#include "sarpRoute.h"
+#include "sarpSolution.h"
+#include "sarpConstruction.h"
 
 class sarpILS {
 protected:
@@ -38,7 +39,21 @@ protected:
 
     // int pairings;
 
+    int iterILS;
+    int maxIterILS;
+    
 public:
+
+    sarpSolution solution;
+    sarpSolution bestSol;
+
+    void ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+
+    void RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+
+    void SwapAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+
+    // ~ILS();
     // void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
     // void buildDistVec(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
     // void buildBundles(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem, bundleStat* bStat);

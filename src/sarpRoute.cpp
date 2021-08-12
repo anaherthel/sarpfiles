@@ -1048,3 +1048,52 @@ void sarpRoute::printLoad(){
         }
     }
 }
+//Work on SWAP
+double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem){
+    double delta;
+
+	double imp = 0;
+	double preImp = 0;
+	double bestImp = 0;
+	double newCost = 0;
+
+	int tempElement = 0;
+	int pos1 = 0;
+	int pos2 = 0;
+
+	for (int i = 1; i < sol.size() - 2; i++) {
+		preImp = - Mdist[sol[i - 1]][sol[i]];
+		for (int j = i + 1; j < sol.size() - 1; j++) {
+			if (j - i == 1) {
+				imp = preImp 
+                - Mdist[sol[j]][sol[j + 1]] 
+                + Mdist[sol[i - 1]][sol[j]] 
+                + Mdist[sol[i]][sol[j + 1]];	
+			}
+			else {
+				imp = preImp - Mdist[sol[i]][sol[i + 1]] 
+                - Mdist[sol[j]][sol[j - 1]] 
+                - Mdist[sol[j]][sol[j + 1]] 
+                + Mdist[sol[i - 1]][sol[j]] 
+                + Mdist[sol[j]][sol[i + 1]] 
+                + Mdist[sol[j - 1]][sol[i]] 
+                + Mdist[sol[i]][sol[j + 1]];
+			}
+			if (imp < 0) {
+				if (imp < bestImp) {
+					bestImp = imp;
+					pos1 = i;
+					pos2 = j;
+				}
+			}
+		}
+	}
+
+	tempElement = sol[pos1];
+	sol[pos1] = sol[pos2];
+	sol[pos2] = tempElement;
+
+
+    return delta;
+
+}

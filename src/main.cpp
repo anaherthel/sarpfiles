@@ -43,7 +43,6 @@ int main (int argc, char *argv[]) {
 		
 		hbundle h(&inst);
 
-		sarpConstruction sCon(&inst, nodeVec);
 		cout << "Dist Matrix: " << endl;
 		for (int i = 0; i < inst.V + inst.dummy; i++){
 		    for (int j = 0; j < inst.V + inst.dummy; j++){
@@ -73,7 +72,8 @@ int main (int argc, char *argv[]) {
 			// h.buildDistVec(&inst, nodeVec, distMatrix, &problem);
 			// h.buildBundles(&inst, nodeVec, distMatrix, &problem);
 			// h.orgBundles(&inst, nodeVec, distMatrix, bStat, &problem);
-			sCon.ConstrProc(&inst, nodeVec, distMatrix, &problem);
+			// sCon.ConstrProc(&inst, nodeVec, distMatrix, &problem);
+			sILS.ILS(&inst, nodeVec, distMatrix, &problem);
 			// sILS.function();
 		}
 		// else if (problem.model == "twostage"){

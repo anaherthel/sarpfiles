@@ -89,6 +89,8 @@ public:
 
     void printLoad();
 
+    double Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem);
+
     // // improve route with 2-opt
     // // returns the number of improvements performed
     // int two_opt(const CVRPInstance& inst);

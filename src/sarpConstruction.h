@@ -45,14 +45,14 @@ protected:
 
 public:
 
-    sarpSolution solution;
+    // sarpSolution solution;
 
     sarpConstruction(instanceStat *inst, vector<nodeStat> &nodeVec);
     ~sarpConstruction(){};
     bool compare(int a, int b);
     int getRandRequestFromCL();
     
-    void ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
+    void ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem, sarpSolution *solution);
 
     void removeFromCL(int id, bool pass);
 
