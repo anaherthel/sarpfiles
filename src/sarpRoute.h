@@ -27,9 +27,11 @@ protected:
     int id;
 
     vector <pair <nodeStat, int> > passandpos; //passengers and their positions in the route
-    vector <int> prevReq;
-    vector <int> postReq;
+    vector < pair <int, int> > pdvec; //first: position of parcel pickup; second: position of parcel delivery in the route.
+    // vector < pair <int, int> > intervalVec; //first: previous passenger; second: next passenger
     vector <pair <int, int> > loadofroute; //first:actual load; second:passengers visited while carrying parcels.
+
+
 public:
     // the route
     vector<int> nodes_;
@@ -50,14 +52,23 @@ public:
     int firstpos() const { return nodes_[1]; };
     int lastpos() const { return nodes_[nodes_.size()-2]; };
 
+    int getPU(int request) const { return pdvec[request].first; };
+    int getDL(int request) const { return pdvec[request].second; };
+
+    int getNextPass(int request);
+    int getPrevPass(int request);
+
     inline int getId() { return id; };
 
     vector<int>::iterator begin() { return nodes_.begin(); };
     vector<int>::iterator end() { return nodes_.end(); };
     bool testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request);
-    
     bool testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int pos1, int pos2, int pu, int dl);
 
+    bool testSwap(instanceStat *inst, vector<nodeStat> &nodeVec,
+                         double **Mdist,int pos1, int pos2, 
+                         pair <int, int> inter1, pair <int, int> inter2);
+                         
     void calcCost(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
 
     //only when the first insertion is a passenger request.
@@ -74,6 +85,7 @@ public:
     //determine available positions to add new passenger request 
     void availablePos(instanceStat *inst, vector<nodeStat> &nodeVec, int request, probStat* problem, vector<int> &positions);
 
+    void updateParcels(int request, int pos1, int pos2);
     // // evaluate the cost of cheapest insertion of node in this route
     // // return a <position, cost> pair
     // // If no insertion is feasible, the cost is INT_MAX
@@ -88,6 +100,10 @@ public:
     void erase(instanceStat *inst, double **Mdist, int position, double profit);
 
     void printLoad();
+    
+    pair <int, int> getInterval(int req);
+    
+    bool checkInterval(pair <int, int> inter1, pair <int, int> inter2);
 
     double Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem);
 

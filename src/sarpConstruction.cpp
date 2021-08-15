@@ -413,6 +413,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
                     newroute.insert(inst, Mdist, candidate2, 2, nodeVec[candidate2].profit);
                     newroute.updatePass(inst, nodeVec);
                     newroute.updateLoad(inst, nodeVec);
+                    newroute.updateParcels(candidate-inst->n, 1, 2);
                     solution->addRoute(&newroute);
                     removeFromCL(candidate, 0);
                     solution->updateVehicles();
@@ -441,6 +442,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
                 sroute.insert(inst, Mdist, candidate2, bestpositions.second+1, nodeVec[candidate2].profit);
                 sroute.updatePass(inst, nodeVec);
                 sroute.updateLoad(inst, nodeVec);
+                sroute.updateParcels(candidate-inst->n, bestpositions.first, bestpositions.second+1);
                 sroute.updateTimes(inst, nodeVec, Mdist);
                 solution->updateRoutes(&sroute, best_route);
                 solution->updateCost();
