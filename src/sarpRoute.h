@@ -28,7 +28,6 @@ protected:
 
     vector <pair <nodeStat, int> > passandpos; //passengers and their positions in the route
     vector < pair <int, int> > pdvec; //first: position of parcel pickup; second: position of parcel delivery in the route.
-    // vector < pair <int, int> > intervalVec; //first: previous passenger; second: next passenger
     vector <pair <int, int> > loadofroute; //first:actual load; second:passengers visited while carrying parcels.
 
 
@@ -60,6 +59,10 @@ public:
 
     inline int getId() { return id; };
 
+    double getProfit (vector<nodeStat> &nodeVec, int pos) { return nodeVec[nodes_[pos]].profit; };
+    
+    void updateCost(double delta) { cost_ += delta; }
+
     vector<int>::iterator begin() { return nodes_.begin(); };
     vector<int>::iterator end() { return nodes_.end(); };
     bool testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request);
@@ -68,7 +71,7 @@ public:
     bool testSwap(instanceStat *inst, vector<nodeStat> &nodeVec,
                          double **Mdist,int pos1, int pos2, 
                          pair <int, int> inter1, pair <int, int> inter2);
-                         
+
     void calcCost(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
 
     //only when the first insertion is a passenger request.
@@ -77,6 +80,7 @@ public:
     bool fInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int pu, int dl);
     //update starting and end times after insertion or erasing.
     void updateTimes(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
+
 
     //updates passenger list with their positions.
     void updatePass(instanceStat *inst, vector<nodeStat> &nodeVec);
@@ -103,9 +107,13 @@ public:
     
     pair <int, int> getInterval(int req);
     
-    bool checkInterval(pair <int, int> inter1, pair <int, int> inter2);
+    bool checkInterval(instanceStat *inst, int pos1, int pos2, pair <int, int> inter1, pair <int, int> inter2);
+    bool checkDelivery(instanceStat *inst, int pos1, int pos2, probStat* problem);
 
     double Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem);
+
+    void updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
+
 
     // // improve route with 2-opt
     // // returns the number of improvements performed

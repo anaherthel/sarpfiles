@@ -110,58 +110,92 @@ bool sarpRoute::testSwap(instanceStat *inst, vector<nodeStat> &nodeVec,
 
     bool feasible = 0;
 
-
     int req1 = nodes_[pos1];
     int req2 = nodes_[pos2];
 
- 
     if (req2 < inst->n){
+        inter2.second = inter1.second;//setting same end point for interval.
         prevPass = nodes_[inter1.first];
-        prevTime = nodeVec[prevPass].e + nodeVec[prevPass].delta
+        prevTime = nodeVec[prevPass].e 
                     - ((Mdist[nodes_[pos1-1]][req1])/inst->vmed)
-                    + ((Mdist[nodes_[pos1-1]][req2])/inst->vmed);
+                    + ((Mdist[nodes_[pos1-1]][req2])/inst->vmed)
+                    + nodeVec[req1].delta;
 
         for(int i = inter1.first; i < pos1; i++){
             prevTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) 
                         + nodeVec[nodes_[i]].delta;
-
         }
         if (prevTime <= nodeVec[req2].e){
             feasible = 1;
         }
+        else{
+            feasible = 0;
+            return feasible;
+        }
         if (feasible){
-            postTime = nodeVec[req2].e + nodeVec[req2].delta
+            postTime = nodeVec[req2].e 
                       - ((Mdist[req1][nodes_[pos1+1]])/inst->vmed)
                       - nodeVec[req1].delta
                       + ((Mdist[req2][nodes_[pos1+1]])/inst->vmed)
                       - ((Mdist[req2][nodes_[pos2+1]])/inst->vmed)
                       - ((Mdist[nodes_[pos2-1]][req2])/inst->vmed)
-                      -;
+                      + ((Mdist[req1][nodes_[pos2+1]])/inst->vmed)
+                      + ((Mdist[nodes_[pos2-1]][req1])/inst->vmed);
 
             for (int i = pos1; i < inter1.second; i++){
-                if (i != pos2){
-                    postTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) 
-                            + nodeVec[nodes_[i]].delta;
+                postTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) 
+                        + nodeVec[nodes_[i]].delta;
+            }
+
+            if (inter1.second < inst->n + 2*inst->m){
+                if (postTime < nodeVec[nodes_[inter1.second]].e){
+                    feasible = 1;
+                }
+                else{
+                    feasible = 0;
+                    return feasible;
                 }
             }
-            postTime += ;
+            else{//last position on interval is depot.
+                if (postTime < inst->T){
+                    if(postTime - starttime < inst->maxTime){
+                        feasible = 1;
+                    }
+                    else{
+                        feasible = 0;
+                        return feasible;
+                    }  
+                }
+                else{
+                    feasible = 0;
+                    return feasible;
+                }                
+            }   
         }
     }
-
     else if (req1 < inst->n){
+        inter2.first = inter1.first;//setting same initial point.
         prevPass = nodes_[inter2.first];
-        prevTime = nodeVec[prevPass].e + nodeVec[prevPass].delta
+        prevTime = nodeVec[prevPass].e
                     - ((Mdist[nodes_[pos2-1]][req2])/inst->vmed)
-                    + ((Mdist[nodes_[pos2-1]][req1])/inst->vmed);
+                    + ((Mdist[nodes_[pos2-1]][req1])/inst->vmed)
+                    - ((Mdist[nodes_[pos1-1]][req1])/inst->vmed)
+                    - ((Mdist[req1][nodes_[pos1+1]])/inst->vmed)
+                    + ((Mdist[nodes_[pos1-1]][req2])/inst->vmed)
+                    + ((Mdist[req2][nodes_[pos1+1]])/inst->vmed)
+                    + nodeVec[req2].delta;
 
         for(int i = inter2.first; i < pos2; i++){
             prevTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) 
                         + nodeVec[nodes_[i]].delta;
-
         }
         if (prevTime <= nodeVec[req1].e){
             feasible = 1;
         }
+        else{
+            feasible = 0;
+            return feasible;
+        }       
         if (feasible){
             postTime = nodeVec[req1].e + nodeVec[req1].delta
                       - ((Mdist[req2][nodes_[pos2+1]])/inst->vmed)
@@ -169,27 +203,116 @@ bool sarpRoute::testSwap(instanceStat *inst, vector<nodeStat> &nodeVec,
                       + ((Mdist[req1][nodes_[pos2+1]])/inst->vmed);
 
             for (int i = pos2; i < inter2.second; i++){
-                
+                postTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) 
+                            + nodeVec[nodes_[i]].delta;                
             }
+
+           if (inter2.second < inst->n + 2*inst->m){
+                if (postTime < nodeVec[nodes_[inter2.second]].e){
+                    feasible = 1;
+                }
+                else{
+                    feasible = 0;
+                    return feasible;
+                }
+            }
+            else{//last position on interval is depot.
+                if (postTime < inst->T){
+                    if(postTime - starttime < inst->maxTime){
+                        feasible = 1;
+                    }
+                    else{
+                        feasible = 0;
+                        return feasible;
+                    }  
+                }
+                else{
+                    feasible = 0;
+                    return feasible;
+                }                
+            }               
         }
     }
-
     else{
+        bool sameInterval;
+        sameInterval = checkInterval(inst, pos1, pos2, inter1, inter2);
 
+        if (sameInterval){
+            prevPass = nodes_[inter1.first];
+            nextPass = nodes_[inter1.second];
+            prevTime = nodeVec[prevPass].e;
+
+            for(int i = inter1.first; i < inter1.second; i++){
+                prevTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) 
+                            + nodeVec[nodes_[i]].delta;
+            }
+
+            prevTime += - ((Mdist[nodes_[pos2-1]][req2])/inst->vmed)
+                        - ((Mdist[req2][nodes_[pos2+1]])/inst->vmed)
+                        - ((Mdist[nodes_[pos1-1]][req1])/inst->vmed)
+                        - ((Mdist[req1][nodes_[pos1+1]])/inst->vmed)
+                        + ((Mdist[nodes_[pos2-1]][req1])/inst->vmed)
+                        + ((Mdist[req1][nodes_[pos2+1]])/inst->vmed)
+                        + ((Mdist[nodes_[pos1-1]][req2])/inst->vmed)
+                        + ((Mdist[req2][nodes_[pos1+1]])/inst->vmed);
+
+            if (prevTime <= nodeVec[nextPass].e){
+                feasible = 1;
+            }
+            else{
+                feasible = 0;
+                return feasible;
+            }       
+        }   
+        else{
+            prevPass = nodes_[inter1.first];
+            nextPass = nodes_[inter1.second];
+            prevTime = nodeVec[prevPass].e;
+
+            for(int i = inter1.first; i < inter1.second; i++){
+                prevTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) 
+                            + nodeVec[nodes_[i]].delta;
+            }
+            prevTime += - ((Mdist[nodes_[pos1-1]][req1])/inst->vmed)
+                        - ((Mdist[req1][nodes_[pos1+1]])/inst->vmed)
+                        + ((Mdist[nodes_[pos1-1]][req2])/inst->vmed)
+                        + ((Mdist[req2][nodes_[pos1+1]])/inst->vmed);
+
+            if (prevTime <= nodeVec[nextPass].e){
+                feasible = 1;
+            }
+            else{
+                feasible = 0;
+                return feasible;
+            }
+
+            prevPass = nodes_[inter2.first];
+            nextPass = nodes_[inter2.second];
+            prevTime = nodeVec[prevPass].e;
+
+            for(int i = inter2.first; i < inter2.second; i++){ 
+                prevTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) 
+                            + nodeVec[nodes_[i]].delta;
+            }
+
+            prevTime += - ((Mdist[nodes_[pos2-1]][req2])/inst->vmed)
+                        - ((Mdist[req2][nodes_[pos2+1]])/inst->vmed)
+                        + ((Mdist[nodes_[pos2-1]][req1])/inst->vmed)
+                        + ((Mdist[req1][nodes_[pos2+1]])/inst->vmed);
+
+            if (prevTime <= nodeVec[nextPass].e){
+                feasible = 1;
+            }
+            else{
+                feasible = 0;
+                return feasible;
+            }                       
+        }
     }
-
-
-
-
-
-
+    return feasible;
 }
 
-
-//CREATE TESTREMOVAL FUNCTION FOR THE INTRA NEIGHBORHOODS
-
-
-bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request, int oldpos){
+bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request){
 
     double prevTime, postTime, totalTime;
     double tstart = 0;
@@ -201,9 +324,6 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
     int stoppingLoop, startingLoop;
 
     bool feasible = 0;
-    prevReq.clear();
-    postReq.clear();
-
 
     //calculating starting times
     //there will always be the initial depot before any passenger
@@ -425,8 +545,6 @@ bool sarpRoute::testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVe
     int stoppingLoop, startingLoop;
 
     bool feasible = 0;
-    prevReq.clear();
-    postReq.clear();
 
     //calculating starting times
     //there will always be the initial depot before any passenger
@@ -582,7 +700,7 @@ bool sarpRoute::testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVe
 
             if (totalTime > inst->maxTime){
                 feasible = 0;
-                cout << "p1: the maximum riding time is exceeded." << endl;
+                // cout << "p1: the maximum riding time is exceeded." << endl;
                 return feasible;
             }
         }
@@ -632,7 +750,7 @@ bool sarpRoute::testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVe
         prevTime += Time1;
 
         if (sameInterval && pos2 != pos1){
-            cout << "\nPU and DL in the same interval" << endl;
+            // cout << "\nPU and DL in the same interval" << endl;
             prevTime += Time2;
         }
 
@@ -678,7 +796,7 @@ bool sarpRoute::testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVe
 
                 if (totalTime > inst->maxTime){
                     feasible = 0;
-                    cout << "DL: the maximum riding time is exceeded." << endl;
+                    // cout << "DL: the maximum riding time is exceeded." << endl;
                     return feasible;
                 }
             }
@@ -1109,8 +1227,8 @@ void sarpRoute::insert(instanceStat *inst, double **Mdist, int node, int positio
         + Mdist[node][this->nodes_[position]]
         - Mdist[this->nodes_[position-1]][this->nodes_[position]]);
     
-    cout << "Delta: " << delta << endl; 
-    getchar();
+    // cout << "Delta: " << delta << endl; 
+    // getchar();
     cost_ += delta;
     // length_ += delta + inst.s();
     this->nodes_.insert(this->nodes_.begin() + position, node);
@@ -1152,6 +1270,25 @@ void sarpRoute::printLoad(){
 void sarpRoute::updateParcels(int request, int pos1, int pos2){
     pdvec[request].first = pos1;
     pdvec[request].second = pos2;
+}
+
+void sarpRoute::updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist){
+    updatePass(inst, nodeVec);
+    updateLoad(inst, nodeVec);
+    updateTimes(inst, nodeVec, Mdist);
+
+    for(int i = 0; i < nodes_.size(); i++){
+        if(nodeVec[nodes_[i]].load > 0){
+            for(int j = i+1; j < nodes_.size(); j++){
+                if (nodeVec[nodes_[j]].load < 0){
+                    if(nodes_[j] == nodes_[i]+inst->m){
+                        updateParcels(nodes_[i]-inst->n, i, j);
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }
 
 int sarpRoute::getNextPass(int request){
@@ -1217,8 +1354,34 @@ bool sarpRoute::checkInterval(instanceStat *inst, int pos1, int pos2, pair <int,
     return sameinterval;
 }
 
+bool sarpRoute::checkDelivery(instanceStat *inst, int pos1, int pos2, probStat* problem){
+    int pu;
+    pu = pdvec[nodes_[pos2]-inst->m-inst->n].first;
+
+    pair<int, int> interpu;
+
+    bool feasible = 1;
+
+    if (problem->dParcel > 0){
+        if(pos1 <= pu){
+            feasible = 0;
+            // cout << "\nDelivery cant be "
+        }
+    }
+    else{
+        interpu = getInterval(pu);
+        if(pos1 <= interpu.second){
+            feasible = 0;
+            cout << "\nDelivery cant be put before first passenger after pickup." << endl;
+        }
+    }
+
+    return feasible;
+}
+
+
 double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem){
-    double delta;
+    double delta = 0;
 
 	double bestDelta = 0;
 	double newCost = 0;
@@ -1241,8 +1404,11 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
 		delta = -Mdist[nodes_[i - 1]][nodes_[i]];
         inter1 = getInterval(i);
 
+        cout << "\nCandidate1: " << nodes_[i] << endl;
+        cout << "Interval1: " << inter1.first << " - " << inter1.second << endl;
+
         if(nodes_[i] < inst->n){
-            jend = inter1.second + 1;            
+            jend = inter1.second;            
         }
         else if (nodes_[i] < inst->n+inst->m){
             temp = getDL(nodes_[i]-inst->n);
@@ -1256,27 +1422,44 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
         else{
             jend = nodes_.size() - 1;
         }
+
+        cout << "End of trials: " << jend << endl;
+        getchar();
 		for (int j = i + 1; j < jend; j++) {
+            feasPos = 0;
             feasible = 0;
 
-            if (nodes_[i] < inst->n && nodes_[j] < inst->n){//cant interexchange passengers (TW)
+            if (nodes_[i] < inst->n && nodes_[j] < inst->n){//cannot interexchange passengers (TW)
                 continue;
             }
             else{
                 inter2 = getInterval(j);
+                cout << "\nCandidate2: " << nodes_[j] << endl;
+                cout << "Interval2: " << inter2.first << " - " << inter2.second << endl;  
+                getchar();
                 if (nodes_[i] < inst->n || nodes_[j] < inst->n){
-                    feasPos = checkInterval(inter1, inter2);
+                    feasPos = checkInterval(inst, i, j, inter1, inter2);
+                }
+                else if(nodeVec[nodes_[j]].load < 0){
+                    feasPos = checkDelivery(inst, i, j, problem);
                 }
                 else{
                     feasPos = 1;
                 }
+
                 if (feasPos){
+                    cout << "The interval is feasible." << endl;
+                    getchar();
                     feasible = testSwap(inst, nodeVec, Mdist, i, j, inter1, inter2);
 
                     if (feasible){
+                        cout << "\nThe exchange is feasible." << endl;
+                        getchar();
                         if (j - i == 1) {
-                            delta += -Mdist[nodes_[j]][nodes_[j + 1]] 
-                            + Mdist[nodes_[i - 1]][nodes_[j]] 
+                            delta += - Mdist[nodes_[i]][nodes_[j]] 
+                            + Mdist[nodes_[j]][nodes_[i]]                            
+                            - Mdist[nodes_[j]][nodes_[j + 1]] 
+                            + Mdist[nodes_[i - 1]][nodes_[j]]
                             + Mdist[nodes_[i]][nodes_[j + 1]];
                         }
                         else {
@@ -1291,6 +1474,8 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
 
                         if (delta < 0) {
                             if (delta < bestDelta) {
+                                cout << "\nThere was an improvement with delta as " << delta << endl;
+                                getchar();
                                 bestDelta = delta;
                                 pos1 = i;
                                 pos2 = j;
@@ -1298,14 +1483,25 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
                             }
                         }
                     }
+                }
+                else{
+                    cout << "\nThe intervals are NOT feasible." << endl;
+                    getchar();
                 }              
             }			
 		}
 	}
     if (swap){
+
         tempElement = nodes_[pos1];
         nodes_[pos1] = nodes_[pos2];
         nodes_[pos2] = tempElement;
+
+        updateAll(inst,nodeVec, Mdist);
+        updateCost(bestDelta);
+    }
+    else{
+        delta = 0;
     }
     return inst->costkm*bestDelta;
 }

@@ -465,7 +465,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
             solution->clearunserved();
         }
     }
-    cout << "Complete solution: " << endl;
+    cout << "Initial solution: " << endl;
     solution->printSol(inst);
     solution->printCosts();
     getchar();

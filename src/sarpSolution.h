@@ -43,10 +43,10 @@ class sarpSolution {
     
     void updateRoutes(sarpRoute *route,  int idr);
 
-    void addCost(double delta);
+    // void addCost(double delta);
     
     void printCosts();
-    
+
     // access routes
     vector<sarpRoute>::iterator begin() { return routes.begin(); }
     vector<sarpRoute>::const_iterator begin() const { return routes.begin(); }
@@ -65,6 +65,8 @@ class sarpSolution {
     void updateVehicles();
 
     void printSol(instanceStat *inst);
+
+
     // sarpRoute *getRoute(int idx) { return routes[idx]; }
     // inline int getRoutesSize() const { return this->routes.size(); }s
 };

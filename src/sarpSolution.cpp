@@ -54,9 +54,10 @@ void sarpSolution::printCosts(){
     cout << "\nCost of routes: " << this->cost << endl;
 }
 
-void sarpSolution::addCost(double delta){
-    cost += delta;
-}
+// void sarpSolution::addCost(double delta){
+//     cost += delta;
+// }
+
 // Solution::Solution(Data *data) : data(data), cost(__DBL_MAX__) {
 //     this->createRoutesVector();
 //     pairNeighbStatus = vector<vector<vector<bool>>>(
