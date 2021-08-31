@@ -1,6 +1,6 @@
 
 NameOfInst: Instances/csarp/sarp-7-5-A-1.txt
-RunningScen: 2B
+RunningScen: 2MM
 
 n: 7
 m: 5
@@ -113,482 +113,68 @@ Route 1: -6.82344
 Route 2: 8.65329
 
 Cost of routes: 1.67934
+*****Route with insertion: 
+17 - 3 - 5 - 7 - 12 - 1 - 0 - 23 - New route cost: 2.01447
+
+
+*****Route with insertion: 
+18 - 8 - 13 - 6 - 24 - New route cost: -4.6477
+
+
+*****Route with insertion: 
+17 - 3 - 5 - 7 - 12 - 1 - 0 - 9 - 14 - 23 - New route cost: 7.8904
+
+
+*****Route with insertion: 
+17 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - New route cost: 17.4562
+
+
+*****Route with insertion: 
+17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - New route cost: 22.4858
+
+
 Initial solution: 
 SARP Solution: 
-17 - 11 - 3 - 7 - 5 - 12 - 1 - 16 - 10 - 9 - 0 - 15 - 14 - 23 - 
-18 - 8 - 6 - 13 - 24 - 
+17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+18 - 8 - 13 - 6 - 24 - 
 19 - 4 - 2 - 25 - 
 
 Cost of routes: 
-Route 0: 14.1166
-Route 1: -6.0015
+Route 0: 22.4858
+Route 1: -4.6477
 Route 2: 8.65329
 
-Cost of routes: 16.7684
+Cost of routes: 26.4914
+Worse solution: 
 SARP Solution: 
-17 - 3 - 11 - 7 - 5 - 12 - 1 - 16 - 10 - 9 - 0 - 15 - 14 - 23 - 
-18 - 8 - 6 - 13 - 24 - 
+17 - 3 - 11 - 16 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+18 - 8 - 13 - 6 - 24 - 
 19 - 4 - 2 - 25 - 
 
-Neighborhood list (before): 
-0
-Calling Swap All
-
-Calling SWAP for route 0
-
-Candidate1: 3
-Interval1: 0 - 4
-End of trials: 4
-
-Candidate2: 11
-Interval2: 1 - 4
-The interval is feasible.
-
-The exchange is feasible.
-
-There was an improvement with delta as -3.18721
-
-Candidate2: 7
-Interval2: 1 - 4
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate1: 11
-Interval1: 1 - 4
-End of trials: 6
-
-Candidate2: 7
-Interval2: 1 - 4
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 5
-Interval2: 1 - 6
-The interval is feasible.
-
-Candidate2: 12
-Interval2: 4 - 6
-
-Delivery cant be put before first passenger after pickup.
-
-The intervals are NOT feasible.
-
-Candidate1: 7
-Interval1: 1 - 4
-End of trials: 4
-
-Candidate1: 5
-Interval1: 1 - 6
-End of trials: 6
-
-Candidate2: 12
-Interval2: 4 - 6
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate1: 12
-Interval1: 4 - 6
-End of trials: 13
-
-Candidate2: 1
-Interval2: 4 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 16
-Interval2: 6 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 10
-Interval2: 6 - 10
-The interval is feasible.
-
-Candidate2: 9
-Interval2: 6 - 10
-The interval is feasible.
-
-Candidate2: 0
-Interval2: 6 - 13
-
-The intervals are NOT feasible.
-
-Candidate2: 15
-Interval2: 10 - 13
-
-Delivery cant be put before first passenger after pickup.
-
-The intervals are NOT feasible.
-
-Candidate2: 14
-Interval2: 10 - 13
-
-Delivery cant be put before first passenger after pickup.
-
-The intervals are NOT feasible.
-
-Candidate1: 1
-Interval1: 4 - 10
-End of trials: 10
-
-Candidate2: 16
-Interval2: 6 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 10
-Interval2: 6 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 9
-Interval2: 6 - 10
-The interval is feasible.
-
-Candidate1: 16
-Interval1: 6 - 10
-End of trials: 13
-
-Candidate2: 10
-Interval2: 6 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 9
-Interval2: 6 - 10
-The interval is feasible.
-
-Candidate2: 0
-Interval2: 6 - 13
-The interval is feasible.
-
-Candidate2: 15
-Interval2: 10 - 13
-
-Delivery cant be put before first passenger after pickup.
-
-The intervals are NOT feasible.
-
-Candidate2: 14
-Interval2: 10 - 13
-
-Delivery cant be put before first passenger after pickup.
-
-The intervals are NOT feasible.
-
-Candidate1: 10
-Interval1: 6 - 10
-End of trials: 10
-
-Candidate2: 9
-Interval2: 6 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate1: 9
-Interval1: 6 - 10
-End of trials: 10
-
-Candidate1: 0
-Interval1: 6 - 13
-End of trials: 13
-
-Candidate2: 15
-Interval2: 10 - 13
-The interval is feasible.
-
-Candidate2: 14
-Interval2: 10 - 13
-The interval is feasible.
-
-Candidate1: 15
-Interval1: 10 - 13
-End of trials: 13
-
-Candidate2: 14
-Interval2: 10 - 13
-The interval is feasible.
-In SWAP ALL: There was an improvement: route: 0 - -1.46612
-
-Calling SWAP for route 1
-
-Candidate1: 8
-Interval1: 0 - 2
-End of trials: 2
-
-Candidate1: 6
-Interval1: 0 - 4
-End of trials: 4
-
-Candidate2: 13
-Interval2: 2 - 4
-The interval is feasible.
-In SWAP ALL: There was an improvement: route: 1 - 0
-
-Calling SWAP for route 2
-
-Candidate1: 4
-Interval1: 0 - 2
-End of trials: 2
-In SWAP ALL: There was an improvement: route: 2 - 0
+Cost of routes: 
+Route 0: 14.7198
+Route 1: -4.6477
+Route 2: 8.65329
+
+Cost of routes: 18.7254
+Current cost: 14.7198
+
+There was an improvement with delta as -6.41222
+Best Delta: 2.94962
+New cost: 17.6694
+Calculated cost: 20.6257
+Current cost: -4.6477
+Current cost: 8.65329
 
 After Swap: 
 SARP Solution: 
-17 - 11 - 3 - 7 - 5 - 12 - 1 - 16 - 10 - 9 - 0 - 15 - 14 - 23 - 
-18 - 8 - 6 - 13 - 24 - 
+17 - 3 - 11 - 16 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+18 - 8 - 13 - 6 - 24 - 
 19 - 4 - 2 - 25 - 
 
 Cost of routes: 
-Route 0: 4.10107
-Route 1: -6.0015
+Route 0: 14.7198
+Route 1: -4.6477
 Route 2: 8.65329
 
-Cost of routes: 6.75287
-Neighborhood list (after): 
-0
-Calling Swap All
-
-Calling SWAP for route 0
-
-Candidate1: 11
-Interval1: 0 - 2
-End of trials: 6
-
-Candidate2: 3
-Interval2: 0 - 4
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 7
-Interval2: 2 - 4
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 5
-Interval2: 2 - 6
-
-The intervals are NOT feasible.
-
-Candidate2: 12
-Interval2: 4 - 6
-
-Delivery cant be put before first passenger after pickup.
-
-The intervals are NOT feasible.
-
-Candidate1: 3
-Interval1: 0 - 4
-End of trials: 4
-
-Candidate2: 7
-Interval2: 2 - 4
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate1: 7
-Interval1: 2 - 4
-End of trials: 4
-
-Candidate1: 5
-Interval1: 2 - 6
-End of trials: 6
-
-Candidate2: 12
-Interval2: 4 - 6
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate1: 12
-Interval1: 4 - 6
-End of trials: 13
-
-Candidate2: 1
-Interval2: 4 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 16
-Interval2: 6 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 10
-Interval2: 6 - 10
-The interval is feasible.
-
-Candidate2: 9
-Interval2: 6 - 10
-The interval is feasible.
-
-Candidate2: 0
-Interval2: 6 - 13
-
-The intervals are NOT feasible.
-
-Candidate2: 15
-Interval2: 10 - 13
-
-Delivery cant be put before first passenger after pickup.
-
-The intervals are NOT feasible.
-
-Candidate2: 14
-Interval2: 10 - 13
-
-Delivery cant be put before first passenger after pickup.
-
-The intervals are NOT feasible.
-
-Candidate1: 1
-Interval1: 4 - 10
-End of trials: 10
-
-Candidate2: 16
-Interval2: 6 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 10
-Interval2: 6 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 9
-Interval2: 6 - 10
-The interval is feasible.
-
-Candidate1: 16
-Interval1: 6 - 10
-End of trials: 13
-
-Candidate2: 10
-Interval2: 6 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate2: 9
-Interval2: 6 - 10
-The interval is feasible.
-
-Candidate2: 0
-Interval2: 6 - 13
-The interval is feasible.
-
-Candidate2: 15
-Interval2: 10 - 13
-
-Delivery cant be put before first passenger after pickup.
-
-The intervals are NOT feasible.
-
-Candidate2: 14
-Interval2: 10 - 13
-
-Delivery cant be put before first passenger after pickup.
-
-The intervals are NOT feasible.
-
-Candidate1: 10
-Interval1: 6 - 10
-End of trials: 10
-
-Candidate2: 9
-Interval2: 6 - 10
-The interval is feasible.
-
-The exchange is feasible.
-
-Candidate1: 9
-Interval1: 6 - 10
-End of trials: 10
-
-Candidate1: 0
-Interval1: 6 - 13
-End of trials: 13
-
-Candidate2: 15
-Interval2: 10 - 13
-The interval is feasible.
-
-Candidate2: 14
-Interval2: 10 - 13
-The interval is feasible.
-
-Candidate1: 15
-Interval1: 10 - 13
-End of trials: 13
-
-Candidate2: 14
-Interval2: 10 - 13
-The interval is feasible.
-In SWAP ALL: There was an improvement: route: 0 - 0
-
-Calling SWAP for route 1
-
-Candidate1: 8
-Interval1: 0 - 2
-End of trials: 2
-
-Candidate1: 6
-Interval1: 0 - 4
-End of trials: 4
-
-Candidate2: 13
-Interval2: 2 - 4
-The interval is feasible.
-In SWAP ALL: There was an improvement: route: 1 - 0
-
-Calling SWAP for route 2
-
-Candidate1: 4
-Interval1: 0 - 2
-End of trials: 2
-In SWAP ALL: There was an improvement: route: 2 - 0
-
-After Swap: 
-SARP Solution: 
-17 - 11 - 3 - 7 - 5 - 12 - 1 - 16 - 10 - 9 - 0 - 15 - 14 - 23 - 
-18 - 8 - 6 - 13 - 24 - 
-19 - 4 - 2 - 25 - 
-
-Cost of routes: 
-Route 0: 4.10107
-Route 1: -6.0015
-Route 2: 8.65329
-
-Cost of routes: 6.75287
-Neighborhood list (after): 
-
------x-----
-Best Solution: SARP Solution: 
-17 - 11 - 3 - 7 - 5 - 12 - 1 - 16 - 10 - 9 - 0 - 15 - 14 - 23 - 
-18 - 8 - 6 - 13 - 24 - 
-19 - 4 - 2 - 25 - 
-
-
-Solution Best Cost: Cost of routes: 
-Route 0: 14.1166
-Route 1: -6.0015
-Route 2: 8.65329
-
-Cost of routes: 16.7684
-
------x-----
+Cost of routes: 18.7254

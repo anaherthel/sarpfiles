@@ -54,6 +54,119 @@ void sarpSolution::printCosts(){
     cout << "\nCost of routes: " << this->cost << endl;
 }
 
+double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec, 
+                                double **Mdist, probStat* problem,
+                                 int rid1, int rid2, int curCand, pair <int, int> currPairPos){
+
+    sarpRoute r1(inst, 0);
+    sarpRoute r2(inst, 0);
+    int rsize1, rsize2;
+
+    r1 = getRoute(rid1);
+    r2 = getRoute(rid2);
+
+    rsize1 = r1.getNodesSize();
+    rsize2 = r2.getNodesSize(); 
+
+    bool feasible = 0;
+
+    int candidate, candidate2;
+    int bestpos1, bestpos2;
+
+    vector<int> inspositions; 
+    vector<int> inspositions2;
+
+    pair <int, double> cheapestpair;
+    
+    cheapestpair.first = -1;
+    cheapestpair.second = -100000;
+    
+    vector< pair <int, double> > cheapestMove;
+    
+    cheapestMove.push_back(cheapestpair);
+    cheapestMove.push_back(cheapestpair);
+    
+    double best_cost, compareCost, rval1, rval2, rmvVal, addVal;
+
+    rval1 = r1.cost();
+    rval2 = r2.cost();
+
+    best_cost = rval1 + rval2;
+
+    for (int i = 1; i < rsize1-1; i++){
+        candidate = r1.getReq(i);
+        compareCost = rval1 + rval2;
+        cout << "\ncandidate: " << candidate << endl;
+
+        if(nodeVec[candidate].load < 0){
+            cout << "\n Delivery node (skip)";
+            getchar();
+            continue;
+        }
+
+        inspositions.clear();
+        r2.availablePos(inst, nodeVec, candidate, problem, inspositions);
+        
+        cout << "Available positions for insertion: " << endl;
+        for (int p = 0; p < inspositions.size(); p++){
+            cout << inspositions[p] << " - ";
+        }
+        cout << endl;
+        getchar();
+        if (candidate < inst->n){
+            cheapestpair = r2.cheapestInsertion(inst, nodeVec, Mdist, candidate, inspositions);
+            addVal = cheapestpair.second;
+            if (addVal > -100000){
+                rmvVal = r1.rmvVal(inst, nodeVec, Mdist, candidate, 0);
+                
+                compareCost += addVal + rmvVal;           
+            }
+            else{
+                continue;
+            }
+            cout << "Compare Cost: " << compareCost;
+        }
+        else {
+            cheapestMove.clear();
+            int node2 = candidate + inst->m;
+            inspositions2.clear();
+            r2.cheapestInsertionParcel(inst, nodeVec, Mdist, candidate, node2, inspositions, inspositions2, cheapestMove, problem);
+            addVal = cheapestMove[0].second + cheapestMove[1].second;
+
+            if (addVal > -100000){
+                rmvVal = r1.rmvVal(inst, nodeVec, Mdist, candidate, 1);
+                compareCost += addVal + rmvVal;  
+            }
+            else{
+                continue;
+            }
+            cout << "Compare Cost: " << compareCost;
+        }
+
+        if (compareCost > best_cost){
+            cout << "\nThere was an improvement" << endl;
+            if (candidate < inst->n){
+                best_cost = compareCost;
+                currPairPos.first = cheapestpair.first;
+                currPairPos.second = -1;
+            }
+            else{
+                best_cost = compareCost;
+                currPairPos.first = cheapestMove[0].first;
+                currPairPos.second = cheapestMove[1].first;
+            }
+            curCand = candidate;
+        }
+    }
+
+    double delta;
+
+    delta = cost - best_cost;
+
+    return delta;
+}
+
+
 // void sarpSolution::addCost(double delta){
 //     cost += delta;
 // }

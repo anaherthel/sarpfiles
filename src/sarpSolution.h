@@ -66,6 +66,11 @@ class sarpSolution {
 
     void printSol(instanceStat *inst);
 
+    double relocate (instanceStat *inst, vector<nodeStat> &nodeVec, 
+                                double **Mdist, probStat* problem,
+                                 int rid1, int rid2, int curCand, 
+                                 pair <int, int> currPairPos);
+
 
     // sarpRoute *getRoute(int idx) { return routes[idx]; }
     // inline int getRoutesSize() const { return this->routes.size(); }s

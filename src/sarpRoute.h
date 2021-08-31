@@ -50,6 +50,7 @@ public:
 
     int firstpos() const { return nodes_[1]; };
     int lastpos() const { return nodes_[nodes_.size()-2]; };
+    int getReq(int pos) const { return nodes_[pos]; };
 
     int getPU(int request) const { return pdvec[request].first; };
     int getDL(int request) const { return pdvec[request].second; };
@@ -76,6 +77,7 @@ public:
 
     //only when the first insertion is a passenger request.
     bool fInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int request);
+
     // int load() const { return load_; };
     bool fInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int pu, int dl);
     //update starting and end times after insertion or erasing.
@@ -114,6 +116,7 @@ public:
 
     void updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
 
+    double rmvVal (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int candidate, bool isparcel);
 
     // // improve route with 2-opt
     // // returns the number of improvements performed

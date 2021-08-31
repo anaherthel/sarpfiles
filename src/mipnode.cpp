@@ -74,6 +74,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//Load variable
 	IloNumVarArray w(env, nodeVec.size(), 0, Q);
 
+
 	for (int i = 0; i < nodeVec.size(); i++){
 		sprintf(var, "w(%d)", i);
 		w[i].setName(var);

@@ -448,11 +448,12 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
                 solution->updateCost();
 
                 inserted = 1;
-                // cout << "*****Route with insertion: " << endl;
-                // for (auto a: sroute){
-                //     cout << a << " - ";
-                // }
-                // cout << endl << endl;
+                cout << "*****Route with insertion: " << endl;
+                for (auto a: sroute){
+                    cout << a << " - ";
+                }
+                cout << "New route cost: " << sroute.cost() << endl;
+                cout << endl << endl;
 
                 removeFromCL(candidate, 0);
 
