@@ -29,11 +29,13 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
     sroute = solution.getRoute(0);
     double profit;
 
-    profit = sroute.getProfit(nodeVec, 1);
+    profit = sroute.getProfit(nodeVec, 3);
     sroute.erase(inst, Mdist, 3, profit);
     sroute.updateAll(inst, nodeVec, Mdist);
-    sroute.insert(inst, Mdist, 3, 1, profit);
+    sroute.insert(inst, Mdist, 3, 2, profit);
     sroute.updateAll(inst, nodeVec, Mdist);
+
+    sroute.calcCost(inst, nodeVec, Mdist);
         
     solution.updateRoutes(&sroute, 0);
     solution.updateCost();
@@ -182,7 +184,17 @@ void sarpILS::SwapAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdi
         delta = sroute.Swap(inst, Mdist, nodeVec, problem);
 
         
-        if (delta < 0){
+        if (delta > 0){
+
+            // cout << "Route with swap: " << endl;
+            // for (int a = 0; a < sroute.getNodesSize(); a++){
+            //     cout << sroute.getReq(a) << " - ";
+            // }
+            // cout << endl;
+
+            // cout << "New route cost after 1 swap: " << sroute.cost() << endl;
+            // getchar();
+
             sroute.updateAll(inst, nodeVec, Mdist);
             solution.updateRoutes(&sroute, rid);
         }
@@ -192,6 +204,7 @@ void sarpILS::SwapAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdi
     }
 
     solution.updateCost();
+
 }
 
 void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
@@ -331,7 +344,6 @@ void sarpILS::relocate(instanceStat *inst, vector<nodeStat> &nodeVec,double **Md
                 }
             }
         }
-
     }
 
     if (improve){
@@ -342,6 +354,7 @@ void sarpILS::relocate(instanceStat *inst, vector<nodeStat> &nodeVec,double **Md
         
 
         if(bestPairPos.second < 0){ //passenger
+            cout << "Relocate candidate passenger: " << candidate << endl;
             sroute2.insert(inst, Mdist, candidate, bestPairPos.first, profit);
             sroute1.erase(inst, Mdist, bestCand, profit);
         }

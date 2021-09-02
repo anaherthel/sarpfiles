@@ -99,8 +99,8 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
         cout << "\ncandidate: " << candidate << endl;
 
         if(nodeVec[candidate].load < 0){
-            cout << "\n Delivery node (skip)";
-            getchar();
+            // cout << "\n Delivery node (skip)";
+            // getchar();
             continue;
         }
 
@@ -116,7 +116,9 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
         if (candidate < inst->n){
             cheapestpair = r2.cheapestInsertion(inst, nodeVec, Mdist, candidate, inspositions);
             addVal = cheapestpair.second;
-            if (addVal > -100000){
+
+
+            if (addVal > 0){
                 rmvVal = r1.rmvVal(inst, nodeVec, Mdist, candidate, 0);
                 
                 compareCost += addVal + rmvVal;           
@@ -124,7 +126,7 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
             else{
                 continue;
             }
-            cout << "Compare Cost: " << compareCost;
+            // cout << "Compare Cost: " << compareCost;
         }
         else {
             cheapestMove.clear();
@@ -132,9 +134,15 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
             inspositions2.clear();
             r2.cheapestInsertionParcel(inst, nodeVec, Mdist, candidate, node2, inspositions, inspositions2, cheapestMove, problem);
             addVal = cheapestMove[0].second + cheapestMove[1].second;
+            
+            cout << "New add value: " << addVal << endl;
+            getchar();
 
-            if (addVal > -100000){
+            if (addVal > 0){
                 rmvVal = r1.rmvVal(inst, nodeVec, Mdist, candidate, 1);
+                cout << "New rmv value: " << rmvVal << endl;
+                getchar();
+
                 compareCost += addVal + rmvVal;  
             }
             else{

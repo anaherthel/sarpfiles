@@ -147,34 +147,100 @@ Route 2: 8.65329
 Cost of routes: 26.4914
 Worse solution: 
 SARP Solution: 
-17 - 3 - 11 - 16 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+17 - 11 - 3 - 16 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
 18 - 8 - 13 - 6 - 24 - 
 19 - 4 - 2 - 25 - 
 
 Cost of routes: 
-Route 0: 14.7198
+Route 0: 20.6257
 Route 1: -4.6477
 Route 2: 8.65329
 
-Cost of routes: 18.7254
-Current cost: 14.7198
-
-There was an improvement with delta as -6.41222
-Best Delta: 2.94962
-New cost: 17.6694
-Calculated cost: 20.6257
-Current cost: -4.6477
-Current cost: 8.65329
+Cost of routes: 24.6313
 
 After Swap: 
 SARP Solution: 
-17 - 3 - 11 - 16 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
 18 - 8 - 13 - 6 - 24 - 
 19 - 4 - 2 - 25 - 
 
 Cost of routes: 
-Route 0: 14.7198
+Route 0: 22.4858
 Route 1: -4.6477
 Route 2: 8.65329
 
-Cost of routes: 18.7254
+Cost of routes: 26.4914
+Neighborhood list (before): 
+0
+Calling Relocate Intra
+
+candidate: 11
+Available positions for insertion: 
+1 - 2 - 3 - 4 - 
+New add value: -200000
+
+candidate: 16
+
+candidate: 3
+Available positions for insertion: 
+1 - 2 - 3 - 
+
+There was an improvement
+
+candidate: 5
+Available positions for insertion: 
+4 - 
+
+candidate: 7
+Available positions for insertion: 
+1 - 2 - 3 - 4 - 
+New add value: -200000
+
+candidate: 12
+
+candidate: 1
+Available positions for insertion: 
+4 - 
+
+candidate: 10
+Available positions for insertion: 
+1 - 2 - 3 - 4 - 
+New add value: 1.06426
+New rmv value: -7.17816
+Compare Cost: 11.7242
+candidate: 0
+Available positions for insertion: 
+4 - 
+
+candidate: 9
+Available positions for insertion: 
+1 - 2 - 3 - 4 - 
+New add value: -7.84496
+
+candidate: 15
+
+candidate: 14
+relocating candidates from route 0 to route 1
+Delta obtained: 7.89887
+candidate: 11
+Available positions for insertion: 
+1 - 2 - 3 - 
+New add value: 0.445343
+New rmv value: 6.2448
+Compare Cost: 37.8292
+There was an improvement
+
+candidate: 16
+
+candidate: 3
+Available positions for insertion: 
+1 - 
+
+candidate: 5
+Available positions for insertion: 
+1 - 
+
+candidate: 7
+Available positions for insertion: 
+1 - 2 - 3 - 
+New add value: 0.445343
