@@ -40,11 +40,11 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
     solution.updateRoutes(&sroute, 0);
     solution.updateCost();
 
-    cout << "Worse solution: " << endl;
+    // cout << "Worse solution: " << endl;
 
-    solution.printSol(inst);
-    solution.printCosts();
-    getchar();
+    // solution.printSol(inst);
+    // solution.printCosts();
+    // getchar();
     // profit = sroute.getProfit(nodeVec, 1);
     // sroute.erase(inst, Mdist, 1, profit);
     // sroute.insert(inst, Mdist, 11, 2, profit);
@@ -75,7 +75,7 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
     cout << "\n-----x-----" << "\nBest Solution: ";
     bestSol.printSol(inst);
 
-	cout <<"\nSolution Best Cost: ";
+	cout <<"\nSolution Best Cost: " << endl;
     
     bestSol.printCosts();
     cout << "\n-----x-----" << endl;
@@ -152,7 +152,7 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
         solution.printCosts();
         getchar();
         
-		if (newCost < bestCost) {
+		if (newCost > bestCost) {
 			bestCost = newCost;
 			if (nbrList.size() < 1) {
 				nbrList.merge(usedNbr);
@@ -282,7 +282,7 @@ void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
         solution.printCosts();
         getchar();
         
-		if (newCost < bestCost) {
+		if (newCost > bestCost) {
 			bestCost = newCost;
 			if (nbrList.size() < 1) {
 				nbrList.merge(usedNbr);
@@ -307,7 +307,7 @@ void sarpILS::relocate(instanceStat *inst, vector<nodeStat> &nodeVec,double **Md
     int solSize = solution.getRoutesSize();
 
     double delta, bestDelta;
-    bestDelta = 1000000;
+    bestDelta = 0;
     double totaldelta = 0;
     // int vehicle;
     // vehicle = solution.getvehicle();
@@ -320,20 +320,29 @@ void sarpILS::relocate(instanceStat *inst, vector<nodeStat> &nodeVec,double **Md
     pair <int, int> bestPairPos, currPairPos, bestRoutePair; //position and cost
     
     bool improve;
+    improve = 0;
+    int candidate;
 
     for (int rid1 = 0; rid1 < solSize; rid1++){
-        improve = 0;
         for (int rid2 = 0; rid2 < solSize; rid2++){
             delta = 0;
             if (rid1 != rid2){
                 //this is the delta in solution value, so it is just a matter of cost.
                 delta = solution.relocate(inst, nodeVec, Mdist, problem,
-                                        rid1, rid2, currCand, currPairPos);
-                cout << "relocating candidates from route " << rid1  
-                << " to route "  << rid2 << endl;
-                cout << "Delta obtained: " << delta;
+                                        rid1, rid2, currCand, currPairPos);                
+
                 if (delta < 0){
                     if (delta < bestDelta){
+                        // cout << "**********************" << endl;
+                        // sroute1 = solution.getRoute(rid1);
+                        // candidate = sroute1.getReq(currCand);
+                        // cout << "candidate: " << candidate << endl;
+                        // cout << "relocating candidates from route " << rid1  
+                        // << " to route "  << rid2 << endl;
+                        // cout << "New position: " << currPairPos.first << " - " << currPairPos.second << endl;
+                        // cout << "Delta obtained: " << delta << endl;
+                        // cout << "**********************" << endl;
+                        bestDelta = delta;
                         improve = 1;
                         bestCand = currCand;
                         bestRoutePair.first = rid1;
@@ -349,25 +358,51 @@ void sarpILS::relocate(instanceStat *inst, vector<nodeStat> &nodeVec,double **Md
     if (improve){
         sroute1 = solution.getRoute(bestRoutePair.first);
         sroute2 = solution.getRoute(bestRoutePair.second);
-        double profit = sroute1.getProfit(nodeVec, bestCand);
-        int candidate = sroute1.getReq(bestCand);
-        
+        candidate = sroute1.getReq(bestCand);
 
-        if(bestPairPos.second < 0){ //passenger
-            cout << "Relocate candidate passenger: " << candidate << endl;
+        double profit = sroute1.getProfit(nodeVec, bestCand);
+
+        // cout << "\nProfit: " << profit << endl;
+
+        if(candidate < inst->n){ //passenger
+            // cout << "\nRelocate candidate passenger: " << candidate << endl;
+            // getchar();
             sroute2.insert(inst, Mdist, candidate, bestPairPos.first, profit);
             sroute1.erase(inst, Mdist, bestCand, profit);
         }
         else{
+
+            // cout << "Relocate candidate parcel: " << candidate << endl;
+            // getchar();
             int dlpos, dl;
             dlpos = sroute1.getDL(candidate-inst->n);
             dl = candidate + inst->m;
-            sroute2.insert(inst, Mdist, candidate, bestPairPos.first, profit);
-            sroute2.insert(inst, Mdist, dl, bestPairPos.second, profit);
 
-            sroute1.erase(inst, Mdist, bestCand, profit);
+            profit = 0;
+
+            sroute2.insert(inst, Mdist, dl, bestPairPos.second, profit);
             sroute1.erase(inst, Mdist, dlpos, profit);
+
+            profit = sroute1.getProfit(nodeVec, bestCand);
+            sroute2.insert(inst, Mdist, candidate, bestPairPos.first, profit);            
+            sroute1.erase(inst, Mdist, bestCand, profit);
         }
+
+        // cout << "First changed route: " << endl;
+        // for (int a = 0; a < sroute1.getNodesSize(); a++){
+        //     cout << sroute1.getReq(a) << " - ";
+        // }
+        // cout << endl;
+
+        // cout << "Second changed route: " << endl;
+        // for (int a = 0; a < sroute2.getNodesSize(); a++){
+        //     cout << sroute2.getReq(a) << " - ";
+        // }
+        // cout << endl;
+
+        // cout << "From route: " << bestRoutePair.first << " to " << bestRoutePair.second << endl;
+        // cout << "With delta: " << bestDelta << endl;
+        // getchar();
         sroute1.updateAll(inst, nodeVec, Mdist);
         sroute2.updateAll(inst, nodeVec, Mdist);
         

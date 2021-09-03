@@ -56,7 +56,7 @@ void sarpSolution::printCosts(){
 
 double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec, 
                                 double **Mdist, probStat* problem,
-                                 int rid1, int rid2, int curCand, pair <int, int> currPairPos){
+                                 int rid1, int rid2, int &currCand, pair <int, int> &currPairPos){
 
     sarpRoute r1(inst, 0);
     sarpRoute r2(inst, 0);
@@ -76,7 +76,7 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
     vector<int> inspositions; 
     vector<int> inspositions2;
 
-    pair <int, double> cheapestpair;
+    pair <int, double> cheapestpair; //position and delta
     
     cheapestpair.first = -1;
     cheapestpair.second = -100000;
@@ -84,7 +84,7 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
     vector< pair <int, double> > cheapestMove;
     
     cheapestMove.push_back(cheapestpair);
-    cheapestMove.push_back(cheapestpair);
+    cheapestMove.push_back(cheapestpair); //chapest move has 2 cheapest pairs. Only 1 is used for passengers.
     
     double best_cost, compareCost, rval1, rval2, rmvVal, addVal;
 
@@ -96,7 +96,8 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
     for (int i = 1; i < rsize1-1; i++){
         candidate = r1.getReq(i);
         compareCost = rval1 + rval2;
-        cout << "\ncandidate: " << candidate << endl;
+        // cout << "\ncandidate: " << candidate << endl;
+        // cout << "Initial cost of both routes: " << compareCost << endl;
 
         if(nodeVec[candidate].load < 0){
             // cout << "\n Delivery node (skip)";
@@ -107,19 +108,18 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
         inspositions.clear();
         r2.availablePos(inst, nodeVec, candidate, problem, inspositions);
         
-        cout << "Available positions for insertion: " << endl;
-        for (int p = 0; p < inspositions.size(); p++){
-            cout << inspositions[p] << " - ";
-        }
-        cout << endl;
-        getchar();
+        // cout << "Available positions for insertion: " << endl;
+        // for (int p = 0; p < inspositions.size(); p++){
+        //     cout << inspositions[p] << " - ";
+        // }
+        // cout << endl;
+        // getchar();
         if (candidate < inst->n){
             cheapestpair = r2.cheapestInsertion(inst, nodeVec, Mdist, candidate, inspositions);
             addVal = cheapestpair.second;
 
-
             if (addVal > 0){
-                rmvVal = r1.rmvVal(inst, nodeVec, Mdist, candidate, 0);
+                rmvVal = r1.rmvVal(inst, nodeVec, Mdist, i, 0);
                 
                 compareCost += addVal + rmvVal;           
             }
@@ -129,47 +129,77 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
             // cout << "Compare Cost: " << compareCost;
         }
         else {
-            cheapestMove.clear();
+            cheapestMove[0].first = -1;
+            cheapestMove[0].second = -100000;
+            cheapestMove[1].first = -1;
+            cheapestMove[1].second = -100000;
+            // cout << "cheapest move 2 BEFORE: " <<  cheapestMove[1].second << endl;
             int node2 = candidate + inst->m;
             inspositions2.clear();
             r2.cheapestInsertionParcel(inst, nodeVec, Mdist, candidate, node2, inspositions, inspositions2, cheapestMove, problem);
-            addVal = cheapestMove[0].second + cheapestMove[1].second;
             
-            cout << "New add value: " << addVal << endl;
-            getchar();
-
+            if(cheapestMove[0].first != cheapestMove[1].first){
+                addVal = cheapestMove[0].second + cheapestMove[1].second;
+            }
+            else{
+                addVal = nodeVec[candidate].profit + cheapestMove[1].second;
+                // cout << "cheapest move 2: " <<  cheapestMove[1].second << endl;
+            }  
+ 
             if (addVal > 0){
-                rmvVal = r1.rmvVal(inst, nodeVec, Mdist, candidate, 1);
-                cout << "New rmv value: " << rmvVal << endl;
-                getchar();
+                // cout << "New add value: " << addVal << endl;
+                // getchar();
+
+                rmvVal = r1.rmvVal(inst, nodeVec, Mdist, i, 1);
+
+                // cout << "New rmv value: " << rmvVal << endl;
+                // getchar();
+                
+                // cout << "Adding at position: " << cheapestMove[0].first << " and " << cheapestMove[1].first << endl;
+                // getchar();
 
                 compareCost += addVal + rmvVal;  
             }
             else{
                 continue;
             }
-            cout << "Compare Cost: " << compareCost;
+            // cout << "Compare Cost: " << compareCost;
         }
 
         if (compareCost > best_cost){
-            cout << "\nThere was an improvement" << endl;
+            // cout << "\nThere was an improvement" << endl;
+            // cout << "\nCandidate: " << candidate << endl;
+            // getchar();
+            currCand = i;
+
             if (candidate < inst->n){
                 best_cost = compareCost;
                 currPairPos.first = cheapestpair.first;
                 currPairPos.second = -1;
+
+                // cout << "insert in position: "<< currPairPos.first << endl; 
+                // cout << "with an improvement of " << best_cost << endl;
             }
             else{
                 best_cost = compareCost;
                 currPairPos.first = cheapestMove[0].first;
                 currPairPos.second = cheapestMove[1].first;
+
+                // cout << "insert in position: "<< currPairPos.first << endl; 
+                // cout << "with an improvement of " << best_cost << endl;
             }
-            curCand = candidate;
+
         }
     }
 
     double delta;
 
-    delta = cost - best_cost;
+    delta = compareCost - best_cost;
+
+    // cout << "Best cost: " << best_cost << endl;
+    // cout << "cost (previous cost): " << compareCost << endl;
+    // cout << "delta: " << delta << endl;
+
 
     return delta;
 }

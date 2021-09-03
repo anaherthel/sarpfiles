@@ -1218,7 +1218,12 @@ void sarpRoute::cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &no
             }
 
             if (pos1 == pos2){
+
                 deltaTotal = nodeVec[node].profit + delta2;
+                // cout << "Position: " << pos1 << endl;
+                // cout << "Delta total: " << deltaTotal << endl;
+                // cout << "delta2: " << delta2 << endl;
+
             }
             else{
                 deltaTotal = delta1 + delta2;
@@ -1233,11 +1238,14 @@ void sarpRoute::cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &no
 
             if (deltaTotal > bestDT){
                 bestDT = deltaTotal;
+
+                // cout << "Delta total: " << deltaTotal << endl;
+                // getchar();
                 // cout << "Better delta 1: " << bestDT << endl;
                 // cout << "New position for pu:" << pos1 << endl;                
 
-                bestMove[0].first = pair1.first;
-                bestMove[0].second = pair1.second;
+                bestMove[0].first = pos1;
+                bestMove[0].second = delta1;
                 bestMove[1].first = pos2;
                 bestMove[1].second = delta2;
             }              
@@ -1549,9 +1557,14 @@ double sarpRoute::rmvVal(instanceStat *inst, vector<nodeStat> &nodeVec, double *
     double profit = getProfit(nodeVec, candidate);
 
     if (isparcel){
+        // cout << "It is a parcel" << endl;
+        // getchar();
         int dl, dlpos;
         dl = nodes_[candidate]+inst->m;
         dlpos = pdvec[nodes_[candidate]-inst->n].second;
+
+        // cout << "dl: " << dl << " - in position: " << dlpos << endl;
+        // getchar();
 
         if(dlpos - candidate == 1){
             delta += - profit - inst->costkm*(- Mdist[nodes_[candidate-1]][nodes_[candidate]]
@@ -1567,7 +1580,6 @@ double sarpRoute::rmvVal(instanceStat *inst, vector<nodeStat> &nodeVec, double *
                 + Mdist[nodes_[dlpos-1]][nodes_[dlpos + 1]]
                 - Mdist[nodes_[dlpos]][nodes_[dlpos + 1]]);
         }
-
     }
     else{
         delta += - profit - inst->costkm*(- Mdist[nodes_[candidate-1]][nodes_[candidate]]

@@ -68,8 +68,8 @@ class sarpSolution {
 
     double relocate (instanceStat *inst, vector<nodeStat> &nodeVec, 
                                 double **Mdist, probStat* problem,
-                                 int rid1, int rid2, int curCand, 
-                                 pair <int, int> currPairPos);
+                                 int rid1, int rid2, int &currCand, 
+                                 pair <int, int> &currPairPos);
 
 
     // sarpRoute *getRoute(int idx) { return routes[idx]; }

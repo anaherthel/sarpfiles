@@ -35,8 +35,8 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     //Take random passenger, put on route. If not feasible, create another route
     //Remainder of passengers inserted in greedy manner.
     int insertions = floor(0.3*(inst->n));
-    cout << "insertions: " << insertions << endl;
-    getchar();
+    // cout << "insertions: " << insertions << endl;
+    // getchar();
     int candidate;
     int counter = 1;
     bool feastime = 0;
@@ -303,10 +303,10 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
         //     cout << "The list is empty."  << endl;
         // }
     }
-    cout << "Solution with passengers: " << endl;
-    solution->printSol(inst);
-    solution->printCosts();
-    getchar();
+    // cout << "Solution with passengers: " << endl;
+    // solution->printSol(inst);
+    // solution->printCosts();
+    // getchar();
 
     //inserting parcels
     //greedy assignments
@@ -448,12 +448,12 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
                 solution->updateCost();
 
                 inserted = 1;
-                cout << "*****Route with insertion: " << endl;
-                for (auto a: sroute){
-                    cout << a << " - ";
-                }
-                cout << "New route cost: " << sroute.cost() << endl;
-                cout << endl << endl;
+                // cout << "*****Route with insertion: " << endl;
+                // for (auto a: sroute){
+                //     cout << a << " - ";
+                // }
+                // cout << "New route cost: " << sroute.cost() << endl;
+                // cout << endl << endl;
 
                 removeFromCL(candidate, 0);
 

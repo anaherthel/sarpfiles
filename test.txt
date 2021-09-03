@@ -83,7 +83,6 @@ Dist Matrix:
          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-insertions: 2
 vehicles: 0
 SARP Solution: 
 17 - 0 - 23 - 
@@ -101,38 +100,6 @@ Route 0: -3.63284
 Cost of routes: -3.63284
 vehicles: 1
 vehicles: 2
-Solution with passengers: 
-SARP Solution: 
-17 - 3 - 5 - 1 - 0 - 23 - 
-18 - 6 - 24 - 
-19 - 4 - 2 - 25 - 
-
-Cost of routes: 
-Route 0: -0.15051
-Route 1: -6.82344
-Route 2: 8.65329
-
-Cost of routes: 1.67934
-*****Route with insertion: 
-17 - 3 - 5 - 7 - 12 - 1 - 0 - 23 - New route cost: 2.01447
-
-
-*****Route with insertion: 
-18 - 8 - 13 - 6 - 24 - New route cost: -4.6477
-
-
-*****Route with insertion: 
-17 - 3 - 5 - 7 - 12 - 1 - 0 - 9 - 14 - 23 - New route cost: 7.8904
-
-
-*****Route with insertion: 
-17 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - New route cost: 17.4562
-
-
-*****Route with insertion: 
-17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - New route cost: 22.4858
-
-
 Initial solution: 
 SARP Solution: 
 17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
@@ -145,18 +112,19 @@ Route 1: -4.6477
 Route 2: 8.65329
 
 Cost of routes: 26.4914
-Worse solution: 
+
+After Swap: 
 SARP Solution: 
-17 - 11 - 3 - 16 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
 18 - 8 - 13 - 6 - 24 - 
 19 - 4 - 2 - 25 - 
 
 Cost of routes: 
-Route 0: 20.6257
+Route 0: 22.4858
 Route 1: -4.6477
 Route 2: 8.65329
 
-Cost of routes: 24.6313
+Cost of routes: 26.4914
 
 After Swap: 
 SARP Solution: 
@@ -174,73 +142,65 @@ Neighborhood list (before):
 0
 Calling Relocate Intra
 
-candidate: 11
-Available positions for insertion: 
-1 - 2 - 3 - 4 - 
-New add value: -200000
+After Relocate: 
+SARP Solution: 
+17 - 11 - 16 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+18 - 3 - 8 - 13 - 6 - 24 - 
+19 - 4 - 2 - 25 - 
 
-candidate: 16
+Cost of routes: 
+Route 0: 19.8281
+Route 1: -1.2356
+Route 2: 8.65329
 
-candidate: 3
-Available positions for insertion: 
-1 - 2 - 3 - 
+Cost of routes: 27.2458
+Neighborhood list (after): 
+0
+Calling Relocate Intra
 
-There was an improvement
+After Relocate: 
+SARP Solution: 
+17 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+18 - 3 - 8 - 13 - 6 - 24 - 
+19 - 4 - 11 - 16 - 2 - 25 - 
 
-candidate: 5
-Available positions for insertion: 
-4 - 
+Cost of routes: 
+Route 0: 16.9789
+Route 1: -1.2356
+Route 2: 12.3636
 
-candidate: 7
-Available positions for insertion: 
-1 - 2 - 3 - 4 - 
-New add value: -200000
+Cost of routes: 28.1069
+Neighborhood list (after): 
+0
+Calling Relocate Intra
 
-candidate: 12
+After Relocate: 
+SARP Solution: 
+17 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+18 - 3 - 8 - 13 - 6 - 24 - 
+19 - 4 - 11 - 16 - 2 - 25 - 
 
-candidate: 1
-Available positions for insertion: 
-4 - 
+Cost of routes: 
+Route 0: 16.9789
+Route 1: -1.2356
+Route 2: 12.3636
 
-candidate: 10
-Available positions for insertion: 
-1 - 2 - 3 - 4 - 
-New add value: 1.06426
-New rmv value: -7.17816
-Compare Cost: 11.7242
-candidate: 0
-Available positions for insertion: 
-4 - 
+Cost of routes: 28.1069
+Neighborhood list (after): 
 
-candidate: 9
-Available positions for insertion: 
-1 - 2 - 3 - 4 - 
-New add value: -7.84496
+-----x-----
+Best Solution: SARP Solution: 
+17 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+18 - 3 - 8 - 13 - 6 - 24 - 
+19 - 4 - 11 - 16 - 2 - 25 - 
 
-candidate: 15
 
-candidate: 14
-relocating candidates from route 0 to route 1
-Delta obtained: 7.89887
-candidate: 11
-Available positions for insertion: 
-1 - 2 - 3 - 
-New add value: 0.445343
-New rmv value: 6.2448
-Compare Cost: 37.8292
-There was an improvement
+Solution Best Cost: 
+Cost of routes: 
+Route 0: 16.9789
+Route 1: -1.2356
+Route 2: 12.3636
 
-candidate: 16
+Cost of routes: 28.1069
 
-candidate: 3
-Available positions for insertion: 
-1 - 
-
-candidate: 5
-Available positions for insertion: 
-1 - 
-
-candidate: 7
-Available positions for insertion: 
-1 - 2 - 3 - 
-New add value: 0.445343
+-----x-----
