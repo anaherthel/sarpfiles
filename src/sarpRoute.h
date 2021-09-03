@@ -72,7 +72,9 @@ public:
     bool testSwap(instanceStat *inst, vector<nodeStat> &nodeVec,
                          double **Mdist,int pos1, int pos2, 
                          pair <int, int> inter1, pair <int, int> inter2);
-
+    bool testRelocate(instanceStat *inst, vector<nodeStat> &nodeVec,
+                            double **Mdist,int pos1, int pos2, 
+                            pair <int, int> inter1);
     void calcCost(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
 
     //only when the first insertion is a passenger request.
@@ -113,6 +115,8 @@ public:
     bool checkDelivery(instanceStat *inst, int pos1, int pos2, probStat* problem);
 
     double Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem);
+    
+    double relocateK(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem, int k);
 
     void updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
 

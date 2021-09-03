@@ -49,11 +49,13 @@ public:
 
     void ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
-    void RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+    void RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
     void SwapAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
-    void RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+    void sarpILS::RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+
+    void RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
     
     void relocate(instanceStat *inst, 
                 vector<nodeStat> &nodeVec,

@@ -53,9 +53,9 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
     while (iterILS <= maxIterILS) {
 
 
-        RVNDInter(inst, nodeVec, Mdist, problem);
-
         RVNDIntra(inst, nodeVec, Mdist, problem);
+
+        RVNDInter(inst, nodeVec, Mdist, problem);
 
         currentCost = solution.getCost();
 
@@ -84,7 +84,7 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
 	// cout <<"\nSolution Best Cost: " << solutionBestCost << endl;
 }
 
-void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
+void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
     int neighbor = 0;
 
 	double bestCost = solution.getCost();
@@ -104,7 +104,7 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 	while (!nbrList.empty()) {
 		
 		// int neighbor = 1 + rand() % nbrList.size();
-        int neighbor = 0;
+        int neighbor = 1;
 		int counter = 1;
 
 		// for (it = nbrList.begin(); it != nbrList.end(); it++) { 
@@ -118,27 +118,19 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 		switch (neighbor) {
 			case 0:
 				SwapAll (inst, nodeVec, Mdist, problem);
+                cout << "\nAfter Swap: " << endl;
+                solution.printSol(inst);
+                solution.printCosts();
+                getchar();
 				break;
 
-			// case 2:
-			// 	relocateK (distM, sol, 1);
-			// 	newCost = costCalc(distM, sol);
-			// 	break;
-
-			// case 3:
-			// 	relocateK (distM, sol, 2);
-			// 	newCost = costCalc(distM, sol);
-			// 	break;
-
-			// case 4:
-			// 	relocateK (distM, sol, 3);
-			// 	newCost = costCalc(distM, sol);
-			// 	break;
-
-			// case 5:
-			// 	twoOpt (distM, sol);
-			// 	newCost = costCalc(distM, sol);
-			// 	break;
+			case 1:
+				RelocateAll (inst, nodeVec, Mdist, problem);
+                cout << "\nAfter RelocateK: " << endl;
+                solution.printSol(inst);
+                solution.printCosts();
+                getchar();                
+				break;
 				
 			default:
 				cout << "Out of range" << endl;
@@ -146,11 +138,6 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 		}
 
 		newCost = solution.getCost();
-
-        cout << "\nAfter Swap: " << endl;
-        solution.printSol(inst);
-        solution.printCosts();
-        getchar();
         
 		if (newCost > bestCost) {
 			bestCost = newCost;
@@ -165,8 +152,6 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 			usedNbr.push_back(neighbor);
 		}
 	}
-    
-    
 }
 
 void sarpILS::SwapAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
@@ -207,7 +192,45 @@ void sarpILS::SwapAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdi
 
 }
 
-void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
+void sarpILS::RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
+    int solSize = solution.getRoutesSize();
+
+    double delta;
+    // int vehicle;
+    // vehicle = solution.getvehicle();
+
+    sarpRoute sroute(inst, 0);
+
+    for (int rid = 0; rid < solSize; rid++) {
+        delta = 0;
+        sroute = solution.getRoute(rid);
+        delta = sroute.relocateK(inst, Mdist, nodeVec, problem, 1);
+
+        
+        if (delta > 0){
+
+            // cout << "Route with relocate K: " << endl;
+            // for (int a = 0; a < sroute.getNodesSize(); a++){
+            //     cout << sroute.getReq(a) << " - ";
+            // }
+            // cout << endl;
+
+            // cout << "New route cost after 1 relocateK: " << sroute.cost() << endl;
+            // getchar();
+
+            sroute.updateAll(inst, nodeVec, Mdist);
+            solution.updateRoutes(&sroute, rid);
+        }
+        // cout << "In SWAP ALL: There was an improvement: " << 
+        // "route: " << rid << " - " << delta << endl;
+
+    }
+
+    solution.updateCost();
+
+}
+
+void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
    int neighbor = 0;
 
 	double bestCost = solution.getCost();
@@ -246,29 +269,8 @@ void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 
 		switch (neighbor) {
 			case 0:
-                cout << "\nCalling Relocate Intra" << endl;
 				relocate (inst, nodeVec, Mdist, problem);
 				break;
-
-			// case 2:
-			// 	relocateK (distM, sol, 1);
-			// 	newCost = costCalc(distM, sol);
-			// 	break;
-
-			// case 3:
-			// 	relocateK (distM, sol, 2);
-			// 	newCost = costCalc(distM, sol);
-			// 	break;
-
-			// case 4:
-			// 	relocateK (distM, sol, 3);
-			// 	newCost = costCalc(distM, sol);
-			// 	break;
-
-			// case 5:
-			// 	twoOpt (distM, sol);
-			// 	newCost = costCalc(distM, sol);
-			// 	break;
 				
 			default:
 				cout << "Out of range" << endl;
