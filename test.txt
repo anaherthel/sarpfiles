@@ -112,8 +112,25 @@ Route 1: -4.6477
 Route 2: 8.65329
 
 Cost of routes: 26.4914
+Worse solution: 
+SARP Solution: 
+17 - 11 - 16 - 3 - 5 - 1 - 7 - 12 - 10 - 0 - 9 - 15 - 14 - 23 - 
+18 - 8 - 13 - 6 - 24 - 
+19 - 4 - 2 - 25 - 
 
-After Swap: 
+Cost of routes: 
+Route 0: 18.4877
+Route 1: -4.6477
+Route 2: 8.65329
+
+Cost of routes: 22.4933
+New cost: 22.4858
+delta: 3.9981
+Route with relocate K: 
+17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+New route cost after 1 relocateK: 22.4858
+
+After Inter RVND: 
 SARP Solution: 
 17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
 18 - 8 - 13 - 6 - 24 - 
@@ -126,7 +143,7 @@ Route 2: 8.65329
 
 Cost of routes: 26.4914
 
-After Swap: 
+After Inter RVND: 
 SARP Solution: 
 17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
 18 - 8 - 13 - 6 - 24 - 
@@ -138,63 +155,20 @@ Route 1: -4.6477
 Route 2: 8.65329
 
 Cost of routes: 26.4914
-Neighborhood list (before): 
-0
-After Relocate: 
-SARP Solution: 
-17 - 11 - 16 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 3 - 8 - 13 - 6 - 24 - 
-19 - 4 - 2 - 25 - 
-
-Cost of routes: 
-Route 0: 19.8281
-Route 1: -1.2356
-Route 2: 8.65329
-
-Cost of routes: 27.2458
-Neighborhood list (after): 
-0
-After Relocate: 
-SARP Solution: 
-17 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 3 - 8 - 13 - 6 - 24 - 
-19 - 4 - 11 - 16 - 2 - 25 - 
-
-Cost of routes: 
-Route 0: 16.9789
-Route 1: -1.2356
-Route 2: 12.3636
-
-Cost of routes: 28.1069
-Neighborhood list (after): 
-0
-After Relocate: 
-SARP Solution: 
-17 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 3 - 8 - 13 - 6 - 24 - 
-19 - 4 - 11 - 16 - 2 - 25 - 
-
-Cost of routes: 
-Route 0: 16.9789
-Route 1: -1.2356
-Route 2: 12.3636
-
-Cost of routes: 28.1069
-Neighborhood list (after): 
 
 -----x-----
 Best Solution: SARP Solution: 
-17 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 3 - 8 - 13 - 6 - 24 - 
-19 - 4 - 11 - 16 - 2 - 25 - 
+17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+18 - 8 - 13 - 6 - 24 - 
+19 - 4 - 2 - 25 - 
 
 
 Solution Best Cost: 
 Cost of routes: 
-Route 0: 16.9789
-Route 1: -1.2356
-Route 2: 12.3636
+Route 0: 22.4858
+Route 1: -4.6477
+Route 2: 8.65329
 
-Cost of routes: 28.1069
+Cost of routes: 26.4914
 
 -----x-----

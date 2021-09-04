@@ -122,6 +122,7 @@ public:
 
     double rmvVal (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int candidate, bool isparcel);
 
+    
     // // improve route with 2-opt
     // // returns the number of improvements performed
     // int two_opt(const CVRPInstance& inst);

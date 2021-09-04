@@ -326,8 +326,6 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     int candidate2;
     pair <int, int> bestpositions;
 
-    
-
     while (inserted && !CLparc.empty()){
         inserted = 0;
         for (int cand = 0; cand < CLparc.size(); cand++){

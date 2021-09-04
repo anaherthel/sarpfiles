@@ -59,7 +59,10 @@ class sarpSolution {
     vector<int>::iterator uend() { return unserved.end(); }
     vector<int>::const_iterator uend() const { return unserved.end(); }
     void addtounserved(int candidate);
-    void clearunserved() { unserved.clear(); }   
+    void clearunserved() { unserved.clear(); }
+    int unservedsize() { return unserved.size(); } 
+
+    void addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
 
     void updateCost();
     void updateVehicles();

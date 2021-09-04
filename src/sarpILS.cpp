@@ -29,10 +29,10 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
     sroute = solution.getRoute(0);
     double profit;
 
-    profit = sroute.getProfit(nodeVec, 3);
-    sroute.erase(inst, Mdist, 3, profit);
+    profit = sroute.getProfit(nodeVec, 1);
+    sroute.erase(inst, Mdist, 7, profit);
     sroute.updateAll(inst, nodeVec, Mdist);
-    sroute.insert(inst, Mdist, 3, 2, profit);
+    sroute.insert(inst, Mdist, 1, 5, profit);
     sroute.updateAll(inst, nodeVec, Mdist);
 
     sroute.calcCost(inst, nodeVec, Mdist);
@@ -40,11 +40,11 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
     solution.updateRoutes(&sroute, 0);
     solution.updateCost();
 
-    // cout << "Worse solution: " << endl;
+    cout << "Worse solution: " << endl;
 
-    // solution.printSol(inst);
-    // solution.printCosts();
-    // getchar();
+    solution.printSol(inst);
+    solution.printCosts();
+    getchar();
     // profit = sroute.getProfit(nodeVec, 1);
     // sroute.erase(inst, Mdist, 1, profit);
     // sroute.insert(inst, Mdist, 11, 2, profit);
@@ -52,10 +52,9 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
     //Initial solution
     while (iterILS <= maxIterILS) {
 
-
         RVNDIntra(inst, nodeVec, Mdist, problem);
 
-        RVNDInter(inst, nodeVec, Mdist, problem);
+        // RVNDInter(inst, nodeVec, Mdist, problem);
 
         currentCost = solution.getCost();
 
@@ -97,7 +96,7 @@ void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 
 	list<int>::iterator it;
 
-	for (int i = 0; i < 1; i++) {
+	for (int i = 1; i < 2; i++) {
 		nbrList.push_back(i);
 	}
 
@@ -118,18 +117,10 @@ void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 		switch (neighbor) {
 			case 0:
 				SwapAll (inst, nodeVec, Mdist, problem);
-                cout << "\nAfter Swap: " << endl;
-                solution.printSol(inst);
-                solution.printCosts();
-                getchar();
 				break;
 
 			case 1:
-				RelocateAll (inst, nodeVec, Mdist, problem);
-                cout << "\nAfter RelocateK: " << endl;
-                solution.printSol(inst);
-                solution.printCosts();
-                getchar();                
+				RelocateAll (inst, nodeVec, Mdist, problem);            
 				break;
 				
 			default:
@@ -138,6 +129,11 @@ void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 		}
 
 		newCost = solution.getCost();
+
+        cout << "\nAfter Inter RVND: " << endl;
+        solution.printSol(inst);
+        solution.printCosts();
+        getchar();
         
 		if (newCost > bestCost) {
 			bestCost = newCost;
@@ -187,9 +183,7 @@ void sarpILS::SwapAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdi
         // "route: " << rid << " - " << delta << endl;
 
     }
-
     solution.updateCost();
-
 }
 
 void sarpILS::RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
@@ -205,10 +199,9 @@ void sarpILS::RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double *
         delta = 0;
         sroute = solution.getRoute(rid);
         delta = sroute.relocateK(inst, Mdist, nodeVec, problem, 1);
-
-        
+       
         if (delta > 0){
-
+            // cout << "delta: " << delta << endl;
             // cout << "Route with relocate K: " << endl;
             // for (int a = 0; a < sroute.getNodesSize(); a++){
             //     cout << sroute.getReq(a) << " - ";
@@ -247,11 +240,11 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 		nbrList.push_back(i);
 	}
 
-    cout << "Neighborhood list (before): " << endl;
-    for (it = nbrList.begin(); it != nbrList.end(); it++) { 
-        cout << *it;
-    }
-    getchar();
+    // cout << "Neighborhood list (before): " << endl;
+    // for (it = nbrList.begin(); it != nbrList.end(); it++) { 
+    //     cout << *it;
+    // }
+    // getchar();
 
 	while (!nbrList.empty()) {
 		
@@ -279,10 +272,10 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 
 		newCost = solution.getCost();
 
-        cout << "\nAfter Relocate: " << endl;
-        solution.printSol(inst);
-        solution.printCosts();
-        getchar();
+        // cout << "\nAfter Relocate: " << endl;
+        // solution.printSol(inst);
+        // solution.printCosts();
+        // getchar();
         
 		if (newCost > bestCost) {
 			bestCost = newCost;
@@ -297,11 +290,11 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 			usedNbr.push_back(neighbor);
 		}
 
-        cout << "Neighborhood list (after): " << endl;
-        for (it = nbrList.begin(); it != nbrList.end(); it++) { 
-            cout << *it;
-        }
-        getchar();
+        // cout << "Neighborhood list (after): " << endl;
+        // for (it = nbrList.begin(); it != nbrList.end(); it++) { 
+        //     cout << *it;
+        // }
+        // getchar();
 	}
 }
 
@@ -414,3 +407,38 @@ void sarpILS::relocate(instanceStat *inst, vector<nodeStat> &nodeVec,double **Md
     }    
 }
 
+void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
+
+    //remove 20% of passengers
+    //remove 30% of parcels
+
+
+    int outcust = ceil(0.2*inst->n);
+    int outparc = ceil(0.3*inst->m);
+
+    vector <int> vecoutcust, vecoutparc;
+
+    int req;
+
+    int random_position = rand() % this->CLpass.size();
+    int random_request  = this->CLpass[random_position];
+
+    for (int i = 0; i < outcust; i++){
+        req = rand() % inst->n;
+        vecoutcust.push_back(req);
+    }
+
+    for (int i = 0; i < outcust; i++){
+        req = rand() % inst->m;
+        req += inst->n;
+        vecoutcust.push_back(req);
+    }
+
+    //search and remove customers and parcels
+    //add customers back in random locations (check feasibility but not cost)
+    //do not add parcels.
+    //call ILS again for optimizing what is in the routes. 
+    //call add unserved at the end.
+
+    
+}

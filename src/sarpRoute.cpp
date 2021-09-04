@@ -429,7 +429,7 @@ bool sarpRoute::testRelocate(instanceStat *inst, vector<nodeStat> &nodeVec,
             }
             
             if (inter1.second < inst->n + 2*inst->m){
-                if (postTime < nodeVec[nodes_[inter2.second]].e){
+                if (postTime < nodeVec[nodes_[inter1.second]].e){
                     feasible = 1;
                 }
                 else{
@@ -457,34 +457,51 @@ bool sarpRoute::testRelocate(instanceStat *inst, vector<nodeStat> &nodeVec,
     else{//test this part of function
     //cases in which we move a parcel pu or dl
     //only check interval of new position
-
         pair <int, int> npinter;//interval of new position
 
-        prevPass = nodes_[inter1.first];
-        nextPass = nodes_[inter1.second];
+        npinter = getInterval(pos2);
+        bool sameInterval;
+        sameInterval = checkInterval(inst, pos1, pos2, inter1, npinter);
+
+        prevPass = nodes_[npinter.first];
+        nextPass = nodes_[npinter.second];
         prevTime = nodeVec[prevPass].e;
 
-        for(int i = inter1.first; i < inter1.second; i++){
+        for(int i = npinter.first; i < npinter.second; i++){
             prevTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) 
                         + nodeVec[nodes_[i]].delta;
         }
 
-        prevTime += - ((Mdist[nodes_[pos2-1]][req2])/inst->vmed)
-                    - ((Mdist[req2][nodes_[pos2+1]])/inst->vmed)
-                    - ((Mdist[nodes_[pos1-1]][req1])/inst->vmed)
-                    - ((Mdist[req1][nodes_[pos1+1]])/inst->vmed)
-                    + ((Mdist[nodes_[pos2-1]][req1])/inst->vmed)
-                    + ((Mdist[req1][nodes_[pos2+1]])/inst->vmed)
-                    + ((Mdist[nodes_[pos1-1]][req2])/inst->vmed)
-                    + ((Mdist[req2][nodes_[pos1+1]])/inst->vmed);
+        if (sameInterval){
+            prevTime += - ((Mdist[nodes_[pos2-1]][req2])/inst->vmed)
+                        - ((Mdist[req1][nodes_[pos1+1]])/inst->vmed)
+                        - ((Mdist[nodes_[pos1-1]][req1])/inst->vmed)
+                        + ((Mdist[nodes_[pos1-1]][nodes_[pos1+1]])/inst->vmed)
+                        + ((Mdist[req1][nodes_[pos2+1]])/inst->vmed)
+                        + ((Mdist[nodes_[pos2-1]][req1])/inst->vmed);
 
-        if (prevTime <= nodeVec[nextPass].e){
-            feasible = 1;
+            if (prevTime <= nodeVec[nextPass].e){
+                feasible = 1;
+            }
+            else{
+                feasible = 0;
+                return feasible;
+            }
         }
         else{
-            feasible = 0;
-            return feasible;
-        }       
+            prevTime += - ((Mdist[nodes_[pos2-1]][req2])/inst->vmed)
+                        + ((Mdist[req1][nodes_[pos2+1]])/inst->vmed)
+                        + ((Mdist[nodes_[pos2-1]][req1])/inst->vmed)
+                        + nodeVec[req1].delta;
+
+            if (prevTime <= nodeVec[nextPass].e){
+                feasible = 1;
+            }
+            else{
+                feasible = 0;
+                return feasible;
+            }            
+        }
     }
     return feasible;
 }
@@ -1039,7 +1056,6 @@ bool sarpRoute::testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVe
     }
     return feasible;  
 }
-
 
 void sarpRoute::updatePass(instanceStat *inst, vector<nodeStat> &nodeVec){
     pair<nodeStat, int> pairtoadd;
@@ -1644,7 +1660,7 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
                         }
                         else {
                             delta += - Mdist[nodes_[i]][nodes_[i + 1]] 
-                            - Mdist[nodes_[j]][nodes_[j - 1]] 
+                            - Mdist[nodes_[j - 1]][nodes_[j]]
                             - Mdist[nodes_[j]][nodes_[j + 1]] 
                             + Mdist[nodes_[i - 1]][nodes_[j]] 
                             + Mdist[nodes_[j]][nodes_[i + 1]] 
@@ -1698,7 +1714,7 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
     return bestDelta;
 }
 
-double relocateK(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem, int k){
+double sarpRoute::relocateK(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem, int k){
 
     double delta = 0;
 
@@ -1724,7 +1740,7 @@ double relocateK(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, 
     // getchar();
 
 	for (int i = 1; i < nodes_.size() - 1; i++) {
-		delta = -Mdist[nodes_[i - 1]][nodes_[i]];
+		delta = 0;
         inter1 = getInterval(i);
 
         candidate = nodes_[i];
@@ -1760,86 +1776,86 @@ double relocateK(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, 
             
             jend = nodes_.size();
         }
-        cout << "**************************" << endl;
-        cout << "Candidate: " << candidate << endl;
-        cout << "jstart: " << jstart << endl;
-        cout << "jend: " << jend << endl;
-        cout << "**************************" << endl;
+        // cout << "**************************" << endl;
+        // cout << "Candidate: " << candidate << endl;
+        // cout << "jstart: " << jstart << endl;
+        // cout << "jend: " << jend << endl;
+        // cout << "**************************" << endl;
 
 		for (int j = jstart; j < jend; j++) {
-            // feasPos = 0;
-            // feasible = 0;
 
-            // inter2 = getInterval(j);
-            // if (nodes_[i] < inst->n || nodes_[j] < inst->n){
-            //     feasPos = checkInterval(inst, i, j, inter1, inter2);
-            // }
-            // else if(nodeVec[nodes_[j]].load < 0){
-            //     feasPos = checkDelivery(inst, i, j, problem);
-            // }
-            // else{
-            //     feasPos = 1;
-            // }
-
-            if (j == i+1 || i == j+1){
+            if (j == i+1 || i == j+1 || i == j){
                 continue;
             }
 
             // if (feasPos){
                 feasible = testRelocate(inst, nodeVec, Mdist, i, j, inter1);
-
+                // cout << "new position: " << j << ": " << feasible << endl;
                 if (feasible){
+                    delta = - Mdist[nodes_[i - 1]][nodes_[i]]
+                    - Mdist[nodes_[i]][nodes_[i + 1]] 
+                    - Mdist[nodes_[j - 1]][nodes_[j]]
+                    + Mdist[nodes_[i - 1]][nodes_[i + 1]] 
+                    + Mdist[nodes_[j - 1]][nodes_[i]] 
+                    + Mdist[nodes_[i]][nodes_[j]];
 
-                    // if (j - i == 1) {
-                    //     delta += - Mdist[nodes_[i]][nodes_[j]] 
-                    //     + Mdist[nodes_[j]][nodes_[i]]                            
-                    //     - Mdist[nodes_[j]][nodes_[j + 1]] 
-                    //     + Mdist[nodes_[i - 1]][nodes_[j]]
-                    //     + Mdist[nodes_[i]][nodes_[j + 1]];
-                    // }
-                    // else {
-                    //     delta += - Mdist[nodes_[i]][nodes_[i + 1]] 
-                    //     - Mdist[nodes_[j]][nodes_[j - 1]] 
-                    //     - Mdist[nodes_[j]][nodes_[j + 1]] 
-                    //     + Mdist[nodes_[i - 1]][nodes_[j]] 
-                    //     + Mdist[nodes_[j]][nodes_[i + 1]] 
-                    //     + Mdist[nodes_[j - 1]][nodes_[i]] 
-                    //     + Mdist[nodes_[i]][nodes_[j + 1]];
-                    // }
+                    // cout << "Value of delta: " << delta << endl;
+                    // cout << "**************************" << endl;
 
-                    // if (delta < 0) {
-                    //     if (delta < bestDelta) {
-                    //         // cout << "\nThere was an improvement with delta as " << delta << endl;
-                    //         getchar();
-                    //         bestDelta = delta;
-                    //         pos1 = i;
-                    //         pos2 = j;
-                    //         swap = 1;
-                    //     }
-                    // }
+                    if (delta < 0) {
+                        if (delta < bestDelta) {
+
+                            // cout << "Calculated delta: " << delta << endl;
+
+                            // cout << "New position: " << j;
+
+                            // cout << "Values: " << endl;
+                            // cout << "Mdist[nodes_[i - 1]][nodes_[i]]: " << Mdist[nodes_[i - 1]][nodes_[i]]
+                            // << endl << "- Mdist[nodes_[i]][nodes_[i + 1]]: " << Mdist[nodes_[i]][nodes_[i + 1]]
+                            // << endl<<"- Mdist[nodes_[j - 1]][nodes_[j]]: " << Mdist[nodes_[j - 1]][nodes_[j]]
+                            // << endl<< "+ Mdist[nodes_[i - 1]][nodes_[i + 1]]: " << + Mdist[nodes_[i - 1]][nodes_[i + 1]] 
+                            // <<  endl<<"+ Mdist[nodes_[j - 1]][nodes_[i]]: " << Mdist[nodes_[j - 1]][nodes_[i]] 
+                            // <<  endl<<"+ Mdist[nodes_[i]][nodes_[j]]: " << Mdist[nodes_[i]][nodes_[j]]; 
+                            // cout << "**************************" << endl;
+                            // cout << "\nThere was an improvement with delta as " << delta << endl;
+                            // getchar();
+                            bestDelta = delta;
+                            pos1 = i;
+                            pos2 = j;
+                            relocate = 1;
+                        }
+                    }
                 }
             // }          
 		}
 	}
     if (relocate){
+        double profit;
+        profit = getProfit(nodeVec, pos1);
+        int candidate;
+        candidate = nodes_[pos1];
 
-        tempElement = nodes_[pos1];
-        nodes_[pos1] = nodes_[pos2];
-        nodes_[pos2] = tempElement;
+        bestDelta = -(bestDelta*inst->costkm);
+
+        if (pos1 < pos2){
+            insert(inst, Mdist, candidate, pos2, profit);
+            erase(inst, Mdist, pos1, profit);
+        }
+
+        else{
+            erase(inst, Mdist, pos1, profit);
+            insert(inst, Mdist, candidate, pos2, profit);           
+        }
 
         updateAll(inst,nodeVec, Mdist);
-        bestDelta = -(bestDelta*inst->costkm);
-        // cout << "Best Delta: " << bestDelta << endl;
 
-        updateCost(bestDelta);
+        cout << "New cost: " << cost_ << endl;
 
-        // cout << "New cost: " << cost_ << endl;
-
-        calcCost(inst, nodeVec, Mdist);
+        // calcCost(inst, nodeVec, Mdist);
         // cout << "Calculated cost: " << cost_ << endl;
         // getchar();
 
-        // cout << "Route with swap: " << endl;
+        // cout << "Route with relocate K: " << endl;
         // for (int a = 0; a < nodes_.size(); a++){
         //     cout << nodes_[a] << " - ";
         // }
@@ -1892,3 +1908,4 @@ double sarpRoute::rmvVal(instanceStat *inst, vector<nodeStat> &nodeVec, double *
 
     return delta;
 }
+

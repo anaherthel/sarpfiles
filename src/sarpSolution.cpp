@@ -204,186 +204,145 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
     return delta;
 }
 
+void sarpSolution::addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem){
+    sarpRoute sroute(inst, 0);
+    int candidate, candidate2;
 
-// void sarpSolution::addCost(double delta){
-//     cost += delta;
-// }
+    vector<int> inspositions, inspositions2;
+    pair <int, double> cheapestpair;
 
-// Solution::Solution(Data *data) : data(data), cost(__DBL_MAX__) {
-//     this->createRoutesVector();
-//     pairNeighbStatus = vector<vector<vector<bool>>>(
-//         PAIR_ROUTES_MOVES_TOTAL,
-//         vector<vector<bool>>(routes.size(),
-//                              vector<bool>(routes.size(), true)));
-// }
+    cheapestpair.first = -1;
+    cheapestpair.second = -100000;
 
-// Solution::Solution(Data *data, vector<Route *> routesVec) : data(data),
-//                                                             cost(__DBL_MAX__) {
-//     for (int i = 0; i < routesVec.size(); ++i) {
-//         this->routes.push_back(new Route(*routesVec[i]));
-//     }
-//     this->update();
-//     pairNeighbStatus = vector<vector<vector<bool>>>(
-//         PAIR_ROUTES_MOVES_TOTAL,
-//         vector<vector<bool>>(routes.size(),
-//                              vector<bool>(routes.size(), true)));
-// }
+    vector< pair<int, double> > cheapestMove;
+    pair <int, int> bestpositions;
 
-// Solution::Solution(const Solution &other) : data(other.data),
-//                                             cost(other.cost),
-//                                             pairNeighbStatus(other.pairNeighbStatus) {
-//     for (int i = 0; i < other.getRoutesSize(); ++i) {
-//         this->routes.push_back(new Route(*other.routes[i]));
-//     }
+    double best_cost;
+    int best_route;
+    bool inserted;
+    bool feastime = 0;
+    int vehicle;
 
-//     // if (other.getRoutesSize() > data->v) {
-//     //     this->routes.push_back(other.routes[other.getRoutesSize() - 1]);
-//     // }
-// }
+    cheapestMove.push_back(cheapestpair);
+    cheapestMove.push_back(cheapestpair);
 
-// Solution::~Solution() {
-//     if (this->getRoutesSize() > data->v) {
-//         this->removeRoute();
-//     }
+    for (int cand = 0; cand < unserved.size(); cand++){
+        candidate = unserved[cand];
+        candidate2 = candidate + inst->m;
 
-//     for (int i = 0; i < this->getRoutesSize(); ++i) {
-//         delete routes[i];
-//     }
-//     routes.clear();
-// }
+        best_route = -1;
+        best_cost = -100000;
+        inserted = 0;
+        feastime = 0;
+        bestpositions.first = -1;
+        bestpositions.second = -1;
 
-// void Solution::createRoutesVector() {
-//     for (int k = 0; k < data->v; ++k) {
-//         routes.push_back(new Route(data, data->vehicles[k]));
-//     }
-// }
+        for (int rid = 0; rid < routes.size(); rid++){
+            cheapestMove[0].first = -1;
+            cheapestMove[0].second = -100000;
+            cheapestMove[1].first = -1;
+            cheapestMove[1].second = -100000;
 
-// void Solution::updateRoutes() {
-//     for (size_t i = 0; i < routes.size(); i++) {
-//         routes[i]->update();
-//     }
-// }
+            sroute = getRoute(rid);
 
-// void Solution::update() {
-//     this->updateRoutes();
-//     this->updateCost();
-// }
+            inspositions.clear();
+            inspositions2.clear();
+            
+            sroute.availablePos(inst, nodeVec, candidate, problem, inspositions);
 
-// void Solution::updateRoute(int idx) {
-//     routes[idx]->update();
-//     this->updateCost();
-// }
+            sroute.cheapestInsertionParcel(inst, nodeVec, Mdist, candidate, candidate2, inspositions, inspositions2, cheapestMove, problem);
+            
+            if (cheapestMove[0].first == cheapestMove[1].first){
+                if (cheapestMove[0].second > best_cost){
+                    best_cost = cheapestMove[0].second;
+                    best_route = rid;
+                    bestpositions.first = cheapestMove[0].first;
+                    bestpositions.second = cheapestMove[1].first;
+                    inserted = 1;
+                }                    
+            }
+            else{
+                if (cheapestMove[0].second + cheapestMove[1].second > best_cost){
+                    best_cost = cheapestMove[0].second + cheapestMove[1].second;
+                    best_route = rid;
+                    bestpositions.first = cheapestMove[0].first;
+                    bestpositions.second = cheapestMove[1].first;
+                    inserted = 1;
+                }
+            }
+        }
+        if (best_cost == -100000){
+            if (problem->dParcel > 0){
+                vehicle = getvehicle();
+                sarpRoute newroute(inst, vehicle);
+                feastime = newroute.fInsertionParcel(inst, nodeVec, Mdist, candidate, candidate2);
+                newroute.calcCost(inst, nodeVec, Mdist);
+                newroute.insert(inst, Mdist, candidate, 1, nodeVec[candidate].profit);
+                newroute.insert(inst, Mdist, candidate2, 2, nodeVec[candidate2].profit);
+                newroute.updatePass(inst, nodeVec);
+                newroute.updateLoad(inst, nodeVec);
+                newroute.updateParcels(candidate-inst->n, 1, 2);
+                addRoute(&newroute);
 
-// void Solution::updateCost() {
-//     this->cost = 0;
-//     for (int i = 0; i < routes.size(); ++i) {
-//         this->cost += routes[i]->getCost();
-//     }
-// }
+                for (int u = 0; u < unserved.size(); ++u) {
+                    if (this->unserved[u] == candidate) {
+                        this->unserved.erase(this->unserved.begin() + u);
+                        break;
+                    }
+                }
 
-// void Solution::setPairNeighbStatusAllTrue(int route_1_idx, int route_2_idx) {
-//     for (int n = 0; n < PAIR_ROUTES_MOVES_TOTAL; ++n) {
-//         for (int i = 0; i < this->getRoutesSize(); ++i) {
-//             pairNeighbStatus[n][route_1_idx][i] = pairNeighbStatus[n][i][route_1_idx] = true;
-//             pairNeighbStatus[n][route_2_idx][i] = pairNeighbStatus[n][i][route_2_idx] = true;
-//         }
-//     }
-// }
+                updateVehicles();
+                inserted = 1;
+                updateCost();
+                break;
+            }
+            else{
+                addtounserved(candidate);
+                for (int u = 0; u < unserved.size(); ++u) {
+                    if (this->unserved[u] == candidate) {
+                        this->unserved.erase(this->unserved.begin() + u);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
 
-// void Solution::setPairNeighbStatusAllTrue(int route_idx) {
-//     for (int n = 0; n < PAIR_ROUTES_MOVES_TOTAL; ++n) {
-//         for (int i = 0; i < this->getRoutesSize(); ++i) {
-//             pairNeighbStatus[n][route_idx][i] = pairNeighbStatus[n][i][route_idx] = true;
-//         }
-//     }
-// }
+        else{
+            sroute = getRoute(best_route);
 
-// void Solution::repairSol() {
-//     update();
-//     sortRoutes();
-// }
+            // cout << "::::******::::::******::::::" << endl;
+            // cout << "Request1: " << candidate << " - Request2: " << candidate2 << endl;
+            // cout << "Best position 1: " << bestpositions.first << "; Best position 2: " << bestpositions.second << endl;
+            // cout << "::::******::::::******::::::" << endl;
 
-// void Solution::sortRoutes() {
-//     sort(begin(routes), end(routes),
-//          [](const Route *lhs, const Route *rhs) -> bool {
-//              return lhs->path[0] < rhs->path[0];
-//          });
-// }
+            // getchar();
 
-// void Solution::addRoute(Route *route) {
-//     this->routes.push_back(route);
-//     this->update();
-//     pairNeighbStatus.assign(
-//         PAIR_ROUTES_MOVES_TOTAL,
-//         vector<vector<bool>>(routes.size(),
-//                              vector<bool>(routes.size(), true)));
-// }
+            sroute.insert(inst, Mdist, candidate, bestpositions.first, nodeVec[candidate].profit);
+            sroute.insert(inst, Mdist, candidate2, bestpositions.second+1, nodeVec[candidate2].profit);
+            sroute.updatePass(inst, nodeVec);
+            sroute.updateLoad(inst, nodeVec);
+            sroute.updateParcels(candidate-inst->n, bestpositions.first, bestpositions.second+1);
+            sroute.updateTimes(inst, nodeVec, Mdist);
+            updateRoutes(&sroute, best_route);
+            updateCost();
 
-// Route *Solution::popRoute() {
-//     Route *r = this->routes.back();
-//     this->routes.pop_back();
-//     return r;
-// }
+            inserted = 1;
+            // cout << "*****Route with insertion: " << endl;
+            // for (auto a: sroute){
+            //     cout << a << " - ";
+            // }
+            // cout << "New route cost: " << sroute.cost() << endl;
+            // cout << endl << endl;
 
-// void Solution::removeRoute() { this->routes.pop_back(); }
+            for (int u = 0; u < unserved.size(); ++u) {
+                if (this->unserved[u] == candidate) {
+                    this->unserved.erase(this->unserved.begin() + u);
+                    break;
+                }
+            }
+            break;
+        }
 
-// void Solution::check() {
-//     bool load_viability, timewindow_viability, ridetime_viability;
-//     Route *route;
-//     vector<int> path;
-//     Vehicle *vehicle;
-
-//     for (int i = 0; i < this->getRoutesSize(); ++i) {
-//         route   = this->getRoute(i);
-//         path    = route->getPath();
-//         vehicle = route->getVehicle();
-//         LoadChecker lc(&path, data, vehicle);
-//         TimeWindowChecker twc(&path, data, vehicle);
-//         RideTimeChecker rtc(&path, data);
-//         PairChecker pc(&path, data, vehicle);
-//         ArcsChecker ac(&path, data, vehicle);
-
-//         if (!route->isExtra() && !ac.check()) {
-//             printf("Route %d is %s for arcs\n", i, "INFEASIBLE");
-//             route->printPath();
-//             // getchar();
-//         }
-//         if (!pc.check()) {
-//             printf("Route %d is %s for pairing\n", i, "INFEASIBLE");
-//             route->printPath();
-//             // getchar();
-//         }
-//         if (!route->isExtra() && !lc.check()) {
-//             printf("Route %d is %s for load\n", i, "INFEASIBLE");
-//             route->printPath();
-//             // getchar();
-//         }
-//         if (!route->isExtra() && !twc.check()) {
-//             printf("Route %d is %s for timewindow\n", i, "INFEASIBLE");
-//             route->printPath();
-//             // getchar();
-//         }
-//         if (!route->isExtra() && !rtc.check()) {
-//             printf("Route %d is %s for ridetime\n", i, "INFEASIBLE");
-//             route->printPath();
-//             // getchar();
-//         }
-//         // printf("Route %d is %s for load\n", i, (lc.check() ? "FEASIBLE" : "INFEASIBLE"));
-//         // printf("Route %d is %s for timewindow\n", i, (twc.check() ? "FEASIBLE" : "INFEASIBLE"));
-//         // printf("Route %d is %s for ridetime\n", i, (rtc.check() ? "FEASIBLE" : "INFEASIBLE"));
-//     }
-// }
-
-// void Solution::print() {
-//     printf("\nSolution Total Cost: %.4lf\n\n", cost);
-//     for (int i = 0; i < routes.size(); ++i) {
-//         routes[i]->printPath();
-//     }
-// }
-
-// void Solution::clear() {
-//     for (int i = 0; i < this->getRoutesSize(); ++i) {
-//         this->getRoute(i)->clear();
-//     }
-//     this->update();
-// }
+    }
+}

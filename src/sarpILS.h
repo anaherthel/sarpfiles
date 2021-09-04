@@ -53,13 +53,15 @@ public:
 
     void SwapAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
-    void sarpILS::RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+    void RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
     void RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
     
     void relocate(instanceStat *inst, 
                 vector<nodeStat> &nodeVec,
                 double **Mdist, probStat* problem);
+
+    void Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);           
     // ~ILS();
     // void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
     // void buildDistVec(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
@@ -73,7 +75,6 @@ public:
     // void setClusterArcs(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, bundleStat* bStat, clSt* cStat, probStat *problem);
 
     // void hbundleMethod(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist,  probStat *problem, solStats *sStat);
-
 };
 
 // ostream & operator<<(ostream &os, const FLPInstance &instance);
