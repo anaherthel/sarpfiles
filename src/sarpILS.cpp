@@ -8,7 +8,7 @@
 void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
     
     iterILS = 1;
-    maxIterILS = 1;
+    maxIterILS = 2;
 
     sarpRoute sroute(inst, 0);
 
@@ -54,7 +54,7 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
 
         RVNDIntra(inst, nodeVec, Mdist, problem);
 
-        // RVNDInter(inst, nodeVec, Mdist, problem);
+        RVNDInter(inst, nodeVec, Mdist, problem);
 
         currentCost = solution.getCost();
 
@@ -67,7 +67,16 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
             // iterILS = 0;
         }
 
-	// 	perturbation(distMatrix, solutionBest, solution, solutionCost);
+        cout << "\n-----x-----" << "\nBest Solution so far: ";
+        bestSol.printSol(inst);
+
+        cout <<"\nSolution Best Cost: " << endl;
+        
+        bestSol.printCosts();
+        cout << "\n-----x-----" << endl;
+
+        solution.addunserved(inst, nodeVec, Mdist, problem);
+        Perturbation(inst, nodeVec, Mdist, problem);
 		iterILS++;
 	}
 
@@ -130,7 +139,7 @@ void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 
 		newCost = solution.getCost();
 
-        cout << "\nAfter Inter RVND: " << endl;
+        cout << "\nAfter Intra: " << endl;
         solution.printSol(inst);
         solution.printCosts();
         getchar();
@@ -412,16 +421,16 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     //remove 20% of passengers
     //remove 30% of parcels
 
+    sarpRoute sroute(inst, 0);
+    int sizeRoute;
 
     int outcust = ceil(0.2*inst->n);
     int outparc = ceil(0.3*inst->m);
 
     vector <int> vecoutcust, vecoutparc;
+    int solSize = solution.getRoutesSize();
 
     int req;
-
-    int random_position = rand() % this->CLpass.size();
-    int random_request  = this->CLpass[random_position];
 
     for (int i = 0; i < outcust; i++){
         req = rand() % inst->n;
@@ -431,14 +440,127 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     for (int i = 0; i < outcust; i++){
         req = rand() % inst->m;
         req += inst->n;
-        vecoutcust.push_back(req);
+        vecoutparc.push_back(req);
+        solution.addtounserved(req);
     }
 
-    //search and remove customers and parcels
-    //add customers back in random locations (check feasibility but not cost)
-    //do not add parcels.
-    //call ILS again for optimizing what is in the routes. 
-    //call add unserved at the end.
+    cout << "Removing passengers: " << endl;
 
-    
+    for (int i = 0; i < vecoutcust.size(); i++){
+        cout << vecoutcust[i] << " ";
+    }
+    cout << endl;
+
+    cout << "\nRemoving parcels: " << endl;
+
+    for (int i = 0; i < vecoutparc.size(); i++){
+        cout << vecoutparc[i] << " ";
+    }
+    cout << endl;
+
+    bool found;
+    for (int a = 0; a < vecoutcust.size(); a++){
+        found = 0;
+        for (int rid = 0; rid < solSize; rid++){
+            sroute = solution.getRoute(rid);
+            sizeRoute = sroute.getNodesSize();
+            for(int c = 0; c < sizeRoute; c++){
+                int pass = sroute.getReq(c);
+
+                if (vecoutcust[a] == pass){
+
+                    double profit = sroute.getProfit(nodeVec, c);
+                    sroute.erase(inst, Mdist, c, profit);
+                    found = 1;
+                    break;
+                }
+            }
+            if (found){
+                sroute.updateAll(inst, nodeVec, Mdist);
+                sroute.calcCost(inst, nodeVec, Mdist);
+                solution.updateRoutes(&sroute, rid);
+                solution.updateCost();
+
+
+                break;
+            }
+        }
+    }
+    int pos1, pos2;
+    for (int a = 0; a < vecoutparc.size(); a++){
+        found = 0;
+        for (int rid = 0; rid < solSize; rid++){
+            sroute = solution.getRoute(rid);
+            sizeRoute = sroute.getNodesSize();
+            for(int c = 0; c < sizeRoute; c++){
+                int parc = sroute.getReq(c);
+                int parc2 = parc + inst->m;
+                if (vecoutparc[a] == parc){
+                    cout << "Pickup: " << parc << endl;
+                    getchar();
+                    pos1 = c;
+                    pos2 = sroute.getDL(vecoutparc[a]-inst->n);
+
+                    cout << "Delivery: " << parc2 << " at " << pos2 << endl;
+                    getchar();
+                    double profit = 0;
+                    sroute.erase(inst, Mdist, pos2, profit);
+                    profit = sroute.getProfit(nodeVec, pos1);
+                    sroute.erase(inst, Mdist, pos1, profit);
+                    found = 1;
+                    break;
+                }
+
+            }
+            if (found){
+                sroute.updateAll(inst, nodeVec, Mdist);
+                sroute.calcCost(inst, nodeVec, Mdist);
+                solution.updateRoutes(&sroute, rid);
+                solution.updateCost();
+
+                cout << "After 1 removal before: " << endl;
+                solution.printSol(inst);
+                solution.printCosts();
+                getchar();
+
+                break;
+            }
+        }
+    }
+
+    cout << "After removal: " << endl;
+
+    solution.printSol(inst);
+    solution.printCosts();
+    getchar();
+    //adding back customers
+
+    int randRoute;
+    bool inserted;
+    int randPos;
+    int request;
+    double profit;
+    for (int a = 0; a < vecoutparc.size(); a++){
+        request = vecoutparc[a];
+        sroute = solution.getRoute(randRoute);
+        sizeRoute = sroute.getNodesSize();
+        inserted = 0;
+        while(!inserted){
+            randRoute = rand() % solSize;
+            randPos =  1 + rand() % (solSize-2);
+            inserted = sroute.testInsertion(inst, nodeVec, Mdist, randPos, request);
+        }
+        profit = nodeVec[request].profit;
+
+        sroute.insert(inst, Mdist,request, randPos, profit);
+        sroute.updateAll(inst, nodeVec, Mdist);
+        sroute.calcCost(inst, nodeVec, Mdist);
+        solution.updateRoutes(&sroute, randRoute);
+        solution.updateCost();
+
+        cout << "New addition: " << endl;
+
+        solution.printSol(inst);
+        solution.printCosts();
+    }    
 }

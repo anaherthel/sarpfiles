@@ -125,12 +125,8 @@ Route 2: 8.65329
 
 Cost of routes: 22.4933
 New cost: 22.4858
-delta: 3.9981
-Route with relocate K: 
-17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-New route cost after 1 relocateK: 22.4858
 
-After Inter RVND: 
+After Intra: 
 SARP Solution: 
 17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
 18 - 8 - 13 - 6 - 24 - 
@@ -143,7 +139,7 @@ Route 2: 8.65329
 
 Cost of routes: 26.4914
 
-After Inter RVND: 
+After Intra: 
 SARP Solution: 
 17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
 18 - 8 - 13 - 6 - 24 - 
@@ -157,18 +153,63 @@ Route 2: 8.65329
 Cost of routes: 26.4914
 
 -----x-----
-Best Solution: SARP Solution: 
-17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 8 - 13 - 6 - 24 - 
-19 - 4 - 2 - 25 - 
+Best Solution so far: SARP Solution: 
+17 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
+18 - 3 - 8 - 13 - 6 - 24 - 
+19 - 4 - 11 - 16 - 2 - 25 - 
 
 
 Solution Best Cost: 
 Cost of routes: 
-Route 0: 22.4858
-Route 1: -4.6477
-Route 2: 8.65329
+Route 0: 16.9789
+Route 1: -1.2356
+Route 2: 12.3636
 
-Cost of routes: 26.4914
+Cost of routes: 28.1069
 
 -----x-----
+Removing passengers: 
+0 4 
+
+Removing parcels: 
+10 7 
+Pickup: 10
+Delivery: 15 at 7
+After 1 removal before: 
+SARP Solution: 
+17 - 5 - 7 - 12 - 1 - 9 - 14 - 23 - 
+18 - 3 - 8 - 13 - 6 - 24 - 
+19 - 11 - 16 - 2 - 25 - 
+
+Cost of routes: 
+Route 0: -1.40793
+Route 1: -1.2356
+Route 2: 0.957104
+
+Cost of routes: -1.68643
+Pickup: 7
+Delivery: 12 at 3
+After 1 removal before: 
+SARP Solution: 
+17 - 5 - 1 - 9 - 14 - 23 - 
+18 - 3 - 8 - 13 - 6 - 24 - 
+19 - 11 - 16 - 2 - 25 - 
+
+Cost of routes: 
+Route 0: -3.57291
+Route 1: -1.2356
+Route 2: 0.957104
+
+Cost of routes: -3.85141
+After removal: 
+SARP Solution: 
+17 - 5 - 1 - 9 - 14 - 23 - 
+18 - 3 - 8 - 13 - 6 - 24 - 
+19 - 11 - 16 - 2 - 25 - 
+
+Cost of routes: 
+Route 0: -3.57291
+Route 1: -1.2356
+Route 2: 0.957104
+
+Cost of routes: -3.85141
