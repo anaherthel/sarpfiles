@@ -47,6 +47,8 @@ public:
 
     inline int getNodesSize() { return nodes_.size(); };
     inline int getLoadSize() { return loadofroute.size(); };
+    inline int getPassPosSize() { return passandpos.size(); };
+    
 
     int firstpos() const { return nodes_[1]; };
     int lastpos() const { return nodes_[nodes_.size()-2]; };

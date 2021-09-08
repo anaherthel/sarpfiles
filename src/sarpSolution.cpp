@@ -116,6 +116,8 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
         // getchar();
         if (candidate < inst->n){
             cheapestpair = r2.cheapestInsertion(inst, nodeVec, Mdist, candidate, inspositions);
+            // cout << "end of cheapest insertion." << endl;
+            // getchar();
             addVal = cheapestpair.second;
 
             if (addVal > 0){
