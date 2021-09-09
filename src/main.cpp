@@ -9,6 +9,7 @@
 #include <utility>
 #include <cmath>
 #include <ctime>
+#include <sys/time.h>
 #include "readdata.h"
 #include "functions.h"
 #include "modelnode.h"
@@ -18,6 +19,8 @@
 #include "hbundle.h"
 #include "sarpILS.h"
 #include "sarpConstruction.h"
+#include "cpuTime.h"
+#include "Statistics.h"
 
 using namespace std;
 
@@ -34,6 +37,9 @@ int main (int argc, char *argv[]) {
 	vector<nodeStat> nodeVec;
 
 	sarpILS sILS;
+
+	sarpSolution globalSol;
+
 	sStat.feasible = false;
 	
 	// while (!sStat.feasible){
@@ -73,7 +79,33 @@ int main (int argc, char *argv[]) {
 			// h.buildBundles(&inst, nodeVec, distMatrix, &problem);
 			// h.orgBundles(&inst, nodeVec, distMatrix, bStat, &problem);
 			// sCon.ConstrProc(&inst, nodeVec, distMatrix, &problem);
+
+			int mscount = 0;
+			int msMax = 15;
+
+			// clock_t seed = (argc == 5) ? time(NULL) : strtol(argv[4], NULL, 10);
+			
+			clock_t seed = 1631220766;
+
+			srand(seed);
+
+			// seed = 1.63115e+09; 
+
+			cout << "\n\nSeed: " << std::setprecision(5) << seed << endl << endl;
+			getchar();
+			// t1 = sILS.get_wall_time();
+			sILS.stats.setStart();
+
 			sILS.ILS(&inst, nodeVec, distMatrix, &problem);
+
+			// t2 = sILS.get_wall_time();
+			// deltaT = t2 - t1;
+
+			sILS.stats.setEnd();
+
+			cout << "\nTotal Run Time: " << std::setprecision(8) <<  sILS.stats.printTime() << endl;
+
+			cout << "END OF METHOD" << endl;
 			// sILS.function();
 		}
 		// else if (problem.model == "twostage"){
@@ -119,13 +151,9 @@ int main (int argc, char *argv[]) {
     	sStat.solBegin.clear();
 		sStat.feasible = false;
 		if (inst.min == true){
-			cout << "here" << endl;
-			getchar();
 			// if (trialK < inst.n + inst.m){
 			// 	trialK++;
 			// }
-			cout << "trial K: " << trialK << endl;
-			getchar();
 
 			readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
 

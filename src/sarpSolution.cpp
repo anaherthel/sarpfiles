@@ -4,8 +4,6 @@
 void sarpSolution::addRoute(sarpRoute *route){
     this->routes.push_back(*route);
     this->updateCost();
-    cout << "vehicles: " << usedK << endl;
-    getchar();
 }
 
 void sarpSolution::updateCost() {
@@ -28,7 +26,6 @@ void sarpSolution::printSol(instanceStat *inst) {
     sarpRoute sroute(inst, usedK);
 
     cout << "SARP Solution: " << endl;
-    getchar();
     for (int i = 0; i < routes.size(); i++){
         sroute = routes[i];
         for(auto j: sroute){
@@ -93,11 +90,14 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
 
     best_cost = rval1 + rval2;
 
+    cout << "Routes: " << rid1 << " and " << rid2;
+
     for (int i = 1; i < rsize1-1; i++){
         candidate = r1.getReq(i);
         compareCost = rval1 + rval2;
-        // cout << "\ncandidate: " << candidate << endl;
-        // cout << "Initial cost of both routes: " << compareCost << endl;
+        cout << "\ncandidate: " << candidate << endl;
+
+        cout << "Initial cost of both routes: " << compareCost << endl;
 
         if(nodeVec[candidate].load < 0){
             // cout << "\n Delivery node (skip)";
@@ -107,6 +107,10 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
 
         inspositions.clear();
         r2.availablePos(inst, nodeVec, candidate, problem, inspositions);
+
+        if (inspositions.size() < 1){
+            continue;
+        }
         
         // cout << "Available positions for insertion: " << endl;
         // for (int p = 0; p < inspositions.size(); p++){
@@ -114,6 +118,7 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
         // }
         // cout << endl;
         // getchar();
+
         if (candidate < inst->n){
             cheapestpair = r2.cheapestInsertion(inst, nodeVec, Mdist, candidate, inspositions);
             // cout << "end of cheapest insertion." << endl;
@@ -122,7 +127,7 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
 
             if (addVal > 0){
                 rmvVal = r1.rmvVal(inst, nodeVec, Mdist, i, 0);
-                
+                cout << "Calculate rmvval: " << rmvVal << endl;
                 compareCost += addVal + rmvVal;           
             }
             else{
@@ -140,6 +145,10 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
             inspositions2.clear();
             r2.cheapestInsertionParcel(inst, nodeVec, Mdist, candidate, node2, inspositions, inspositions2, cheapestMove, problem);
             
+            // if (inspositions2.size() < 1){
+            //     continue;
+            // }
+
             if(cheapestMove[0].first != cheapestMove[1].first){
                 addVal = cheapestMove[0].second + cheapestMove[1].second;
             }
@@ -149,15 +158,15 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
             }  
  
             if (addVal > 0){
-                // cout << "New add value: " << addVal << endl;
+                cout << "New add value: " << addVal << endl;
                 // getchar();
 
                 rmvVal = r1.rmvVal(inst, nodeVec, Mdist, i, 1);
 
-                // cout << "New rmv value: " << rmvVal << endl;
+                cout << "New rmv value: " << rmvVal << endl;
                 // getchar();
                 
-                // cout << "Adding at position: " << cheapestMove[0].first << " and " << cheapestMove[1].first << endl;
+                cout << "Adding at position: " << cheapestMove[0].first << " and " << cheapestMove[1].first << endl;
                 // getchar();
 
                 compareCost += addVal + rmvVal;  
@@ -198,10 +207,10 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
 
     delta = compareCost - best_cost;
 
-    // cout << "Best cost: " << best_cost << endl;
-    // cout << "cost (previous cost): " << compareCost << endl;
-    // cout << "delta: " << delta << endl;
-
+    cout << "Best cost: " << best_cost << endl;
+    cout << "cost (previous cost): " << compareCost << endl;
+    cout << "delta: " << delta << endl;
+    // getchar();
 
     return delta;
 }
@@ -224,6 +233,8 @@ void sarpSolution::addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, do
     bool inserted;
     bool feastime = 0;
     int vehicle;
+
+    this->stats.setStart();
 
     cheapestMove.push_back(cheapestpair);
     cheapestMove.push_back(cheapestpair);
@@ -281,9 +292,7 @@ void sarpSolution::addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, do
                 newroute.calcCost(inst, nodeVec, Mdist);
                 newroute.insert(inst, Mdist, candidate, 1, nodeVec[candidate].profit);
                 newroute.insert(inst, Mdist, candidate2, 2, nodeVec[candidate2].profit);
-                newroute.updatePass(inst, nodeVec);
-                newroute.updateLoad(inst, nodeVec);
-                newroute.updateParcels(candidate-inst->n, 1, 2);
+                newroute.updateAll(inst, nodeVec, Mdist);
                 addRoute(&newroute);
 
                 for (int u = 0; u < unserved.size(); ++u) {
@@ -322,10 +331,7 @@ void sarpSolution::addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, do
 
             sroute.insert(inst, Mdist, candidate, bestpositions.first, nodeVec[candidate].profit);
             sroute.insert(inst, Mdist, candidate2, bestpositions.second+1, nodeVec[candidate2].profit);
-            sroute.updatePass(inst, nodeVec);
-            sroute.updateLoad(inst, nodeVec);
-            sroute.updateParcels(candidate-inst->n, bestpositions.first, bestpositions.second+1);
-            sroute.updateTimes(inst, nodeVec, Mdist);
+            sroute.updateAll(inst, nodeVec, Mdist);
             updateRoutes(&sroute, best_route);
             updateCost();
 
@@ -347,4 +353,8 @@ void sarpSolution::addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, do
         }
 
     }
+
+    this->stats.setEnd();
+    cout << "\nAdd Unserved Time: " << std::setprecision(8) << this->stats.printTime() << endl;
+
 }

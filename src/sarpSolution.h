@@ -5,10 +5,12 @@
 
 #include "sarpRoute.h"
 #include "readdata.h"
+#include "Statistics.h"
+
 using namespace std;
 
 class sarpSolution {
-   protected:
+protected:
 
     vector<sarpRoute> routes;
     double cost;
@@ -22,8 +24,9 @@ class sarpSolution {
     // void updateCost();
     // void updateRoutes();
 
-   public:
-    
+public:
+
+    Runtime stats;
     sarpSolution() { this->cost = INT32_MAX; this->usedK = 0; }
 
     // Solution(Data *data);

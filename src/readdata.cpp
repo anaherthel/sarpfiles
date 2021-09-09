@@ -553,12 +553,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // getchar();
 
-        cout << "Profits: " << endl;
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << i << ": " << nodeVec[i].profit << endl;
-        }
+        // cout << "Profits: " << endl;
+        // for (int i = 0; i < nodeVec.size(); i++){
+        //     cout << i << ": " << nodeVec[i].profit << endl;
+        // }
 
-        getchar();
+        // getchar();
 
         *Mdist = dist;
         inst->K = K;
@@ -1239,25 +1239,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // cout << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
 
-    cout << "\nEarlier times: " << endl;
+    // cout << "\nEarlier times: " << endl;
 
-    for (int i = 0; i < inst->n; i++){
-        cout << i << ": " << nodeVec[i].e << endl;
-    }
-
-    cout << "\nDeltas: " << endl;
-
-    for (int i = 0; i < inst->n; i++){
-        cout << i << ": " << nodeVec[i].delta << endl;
-    }
-
-    // cout << "Dist Matrix: " << endl;
-    // for (int i = 0; i < V + inst->dummy; i++){
-    //     for (int j = 0; j < V + inst->dummy; j++){
-    //         cout << setw(5) << *Mdist[i][j] << " ";
-    //     }
-    //     cout << endl;
-    //     cout << "here";
+    // for (int i = 0; i < inst->n; i++){
+    //     cout << i << ": " << nodeVec[i].e << endl;
     // }
-    // getchar();
+
+    // cout << "\nDeltas: " << endl;
+
+    // for (int i = 0; i < inst->n; i++){
+    //     cout << i << ": " << nodeVec[i].delta << endl;
+    // }
 }

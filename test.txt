@@ -1,212 +1,677 @@
 
-NameOfInst: Instances/csarp/sarp-7-5-A-1.txt
+NameOfInst: Instances/csarp/sarp-7-6-A-1.txt
 RunningScen: 2MM
 
 n: 7
-m: 5
+m: 6
 K: 6
-Profits: 
-0: 6.8208
-1: 3.9372
-2: 4.88166
-3: 4.13582
-4: 10.8667
-5: 4.53398
-6: 6.24379
-7: 7.58872
-8: 7.14998
-9: 12.5515
-10: 10.3989
-11: 7.85834
-12: 0
-13: 0
-14: 0
-15: 0
-16: 0
-17: 0
-18: 0
-19: 0
-20: 0
-21: 0
-22: 0
-23: 0
-24: 0
-25: 0
-26: 0
-27: 0
-28: 0
-
-Earlier times: 
-0: 9.35
-1: 7.68333
-2: 18.65
-3: 3.45
-4: 12.6833
-5: 5.03333
-6: 5.01667
-
-Deltas: 
-0: 0.319889
-1: 0.1965
-2: 0.236913
-3: 0.204999
-4: 0.493014
-5: 0.222036
-6: 0.295199
 Dist Matrix: 
-         0     24.334    21.8162    18.3616    21.5937    26.1636    26.8948    29.5118    23.4565    2.69098    12.7944    26.4231    30.7567    21.9043     9.4442    4.58552    20.6924    25.8619    18.4346    21.8677    25.3243    14.2031    17.6536          0          0          0          0          0          0 
-   17.7499          0    6.84399    4.99331    17.9318    8.38205      18.89     7.2599    12.6162    24.7891    10.5856    7.29812    7.53054    7.37273    15.6425    19.7742    4.55533    4.00931    12.2903    13.8222    2.50298    21.0605    7.92072          0          0          0          0          0          0 
-   14.7022    7.69616          0    4.83876    21.3683    7.26004    13.2347    11.0769    7.09635    20.9838    8.18961    14.3127    14.2323    3.04788    9.89012     16.518    9.10094    11.3936    15.1859    18.0182    8.03665    13.7937    10.1725          0          0          0          0          0          0 
-   12.8009    6.11453    7.82613          0    15.1513    11.2763    19.5975    11.9803    13.3426    19.8679    5.70815    9.16925    12.2586    8.31529    11.5481    14.8282    3.09518    7.51212    9.01456    11.6301    7.29615    18.2132    3.98334          0          0          0          0          0          0 
-   16.5648    5.73975    11.0881    6.39677          0    13.1377    23.2791    11.3197    16.9416    23.6534    10.1578     4.0517    9.13558     11.629    16.5648    18.5581    2.11694    3.72889    8.19634    9.16289    6.91788    23.3394    5.18872          0          0          0          0          0          0 
-   21.0459    5.32257    4.16315    8.61736    24.0303          0      13.67    4.53884    7.94038    27.6388    13.9953    12.9607    9.32518    4.32534    16.7461    22.9659    10.5339    9.26574    18.1848    19.9964    4.42465     19.687    13.4035          0          0          0          0          0          0 
-   22.9694    20.7204    14.0734     18.766    34.5753     14.949          0    20.8622    8.80105    26.2799    19.6825     28.123    26.0588    13.5649    15.5363    23.9233    23.1337    24.8437    28.4985    31.6929    20.4671    9.93253    23.7401          0          0          0          0          0          0 
-   24.4105     6.0369    8.60931    11.4805    24.6799    5.91765    17.2251          0    12.1111    31.2608    17.1987    11.8268    5.84183    8.83193    20.8759    26.3982    11.7305    8.31382    19.3769    20.4078    4.76151    24.2221    15.1799          0          0          0          0          0          0 
-   20.5061    12.2515    5.85429    11.8038     28.435    6.19733    6.34189    12.1111          0    25.8549    14.8932     19.911    17.2651    5.31323    14.0362    22.0619    15.6773    16.4315    22.2568    24.9608     11.836     13.575     17.222          0          0          0          0          0          0 
-    7.1131    25.8587    23.8639    19.9132     20.985    28.2398     29.488    31.2608    25.8549          0    14.2063    27.2434    32.0965    23.9918     11.821    5.09819    21.7842    27.0288    18.5708    21.7916    26.9154    16.8907    18.5166          0          0          0          0          0          0 
-   7.22092    11.6542    10.8301    5.73838    15.0782    15.0839    20.4604    17.1987    14.8932    14.2063          0    14.1309    17.9661    11.1363    6.88837    9.22762    8.08395    13.1176    9.31179    12.8957    12.7312    14.8505    5.79056          0          0          0          0          0          0 
-   20.2288    7.76051    14.1342    10.3286    13.8637    15.2294    26.1627    11.8268     19.911    27.2434    14.1309          0    7.65937    14.6661    20.6142    22.1789    6.16667    3.71272    10.1386    9.56116    8.53803    27.3116    8.77063          0          0          0          0          0          0 
-   24.9984    6.73265    12.5559    12.5132    21.4807    11.2888    22.8255    5.84183    17.2651    32.0965    17.9661    7.65937          0    12.9542    23.1454    27.0267    10.5428    5.40709    17.1415    17.1533    6.19577    28.0106    14.1393          0          0          0          0          0          0 
-   17.7497    7.15603   0.541067    6.86389    23.4634    4.25937    11.6506    8.83193    5.31323    23.9918    11.1363    14.6661    12.9542          0    12.6961    19.5637    10.4187    11.2882    17.3279    19.8224    6.99105    15.4056    12.2859          0          0          0          0          0          0 
-   7.43679    16.4298    12.6808     10.778    21.2117    16.9323    17.9611    20.8759    14.0362     11.821    6.88837    20.6142    23.1454    12.6961          0    8.47746    14.4482    18.9675    15.9162    19.5848    17.1922    8.39267    12.6569          0          0          0          0          0          0 
-   2.02894    20.8684    19.3765    14.9646    17.1204     23.756    26.4102    26.3982    22.0619    5.09819    9.22762    22.1789    27.0267    19.5637    8.47746          0    16.6867     21.934    13.8641    17.2822    21.9583    15.5527    13.4332          0          0          0          0          0          0 
-   14.6746    5.74582    9.88715     4.4828    13.4979    12.5457    22.0109    11.7305    15.6773    21.7842    8.08395    6.16667    10.5428    10.4187    14.4482    16.6867          0    5.26466    7.73817    9.54286    7.02693    21.3054    3.63024          0          0          0          0          0          0 
-   19.9159    4.18161    10.7726    8.21282    16.5765    11.5359    22.6125    8.31382    16.4315    27.0288    13.1176    3.71272    5.40709    11.2882    18.9675     21.934    5.26466          0    11.8207    12.2526    4.84143    24.9127    8.78799          0          0          0          0          0          0 
-   12.2421    13.4668    16.8407    10.4875    6.18259    20.0838     28.407    19.3769    22.2568    18.5708    9.31179    10.1386    17.1415    17.3279    15.9162    13.8641    7.73817    11.8207          0    3.69225    14.7399    24.1237    5.04741          0          0          0          0          0          0 
-   15.7694    14.8794    19.3055      13.19    4.33603    22.0678    31.2276    20.4078    24.9608    21.7916    12.8957    9.56116    17.1533    19.8224    19.5848    17.2822    9.54286    12.2526    3.69225          0    16.0786     27.742    7.95325          0          0          0          0          0          0 
-   19.9461    1.28463    6.53658    7.00248    20.2628    6.69463    17.8891    4.76151     11.836    26.9154    12.7312    8.53803    6.19577    6.99105    17.1922    21.9583    7.02693    4.84143    14.7399    16.0786          0     21.818    10.4228          0          0          0          0          0          0 
-   15.1802    21.4707    15.6843    16.9835    29.5821    18.8718    14.2984    24.2221     13.575    16.8907    14.8505    27.3116    28.0106    15.4056    8.39267    15.5527    21.3054    24.9127    24.1237     27.742     21.818          0    20.3396          0          0          0          0          0          0 
-   11.4662    9.14328    11.8033    5.44014    11.2147    15.1883    23.4065    15.1799     17.222    18.5166    5.79056    8.77063    14.1393    12.2859    12.6569    13.4332    3.63024    8.78799    5.04741    7.95325    10.4228    20.3396          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-vehicles: 0
-SARP Solution: 
-17 - 0 - 23 - 
+         0    5.52919    1.86911    14.0731    24.3316    23.3792    7.99955    12.5954    9.85285    14.0423    5.76209    6.97177    14.4338    13.3942    10.0553    17.0856     14.807    6.73547    14.5495    8.44833    21.8346    8.88048     5.4933    17.5406    21.7357          0          0          0          0          0          0 
+   8.63824          0    5.17057    10.6778    30.7536    27.7949    10.4072    16.4877    14.0071     20.076    6.01095    5.81083    19.2512    17.6126    15.0607     23.478    16.3047    12.8976    19.5553    13.8227     25.229    9.86916     2.6841    21.4517     24.739          0          0          0          0          0          0 
+   7.39121    8.84597          0     17.678    21.6078    24.0348    5.99381    14.1163    6.55486    13.1698    6.09944    7.56584    15.0856    14.6201    6.47564    15.1714    12.4998    6.32332    15.0117    9.07229    23.2626    7.59514    8.97456    18.7708    23.4031          0          0          0          0          0          0 
+   8.44333    8.28198    9.57992          0    32.5538    22.1876    18.6825    11.7091    21.1785    19.1339    14.8464    15.1307    15.4531    13.0834    21.3459    23.9595    25.2435    13.9983    16.0745    12.6498    18.3058    18.7959    7.41905    15.6959    17.3619          0          0          0          0          0          0 
+   22.5524    28.9652    25.0858    33.4954          0    16.2016    26.5857    18.8716    23.4366    10.6589    28.1925    29.6607     15.205    17.6479    21.1053     6.9307    30.3776    17.3666    14.4334    17.3275    20.4746    28.6743    28.5098    17.9541    21.9655          0          0          0          0          0          0 
+   12.9219    19.2272    17.0379    17.9045    25.0001          0    24.9008    4.88577     24.836    11.4164    23.1908     24.274    5.35733    4.43973    23.5593    16.4265    31.4505     13.212    6.03193    10.0767     4.3764    26.1937    18.3119    1.51309    4.48174          0          0          0          0          0          0 
+   13.1545    11.4519    9.88134    21.2673    24.4574    30.2951          0    20.4156    3.96626    18.8812    4.99287    5.75662    21.3833    20.9511     6.0733    19.7799    6.32547      12.55    21.2738    15.4009    29.5902    2.30518    12.0735    25.1046    29.7004          0          0          0          0          0          0 
+   8.14946    14.7679    12.2675    15.3379    23.1719    11.3224    20.0268          0    20.1186    8.98784    18.3414    19.4571     3.8189    1.37472    18.9803    14.2775    26.6125    8.59697    4.52364     5.4394    9.24738     21.308    13.9013    5.01446    9.28717          0          0          0          0          0          0 
+   13.9427    14.1182    11.6009    23.6753    20.7402    29.0001    4.32208    20.1186          0    16.8617    8.40005    9.45293    20.3694    20.4014    2.35336    16.8604    7.26637    11.6374    20.1196    14.7594    28.9864    6.24948    14.5498    24.4241    29.3164          0          0          0          0          0          0 
+   11.9863    18.6632    14.9187    22.8792    14.1847    12.6869     18.714    8.98784    16.8617          0    19.1017    20.5275     6.1031    8.05145    14.9135    5.29087    24.1111    7.30871    5.38778     6.6821    14.3644    20.5989    18.1152    10.2525    15.3444          0          0          0          0          0          0 
+   10.3251    6.70827    6.33407    16.5183    27.3184    29.1128    4.44494    18.3414    8.40005    19.1017          0    1.46825    20.1441    19.1562    9.90504    21.2618    10.4445    11.9304    20.2187    14.1013    27.5672    3.96657    7.46059    23.3002    27.4159          0          0          0          0          0          0 
+   11.3579     6.8562    7.26889    16.4837    28.7392    30.3499    5.25747    19.4571    9.45293    20.5275    1.46825          0    21.4039    20.3239    11.1238      22.73    10.5147     13.322    21.5058     15.392    28.6479    4.17079    7.71782    24.4439    28.4364          0          0          0          0          0          0 
+    10.623    17.5909    14.5524    19.1187    20.0204    8.98781     21.073     3.8189    20.3694     6.1031    20.1441    21.4039          0    2.48776    18.8528    11.2555     27.305    8.85769    0.78573    6.07476    8.83283     22.623    16.8068    4.36508    9.53995          0          0          0          0          0          0 
+   9.13288    15.9071    13.2187    16.7114    22.1904     10.191    20.5882    1.37472    20.4014    8.05145    19.1562    20.3239    2.48776          0    19.1235    13.3289    27.0698    8.77281    3.22831    5.64607    8.64621    21.9663     15.064    4.17232    8.92112          0          0          0          0          0          0 
+   13.5818    14.9127    11.9048    24.1185    18.4354    27.2786    6.32157    18.9803    2.35336    14.9135    9.90504    11.1238    18.8528    19.1235          0    14.5852    9.42234    10.3862    18.5362    13.5475    27.5956    8.37712    15.2066    23.0311    28.0352          0          0          0          0          0          0 
+    16.198    22.2799    18.3593     27.672    8.90123    16.0891    19.7628    14.2775    16.8604    5.29087    21.2618      22.73    11.2555    13.3289    14.5852          0    23.9889    10.7267    10.4968    11.3098    18.8545    21.8317    21.8921    15.1365     20.029          0          0          0          0          0          0 
+     19.48    17.1509    16.1175    26.9367    26.8356    36.0869    6.80746    26.6125    7.26637    24.1111    10.4445    10.5147     27.305    27.0698    9.42234    23.9889          0    18.4554    27.1213    21.4529    35.7148    6.47923    17.8979     31.189    35.8972          0          0          0          0          0          0 
+   5.68367    11.5996    7.72946    17.5484    18.7768    17.7454    12.2631    8.59697    11.6374    7.30871    11.9304     13.322    8.85769    8.77281    10.3862    10.7267    18.4554          0    8.72401    3.16131    17.3518    13.9179    11.1728    12.7932    17.6937          0          0          0          0          0          0 
+   10.9171    17.9163    14.7662    19.7599    19.2439    9.02437    20.9812    4.52364    20.1196    5.38778    20.2187    21.5058    0.78573    3.22831    18.5362    10.4968    27.1213    8.72401          0    6.11753    9.30334     22.582    17.1564    4.93892    10.1028          0          0          0          0          0          0 
+   5.37978    12.2847    8.82037    16.3652     19.971    15.0625    15.0655     5.4394    14.7594     6.6821    14.1013     15.392    6.07476    5.64607    13.5475    11.3098    21.4529    3.16131    6.11753          0    14.2718    16.5629    11.6419    9.73611     14.557          0          0          0          0          0          0 
+   17.2928    23.4904    21.4055    21.2306    26.8665    5.30207    29.2199    9.24738    28.9864    14.3644    27.5672    28.6479    8.83283    8.64621    27.5956    18.8545    35.7148    17.3518    9.30334    14.2718          0    30.5475    22.5598    4.56656     1.6569          0          0          0          0          0          0 
+   13.6234    10.6717    9.91922    20.4654    26.7379    31.5965    2.11893     21.308    6.24948    20.5989    3.96657    4.17079     22.623    21.9663    8.37712    21.8317    6.47923    13.9179     22.582    16.5629    30.5475          0    11.4253    26.1385    30.5408          0          0          0          0          0          0 
+   6.30143   0.973993    3.73435    9.20523    29.5905    25.2224     11.511    13.9013    14.5498    18.1152    7.46059    7.71782    16.8068     15.064    15.2066    21.8921    17.8979    11.1728    17.1564    11.6419    22.5598    11.4253          0    18.8351    22.0569          0          0          0          0          0          0 
+   13.1622    19.7229    17.2778    19.0466    23.6184    6.53904    24.7485    5.01446    24.4241    10.2525    23.3002    24.4439    4.36508    4.17232    23.0311    15.1365     31.189    12.7932    4.93892    9.73611    4.56656    26.1385    18.8351          0    5.17536          0          0          0          0          0          0 
+   17.0936    23.0052    21.1688    20.1213     28.212    6.95456    29.3067    9.28717    29.3164    15.3444    27.4159    28.4364    9.53995    8.92112    28.0352     20.029    35.8972    17.6937    10.1028     14.557     1.6569    30.5408    22.0569    5.17536          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
 
-Cost of routes: 
-Route 0: -2.34053
 
-Cost of routes: -2.34053
-SARP Solution: 
-17 - 5 - 0 - 23 - 
+Seed: 1631220766
 
-Cost of routes: 
-Route 0: -3.63284
-
-Cost of routes: -3.63284
-vehicles: 1
-vehicles: 2
 Initial solution: 
 SARP Solution: 
-17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 8 - 13 - 6 - 24 - 
-19 - 4 - 2 - 25 - 
+19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
+20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
 
 Cost of routes: 
-Route 0: 22.4858
-Route 1: -4.6477
-Route 2: 8.65329
+Route 0: 4.3896
+Route 1: 8.8183
+Route 2: -4.3891
 
-Cost of routes: 26.4914
-Calling swap: 
-
-After Intra: 
-SARP Solution: 
-17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 8 - 13 - 6 - 24 - 
-19 - 4 - 2 - 25 - 
-
-Cost of routes: 
-Route 0: 22.4858
-Route 1: -4.6477
-Route 2: 8.65329
-
-Cost of routes: 26.4914
+Cost of routes: 8.8188
 Calling relocate intra: 
-
-After Intra: 
+After Relocate all
 SARP Solution: 
-17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 8 - 13 - 6 - 24 - 
-19 - 4 - 2 - 25 - 
+19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
+20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
 
 Cost of routes: 
-Route 0: 22.4858
-Route 1: -4.6477
-Route 2: 8.65329
+Route 0: 4.3896
+Route 1: 8.8183
+Route 2: -4.3891
 
-Cost of routes: 26.4914
+Cost of routes: 8.8188
+
+RelocateK Time: -9.223372e+12
+SARP Solution: 
+19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
+20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
+
+Cost of routes: 
+Route 0: 4.3895912
+Route 1: 8.818316
+Route 2: -4.3891259
+
+Cost of routes: 8.8187812
+Calling swap: 
+After Swap all
+SARP Solution: 
+19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
+20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
+
+Cost of routes: 
+Route 0: 4.3895912
+Route 1: 8.818316
+Route 2: -4.3891259
+
+Cost of routes: 8.8187812
+
+Swap Time: -9.223372e+12
+SARP Solution: 
+19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
+20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
+
+Cost of routes: 
+Route 0: 4.3895912
+Route 1: 8.818316
+Route 2: -4.3891259
+
+Cost of routes: 8.8187812
 Calling add unserved: 
 
 After Inter: 
 SARP Solution: 
-17 - 11 - 16 - 3 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 8 - 13 - 6 - 24 - 
-19 - 4 - 2 - 25 - 
+19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
+20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
 
 Cost of routes: 
-Route 0: 22.4858
-Route 1: -4.6477
-Route 2: 8.65329
+Route 0: 4.3895912
+Route 1: 8.818316
+Route 2: -4.3891259
 
-Cost of routes: 26.4914
+Cost of routes: 8.8187812
 Calling relocate inter: 
+Routes: 0 and 1
+candidate: 9
+Initial cost of both routes: 13.207907
+
+candidate: 15
+Initial cost of both routes: 13.207907
+
+candidate: 4
+Initial cost of both routes: 13.207907
+
+candidate: 5
+Initial cost of both routes: 13.207907
+
+candidate: 1
+Initial cost of both routes: 13.207907
+
+candidate: 10
+Initial cost of both routes: 13.207907
+New add value: 6.8428978
+New rmv value: -3.8394285
+Adding at position: 5 and 7
+
+candidate: 16
+Initial cost of both routes: 13.207907
+Best cost: 16.211376
+cost (previous cost): 13.207907
+delta: -3.0034693
+Routes: 0 and 2
+candidate: 9
+Initial cost of both routes: 0.00046529247
+
+candidate: 15
+Initial cost of both routes: 0.00046529247
+
+candidate: 4
+Initial cost of both routes: 0.00046529247
+
+candidate: 5
+Initial cost of both routes: 0.00046529247
+
+candidate: 1
+Initial cost of both routes: 0.00046529247
+
+candidate: 10
+Initial cost of both routes: 0.00046529247
+
+candidate: 16
+Initial cost of both routes: 0.00046529247
+Best cost: 0.00046529247
+cost (previous cost): 0.00046529247
+delta: 0
+Routes: 1 and 0
+candidate: 12
+Initial cost of both routes: 13.207907
+New add value: 1.1693703
+New rmv value: -1.1405395
+Adding at position: 5 and 5
+
+candidate: 18
+Initial cost of both routes: 13.207907
+
+candidate: 7
+Initial cost of both routes: 13.207907
+New add value: 2.5284101
+New rmv value: -1.7114526
+Adding at position: 5 and 5
+
+candidate: 13
+Initial cost of both routes: 13.207907
+
+candidate: 11
+Initial cost of both routes: 13.207907
+New add value: 0.011800586
+New rmv value: -9.3771761
+Adding at position: 5 and 5
+
+candidate: 6
+Initial cost of both routes: 13.207907
+
+candidate: 8
+Initial cost of both routes: 13.207907
+
+candidate: 14
+Initial cost of both routes: 13.207907
+
+candidate: 2
+Initial cost of both routes: 13.207907
+
+candidate: 17
+Initial cost of both routes: 13.207907
+
+candidate: 0
+Initial cost of both routes: 13.207907
+Best cost: 14.024865
+cost (previous cost): 13.207907
+delta: -0.81695744
+Routes: 1 and 2
+candidate: 12
+Initial cost of both routes: 4.42919
+
+candidate: 18
+Initial cost of both routes: 4.42919
+
+candidate: 7
+Initial cost of both routes: 4.42919
+
+candidate: 13
+Initial cost of both routes: 4.42919
+
+candidate: 11
+Initial cost of both routes: 4.42919
+New add value: 0.70901996
+New rmv value: -9.3771761
+Adding at position: 2 and 2
+
+candidate: 6
+Initial cost of both routes: 4.42919
+
+candidate: 8
+Initial cost of both routes: 4.42919
+
+candidate: 14
+Initial cost of both routes: 4.42919
+
+candidate: 2
+Initial cost of both routes: 4.42919
+
+candidate: 17
+Initial cost of both routes: 4.42919
+
+candidate: 0
+Initial cost of both routes: 4.42919
+Best cost: 4.42919
+cost (previous cost): 4.42919
+delta: 0
+Routes: 2 and 0
+candidate: 3
+Initial cost of both routes: 0.00046529247
+Best cost: 0.00046529247
+cost (previous cost): 0.00046529247
+delta: 0
+Routes: 2 and 1
+candidate: 3
+Initial cost of both routes: 4.42919
+Best cost: 4.42919
+cost (previous cost): 4.42919
+delta: 0
+After Relocate Inter
+SARP Solution: 
+19 - 9 - 15 - 4 - 5 - 1 - 25 - 
+20 - 12 - 18 - 7 - 13 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
+
+Cost of routes: 
+Route 0: 0.5501627
+Route 1: 15.661214
+Route 2: -4.3891259
+
+Cost of routes: 11.822251
+
+Relocate Time: 0.000438
 
 After Inter: 
 SARP Solution: 
-17 - 11 - 16 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 3 - 8 - 13 - 6 - 24 - 
-19 - 4 - 2 - 25 - 
+19 - 9 - 15 - 4 - 5 - 1 - 25 - 
+20 - 12 - 18 - 7 - 13 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
 
 Cost of routes: 
-Route 0: 19.8281
-Route 1: -1.2356
-Route 2: 8.65329
+Route 0: 0.5501627
+Route 1: 15.661214
+Route 2: -4.3891259
 
-Cost of routes: 27.2458
+Cost of routes: 11.822251
 Calling add unserved: 
 
 After Inter: 
 SARP Solution: 
-17 - 11 - 16 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 3 - 8 - 13 - 6 - 24 - 
-19 - 4 - 2 - 25 - 
+19 - 9 - 15 - 4 - 5 - 1 - 25 - 
+20 - 12 - 18 - 7 - 13 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
 
 Cost of routes: 
-Route 0: 19.8281
-Route 1: -1.2356
-Route 2: 8.65329
+Route 0: 0.5501627
+Route 1: 15.661214
+Route 2: -4.3891259
 
-Cost of routes: 27.2458
+Cost of routes: 11.822251
 Calling relocate inter: 
+Routes: 0 and 1
+candidate: 9
+Initial cost of both routes: 16.211376
+
+candidate: 15
+Initial cost of both routes: 16.211376
+
+candidate: 4
+Initial cost of both routes: 16.211376
+
+candidate: 5
+Initial cost of both routes: 16.211376
+
+candidate: 1
+Initial cost of both routes: 16.211376
+Best cost: 16.211376
+cost (previous cost): 16.211376
+delta: 0
+Routes: 0 and 2
+candidate: 9
+Initial cost of both routes: -3.8389632
+
+candidate: 15
+Initial cost of both routes: -3.8389632
+
+candidate: 4
+Initial cost of both routes: -3.8389632
+
+candidate: 5
+Initial cost of both routes: -3.8389632
+
+candidate: 1
+Initial cost of both routes: -3.8389632
+Best cost: -3.8389632
+cost (previous cost): -3.8389632
+delta: 0
+Routes: 1 and 0
+candidate: 12
+Initial cost of both routes: 16.211376
+New add value: 1.1693703
+New rmv value: -1.1405395
+Adding at position: 5 and 5
+
+candidate: 18
+Initial cost of both routes: 16.211376
+
+candidate: 7
+Initial cost of both routes: 16.211376
+New add value: 2.5284101
+New rmv value: -1.6565015
+Adding at position: 5 and 5
+
+candidate: 13
+Initial cost of both routes: 16.211376
+
+candidate: 10
+Initial cost of both routes: 16.211376
+New add value: 3.8394285
+New rmv value: -6.8428978
+Adding at position: 6 and 6
+
+candidate: 11
+Initial cost of both routes: 16.211376
+New add value: 2.3889828
+New rmv value: -10.624875
+Adding at position: 5 and 6
+
+candidate: 6
+Initial cost of both routes: 16.211376
+
+candidate: 16
+Initial cost of both routes: 16.211376
+
+candidate: 8
+Initial cost of both routes: 16.211376
+
+candidate: 14
+Initial cost of both routes: 16.211376
+
+candidate: 2
+Initial cost of both routes: 16.211376
+
+candidate: 17
+Initial cost of both routes: 16.211376
+
+candidate: 0
+Initial cost of both routes: 16.211376
+Best cost: 17.083285
+cost (previous cost): 16.211376
+delta: -0.87190851
+Routes: 1 and 2
+candidate: 12
+Initial cost of both routes: 11.272088
+
+candidate: 18
+Initial cost of both routes: 11.272088
+
+candidate: 7
+Initial cost of both routes: 11.272088
+
+candidate: 13
+Initial cost of both routes: 11.272088
+
+candidate: 10
+Initial cost of both routes: 11.272088
+
+candidate: 11
+Initial cost of both routes: 11.272088
+New add value: 0.70901996
+New rmv value: -10.624875
+Adding at position: 2 and 2
+
+candidate: 6
+Initial cost of both routes: 11.272088
+
+candidate: 16
+Initial cost of both routes: 11.272088
+
+candidate: 8
+Initial cost of both routes: 11.272088
+
+candidate: 14
+Initial cost of both routes: 11.272088
+
+candidate: 2
+Initial cost of both routes: 11.272088
+
+candidate: 17
+Initial cost of both routes: 11.272088
+
+candidate: 0
+Initial cost of both routes: 11.272088
+Best cost: 11.272088
+cost (previous cost): 11.272088
+delta: 0
+Routes: 2 and 0
+candidate: 3
+Initial cost of both routes: -3.8389632
+Best cost: -3.8389632
+cost (previous cost): -3.8389632
+delta: 0
+Routes: 2 and 1
+candidate: 3
+Initial cost of both routes: 11.272088
+Best cost: 11.272088
+cost (previous cost): 11.272088
+delta: 0
+After Relocate Inter
+SARP Solution: 
+19 - 9 - 15 - 4 - 5 - 7 - 13 - 1 - 25 - 
+20 - 12 - 18 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
+
+Cost of routes: 
+Route 0: 3.0785728
+Route 1: 14.004712
+Route 2: -4.3891259
+
+Cost of routes: 12.694159
+
+Relocate Time: 0.000796
 
 After Inter: 
 SARP Solution: 
-17 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 3 - 8 - 13 - 6 - 24 - 
-19 - 4 - 11 - 16 - 2 - 25 - 
+19 - 9 - 15 - 4 - 5 - 7 - 13 - 1 - 25 - 
+20 - 12 - 18 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
 
 Cost of routes: 
-Route 0: 16.9789
-Route 1: -1.2356
-Route 2: 12.3636
+Route 0: 3.0785728
+Route 1: 14.004712
+Route 2: -4.3891259
 
-Cost of routes: 28.1069
+Cost of routes: 12.694159
+Calling relocate inter: 
+Routes: 0 and 1
+candidate: 9
+Initial cost of both routes: 17.083285
+
+candidate: 15
+Initial cost of both routes: 17.083285
+
+candidate: 4
+Initial cost of both routes: 17.083285
+
+candidate: 5
+Initial cost of both routes: 17.083285
+
+candidate: 7
+Initial cost of both routes: 17.083285
+New add value: 1.9135824
+New rmv value: -2.5284101
+Adding at position: 1 and 1
+
+candidate: 13
+Initial cost of both routes: 17.083285
+
+candidate: 1
+Initial cost of both routes: 17.083285
+Best cost: 17.083285
+cost (previous cost): 17.083285
+delta: 0
+Routes: 0 and 2
+candidate: 9
+Initial cost of both routes: -1.3105532
+
+candidate: 15
+Initial cost of both routes: -1.3105532
+
+candidate: 4
+Initial cost of both routes: -1.3105532
+
+candidate: 5
+Initial cost of both routes: -1.3105532
+
+candidate: 7
+Initial cost of both routes: -1.3105532
+New add value: 1.0736652
+New rmv value: -2.5284101
+Adding at position: 1 and 1
+
+candidate: 13
+Initial cost of both routes: -1.3105532
+
+candidate: 1
+Initial cost of both routes: -1.3105532
+Best cost: -1.3105532
+cost (previous cost): -1.3105532
+delta: 0
+Routes: 1 and 0
+candidate: 12
+Initial cost of both routes: 17.083285
+New add value: 0.96215586
+New rmv value: -2.3479133
+Adding at position: 7 and 7
+
+candidate: 18
+Initial cost of both routes: 17.083285
+
+candidate: 10
+Initial cost of both routes: 17.083285
+New add value: 3.8394285
+New rmv value: -6.8978489
+Adding at position: 8 and 8
+
+candidate: 11
+Initial cost of both routes: 17.083285
+New add value: 2.6788224
+New rmv value: -10.624875
+Adding at position: 7 and 8
+
+candidate: 6
+Initial cost of both routes: 17.083285
+
+candidate: 16
+Initial cost of both routes: 17.083285
+
+candidate: 8
+Initial cost of both routes: 17.083285
+
+candidate: 14
+Initial cost of both routes: 17.083285
+
+candidate: 2
+Initial cost of both routes: 17.083285
+
+candidate: 17
+Initial cost of both routes: 17.083285
+
+candidate: 0
+Initial cost of both routes: 17.083285
+Best cost: 17.083285
+cost (previous cost): 17.083285
+delta: 0
+Routes: 1 and 2
+candidate: 12
+Initial cost of both routes: 9.6155863
+
+candidate: 18
+Initial cost of both routes: 9.6155863
+
+candidate: 10
+Initial cost of both routes: 9.6155863
+
+candidate: 11
+Initial cost of both routes: 9.6155863
+New add value: 0.70901996
+New rmv value: -10.624875
+Adding at position: 2 and 2
+
+candidate: 6
+Initial cost of both routes: 9.6155863
+
+candidate: 16
+Initial cost of both routes: 9.6155863
+
+candidate: 8
+Initial cost of both routes: 9.6155863
+
+candidate: 14
+Initial cost of both routes: 9.6155863
+
+candidate: 2
+Initial cost of both routes: 9.6155863
+
+candidate: 17
+Initial cost of both routes: 9.6155863
+
+candidate: 0
+Initial cost of both routes: 9.6155863
+Best cost: 9.6155863
+cost (previous cost): 9.6155863
+delta: 0
+Routes: 2 and 0
+candidate: 3
+Initial cost of both routes: -1.3105532
+Best cost: -1.3105532
+cost (previous cost): -1.3105532
+delta: 0
+Routes: 2 and 1
+candidate: 3
+Initial cost of both routes: 9.6155863
+Best cost: 9.6155863
+cost (previous cost): 9.6155863
+delta: 0
+After Relocate Inter
+SARP Solution: 
+19 - 9 - 15 - 4 - 5 - 7 - 13 - 1 - 25 - 
+20 - 12 - 18 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
+
+Cost of routes: 
+Route 0: 3.0785728
+Route 1: 14.004712
+Route 2: -4.3891259
+
+Cost of routes: 12.694159
+
+Relocate Time: 0.001154
+
+After Inter: 
+SARP Solution: 
+19 - 9 - 15 - 4 - 5 - 7 - 13 - 1 - 25 - 
+20 - 12 - 18 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
+
+Cost of routes: 
+Route 0: 3.0785728
+Route 1: 14.004712
+Route 2: -4.3891259
+
+Cost of routes: 12.694159
 Calling add unserved: 
 
 After Inter: 
 SARP Solution: 
-17 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - 
-18 - 3 - 8 - 13 - 6 - 24 - 
-19 - 4 - 11 - 16 - 2 - 25 - 
+19 - 9 - 15 - 4 - 5 - 7 - 13 - 1 - 25 - 
+20 - 12 - 18 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
+20 - 3 - 26 - 
 
 Cost of routes: 
-Route 0: 16.9789
-Route 1: -1.2356
-Route 2: 12.3636
+Route 0: 3.0785728
+Route 1: 14.004712
+Route 2: -4.3891259
 
-Cost of routes: 28.1069
+Cost of routes: 12.694159

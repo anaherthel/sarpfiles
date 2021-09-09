@@ -21,6 +21,7 @@
 #include <locale.h>
 #include <sys/time.h>
 #include <ctime>
+#include <time.h>
 #include <unistd.h>
 #include "readdata.h"
 #include "functions.h"
@@ -28,6 +29,9 @@
 #include "sarpRoute.h"
 #include "sarpSolution.h"
 #include "sarpConstruction.h"
+#include "Statistics.h"
+
+using namespace std;
 
 class sarpILS {
 protected:
@@ -46,6 +50,7 @@ public:
 
     sarpSolution solution;
     sarpSolution bestSol;
+    Runtime stats;
 
     void ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
@@ -60,7 +65,7 @@ public:
     void relocate(instanceStat *inst, 
                 vector<nodeStat> &nodeVec,
                 double **Mdist, probStat* problem);
-
+    
     void Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);           
     // ~ILS();
     // void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);

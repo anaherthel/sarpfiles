@@ -613,6 +613,7 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
             if (totalTime > inst->maxTime){
                 feasible = 0;
                 // cout << "p1: the maximum riding time is exceeded." << endl;
+                // getchar();
                 return feasible;
             }
         }
@@ -1285,16 +1286,31 @@ void sarpRoute::updateTimes(instanceStat *inst, vector<nodeStat> &nodeVec, doubl
     prevTime = 0;
     posTime = 0;
 
-    for (int i = 0; i < firstPassPos; i++){
-        prevTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) + nodeVec[nodes_[i]].delta;
-    }   
+    if (passandpos.size() > 0){
+    
+        for (int i = 0; i < firstPassPos; i++){
+            prevTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) + nodeVec[nodes_[i]].delta;
+        }   
 
-    for(int i = lastPassPos; i < nodes_.size(); i++){
-        posTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) + nodeVec[nodes_[i]].delta;
+        for(int i = lastPassPos; i < nodes_.size() - 1; i++){
+            posTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) + nodeVec[nodes_[i]].delta;
+        }
+
+        starttime = nodeVec[firstPass].e - prevTime;
+        endtime = nodeVec[lastPass].e + posTime;
     }
 
-    starttime = nodeVec[firstPass].e - prevTime;
-    endtime = nodeVec[lastPass].e + posTime;
+    else{
+        starttime = 0;
+
+        for(int i = 0; i < nodes_.size() - 1; i++){
+            posTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) + nodeVec[nodes_[i]].delta;
+        }
+
+        endtime = posTime;
+    }
+
+ 
 
     // cout << "&&&&&&&&&&&&&&&&&&&&&&&&" << endl;
     // cout << "Starting time of route: " << starttime << endl;
@@ -1334,6 +1350,8 @@ pair<int, double> sarpRoute::cheapestInsertion(instanceStat *inst, vector<nodeSt
         // getchar();
     }  
 
+    // cout << "Value of returning delta (cheapest insertion): " << bestIns << endl;
+    // getchar();
     return make_pair(bestpos, bestIns);
 }
 
@@ -1438,9 +1456,11 @@ void sarpRoute::cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &no
             if (pos1 == pos2){
 
                 deltaTotal = nodeVec[node].profit + delta2;
+
                 // cout << "Position: " << pos1 << endl;
                 // cout << "Delta total: " << deltaTotal << endl;
                 // cout << "delta2: " << delta2 << endl;
+
 
             }
             else{
@@ -1457,10 +1477,11 @@ void sarpRoute::cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &no
             if (deltaTotal > bestDT){
                 bestDT = deltaTotal;
 
+
                 // cout << "Delta total: " << deltaTotal << endl;
                 // getchar();
                 // cout << "Better delta 1: " << bestDT << endl;
-                // cout << "New position for pu:" << pos1 << endl;                
+                // cout << "New position for pu:" << pos1 << endl;      
 
                 bestMove[0].first = pos1;
                 bestMove[0].second = delta1;
@@ -1531,11 +1552,11 @@ void sarpRoute::updateParcels(int request, int pos1, int pos2){
 
 void sarpRoute::updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist){
     updatePass(inst, nodeVec);
-
+    // cout << "Here1" << endl;
     updateLoad(inst, nodeVec);
-
+    // cout << "Here2" << endl;
     updateTimes(inst, nodeVec, Mdist);
-
+    // cout << "Here3" << endl;
 
     for(int i = 0; i < nodes_.size(); i++){
         if(nodeVec[nodes_[i]].load > 0){
@@ -1543,12 +1564,14 @@ void sarpRoute::updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double
                 if (nodeVec[nodes_[j]].load < 0){
                     if(nodes_[j] == nodes_[i]+inst->m){
                         updateParcels(nodes_[i]-inst->n, i, j);
+                        // cout << "i: " << i << " j: " << j << endl;
                         break;
                     }
                 }
             }
         }
     }
+    // cout << "Here4" << endl;
 }
 
 int sarpRoute::getNextPass(int request){
@@ -1728,7 +1751,7 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
                         if (delta < 0) {
                             if (delta < bestDelta) {
                                 // cout << "\nThere was an improvement with delta as " << delta << endl;
-                                getchar();
+                                // getchar();
                                 bestDelta = delta;
                                 pos1 = i;
                                 pos2 = j;
@@ -1821,23 +1844,24 @@ double sarpRoute::relocateK(instanceStat *inst, double **Mdist, vector<nodeStat>
             }
         }
         else{
-
             temp = getPU(candidate - inst->m - inst->n);
+            // cout << "temp: " << temp; 
 
             if (problem->dParcel > 0){
-                jstart = temp;
+                jstart = temp + 1;
             }
             else{
-                jstart = getNextPass(temp);
+                jstart = getNextPass(temp) + 1;
             }
             
-            jend = nodes_.size();
+            jend = nodes_.size() - 1;
         }
         // cout << "**************************" << endl;
         // cout << "Candidate: " << candidate << endl;
         // cout << "jstart: " << jstart << endl;
         // cout << "jend: " << jend << endl;
         // cout << "**************************" << endl;
+        // getchar();
 
 		for (int j = jstart; j < jend; j++) {
 

@@ -5,6 +5,7 @@
 #include <algorithm>
 
 #include "readdata.h"
+#include "Statistics.h"
 
 class sarpRoute {
 protected:
@@ -34,6 +35,7 @@ protected:
 public:
     // the route
     vector<int> nodes_;
+    Runtime stats;
 
     // default constructor: route with only starting and ending depot visits
     sarpRoute(instanceStat *inst, int vehicle);
