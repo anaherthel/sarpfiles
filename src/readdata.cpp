@@ -1225,11 +1225,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     }
 
     //Print starting and end times: (debugging)
-    // cout << "\nEarlier times: " << endl;
+    cout << "\nEarlier times: " << endl;
 
-    // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].e << endl;
-    // }
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].e << endl;
+    }
 
     // cout << "\nLater times: " << endl;
 
@@ -1237,6 +1237,20 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     //     cout << i << ": " << nodeVec[i].l << endl;
     // }
     // cout << "\nDist Multiplier: " << trialMulti << endl;
+    // getchar();
+
+    cout << "Service times: " << endl;
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].delta << endl;
+    }
+
+    // getchar();
+
+    cout << "Profits: " << endl;
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].profit << endl;
+    }
+
     // getchar();
 
     // cout << "\nEarlier times: " << endl;

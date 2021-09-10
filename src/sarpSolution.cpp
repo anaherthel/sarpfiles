@@ -31,6 +31,7 @@ void sarpSolution::printSol(instanceStat *inst) {
         for(auto j: sroute){
             cout << j << " - ";
         }
+        sroute.printTotalTime();
         cout << endl;
     }
     cout << endl;
@@ -353,6 +354,10 @@ void sarpSolution::addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, do
         }
 
     }
+
+    cout << "After add unserved" << endl;
+    printSol(inst);
+    printCosts();
 
     this->stats.setEnd();
     cout << "\nAdd Unserved Time: " << std::setprecision(8) << this->stats.printTime() << endl;

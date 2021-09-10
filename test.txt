@@ -1,677 +1,2702 @@
 
-NameOfInst: Instances/csarp/sarp-7-6-A-1.txt
+NameOfInst: Instances/csarp/sarp-7-5-C-4.txt
 RunningScen: 2MM
 
 n: 7
-m: 6
+m: 5
 K: 6
+
+Earlier times: 
+0: 4.38333
+1: 17.15
+2: 8.45
+3: 1.1
+4: 1.5
+5: 4.25
+6: 15.1833
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+16: 0
+17: 0
+18: 0
+19: 0
+20: 0
+21: 0
+22: 0
+23: 0
+24: 0
+25: 0
+26: 0
+27: 0
+28: 0
+Service times: 
+0: 0.547002
+1: 0.51029
+2: 0.269526
+3: 0.399271
+4: 0.765515
+5: 0.283652
+6: 0.415708
+7: 0.0833333
+8: 0.0833333
+9: 0.0833333
+10: 0.0833333
+11: 0.0833333
+12: 0.0833333
+13: 0.0833333
+14: 0.0833333
+15: 0.0833333
+16: 0.0833333
+17: 0
+18: 0
+19: 0
+20: 0
+21: 0
+22: 0
+23: 0
+24: 0
+25: 0
+26: 0
+27: 0
+28: 0
+Profits: 
+0: 12.1284
+1: 11.2705
+2: 5.64383
+3: 8.67595
+4: 17.2351
+5: 5.97394
+6: 9.0601
+7: 25.0103
+8: 26.0523
+9: 18.7713
+10: 20.9745
+11: 10.6604
+12: 0
+13: 0
+14: 0
+15: 0
+16: 0
+17: 0
+18: 0
+19: 0
+20: 0
+21: 0
+22: 0
+23: 0
+24: 0
+25: 0
+26: 0
+27: 0
+28: 0
 Dist Matrix: 
-         0    5.52919    1.86911    14.0731    24.3316    23.3792    7.99955    12.5954    9.85285    14.0423    5.76209    6.97177    14.4338    13.3942    10.0553    17.0856     14.807    6.73547    14.5495    8.44833    21.8346    8.88048     5.4933    17.5406    21.7357          0          0          0          0          0          0 
-   8.63824          0    5.17057    10.6778    30.7536    27.7949    10.4072    16.4877    14.0071     20.076    6.01095    5.81083    19.2512    17.6126    15.0607     23.478    16.3047    12.8976    19.5553    13.8227     25.229    9.86916     2.6841    21.4517     24.739          0          0          0          0          0          0 
-   7.39121    8.84597          0     17.678    21.6078    24.0348    5.99381    14.1163    6.55486    13.1698    6.09944    7.56584    15.0856    14.6201    6.47564    15.1714    12.4998    6.32332    15.0117    9.07229    23.2626    7.59514    8.97456    18.7708    23.4031          0          0          0          0          0          0 
-   8.44333    8.28198    9.57992          0    32.5538    22.1876    18.6825    11.7091    21.1785    19.1339    14.8464    15.1307    15.4531    13.0834    21.3459    23.9595    25.2435    13.9983    16.0745    12.6498    18.3058    18.7959    7.41905    15.6959    17.3619          0          0          0          0          0          0 
-   22.5524    28.9652    25.0858    33.4954          0    16.2016    26.5857    18.8716    23.4366    10.6589    28.1925    29.6607     15.205    17.6479    21.1053     6.9307    30.3776    17.3666    14.4334    17.3275    20.4746    28.6743    28.5098    17.9541    21.9655          0          0          0          0          0          0 
-   12.9219    19.2272    17.0379    17.9045    25.0001          0    24.9008    4.88577     24.836    11.4164    23.1908     24.274    5.35733    4.43973    23.5593    16.4265    31.4505     13.212    6.03193    10.0767     4.3764    26.1937    18.3119    1.51309    4.48174          0          0          0          0          0          0 
-   13.1545    11.4519    9.88134    21.2673    24.4574    30.2951          0    20.4156    3.96626    18.8812    4.99287    5.75662    21.3833    20.9511     6.0733    19.7799    6.32547      12.55    21.2738    15.4009    29.5902    2.30518    12.0735    25.1046    29.7004          0          0          0          0          0          0 
-   8.14946    14.7679    12.2675    15.3379    23.1719    11.3224    20.0268          0    20.1186    8.98784    18.3414    19.4571     3.8189    1.37472    18.9803    14.2775    26.6125    8.59697    4.52364     5.4394    9.24738     21.308    13.9013    5.01446    9.28717          0          0          0          0          0          0 
-   13.9427    14.1182    11.6009    23.6753    20.7402    29.0001    4.32208    20.1186          0    16.8617    8.40005    9.45293    20.3694    20.4014    2.35336    16.8604    7.26637    11.6374    20.1196    14.7594    28.9864    6.24948    14.5498    24.4241    29.3164          0          0          0          0          0          0 
-   11.9863    18.6632    14.9187    22.8792    14.1847    12.6869     18.714    8.98784    16.8617          0    19.1017    20.5275     6.1031    8.05145    14.9135    5.29087    24.1111    7.30871    5.38778     6.6821    14.3644    20.5989    18.1152    10.2525    15.3444          0          0          0          0          0          0 
-   10.3251    6.70827    6.33407    16.5183    27.3184    29.1128    4.44494    18.3414    8.40005    19.1017          0    1.46825    20.1441    19.1562    9.90504    21.2618    10.4445    11.9304    20.2187    14.1013    27.5672    3.96657    7.46059    23.3002    27.4159          0          0          0          0          0          0 
-   11.3579     6.8562    7.26889    16.4837    28.7392    30.3499    5.25747    19.4571    9.45293    20.5275    1.46825          0    21.4039    20.3239    11.1238      22.73    10.5147     13.322    21.5058     15.392    28.6479    4.17079    7.71782    24.4439    28.4364          0          0          0          0          0          0 
-    10.623    17.5909    14.5524    19.1187    20.0204    8.98781     21.073     3.8189    20.3694     6.1031    20.1441    21.4039          0    2.48776    18.8528    11.2555     27.305    8.85769    0.78573    6.07476    8.83283     22.623    16.8068    4.36508    9.53995          0          0          0          0          0          0 
-   9.13288    15.9071    13.2187    16.7114    22.1904     10.191    20.5882    1.37472    20.4014    8.05145    19.1562    20.3239    2.48776          0    19.1235    13.3289    27.0698    8.77281    3.22831    5.64607    8.64621    21.9663     15.064    4.17232    8.92112          0          0          0          0          0          0 
-   13.5818    14.9127    11.9048    24.1185    18.4354    27.2786    6.32157    18.9803    2.35336    14.9135    9.90504    11.1238    18.8528    19.1235          0    14.5852    9.42234    10.3862    18.5362    13.5475    27.5956    8.37712    15.2066    23.0311    28.0352          0          0          0          0          0          0 
-    16.198    22.2799    18.3593     27.672    8.90123    16.0891    19.7628    14.2775    16.8604    5.29087    21.2618      22.73    11.2555    13.3289    14.5852          0    23.9889    10.7267    10.4968    11.3098    18.8545    21.8317    21.8921    15.1365     20.029          0          0          0          0          0          0 
-     19.48    17.1509    16.1175    26.9367    26.8356    36.0869    6.80746    26.6125    7.26637    24.1111    10.4445    10.5147     27.305    27.0698    9.42234    23.9889          0    18.4554    27.1213    21.4529    35.7148    6.47923    17.8979     31.189    35.8972          0          0          0          0          0          0 
-   5.68367    11.5996    7.72946    17.5484    18.7768    17.7454    12.2631    8.59697    11.6374    7.30871    11.9304     13.322    8.85769    8.77281    10.3862    10.7267    18.4554          0    8.72401    3.16131    17.3518    13.9179    11.1728    12.7932    17.6937          0          0          0          0          0          0 
-   10.9171    17.9163    14.7662    19.7599    19.2439    9.02437    20.9812    4.52364    20.1196    5.38778    20.2187    21.5058    0.78573    3.22831    18.5362    10.4968    27.1213    8.72401          0    6.11753    9.30334     22.582    17.1564    4.93892    10.1028          0          0          0          0          0          0 
-   5.37978    12.2847    8.82037    16.3652     19.971    15.0625    15.0655     5.4394    14.7594     6.6821    14.1013     15.392    6.07476    5.64607    13.5475    11.3098    21.4529    3.16131    6.11753          0    14.2718    16.5629    11.6419    9.73611     14.557          0          0          0          0          0          0 
-   17.2928    23.4904    21.4055    21.2306    26.8665    5.30207    29.2199    9.24738    28.9864    14.3644    27.5672    28.6479    8.83283    8.64621    27.5956    18.8545    35.7148    17.3518    9.30334    14.2718          0    30.5475    22.5598    4.56656     1.6569          0          0          0          0          0          0 
-   13.6234    10.6717    9.91922    20.4654    26.7379    31.5965    2.11893     21.308    6.24948    20.5989    3.96657    4.17079     22.623    21.9663    8.37712    21.8317    6.47923    13.9179     22.582    16.5629    30.5475          0    11.4253    26.1385    30.5408          0          0          0          0          0          0 
-   6.30143   0.973993    3.73435    9.20523    29.5905    25.2224     11.511    13.9013    14.5498    18.1152    7.46059    7.71782    16.8068     15.064    15.2066    21.8921    17.8979    11.1728    17.1564    11.6419    22.5598    11.4253          0    18.8351    22.0569          0          0          0          0          0          0 
-   13.1622    19.7229    17.2778    19.0466    23.6184    6.53904    24.7485    5.01446    24.4241    10.2525    23.3002    24.4439    4.36508    4.17232    23.0311    15.1365     31.189    12.7932    4.93892    9.73611    4.56656    26.1385    18.8351          0    5.17536          0          0          0          0          0          0 
-   17.0936    23.0052    21.1688    20.1213     28.212    6.95456    29.3067    9.28717    29.3164    15.3444    27.4159    28.4364    9.53995    8.92112    28.0352     20.029    35.8972    17.6937    10.1028     14.557     1.6569    30.5408    22.0569    5.17536          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
-         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0    12.3488    13.1607    26.5089    17.6954    31.7578    22.9533    18.1797    28.6722    12.7423    27.2021    4.17766     15.087    24.4574    21.1003     9.8921    7.22032    21.0328    18.8657    25.1688    21.1204    25.0183    22.9927          0          0          0          0          0          0 
+   14.8341          0    16.9272    22.5691    24.3926    6.03295     11.603    16.9186    24.4396    21.3803    5.64233    26.6494      24.78    5.04803    6.70983    19.2871    19.6721    6.95794    13.9338    5.94714     22.813    26.1224    3.48551          0          0          0          0          0          0 
+   6.75287    8.31987          0    17.9937    10.6733    24.4783    14.1899    18.1345    20.2612     5.0507    22.1759    7.39431    8.82642    19.3873    16.2235   0.942212    7.75799    16.2737    17.3492    17.2447    13.1103    17.3564    16.2275          0          0          0          0          0          0 
+   4.27164    13.0323     6.4774          0    9.83254     17.395    4.39778     22.703    11.8616    8.78163    19.5492    17.6818    10.9091    17.3184    15.4322    9.76805    16.4984    15.6503    20.6052    9.78364    8.02159    11.7338    11.9338          0          0          0          0          0          0 
+   14.8735    13.6499    16.8859     23.031          0    6.70186    12.0233    16.1737    24.9383    21.3811    5.00659    26.3838    24.8534    4.26928    6.01663    19.1423    19.2122    6.25648    13.1877    6.50485    23.0996    26.4896    3.41403          0          0          0          0          0          0 
+   18.9384    17.7586    21.0503    25.8512    28.3828          0    15.1406    18.8387    27.5622    25.4957    5.17754     30.636    28.8566      6.602    9.49521    23.3847    23.2642    9.67088    15.9049    9.23433     26.595    29.6951     7.5951          0          0          0          0          0          0 
+   15.1275    16.3615    17.5149    20.6924    23.9386     3.6522          0    20.3035    22.3607    21.6924    8.81669    28.0552    24.7182    8.56586     9.9875    20.2704    21.9472    10.2549    17.3292    4.34383    21.7871     24.672    5.41005          0          0          0          0          0          0 
+   19.2857    10.3332    19.1028    32.2327     28.203    22.7803    22.7218          0    34.5645    22.8249     13.976    21.1208    26.8316    12.3057    10.3398    18.5539    11.6189    10.0641    2.98663    20.2544    29.2711    33.5886    15.5536          0          0          0          0          0          0 
+   15.5914     24.746    16.8071    2.36275    11.8434    24.5346    13.0519    34.5645          0    15.9346    29.8591    25.5066    14.6091    28.0872     26.788     19.345    27.4345    27.0341     32.435    18.5119     7.7156     5.4195    22.3957          0          0          0          0          0          0 
+   6.58773    12.6257    4.59194    13.8033    5.62262    25.2411    13.0703    22.8249    15.9346          0    24.8419    9.72268       4.05    22.1653    19.3149    4.37514    12.8083    19.4269    21.7256     17.597      8.409    12.4908    17.9671          0          0          0          0          0          0 
+   18.6176    14.9499    20.2517    27.8976    28.6028    9.79883    16.8583     13.976    29.8591    24.8419          0    28.3988    28.5724    2.80625    6.13678    21.9692    20.0865    6.17839    11.1389    11.5046    27.5641    31.1529    7.63697          0          0          0          0          0          0 
+   14.0579    13.5209    11.4427    23.4577    14.0847    31.7047    21.4788    21.1208    25.5066    9.72268    28.3988          0    11.3626    25.5972    22.2718    8.15193    9.54261     22.257    21.3336    24.6035    17.8228    21.4751    23.2132          0          0          0          0          0          0 
+        10      16.67    8.46579    12.8323    2.79411    28.1495    15.2966    26.8316    14.6091       4.05    28.5724    11.3626          0    25.9508    23.2061    8.29259      16.47    23.3317    25.7737    20.4675    6.96088    10.1563    21.4547          0          0          0          0          0          0 
+   16.0552    12.1694    17.5737    26.0308    26.0974     10.539    15.0362    12.3057    28.0872    22.1653    2.80625    25.5972    25.9508          0    3.35877    19.1973    17.3823     3.4302    9.34299    10.2123    25.2855      29.02    5.70016          0          0          0          0          0          0 
+   13.5265    8.81474     14.751    24.6103    23.5879    12.7185    13.9229    10.3398     26.788    19.3149    6.13678    22.2718    23.2061    3.35877          0    16.0973    14.0439   0.288047    7.38951     10.204    23.1988    27.1475    5.36028          0          0          0          0          0          0 
+   5.91798    8.53386    3.33549    17.0703     9.9759     23.917    13.3545    18.5539     19.345    4.37514    21.9692    8.15193    8.29259    19.1973    16.0973          0    8.50683    16.1638     17.629    16.5957    12.2511     16.524    15.8016          0          0          0          0          0          0 
+   12.2415    5.60065    10.6282     25.098    18.4304    25.4217    18.7289    11.6189    27.4345    12.8083    20.0865    9.54261      16.47    17.3823    14.0439    8.50683          0    13.9527    11.8356     19.547    20.6774    24.9923    16.5893          0          0          0          0          0          0 
+   13.6882    8.77589    14.8714    24.8509    23.7431    12.9569    14.1846    10.0641    27.0341    19.4269    6.17839     22.257    23.3317     3.4302   0.288047    16.1638    13.9527          0     7.1098    10.4917    23.3954     27.359    5.64833          0          0          0          0          0          0 
+   17.5008    9.11096    17.6779     30.133    26.8903    19.7965    20.2362    2.98663     32.435    21.7256    11.1389    21.3336    25.7737    9.34299    7.38951     17.629    11.8356     7.1098          0    17.4221    27.5718    31.8252    12.6638          0          0          0          0          0          0 
+   11.1172    14.1662    13.6251    16.6918    19.6109    7.68425    5.91925    20.2544    18.5119     17.597    11.5046    24.6035    20.4675    10.2123     10.204    16.5957     19.547    10.4917    17.4221          0    17.4627    20.4616    4.85648          0          0          0          0          0          0 
+   10.0746    19.0021    10.3445    5.87272    4.28717    24.7991    11.5872    29.2711     7.7156      8.409    27.5641    17.8228    6.96088    25.2855    23.1988    12.2511    20.6774    23.3954    27.5718    17.4627          0    4.36323    19.9552          0          0          0          0          0          0 
+   14.3326    23.3452    14.7077    4.96212    7.39265    27.3698     14.562    33.5886     5.4195    12.4908    31.1529    21.4751    10.1563      29.02    27.1475     16.524    24.9923     27.359    31.8252    20.4616    4.36323          0    23.5166          0          0          0          0          0          0 
+   11.4662    10.9911    13.4775    20.3617    21.2182    8.83404    9.34402    15.5536    22.3957    17.9671    7.63697    23.2132    21.4547    5.70016    5.36028    15.8016    16.5893    5.64833    12.6638    4.85648    19.9552    23.5166          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
 
 
-Seed: 1631220766
+Seed: 1631310525
 
-Initial solution: 
+First addition
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
-20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 6 - 23 - Total route time: 0.76168
+
 
 Cost of routes: 
-Route 0: 4.3896
-Route 1: 8.8183
-Route 2: -4.3891
+Route 0: 2.5352
 
-Cost of routes: 8.8188
+Cost of routes: 2.5352
+the insertion is feasible from part 1.
+start time: 14.837
+total time: 2.8229
+*****************************
+pos > last passenger
+*****************************
+
+Request: 1
+
+Position of insertion: 2
+
+Previous time: 15.998
+
+Service time: 17.15
+*****************************
+Random additions: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229
+
+18 - 5 - 24 - Total route time: 0.76649
+
+
+Cost of routes: 
+Route 0: 6.2794
+Route 1: -3.1325
+
+Cost of routes: 3.1469
+
+Previous passenger: 3 in position 1
+
+Next passenger: 5 in position 2
+the insertion is feasible from part 1.
+start time: 0.36505
+total time: 4.5653
+*****************************
+pos > last passenger
+*****************************
+
+Request: 0
+
+Position of insertion: 3
+
+Previous time: 4.9956
+
+Service time: 4.3833
+*****************************
+the insertion is feasible from part 1.
+start time: 0.84414
+total time: 4.0862
+*****************************
+pos > last passenger
+*****************************
+
+Request: 0
+
+Position of insertion: 2
+
+Previous time: 2.6283
+
+Service time: 4.3833
+*****************************
+the insertion is feasible from part 1.
+start time: 0.36505
+total time: 8.3545
+p1: the maximum riding time is exceeded.
+the insertion is feasible from part 1.
+start time: 0.84414
+total time: 7.8754
+*****************************
+pos > last passenger
+*****************************
+
+Request: 2
+
+Position of insertion: 3
+
+Previous time: 5.2513
+
+Service time: 8.45
+*****************************
+Initial solution: 
+SARP Solution: 
+17 - 7 - 9 - 12 - 6 - 14 - 1 - 23 - Total route time: 4.001
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657
+
+18 - 4 - 10 - 0 - 11 - 16 - 15 - 2 - 24 - Total route time: 7.8754
+
+
+Cost of routes: 
+Route 0: 31.435
+Route 1: 11.881
+Route 2: 31.647
+
+Cost of routes: 74.962
 Calling relocate intra: 
 After Relocate all
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
-20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 7 - 9 - 12 - 6 - 14 - 1 - 23 - Total route time: 4.001
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657
+
+18 - 4 - 10 - 0 - 11 - 16 - 15 - 2 - 24 - Total route time: 7.8754
+
 
 Cost of routes: 
-Route 0: 4.3896
-Route 1: 8.8183
-Route 2: -4.3891
+Route 0: 31.435
+Route 1: 11.881
+Route 2: 31.647
 
-Cost of routes: 8.8188
+Cost of routes: 74.962
 
-RelocateK Time: -9.223372e+12
+RelocateK Time: 0.010538
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
-20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 7 - 9 - 12 - 6 - 14 - 1 - 23 - Total route time: 4.0009988
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 10 - 0 - 11 - 16 - 15 - 2 - 24 - Total route time: 7.8753871
+
 
 Cost of routes: 
-Route 0: 4.3895912
-Route 1: 8.818316
-Route 2: -4.3891259
+Route 0: 31.434716
+Route 1: 11.880868
+Route 2: 31.64673
 
-Cost of routes: 8.8187812
+Cost of routes: 74.962314
 Calling swap: 
 After Swap all
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
-20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 7 - 9 - 12 - 6 - 14 - 1 - 23 - Total route time: 4.0009988
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 10 - 0 - 11 - 16 - 15 - 2 - 24 - Total route time: 7.8753871
+
 
 Cost of routes: 
-Route 0: 4.3895912
-Route 1: 8.818316
-Route 2: -4.3891259
+Route 0: 31.434716
+Route 1: 11.880868
+Route 2: 31.64673
 
-Cost of routes: 8.8187812
+Cost of routes: 74.962314
 
-Swap Time: -9.223372e+12
+Swap Time: 0.010686
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
-20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 7 - 9 - 12 - 6 - 14 - 1 - 23 - Total route time: 4.0009988
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 10 - 0 - 11 - 16 - 15 - 2 - 24 - Total route time: 7.8753871
+
 
 Cost of routes: 
-Route 0: 4.3895912
-Route 1: 8.818316
-Route 2: -4.3891259
+Route 0: 31.434716
+Route 1: 11.880868
+Route 2: 31.64673
 
-Cost of routes: 8.8187812
+Cost of routes: 74.962314
+Calling relocate inter: 
+Routes: 0 and 1
+candidate: 7
+Initial cost of both routes: 43.315584
+New add value: 4.0019126
+New rmv value: -15.930529
+Adding at position: 5 and 5
+
+candidate: 9
+Initial cost of both routes: 43.315584
+New add value: 12.268384
+New rmv value: -17.628671
+Adding at position: 3 and 3
+
+candidate: 12
+Initial cost of both routes: 43.315584
+
+candidate: 6
+Initial cost of both routes: 43.315584
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 15.4311
+p1: the maximum riding time is exceeded.
+
+candidate: 14
+Initial cost of both routes: 43.315584
+
+candidate: 1
+Initial cost of both routes: 43.315584
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 17.492349
+p1: the maximum riding time is exceeded.
+Best cost: 43.315584
+cost (previous cost): 43.315584
+delta: 0
+Routes: 0 and 2
+candidate: 7
+Initial cost of both routes: 63.081446
+New add value: 12.099462
+New rmv value: -15.930529
+Adding at position: 3 and 7
+
+candidate: 9
+Initial cost of both routes: 63.081446
+New add value: 18.079661
+New rmv value: -17.628671
+Adding at position: 1 and 3
+
+candidate: 12
+Initial cost of both routes: 63.081446
+
+candidate: 6
+Initial cost of both routes: 63.081446
+the insertion is feasible from part 1.
+start time: 0.84413922
+total time: 14.754902
+p1: the maximum riding time is exceeded.
+
+candidate: 14
+Initial cost of both routes: 63.081446
+
+candidate: 1
+Initial cost of both routes: 63.081446
+the insertion is feasible from part 1.
+start time: 0.84413922
+total time: 16.816151
+p1: the maximum riding time is exceeded.
+Best cost: 63.532436
+cost (previous cost): 63.081446
+delta: -0.45099006
+Routes: 1 and 0
+candidate: 8
+Initial cost of both routes: 43.315584
+New add value: 19.473651
+New rmv value: -19.093869
+Adding at position: 4 and 5
+
+candidate: 3
+Initial cost of both routes: 43.315584
+
+candidate: 13
+Initial cost of both routes: 43.315584
+
+candidate: 5
+Initial cost of both routes: 43.315584
+Best cost: 43.695366
+cost (previous cost): 43.315584
+delta: -0.37978174
+Routes: 1 and 2
+candidate: 8
+Initial cost of both routes: 43.527598
+New add value: 3.0364193
+New rmv value: -19.093869
+Adding at position: 2 and 3
+
+candidate: 3
+Initial cost of both routes: 43.527598
+
+candidate: 13
+Initial cost of both routes: 43.527598
+
+candidate: 5
+Initial cost of both routes: 43.527598
+
+Previous passenger: 4 in position 1
+
+Next passenger: 0 in position 3
+
+Previous passenger: 4 in position 1
+
+Next passenger: 0 in position 3
+Best cost: 43.527598
+cost (previous cost): 43.527598
+delta: 0
+Routes: 2 and 0
+candidate: 4
+Initial cost of both routes: 63.081446
+
+candidate: 10
+Initial cost of both routes: 63.081446
+New add value: 16.285058
+New rmv value: -16.390657
+Adding at position: 1 and 2
+
+candidate: 0
+Initial cost of both routes: 63.081446
+
+candidate: 11
+Initial cost of both routes: 63.081446
+New add value: 1.9901347
+New rmv value: -4.9862658
+Adding at position: 2 and 6
+
+candidate: 16
+Initial cost of both routes: 63.081446
+
+candidate: 15
+Initial cost of both routes: 63.081446
+
+candidate: 2
+Initial cost of both routes: 63.081446
+Best cost: 63.081446
+cost (previous cost): 63.081446
+delta: 0
+Routes: 2 and 1
+candidate: 4
+Initial cost of both routes: 43.527598
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 4
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 4
+
+candidate: 10
+Initial cost of both routes: 43.527598
+New add value: 9.26709
+New rmv value: -16.390657
+Adding at position: 4 and 5
+
+candidate: 0
+Initial cost of both routes: 43.527598
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 4.7623941
+*****************************
+pos > last passenger
+*****************************
+
+Request: 0
+
+Position of insertion: 5
+
+Previous time: 4.9955629
+
+Service time: 4.3833333
+*****************************
+
+candidate: 11
+Initial cost of both routes: 43.527598
+
+candidate: 16
+Initial cost of both routes: 43.527598
+
+candidate: 15
+Initial cost of both routes: 43.527598
+
+candidate: 2
+Initial cost of both routes: 43.527598
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 8.5515848
+p1: the maximum riding time is exceeded.
+Best cost: 43.527598
+cost (previous cost): 43.527598
+delta: 0
+Relocate candidate parcel: 9
+First changed route: 
+17 - 7 - 12 - 6 - 1 - 23 - 
+Second changed route: 
+18 - 9 - 4 - 10 - 14 - 0 - 11 - 16 - 15 - 2 - 24 - 
+After Relocate Inter
+SARP Solution: 
+17 - 7 - 12 - 6 - 1 - 23 - Total route time: 3.9166094
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 9 - 4 - 10 - 14 - 0 - 11 - 16 - 15 - 2 - 24 - Total route time: 7.96989
+
+
+Cost of routes: 
+Route 0: 13.806046
+Route 1: 11.880868
+Route 2: 49.72639
+
+Cost of routes: 75.413304
+
+Relocate Time: 0.000721
+
+After Inter: 
+SARP Solution: 
+17 - 7 - 12 - 6 - 1 - 23 - Total route time: 3.9166094
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 9 - 4 - 10 - 14 - 0 - 11 - 16 - 15 - 2 - 24 - Total route time: 7.96989
+
+
+Cost of routes: 
+Route 0: 13.806046
+Route 1: 11.880868
+Route 2: 49.72639
+
+Cost of routes: 75.413304
+Calling relocate inter: 
+Routes: 0 and 1
+candidate: 7
+Initial cost of both routes: 25.686914
+New add value: 4.0019126
+New rmv value: -7.5266903
+Adding at position: 5 and 5
+
+candidate: 12
+Initial cost of both routes: 25.686914
+
+candidate: 6
+Initial cost of both routes: 25.686914
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 15.4311
+p1: the maximum riding time is exceeded.
+
+candidate: 1
+Initial cost of both routes: 25.686914
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 17.492349
+p1: the maximum riding time is exceeded.
+Best cost: 25.686914
+cost (previous cost): 25.686914
+delta: 0
+Routes: 0 and 2
+candidate: 7
+Initial cost of both routes: 63.532436
+New add value: 11.430184
+New rmv value: -7.5266903
+Adding at position: 5 and 9
+
+candidate: 12
+Initial cost of both routes: 63.532436
+
+candidate: 6
+Initial cost of both routes: 63.532436
+the insertion is feasible from part 1.
+start time: 0.74963632
+total time: 14.849405
+p1: the maximum riding time is exceeded.
+
+candidate: 1
+Initial cost of both routes: 63.532436
+the insertion is feasible from part 1.
+start time: 0.74963632
+total time: 16.910654
+p1: the maximum riding time is exceeded.
+Best cost: 67.43593
+cost (previous cost): 63.532436
+delta: -3.9034936
+Routes: 1 and 0
+candidate: 8
+Initial cost of both routes: 25.686914
+New add value: 18.352778
+New rmv value: -19.093869
+Adding at position: 3 and 4
+
+candidate: 3
+Initial cost of both routes: 25.686914
+
+candidate: 13
+Initial cost of both routes: 25.686914
+
+candidate: 5
+Initial cost of both routes: 25.686914
+Best cost: 25.686914
+cost (previous cost): 25.686914
+delta: 0
+Routes: 1 and 2
+candidate: 8
+Initial cost of both routes: 61.607259
+
+candidate: 3
+Initial cost of both routes: 61.607259
+
+candidate: 13
+Initial cost of both routes: 61.607259
+
+candidate: 5
+Initial cost of both routes: 61.607259
+
+Previous passenger: 4 in position 2
+
+Next passenger: 0 in position 5
+
+Previous passenger: 4 in position 2
+
+Next passenger: 0 in position 5
+
+Previous passenger: 4 in position 2
+
+Next passenger: 0 in position 5
+Best cost: 61.607259
+cost (previous cost): 61.607259
+delta: 0
+Routes: 2 and 0
+candidate: 9
+Initial cost of both routes: 63.532436
+New add value: 17.628671
+New rmv value: -18.079661
+Adding at position: 2 and 4
+
+candidate: 4
+Initial cost of both routes: 63.532436
+
+candidate: 10
+Initial cost of both routes: 63.532436
+New add value: 16.326111
+New rmv value: -18.057661
+Adding at position: 1 and 2
+
+candidate: 14
+Initial cost of both routes: 63.532436
+
+candidate: 0
+Initial cost of both routes: 63.532436
+
+candidate: 11
+Initial cost of both routes: 63.532436
+New add value: 2.9148774
+New rmv value: -4.9862658
+Adding at position: 2 and 4
+
+candidate: 16
+Initial cost of both routes: 63.532436
+
+candidate: 15
+Initial cost of both routes: 63.532436
+
+candidate: 2
+Initial cost of both routes: 63.532436
+Best cost: 63.532436
+cost (previous cost): 63.532436
+delta: 0
+Routes: 2 and 1
+candidate: 9
+Initial cost of both routes: 61.607259
+New add value: 12.268384
+New rmv value: -18.079661
+Adding at position: 3 and 3
+
+candidate: 4
+Initial cost of both routes: 61.607259
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 4
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 4
+
+candidate: 10
+Initial cost of both routes: 61.607259
+New add value: 9.26709
+New rmv value: -18.057661
+Adding at position: 4 and 5
+
+candidate: 14
+Initial cost of both routes: 61.607259
+
+candidate: 0
+Initial cost of both routes: 61.607259
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 4.7623941
+*****************************
+pos > last passenger
+*****************************
+
+Request: 0
+
+Position of insertion: 5
+
+Previous time: 4.9955629
+
+Service time: 4.3833333
+*****************************
+
+candidate: 11
+Initial cost of both routes: 61.607259
+
+candidate: 16
+Initial cost of both routes: 61.607259
+
+candidate: 15
+Initial cost of both routes: 61.607259
+
+candidate: 2
+Initial cost of both routes: 61.607259
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 8.5515848
+p1: the maximum riding time is exceeded.
+Best cost: 61.607259
+cost (previous cost): 61.607259
+delta: 0
+Relocate candidate parcel: 7
+First changed route: 
+17 - 6 - 1 - 23 - 
+Second changed route: 
+18 - 9 - 4 - 10 - 14 - 7 - 0 - 11 - 16 - 15 - 12 - 2 - 24 - 
+After Relocate Inter
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 9 - 4 - 10 - 14 - 7 - 0 - 11 - 16 - 15 - 12 - 2 - 24 - Total route time: 7.96989
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 61.156574
+
+Cost of routes: 79.316798
+
+Relocate Time: 0.001575
+
+After Inter: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 9 - 4 - 10 - 14 - 7 - 0 - 11 - 16 - 15 - 12 - 2 - 24 - Total route time: 7.96989
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 61.156574
+
+Cost of routes: 79.316798
 Calling add unserved: 
 
 After Inter: 
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 1 - 10 - 16 - 25 - 
-20 - 12 - 18 - 7 - 13 - 11 - 6 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 9 - 4 - 10 - 14 - 7 - 0 - 11 - 16 - 15 - 12 - 2 - 24 - Total route time: 7.96989
+
 
 Cost of routes: 
-Route 0: 4.3895912
-Route 1: 8.818316
-Route 2: -4.3891259
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 61.156574
 
-Cost of routes: 8.8187812
+Cost of routes: 79.316798
 Calling relocate inter: 
 Routes: 0 and 1
-candidate: 9
-Initial cost of both routes: 13.207907
-
-candidate: 15
-Initial cost of both routes: 13.207907
-
-candidate: 4
-Initial cost of both routes: 13.207907
-
-candidate: 5
-Initial cost of both routes: 13.207907
+candidate: 6
+Initial cost of both routes: 18.160224
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 15.4311
+p1: the maximum riding time is exceeded.
 
 candidate: 1
-Initial cost of both routes: 13.207907
-
-candidate: 10
-Initial cost of both routes: 13.207907
-New add value: 6.8428978
-New rmv value: -3.8394285
-Adding at position: 5 and 7
-
-candidate: 16
-Initial cost of both routes: 13.207907
-Best cost: 16.211376
-cost (previous cost): 13.207907
-delta: -3.0034693
+Initial cost of both routes: 18.160224
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 17.492349
+p1: the maximum riding time is exceeded.
+Best cost: 18.160224
+cost (previous cost): 18.160224
+delta: 0
 Routes: 0 and 2
-candidate: 9
-Initial cost of both routes: 0.00046529247
-
-candidate: 15
-Initial cost of both routes: 0.00046529247
-
-candidate: 4
-Initial cost of both routes: 0.00046529247
-
-candidate: 5
-Initial cost of both routes: 0.00046529247
+candidate: 6
+Initial cost of both routes: 67.43593
+the insertion is feasible from part 1.
+start time: 0.74963632
+total time: 14.849405
+p1: the maximum riding time is exceeded.
 
 candidate: 1
-Initial cost of both routes: 0.00046529247
-
-candidate: 10
-Initial cost of both routes: 0.00046529247
-
-candidate: 16
-Initial cost of both routes: 0.00046529247
-Best cost: 0.00046529247
-cost (previous cost): 0.00046529247
+Initial cost of both routes: 67.43593
+the insertion is feasible from part 1.
+start time: 0.74963632
+total time: 16.910654
+p1: the maximum riding time is exceeded.
+Best cost: 67.43593
+cost (previous cost): 67.43593
 delta: 0
 Routes: 1 and 0
-candidate: 12
-Initial cost of both routes: 13.207907
-New add value: 1.1693703
-New rmv value: -1.1405395
-Adding at position: 5 and 5
+candidate: 8
+Initial cost of both routes: 18.160224
+New add value: 12.125753
+New rmv value: -19.093869
+Adding at position: 1 and 2
 
-candidate: 18
-Initial cost of both routes: 13.207907
-
-candidate: 7
-Initial cost of both routes: 13.207907
-New add value: 2.5284101
-New rmv value: -1.7114526
-Adding at position: 5 and 5
+candidate: 3
+Initial cost of both routes: 18.160224
 
 candidate: 13
-Initial cost of both routes: 13.207907
+Initial cost of both routes: 18.160224
 
-candidate: 11
-Initial cost of both routes: 13.207907
-New add value: 0.011800586
-New rmv value: -9.3771761
-Adding at position: 5 and 5
-
-candidate: 6
-Initial cost of both routes: 13.207907
-
-candidate: 8
-Initial cost of both routes: 13.207907
-
-candidate: 14
-Initial cost of both routes: 13.207907
-
-candidate: 2
-Initial cost of both routes: 13.207907
-
-candidate: 17
-Initial cost of both routes: 13.207907
-
-candidate: 0
-Initial cost of both routes: 13.207907
-Best cost: 14.024865
-cost (previous cost): 13.207907
-delta: -0.81695744
+candidate: 5
+Initial cost of both routes: 18.160224
+Best cost: 18.160224
+cost (previous cost): 18.160224
+delta: 0
 Routes: 1 and 2
-candidate: 12
-Initial cost of both routes: 4.42919
+candidate: 8
+Initial cost of both routes: 73.037443
+New add value: 2.2224284
+New rmv value: -19.093869
+Adding at position: 11 and 11
 
-candidate: 18
-Initial cost of both routes: 4.42919
-
-candidate: 7
-Initial cost of both routes: 4.42919
+candidate: 3
+Initial cost of both routes: 73.037443
 
 candidate: 13
-Initial cost of both routes: 4.42919
+Initial cost of both routes: 73.037443
 
-candidate: 11
-Initial cost of both routes: 4.42919
-New add value: 0.70901996
-New rmv value: -9.3771761
-Adding at position: 2 and 2
+candidate: 5
+Initial cost of both routes: 73.037443
 
-candidate: 6
-Initial cost of both routes: 4.42919
+Previous passenger: 4 in position 2
 
-candidate: 8
-Initial cost of both routes: 4.42919
+Next passenger: 0 in position 6
 
-candidate: 14
-Initial cost of both routes: 4.42919
+Previous passenger: 4 in position 2
 
-candidate: 2
-Initial cost of both routes: 4.42919
+Next passenger: 0 in position 6
 
-candidate: 17
-Initial cost of both routes: 4.42919
+Previous passenger: 4 in position 2
 
-candidate: 0
-Initial cost of both routes: 4.42919
-Best cost: 4.42919
-cost (previous cost): 4.42919
+Next passenger: 0 in position 6
+
+Previous passenger: 4 in position 2
+
+Next passenger: 0 in position 6
+Best cost: 73.037443
+cost (previous cost): 73.037443
 delta: 0
 Routes: 2 and 0
-candidate: 3
-Initial cost of both routes: 0.00046529247
-Best cost: 0.00046529247
-cost (previous cost): 0.00046529247
+candidate: 9
+Initial cost of both routes: 67.43593
+New add value: 9.2248318
+New rmv value: -17.410383
+Adding at position: 1 and 2
+
+candidate: 4
+Initial cost of both routes: 67.43593
+
+candidate: 10
+Initial cost of both routes: 67.43593
+New add value: 11.178822
+New rmv value: -18.46462
+Adding at position: 1 and 2
+
+candidate: 14
+Initial cost of both routes: 67.43593
+
+candidate: 7
+Initial cost of both routes: 67.43593
+New add value: 7.044886
+New rmv value: -11.430184
+Adding at position: 2 and 3
+
+candidate: 0
+Initial cost of both routes: 67.43593
+
+candidate: 11
+Initial cost of both routes: 67.43593
+
+candidate: 16
+Initial cost of both routes: 67.43593
+
+candidate: 15
+Initial cost of both routes: 67.43593
+
+candidate: 12
+Initial cost of both routes: 67.43593
+
+candidate: 2
+Initial cost of both routes: 67.43593
+Best cost: 67.43593
+cost (previous cost): 67.43593
 delta: 0
 Routes: 2 and 1
-candidate: 3
-Initial cost of both routes: 4.42919
-Best cost: 4.42919
-cost (previous cost): 4.42919
+candidate: 9
+Initial cost of both routes: 73.037443
+New add value: 12.268384
+New rmv value: -17.410383
+Adding at position: 3 and 3
+
+candidate: 4
+Initial cost of both routes: 73.037443
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 4
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 4
+
+candidate: 10
+Initial cost of both routes: 73.037443
+New add value: 9.26709
+New rmv value: -18.46462
+Adding at position: 4 and 5
+
+candidate: 14
+Initial cost of both routes: 73.037443
+
+candidate: 7
+Initial cost of both routes: 73.037443
+New add value: 4.0019126
+New rmv value: -11.430184
+Adding at position: 5 and 5
+
+candidate: 0
+Initial cost of both routes: 73.037443
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 4.7623941
+*****************************
+pos > last passenger
+*****************************
+
+Request: 0
+
+Position of insertion: 5
+
+Previous time: 4.9955629
+
+Service time: 4.3833333
+*****************************
+
+candidate: 11
+Initial cost of both routes: 73.037443
+
+candidate: 16
+Initial cost of both routes: 73.037443
+
+candidate: 15
+Initial cost of both routes: 73.037443
+
+candidate: 12
+Initial cost of both routes: 73.037443
+
+candidate: 2
+Initial cost of both routes: 73.037443
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 8.5515848
+p1: the maximum riding time is exceeded.
+Best cost: 73.037443
+cost (previous cost): 73.037443
 delta: 0
 After Relocate Inter
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 1 - 25 - 
-20 - 12 - 18 - 7 - 13 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 9 - 4 - 10 - 14 - 7 - 0 - 11 - 16 - 15 - 12 - 2 - 24 - Total route time: 7.96989
+
 
 Cost of routes: 
-Route 0: 0.5501627
-Route 1: 15.661214
-Route 2: -4.3891259
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 61.156574
 
-Cost of routes: 11.822251
+Cost of routes: 79.316798
 
-Relocate Time: 0.000438
+Relocate Time: 0.002459
 
 After Inter: 
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 1 - 25 - 
-20 - 12 - 18 - 7 - 13 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 9 - 4 - 10 - 14 - 7 - 0 - 11 - 16 - 15 - 12 - 2 - 24 - Total route time: 7.96989
+
 
 Cost of routes: 
-Route 0: 0.5501627
-Route 1: 15.661214
-Route 2: -4.3891259
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 61.156574
 
-Cost of routes: 11.822251
-Calling add unserved: 
-
-After Inter: 
+Cost of routes: 79.316798
+Calling Perturbation: 
+After removal: 
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 1 - 25 - 
-20 - 12 - 18 - 7 - 13 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 23 - Total route time: 0
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 7 - 0 - 11 - 16 - 12 - 2 - 24 - Total route time: 7.8753871
+
 
 Cost of routes: 
-Route 0: 0.5501627
-Route 1: 15.661214
-Route 2: -4.3891259
+Route 0: 0
+Route 1: 11.880868
+Route 2: 24.215346
 
-Cost of routes: 11.822251
+Cost of routes: 36.096214
+After first round trial: 
+SARP Solution: 
+17 - 23 - Total route time: 0
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 7 - 0 - 11 - 16 - 12 - 2 - 24 - Total route time: 7.8753871
+
+
+Cost of routes: 
+Route 0: 0
+Route 1: 11.880868
+Route 2: 24.215346
+
+Cost of routes: 36.096214
+New addition: 
+SARP Solution: 
+17 - 6 - 23 - Total route time: 0.76167517
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 7 - 0 - 11 - 16 - 12 - 2 - 24 - Total route time: 7.8753871
+
+
+Cost of routes: 
+Route 0: 2.5351649
+Route 1: 11.880868
+Route 2: 24.215346
+
+Cost of routes: 38.631379
+After first round trial: 
+SARP Solution: 
+17 - 6 - 23 - Total route time: 0.76167517
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 7 - 0 - 11 - 16 - 12 - 2 - 24 - Total route time: 7.8753871
+
+
+Cost of routes: 
+Route 0: 2.5351649
+Route 1: 11.880868
+Route 2: 24.215346
+
+Cost of routes: 38.631379
+
+Testing insertion of: 1 at route 0 in position 2
+the insertion is feasible from part 1.
+start time: 14.837366
+total time: 2.8229239
+*****************************
+pos > last passenger
+*****************************
+
+Request: 1
+
+Position of insertion: 2
+
+Previous time: 15.998103
+
+Service time: 17.15
+*****************************
+New addition: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 7 - 0 - 11 - 16 - 12 - 2 - 24 - Total route time: 7.8753871
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 24.215346
+
+Cost of routes: 42.37557
+
+-----x-----
+Solution with perturbation: SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 7 - 0 - 11 - 16 - 12 - 2 - 24 - Total route time: 7.8753871
+
+
+
+Solution perturbation Cost: 
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 24.215346
+
+Cost of routes: 42.37557
+
+-----x-----
+After add unserved
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 10 - 7 - 0 - 11 - 16 - 15 - 12 - 2 - 24 - Total route time: 7.8753871
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 43.746192
+
+Cost of routes: 61.906415
+
+Add Unserved Time: 0.002558
+Calling swap: 
+After Swap all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 10 - 7 - 0 - 11 - 16 - 15 - 12 - 2 - 24 - Total route time: 7.8753871
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 43.746192
+
+Cost of routes: 61.906415
+
+Swap Time: 0.015082
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 10 - 7 - 0 - 11 - 16 - 15 - 12 - 2 - 24 - Total route time: 7.8753871
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 43.746192
+
+Cost of routes: 61.906415
+Calling relocate intra: 
+After Relocate all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 4 - 10 - 0 - 11 - 16 - 15 - 12 - 2 - 24 - Total route time: 8.0635826
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 48.504762
+
+Cost of routes: 66.664986
+
+RelocateK Time: 0.015248
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 4 - 10 - 0 - 11 - 16 - 15 - 12 - 2 - 24 - Total route time: 8.0635826
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 48.504762
+
+Cost of routes: 66.664986
+Calling relocate intra: 
+After Relocate all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 12 - 4 - 10 - 0 - 11 - 16 - 15 - 2 - 24 - Total route time: 8.1816169
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 54.024836
+
+Cost of routes: 72.18506
+
+RelocateK Time: 0.01543
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 12 - 4 - 10 - 0 - 11 - 16 - 15 - 2 - 24 - Total route time: 8.1816169
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 54.024836
+
+Cost of routes: 72.18506
+Calling relocate intra: 
+After Relocate all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 54.415038
+
+Cost of routes: 72.575262
+
+RelocateK Time: 0.015571
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 54.415038
+
+Cost of routes: 72.575262
+Calling swap: 
+After Swap all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 54.415038
+
+Cost of routes: 72.575262
+
+Swap Time: 0.01568
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 54.415038
+
+Cost of routes: 72.575262
+Calling relocate intra: 
+After Relocate all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 54.415038
+
+Cost of routes: 72.575262
+
+RelocateK Time: 0.015785
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 54.415038
+
+Cost of routes: 72.575262
 Calling relocate inter: 
 Routes: 0 and 1
-candidate: 9
-Initial cost of both routes: 16.211376
-
-candidate: 15
-Initial cost of both routes: 16.211376
-
-candidate: 4
-Initial cost of both routes: 16.211376
-
-candidate: 5
-Initial cost of both routes: 16.211376
+candidate: 6
+Initial cost of both routes: 18.160224
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 15.4311
+p1: the maximum riding time is exceeded.
 
 candidate: 1
-Initial cost of both routes: 16.211376
-Best cost: 16.211376
-cost (previous cost): 16.211376
+Initial cost of both routes: 18.160224
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 17.492349
+p1: the maximum riding time is exceeded.
+Best cost: 18.160224
+cost (previous cost): 18.160224
 delta: 0
 Routes: 0 and 2
-candidate: 9
-Initial cost of both routes: -3.8389632
-
-candidate: 15
-Initial cost of both routes: -3.8389632
-
-candidate: 4
-Initial cost of both routes: -3.8389632
-
-candidate: 5
-Initial cost of both routes: -3.8389632
+candidate: 6
+Initial cost of both routes: 60.694393
+the insertion is feasible from part 1.
+start time: 0.31673017
+total time: 15.282311
+p1: the maximum riding time is exceeded.
 
 candidate: 1
-Initial cost of both routes: -3.8389632
-Best cost: -3.8389632
-cost (previous cost): -3.8389632
+Initial cost of both routes: 60.694393
+the insertion is feasible from part 1.
+start time: 0.31673017
+total time: 17.34356
+p1: the maximum riding time is exceeded.
+Best cost: 60.694393
+cost (previous cost): 60.694393
 delta: 0
 Routes: 1 and 0
-candidate: 12
-Initial cost of both routes: 16.211376
-New add value: 1.1693703
-New rmv value: -1.1405395
-Adding at position: 5 and 5
+candidate: 8
+Initial cost of both routes: 18.160224
+New add value: 12.125753
+New rmv value: -19.093869
+Adding at position: 1 and 2
 
-candidate: 18
-Initial cost of both routes: 16.211376
-
-candidate: 7
-Initial cost of both routes: 16.211376
-New add value: 2.5284101
-New rmv value: -1.6565015
-Adding at position: 5 and 5
+candidate: 3
+Initial cost of both routes: 18.160224
 
 candidate: 13
-Initial cost of both routes: 16.211376
+Initial cost of both routes: 18.160224
 
-candidate: 10
-Initial cost of both routes: 16.211376
-New add value: 3.8394285
-New rmv value: -6.8428978
-Adding at position: 6 and 6
-
-candidate: 11
-Initial cost of both routes: 16.211376
-New add value: 2.3889828
-New rmv value: -10.624875
+candidate: 5
+Initial cost of both routes: 18.160224
+Best cost: 18.160224
+cost (previous cost): 18.160224
+delta: 0
+Routes: 1 and 2
+candidate: 8
+Initial cost of both routes: 66.295906
+New add value: 3.0364193
+New rmv value: -19.093869
 Adding at position: 5 and 6
 
-candidate: 6
-Initial cost of both routes: 16.211376
-
-candidate: 16
-Initial cost of both routes: 16.211376
-
-candidate: 8
-Initial cost of both routes: 16.211376
-
-candidate: 14
-Initial cost of both routes: 16.211376
-
-candidate: 2
-Initial cost of both routes: 16.211376
-
-candidate: 17
-Initial cost of both routes: 16.211376
-
-candidate: 0
-Initial cost of both routes: 16.211376
-Best cost: 17.083285
-cost (previous cost): 16.211376
-delta: -0.87190851
-Routes: 1 and 2
-candidate: 12
-Initial cost of both routes: 11.272088
-
-candidate: 18
-Initial cost of both routes: 11.272088
-
-candidate: 7
-Initial cost of both routes: 11.272088
+candidate: 3
+Initial cost of both routes: 66.295906
 
 candidate: 13
-Initial cost of both routes: 11.272088
+Initial cost of both routes: 66.295906
 
-candidate: 10
-Initial cost of both routes: 11.272088
+candidate: 5
+Initial cost of both routes: 66.295906
 
-candidate: 11
-Initial cost of both routes: 11.272088
-New add value: 0.70901996
-New rmv value: -10.624875
-Adding at position: 2 and 2
+Previous passenger: 4 in position 4
 
-candidate: 6
-Initial cost of both routes: 11.272088
+Next passenger: 0 in position 6
 
-candidate: 16
-Initial cost of both routes: 11.272088
+Previous passenger: 4 in position 4
 
-candidate: 8
-Initial cost of both routes: 11.272088
-
-candidate: 14
-Initial cost of both routes: 11.272088
-
-candidate: 2
-Initial cost of both routes: 11.272088
-
-candidate: 17
-Initial cost of both routes: 11.272088
-
-candidate: 0
-Initial cost of both routes: 11.272088
-Best cost: 11.272088
-cost (previous cost): 11.272088
+Next passenger: 0 in position 6
+Best cost: 66.295906
+cost (previous cost): 66.295906
 delta: 0
 Routes: 2 and 0
-candidate: 3
-Initial cost of both routes: -3.8389632
-Best cost: -3.8389632
-cost (previous cost): -3.8389632
+candidate: 7
+Initial cost of both routes: 60.694393
+New add value: 7.5266903
+New rmv value: -23.701212
+Adding at position: 1 and 1
+
+candidate: 11
+Initial cost of both routes: 60.694393
+
+candidate: 12
+Initial cost of both routes: 60.694393
+
+candidate: 4
+Initial cost of both routes: 60.694393
+
+candidate: 10
+Initial cost of both routes: 60.694393
+New add value: 11.178822
+New rmv value: -16.390657
+Adding at position: 1 and 2
+
+candidate: 0
+Initial cost of both routes: 60.694393
+
+candidate: 16
+Initial cost of both routes: 60.694393
+
+candidate: 15
+Initial cost of both routes: 60.694393
+
+candidate: 2
+Initial cost of both routes: 60.694393
+Best cost: 60.694393
+cost (previous cost): 60.694393
 delta: 0
 Routes: 2 and 1
-candidate: 3
-Initial cost of both routes: 11.272088
-Best cost: 11.272088
-cost (previous cost): 11.272088
+candidate: 7
+Initial cost of both routes: 66.295906
+New add value: 4.0019126
+New rmv value: -23.701212
+Adding at position: 5 and 5
+
+candidate: 11
+Initial cost of both routes: 66.295906
+
+candidate: 12
+Initial cost of both routes: 66.295906
+
+candidate: 4
+Initial cost of both routes: 66.295906
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 4
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 4
+
+candidate: 10
+Initial cost of both routes: 66.295906
+New add value: 9.26709
+New rmv value: -16.390657
+Adding at position: 4 and 5
+
+candidate: 0
+Initial cost of both routes: 66.295906
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 4.7623941
+*****************************
+pos > last passenger
+*****************************
+
+Request: 0
+
+Position of insertion: 5
+
+Previous time: 4.9955629
+
+Service time: 4.3833333
+*****************************
+
+candidate: 16
+Initial cost of both routes: 66.295906
+
+candidate: 15
+Initial cost of both routes: 66.295906
+
+candidate: 2
+Initial cost of both routes: 66.295906
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 8.5515848
+p1: the maximum riding time is exceeded.
+Best cost: 66.295906
+cost (previous cost): 66.295906
 delta: 0
 After Relocate Inter
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 7 - 13 - 1 - 25 - 
-20 - 12 - 18 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
 
 Cost of routes: 
-Route 0: 3.0785728
-Route 1: 14.004712
-Route 2: -4.3891259
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 54.415038
 
-Cost of routes: 12.694159
+Cost of routes: 72.575262
 
-Relocate Time: 0.000796
+Relocate Time: 0.003203
 
 After Inter: 
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 7 - 13 - 1 - 25 - 
-20 - 12 - 18 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
 
 Cost of routes: 
-Route 0: 3.0785728
-Route 1: 14.004712
-Route 2: -4.3891259
+Route 0: 6.2793553
+Route 1: 11.880868
+Route 2: 54.415038
 
-Cost of routes: 12.694159
+Cost of routes: 72.575262
+Calling add unserved: 
+After add unserved
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 24.149252
+Route 2: 54.415038
+
+Cost of routes: 84.843646
+
+Add Unserved Time: 0.003287
+
+After Inter: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 24.149252
+Route 2: 54.415038
+
+Cost of routes: 84.843646
 Calling relocate inter: 
 Routes: 0 and 1
-candidate: 9
-Initial cost of both routes: 17.083285
-
-candidate: 15
-Initial cost of both routes: 17.083285
-
-candidate: 4
-Initial cost of both routes: 17.083285
-
-candidate: 5
-Initial cost of both routes: 17.083285
-
-candidate: 7
-Initial cost of both routes: 17.083285
-New add value: 1.9135824
-New rmv value: -2.5284101
-Adding at position: 1 and 1
-
-candidate: 13
-Initial cost of both routes: 17.083285
+candidate: 6
+Initial cost of both routes: 30.428608
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 15.4311
+p1: the maximum riding time is exceeded.
 
 candidate: 1
-Initial cost of both routes: 17.083285
-Best cost: 17.083285
-cost (previous cost): 17.083285
+Initial cost of both routes: 30.428608
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 17.492349
+p1: the maximum riding time is exceeded.
+Best cost: 30.428608
+cost (previous cost): 30.428608
 delta: 0
 Routes: 0 and 2
-candidate: 9
-Initial cost of both routes: -1.3105532
-
-candidate: 15
-Initial cost of both routes: -1.3105532
-
-candidate: 4
-Initial cost of both routes: -1.3105532
-
-candidate: 5
-Initial cost of both routes: -1.3105532
-
-candidate: 7
-Initial cost of both routes: -1.3105532
-New add value: 1.0736652
-New rmv value: -2.5284101
-Adding at position: 1 and 1
-
-candidate: 13
-Initial cost of both routes: -1.3105532
+candidate: 6
+Initial cost of both routes: 60.694393
+the insertion is feasible from part 1.
+start time: 0.31673017
+total time: 15.282311
+p1: the maximum riding time is exceeded.
 
 candidate: 1
-Initial cost of both routes: -1.3105532
-Best cost: -1.3105532
-cost (previous cost): -1.3105532
+Initial cost of both routes: 60.694393
+the insertion is feasible from part 1.
+start time: 0.31673017
+total time: 17.34356
+p1: the maximum riding time is exceeded.
+Best cost: 60.694393
+cost (previous cost): 60.694393
 delta: 0
 Routes: 1 and 0
-candidate: 12
-Initial cost of both routes: 17.083285
-New add value: 0.96215586
-New rmv value: -2.3479133
-Adding at position: 7 and 7
-
-candidate: 18
-Initial cost of both routes: 17.083285
-
-candidate: 10
-Initial cost of both routes: 17.083285
-New add value: 3.8394285
-New rmv value: -6.8978489
-Adding at position: 8 and 8
-
-candidate: 11
-Initial cost of both routes: 17.083285
-New add value: 2.6788224
-New rmv value: -10.624875
-Adding at position: 7 and 8
-
-candidate: 6
-Initial cost of both routes: 17.083285
-
-candidate: 16
-Initial cost of both routes: 17.083285
-
 candidate: 8
-Initial cost of both routes: 17.083285
+Initial cost of both routes: 30.428608
+New add value: 12.125753
+New rmv value: -23.364094
+Adding at position: 1 and 2
+
+candidate: 3
+Initial cost of both routes: 30.428608
+
+candidate: 9
+Initial cost of both routes: 30.428608
+New add value: 9.2248318
+New rmv value: -12.268384
+Adding at position: 1 and 2
 
 candidate: 14
-Initial cost of both routes: 17.083285
+Initial cost of both routes: 30.428608
 
-candidate: 2
-Initial cost of both routes: 17.083285
+candidate: 13
+Initial cost of both routes: 30.428608
 
-candidate: 17
-Initial cost of both routes: 17.083285
-
-candidate: 0
-Initial cost of both routes: 17.083285
-Best cost: 17.083285
-cost (previous cost): 17.083285
+candidate: 5
+Initial cost of both routes: 30.428608
+Best cost: 30.428608
+cost (previous cost): 30.428608
 delta: 0
 Routes: 1 and 2
-candidate: 12
-Initial cost of both routes: 9.6155863
-
-candidate: 18
-Initial cost of both routes: 9.6155863
-
-candidate: 10
-Initial cost of both routes: 9.6155863
-
-candidate: 11
-Initial cost of both routes: 9.6155863
-New add value: 0.70901996
-New rmv value: -10.624875
-Adding at position: 2 and 2
-
-candidate: 6
-Initial cost of both routes: 9.6155863
-
-candidate: 16
-Initial cost of both routes: 9.6155863
-
 candidate: 8
-Initial cost of both routes: 9.6155863
+Initial cost of both routes: 78.56429
+New add value: 3.0364193
+New rmv value: -23.364094
+Adding at position: 5 and 6
+
+candidate: 3
+Initial cost of both routes: 78.56429
+
+candidate: 9
+Initial cost of both routes: 78.56429
+New add value: 2.9259902
+New rmv value: -12.268384
+Adding at position: 6 and 8
 
 candidate: 14
-Initial cost of both routes: 9.6155863
+Initial cost of both routes: 78.56429
 
-candidate: 2
-Initial cost of both routes: 9.6155863
+candidate: 13
+Initial cost of both routes: 78.56429
 
-candidate: 17
-Initial cost of both routes: 9.6155863
+candidate: 5
+Initial cost of both routes: 78.56429
 
-candidate: 0
-Initial cost of both routes: 9.6155863
-Best cost: 9.6155863
-cost (previous cost): 9.6155863
+Previous passenger: 4 in position 4
+
+Next passenger: 0 in position 6
+
+Previous passenger: 4 in position 4
+
+Next passenger: 0 in position 6
+Best cost: 78.56429
+cost (previous cost): 78.56429
 delta: 0
 Routes: 2 and 0
-candidate: 3
-Initial cost of both routes: -1.3105532
-Best cost: -1.3105532
-cost (previous cost): -1.3105532
+candidate: 7
+Initial cost of both routes: 60.694393
+New add value: 7.5266903
+New rmv value: -23.701212
+Adding at position: 1 and 1
+
+candidate: 11
+Initial cost of both routes: 60.694393
+
+candidate: 12
+Initial cost of both routes: 60.694393
+
+candidate: 4
+Initial cost of both routes: 60.694393
+
+candidate: 10
+Initial cost of both routes: 60.694393
+New add value: 11.178822
+New rmv value: -16.390657
+Adding at position: 1 and 2
+
+candidate: 0
+Initial cost of both routes: 60.694393
+
+candidate: 16
+Initial cost of both routes: 60.694393
+
+candidate: 15
+Initial cost of both routes: 60.694393
+
+candidate: 2
+Initial cost of both routes: 60.694393
+Best cost: 60.694393
+cost (previous cost): 60.694393
 delta: 0
 Routes: 2 and 1
-candidate: 3
-Initial cost of both routes: 9.6155863
-Best cost: 9.6155863
-cost (previous cost): 9.6155863
+candidate: 7
+Initial cost of both routes: 78.56429
+New add value: 5.3652658
+New rmv value: -23.701212
+Adding at position: 4 and 7
+
+candidate: 11
+Initial cost of both routes: 78.56429
+New add value: 4.2229594
+New rmv value: -5.3764679
+Adding at position: 4 and 4
+
+candidate: 12
+Initial cost of both routes: 78.56429
+
+candidate: 4
+Initial cost of both routes: 78.56429
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 6
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 6
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 6
+
+Previous passenger: 3 in position 2
+
+Next passenger: 5 in position 6
+
+candidate: 10
+Initial cost of both routes: 78.56429
+New add value: 9.26709
+New rmv value: -16.390657
+Adding at position: 6 and 7
+
+candidate: 0
+Initial cost of both routes: 78.56429
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 4.7623941
+*****************************
+pos > last passenger
+*****************************
+
+Request: 0
+
+Position of insertion: 7
+
+Previous time: 4.9955629
+
+Service time: 4.3833333
+*****************************
+
+candidate: 16
+Initial cost of both routes: 78.56429
+
+candidate: 15
+Initial cost of both routes: 78.56429
+
+candidate: 2
+Initial cost of both routes: 78.56429
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 8.5515848
+p1: the maximum riding time is exceeded.
+Best cost: 78.56429
+cost (previous cost): 78.56429
 delta: 0
 After Relocate Inter
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 7 - 13 - 1 - 25 - 
-20 - 12 - 18 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
 
 Cost of routes: 
-Route 0: 3.0785728
-Route 1: 14.004712
-Route 2: -4.3891259
+Route 0: 6.2793553
+Route 1: 24.149252
+Route 2: 54.415038
 
-Cost of routes: 12.694159
+Cost of routes: 84.843646
 
-Relocate Time: 0.001154
+Relocate Time: 0.004032
 
 After Inter: 
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 7 - 13 - 1 - 25 - 
-20 - 12 - 18 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
 
 Cost of routes: 
-Route 0: 3.0785728
-Route 1: 14.004712
-Route 2: -4.3891259
+Route 0: 6.2793553
+Route 1: 24.149252
+Route 2: 54.415038
 
-Cost of routes: 12.694159
+Cost of routes: 84.843646
 Calling add unserved: 
 
 After Inter: 
 SARP Solution: 
-19 - 9 - 15 - 4 - 5 - 7 - 13 - 1 - 25 - 
-20 - 12 - 18 - 10 - 11 - 6 - 16 - 8 - 14 - 2 - 17 - 0 - 26 - 
-20 - 3 - 26 - 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
 
 Cost of routes: 
-Route 0: 3.0785728
-Route 1: 14.004712
-Route 2: -4.3891259
+Route 0: 6.2793553
+Route 1: 24.149252
+Route 2: 54.415038
 
-Cost of routes: 12.694159
+Cost of routes: 84.843646
+Calling Perturbation: 
+After removal: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 24 - Total route time: 2.3485301
+
+18 - 11 - 0 - 16 - 2 - 24 - Total route time: 5.2827328
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 23.02325
+Route 2: 3.9422596
+
+Cost of routes: 33.244865
+After first round trial: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 24 - Total route time: 2.3485301
+
+18 - 11 - 0 - 16 - 2 - 24 - Total route time: 5.2827328
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 23.02325
+Route 2: 3.9422596
+
+Cost of routes: 33.244865
+
+Testing insertion of: 4 at route 2 in position 2
+
+Testing insertion of: 4 at route 2 in position 1
+New addition: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 24 - Total route time: 2.3485301
+
+18 - 4 - 11 - 0 - 16 - 2 - 24 - Total route time: 7.8753871
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 23.02325
+Route 2: 6.4847083
+
+Cost of routes: 35.787314
+After first round trial: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 24 - Total route time: 2.3485301
+
+18 - 4 - 11 - 0 - 16 - 2 - 24 - Total route time: 7.8753871
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 23.02325
+Route 2: 6.4847083
+
+Cost of routes: 35.787314
+
+Testing insertion of: 5 at route 2 in position 3
+
+Previous passenger: 4 in position 1
+
+Next passenger: 0 in position 3
+
+Testing insertion of: 5 at route 2 in position 2
+
+Previous passenger: 4 in position 1
+
+Next passenger: 0 in position 3
+
+Testing insertion of: 5 at route 1 in position 6
+the insertion is feasible from part 1.
+start time: 0.16794154
+total time: 4.3657103
+*****************************
+pos > last passenger
+*****************************
+
+Request: 5
+
+Position of insertion: 6
+
+Previous time: 2.7735206
+
+Service time: 4.25
+*****************************
+New addition: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 11 - 0 - 16 - 2 - 24 - Total route time: 7.8753871
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 24.149252
+Route 2: 6.4847083
+
+Cost of routes: 36.913316
+
+-----x-----
+Solution with perturbation: SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 11 - 0 - 16 - 2 - 24 - Total route time: 7.8753871
+
+
+
+Solution perturbation Cost: 
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 24.149252
+Route 2: 6.4847083
+
+Cost of routes: 36.913316
+
+-----x-----
+After add unserved
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 8 - 3 - 9 - 14 - 13 - 5 - 24 - Total route time: 4.3657103
+
+18 - 4 - 7 - 11 - 12 - 0 - 16 - 2 - 24 - Total route time: 7.8753871
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 24.149252
+Route 2: 23.115887
+
+Cost of routes: 53.544494
+
+Add Unserved Time: 0.004102
+Calling relocate intra: 
+After Relocate all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 4 - 11 - 12 - 0 - 16 - 2 - 24 - Total route time: 8.0635826
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 26.157095
+
+Cost of routes: 60.007645
+
+RelocateK Time: 0.019513
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 4 - 11 - 12 - 0 - 16 - 2 - 24 - Total route time: 8.0635826
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 26.157095
+
+Cost of routes: 60.007645
+Calling swap: 
+After Swap all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 4 - 12 - 0 - 16 - 2 - 24 - Total route time: 8.3177067
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 28.866767
+
+Cost of routes: 62.717317
+
+Swap Time: 0.01967
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 4 - 12 - 0 - 16 - 2 - 24 - Total route time: 8.3177067
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 28.866767
+
+Cost of routes: 62.717317
+Calling relocate intra: 
+After Relocate all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 12 - 11 - 4 - 0 - 16 - 2 - 24 - Total route time: 8.817466
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 30.203708
+
+Cost of routes: 64.054257
+
+RelocateK Time: 0.019828
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 12 - 11 - 4 - 0 - 16 - 2 - 24 - Total route time: 8.817466
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 30.203708
+
+Cost of routes: 64.054257
+Calling swap: 
+After Swap all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 0 - 16 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 38.024382
+
+Cost of routes: 71.874931
+
+Swap Time: 0.019991
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 0 - 16 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 38.024382
+
+Cost of routes: 71.874931
+Calling relocate intra: 
+After Relocate all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 0 - 16 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 38.024382
+
+Cost of routes: 71.874931
+
+RelocateK Time: 0.020151
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 0 - 16 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 38.024382
+
+Cost of routes: 71.874931
+Calling swap: 
+After Swap all
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 0 - 16 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 38.024382
+
+Cost of routes: 71.874931
+
+Swap Time: 0.020309
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 0 - 16 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 38.024382
+
+Cost of routes: 71.874931
+Calling relocate inter: 
+Routes: 0 and 1
+candidate: 6
+Initial cost of both routes: 33.85055
+the insertion is feasible from part 1.
+start time: -0.042837117
+total time: 15.641879
+p1: the maximum riding time is exceeded.
+
+candidate: 1
+Initial cost of both routes: 33.85055
+the insertion is feasible from part 1.
+start time: -0.042837117
+total time: 17.703127
+p1: the maximum riding time is exceeded.
+Best cost: 33.85055
+cost (previous cost): 33.85055
+delta: 0
+Routes: 0 and 2
+candidate: 6
+Initial cost of both routes: 44.303737
+the insertion is feasible from part 1.
+start time: 0.31673017
+total time: 15.282311
+p1: the maximum riding time is exceeded.
+
+candidate: 1
+Initial cost of both routes: 44.303737
+the insertion is feasible from part 1.
+start time: 0.31673017
+total time: 17.34356
+p1: the maximum riding time is exceeded.
+Best cost: 44.303737
+cost (previous cost): 44.303737
+delta: 0
+Routes: 1 and 0
+candidate: 9
+Initial cost of both routes: 33.85055
+New add value: 9.2248318
+New rmv value: -15.690326
+Adding at position: 1 and 2
+
+candidate: 8
+Initial cost of both routes: 33.85055
+New add value: 12.125753
+New rmv value: -23.442595
+Adding at position: 1 and 2
+
+candidate: 3
+Initial cost of both routes: 33.85055
+
+candidate: 14
+Initial cost of both routes: 33.85055
+
+candidate: 13
+Initial cost of both routes: 33.85055
+
+candidate: 5
+Initial cost of both routes: 33.85055
+Best cost: 33.85055
+cost (previous cost): 33.85055
+delta: 0
+Routes: 1 and 2
+candidate: 9
+Initial cost of both routes: 65.595576
+New add value: 4.3907781
+New rmv value: -15.690326
+Adding at position: 5 and 7
+
+candidate: 8
+Initial cost of both routes: 65.595576
+New add value: 3.0597079
+New rmv value: -23.442595
+Adding at position: 5 and 7
+
+candidate: 3
+Initial cost of both routes: 65.595576
+
+candidate: 14
+Initial cost of both routes: 65.595576
+
+candidate: 13
+Initial cost of both routes: 65.595576
+
+candidate: 5
+Initial cost of both routes: 65.595576
+
+Previous passenger: 4 in position 4
+
+Next passenger: 0 in position 5
+Best cost: 65.595576
+cost (previous cost): 65.595576
+delta: 0
+Routes: 2 and 0
+candidate: 7
+Initial cost of both routes: 44.303737
+New add value: 7.5266903
+New rmv value: -23.701212
+Adding at position: 1 and 1
+
+candidate: 11
+Initial cost of both routes: 44.303737
+
+candidate: 12
+Initial cost of both routes: 44.303737
+
+candidate: 4
+Initial cost of both routes: 44.303737
+
+candidate: 0
+Initial cost of both routes: 44.303737
+
+candidate: 16
+Initial cost of both routes: 44.303737
+
+candidate: 2
+Initial cost of both routes: 44.303737
+Best cost: 44.303737
+cost (previous cost): 44.303737
+delta: 0
+Routes: 2 and 1
+candidate: 7
+Initial cost of both routes: 65.595576
+New add value: 4.0019126
+New rmv value: -23.701212
+Adding at position: 7 and 7
+
+candidate: 11
+Initial cost of both routes: 65.595576
+
+candidate: 12
+Initial cost of both routes: 65.595576
+
+candidate: 4
+Initial cost of both routes: 65.595576
+
+Previous passenger: 3 in position 3
+
+Next passenger: 5 in position 6
+
+Previous passenger: 3 in position 3
+
+Next passenger: 5 in position 6
+
+Previous passenger: 3 in position 3
+
+Next passenger: 5 in position 6
+
+candidate: 0
+Initial cost of both routes: 65.595576
+the insertion is feasible from part 1.
+start time: -0.042837117
+total time: 4.9731728
+*****************************
+pos > last passenger
+*****************************
+
+Request: 0
+
+Position of insertion: 7
+
+Previous time: 4.9955629
+
+Service time: 4.3833333
+*****************************
+
+candidate: 16
+Initial cost of both routes: 65.595576
+
+candidate: 2
+Initial cost of both routes: 65.595576
+the insertion is feasible from part 1.
+start time: -0.042837117
+total time: 8.7623634
+p1: the maximum riding time is exceeded.
+Best cost: 65.595576
+cost (previous cost): 65.595576
+delta: 0
+After Relocate Inter
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 0 - 16 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 38.024382
+
+Cost of routes: 71.874931
+
+Relocate Time: 0.004882
+
+After Inter: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 0 - 16 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 38.024382
+
+Cost of routes: 71.874931
+Calling add unserved: 
+After add unserved
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 54.415038
+
+Cost of routes: 88.265588
+
+Add Unserved Time: 0.004975
+
+After Inter: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 54.415038
+
+Cost of routes: 88.265588
+Calling relocate inter: 
+Routes: 0 and 1
+candidate: 6
+Initial cost of both routes: 33.85055
+the insertion is feasible from part 1.
+start time: -0.042837117
+total time: 15.641879
+p1: the maximum riding time is exceeded.
+
+candidate: 1
+Initial cost of both routes: 33.85055
+the insertion is feasible from part 1.
+start time: -0.042837117
+total time: 17.703127
+p1: the maximum riding time is exceeded.
+Best cost: 33.85055
+cost (previous cost): 33.85055
+delta: 0
+Routes: 0 and 2
+candidate: 6
+Initial cost of both routes: 60.694393
+the insertion is feasible from part 1.
+start time: 0.31673017
+total time: 15.282311
+p1: the maximum riding time is exceeded.
+
+candidate: 1
+Initial cost of both routes: 60.694393
+the insertion is feasible from part 1.
+start time: 0.31673017
+total time: 17.34356
+p1: the maximum riding time is exceeded.
+Best cost: 60.694393
+cost (previous cost): 60.694393
+delta: 0
+Routes: 1 and 0
+candidate: 9
+Initial cost of both routes: 33.85055
+New add value: 9.2248318
+New rmv value: -15.690326
+Adding at position: 1 and 2
+
+candidate: 8
+Initial cost of both routes: 33.85055
+New add value: 12.125753
+New rmv value: -23.442595
+Adding at position: 1 and 2
+
+candidate: 3
+Initial cost of both routes: 33.85055
+
+candidate: 14
+Initial cost of both routes: 33.85055
+
+candidate: 13
+Initial cost of both routes: 33.85055
+
+candidate: 5
+Initial cost of both routes: 33.85055
+Best cost: 33.85055
+cost (previous cost): 33.85055
+delta: 0
+Routes: 1 and 2
+candidate: 9
+Initial cost of both routes: 81.986232
+New add value: 2.9259902
+New rmv value: -15.690326
+Adding at position: 6 and 8
+
+candidate: 8
+Initial cost of both routes: 81.986232
+New add value: 3.0364193
+New rmv value: -23.442595
+Adding at position: 5 and 6
+
+candidate: 3
+Initial cost of both routes: 81.986232
+
+candidate: 14
+Initial cost of both routes: 81.986232
+
+candidate: 13
+Initial cost of both routes: 81.986232
+
+candidate: 5
+Initial cost of both routes: 81.986232
+
+Previous passenger: 4 in position 4
+
+Next passenger: 0 in position 6
+
+Previous passenger: 4 in position 4
+
+Next passenger: 0 in position 6
+Best cost: 81.986232
+cost (previous cost): 81.986232
+delta: 0
+Routes: 2 and 0
+candidate: 7
+Initial cost of both routes: 60.694393
+New add value: 7.5266903
+New rmv value: -23.701212
+Adding at position: 1 and 1
+
+candidate: 11
+Initial cost of both routes: 60.694393
+
+candidate: 12
+Initial cost of both routes: 60.694393
+
+candidate: 4
+Initial cost of both routes: 60.694393
+
+candidate: 10
+Initial cost of both routes: 60.694393
+New add value: 11.178822
+New rmv value: -16.390657
+Adding at position: 1 and 2
+
+candidate: 0
+Initial cost of both routes: 60.694393
+
+candidate: 16
+Initial cost of both routes: 60.694393
+
+candidate: 15
+Initial cost of both routes: 60.694393
+
+candidate: 2
+Initial cost of both routes: 60.694393
+Best cost: 60.694393
+cost (previous cost): 60.694393
+delta: 0
+Routes: 2 and 1
+candidate: 7
+Initial cost of both routes: 81.986232
+New add value: 4.0019126
+New rmv value: -23.701212
+Adding at position: 7 and 7
+
+candidate: 11
+Initial cost of both routes: 81.986232
+
+candidate: 12
+Initial cost of both routes: 81.986232
+
+candidate: 4
+Initial cost of both routes: 81.986232
+
+Previous passenger: 3 in position 3
+
+Next passenger: 5 in position 6
+
+Previous passenger: 3 in position 3
+
+Next passenger: 5 in position 6
+
+Previous passenger: 3 in position 3
+
+Next passenger: 5 in position 6
+
+candidate: 10
+Initial cost of both routes: 81.986232
+New add value: 9.26709
+New rmv value: -16.390657
+Adding at position: 6 and 7
+
+candidate: 0
+Initial cost of both routes: 81.986232
+the insertion is feasible from part 1.
+start time: -0.042837117
+total time: 4.9731728
+*****************************
+pos > last passenger
+*****************************
+
+Request: 0
+
+Position of insertion: 7
+
+Previous time: 4.9955629
+
+Service time: 4.3833333
+*****************************
+
+candidate: 16
+Initial cost of both routes: 81.986232
+
+candidate: 15
+Initial cost of both routes: 81.986232
+
+candidate: 2
+Initial cost of both routes: 81.986232
+the insertion is feasible from part 1.
+start time: -0.042837117
+total time: 8.7623634
+p1: the maximum riding time is exceeded.
+Best cost: 81.986232
+cost (previous cost): 81.986232
+delta: 0
+After Relocate Inter
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 54.415038
+
+Cost of routes: 88.265588
+
+Relocate Time: 0.005636
+
+After Inter: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 54.415038
+
+Cost of routes: 88.265588
+Calling add unserved: 
+
+After Inter: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 3 - 14 - 13 - 5 - 24 - Total route time: 4.576489
+
+18 - 7 - 11 - 12 - 4 - 10 - 0 - 16 - 15 - 2 - 24 - Total route time: 8.4027962
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 27.571194
+Route 2: 54.415038
+
+Cost of routes: 88.265588
+Calling Perturbation: 
+After removal: 
+SARP Solution: 
+17 - 6 - 1 - 23 - Total route time: 2.8229239
+
+18 - 9 - 8 - 14 - 13 - 24 - Total route time: 1.9871636
+
+18 - 11 - 4 - 0 - 16 - 2 - 24 - Total route time: 8.1667205
+
+
+Cost of routes: 
+Route 0: 6.2793553
+Route 1: 13.63243
+Route 2: 14.32317
+
+Cost of routes: 34.234955

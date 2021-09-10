@@ -81,14 +81,17 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
 
         // bestSol.addunserved(inst, nodeVec, Mdist, problem);
         solution = bestSol;
+        cout << "Calling Perturbation: " << endl;
         Perturbation(inst, nodeVec, Mdist, problem);
-        // cout << "\n-----x-----" << "\nSolution with perturbation: ";
-        // solution.printSol(inst);
+        cout << "\n-----x-----" << "\nSolution with perturbation: ";
+        solution.printSol(inst);
 
-        // cout <<"\nSolution perturbation Cost: " << endl;
+        cout <<"\nSolution perturbation Cost: " << endl;
         
-        // solution.printCosts();
-        // cout << "\n-----x-----" << endl;
+        solution.printCosts();
+        cout << "\n-----x-----" << endl;
+
+        solution.addunserved(inst, nodeVec, Mdist, problem);
 
 		iterILS++;
 	}
@@ -289,7 +292,6 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 	double end;
 
 	double elapTm;
-
 	for (int i = 0; i < 2; i++) {
 		nbrList.push_back(i);
 	}
@@ -339,6 +341,33 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
         cout << "\nAfter Inter: " << endl;
         solution.printSol(inst);
         solution.printCosts();
+
+        int solSize = solution.getRoutesSize();
+        sarpRoute sroute(inst, 0);
+        pair <int, int> temppair;
+        pair <nodeStat, int> temppass;
+
+        // for (int rid = 0; rid < solSize; rid++){
+        //     sroute = solution.getRoute(rid);
+        //     cout << "Route: " << rid << endl << endl;
+        //     cout << "First passenger: " << sroute.fPass() << endl;
+        //     cout << "Last passenger: " << sroute.lPass() << endl;
+        //     cout << "Start time: " << sroute.startTime() << endl;
+        //     cout << "End time: " << sroute.endTime() << endl;
+        //     cout << "Passengers: " << endl;
+
+        //     for (int nid = 0; nid < sroute.getPassPosSize(); nid++){
+        //         temppass = sroute.getPassReq(nid);
+        //         cout << nid << ": " << temppass.first.index << " - " << temppass.second << endl; 
+        //     }
+        //     cout << "Parcels: " << endl;
+
+        //     for (int nid = 0; nid < sroute.getPaPdvecSize(); nid++){
+        //         temppair = sroute.getPDReq(nid);
+        //         cout << nid << ": " << temppair.first << " - " << temppair.second << endl; 
+        //     }
+        //     cout << endl;           
+        // }
         // getchar();
         
 		if (newCost > bestCost) {
@@ -433,14 +462,14 @@ void sarpILS::relocate(instanceStat *inst, vector<nodeStat> &nodeVec,double **Md
         // cout << "\nProfit: " << profit << endl;
 
         if(candidate < inst->n){ //passenger
-            // cout << "\nRelocate candidate passenger: " << candidate << endl;
+            cout << "\nRelocate candidate passenger: " << candidate << endl;
             // getchar();
             sroute2.insert(inst, Mdist, candidate, bestPairPos.first, profit);
             sroute1.erase(inst, Mdist, bestCand, profit);
         }
         else{
 
-            // cout << "Relocate candidate parcel: " << candidate << endl;
+            cout << "Relocate candidate parcel: " << candidate << endl;
             // getchar();
             int dlpos, dl;
             dlpos = sroute1.getDL(candidate-inst->n);
@@ -457,17 +486,17 @@ void sarpILS::relocate(instanceStat *inst, vector<nodeStat> &nodeVec,double **Md
 
         }
 
-        // cout << "First changed route: " << endl;
-        // for (int a = 0; a < sroute1.getNodesSize(); a++){
-        //     cout << sroute1.getReq(a) << " - ";
-        // }
-        // cout << endl;
+        cout << "First changed route: " << endl;
+        for (int a = 0; a < sroute1.getNodesSize(); a++){
+            cout << sroute1.getReq(a) << " - ";
+        }
+        cout << endl;
 
-        // cout << "Second changed route: " << endl;
-        // for (int a = 0; a < sroute2.getNodesSize(); a++){
-        //     cout << sroute2.getReq(a) << " - ";
-        // }
-        // cout << endl;
+        cout << "Second changed route: " << endl;
+        for (int a = 0; a < sroute2.getNodesSize(); a++){
+            cout << sroute2.getReq(a) << " - ";
+        }
+        cout << endl;
 
         // cout << "From route: " << bestRoutePair.first << " to " << bestRoutePair.second << endl;
         // cout << "With delta: " << bestDelta << endl;
@@ -522,25 +551,18 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
         avlParc.push_back(i);
     }
 
-    // for (int i = 0; i < outcust; i++){
-    //     req = rand() % avlPas.size();
-    //     vecoutcust.push_back(avlPas[req]);
-    //     avlPas.erase(avlPas.begin()+req);
-    // }
+    for (int i = 0; i < outcust; i++){
+        req = rand() % avlPas.size();
+        vecoutcust.push_back(avlPas[req]);
+        avlPas.erase(avlPas.begin()+req);
+    }
 
-
-
-    // for (int i = 0; i < outparc; i++){
-    //     req = rand() % avlParc.size();
-    //     vecoutparc.push_back(avlParc[req]);
-    //     solution.addtounserved(avlParc[req]);
-    //     avlParc.erase(avlParc.begin()+req);
-    // }
-
-    vecoutparc.push_back(9);
-    vecoutparc.push_back(10);
-    vecoutcust.push_back(3);
-    vecoutcust.push_back(6);
+    for (int i = 0; i < outparc; i++){
+        req = rand() % avlParc.size();
+        vecoutparc.push_back(avlParc[req]);
+        solution.addtounserved(avlParc[req]);
+        avlParc.erase(avlParc.begin()+req);
+    }
 
     // cout << "Removing passengers: " << endl;
 
@@ -548,7 +570,7 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     //     cout << vecoutcust[i] << " ";
     // }
     // cout << endl;
-    // getchar();
+    // // getchar();
     // cout << "\nRemoving parcels: " << endl;
 
     // for (int i = 0; i < vecoutparc.size(); i++){
@@ -559,8 +581,10 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
 
     //Erasing passengers
     bool found;
+    int candidate;
     for (int a = 0; a < vecoutcust.size(); a++){
         found = 0;
+        candidate = vecoutcust[a];
         for (int rid = 0; rid < solSize; rid++){
             sroute = solution.getRoute(rid);
             sizeRoute = sroute.getNodesSize();
@@ -568,7 +592,7 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
             for(int c = 0; c < sizeRoute; c++){
                 int pass = sroute.getReq(c);
 
-                if (vecoutcust[a] == pass){
+                if (candidate == pass){
                     profit = sroute.getProfit(nodeVec, c);
                     sroute.erase(inst, Mdist, c, profit);
                     found = 1;
@@ -633,6 +657,11 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
             }
         }
     }
+    cout << "After removal: " << endl;
+
+    solution.printSol(inst);
+    solution.printCosts();
+    getchar();
 
     // Adding back passengers
     int randRoute;
@@ -640,11 +669,13 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     bool emptyAdd;
     int randPos;
     int request;
+    int count; 
+
     solSize = solution.getRoutesSize();
 
     for (int a = 0; a < vecoutcust.size(); a++){
         request = vecoutcust[a];
-      
+        count = 0;
         // cout << "Request: " << request << endl;
         // getchar();
         inserted = 0;
@@ -652,9 +683,9 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
         for (int rid = 0; rid < solSize; rid++){
             sroute = solution.getRoute(rid);
             if(sroute.getNodesSize() < 3){
-                sroute.fInsertion(inst, nodeVec, Mdist, request);
-                inserted = 1;
+                inserted = sroute.fInsertion(inst, nodeVec, Mdist, request);
                 randRoute = rid;
+                randPos = 1;
                 break;
             }
             else if (sroute.getPassPosSize() <= 0){
@@ -664,20 +695,81 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
                 break;
             }
         }
+
+        cout << "After first round trial: " << endl;
+
+        solution.printSol(inst);
+        solution.printCosts();
+        getchar();
+
+        vector<int> inspositions;
+        vector<int> routes;
+
+        if(!inserted){
+            routes.clear();
+            for (int rid = 0; rid < solSize; rid++){
+                routes.push_back(rid);
+            }
+        }
+
         while(!inserted){
-            randRoute = rand() % solSize;
+        // for (int )
+            int routeNumber, posNumber;
+
+            inspositions.clear();
+            
+            routeNumber = rand() % routes.size();
+
+            randRoute = routes[routeNumber];
+
             sroute = solution.getRoute(randRoute);
             sizeRoute = sroute.getNodesSize();
 
-            randPos =  1 + rand() % (sizeRoute-2);
+            sroute.availablePos(inst, nodeVec, request, problem, inspositions);
 
-            // cout << "\nTesting insertion of: " << request << " at route " << randRoute
-            // << " in position " << randPos << endl;
-            // getchar();
-            inserted = sroute.testInsertion(inst, nodeVec, Mdist, randPos, request);
-            // cout << "Inserted: " << inserted << endl;
-            // getchar();
+            if (inspositions.size() < 1){
+                routes.erase(routes.begin()+routeNumber);
+            }
+            else{
+                while(!inspositions.empty()){
+
+                    // /////////////////////////////////////////////
+                    // cout << "BEFORE Available positions for insertion of candidate " << request << endl;
+                    // for(int i = 0; i < inspositions.size(); i++){
+                    //     cout << "Insertion positions: " << inspositions[i] << endl;
+                    // }
+                    // ////////////////////////////////////////////
+                    posNumber =  rand() % inspositions.size();
+                    randPos = inspositions[posNumber];
+
+                    cout << "\nTesting insertion of: " << request << " at route " << randRoute
+                    << " in position " << randPos << endl;
+                    getchar();
+
+                    inserted = sroute.testInsertion(inst, nodeVec, Mdist, randPos, request);
+
+                    // cout << "Inserted: " << inserted << endl;
+                    // getchar();
+
+                    // count++;
+
+                    if (!inserted){
+                        inspositions.erase(inspositions.begin()+posNumber);
+                    }
+                    else{
+                        break;
+                    }
+                    /////////////////////////////////////////////
+                    // cout << "AFTER Available positions for insertion of candidate " << request << endl;
+                    // for(int i = 0; i < inspositions.size(); i++){
+                    //     cout << "Insertion positions: " << inspositions[i] << endl;
+                    // }
+                    ////////////////////////////////////////////
+
+                }
+            }
         }
+        // }
         profit = nodeVec[request].profit;
 
         sroute.insert(inst, Mdist,request, randPos, profit);
@@ -687,9 +779,126 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
         solution.updateRoutes(&sroute, randRoute);
         solution.updateCost();
 
-        // cout << "New addition: " << endl;
+        cout << "New addition: " << endl;
 
-        // solution.printSol(inst);
-        // solution.printCosts();
-    }    
+        solution.printSol(inst);
+        solution.printCosts();
+    }
+
+
+
+
+
+
+
+    // vector<int> inspositions;
+    // pair <int, double> cheapestpair;
+
+    // while (!vecoutcust.empty()){
+    //     inserted = 0;
+
+    //     for (int cand = 0; cand < vecoutcust.size(); cand++){
+    //         int candidate = vecoutcust[cand];
+    //         // cout << "candidate: "<< candidate  << endl;
+    //         // getchar();
+    //         int best_route = -1;
+    //         int sol_size = solution.getRoutesSize();
+    //         double best_cost = -100000;
+    //         inserted = 0;
+    //         bool feastime = 0;
+    //         int best_pos = -1;
+
+    //         for (int rid = 0; rid < sol_size; rid++){
+    //             cheapestpair.first = -1;
+    //             cheapestpair.second = -100000;
+    //             sroute = solution.getRoute(rid);
+    //             // cout << "Current route: " << endl;
+    //             // for (auto a: sroute){
+    //             //     cout << a << " - ";
+    //             // }
+    //             // cout << endl;
+    //             // getchar();
+    //             inspositions.clear();
+    //             sroute.availablePos(inst, nodeVec, candidate, problem, inspositions);
+                
+    //             /////////////////////////////////////////////
+    //             // cout << "Available positions for insertion of candidate " << candidate << endl;
+    //             // for(int i = 0; i < inspositions.size(); i++){
+    //             //     cout << "Insertion positions: " << inspositions[i] << endl;
+    //             // }
+    //             ////////////////////////////////////////////
+                
+    //             cheapestpair = sroute.cheapestInsertion(inst, nodeVec, Mdist, candidate, inspositions);
+    //             // cout << "Cheapest pair: " << cheapestpair.first << " - " << cheapestpair.second << endl;
+
+    //             if (cheapestpair.second > -100000 && cheapestpair.second > best_cost){
+    //                 best_cost = cheapestpair.second;
+    //                 best_route = rid;
+    //                 best_pos = cheapestpair.first;
+    //                 inserted = 1;
+    //             }
+    //         }
+
+    //         // cout << "+++++++++++++++++++++++++++++++++++++++++" << endl;
+    //         // cout << "Request: " << candidate << endl;
+    //         // cout << "Best cost: " << best_cost << endl;
+    //         // cout << "Best route: " << best_route << endl;
+    //         // cout << "Best position: " << best_pos<< endl;
+    //         // cout << "+++++++++++++++++++++++++++++++++++++++++" << endl;
+    //         // getchar();
+
+    //         if (best_cost == -100000){
+    //             int vehicle = solution.getvehicle();
+    //             sarpRoute newroute(inst, vehicle);
+    //             feastime = newroute.fInsertion(inst, nodeVec, Mdist, candidate);
+    //             newroute.calcCost(inst, nodeVec, Mdist);
+    //             newroute.insert(inst, Mdist, candidate, 1, nodeVec[candidate].profit);
+    //             newroute.updatePass(inst, nodeVec);
+    //             newroute.updateLoad(inst, nodeVec);
+    //             newroute.updateTimes(inst, nodeVec, Mdist);
+    //             solution.addRoute(&newroute);
+                
+
+    //             vecoutcust.erase(vecoutcust.begin() + cand);
+
+
+    //             solution.updateVehicles();
+    //             solution.updateCost();
+    //             inserted = 1;
+    //             break;
+    //         }
+
+    //         else{
+    //             sroute = solution.getRoute(best_route);
+    //             sroute.insert(inst, Mdist, candidate, best_pos, nodeVec[candidate].profit);
+    //             sroute.updatePass(inst, nodeVec);
+    //             sroute.updateLoad(inst, nodeVec);
+    //             sroute.updateTimes(inst, nodeVec, Mdist);
+    //             solution.updateRoutes(&sroute, best_route);
+    //             solution.updateCost();
+                
+    //             inserted = 1;
+    //             // cout << "*****Route with insertion: " << endl;
+    //             // for (auto a: sroute){
+    //             //     cout << a << " - ";
+    //             // }
+    //             // cout << endl << endl;
+    //             vecoutcust.erase(vecoutcust.begin() + cand);
+
+    //             break;
+    //         }
+    //     }
+
+    //     // cout << "List of candidates so far: "  << endl;
+    //     // if (CLpass.size() > 0){
+    //     //     for (int c = 0; c < CLpass.size(); c++){
+    //     //         cout << CLpass[c] << " ";
+    //     //     }
+    //     //     cout << endl;
+    //     //     getchar();
+    //     // }
+    //     // else{        
+    //     //     cout << "The list is empty."  << endl;
+    //     // }
+    // }    
 }

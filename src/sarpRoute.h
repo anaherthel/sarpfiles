@@ -46,11 +46,16 @@ public:
     double endTime() const { return endtime; };
     int fPass() const { return firstPass; };
     int lPass() const { return lastPass; };
+    
+    void printTotalTime();
 
     inline int getNodesSize() { return nodes_.size(); };
     inline int getLoadSize() { return loadofroute.size(); };
     inline int getPassPosSize() { return passandpos.size(); };
-    
+    inline int getPaPdvecSize() { return pdvec.size(); };
+
+    pair <nodeStat, int> getPassReq(int i) { return passandpos[i]; } ;
+    pair <int, int> getPDReq(int i) { return pdvec[i]; };
 
     int firstpos() const { return nodes_[1]; };
     int lastpos() const { return nodes_[nodes_.size()-2]; };
@@ -67,6 +72,8 @@ public:
     double getProfit (vector<nodeStat> &nodeVec, int pos) { return nodeVec[nodes_[pos]].profit; };
     
     void updateCost(double delta) { cost_ += delta; }
+
+    void clearPDVec();
 
     vector<int>::iterator begin() { return nodes_.begin(); };
     vector<int>::iterator end() { return nodes_.end(); };

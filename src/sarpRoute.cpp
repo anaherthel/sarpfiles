@@ -363,6 +363,11 @@ bool sarpRoute::testRelocate(instanceStat *inst, vector<nodeStat> &nodeVec,
     // getchar();
 
     if (req1 < inst->n){
+        //fix calculating max route time
+
+        if (pos2 <= firstPassPos){
+
+        }
         prevPass = nodes_[inter1.first];
         prevTime = nodeVec[prevPass].e;
 
@@ -585,14 +590,21 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
 
     }
     else if (position > lastPassPos){
-        startingLoop = position;
-        postTime = nodeVec[request].e + nodeVec[request].delta + ((Mdist[request][nodes_[position]])/inst->vmed);
 
-        if (nodes_[position] < inst->n + 2*inst->m + inst->K){
+        if (position < nodes_.size()-1){
+            startingLoop = position;
+            postTime = nodeVec[request].e;
+
             for(int i = startingLoop; i < nodes_.size()-1; i++){
                 postTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) + nodeVec[nodes_[i]].delta;
             } 
-            postTime += nodeVec[nodes_[nodes_.size()-1]].delta;
+
+            postTime += nodeVec[request].delta +
+                    ((Mdist[request][nodes_[position]])/inst->vmed);
+
+        }
+        else{
+            postTime = nodeVec[request].e + nodeVec[request].delta;
         }
 
         // cout << "*****************************" << endl;
@@ -607,17 +619,20 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
         if (postTime <= inst->T){
             feasible = 1;
 
-            totalTime = postTime - starttime;
-            // cout << "the insertion is feasible from part 1." << endl;
-
+            totalTime = postTime - this->starttime;
+            cout << "the insertion is feasible from part 1." << endl;
+            
+            cout << "start time: " <<  this->starttime << endl;
+            cout << "total time: " << totalTime << endl;
             if (totalTime > inst->maxTime){
                 feasible = 0;
-                // cout << "p1: the maximum riding time is exceeded." << endl;
+                cout << "p1: the maximum riding time is exceeded." << endl;
                 // getchar();
                 return feasible;
             }
         }
         else{
+            cout << "Not from posttime" << endl;
             feasible = 0;
             return feasible;
         }
@@ -629,15 +644,15 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
             prevTime += ((Mdist[nodes_[position-1]][request])/inst->vmed) 
                       - ((Mdist[nodes_[position-1]][nodes_[position]])/inst->vmed);
             
-            // cout << "*****************************" << endl;
-            // cout << "pos > last passenger" << endl; 
-            // cout << "*****************************" << endl;
-            // cout << "\nRequest: " << request << endl;
-            // cout << "\nPosition of insertion: " << position << endl;
-            // cout << "\nPrevious time: " << prevTime << endl;
-            // cout << "\nService time: " << nodeVec[request].e << endl;
-            // cout << "*****************************" << endl;
-            // getchar();
+            cout << "*****************************" << endl;
+            cout << "pos > last passenger" << endl; 
+            cout << "*****************************" << endl;
+            cout << "\nRequest: " << request << endl;
+            cout << "\nPosition of insertion: " << position << endl;
+            cout << "\nPrevious time: " << prevTime << endl;
+            cout << "\nService time: " << nodeVec[request].e << endl;
+            cout << "*****************************" << endl;
+            getchar();
 
             if (prevTime <= nodeVec[request].e){
                 feasible = 1;
@@ -669,10 +684,6 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
                 }
             }
         }
-        
-            // cout << "\nPrevious passenger: " << prevPass << " in position " << prevPasspos << endl;
-            // cout << "\nNext passenger: " << nextPass << " in position " << nextPasspos << endl;
-            // getchar();
 
         else{
             prevPass = nodes_[0];
@@ -680,8 +691,10 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
             nextPass = nodes_.back();
             nextPasspos = nodes_.size()-1;
         }
-
-        if (nodeVec[request].e < nodeVec[prevPass].e){
+        cout << "\nPrevious passenger: " << prevPass << " in position " << prevPasspos << endl;
+        cout << "\nNext passenger: " << nextPass << " in position " << nextPasspos << endl;
+        // getchar();
+        if (nodeVec[request].e <= nodeVec[prevPass].e){
             feasible = 0;
             return feasible;
         }
@@ -700,12 +713,13 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
         // cout << "*****************************" << endl;
         // getchar();
 
-        if (prevTime <= nodeVec[nextPass].e){
+        if (prevTime <= nodeVec[request].e){
             feasible = 1;
             // cout << "the insertion is feasible from prevtime." << endl;
         }
 
         else{
+            // cout << "Not feasible" << endl;
             feasible = 0;
             return feasible;
         }
@@ -713,12 +727,16 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
         if (feasible){
             postTime = nodeVec[request].e;
 
-            postTime += nodeVec[request].delta + ((Mdist[request][nodes_[position]])/inst->vmed);
-        
-            for(int i = position; i < nextPasspos; i++){
-                postTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) + nodeVec[nodes_[i]].delta;
+            if (position != nextPasspos){
+                for(int i = position; i < nextPasspos; i++){
+                    postTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) + nodeVec[nodes_[i]].delta;
+                }              
+                
             }
-            
+
+            postTime += nodeVec[request].delta 
+                    + ((Mdist[request][nodes_[position]])/inst->vmed);
+
             if (nextPass < inst->n){
                 if (postTime <= nodeVec[nextPass].e){
                     feasible = 1;
@@ -739,24 +757,24 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
                     return feasible;
                 }
             }
-            else{
-                tstart = nodeVec[request].e - prevTime;
+            // else{
+            //     tstart = nodeVec[request].e - prevTime;
 
-                if (postTime <= inst->T){
-                    feasible = 1;
+            //     if (postTime <= inst->T){
+            //         feasible = 1;
 
-                    totalTime = postTime - tstart;
+            //         totalTime = postTime - tstart;
 
-                    if (totalTime > inst->maxTime){
-                        feasible = 0;
-                        return feasible;
-                    }
-                }
-                else{
-                    feasible = 0;
-                    return feasible;
-                }
-            }
+            //         if (totalTime > inst->maxTime){
+            //             feasible = 0;
+            //             return feasible;
+            //         }
+            //     }
+            //     else{
+            //         feasible = 0;
+            //         return feasible;
+            //     }
+            // }
         }
     }
     return feasible;
@@ -825,6 +843,16 @@ bool sarpRoute::testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVe
 
         if (prevTime <= nodeVec[firstPass].e){
             feasible = 1;
+
+            tstart = nodeVec[firstPass].e - prevTime;
+            totalTime = this->endtime - tstart;
+
+            if (totalTime > inst->maxTime){
+                feasible = 0;
+                // cout << "p1: the maximum riding time is exceeded." << endl;
+                return feasible;
+            }
+
             // cout << "the insertion of both is feasible if both < first pass or if only pos1 < first pass" << endl;
         }
         else{
@@ -843,7 +871,18 @@ bool sarpRoute::testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVe
             
             if (postTime < inst->T){
                 feasible = 1;
-                // cout << "the insertion of both is feasible if dl > lastpasspos." << endl;
+
+                tstart = nodeVec[firstPass].e - prevTime;
+                tend = nodeVec[lastPass].e + postTime;
+
+                totalTime = tend - tstart;
+
+                if (totalTime > inst->maxTime){
+                    feasible = 0;
+                    // cout << "p1: the maximum riding time is exceeded." << endl;
+                    return feasible;
+                }
+
             }
             else{
                 feasible = 0;
@@ -929,7 +968,7 @@ bool sarpRoute::testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVe
         if (postTime <= inst->T){
             feasible = 1;
 
-            totalTime = postTime - starttime;
+            totalTime = postTime - this->starttime;
 
             if (totalTime > inst->maxTime){
                 feasible = 0;
@@ -1550,6 +1589,13 @@ void sarpRoute::updateParcels(int request, int pos1, int pos2){
     pdvec[request].second = pos2;
 }
 
+void sarpRoute::clearPDVec(){
+    for (int i = 0; i < pdvec.size(); i++){
+        pdvec[i].first = -1;
+        pdvec[i].second = -1;
+    }
+}
+
 void sarpRoute::updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist){
     updatePass(inst, nodeVec);
     // cout << "Here1" << endl;
@@ -1557,6 +1603,8 @@ void sarpRoute::updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double
     // cout << "Here2" << endl;
     updateTimes(inst, nodeVec, Mdist);
     // cout << "Here3" << endl;
+
+    clearPDVec();
 
     for(int i = 0; i < nodes_.size(); i++){
         if(nodeVec[nodes_[i]].load > 0){
@@ -1662,6 +1710,12 @@ bool sarpRoute::checkDelivery(instanceStat *inst, int pos1, int pos2, probStat* 
     return feasible;
 }
 
+void sarpRoute::printTotalTime(){
+    double totaltime;
+    totaltime = this->endtime - this->starttime;
+
+    cout << "Total route time: " << totaltime << endl;
+}
 
 double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem){
     double delta = 0;

@@ -85,11 +85,10 @@ int main (int argc, char *argv[]) {
 
 			// clock_t seed = (argc == 5) ? time(NULL) : strtol(argv[4], NULL, 10);
 			
-			clock_t seed = 1631220766;
+			clock_t seed = 1631310525;
 
 			srand(seed);
 
-			// seed = 1.63115e+09; 
 
 			cout << "\n\nSeed: " << std::setprecision(5) << seed << endl << endl;
 			getchar();
