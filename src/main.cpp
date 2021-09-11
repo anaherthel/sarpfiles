@@ -83,9 +83,9 @@ int main (int argc, char *argv[]) {
 			int mscount = 0;
 			int msMax = 15;
 
-			// clock_t seed = (argc == 5) ? time(NULL) : strtol(argv[4], NULL, 10);
+			clock_t seed = (argc == 5) ? time(NULL) : strtol(argv[4], NULL, 10);
 			
-			clock_t seed = 1631310525;
+			// clock_t seed = 1631386809;
 
 			srand(seed);
 

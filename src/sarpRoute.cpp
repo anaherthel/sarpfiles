@@ -303,7 +303,7 @@ bool sarpRoute::testSwap(instanceStat *inst, vector<nodeStat> &nodeVec,
                 if(prevPass > inst->n){
                     tstart = nodeVec[nextPass].e - prevTime;
                 }
-                else if(nextPass > inst->n){
+                if(nextPass > inst->n){
                     tend = prevTime;
                 }
                 if(tend - tstart > inst->maxTime){
@@ -339,27 +339,53 @@ bool sarpRoute::testSwap(instanceStat *inst, vector<nodeStat> &nodeVec,
                 return feasible;
             }
 
-            prevPass = nodes_[inter2.first];
-            nextPass = nodes_[inter2.second];
-            prevTime = nodeVec[prevPass].e;
+            int prevPass2 = -1;
+            int nextPass2 = -1;
+
+            prevPass2 = nodes_[inter2.first];
+            nextPass2 = nodes_[inter2.second];
+            postTime = nodeVec[prevPass2].e;
 
             for(int i = inter2.first; i < inter2.second; i++){ 
-                prevTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) 
+                postTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) 
                             + nodeVec[nodes_[i]].delta;
             }
 
-            prevTime += - ((Mdist[nodes_[pos2-1]][req2])/inst->vmed)
+            postTime += - ((Mdist[nodes_[pos2-1]][req2])/inst->vmed)
                         - ((Mdist[req2][nodes_[pos2+1]])/inst->vmed)
                         + ((Mdist[nodes_[pos2-1]][req1])/inst->vmed)
                         + ((Mdist[req1][nodes_[pos2+1]])/inst->vmed);
 
-            if (prevTime <= nodeVec[nextPass].e){
+            if (postTime <= nodeVec[nextPass2].e){
                 feasible = 1;
             }
             else{
                 feasible = 0;
                 return feasible;
-            }                       
+            }
+
+            if(prevPass > inst->n){
+                tstart = nodeVec[nextPass].e - prevTime;
+            }
+            else{
+                tstart = this->starttime;
+            }
+
+            if (nextPass2 > inst->n){
+                tend = postTime;
+            }
+            else{
+                tend = this->endtime;
+            }
+
+            totalTime = tend - tstart;
+
+            if (totalTime > inst->maxTime){
+                feasible = 0;
+                cout << "p1: the maximum riding time is exceeded." << endl;
+                return feasible;
+            }
+                            
         }
     }
     return feasible;
@@ -485,6 +511,11 @@ bool sarpRoute::testRelocate(instanceStat *inst, vector<nodeStat> &nodeVec,
         sameInterval = checkInterval(inst, pos1, pos2, inter1, npinter);
 
         prevPass = nodes_[npinter.first];
+
+        if(nodes_[pos2] < inst->n){
+            npinter.second = pos2;
+        }
+
         nextPass = nodes_[npinter.second];
         prevTime = nodeVec[prevPass].e;
 
@@ -512,7 +543,7 @@ bool sarpRoute::testRelocate(instanceStat *inst, vector<nodeStat> &nodeVec,
                         return feasible;
                     }
                 }
-                else if(nextPass > inst->n){
+                if(nextPass > inst->n){
                     tend = nodeVec[prevPass].e + prevTime;
                     if ((tend - this->starttime) > inst->maxTime){
                         feasible = 0;
@@ -718,7 +749,6 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
             }
         }
         else{
-            cout << "Not from posttime" << endl;
             feasible = 0;
             return feasible;
         }
@@ -730,15 +760,15 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
             prevTime += ((Mdist[nodes_[position-1]][request])/inst->vmed) 
                       - ((Mdist[nodes_[position-1]][nodes_[position]])/inst->vmed);
             
-            cout << "*****************************" << endl;
-            cout << "pos > last passenger" << endl; 
-            cout << "*****************************" << endl;
-            cout << "\nRequest: " << request << endl;
-            cout << "\nPosition of insertion: " << position << endl;
-            cout << "\nPrevious time: " << prevTime << endl;
-            cout << "\nService time: " << nodeVec[request].e << endl;
-            cout << "*****************************" << endl;
-            getchar();
+            // cout << "*****************************" << endl;
+            // cout << "pos > last passenger" << endl; 
+            // cout << "*****************************" << endl;
+            // cout << "\nRequest: " << request << endl;
+            // cout << "\nPosition of insertion: " << position << endl;
+            // cout << "\nPrevious time: " << prevTime << endl;
+            // cout << "\nService time: " << nodeVec[request].e << endl;
+            // cout << "*****************************" << endl;
+            // getchar();
 
             if (prevTime <= nodeVec[request].e){
                 feasible = 1;

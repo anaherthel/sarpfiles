@@ -696,12 +696,6 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
             }
         }
 
-        cout << "After first round trial: " << endl;
-
-        solution.printSol(inst);
-        solution.printCosts();
-        getchar();
-
         vector<int> inspositions;
         vector<int> routes;
 
@@ -711,9 +705,14 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
                 routes.push_back(rid);
             }
         }
+        
+        int counter = 0;
 
-        while(!inserted){
+        while(!inserted && routes.size() > 0){
         // for (int )
+
+            cout << "route size: " << routes.size() << endl;
+
             int routeNumber, posNumber;
 
             inspositions.clear();
@@ -730,8 +729,10 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
             if (inspositions.size() < 1){
                 routes.erase(routes.begin()+routeNumber);
             }
+
             else{
                 while(!inspositions.empty()){
+                    cout << "Route: " << randRoute << " - number of positions: " << inspositions.size();
 
                     // /////////////////////////////////////////////
                     // cout << "BEFORE Available positions for insertion of candidate " << request << endl;
@@ -767,7 +768,24 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
                     ////////////////////////////////////////////
 
                 }
+                routes.erase(routes.begin()+routeNumber);
             }
+        }
+
+        if (!inserted){
+            int vehicle = solution.getvehicle();
+            sarpRoute newroute(inst, vehicle);
+            inserted = newroute.fInsertion(inst, nodeVec, Mdist, candidate);
+            newroute.calcCost(inst, nodeVec, Mdist);
+            newroute.insert(inst, Mdist, candidate, 1, nodeVec[candidate].profit);
+            newroute.updatePass(inst, nodeVec);
+            newroute.updateLoad(inst, nodeVec);
+            newroute.updateTimes(inst, nodeVec, Mdist);
+            solution.addRoute(&newroute);
+            solution.updateVehicles();
+            solution.updateCost();
+            inserted = 1;
+            break;
         }
         // }
         profit = nodeVec[request].profit;
