@@ -107,9 +107,9 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     solution->updateVehicles();
     solution->updateCost();
 
-    cout << "First addition" << endl;
-    solution->printSol(inst);
-    solution->printCosts();
+    // cout << "First addition" << endl;
+    // solution->printSol(inst);
+    // solution->printCosts();
     // getchar();
     //random assignments
     while(counter < insertions){
@@ -194,9 +194,9 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
         // }
     }
 
-    cout << "Random additions: " << endl;
-    solution->printSol(inst);
-    solution->printCosts();
+    // cout << "Random additions: " << endl;
+    // solution->printSol(inst);
+    // solution->printCosts();
     // getchar();
 
     //greedy assignments

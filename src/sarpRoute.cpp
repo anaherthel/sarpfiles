@@ -223,7 +223,7 @@ bool sarpRoute::testSwap(instanceStat *inst, vector<nodeStat> &nodeVec,
 
                 if (this->endtime - tstart > inst->maxTime){
                     feasible = 0;
-                    cout << "p1: the maximum riding time is exceeded." << endl;
+                    // cout << "p1: the maximum riding time is exceeded." << endl;
                     return feasible;
                 }
             }
@@ -308,7 +308,7 @@ bool sarpRoute::testSwap(instanceStat *inst, vector<nodeStat> &nodeVec,
                 }
                 if(tend - tstart > inst->maxTime){
                     feasible = 0;
-                    cout << "p1: the maximum riding time is exceeded." << endl;
+                    // cout << "p1: the maximum riding time is exceeded." << endl;
                     return feasible;
                 }
             }
@@ -382,7 +382,7 @@ bool sarpRoute::testSwap(instanceStat *inst, vector<nodeStat> &nodeVec,
 
             if (totalTime > inst->maxTime){
                 feasible = 0;
-                cout << "p1: the maximum riding time is exceeded." << endl;
+                // cout << "p1: the maximum riding time is exceeded." << endl;
                 return feasible;
             }
                             
@@ -442,7 +442,7 @@ bool sarpRoute::testRelocate(instanceStat *inst, vector<nodeStat> &nodeVec,
                 totalTime = this->endtime - tstart;
                 if (totalTime > inst->maxTime){
                     feasible = 0;
-                    cout << "p1: the maximum riding time is exceeded." << endl;
+                    // cout << "p1: the maximum riding time is exceeded." << endl;
                     return feasible;
                 }
             }
@@ -539,7 +539,7 @@ bool sarpRoute::testRelocate(instanceStat *inst, vector<nodeStat> &nodeVec,
                     totalTime = this->endtime - tstart;
                     if (totalTime > inst->maxTime){
                         feasible = 0;
-                        cout << "p1: the maximum riding time is exceeded." << endl;
+                        // cout << "p1: the maximum riding time is exceeded." << endl;
                         return feasible;
                     }
                 }
@@ -611,7 +611,7 @@ bool sarpRoute::testRelocate(instanceStat *inst, vector<nodeStat> &nodeVec,
                 totalTime = tend - tstart;
                 if (totalTime > inst->maxTime){
                     feasible = 0;
-                    cout << "p1: the maximum riding time is exceeded." << endl;
+                    // cout << "p1: the maximum riding time is exceeded." << endl;
                     return feasible;
                 }
 
@@ -737,13 +737,13 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
             feasible = 1;
 
             totalTime = postTime - this->starttime;
-            cout << "the insertion is feasible from part 1." << endl;
+            // cout << "the insertion is feasible from part 1." << endl;
             
-            cout << "start time: " <<  this->starttime << endl;
-            cout << "total time: " << totalTime << endl;
+            // cout << "start time: " <<  this->starttime << endl;
+            // cout << "total time: " << totalTime << endl;
             if (totalTime > inst->maxTime){
                 feasible = 0;
-                cout << "p1: the maximum riding time is exceeded." << endl;
+                // cout << "p1: the maximum riding time is exceeded." << endl;
                 // getchar();
                 return feasible;
             }
@@ -807,8 +807,8 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
             nextPass = nodes_.back();
             nextPasspos = nodes_.size()-1;
         }
-        cout << "\nPrevious passenger: " << prevPass << " in position " << prevPasspos << endl;
-        cout << "\nNext passenger: " << nextPass << " in position " << nextPasspos << endl;
+        // cout << "\nPrevious passenger: " << prevPass << " in position " << prevPasspos << endl;
+        // cout << "\nNext passenger: " << nextPass << " in position " << nextPasspos << endl;
         // getchar();
         if (nodeVec[request].e <= nodeVec[prevPass].e){
             feasible = 0;

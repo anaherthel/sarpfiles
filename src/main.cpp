@@ -91,7 +91,7 @@ int main (int argc, char *argv[]) {
 
 
 			cout << "\n\nSeed: " << std::setprecision(5) << seed << endl << endl;
-			getchar();
+			// getchar();
 			// t1 = sILS.get_wall_time();
 			sILS.stats.setStart();
 
