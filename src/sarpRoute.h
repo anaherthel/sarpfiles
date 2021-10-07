@@ -129,6 +129,7 @@ public:
     
     double relocateK(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem, int k);
 
+    //updates passenger, loads, times, clears PD and updates this vector.
     void updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
 
     double rmvVal (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int candidate, bool isparcel);

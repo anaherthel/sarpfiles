@@ -64,12 +64,16 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
     r2 = getRoute(rid2);
 
     rsize1 = r1.getNodesSize();
+
+    // cout << "Size of route 1: " << rsize1 << endl;
+    // getchar();
     rsize2 = r2.getNodesSize(); 
 
     bool feasible = 0;
 
     int candidate, candidate2;
     int bestpos1, bestpos2;
+    int inCurrent;
 
     vector<int> inspositions; 
     vector<int> inspositions2;
@@ -84,12 +88,15 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
     cheapestMove.push_back(cheapestpair);
     cheapestMove.push_back(cheapestpair); //chapest move has 2 cheapest pairs. Only 1 is used for passengers.
     
-    double best_cost, compareCost, rval1, rval2, rmvVal, addVal;
+    double best_cost, compareCost, iniCost, rval1, rval2, rmvVal, addVal;
 
     rval1 = r1.cost();
     rval2 = r2.cost();
 
     best_cost = rval1 + rval2;
+    iniCost = rval1 + rval2;
+
+    currCand = -1;
 
     cout << "Routes: " << rid1 << " and " << rid2;
 
@@ -126,6 +133,8 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
             // getchar();
             addVal = cheapestpair.second;
 
+            cout << "Passenger add val: " << addVal << endl;
+
             if (addVal > 0){
                 rmvVal = r1.rmvVal(inst, nodeVec, Mdist, i, 0);
                 cout << "Calculate rmvval: " << rmvVal << endl;
@@ -133,7 +142,10 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
             }
             else{
                 continue;
-            }
+            }                
+            
+            cout << "Passenger added at position: " << cheapestpair.first << endl;
+
             // cout << "Compare Cost: " << compareCost;
         }
         else {
@@ -182,8 +194,11 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
             // cout << "\nThere was an improvement" << endl;
             // cout << "\nCandidate: " << candidate << endl;
             // getchar();
+            // inCurrent = i;
             currCand = i;
-
+            // currCand = &inCurrent;
+            cout << "Current candidate in solutions function: " << currCand << endl;
+            // getchar();
             if (candidate < inst->n){
                 best_cost = compareCost;
                 currPairPos.first = cheapestpair.first;
@@ -202,15 +217,22 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
             }
 
         }
+        // else{
+        //     currCand = -1;
+        // }
     }
 
     double delta;
 
-    delta = compareCost - best_cost;
+    delta = iniCost - best_cost;
 
     cout << "Best cost: " << best_cost << endl;
-    cout << "cost (previous cost): " << compareCost << endl;
+    cout << "cost (previous cost): " << iniCost << endl;
     cout << "delta: " << delta << endl;
+    // getchar();
+    // currCand = &inCurrent;
+
+    cout << "Current candidate passing out of function: " << currCand << endl;
     // getchar();
 
     return delta;

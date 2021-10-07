@@ -645,7 +645,7 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
     //there will always be the initial depot before any passenger
     //the request is a passenger node
 
-    if (position <= firstPassPos){
+    if (position <= firstPassPos || passandpos.size() < 1){
         stoppingLoop = position;
 
         prevTime = nodeVec[nodes_[0]].e;
@@ -678,6 +678,19 @@ bool sarpRoute::testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, dou
         for(int i = position; i < firstPassPos; i++){
             postTime += ((Mdist[nodes_[i]][nodes_[i + 1]])/inst->vmed) + nodeVec[nodes_[i]].delta;
         }
+
+        if (passandpos.size() < 1){
+            feasible = 1;
+            tstart = nodeVec[request].e - prevTime;
+            tend = postTime;
+            totalTime = tend - tstart;
+            if (totalTime > inst->maxTime){
+                feasible = 0;
+                // cout << "p1: the maximum riding time is exceeded." << endl;
+            }
+            return feasible;
+        }
+
         if (postTime <= nodeVec[firstPass].e){
             feasible = 1;
             tstart = nodeVec[request].e - prevTime;
@@ -1385,7 +1398,7 @@ void sarpRoute::availablePos(instanceStat *inst, vector<nodeStat> &nodeVec, int 
                 }
             }
         }
-        else{
+        else{//if the passpos vector is empty, there can still be parcel nodes in the route.
             fPosIns = 1;
             lPosIns = nodes_.size()-1;
             for(int i = fPosIns; i <= lPosIns; i++){
@@ -1805,6 +1818,8 @@ bool sarpRoute::checkDelivery(instanceStat *inst, int pos1, int pos2, probStat* 
     int pu;
     pu = pdvec[nodes_[pos2]-inst->m-inst->n].first;
 
+    cout << "pu: " << pu << endl;
+
     pair<int, int> interpu;
 
     bool feasible = 1;
@@ -1812,7 +1827,7 @@ bool sarpRoute::checkDelivery(instanceStat *inst, int pos1, int pos2, probStat* 
     if (problem->dParcel > 0){
         if(pos1 <= pu){
             feasible = 0;
-            // cout << "\nDelivery cant be put before its pickup"
+            cout << "\nDelivery cant be put before its pickup" << endl;
         }
     }
     else{
@@ -1868,6 +1883,10 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
             temp = getDL(nodes_[i]-inst->n);
             // cout << "temp: " << temp << endl;
             if (problem->dParcel > 0){
+                if (temp == i + 1){
+                    // getchar();
+                    continue;
+                }
                 jend = temp;
             }
             else{
@@ -1889,11 +1908,12 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
                 if (nodes_[i] < inst->n || nodes_[j] < inst->n){
                     feasPos = checkInterval(inst, i, j, inter1, inter2);
                 }
-                else if(nodeVec[nodes_[j]].load < 0){
-                    feasPos = checkDelivery(inst, i, j, problem);
-                }
                 else{
                     feasPos = 1;
+                }
+                if(nodeVec[nodes_[j]].load < 0){
+                    cout << "Check delivery" << endl;
+                    feasPos = checkDelivery(inst, i, j, problem);
                 }
 
                 if (feasPos){
@@ -1934,6 +1954,11 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
 		}
 	}
     if (swap){
+
+        cout << "pos1: " << pos1 << endl;
+        cout << "pos2: " << pos2 << endl;
+        cout << "element1: " << nodes_[pos1] << endl;
+        cout << "element2: " << nodes_[pos2] << endl;
 
         tempElement = nodes_[pos1];
         nodes_[pos1] = nodes_[pos2];

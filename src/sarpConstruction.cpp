@@ -177,6 +177,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
             newroute.updatePass(inst, nodeVec);
             newroute.updateLoad(inst, nodeVec);
             solution->addRoute(&newroute);
+            solution->updateVehicles();            
             solution->updateCost();
             removeFromCL(candidate, 1);
             inserted = 1;

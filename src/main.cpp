@@ -85,7 +85,7 @@ int main (int argc, char *argv[]) {
 
 			clock_t seed = (argc == 5) ? time(NULL) : strtol(argv[4], NULL, 10);
 			
-			// clock_t seed = 1631386809;
+			// clock_t seed = 1633445529;
 
 			srand(seed);
 
