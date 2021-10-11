@@ -71,13 +71,17 @@ public:
     void updateVehicles();
 
     void printSol(instanceStat *inst);
+    void printLoadSol(instanceStat *inst);
 
     double relocate (instanceStat *inst, vector<nodeStat> &nodeVec, 
                                 double **Mdist, probStat* problem,
                                  int rid1, int rid2, int &currCand, 
                                  pair <int, int> &currPairPos);
 
-
+    pair <double, double> TwoOpt(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, 
+                    int rid1, int rid2,
+                     pair <int, int> &currPairPos,
+                    probStat* problem);
     // sarpRoute *getRoute(int idx) { return routes[idx]; }
     // inline int getRoutesSize() const { return this->routes.size(); }s
 };

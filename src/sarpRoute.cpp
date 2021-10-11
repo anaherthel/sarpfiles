@@ -37,6 +37,31 @@ void sarpRoute::calcCost(instanceStat *inst, vector<nodeStat> &nodeVec, double *
     this->cost_ = revenue - trvCost;    
 }
 
+double sarpRoute::blockProfit(instanceStat *inst, 
+                              vector<nodeStat> &nodeVec, 
+                              double **Mdist,
+                              int iniPos, int endPos) {
+    double profit;
+    double revenue = 0; //revenues from requests
+    double trvCost = 0; //travel cost
+    int u, v;
+
+    for (int i = iniPos; i < endPos; i++) {
+        u = nodes_[i];
+        v = nodes_[i + 1];
+        if (u < inst->n + inst->m){
+            revenue += nodeVec[u].profit;
+        }
+        else{
+            revenue += nodeVec[u].profit;
+        }
+        trvCost += inst->costkm*Mdist[u][v];
+    }
+    profit = revenue - trvCost;
+
+    return profit;
+}
+
 bool sarpRoute::fInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int request){
 
     bool feasible;
@@ -1293,8 +1318,9 @@ void sarpRoute::updatePass(instanceStat *inst, vector<nodeStat> &nodeVec){
 }
 
 void sarpRoute::updateLoad(instanceStat *inst, vector<nodeStat> &nodeVec){
+    //second element of pair
     //0 - passenger served with no parcels involved;
-    //1+ - number of passegers served with parcels involved;
+    //1+ - number of passengers served with parcels involved;
     //-1 -  We disregard passengers served or unserved.
 
     pair<int, int> pairtoadd;
@@ -1689,6 +1715,32 @@ void sarpRoute::erase(instanceStat *inst, double **Mdist, int position, double p
     
     this->nodes_.erase(this->nodes_.begin() + position);
 }
+
+void sarpRoute::insertBlock(instanceStat *inst, double **Mdist, 
+                            vector<int> blockNodes, int position, double profit){
+
+    double delta = profit - inst->costkm*(Mdist[this->nodes_[position-1]][blockNodes[0]]
+                + Mdist[blockNodes.back()][this->nodes_[position]]
+                - Mdist[this->nodes_[position-1]][this->nodes_[position]]);
+    
+    // cout << "Delta: " << delta << endl; 
+    // getchar();
+    cost_ += delta;
+    this->nodes_.insert(this->nodes_.begin() + position, blockNodes.begin(), blockNodes.end());
+}
+
+void sarpRoute::eraseBlock(instanceStat *inst, double **Mdist, 
+                            int pos1, int pos2, double profit) {
+
+    double delta = - profit - inst->costkm*
+                (Mdist[this->nodes_[pos1 - 1]][this->nodes_[pos2 + 1]]
+                - Mdist[this->nodes_[pos1 - 1]][this->nodes_[pos1]]
+                - Mdist[this->nodes_[pos2]][this->nodes_[pos2 + 1]]);
+    cost_ += delta;
+    
+    this->nodes_.erase(this->nodes_.begin() + pos1, this->nodes_.begin() + pos2);
+}
+
 
 void sarpRoute::printLoad(){
     cout << "Load of route: " << endl;
@@ -2143,6 +2195,8 @@ double sarpRoute::relocateK(instanceStat *inst, double **Mdist, vector<nodeStat>
     }
     return bestDelta;
 }
+
+
 
 
 double sarpRoute::rmvVal(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int candidate, bool isparcel){

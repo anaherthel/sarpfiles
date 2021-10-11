@@ -61,6 +61,8 @@ public:
     int lastpos() const { return nodes_[nodes_.size()-2]; };
     int getReq(int pos) const { return nodes_[pos]; };
 
+    int getReqLoad(int pos) const { return loadofroute[pos].first; };
+
     int getPU(int request) const { return pdvec[request].first; };
     int getDL(int request) const { return pdvec[request].second; };
 
@@ -87,6 +89,11 @@ public:
                             double **Mdist,int pos1, int pos2, 
                             pair <int, int> inter1);
     void calcCost(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
+
+    double blockProfit(instanceStat *inst, 
+                        vector<nodeStat> &nodeVec, 
+                        double **Mdist,
+                        int iniPos, int endPos); 
 
     //only when the first insertion is a passenger request.
     bool fInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int request);
@@ -118,6 +125,12 @@ public:
 
     void erase(instanceStat *inst, double **Mdist, int position, double profit);
 
+    void insertBlock(instanceStat *inst, double **Mdist, 
+                    vector<int> blockNodes, int position, double profit);
+    
+    void eraseBlock(instanceStat *inst, double **Mdist, 
+                        int pos1, int pos2, double profit);
+
     void printLoad();
     
     pair <int, int> getInterval(int req);
@@ -129,6 +142,9 @@ public:
     
     double relocateK(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem, int k);
 
+    double TwoOpt(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem);
+
+    // double ThreeOpt(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem);
     //updates passenger, loads, times, clears PD and updates this vector.
     void updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
 

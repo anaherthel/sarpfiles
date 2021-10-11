@@ -36,7 +36,20 @@ void sarpSolution::printSol(instanceStat *inst) {
     }
     cout << endl;
 }
+void sarpSolution::printLoadSol(instanceStat *inst) {
 
+    sarpRoute sroute(inst, usedK);
+
+    cout << "Solution Load: " << endl;
+    for (int i = 0; i < routes.size(); i++){
+        sroute = routes[i];
+        cout << endl << "**********Load************" << endl;
+        cout << "Route " << i << ": " << endl;
+        sroute.printLoad();
+        cout << endl << "**********end Load********" << endl;
+    }
+    cout << endl;
+}
 void sarpSolution::addtounserved(int candidate) {
     unserved.push_back(candidate);
 }   
@@ -236,6 +249,196 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
     // getchar();
 
     return delta;
+}
+
+    pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
+                    vector<nodeStat> &nodeVec, 
+                    int rid1, int rid2, 
+                    pair <int, int> &currPairPos,
+                    probStat* problem){
+
+    pair<double, double> delta;
+
+    delta.first = 0;
+    delta.second = 0;
+
+	pair<double, double> bestDelta;
+
+    bestDelta.first = 0;
+    bestDelta.second = 0;
+
+	double newCost = 0;
+
+    sarpRoute sroute1(inst, 0);
+    sarpRoute sroute2(inst, 0);
+	
+    sroute1 = getRoute(rid1);
+    sroute2 = getRoute(rid2);
+
+    int pos1 = 0;
+	int pos2 = 0;
+
+    int jstart, jend;
+
+    pair <int, int> inter1, inter2, tempinter;
+    
+    vector<int> tempVector, zeroVec;
+    
+    int temp;
+
+    bool feasible, feasPos, improve;
+
+    improve = 0;
+    // cout << "Current cost: " << cost_ << endl;
+    // getchar();
+    int loadSize1, loadSize2;
+
+    loadSize1 = sroute1.getLoadSize();
+    loadSize2 = sroute2.getLoadSize();
+
+    for (int i = 0; i < loadSize1; i++){
+        int currLoad, request;
+        currLoad = sroute1.getReqLoad(i);
+        request = sroute1.getReq(i);
+        if (currLoad == 0){
+            if (nodeVec[request].load == 0){
+                zeroVec.push_back(i);
+            }
+
+        }
+        else if (currLoad == 1){
+            if (nodeVec[request].load > 0 ){
+                zeroVec.push_back(i);
+            }
+        }
+    }
+
+    cout << "Zero Sum vec: " << endl;
+
+    for (int j = 0; j < zeroVec.size(); j++){
+        cout << zeroVec[j] << " ";
+    }
+    cout << endl;
+    getchar();
+
+	// for (int i = 1; i < nodes_.size() - 3; i++) {
+	// 	delta = -Mdist[nodes_[i - 1]][nodes_[i]];
+    //     // inter1 = getInterval(i);
+
+    //     // cout << "Interval of i: " << inter1.first <<  " - " << inter1.second << endl; 
+
+    //     if(nodes_[i] < inst->n){
+    //         jend = inter1.second;            
+    //     }
+    //     else if (nodes_[i] < inst->n+inst->m){
+    //         temp = getDL(nodes_[i]-inst->n);
+    //         // cout << "temp: " << temp << endl;
+    //         if (problem->dParcel > 0){
+    //             if (temp == i + 1){
+    //                 // getchar();
+    //                 continue;
+    //             }
+    //             jend = temp;
+    //         }
+    //         else{
+    //             jend = getPrevPass(temp);
+    //         }
+    //     }
+    //     else{
+    //         jend = nodes_.size() - 1;
+    //     }
+	// 	for (int j = i + 2; j < jend; j++) {
+    //         feasPos = 0;
+    //         feasible = 0;
+
+    //         if (nodes_[i] < inst->n && nodes_[j] < inst->n){//cannot interexchange passengers (TW)
+    //             continue;
+    //         }
+    //         else{
+    //             inter2 = getInterval(j);
+    //             if (nodes_[i] < inst->n || nodes_[j] < inst->n){
+    //                 feasPos = checkInterval(inst, i, j, inter1, inter2);
+    //             }
+    //             else{
+    //                 feasPos = 1;
+    //             }
+    //             if(nodeVec[nodes_[j]].load < 0){
+    //                 cout << "Check delivery" << endl;
+    //                 feasPos = checkDelivery(inst, i, j, problem);
+    //             }
+
+    //             if (feasPos){
+    //                 feasible = testSwap(inst, nodeVec, Mdist, i, j, inter1, inter2);
+
+    //                 if (feasible){
+
+    //                     if (j - i == 1) {
+    //                         delta += - Mdist[nodes_[i]][nodes_[j]] 
+    //                         + Mdist[nodes_[j]][nodes_[i]]                            
+    //                         - Mdist[nodes_[j]][nodes_[j + 1]] 
+    //                         + Mdist[nodes_[i - 1]][nodes_[j]]
+    //                         + Mdist[nodes_[i]][nodes_[j + 1]];
+    //                     }
+    //                     else {
+    //                         delta += - Mdist[nodes_[i]][nodes_[i + 1]] 
+    //                         - Mdist[nodes_[j - 1]][nodes_[j]]
+    //                         - Mdist[nodes_[j]][nodes_[j + 1]] 
+    //                         + Mdist[nodes_[i - 1]][nodes_[j]] 
+    //                         + Mdist[nodes_[j]][nodes_[i + 1]] 
+    //                         + Mdist[nodes_[j - 1]][nodes_[i]] 
+    //                         + Mdist[nodes_[i]][nodes_[j + 1]];
+    //                     }
+
+    //                     if (delta < 0) {
+    //                         if (delta < bestDelta) {
+    //                             // cout << "\nThere was an improvement with delta as " << delta << endl;
+    //                             // getchar();
+    //                             bestDelta = delta;
+    //                             pos1 = i;
+    //                             pos2 = j;
+    //                             swap = 1;
+    //                         }
+    //                     }
+    //                 }
+    //             }          
+    //         }			
+	// 	}
+	// }
+
+    // if (improve){
+
+    //     cout << "pos1: " << pos1 << endl;
+    //     cout << "pos2: " << pos2 << endl;
+    //     cout << "element1: " << nodes_[pos1] << endl;
+    //     cout << "element2: " << nodes_[pos2] << endl;
+
+    //     tempElement = nodes_[pos1];
+    //     nodes_[pos1] = nodes_[pos2];
+    //     nodes_[pos2] = tempElement;
+
+    //     updateAll(inst,nodeVec, Mdist);
+    //     bestDelta = -(bestDelta*inst->costkm);
+    //     // cout << "Best Delta: " << bestDelta << endl;
+
+    //     updateCost(bestDelta);
+
+    //     // cout << "New cost: " << cost_ << endl;
+
+    //     calcCost(inst, nodeVec, Mdist);
+    //     // cout << "Calculated cost: " << cost_ << endl;
+    //     // getchar();
+
+    //     // cout << "Route with swap: " << endl;
+    //     // for (int a = 0; a < nodes_.size(); a++){
+    //     //     cout << nodes_[a] << " - ";
+    //     // }
+    //     // cout << endl;
+    //     // getchar();
+    // }
+    // else{
+    //     delta = 0;
+    // }
+    return bestDelta;
 }
 
 void sarpSolution::addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem){

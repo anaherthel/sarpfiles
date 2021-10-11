@@ -55,8 +55,14 @@ public:
     void ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
     void RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+    
+    void RVNDAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
     void SwapAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+    
+    void TwoOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+
+    void ThreeOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
     void RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
