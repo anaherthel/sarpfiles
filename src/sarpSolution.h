@@ -78,6 +78,10 @@ public:
                                  int rid1, int rid2, int &currCand, 
                                  pair <int, int> &currPairPos);
 
+    pair <double, double> calcBlockTimes(instanceStat *inst, 
+            vector<nodeStat> &nodeVec, 
+            double **Mdist, vector<int> newBlock);                                 
+
     pair <double, double> TwoOpt(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, 
                     int rid1, int rid2,
                      pair <int, int> &currPairPos,

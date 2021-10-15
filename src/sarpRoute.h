@@ -93,7 +93,18 @@ public:
     double blockProfit(instanceStat *inst, 
                         vector<nodeStat> &nodeVec, 
                         double **Mdist,
-                        int iniPos, int endPos); 
+                        int iniPos, int endPos);
+
+    //returns the new endtime without the block
+    double blockrmvTime(instanceStat *inst, 
+                        vector<nodeStat> &nodeVec, 
+                        double **Mdist,
+                        int iniPos, int endPos);    
+
+    bool testBlockIns(instanceStat *inst, 
+                        vector<nodeStat> &nodeVec, 
+                        double **Mdist, double newEnd, pair <double, double> blockTime,
+                        int strPos, int endPos, vector<int> newBlock);
 
     //only when the first insertion is a passenger request.
     bool fInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int request);

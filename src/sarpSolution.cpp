@@ -251,13 +251,64 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
     return delta;
 }
 
-    pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
-                    vector<nodeStat> &nodeVec, 
-                    int rid1, int rid2, 
-                    pair <int, int> &currPairPos,
-                    probStat* problem){
+//Needs to be tested with block of only parcels
+pair <double, double> sarpSolution::calcBlockTimes(instanceStat *inst, 
+                  vector<nodeStat> &nodeVec, 
+                  double **Mdist, vector<int> newBlock){
 
-    pair<double, double> delta;
+    pair <double, double> timeForBlock;
+    timeForBlock.first = 0;
+    
+    timeForBlock.second = 0;
+
+    int lastPass, lastPassPos;
+
+    lastPassPos = -1;
+    lastPass = -1;
+
+    bool newpass;
+
+    //accumulating travel time for total travel time involved.
+    for (int i = 0; i < newBlock.size() - 1; i++){
+        int req = newBlock[i];
+        int nextreq = newBlock[i + 1];
+        newpass = 0;
+
+        timeForBlock.second += nodeVec[req].delta +
+                   ((Mdist[req][nextreq])/inst->vmed);
+
+        //setting up for calculating block endtime
+        if (req < inst->n){
+            newpass = 1;
+            lastPass = req;
+            lastPassPos = i;
+            timeForBlock.first = 0;
+        }
+        if (lastPass > -1){
+            timeForBlock.first += nodeVec[req].delta +
+                    ((Mdist[req][nextreq])/inst->vmed);
+        }
+    }
+
+    timeForBlock.second += nodeVec[newBlock.back()].delta;
+
+    if (lastPass > -1){
+        timeForBlock.first += nodeVec[lastPass].e;
+        timeForBlock.first += nodeVec[newBlock.back()].delta;
+    }
+    else{
+        timeForBlock.first = timeForBlock.second;
+    }
+
+    return timeForBlock;
+}
+
+
+pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
+                    vector<nodeStat> &nodeVec, int rid1, int rid2, 
+                    pair <int, int> &currPairPos, probStat* problem){
+
+    pair<double, double> delta, tBlock1, tBlock2;
 
     delta.first = 0;
     delta.second = 0;
@@ -282,7 +333,7 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
 
     pair <int, int> inter1, inter2, tempinter;
     
-    vector<int> tempVector, zeroVec;
+    vector<int> tempVector, zeroPos1, zeroPos2, zeroVec1, zeroVec2;
     
     int temp;
 
@@ -296,32 +347,97 @@ double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec,
     loadSize1 = sroute1.getLoadSize();
     loadSize2 = sroute2.getLoadSize();
 
-    for (int i = 0; i < loadSize1; i++){
+    //-2 because two opt with a single request is already included into 'relocate inter'
+    for (int i = 1; i < loadSize1 - 2; i++){
         int currLoad, request;
         currLoad = sroute1.getReqLoad(i);
         request = sroute1.getReq(i);
         if (currLoad == 0){
             if (nodeVec[request].load == 0){
-                zeroVec.push_back(i);
+                zeroPos1.push_back(i);
             }
-
         }
         else if (currLoad == 1){
             if (nodeVec[request].load > 0 ){
-                zeroVec.push_back(i);
+                zeroPos1.push_back(i);
             }
         }
     }
 
-    cout << "Zero Sum vec: " << endl;
+    for (int i = 1; i < loadSize2 - 2; i++){
+        int currLoad, request;
+        currLoad = sroute2.getReqLoad(i);
+        request = sroute2.getReq(i);
+        if (currLoad == 0){
+            if (nodeVec[request].load == 0){
+                zeroPos2.push_back(i);
+            }
+        }
+        else if (currLoad == 1){
+            if (nodeVec[request].load > 0 ){
+                zeroPos2.push_back(i);
+            }
+        }
+    }
 
-    for (int j = 0; j < zeroVec.size(); j++){
-        cout << zeroVec[j] << " ";
+    cout << "Zero Pos vec (1): " << endl;
+
+    for (int j = 0; j < zeroPos1.size(); j++){
+        cout << zeroPos1[j] << " ";
     }
     cout << endl;
+    // getchar();
+
+    cout << "Zero Pos vec (2): " << endl;
+
+    for (int j = 0; j < zeroPos2.size(); j++){
+        cout << zeroPos2[j] << " ";
+    }
+    cout << endl;
+    // getchar();
+
+    for (int i = zeroPos1.back(); i < loadSize1 - 1; i++){
+        int req = sroute1.getReq(i);
+        zeroVec1.push_back(req);
+    }
+
+    cout << "Zero Sum vec (1): " << endl;
+
+    for (int j = 0; j < zeroVec1.size(); j++){
+        cout << zeroVec1[j] << " ";
+    }
+    cout << endl;
+    // getchar();
+
+    tBlock1 = calcBlockTimes(inst, nodeVec, Mdist, zeroVec1);
+    // tBlock2 = calcBlockTimes(inst, nodeVec, Mdist, zeroVec2);
+
+    cout << "Times for block 1: " << tBlock1.first << " - " << tBlock1.second << endl;
     getchar();
 
-	// for (int i = 1; i < nodes_.size() - 3; i++) {
+    double newEndTime = 0;
+
+    int iniPos = zeroPos1.back();
+    int endPos = loadSize1 - 1;
+    cout << "inipos: " << iniPos << " - endPos: " << endPos << endl;
+    getchar();
+
+    if (iniPos > 1){
+        newEndTime = sroute1.blockrmvTime(inst, nodeVec, Mdist, iniPos, endPos);
+    }
+    else{
+        newEndTime = 0;
+    }
+
+    cout << "New End time: " << newEndTime << endl;
+    getchar();
+
+    // feasible = sroute1.testBlockIns(inst, nodeVec, 
+    //                                 Mdist, newEndTime, tBlock2,
+    //                                 iniPos, endPos, zeroVec2);
+    
+
+	// for (int i = 0; i < zeroVec1.size(); i++) {
 	// 	delta = -Mdist[nodes_[i - 1]][nodes_[i]];
     //     // inter1 = getInterval(i);
 

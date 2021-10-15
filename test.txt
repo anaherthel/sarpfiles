@@ -128,39 +128,39 @@ Dist Matrix:
          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
 
 
-Seed: 1633964911
+Seed: 1634031414
 
 Initial solution: 
 SARP Solution: 
-17 - 3 - 8 - 13 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - Total route time: 7.0669
+17 - 3 - 8 - 6 - 13 - 10 - 0 - 9 - 15 - 14 - 23 - Total route time: 7.0669
 
-18 - 6 - 24 - Total route time: 0.98805
+18 - 5 - 7 - 12 - 1 - 24 - Total route time: 3.3363
 
 19 - 4 - 11 - 16 - 2 - 25 - Total route time: 6.3093
 
 
 Cost of routes: 
-Route 0: 19.252
-Route 1: -6.8234
+Route 0: 12.301
+Route 1: -1.0508
 Route 2: 12.364
 
-Cost of routes: 24.792
+Cost of routes: 23.614
 Solution Load: 
 
 **********Load************
 Route 0: 
 Load of route: 
-0 - 0 - 1 - 0 - 0 - 1 - 0 - 0 - 1 - 1 - 2 - 1 - 0 - 0
+0 - 0 - 1 - 1 - 0 - 1 - 1 - 2 - 1 - 0 - 0
 Visited Passengers: 
--1 - 0 - 0 - 0 - 0 - 0 - 0 - 0 - 0 - 1 - 1 - 1 - 0 - -1
+-1 - 0 - 0 - 1 - 0 - 0 - 1 - 1 - 1 - 0 - -1
 **********end Load********
 
 **********Load************
 Route 1: 
 Load of route: 
-0 - 0 - 0
+0 - 0 - 1 - 0 - 0 - 0
 Visited Passengers: 
--1 - 0 - -1
+-1 - 0 - 0 - 0 - 0 - -1
 **********end Load********
 
 **********Load************
@@ -176,102 +176,93 @@ ITERATION: 0
 ***********************
 Calling relocate intra: 
 
-RelocateK Time: 0.009218
+RelocateK Time: 0.011529
 
 After Intra: 
 SARP Solution: 
-17 - 3 - 8 - 13 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - Total route time: 7.0669487
+17 - 3 - 8 - 6 - 13 - 10 - 0 - 9 - 15 - 14 - 23 - Total route time: 7.0669487
 
-18 - 6 - 24 - Total route time: 0.98805306
+18 - 5 - 7 - 12 - 1 - 24 - Total route time: 3.3363497
 
 19 - 4 - 11 - 16 - 2 - 25 - Total route time: 6.3093366
 
 
 Cost of routes: 
-Route 0: 19.252255
-Route 1: -6.8234448
+Route 0: 12.301187
+Route 1: -1.0507934
 Route 2: 12.363621
 
-Cost of routes: 24.792431
+Cost of routes: 23.614015
 Calling swap: 
 Current route: 0
 Check delivery
 pu: 2
-
-Delivery cant be put before its pickup
 Check delivery
 pu: 5
 
 Delivery cant be put before its pickup
 Check delivery
-pu: 8
-
-Delivery cant be put before its pickup
-Check delivery
-pu: 10
+pu: 7
 
 Delivery cant be put before its pickup
 Check delivery
 pu: 5
+Check delivery
+pu: 7
 
 Delivery cant be put before its pickup
 Check delivery
-pu: 8
-
-Delivery cant be put before its pickup
+pu: 5
 Check delivery
-pu: 10
-
-Delivery cant be put before its pickup
-Check delivery
-pu: 8
-Check delivery
-pu: 10
-
-Delivery cant be put before its pickup
-Check delivery
-pu: 8
-Check delivery
-pu: 10
+pu: 7
 Current route: 1
+Check delivery
+pu: 2
+
+Delivery cant be put before its pickup
 Current route: 2
 Check delivery
 pu: 2
 
 Delivery cant be put before its pickup
 
-Swap Time: 0.009372
+Swap Time: 0.011623
 
 After Intra: 
 SARP Solution: 
-17 - 3 - 8 - 13 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - Total route time: 7.0669487
+17 - 3 - 8 - 6 - 13 - 10 - 0 - 9 - 15 - 14 - 23 - Total route time: 7.0669487
 
-18 - 6 - 24 - Total route time: 0.98805306
+18 - 5 - 7 - 12 - 1 - 24 - Total route time: 3.3363497
 
 19 - 4 - 11 - 16 - 2 - 25 - Total route time: 6.3093366
 
 
 Cost of routes: 
-Route 0: 19.252255
-Route 1: -6.8234448
+Route 0: 12.301187
+Route 1: -1.0507934
 Route 2: 12.363621
 
-Cost of routes: 24.792431
+Cost of routes: 23.614015
 Calling 2opt inter: 
 (((((Solution so far ))))))
 SARP Solution: 
-17 - 3 - 8 - 13 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 23 - Total route time: 7.0669487
+17 - 3 - 8 - 6 - 13 - 10 - 0 - 9 - 15 - 14 - 23 - Total route time: 7.0669487
 
-18 - 6 - 24 - Total route time: 0.98805306
+18 - 5 - 7 - 12 - 1 - 24 - Total route time: 3.3363497
 
 19 - 4 - 11 - 16 - 2 - 25 - Total route time: 6.3093366
 
 
 Cost of routes: 
-Route 0: 19.252255
-Route 1: -6.8234448
+Route 0: 12.301187
+Route 1: -1.0507934
 Route 2: 12.363621
 
-Cost of routes: 24.792431
-Zero Sum vec: 
-0 1 2 4 5 7 8 13 
+Cost of routes: 23.614015
+Zero Pos vec (1): 
+1 2 5 
+Zero Pos vec (2): 
+1 2 
+Zero Sum vec (1): 
+10 0 9 15 14 
+Times for block 1: 10.316636 - 1.2260891

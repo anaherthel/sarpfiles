@@ -71,7 +71,7 @@ public:
     void relocate(instanceStat *inst, 
                 vector<nodeStat> &nodeVec,
                 double **Mdist, probStat* problem);
-    
+
     void Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);           
     // ~ILS();
     // void orderRequests(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);

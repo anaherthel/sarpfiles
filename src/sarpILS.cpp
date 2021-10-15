@@ -854,6 +854,10 @@ void sarpILS::TwoOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,
 
 }
 
+//for blocks out of 2-opt, create a pair in which first is endtime for block and
+//second is total travel time of block.
+
+
 void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
 
     //remove 20% of passengers
