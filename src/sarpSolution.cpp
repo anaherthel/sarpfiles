@@ -315,9 +315,6 @@ pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
 
 	pair<double, double> bestDelta;
 
-    bestDelta.first = 0;
-    bestDelta.second = 0;
-
 	double newCost = 0;
 
     sarpRoute sroute1(inst, 0);
@@ -326,24 +323,28 @@ pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
     sroute1 = getRoute(rid1);
     sroute2 = getRoute(rid2);
 
+    bestDelta.first = sroute1.cost();
+    bestDelta.second = sroute2.cost();
+
     int pos1 = 0;
 	int pos2 = 0;
 
     int jstart, jend;
 
-    pair <int, int> inter1, inter2, tempinter;
+    pair <int, int> interpos1, interpos2;
     
-    vector<int> tempVector, zeroPos1, zeroPos2, zeroVec1, zeroVec2;
+    vector<int> tempVector, zeroPos1, zeroPos2, zeroVec1, zeroVec2, bestBlock1, bestBlock2;
     
     int temp;
 
-    bool feasible, feasPos, improve;
+    bool feasible, improve;
 
     improve = 0;
     // cout << "Current cost: " << cost_ << endl;
     // getchar();
     int loadSize1, loadSize2;
-
+    double newEndTime1, newEndTime2, bestp1, bestp2;
+    
     loadSize1 = sroute1.getLoadSize();
     loadSize2 = sroute2.getLoadSize();
 
@@ -396,164 +397,135 @@ pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
     cout << endl;
     // getchar();
 
-    for (int i = zeroPos1.back(); i < loadSize1 - 1; i++){
-        int req = sroute1.getReq(i);
-        zeroVec1.push_back(req);
+    for (int i = 0; i < zeroPos1.size(); i++){
+        pos1 = zeroPos1[i];
+        zeroVec1.clear();
+        //making zero sum vec (new block) from r1
+        for (int z = pos1; z < loadSize1 - 1; z++){
+            int req = sroute1.getReq(z);
+            zeroVec1.push_back(req);
+        }
+        
+        tBlock1 = calcBlockTimes(inst, nodeVec, Mdist, zeroVec1);
+
+        int iniPos1 = pos1;
+        int endPos1 = loadSize1 - 1;
+        cout << "r1: inipos: " << iniPos1 << " - endPos: " << endPos1 << endl;
+        getchar();
+
+        if (iniPos1 > 1){
+            newEndTime1 = sroute1.blockrmvTime(inst, nodeVec, Mdist, iniPos1, endPos1);
+        }
+        else{
+            newEndTime1 = 0;
+        }
+
+        cout << "New End time: " << newEndTime1 << endl;
+        getchar();
+
+        for (int j = 0; j < zeroPos2.size(); j++){
+            pos2 = zeroPos2[j];
+            zeroVec2.clear();
+            //making zero sum vec (new block) from r2
+            for (int z = pos2; z < loadSize2 - 1; z++){
+                int req = sroute2.getReq(z);
+                zeroVec2.push_back(req);
+            }
+
+            tBlock2 = calcBlockTimes(inst, nodeVec, Mdist, zeroVec2);
+            int iniPos2 = pos2;
+            int endPos2 = loadSize2 - 1;
+            cout << "r2: inipos: " << iniPos2 << " - endPos: " << endPos2 << endl;
+            getchar();
+
+            if (iniPos2 > 1){
+                newEndTime2 = sroute1.blockrmvTime(inst, nodeVec, Mdist, iniPos2, endPos2);
+            }
+            else{
+                newEndTime2 = 0;
+            }
+
+            cout << "Times for block 2: " << tBlock2.first << " - " << tBlock2.second << endl;
+            getchar();
+
+            newEndTime2 = 0;
+
+            //testing piece of route 2 into route 1
+
+            cout << "Testing feasibility r1" << endl;
+            feasible = sroute1.testBlockIns(inst, nodeVec, 
+                                            Mdist, newEndTime1, tBlock2,
+                                            iniPos1, endPos1, zeroVec2);
+
+            cout << "Feasible insertion r1: " << feasible << endl;
+            getchar();
+
+
+            if (feasible){
+                //testing piece of route 1 into route 2
+                feasible = 0;
+                cout << "Testing feasibility r2" << endl;
+                feasible = sroute2.testBlockIns(inst, nodeVec, 
+                                                Mdist, newEndTime2, tBlock1,
+                                                iniPos2, endPos2, zeroVec1);
+
+                cout << "Feasible insertion r2: " << feasible << endl;
+                getchar();
+            }
+            else{
+                continue;
+            }
+
+            if (feasible){
+                double p1, p2;
+                p1 = sroute1.blockProfit(inst, nodeVec, Mdist, iniPos1, endPos1);
+                p2 = sroute2.blockProfit(inst, nodeVec, Mdist, iniPos2, endPos2);
+
+                interpos1.first = sroute1.getReq(iniPos1 - 1);
+                interpos1.second = sroute1.getReq(endPos1 + 1);
+
+                interpos2.first = sroute2.getReq(iniPos2 - 1);
+                interpos2.second = sroute2.getReq(endPos2 + 1);
+
+                //delta is the whole new cost, not only the difference
+                delta.first = sroute1.cost() - p1 + p2 - (inst->costkm*(Mdist[interpos1.first][zeroVec2[0]] + Mdist[zeroVec2.back()][interpos1.second]));
+
+                delta.second = sroute2.cost() - p2 + p1 - (inst->costkm*(Mdist[interpos2.first][zeroVec1[0]] + Mdist[zeroVec1.back()][interpos2.second]));
+
+                if ((delta.first + delta.second) > (bestDelta.first + bestDelta.second)){
+                    bestDelta.first = delta.first;
+                    bestDelta.second =  delta.second;
+
+                    currPairPos.first = iniPos1;
+                    currPairPos.second = iniPos2;
+
+                    bestBlock1.clear();
+                    bestBlock2.clear();
+
+                    bestBlock1 = zeroVec1;
+                    bestBlock2 = zeroVec2;
+
+                    bestp1 = p1;
+                    bestp2 = p2;
+
+                    improve = 1;
+                }
+            }
+
+
+        }
     }
 
-    cout << "Zero Sum vec (1): " << endl;
+    if (improve){
+        sroute1.eraseBlock(inst, Mdist, currPairPos.first, loadSize1-1, bestp1);
+        sroute2.eraseBlock(inst, Mdist, currPairPos.second, loadSize2-1, bestp2);
 
-    for (int j = 0; j < zeroVec1.size(); j++){
-        cout << zeroVec1[j] << " ";
-    }
-    cout << endl;
-    // getchar();
-
-    tBlock1 = calcBlockTimes(inst, nodeVec, Mdist, zeroVec1);
-    // tBlock2 = calcBlockTimes(inst, nodeVec, Mdist, zeroVec2);
-
-    cout << "Times for block 1: " << tBlock1.first << " - " << tBlock1.second << endl;
-    getchar();
-
-    double newEndTime = 0;
-
-    int iniPos = zeroPos1.back();
-    int endPos = loadSize1 - 1;
-    cout << "inipos: " << iniPos << " - endPos: " << endPos << endl;
-    getchar();
-
-    if (iniPos > 1){
-        newEndTime = sroute1.blockrmvTime(inst, nodeVec, Mdist, iniPos, endPos);
-    }
-    else{
-        newEndTime = 0;
+        sroute1.insertBlock(inst, Mdist, zeroVec2, currPairPos.first, bestp2);
+        sroute2.insertBlock(inst, Mdist, zeroVec1, currPairPos.second, bestp1);
     }
 
-    cout << "New End time: " << newEndTime << endl;
-    getchar();
 
-    // feasible = sroute1.testBlockIns(inst, nodeVec, 
-    //                                 Mdist, newEndTime, tBlock2,
-    //                                 iniPos, endPos, zeroVec2);
-    
 
-	// for (int i = 0; i < zeroVec1.size(); i++) {
-	// 	delta = -Mdist[nodes_[i - 1]][nodes_[i]];
-    //     // inter1 = getInterval(i);
-
-    //     // cout << "Interval of i: " << inter1.first <<  " - " << inter1.second << endl; 
-
-    //     if(nodes_[i] < inst->n){
-    //         jend = inter1.second;            
-    //     }
-    //     else if (nodes_[i] < inst->n+inst->m){
-    //         temp = getDL(nodes_[i]-inst->n);
-    //         // cout << "temp: " << temp << endl;
-    //         if (problem->dParcel > 0){
-    //             if (temp == i + 1){
-    //                 // getchar();
-    //                 continue;
-    //             }
-    //             jend = temp;
-    //         }
-    //         else{
-    //             jend = getPrevPass(temp);
-    //         }
-    //     }
-    //     else{
-    //         jend = nodes_.size() - 1;
-    //     }
-	// 	for (int j = i + 2; j < jend; j++) {
-    //         feasPos = 0;
-    //         feasible = 0;
-
-    //         if (nodes_[i] < inst->n && nodes_[j] < inst->n){//cannot interexchange passengers (TW)
-    //             continue;
-    //         }
-    //         else{
-    //             inter2 = getInterval(j);
-    //             if (nodes_[i] < inst->n || nodes_[j] < inst->n){
-    //                 feasPos = checkInterval(inst, i, j, inter1, inter2);
-    //             }
-    //             else{
-    //                 feasPos = 1;
-    //             }
-    //             if(nodeVec[nodes_[j]].load < 0){
-    //                 cout << "Check delivery" << endl;
-    //                 feasPos = checkDelivery(inst, i, j, problem);
-    //             }
-
-    //             if (feasPos){
-    //                 feasible = testSwap(inst, nodeVec, Mdist, i, j, inter1, inter2);
-
-    //                 if (feasible){
-
-    //                     if (j - i == 1) {
-    //                         delta += - Mdist[nodes_[i]][nodes_[j]] 
-    //                         + Mdist[nodes_[j]][nodes_[i]]                            
-    //                         - Mdist[nodes_[j]][nodes_[j + 1]] 
-    //                         + Mdist[nodes_[i - 1]][nodes_[j]]
-    //                         + Mdist[nodes_[i]][nodes_[j + 1]];
-    //                     }
-    //                     else {
-    //                         delta += - Mdist[nodes_[i]][nodes_[i + 1]] 
-    //                         - Mdist[nodes_[j - 1]][nodes_[j]]
-    //                         - Mdist[nodes_[j]][nodes_[j + 1]] 
-    //                         + Mdist[nodes_[i - 1]][nodes_[j]] 
-    //                         + Mdist[nodes_[j]][nodes_[i + 1]] 
-    //                         + Mdist[nodes_[j - 1]][nodes_[i]] 
-    //                         + Mdist[nodes_[i]][nodes_[j + 1]];
-    //                     }
-
-    //                     if (delta < 0) {
-    //                         if (delta < bestDelta) {
-    //                             // cout << "\nThere was an improvement with delta as " << delta << endl;
-    //                             // getchar();
-    //                             bestDelta = delta;
-    //                             pos1 = i;
-    //                             pos2 = j;
-    //                             swap = 1;
-    //                         }
-    //                     }
-    //                 }
-    //             }          
-    //         }			
-	// 	}
-	// }
-
-    // if (improve){
-
-    //     cout << "pos1: " << pos1 << endl;
-    //     cout << "pos2: " << pos2 << endl;
-    //     cout << "element1: " << nodes_[pos1] << endl;
-    //     cout << "element2: " << nodes_[pos2] << endl;
-
-    //     tempElement = nodes_[pos1];
-    //     nodes_[pos1] = nodes_[pos2];
-    //     nodes_[pos2] = tempElement;
-
-    //     updateAll(inst,nodeVec, Mdist);
-    //     bestDelta = -(bestDelta*inst->costkm);
-    //     // cout << "Best Delta: " << bestDelta << endl;
-
-    //     updateCost(bestDelta);
-
-    //     // cout << "New cost: " << cost_ << endl;
-
-    //     calcCost(inst, nodeVec, Mdist);
-    //     // cout << "Calculated cost: " << cost_ << endl;
-    //     // getchar();
-
-    //     // cout << "Route with swap: " << endl;
-    //     // for (int a = 0; a < nodes_.size(); a++){
-    //     //     cout << nodes_[a] << " - ";
-    //     // }
-    //     // cout << endl;
-    //     // getchar();
-    // }
-    // else{
-    //     delta = 0;
-    // }
     return bestDelta;
 }
 

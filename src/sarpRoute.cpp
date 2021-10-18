@@ -108,21 +108,24 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
     //testing if the sum of the original route part is feasible 
     //considering TW of the first passenger in the new Block.
     for (int i = 0; i < newBlock.size(); i++){
-        int req = nodes_[i];
-        int nextreq = nodes_[i + 1];
+        int req = newBlock[i];
+        int nextreq = newBlock[i + 1];
 
         pretime += nodeVec[req].delta +
                    ((Mdist[req][nextreq])/inst->vmed);
-
         if (nextreq < inst->n){
+            cout << "Next request: " << nextreq << " - this req: " << req << endl;
             if (firstpassblock < 0){
                 firstpassblock = i;
             }
             if (pretime > nodeVec[nextreq].e){
                 feasible = 0;
+                cout << "pre time NF: " << pretime << endl;
+
                 return feasible;
             }
             else{
+                cout << "pre time: " << pretime << " - with " << nodeVec[nextreq].e << endl;
                 feasible = 1;
                 if (nodes_[endPos] >= inst->n + 2*inst->m){
                     break;
@@ -130,6 +133,7 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
             }
         }
     }
+
 
     //defining end of complete new route
     if (nodes_[endPos] < inst->n + 2*inst->m){
