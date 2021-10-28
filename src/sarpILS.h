@@ -56,7 +56,7 @@ public:
 
     void RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
     
-    void RVNDAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+    // void RVNDAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
     void SwapAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
     

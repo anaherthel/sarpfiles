@@ -7,6 +7,49 @@
 #include "readdata.h"
 #include "Statistics.h"
 
+class sarpBlock {
+
+protected:
+    double profit_;
+    // double cost_;
+
+    vector<int> block;
+
+    double starttime;
+    double endtime;
+
+    int iniPos, endPos;
+
+    int lastPass, lastPassPos, firstPass, firstPassPos;
+
+
+public:
+
+    double profit() const{ return profit_; };
+    int getBlockReq(int pos) { return block[pos]; };
+    int getLastReq() { return block.back(); };
+    int getiniPos () const{ return iniPos; };
+    int getendPos () const{ return endPos; };
+    
+    int getLastPass() { return lastPassPos; }; //returns the position of blocks last passenger
+    int getFirstPass() { return firstPassPos; }; //returns a position of blocks first passenger
+
+    double getStart() { return starttime; };
+    double getEnd() { return endtime; };
+
+    int getBlockSize() { return block.size(); };
+
+    vector<int> getBlock() { return block; };
+
+    void makeBlock(vector<int> oriRoute, int starting, int ending);
+
+    void clearBlock() { block.clear(); };
+
+    void blockProfit(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
+    void calcBlockTimes(instanceStat *inst, 
+                        vector<nodeStat> &nodeVec, double **Mdist);
+};
+
 class sarpRoute {
 protected:
 
@@ -79,6 +122,8 @@ public:
 
     vector<int>::iterator begin() { return nodes_.begin(); };
     vector<int>::iterator end() { return nodes_.end(); };
+    vector<int> getNodes() {return nodes_; };
+
     bool testInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int position, int request);
     bool testInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int pos1, int pos2, int pu, int dl);
 
@@ -90,21 +135,16 @@ public:
                             pair <int, int> inter1);
     void calcCost(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist);
 
-    double blockProfit(instanceStat *inst, 
-                        vector<nodeStat> &nodeVec, 
-                        double **Mdist,
-                        int iniPos, int endPos);
-
     //returns the new endtime without the block
     double blockrmvTime(instanceStat *inst, 
                         vector<nodeStat> &nodeVec, 
                         double **Mdist,
-                        int iniPos, int endPos);    
+                        int iniPos);    
 
     bool testBlockIns(instanceStat *inst, 
                         vector<nodeStat> &nodeVec, 
-                        double **Mdist, double newEnd, pair <double, double> blockTime,
-                        int strPos, int endPos, vector<int> newBlock);
+                        double **Mdist, double newEnd,
+                        int strPos, int endPos, sarpBlock newBlock);
 
     //only when the first insertion is a passenger request.
     bool fInsertion(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int request);
