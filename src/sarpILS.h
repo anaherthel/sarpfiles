@@ -62,6 +62,8 @@ public:
     
     void TwoOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
+    void relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+
     void ThreeOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
     void RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);

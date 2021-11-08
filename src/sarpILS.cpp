@@ -597,16 +597,16 @@ void sarpILS::relocate(instanceStat *inst,
                 // getchar();
                 if (delta < 0){
                     if (delta < bestDelta){
-                        cout << "**********************" << endl;
-                        sroute1 = solution.getRoute(rid1);
-                        candidate = sroute1.getReq(currCand);
-                        cout << "candidate: " << candidate << endl;
-                        cout << "original position: " << currCand << endl;
-                        cout << "relocating candidates from route " << rid1  
-                        << " to route "  << rid2 << endl;
-                        cout << "New position: " << currPairPos.first << " - " << currPairPos.second << endl;
-                        cout << "Delta obtained: " << delta << endl;
-                        cout << "**********************" << endl;
+                        // cout << "**********************" << endl;
+                        // sroute1 = solution.getRoute(rid1);
+                        // candidate = sroute1.getReq(currCand);
+                        // cout << "candidate: " << candidate << endl;
+                        // cout << "original position: " << currCand << endl;
+                        // cout << "relocating candidates from route " << rid1  
+                        // << " to route "  << rid2 << endl;
+                        // cout << "New position: " << currPairPos.first << " - " << currPairPos.second << endl;
+                        // cout << "Delta obtained: " << delta << endl;
+                        // cout << "**********************" << endl;
                         // getchar();
                         bestDelta = delta;
                         improve = 1;
@@ -734,10 +734,10 @@ void sarpILS::TwoOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,
     
     solution.stats.setStart();
 
-    cout << "(((((Solution so far ))))))" << endl;
-    solution.printSol(inst);
-    solution.printCosts();
-    // getchar();
+    // cout << "(((((Solution so far ))))))" << endl;
+    // solution.printSol(inst);
+    // solution.printCosts();
+    // // getchar();
 
     for (int rid1 = 0; rid1 < solSize - 1; rid1++){
         for (int rid2 = rid1+1; rid2 < solSize; rid2++){
@@ -751,11 +751,11 @@ void sarpILS::TwoOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,
                                     currPairPos, 
                                     problem, currBlock1, currBlock2);                
 
-            cout << "Current inipos of r1 in ILS function: " << endl;
-            cout << currPairPos.first << endl;
+            // cout << "Current inipos of r1 in ILS function: " << endl;
+            // cout << currPairPos.first << endl;
 
-            cout << "Current inipos of r2 in ILS function: " << endl;
-            cout << currPairPos.second << endl;
+            // cout << "Current inipos of r2 in ILS function: " << endl;
+            // cout << currPairPos.second << endl;
 
             // getchar();
             // cout << "After relocate" << endl;
@@ -764,18 +764,18 @@ void sarpILS::TwoOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,
 
             if (totaldelta > 0){
                 if (totaldelta > bestDelta){
-                    cout << "**********************" << endl;
-                    sroute1 = solution.getRoute(rid1);
-                    sroute2 = solution.getRoute(rid2);
+                    // cout << "**********************" << endl;
+                    // // sroute1 = solution.getRoute(rid1);
+                    // // sroute2 = solution.getRoute(rid2);
                     
 
-                    cout << "initial position of route 1: " << currPairPos.first << endl; 
-                    cout << "initial position of route 2: " << currPairPos.second << endl;                        
-                    cout << "relocating candidates from route " << rid1  
-                    << " to route "  << rid2 << endl;
-                    cout << "Delta obtained (first, second, total): " << delta.first << " " << delta.second << " " << totaldelta << endl;
-                    cout << "**********************" << endl;
-                    getchar();
+                    // cout << "initial position of route 1: " << currPairPos.first << endl; 
+                    // cout << "initial position of route 2: " << currPairPos.second << endl;                        
+                    // cout << "relocating candidates from route " << rid1  
+                    // << " to route "  << rid2 << endl;
+                    // cout << "Delta obtained (first, second, total): " << delta.first << " " << delta.second << " " << totaldelta << endl;
+                    // cout << "**********************" << endl;
+                    // getchar();
                     bestDelta = totaldelta;
                     improve = 1;
 
@@ -809,17 +809,17 @@ void sarpILS::TwoOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,
         movingVec1 = reqBlock1.getBlock();
         movingVec2 = reqBlock2.getBlock();
 
-        cout << "Moving vec 1: " << endl;
-        for (int i = 0; i < movingVec1.size(); i++){
-            cout << movingVec1[i] << " ";
-        }
-        cout << endl;
+        // cout << "Moving vec 1: " << endl;
+        // for (int i = 0; i < movingVec1.size(); i++){
+        //     cout << movingVec1[i] << " ";
+        // }
+        // cout << endl;
 
-        cout << "Moving vec 2: " << endl;
-        for (int i = 0; i < movingVec2.size(); i++){
-            cout << movingVec2[i] << " ";
-        }
-        cout << endl;        
+        // cout << "Moving vec 2: " << endl;
+        // for (int i = 0; i < movingVec2.size(); i++){
+        //     cout << movingVec2[i] << " ";
+        // }
+        // cout << endl;        
 
         sroute1.eraseBlock(inst, Mdist, bestPairPos.first, srouteSize1, p1);
         sroute2.eraseBlock(inst, Mdist, bestPairPos.second, srouteSize2, p2);
@@ -848,6 +848,141 @@ void sarpILS::TwoOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,
 
 //for blocks out of 2-opt, create a pair in which first is endtime for block and
 //second is total travel time of block.
+
+
+void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
+                        double **Mdist, probStat* problem){
+    int solSize = 0;
+    
+    solSize = solution.getRoutesSize();
+
+    double totaldelta = 0;
+    // int vehicle;
+    // vehicle = solution.getvehicle();
+
+    sarpRoute sroute1(inst, 0);
+    sarpRoute sroute2(inst, 0);
+
+    sarpBlock currBlock;
+
+    sarpBlock reqBlock;
+
+    //currPairPos: only necessary to track the first position to shift to other route.
+
+    pair <int, int> bestRoutePair; 
+    pair <double, double> delta;
+
+    //the insertion position of the block
+    //start and ending positions of the block are defined in the block class
+    int insPos, bestInsPos;
+
+    double bestDelta = 0;
+
+    bool improve;
+    improve = 0;
+
+    double profit;
+    
+    solution.stats.setStart();
+
+    cout << "(((((Solution so far ))))))" << endl;
+    solution.printSol(inst);
+    solution.printCosts();
+    // getchar();
+
+    for (int rid1 = 0; rid1 < solSize; rid1++){
+        for (int rid2 = 0; rid2 < solSize; rid2++){
+            delta.first = 0;
+            delta.second = 0;
+            if (rid1 != rid2){
+                //rid1: From where the block will come
+                //rid2: Where the block will go
+                //this is the delta in solution value, so it is just a matter of cost.
+
+                delta = solution.relocateBlock(inst, Mdist, nodeVec, 
+                                                rid1, rid2, 
+                                                insPos, 
+                                                problem, currBlock);                
+                
+                
+                cout << "Current inipos of r2 in ILS function: " << endl;
+                cout << insPos << endl;
+
+                // getchar();
+                // cout << "After relocate" << endl;
+                // getchar();
+                totaldelta = delta.first + delta.second;
+
+                if (totaldelta > 0){
+                    if (totaldelta > bestDelta){
+                        
+                        cout << "**********************" << endl;
+                        sroute1 = solution.getRoute(rid1);
+                        sroute2 = solution.getRoute(rid2);
+                        cout << "insertion position: " << insPos << endl; 
+                        cout << "relocating block from route " << rid1;
+                        cout << " to route "  << rid2 << endl;
+                        cout << "Delta obtained (first, second, total): " << delta.first;
+                        cout << " " << delta.second << " " << totaldelta << endl;
+                        cout << "**********************" << endl;
+                        getchar();
+
+                        bestDelta = totaldelta;
+
+                        improve = 1;
+
+                        bestInsPos = insPos;
+                        
+                        bestRoutePair.first = rid1;
+                        bestRoutePair.second = rid2;
+
+                        reqBlock = currBlock;                        
+                    }
+                }
+            }
+        }
+    }
+
+    if (improve){
+        sroute1 = solution.getRoute(bestRoutePair.first);
+        sroute2 = solution.getRoute(bestRoutePair.second);
+
+        int srouteSize1, srouteSize2;
+        srouteSize1 = sroute1.getNodesSize() - 1;
+
+        double profit = reqBlock.profit();
+
+        vector<int> movingVec;
+
+        movingVec = reqBlock.getBlock();
+
+        cout << "Moving vec: " << endl;
+        for (int i = 0; i < movingVec1.size(); i++){
+            cout << movingVec1[i] << " ";
+        }
+        cout << endl;
+
+        sroute1.eraseBlock(inst, Mdist, bestPairPos.first, srouteSize1, profit);
+
+        sroute2.insertBlock(inst, Mdist, movingVec, bestInsPos, profit);
+
+        sroute1.updateAll(inst, nodeVec, Mdist);
+        sroute2.updateAll(inst, nodeVec, Mdist);
+
+        solution.updateRoutes(&sroute1, bestRoutePair.first);
+        solution.updateRoutes(&sroute2, bestRoutePair.second);
+        solution.updateCost();        
+    }
+
+    solution.stats.setEnd();
+
+    cout << "After relocate Block" << endl;
+    solution.printSol(inst);
+    solution.printCosts();
+
+    cout << "\nRelocate block Time: " << std::setprecision(8) << solution.stats.printTime() << endl;
+
+}
 
 
 void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
