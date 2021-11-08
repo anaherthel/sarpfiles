@@ -483,7 +483,6 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     int lastPos2 = rid2.getNodesSize() - 1;
 
 
-
     sarpBlock block1;
     sarpBlock block2;
 
@@ -525,6 +524,9 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     solution->printLoadSol(inst);
 
     getchar();
+
+
+
 
     // double testcost = 0;
 

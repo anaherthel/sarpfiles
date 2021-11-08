@@ -394,6 +394,8 @@ pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
                 newEndTime2 = 0;
             }
 
+            cout << "New End time (BLOCK 2): " << newEndTime2 << endl;
+
             cout << "Block 1: " << endl;
             for (int k = 0; k < currBlock1.getBlockSize(); k++){
                 cout << currBlock1.getBlockReq(k) << " ";
@@ -412,7 +414,7 @@ pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
             // cout << "Times for block 2: " << currBlock2.getStart() << " - " << currBlock2.getEnd() << endl;
             // getchar();
 
-            newEndTime2 = 0;
+            // newEndTime2 = 0;
 
             //testing piece of route 2 into route 1
             // cout << "Testing feasibility r1" << endl;
@@ -420,8 +422,8 @@ pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
                                             Mdist, newEndTime1, iniPos1, 
                                             endPos1, currBlock2);
 
-            // cout << "Feasible insertion r1: " << feasible << endl;
-            // getchar();
+            cout << "Feasible insertion r1: " << feasible << endl;
+            getchar();
 
 
             if (feasible){
@@ -432,8 +434,8 @@ pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
                                                 Mdist, newEndTime2, iniPos2,
                                                 endPos2, currBlock1);
 
-                // cout << "Feasible insertion r2: " << feasible << endl;
-                // getchar();
+                cout << "Feasible insertion r2: " << feasible << endl;
+                getchar();
             }
             else{
                 continue;
@@ -468,6 +470,17 @@ pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
                 cout << "removed arcs: " << Mdist[interpos1.first][currBlock1.getBlockReq(0)]  << " " << Mdist[currBlock1.getLastReq()][interpos1.second] << endl;
                 cout << "added arcs: " << Mdist[interpos1.first][currBlock2.getBlockReq(0)] << " " << Mdist[currBlock2.getLastReq()][interpos1.second] << endl;
                 cout << "******************************************" << endl;
+                cout << "******************************************" << endl;
+                cout << "Calculating deltas: " << endl;
+                cout << "Delta Second: " << endl;
+                cout << "cost of route: " << sroute2.cost() << endl;
+                cout << "profit block1: " << p1 << endl;
+                cout << "profit block2: " << p2 << endl;
+                cout << "removed arcs: " << Mdist[interpos2.first][currBlock2.getBlockReq(0)]  << " " << Mdist[currBlock2.getLastReq()][interpos2.second] << endl;
+                cout << "added arcs: " << Mdist[interpos2.first][currBlock1.getBlockReq(0)] << " " << Mdist[currBlock1.getLastReq()][interpos2.second] << endl;
+                cout << "******************************************" << endl;
+
+                getchar();
 
                 delta.first = sroute1.cost() - p1 + p2 - (inst->costkm*(Mdist[interpos1.first][currBlock2.getBlockReq(0)] 
                             - Mdist[currBlock1.getLastReq()][interpos1.second]
@@ -489,6 +502,8 @@ pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
                     currPairPos.first = iniPos1;
                     currPairPos.second = iniPos2;
 
+                    cout << "Current pair positions: " <<  currPairPos.first << " " << currPairPos.second << endl;
+                    getchar();
                     // currBlock1.clearBlock();
                     // currBlock2.clearBlock();
 
@@ -519,6 +534,11 @@ pair <double, double> sarpSolution::TwoOpt(instanceStat *inst, double **Mdist,
                 }
             }
         }
+    }
+
+    if (!improve){
+        bestDelta.first = -999999;
+        bestDelta.second = -999999;
     }
 
     return bestDelta;

@@ -85,7 +85,7 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
 
         // bestSol.addunserved(inst, nodeVec, Mdist, problem);
         solution = bestSol;
-        // cout << "Calling Perturbation: " << endl;
+        cout << "Calling Perturbation: " << endl;
 
         Perturbation(inst, nodeVec, Mdist, problem);
 
@@ -423,7 +423,6 @@ void sarpILS::RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double *
 
 
 void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
-   int neighbor = 0;
 
 	double bestCost = solution.getCost();
 	double newCost = 0;
@@ -447,8 +446,10 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
     //     cout << *it;
     // }
     // getchar();
+    int iterator = 0;
 
-	while (!nbrList.empty()) {
+	// while (!nbrList.empty()) {
+    while (iterator < 2){
 		
 		int neighbor = rand() % nbrList.size();
         // int neighbor = 0;
@@ -545,6 +546,7 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
         //     cout << *it;
         // }
         // getchar();
+        iterator++;
 	}
 }
 
@@ -743,7 +745,7 @@ void sarpILS::TwoOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,
             delta.second = 0;
             // if (rid1 != rid2){
                 //this is the delta in solution value, so it is just a matter of cost.
-                
+
             delta = solution.TwoOpt(inst, Mdist, nodeVec, 
                                     rid1, rid2, 
                                     currPairPos, 

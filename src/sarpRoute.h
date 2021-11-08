@@ -143,7 +143,7 @@ public:
 
     bool testBlockIns(instanceStat *inst, 
                         vector<nodeStat> &nodeVec, 
-                        double **Mdist, double newEnd,
+                        double **Mdist, double &newEnd,
                         int strPos, int endPos, sarpBlock newBlock);
 
     //only when the first insertion is a passenger request.

@@ -157,7 +157,7 @@ double sarpRoute::blockrmvTime(instanceStat *inst,
 
     double accTime = nodeVec[nodes_[iniPos-1]].delta;
 
-    
+   
     for (int i = iniPos - 1; i > 0; i--){
         int req = nodes_[i];
         int prevreq = nodes_[i - 1];
@@ -174,6 +174,7 @@ double sarpRoute::blockrmvTime(instanceStat *inst,
         accTime += ((Mdist[prevreq][req])/inst->vmed) + nodeVec[prevreq].delta;
         
         // cout << "Acctime so far: " << accTime << endl;
+
     }
 
     newEndTime = nodeVec[lastPass].e + accTime;
@@ -189,7 +190,7 @@ double sarpRoute::blockrmvTime(instanceStat *inst,
 //****************Needs to be tested
 bool sarpRoute::testBlockIns(instanceStat *inst, 
                   vector<nodeStat> &nodeVec, 
-                  double **Mdist, double newEnd, 
+                  double **Mdist, double &newEnd, 
                   int strPos, int endPos, sarpBlock newBlock){
     
     bool feasible, withpass;
@@ -197,6 +198,9 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
  
     double pretime = newEnd + ((Mdist[nodes_[strPos - 1]][newBlock.getBlockReq(0)])/inst->vmed);
 
+    cout << "&&&&&&&& Calculated pretime: " << pretime << endl;
+    cout << "&&&&&&&& Start of block: " << newBlock.getStart() << endl;
+    cout << "&&&&&&&& End of block: " << newBlock.getEnd() << endl;
     double postime, temptime;
 
     feasible = 1;
@@ -1973,7 +1977,7 @@ void sarpRoute::erase(instanceStat *inst, double **Mdist, int position, double p
 
 void sarpRoute::insertBlock(instanceStat *inst, double **Mdist, 
                             vector<int> blockNodes, int position, double profit){
-
+    
     double delta = profit - inst->costkm*(Mdist[this->nodes_[position-1]][blockNodes[0]]
                 + Mdist[blockNodes.back()][this->nodes_[position]]
                 - Mdist[this->nodes_[position-1]][this->nodes_[position]]);
@@ -1988,9 +1992,10 @@ void sarpRoute::eraseBlock(instanceStat *inst, double **Mdist,
                             int pos1, int pos2, double profit) {
 
     double delta = - profit - inst->costkm*
-                (Mdist[this->nodes_[pos1 - 1]][this->nodes_[pos2 + 1]]
+                (Mdist[this->nodes_[pos1 - 1]][this->nodes_[pos2]]
                 - Mdist[this->nodes_[pos1 - 1]][this->nodes_[pos1]]
-                - Mdist[this->nodes_[pos2]][this->nodes_[pos2 + 1]]);
+                - Mdist[this->nodes_[pos2-1]][this->nodes_[pos2]]);
+
     cost_ += delta;
     
     this->nodes_.erase(this->nodes_.begin() + pos1, this->nodes_.begin() + pos2);
