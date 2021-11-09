@@ -82,9 +82,11 @@ public:
                     int rid1, int rid2, pair <int, int> &currPairPos,
                     probStat* problem, sarpBlock &reqBlock1, sarpBlock &reqBlock2);
 
-    pair <double, double> relocateBlock(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, 
-                    int rid1, int rid2, pair <int, int> &currPairPos,
-                    probStat* problem, sarpBlock &reqBlock);
+    pair <double, double> relocateBlock(instanceStat *inst, double **Mdist,
+                                        vector<nodeStat> &nodeVec, 
+                                        int rid1, int rid2, int &insPos,
+                                        probStat* problem, sarpBlock &reqBlock);
+
     // sarpRoute *getRoute(int idx) { return routes[idx]; }
     // inline int getRoutesSize() const { return this->routes.size(); }s
 };

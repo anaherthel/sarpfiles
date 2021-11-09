@@ -463,7 +463,7 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 			counter++;
 		}
 
-        neighbor = 2;
+        neighbor = 3;
 
 		switch (neighbor) {
 			case 0:
@@ -487,6 +487,12 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
             case 2:
                 cout << "Calling 2opt inter: " << endl;
 				TwoOptAll (inst, nodeVec, Mdist, problem);
+
+				break;
+
+            case 3:
+                cout << "Calling relocate block: " << endl;
+				relocateBlockAll (inst, nodeVec, Mdist, problem);
 
 				break;
 			default:
@@ -947,7 +953,7 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
         sroute1 = solution.getRoute(bestRoutePair.first);
         sroute2 = solution.getRoute(bestRoutePair.second);
 
-        int srouteSize1, srouteSize2;
+        int srouteSize1;
         srouteSize1 = sroute1.getNodesSize() - 1;
 
         double profit = reqBlock.profit();
@@ -957,12 +963,14 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
         movingVec = reqBlock.getBlock();
 
         cout << "Moving vec: " << endl;
-        for (int i = 0; i < movingVec1.size(); i++){
-            cout << movingVec1[i] << " ";
+        for (int i = 0; i < movingVec.size(); i++){
+            cout << movingVec[i] << " ";
         }
         cout << endl;
 
-        sroute1.eraseBlock(inst, Mdist, bestPairPos.first, srouteSize1, profit);
+        int iniPosBlock = reqBlock.getiniPos();
+
+        sroute1.eraseBlock(inst, Mdist, iniPosBlock, srouteSize1, profit);
 
         sroute2.insertBlock(inst, Mdist, movingVec, bestInsPos, profit);
 

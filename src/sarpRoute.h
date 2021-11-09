@@ -18,6 +18,8 @@ protected:
     double starttime;
     double endtime;
 
+    //Endpos: Point of ending the loop for building the block (the last request in 
+    //the block is in position endPos-1). 
     int iniPos, endPos;
 
     int lastPass, lastPassPos, firstPass, firstPassPos;

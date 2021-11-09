@@ -470,60 +470,60 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     solution->printLoadSol(inst);
 
 
-    //Changing to test 2-opt:
-    sarpRoute rid1(inst, vehicle);
-    sarpRoute rid2(inst, vehicle); 
+    // //Changing to test relocate Block:
+    // sarpRoute rid1(inst, vehicle);
+    // sarpRoute rid2(inst, vehicle); 
 
-    rid1 = solution->getRoute(0);
-    rid2 = solution->getRoute(1);
+    // rid1 = solution->getRoute(0);
+    // rid2 = solution->getRoute(1);
 
-    int iniPos1 = 5;
-    int lastPos1 = rid1.getNodesSize() - 1;
-    int iniPos2 = 2;
-    int lastPos2 = rid2.getNodesSize() - 1;
+    // int iniPos1 = 5;
+    // int lastPos1 = rid1.getNodesSize() - 1;
+    // int inspos2 = 5;
+    // // int lastPos2 = rid2.getNodesSize() - 1;
 
 
-    sarpBlock block1;
-    sarpBlock block2;
+    // sarpBlock block1;
+    // // sarpBlock block2;
 
-    block1.makeBlock(rid1.getNodes(), iniPos1, lastPos1);
-    block2.makeBlock(rid2.getNodes(), iniPos2, lastPos2);
+    // block1.makeBlock(rid1.getNodes(), iniPos1, lastPos1);
+    // // block2.makeBlock(rid2.getNodes(), iniPos2, lastPos2);
 
-    block1.blockProfit(inst, nodeVec, Mdist);
-    block2.blockProfit(inst, nodeVec, Mdist);
+    // block1.blockProfit(inst, nodeVec, Mdist);
+    // // block2.blockProfit(inst, nodeVec, Mdist);
 
-    cout << "Selected blocks: " << endl;
+    // cout << "Selected block (from r0): " << endl;
 
-    for (int i = 0; i < block1.getBlockSize(); i++){
-        cout << block1.getBlockReq(i) << " - ";
-    }
-    cout << endl;
+    // for (int i = 0; i < block1.getBlockSize(); i++){
+    //     cout << block1.getBlockReq(i) << " - ";
+    // }
+    // cout << endl;
 
-    for (int i = 0; i < block2.getBlockSize(); i++){
-        cout << block2.getBlockReq(i) << " - ";
-    }
-    cout << endl;
+    // // for (int i = 0; i < block2.getBlockSize(); i++){
+    // //     cout << block2.getBlockReq(i) << " - ";
+    // // }
+    // // cout << endl;
 
-    rid1.eraseBlock(inst, Mdist, iniPos1, lastPos1, block1.profit());
-    rid2.eraseBlock(inst, Mdist, iniPos2, lastPos2, block2.profit());
+    // rid1.eraseBlock(inst, Mdist, iniPos1, lastPos1, block1.profit());
+    // // rid2.eraseBlock(inst, Mdist, iniPos2, lastPos2, block2.profit());
 
-    rid1.insertBlock(inst, Mdist, block2.getBlock(), iniPos1, block2.profit());
-    rid2.insertBlock(inst, Mdist, block1.getBlock(), iniPos2, block1.profit());
+    // // rid1.insertBlock(inst, Mdist, block2.getBlock(), iniPos1, block2.profit());
+    // rid2.insertBlock(inst, Mdist, block1.getBlock(), inspos2, block1.profit());
 
-    rid1.updateAll(inst, nodeVec, Mdist);
+    // rid1.updateAll(inst, nodeVec, Mdist);
     
-    rid2.updateAll(inst, nodeVec, Mdist);
+    // rid2.updateAll(inst, nodeVec, Mdist);
 
-    solution->updateRoutes(&rid1, 0);
-    solution->updateRoutes(&rid2, 1);
-    solution->updateCost();    
+    // solution->updateRoutes(&rid1, 0);
+    // solution->updateRoutes(&rid2, 1);
+    // solution->updateCost();    
 
-    cout << "Preped solution: " << endl;
-    solution->printSol(inst);
-    solution->printCosts();
-    solution->printLoadSol(inst);
+    // cout << "Preped solution: " << endl;
+    // solution->printSol(inst);
+    // solution->printCosts();
+    // solution->printLoadSol(inst);
 
-    getchar();
+    // getchar();
 
 
 
