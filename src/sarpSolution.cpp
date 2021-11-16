@@ -662,7 +662,7 @@ pair <double, double> sarpSolution::relocateBlock(instanceStat *inst, double **M
 
                 for (int j = 1; j < routesize2 - 1; j++){
                     newEndTime2 = sroute2.blockrmvTime(inst, nodeVec, Mdist, j);
-
+                    cout << "New time of route 2: " << newEndTime2 << endl;
                     cout << "current trying insertion position " << j << endl;
                     // getchar();
 

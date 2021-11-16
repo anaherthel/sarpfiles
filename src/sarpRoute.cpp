@@ -207,6 +207,7 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
 
     int fblPassPos = newBlock.getFirstPass();
     int fblPass = newBlock.getBlockReq(fblPassPos);
+    cout << "fblPassPos: " << fblPassPos << " - passenger: " << fblPass << endl;
     double startRoute = 0;
     double endRoute = 0;
     bool pass = 0;
@@ -224,14 +225,17 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
    
     //end position is not dummy depot
     if (nodes_[endPos] < inst->n + 2*inst->m){
+
         //the endtime of the new block + the trip to the first after insertion
         postime = newBlock.getEnd() + ((Mdist[newBlock.getLastReq()][nodes_[endPos]])/inst->vmed);
 
         for (int i = endPos; i < nodes_.size()-1; i++){
-            if (nodes_.size()-1 < inst->n){
-                lastpassafter = nodes_.size()-1; 
-                endRoute = nodeVec[nodes_[nodes_.size()-1]].e + nodeVec[nodes_[nodes_.size()-1]].delta;
+            cout << "here1" << endl;
+            if (nodes_[nodes_.size()-2] < inst->n){
+                lastpassafter = nodes_.size()-2; 
+                endRoute = nodeVec[nodes_[nodes_.size()-2]].e + nodeVec[nodes_[nodes_.size()-2]].delta;
                 lastReq = 1;
+
                 break;
             }
 
@@ -240,7 +244,7 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
 
             postime += nodeVec[req].delta +
                     ((Mdist[req][nextreq])/inst->vmed);
-
+            cout << "here2" << endl;
             //defining time feasibility with passenger after block
             if (req < inst->n && firstpassafter < 0){
                 firstpassafter = i;
@@ -251,7 +255,6 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
                 }
             }
             //calculating block endtime
-
             else if (req < inst->n && firstpassafter > -1){
                 lastpassafter = i;
                 endRoute = nodeVec[req].e;
@@ -273,10 +276,12 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
     if (strPos > 1){
         if (nodes_[1] < inst->n){
             startRoute = nodeVec[nodes_[1]].e - ((Mdist[nodes_[0]][nodes_[1]])/inst->vmed);
+            pass = 1;
         }
         else{
             if (this->firstPassPos < strPos){
                 startRoute = this->starttime;
+                pass = 1;
             }
             else{
                 for (int i = 0; i < strPos; i++){
@@ -286,31 +291,33 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
                     temptime += nodeVec[req].delta +
                             ((Mdist[req][nextreq])/inst->vmed);
                 }
-                startRoute = newBlock.getStart() - temptime;
+                if (newBlock.getFirstPass() > -1){
+                    pass = 1;
+                    startRoute = newBlock.getStart() - temptime;
+                }
+                else{
+                    temptime += newBlock.getEnd() - newBlock.getStart();
+                    if (nodes_[endPos] < inst->n + 2*inst->m && firstpassafter > -1){
+                    //no passenger in the block but passenger after block
+                        for (int i = endPos; i < firstpassafter; i++){
+                            int req = nodes_[i];
+                            int nextreq = nodes_[i + 1];
+
+                            temptime += nodeVec[req].delta +
+                                ((Mdist[req][nextreq])/inst->vmed);
+                        }
+                        startRoute = nodeVec[nodes_[firstpassafter]].e - temptime;
+                    }
+                }
+
             }
         }
     }
     else{
         startRoute = newBlock.getStart();
-        pass = 1;
     }
-    //
-    if (!pass){ //no passenger in the before block section 
-        temptime += newBlock.getEnd() - newBlock.getStart();
-        
-        if (nodes_[endPos] < inst->n + 2*inst->m && firstpassafter > -1){
-        //no passenger in the block but passenger after block
-            for (int i = endPos; i < firstpassafter; i++){
-                int req = nodes_[i];
-                int nextreq = nodes_[i + 1];
-
-                temptime += nodeVec[req].delta +
-                    ((Mdist[req][nextreq])/inst->vmed);
-            }
-            startRoute = nodeVec[nodes_[firstpassafter]].e - temptime;
-        }
-    }
-
+    cout << "here3" << endl;
+    getchar();
     
     if (endRoute > inst->T){
         feasible = 0;
@@ -320,7 +327,7 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
         feasible = 0;
         return feasible;
     }        
-
+    cout << "here4" << endl;
     return feasible;
 }
 
