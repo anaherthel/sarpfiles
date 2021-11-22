@@ -615,19 +615,19 @@ pair <double, double> sarpSolution::relocateBlock(instanceStat *inst, double **M
     }
     endBlocks1.push_back(loadSize1 - 1);
 
-    cout << "Initial positions for blocks (1): " << endl;
+    // cout << "Initial positions for blocks (1): " << endl;
 
-    for (int j = 0; j < iniBlocks1.size(); j++){
-        cout << iniBlocks1[j] << " ";
-    }
-    cout << endl;
+    // for (int j = 0; j < iniBlocks1.size(); j++){
+    //     cout << iniBlocks1[j] << " ";
+    // }
+    // cout << endl;
 
-    cout << "End positions for blocks (1): " << endl;
+    // cout << "End positions for blocks (1): " << endl;
 
-    for (int j = 0; j < endBlocks1.size(); j++){
-        cout << endBlocks1[j] << " ";
-    }
-    cout << endl;
+    // for (int j = 0; j < endBlocks1.size(); j++){
+    //     cout << endBlocks1[j] << " ";
+    // }
+    // cout << endl;
 
     // getchar();
 
@@ -647,7 +647,7 @@ pair <double, double> sarpSolution::relocateBlock(instanceStat *inst, double **M
                 int iniPos1 = currBlock.getiniPos();
                 int endPos1 = currBlock.getendPos();
 
-                cout << "r1: inipos: " << iniPos1 << " - endPos: " << endPos1 << endl;
+                // cout << "\n\nr1: inipos: " << iniPos1 << " - endPos: " << endPos1 << endl;
                 // getchar();
                 //determining the new end time for the requests that are not part of the 2-opt block.
                 if (currBlock.getiniPos() > 1){
@@ -657,20 +657,21 @@ pair <double, double> sarpSolution::relocateBlock(instanceStat *inst, double **M
                     newEndTime1 = 0;
                 }
 
-                cout << "New End time: " << newEndTime1 << endl;
+                cout << "+++++++++++++++" << "\nBlock 1: " << endl;
+                for (int k = 0; k < currBlock.getBlockSize(); k++){
+                    cout << currBlock.getBlockReq(k) << " ";
+                }
+                cout << endl;
+                // cout << "New End time: " << newEndTime1 << endl;
                 // getchar();
 
-                for (int j = 1; j < routesize2 - 1; j++){
+                for (int j = 1; j < routesize2; j++){
                     newEndTime2 = sroute2.blockrmvTime(inst, nodeVec, Mdist, j);
                     cout << "New time of route 2: " << newEndTime2 << endl;
                     cout << "current trying insertion position " << j << endl;
                     // getchar();
 
-                    cout << "Block 1: " << endl;
-                    for (int k = 0; k < currBlock.getBlockSize(); k++){
-                        cout << currBlock.getBlockReq(k) << " ";
-                    }
-                    cout << endl;
+
                     
                     // cout << "Times for block 1: " << currBlock1.getStart() << " - " << currBlock1.getEnd() << endl;
                     // getchar();
@@ -724,12 +725,12 @@ pair <double, double> sarpSolution::relocateBlock(instanceStat *inst, double **M
                                     - Mdist[interpos1.first][currBlock.getBlockReq(0)]
                                     - Mdist[currBlock.getLastReq()][interpos1.second]));
 
-                        delta.second = sroute2.cost() + p1 - (inst->costkm*(Mdist[sroute2.getReq(j-1)][sroute2.getReq(j)] 
-                                    - Mdist[sroute2.getReq(j-1)][currBlock.getBlockReq(0)]
-                                    - Mdist[currBlock.getLastReq()][sroute2.getReq(j)]));
+                        delta.second = sroute2.cost() + p1 - (inst->costkm*(-Mdist[sroute2.getReq(j-1)][sroute2.getReq(j)] 
+                                    + Mdist[sroute2.getReq(j-1)][currBlock.getBlockReq(0)]
+                                    + Mdist[currBlock.getLastReq()][sroute2.getReq(j)]));
 
 
-                        cout << "Deltas: " << delta.first << " " << delta.second << endl;
+                        cout << "\nDeltas: " << delta.first << " " << delta.second << endl;
 
                         if ((delta.first + delta.second) > (bestDelta.first + bestDelta.second)){
                             bestDelta.first = delta.first;

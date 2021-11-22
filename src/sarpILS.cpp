@@ -463,7 +463,7 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 			counter++;
 		}
 
-        neighbor = 3;
+        neighbor = 4;
 
 		switch (neighbor) {
 			case 0:
@@ -493,6 +493,12 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
             case 3:
                 cout << "Calling relocate block: " << endl;
 				relocateBlockAll (inst, nodeVec, Mdist, problem);
+
+				break;
+
+            case 4:
+                cout << "Calling exchange blocks: " << endl;
+				exchangeBlocksAll (inst, nodeVec, Mdist, problem);
 
 				break;
 			default:
@@ -882,6 +888,9 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
     //start and ending positions of the block are defined in the block class
     int insPos, bestInsPos;
 
+    insPos = -1;
+    bestInsPos = -1;
+
     double bestDelta = 0;
 
     bool improve;
@@ -901,6 +910,7 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
             delta.first = 0;
             delta.second = 0;
             if (rid1 != rid2){
+                cout << "Route 2: " << rid2 << endl;
                 //rid1: From where the block will come
                 //rid2: Where the block will go
                 //this is the delta in solution value, so it is just a matter of cost.
@@ -922,7 +932,7 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
                 if (totaldelta > 0){
                     if (totaldelta > bestDelta){
                         
-                        cout << "**********************" << endl;
+                        cout << "-x----x----x-----x----x----x-" << endl;
                         sroute1 = solution.getRoute(rid1);
                         sroute2 = solution.getRoute(rid2);
                         cout << "insertion position: " << insPos << endl; 
@@ -930,7 +940,7 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
                         cout << " to route "  << rid2 << endl;
                         cout << "Delta obtained (first, second, total): " << delta.first;
                         cout << " " << delta.second << " " << totaldelta << endl;
-                        cout << "**********************" << endl;
+                        cout << "-x----x----x-----x----x----x-" << endl;
                         getchar();
 
                         bestDelta = totaldelta;
@@ -970,7 +980,9 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
 
         int iniPosBlock = reqBlock.getiniPos();
 
-        sroute1.eraseBlock(inst, Mdist, iniPosBlock, srouteSize1, profit);
+        int endPosBlock = reqBlock.getendPos();
+
+        sroute1.eraseBlock(inst, Mdist, iniPosBlock, endPosBlock, profit);
 
         sroute2.insertBlock(inst, Mdist, movingVec, bestInsPos, profit);
 

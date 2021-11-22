@@ -151,7 +151,13 @@ double sarpRoute::blockrmvTime(instanceStat *inst,
                         int iniPos){
     
     double newEndTime = this->endtime;
+
     int lastPass;
+
+    if (iniPos < 2){
+        newEndTime = 0;
+        return newEndTime;
+    }
 
     newEndTime -= ((Mdist[nodes_[iniPos-1]][nodes_[iniPos]])/inst->vmed);
 
@@ -193,9 +199,23 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
                   double **Mdist, double &newEnd, 
                   int strPos, int endPos, sarpBlock newBlock){
     
+    double totalBlock, totalRoute;
     bool feasible, withpass;
+
+    totalBlock = newBlock.getEnd() - newBlock.getStart();
+    totalRoute = this->endtime - this->starttime;
+
+    if (totalRoute + totalBlock > inst->maxTime){
+        feasible = 0;
+
+        return feasible;
+    }
+
     int firstpassafter, lastpassafter;//position of first passenger after the block
- 
+    
+    firstpassafter = -1;
+    lastpassafter = -1;
+    
     double pretime = newEnd + ((Mdist[nodes_[strPos - 1]][newBlock.getBlockReq(0)])/inst->vmed);
 
     cout << "&&&&&&&& Calculated pretime: " << pretime << endl;
@@ -203,18 +223,20 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
     cout << "&&&&&&&& End of block: " << newBlock.getEnd() << endl;
     double postime, temptime;
 
+    temptime = 0;
+
     feasible = 1;
 
     int fblPassPos = newBlock.getFirstPass();
     int fblPass = newBlock.getBlockReq(fblPassPos);
-    cout << "fblPassPos: " << fblPassPos << " - passenger: " << fblPass << endl;
+    // cout << "fblPassPos: " << fblPassPos << " - passenger: " << fblPass << endl;
     double startRoute = 0;
     double endRoute = 0;
     bool pass = 0;
     bool lastReq = 0;
 
     //testing if the sum of the original route part is feasible 
-    //considering TW of the first passenger in the new Block.
+    //considering TW of the first passenger in the new Block
 
     if (pretime > newBlock.getStart()){
         feasible = 0;
@@ -228,37 +250,63 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
 
         //the endtime of the new block + the trip to the first after insertion
         postime = newBlock.getEnd() + ((Mdist[newBlock.getLastReq()][nodes_[endPos]])/inst->vmed);
+        // cout << "HERE post time:" << postime << endl;
 
         for (int i = endPos; i < nodes_.size()-1; i++){
-            cout << "here1" << endl;
             if (nodes_[nodes_.size()-2] < inst->n){
-                lastpassafter = nodes_.size()-2; 
-                endRoute = nodeVec[nodes_[nodes_.size()-2]].e + nodeVec[nodes_[nodes_.size()-2]].delta;
-                lastReq = 1;
 
-                break;
+                lastpassafter = nodes_.size()-2; 
+
+                if (newBlock.getEnd() > nodeVec[nodes_[lastpassafter]].e){
+                    feasible = 0;
+                    return feasible;
+                }
+                else{
+                    cout << "\n+_+_+_+\nlast passenger after insertion position: " << nodes_[lastpassafter] << " in position " << lastpassafter << endl;
+                    endRoute = nodeVec[nodes_[lastpassafter]].e + nodeVec[nodes_[lastpassafter]].delta;
+                    lastReq = 1;
+
+                    break;
+                }
             }
 
             int req = nodes_[i];
             int nextreq = nodes_[i + 1];
 
-            postime += nodeVec[req].delta +
-                    ((Mdist[req][nextreq])/inst->vmed);
-            cout << "here2" << endl;
-            //defining time feasibility with passenger after block
-            if (req < inst->n && firstpassafter < 0){
-                firstpassafter = i;
+            // cout << "\nRequest: " << req << " - next req: " << nextreq << endl;
 
-                if (postime - nodeVec[req].delta > nodeVec[req].e){
+            if (req < inst->n){
+
+                if (newBlock.getEnd() > nodeVec[req].e){
                     feasible = 0;
                     return feasible;
                 }
+
+                if (firstpassafter < 0){
+                    firstpassafter = i;
+
+                    if (postime > nodeVec[req].e){
+                        feasible = 0;
+                        return feasible;
+                    }
+                }
+                else{
+                    if (lastpassafter < 0){
+                        lastpassafter = i;
+                        endRoute = nodeVec[req].e;
+                    }
+                }
             }
+
+            postime += nodeVec[req].delta +
+                    ((Mdist[req][nextreq])/inst->vmed);
+
+
+
+            // cout << "\npost time (2): " << postime << endl;
+            //defining time feasibility with passenger after block
+
             //calculating block endtime
-            else if (req < inst->n && firstpassafter > -1){
-                lastpassafter = i;
-                endRoute = nodeVec[req].e;
-            }
             if(lastpassafter > -1 && !lastReq){
                 endRoute += nodeVec[req].delta +
                         ((Mdist[req][nextreq])/inst->vmed);
@@ -268,7 +316,7 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
     else{
         postime = newBlock.getEnd();
     }
-    if (firstpassafter < 0){
+    if (firstpassafter < 0 && lastpassafter < 0){
         endRoute = postime;
     }
     
@@ -284,40 +332,41 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
                 pass = 1;
             }
             else{
-                for (int i = 0; i < strPos; i++){
-                    int req = nodes_[i];
-                    int nextreq = nodes_[i + 1];
-
-                    temptime += nodeVec[req].delta +
-                            ((Mdist[req][nextreq])/inst->vmed);
-                }
                 if (newBlock.getFirstPass() > -1){
                     pass = 1;
-                    startRoute = newBlock.getStart() - temptime;
+                    startRoute = newBlock.getStart() - pretime;
                 }
                 else{
-                    temptime += newBlock.getEnd() - newBlock.getStart();
-                    if (nodes_[endPos] < inst->n + 2*inst->m && firstpassafter > -1){
-                    //no passenger in the block but passenger after block
-                        for (int i = endPos; i < firstpassafter; i++){
-                            int req = nodes_[i];
-                            int nextreq = nodes_[i + 1];
+                    pretime += newBlock.getEnd() - newBlock.getStart();
+                    if (nodes_[endPos] < inst->n + 2*inst->m){
+                        if(firstpassafter > -1){
+                            //no passenger in the block but passenger after block
+                            for (int i = endPos; i < firstpassafter; i++){
+                                int req = nodes_[i];
+                                int nextreq = nodes_[i + 1];
 
-                            temptime += nodeVec[req].delta +
-                                ((Mdist[req][nextreq])/inst->vmed);
+                                pretime += nodeVec[req].delta +
+                                    ((Mdist[req][nextreq])/inst->vmed);
+                            }
+                            startRoute = nodeVec[nodes_[firstpassafter]].e - pretime;
                         }
-                        startRoute = nodeVec[nodes_[firstpassafter]].e - temptime;
+                        else{
+                            startRoute = 0;
+                        }
+                    }
+                    else{
+                        startRoute = 0;
                     }
                 }
-
             }
         }
     }
     else{
-        startRoute = newBlock.getStart();
+        startRoute = newBlock.getStart() - ((Mdist[nodes_[0]][newBlock.getBlockReq(0)])/inst->vmed);
     }
-    cout << "here3" << endl;
-    getchar();
+    
+    cout << "\n_____\nCurrent values: end: " << endRoute << " - start: " << startRoute << endl;
+    cout << "\nTotal new route length in time: " << endRoute - startRoute << endl;
     
     if (endRoute > inst->T){
         feasible = 0;
@@ -326,8 +375,9 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
     if (endRoute - startRoute > inst->maxTime){
         feasible = 0;
         return feasible;
-    }        
-    cout << "here4" << endl;
+    }
+
+
     return feasible;
 }
 

@@ -128,47 +128,47 @@ Dist Matrix:
          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
 
 
-Seed: 1634031414
+Seed: 1637068142
 
 Initial solution: 
 SARP Solution: 
-17 - 3 - 8 - 6 - 13 - 10 - 0 - 9 - 15 - 14 - 23 - Total route time: 7.0669
+17 - 11 - 4 - 16 - 2 - 23 - Total route time: 6.7156
 
-18 - 5 - 7 - 12 - 1 - 24 - Total route time: 3.3363
+18 - 3 - 8 - 13 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 24 - Total route time: 7.1224
 
-19 - 4 - 11 - 16 - 2 - 25 - Total route time: 6.3093
+19 - 6 - 25 - Total route time: 1.0568
 
 
 Cost of routes: 
-Route 0: 12.301
-Route 1: -1.0508
-Route 2: 12.364
+Route 0: 9.9997
+Route 1: 18.206
+Route 2: -8.1209
 
-Cost of routes: 23.614
+Cost of routes: 20.085
 Solution Load: 
 
 **********Load************
 Route 0: 
 Load of route: 
-0 - 0 - 1 - 1 - 0 - 1 - 1 - 2 - 1 - 0 - 0
+0 - 1 - 1 - 0 - 0 - 0
 Visited Passengers: 
--1 - 0 - 0 - 1 - 0 - 0 - 1 - 1 - 1 - 0 - -1
+-1 - 0 - 1 - 0 - 0 - -1
 **********end Load********
 
 **********Load************
 Route 1: 
 Load of route: 
-0 - 0 - 1 - 0 - 0 - 0
+0 - 0 - 1 - 0 - 0 - 1 - 0 - 0 - 1 - 1 - 2 - 1 - 0 - 0
 Visited Passengers: 
--1 - 0 - 0 - 0 - 0 - -1
+-1 - 0 - 0 - 0 - 0 - 0 - 0 - 0 - 0 - 1 - 1 - 1 - 0 - -1
 **********end Load********
 
 **********Load************
 Route 2: 
 Load of route: 
-0 - 0 - 1 - 0 - 0 - 0
+0 - 0 - 0
 Visited Passengers: 
--1 - 0 - 0 - 0 - 0 - -1
+-1 - 0 - -1
 **********end Load********
 
 ***********************
@@ -177,211 +177,2856 @@ ITERATION: 0
 Calling relocate block: 
 (((((Solution so far ))))))
 SARP Solution: 
-17 - 3 - 8 - 6 - 13 - 10 - 0 - 9 - 15 - 14 - 23 - Total route time: 7.0669
+17 - 11 - 4 - 16 - 2 - 23 - Total route time: 6.7156
 
-18 - 5 - 7 - 12 - 1 - 24 - Total route time: 3.3363
+18 - 3 - 8 - 13 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 24 - Total route time: 7.1224
 
-19 - 4 - 11 - 16 - 2 - 25 - Total route time: 6.3093
+19 - 6 - 25 - Total route time: 1.0568
 
 
 Cost of routes: 
-Route 0: 12.301
-Route 1: -1.0508
-Route 2: 12.364
+Route 0: 9.9997
+Route 1: 18.206
+Route 2: -8.1209
 
-Cost of routes: 23.614
-Initial positions for blocks (1): 
-1 2 5 
-End positions for blocks (1): 
-2 5 10 
-r1: inipos: 1 - endPos: 5
-New End time: 0
-New time of route 2: 9.35
-current trying insertion position 1
+Cost of routes: 20.085
+Route 2: 1
++++++++++++++++
 Block 1: 
-3 8 6 13 
-&&&&&&&& Calculated pretime: 9.6058
-&&&&&&&& Start of block: 3.45
-&&&&&&&& End of block: 5.7261
-fblPassPos: 0 - passenger: 3
-pre time NF: 9.6058
+11 4 16 2 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 3.655
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 4.0638
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 4.2767
+current trying insertion position 4
 Feasible insertion r2: 0
 New time of route 2: 5.2554
-current trying insertion position 2
-Block 1: 
-3 8 6 13 
-&&&&&&&& Calculated pretime: 5.4655
-&&&&&&&& Start of block: 3.45
-&&&&&&&& End of block: 5.7261
-fblPassPos: 0 - passenger: 3
-pre time NF: 5.4655
+current trying insertion position 5
 Feasible insertion r2: 0
 New time of route 2: 5.4494
-current trying insertion position 3
-Block 1: 
-3 8 6 13 
-&&&&&&&& Calculated pretime: 5.7294
-&&&&&&&& Start of block: 3.45
-&&&&&&&& End of block: 5.7261
-fblPassPos: 0 - passenger: 3
-pre time NF: 5.7294
+current trying insertion position 6
 Feasible insertion r2: 0
 New time of route 2: 5.6752
-current trying insertion position 4
-Block 1: 
-3 8 6 13 
-&&&&&&&& Calculated pretime: 5.9804
-&&&&&&&& Start of block: 3.45
-&&&&&&&& End of block: 5.7261
-fblPassPos: 0 - passenger: 3
-pre time NF: 5.9804
+current trying insertion position 7
 Feasible insertion r2: 0
-r1: inipos: 1 - endPos: 10
-New End time: 0
-New time of route 2: 9.35
+New time of route 2: 7.8798
+current trying insertion position 8
+Feasible insertion r2: 0
+New time of route 2: 8.2214
+current trying insertion position 9
+Feasible insertion r2: 0
+New time of route 2: 9.6699
+current trying insertion position 10
+Feasible insertion r2: 0
+New time of route 2: 9.8189
+current trying insertion position 11
+Feasible insertion r2: 0
+New time of route 2: 10.027
+current trying insertion position 12
+Feasible insertion r2: 0
+New time of route 2: 10.317
+current trying insertion position 13
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 2
++++++++++++++++
+Block 1: 
+11 4 16 2 
+New time of route 2: 0
 current trying insertion position 1
-Block 1: 
-3 8 6 13 10 0 9 15 14 
-&&&&&&&& Calculated pretime: 9.6058
-&&&&&&&& Start of block: 3.45
-&&&&&&&& End of block: 10.317
-fblPassPos: 0 - passenger: 3
-pre time NF: 9.6058
+&&&&&&&& Calculated pretime: 0.2332
+&&&&&&&& Start of block: 12.262
+&&&&&&&& End of block: 18.887
 Feasible insertion r2: 0
-New time of route 2: 5.2554
+New time of route 2: 5.3119
 current trying insertion position 2
-Block 1: 
-3 8 6 13 10 0 9 15 14 
-&&&&&&&& Calculated pretime: 5.4655
-&&&&&&&& Start of block: 3.45
-&&&&&&&& End of block: 10.317
-fblPassPos: 0 - passenger: 3
-pre time NF: 5.4655
+&&&&&&&& Calculated pretime: 5.9978
+&&&&&&&& Start of block: 12.262
+&&&&&&&& End of block: 18.887
+
+_____
+Current values: end: 18.887 - start: 4.255
+
+Total new route length in time: 14.632
 Feasible insertion r2: 0
-New time of route 2: 5.4494
-current trying insertion position 3
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 0
++++++++++++++++
 Block 1: 
-3 8 6 13 10 0 9 15 14 
-&&&&&&&& Calculated pretime: 5.7294
-&&&&&&&& Start of block: 3.45
-&&&&&&&& End of block: 10.317
-fblPassPos: 0 - passenger: 3
-pre time NF: 5.7294
-Feasible insertion r2: 0
-New time of route 2: 5.6752
-current trying insertion position 4
-Block 1: 
-3 8 6 13 10 0 9 15 14 
-&&&&&&&& Calculated pretime: 5.9804
-&&&&&&&& Start of block: 3.45
-&&&&&&&& End of block: 10.317
-fblPassPos: 0 - passenger: 3
-pre time NF: 5.9804
-Feasible insertion r2: 0
-r1: inipos: 2 - endPos: 5
-New End time: 3.655
-New time of route 2: 9.35
+3 8 13 
+New time of route 2: 0
 current trying insertion position 1
-Block 1: 
-8 6 13 
-&&&&&&&& Calculated pretime: 9.8928
-&&&&&&&& Start of block: 4.7787
-&&&&&&&& End of block: 5.7261
-fblPassPos: 1 - passenger: 6
-pre time NF: 9.8928
+&&&&&&&& Calculated pretime: 0.20031
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 4.2767
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 3.2497
+
+Total new route length in time: 15.637
 Feasible insertion r2: 0
-New time of route 2: 5.2554
+New time of route 2: 0.17389
 current trying insertion position 2
-Block 1: 
-8 6 13 
-&&&&&&&& Calculated pretime: 5.449
-&&&&&&&& Start of block: 4.7787
-&&&&&&&& End of block: 5.7261
-fblPassPos: 1 - passenger: 6
-pre time NF: 5.449
+&&&&&&&& Calculated pretime: 0.42581
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 4.2767
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 3.0242
+
+Total new route length in time: 15.863
 Feasible insertion r2: 0
-New time of route 2: 5.4494
+New time of route 2: 13.176
 current trying insertion position 3
-Block 1: 
-8 6 13 
-&&&&&&&& Calculated pretime: 5.7448
-&&&&&&&& Start of block: 4.7787
-&&&&&&&& End of block: 5.7261
-fblPassPos: 1 - passenger: 6
-pre time NF: 5.7448
+&&&&&&&& Calculated pretime: 13.332
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 4.2767
+pre time NF: 13.332
 Feasible insertion r2: 0
-New time of route 2: 5.6752
+New time of route 2: 13.311
 current trying insertion position 4
-Block 1: 
-8 6 13 
-&&&&&&&& Calculated pretime: 6.0963
-&&&&&&&& Start of block: 4.7787
-&&&&&&&& End of block: 5.7261
-fblPassPos: 1 - passenger: 6
-pre time NF: 6.0963
+&&&&&&&& Calculated pretime: 13.421
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 4.2767
+pre time NF: 13.421
 Feasible insertion r2: 0
-r1: inipos: 2 - endPos: 10
-New End time: 3.655
-New time of route 2: 9.35
+New time of route 2: 18.887
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.005
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 4.2767
+pre time NF: 19.005
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+3 8 13 5 
+New time of route 2: 0
 current trying insertion position 1
-Block 1: 
-8 6 13 10 0 9 15 14 
-&&&&&&&& Calculated pretime: 9.8928
-&&&&&&&& Start of block: 4.7787
-&&&&&&&& End of block: 10.317
-fblPassPos: 1 - passenger: 6
-pre time NF: 9.8928
 Feasible insertion r2: 0
-New time of route 2: 5.2554
+New time of route 2: 0.17389
 current trying insertion position 2
-Block 1: 
-8 6 13 10 0 9 15 14 
-&&&&&&&& Calculated pretime: 5.449
-&&&&&&&& Start of block: 4.7787
-&&&&&&&& End of block: 10.317
-fblPassPos: 1 - passenger: 6
-pre time NF: 5.449
 Feasible insertion r2: 0
-New time of route 2: 5.4494
+New time of route 2: 13.176
 current trying insertion position 3
-Block 1: 
-8 6 13 10 0 9 15 14 
-&&&&&&&& Calculated pretime: 5.7448
-&&&&&&&& Start of block: 4.7787
-&&&&&&&& End of block: 10.317
-fblPassPos: 1 - passenger: 6
-pre time NF: 5.7448
 Feasible insertion r2: 0
-New time of route 2: 5.6752
+New time of route 2: 13.311
 current trying insertion position 4
-Block 1: 
-8 6 13 10 0 9 15 14 
-&&&&&&&& Calculated pretime: 6.0963
-&&&&&&&& Start of block: 4.7787
-&&&&&&&& End of block: 10.317
-fblPassPos: 1 - passenger: 6
-pre time NF: 6.0963
 Feasible insertion r2: 0
-r1: inipos: 5 - endPos: 10
-New End time: 5.7261
-New time of route 2: 9.35
+New time of route 2: 18.887
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+3 8 13 5 7 12 
+New time of route 2: 0
 current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+3 8 13 5 7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+3 8 13 5 7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.40077
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.29626
+pre time NF: 0.40077
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.65952
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.29626
+pre time NF: 0.65952
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.59
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.29626
+pre time NF: 13.59
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.694
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.29626
+pre time NF: 13.694
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.06
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.29626
+pre time NF: 19.06
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 5 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.40077
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.2554
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 4.2324
+
+Total new route length in time: 14.654
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.65952
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.2554
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 3.9737
+
+Total new route length in time: 14.913
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.59
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.2554
+pre time NF: 13.59
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.694
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.2554
+pre time NF: 13.694
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.06
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.2554
+pre time NF: 19.06
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 5 7 12 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.40077
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.6752
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 4.2324
+
+Total new route length in time: 14.654
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.65952
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.6752
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 3.9737
+
+Total new route length in time: 14.913
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.59
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.6752
+pre time NF: 13.59
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.694
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.6752
+pre time NF: 13.694
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.06
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.6752
+pre time NF: 19.06
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 5 7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 5 7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 7 12 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.28136
+&&&&&&&& Start of block: 5.0333
+&&&&&&&& End of block: 5.6752
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 4.752
+
+Total new route length in time: 14.135
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.54534
+&&&&&&&& Start of block: 5.0333
+&&&&&&&& End of block: 5.6752
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 4.488
+
+Total new route length in time: 14.399
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.497
+&&&&&&&& Start of block: 5.0333
+&&&&&&&& End of block: 5.6752
+pre time NF: 13.497
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.617
+&&&&&&&& Start of block: 5.0333
+&&&&&&&& End of block: 5.6752
+pre time NF: 13.617
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.064
+&&&&&&&& Start of block: 5.0333
+&&&&&&&& End of block: 5.6752
+pre time NF: 19.064
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+7 12 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.20278
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915
+pre time NF: 0.20278
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.46235
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915
+pre time NF: 0.46235
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.452
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915
+pre time NF: 13.452
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.597
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915
+pre time NF: 13.597
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.157
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915
+pre time NF: 19.157
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.20278
+&&&&&&&& Start of block: 7.21
+&&&&&&&& End of block: 7.8798
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 7.0072
+
+Total new route length in time: 11.88
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.46235
+&&&&&&&& Start of block: 7.21
+&&&&&&&& End of block: 7.8798
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 6.7476
+
+Total new route length in time: 12.139
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.452
+&&&&&&&& Start of block: 7.21
+&&&&&&&& End of block: 7.8798
+pre time NF: 13.452
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.597
+&&&&&&&& Start of block: 7.21
+&&&&&&&& End of block: 7.8798
+pre time NF: 13.597
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.157
+&&&&&&&& Start of block: 7.21
+&&&&&&&& End of block: 7.8798
+pre time NF: 19.157
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17389
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
 Block 1: 
 10 0 9 15 14 
-&&&&&&&& Calculated pretime: 9.5771
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.31994
 &&&&&&&& Start of block: 9.0905
 &&&&&&&& End of block: 10.317
-fblPassPos: 1 - passenger: 0
-pre time NF: 9.5771
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 8.7706
+
+Total new route length in time: 10.116
 Feasible insertion r2: 0
-New time of route 2: 5.2554
+New time of route 2: 0.17389
 current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.51854
+&&&&&&&& Start of block: 9.0905
+&&&&&&&& End of block: 10.317
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.887 - start: 8.572
+
+Total new route length in time: 10.315
+Feasible insertion r2: 0
+New time of route 2: 13.176
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.424
+&&&&&&&& Start of block: 9.0905
+&&&&&&&& End of block: 10.317
+pre time NF: 13.424
+Feasible insertion r2: 0
+New time of route 2: 13.311
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.508
+&&&&&&&& Start of block: 9.0905
+&&&&&&&& End of block: 10.317
+pre time NF: 13.508
+Feasible insertion r2: 0
+New time of route 2: 18.887
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.087
+&&&&&&&& Start of block: 9.0905
+&&&&&&&& End of block: 10.317
+pre time NF: 19.087
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 2
++++++++++++++++
+Block 1: 
+3 8 13 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.32171
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 4.2767
+
++_+_+_+
+last passenger after insertion position: 6 in position 1
+
+_____
+Current values: end: 5.3119 - start: 3.1283
+
+Total new route length in time: 2.1836
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 18.206
+ profit block1: 2.7041
+  a) removed arcs in r1: 18-3 // 13-5
+  b) Value of removed arcs in r1: 10.488 4.2594
+  c) added arcs in r1: 18 - 5: 20.084
+  d) removed arcs in r2: 19 - 6: 31.228
+  e) added arcs in r2: 19-3 // 13-6
+  f) Value of added arcs in r2: 13.19 11.651
+******************************************
+
+Deltas: 13.047 -2.4787
+Current best insertion position: 1
+IN SOLUTIONS
+Relocating block: 
+3 8 13 
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.7696
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 4.2767
+pre time NF: 5.7696
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+3 8 13 5 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.32171
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.2554
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.7696
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.2554
+pre time NF: 5.7696
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+3 8 13 5 7 12 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.32171
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.6752
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.7696
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.6752
+pre time NF: 5.7696
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+3 8 13 5 7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.32171
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 7.8798
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.7696
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 7.8798
+pre time NF: 5.7696
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+3 8 13 5 7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.32171
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 10.317
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.7696
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 10.317
+pre time NF: 5.7696
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.6088
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.29626
+pre time NF: 0.6088
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.5265
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.29626
+pre time NF: 5.5265
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 5 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.6088
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.2554
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.5265
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.2554
+pre time NF: 5.5265
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 5 7 12 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.6088
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.6752
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.5265
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 5.6752
+pre time NF: 5.5265
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 5 7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.6088
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 7.8798
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.5265
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 7.8798
+pre time NF: 5.5265
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 5 7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.6088
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 10.317
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.5265
+&&&&&&&& Start of block: 4.6332
+&&&&&&&& End of block: 10.317
+pre time NF: 5.5265
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 7 12 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.53824
+&&&&&&&& Start of block: 5.0333
+&&&&&&&& End of block: 5.6752
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.6765
+&&&&&&&& Start of block: 5.0333
+&&&&&&&& End of block: 5.6752
+pre time NF: 5.6765
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.53824
+&&&&&&&& Start of block: 5.0333
+&&&&&&&& End of block: 7.8798
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.6765
+&&&&&&&& Start of block: 5.0333
+&&&&&&&& End of block: 7.8798
+pre time NF: 5.6765
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.53824
+&&&&&&&& Start of block: 5.0333
+&&&&&&&& End of block: 10.317
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.6765
+&&&&&&&& Start of block: 5.0333
+&&&&&&&& End of block: 10.317
+pre time NF: 5.6765
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+7 12 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.49775
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915
+pre time NF: 0.49775
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.8207
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915
+pre time NF: 5.8207
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.49775
+&&&&&&&& Start of block: 7.21
+&&&&&&&& End of block: 7.8798
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.8207
+&&&&&&&& Start of block: 7.21
+&&&&&&&& End of block: 7.8798
+
+_____
+Current values: end: 7.8798 - start: 4.255
+
+Total new route length in time: 3.6248
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 18.206
+ profit block1: 5.7417
+  a) removed arcs in r1: 5-7 // 1-10
+  b) Value of removed arcs in r1: 4.5388 10.586
+  c) added arcs in r1: 5 - 10: 13.995
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-7 // 1-25
+  f) Value of added arcs in r2: 20.862 0
+******************************************
+
+Deltas: 12.984 -11.976
++++++++++++++++
+Block 1: 
+7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.49775
+&&&&&&&& Start of block: 7.21
+&&&&&&&& End of block: 10.317
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.8207
+&&&&&&&& Start of block: 7.21
+&&&&&&&& End of block: 10.317
+
+_____
+Current values: end: 10.317 - start: 4.255
+
+Total new route length in time: 6.0616
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 18.206
+ profit block1: 19.839
+  a) removed arcs in r1: 5-7 // 14-24
+  b) Value of removed arcs in r1: 4.5388 0
+  c) added arcs in r1: 5 - 24: 0
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-7 // 14-25
+  f) Value of added arcs in r2: 20.862 0
+******************************************
+
+Deltas: 0.45454 2.1217
++++++++++++++++
+Block 1: 
+1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.36291
+&&&&&&&& Start of block: 7.6833
+&&&&&&&& End of block: 10.317
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.8172
+&&&&&&&& Start of block: 7.6833
+&&&&&&&& End of block: 10.317
+
+_____
+Current values: end: 10.317 - start: 4.255
+
+Total new route length in time: 6.0616
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 18.206
+ profit block1: 18.035
+  a) removed arcs in r1: 12-1 // 14-24
+  b) Value of removed arcs in r1: 6.7327 0
+  c) added arcs in r1: 12 - 24: 0
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-1 // 14-25
+  f) Value of added arcs in r2: 20.72 0
+******************************************
+
+Deltas: 3.2682 0.38248
++++++++++++++++
 Block 1: 
 10 0 9 15 14 
-&&&&&&&& Calculated pretime: 5.5967
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.31453
 &&&&&&&& Start of block: 9.0905
 &&&&&&&& End of block: 10.317
-fblPassPos: 1 - passenger: 0
-here1
-here3
-here3.5
+Feasible insertion r2: 0
+New time of route 2: 5.3119
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.7919
+&&&&&&&& Start of block: 9.0905
+&&&&&&&& End of block: 10.317
+
+_____
+Current values: end: 10.317 - start: 4.255
+
+Total new route length in time: 6.0616
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 18.206
+ profit block1: 18.967
+  a) removed arcs in r1: 1-10 // 14-24
+  b) Value of removed arcs in r1: 10.586 0
+  c) added arcs in r1: 1 - 24: 0
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-10 // 14-25
+  f) Value of added arcs in r2: 19.682 0
+******************************************
+
+Deltas: 4.1083 1.7921
+Current inipos of r2 in ILS function: 
+1
+-x----x----x-----x----x----x-
+insertion position: 1
+relocating block from route 1 to route 2
+Delta obtained (first, second, total): 13.047 -2.4787 10.568
+-x----x----x-----x----x----x-
+Route 2: 0
+Current inipos of r2 in ILS function: 
+1
+Route 2: 1
+Current inipos of r2 in ILS function: 
+1
+Moving vec: 
+3 8 13 
+After relocate Block
+SARP Solution: 
+17 - 11 - 4 - 16 - 2 - 23 - Total route time: 6.7156
+
+18 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 24 - Total route time: 5.7732
+
+19 - 3 - 8 - 13 - 6 - 25 - Total route time: 2.1836
+
+
+Cost of routes: 
+Route 0: 9.9997
+Route 1: 13.047
+Route 2: -2.4787
+
+Cost of routes: 20.568
+
+Relocate block Time: 0.016972
+Calling relocate block: 
+(((((Solution so far ))))))
+SARP Solution: 
+17 - 11 - 4 - 16 - 2 - 23 - Total route time: 6.7156063
+
+18 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 24 - Total route time: 5.7731525
+
+19 - 3 - 8 - 13 - 6 - 25 - Total route time: 2.1835724
+
+
+Cost of routes: 
+Route 0: 9.9997006
+Route 1: 13.046777
+Route 2: -2.478746
+
+Cost of routes: 20.567732
+Route 2: 1
++++++++++++++++
+Block 1: 
+11 4 16 2 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 5.2553694
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 5.4494062
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 5.6752233
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 7.8798331
+current trying insertion position 5
+Feasible insertion r2: 0
+New time of route 2: 8.2213507
+current trying insertion position 6
+Feasible insertion r2: 0
+New time of route 2: 9.6698889
+current trying insertion position 7
+Feasible insertion r2: 0
+New time of route 2: 9.8188559
+current trying insertion position 8
+Feasible insertion r2: 0
+New time of route 2: 10.026535
+current trying insertion position 9
+Feasible insertion r2: 0
+New time of route 2: 10.316636
+current trying insertion position 10
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 2
++++++++++++++++
+Block 1: 
+11 4 16 2 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 4.0637612
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 4.2766856
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 5
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 0
++++++++++++++++
+Block 1: 
+5 7 12 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.2813623
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 5.6752233
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 4.751971
+
+Total new route length in time: 14.134942
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.54533572
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 5.6752233
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 4.4879976
+
+Total new route length in time: 14.398915
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.496779
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 5.6752233
+pre time NF: 13.496779
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.617307
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 5.6752233
+pre time NF: 13.617307
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.063987
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 5.6752233
+pre time NF: 19.063987
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+7 12 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.20277616
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915044
+pre time NF: 0.20277616
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.46234505
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915044
+pre time NF: 0.46234505
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.452438
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915044
+pre time NF: 13.452438
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.597424
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915044
+pre time NF: 13.597424
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.157082
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915044
+pre time NF: 19.157082
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.20277616
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 7.8798331
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 7.0071957
+
+Total new route length in time: 11.879717
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.46234505
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 7.8798331
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 6.7476268
+
+Total new route length in time: 12.139286
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.452438
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 7.8798331
+pre time NF: 13.452438
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.597424
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 7.8798331
+pre time NF: 13.597424
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.157082
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 7.8798331
+pre time NF: 19.157082
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.31994109
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 8.7706057
+
+Total new route length in time: 10.116307
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.51854461
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 8.5720021
+
+Total new route length in time: 10.314911
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.424099
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+pre time NF: 13.424099
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.508483
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+pre time NF: 13.508483
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.08666
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+pre time NF: 19.08666
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 2
++++++++++++++++
+Block 1: 
+5 7 12 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.53823786
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 5.6752233
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.9300296
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 5.6752233
+Feasible insertion r2: 0
+New time of route 2: 4.0637612
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 4.2149156
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 5.6752233
+Feasible insertion r2: 0
+New time of route 2: 4.2766856
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 4.3805726
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 5.6752233
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 5.676475
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 5.6752233
+pre time NF: 5.676475
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.53823786
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.9300296
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 4.0637612
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 4.2149156
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 4.2766856
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 4.3805726
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 5.676475
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 7.8798331
+pre time NF: 5.676475
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.53823786
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.9300296
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 4.0637612
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 4.2149156
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 4.2766856
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 4.3805726
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 5.676475
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 10.316636
+pre time NF: 5.676475
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+7 12 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.49775023
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915044
+pre time NF: 0.49775023
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.9472006
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915044
+pre time NF: 3.9472006
+Feasible insertion r2: 0
+New time of route 2: 4.0637612
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 4.3591531
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915044
+pre time NF: 4.3591531
+Feasible insertion r2: 0
+New time of route 2: 4.2766856
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 4.4920985
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915044
+pre time NF: 4.4920985
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 5.8206992
+&&&&&&&& Start of block: 0
+&&&&&&&& End of block: 0.30915044
+pre time NF: 5.8206992
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+7 12 1 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.49775023
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.9472006
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 4.0637612
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 4.3591531
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 4.2766856
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 4.4920985
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 5.8206992
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 7.8798331
+
+_____
+Current values: end: 7.8798331 - start: 3.1282928
+
+Total new route length in time: 4.7515403
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 13.046777
+ profit block1: 5.7416581
+  a) removed arcs in r1: 5-7 // 1-10
+  b) Value of removed arcs in r1: 4.5388393 10.585557
+  c) added arcs in r1: 5 - 10: 13.995315
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-7 // 1-25
+  f) Value of added arcs in r2: 20.862194 0
+******************************************
+
+Deltas: 7.8244967 -6.3336971
++++++++++++++++
+Block 1: 
+7 12 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.49775023
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.9472006
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 4.0637612
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 4.3591531
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 4.2766856
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 4.4920985
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 5.8206992
+&&&&&&&& Start of block: 7.2099719
+&&&&&&&& End of block: 10.316636
+
+_____
+Current values: end: 10.316636 - start: 3.1282928
+
+Total new route length in time: 7.1883431
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 13.046777
+ profit block1: 19.839229
+  a) removed arcs in r1: 5-7 // 14-24
+  b) Value of removed arcs in r1: 4.5388393 0
+  c) added arcs in r1: 5 - 24: 0
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-7 // 14-25
+  f) Value of added arcs in r2: 20.862194 0
+******************************************
+
+Deltas: -4.7045854 7.7638735
++++++++++++++++
+Block 1: 
+1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.36291199
+&&&&&&&& Start of block: 7.6833333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.8041335
+&&&&&&&& Start of block: 7.6833333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 4.0637612
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 4.3625786
+&&&&&&&& Start of block: 7.6833333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 4.2766856
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 4.4512228
+&&&&&&&& Start of block: 7.6833333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 5.8172402
+&&&&&&&& Start of block: 7.6833333
+&&&&&&&& End of block: 10.316636
+
+_____
+Current values: end: 10.316636 - start: 3.1282928
+
+Total new route length in time: 7.1883431
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 13.046777
+ profit block1: 18.03477
+  a) removed arcs in r1: 12-1 // 14-24
+  b) Value of removed arcs in r1: 6.7326523 0
+  c) added arcs in r1: 12 - 24: 0
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-1 // 14-25
+  f) Value of added arcs in r2: 20.720372 0
+******************************************
+
+Deltas: -1.8909727 6.0246527
++++++++++++++++
+Block 1: 
+10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.3145299
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.7942217
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 4.0637612
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 4.4270101
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 4.2766856
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 4.5483021
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 5.7919257
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+
+_____
+Current values: end: 10.316636 - start: 3.1282928
+
+Total new route length in time: 7.1883431
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 13.046777
+ profit block1: 18.966927
+  a) removed arcs in r1: 1-10 // 14-24
+  b) Value of removed arcs in r1: 10.585557 0
+  c) added arcs in r1: 1 - 24: 0
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-10 // 14-25
+  f) Value of added arcs in r2: 19.68248 0
+******************************************
+
+Deltas: -1.0507934 7.4342402
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 0
++++++++++++++++
+Block 1: 
+3 8 13 6 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 6 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.40076718
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 4.0354819
+
+Total new route length in time: 14.851431
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.65952133
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 3.7767277
+
+Total new route length in time: 15.110185
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.589558
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 13.589558
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.693686
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 13.693686
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.059995
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 19.059995
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 1
++++++++++++++++
+Block 1: 
+3 8 13 6 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.25579269
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+Feasible insertion r2: 0
+New time of route 2: 5.2553694
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.465549
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 5.465549
+Feasible insertion r2: 0
+New time of route 2: 5.4494062
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 5.7294176
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 5.7294176
+Feasible insertion r2: 0
+New time of route 2: 5.6752233
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 5.9804241
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 5.9804241
+Feasible insertion r2: 0
+New time of route 2: 7.8798331
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 8.0016212
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 8.0016212
+Feasible insertion r2: 0
+New time of route 2: 8.2213507
+current trying insertion position 6
+&&&&&&&& Calculated pretime: 8.3613113
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 8.3613113
+Feasible insertion r2: 0
+New time of route 2: 9.6698889
+current trying insertion position 7
+&&&&&&&& Calculated pretime: 10.117733
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.117733
+Feasible insertion r2: 0
+New time of route 2: 9.8188559
+current trying insertion position 8
+&&&&&&&& Calculated pretime: 10.304543
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.304543
+Feasible insertion r2: 0
+New time of route 2: 10.026535
+current trying insertion position 9
+&&&&&&&& Calculated pretime: 10.391525
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.391525
+Feasible insertion r2: 0
+New time of route 2: 10.316636
+current trying insertion position 10
+&&&&&&&& Calculated pretime: 10.579515
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.579515
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+8 13 6 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.54284873
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+Feasible insertion r2: 0
+New time of route 2: 5.2553694
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.4490373
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 5.4490373
+Feasible insertion r2: 0
+New time of route 2: 5.4494062
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 5.744798
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 5.744798
+Feasible insertion r2: 0
+New time of route 2: 5.6752233
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 6.096324
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 6.096324
+Feasible insertion r2: 0
+New time of route 2: 7.8798331
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 8.1875464
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 8.1875464
+Feasible insertion r2: 0
+New time of route 2: 8.2213507
+current trying insertion position 6
+&&&&&&&& Calculated pretime: 8.5845996
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 8.5845996
+Feasible insertion r2: 0
+New time of route 2: 9.6698889
+current trying insertion position 7
+&&&&&&&& Calculated pretime: 10.242
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.242
+Feasible insertion r2: 0
+New time of route 2: 9.8188559
+current trying insertion position 8
+&&&&&&&& Calculated pretime: 10.449462
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.449462
+Feasible insertion r2: 0
+New time of route 2: 10.026535
+current trying insertion position 9
+&&&&&&&& Calculated pretime: 10.564631
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.564631
+Feasible insertion r2: 0
+New time of route 2: 10.316636
+current trying insertion position 10
+&&&&&&&& Calculated pretime: 10.658983
+&&&&&&&& Start of block: 4.436249
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.658983
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+After relocate Block
+SARP Solution: 
+17 - 11 - 4 - 16 - 2 - 23 - Total route time: 6.7156063
+
+18 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 24 - Total route time: 5.7731525
+
+19 - 3 - 8 - 13 - 6 - 25 - Total route time: 2.1835724
+
+
+Cost of routes: 
+Route 0: 9.9997006
+Route 1: 13.046777
+Route 2: -2.478746
+
+Cost of routes: 20.567732
+
+Relocate block Time: 0.03296
+Calling Perturbation: 
+Perturbed solution: 
+SARP Solution: 
+17 - 11 - 4 - 16 - 2 - 23 - Total route time: 6.7156063
+
+18 - 5 - 1 - 10 - 0 - 9 - 15 - 14 - 24 - Total route time: 5.7731525
+
+19 - 3 - 6 - 25 - Total route time: 2.1835724
+
+
+Cost of routes: 
+Route 0: 9.9997006
+Route 1: 10.8818
+Route 2: -4.7026536
+
+Cost of routes: 16.178847
+***********************
+ITERATION: 1
+***********************
+Calling relocate block: 
+(((((Solution so far ))))))
+SARP Solution: 
+17 - 11 - 4 - 16 - 2 - 23 - Total route time: 6.7156063
+
+18 - 5 - 1 - 10 - 0 - 9 - 15 - 14 - 24 - Total route time: 5.7731525
+
+19 - 3 - 6 - 25 - Total route time: 2.1835724
+
+
+Cost of routes: 
+Route 0: 9.9997006
+Route 1: 10.8818
+Route 2: -4.7026536
+
+Cost of routes: 16.178847
+Route 2: 1
++++++++++++++++
+Block 1: 
+11 4 16 2 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 5.2553694
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 7.8798331
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 8.2213507
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 9.6698889
+current trying insertion position 5
+Feasible insertion r2: 0
+New time of route 2: 9.8188559
+current trying insertion position 6
+Feasible insertion r2: 0
+New time of route 2: 10.026535
+current trying insertion position 7
+Feasible insertion r2: 0
+New time of route 2: 10.316636
+current trying insertion position 8
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 2
++++++++++++++++
+Block 1: 
+11 4 16 2 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 3
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 0
++++++++++++++++
+Block 1: 
+5 1 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.31994109
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 8.7706057
+
+Total new route length in time: 10.116307
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.51854461
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 8.5720021
+
+Total new route length in time: 10.314911
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.424099
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+pre time NF: 13.424099
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.508483
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+pre time NF: 13.508483
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.08666
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+pre time NF: 19.08666
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 2
++++++++++++++++
+Block 1: 
+5 1 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.53823786
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.9300296
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 5.676475
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 7.8798331
+pre time NF: 5.676475
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.53823786
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.9300296
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 5.676475
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 10.316636
+pre time NF: 5.676475
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.36291199
+&&&&&&&& Start of block: 7.6833333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.8041335
+&&&&&&&& Start of block: 7.6833333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 5.8172402
+&&&&&&&& Start of block: 7.6833333
+&&&&&&&& End of block: 10.316636
+
+_____
+Current values: end: 10.316636 - start: 3.1282928
+
+Total new route length in time: 7.1883431
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 10.8818
+ profit block1: 18.03477
+  a) removed arcs in r1: 5-1 // 14-24
+  b) Value of removed arcs in r1: 5.322575 0
+  c) added arcs in r1: 5 - 24: 0
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-1 // 14-25
+  f) Value of added arcs in r2: 20.720372 0
+******************************************
+
+Deltas: -4.7045854 3.8007451
++++++++++++++++
+Block 1: 
+10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.3145299
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.7942217
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 5.7919257
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+
+_____
+Current values: end: 10.316636 - start: 3.1282928
+
+Total new route length in time: 7.1883431
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 10.8818
+ profit block1: 18.966927
+  a) removed arcs in r1: 1-10 // 14-24
+  b) Value of removed arcs in r1: 10.585557 0
+  c) added arcs in r1: 1 - 24: 0
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-10 // 14-25
+  f) Value of added arcs in r2: 19.68248 0
+******************************************
+
+Deltas: -3.2157705 5.2103325
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 0
++++++++++++++++
+Block 1: 
+3 6 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 1
++++++++++++++++
+Block 1: 
+3 6 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.25579269
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+Feasible insertion r2: 0
+New time of route 2: 5.2553694
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.465549
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 5.465549
+Feasible insertion r2: 0
+New time of route 2: 7.8798331
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 8.0016212
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 8.0016212
+Feasible insertion r2: 0
+New time of route 2: 8.2213507
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 8.3613113
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 8.3613113
+Feasible insertion r2: 0
+New time of route 2: 9.6698889
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 10.117733
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.117733
+Feasible insertion r2: 0
+New time of route 2: 9.8188559
+current trying insertion position 6
+&&&&&&&& Calculated pretime: 10.304543
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.304543
+Feasible insertion r2: 0
+New time of route 2: 10.026535
+current trying insertion position 7
+&&&&&&&& Calculated pretime: 10.391525
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.391525
+Feasible insertion r2: 0
+New time of route 2: 10.316636
+current trying insertion position 8
+&&&&&&&& Calculated pretime: 10.579515
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.579515
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+After relocate Block
+SARP Solution: 
+17 - 11 - 4 - 16 - 2 - 23 - Total route time: 6.7156063
+
+18 - 5 - 1 - 10 - 0 - 9 - 15 - 14 - 24 - Total route time: 5.7731525
+
+19 - 3 - 6 - 25 - Total route time: 2.1835724
+
+
+Cost of routes: 
+Route 0: 9.9997006
+Route 1: 10.8818
+Route 2: -4.7026536
+
+Cost of routes: 16.178847
+
+Relocate block Time: 0.039656
+Calling relocate block: 
+(((((Solution so far ))))))
+SARP Solution: 
+17 - 11 - 4 - 16 - 2 - 23 - Total route time: 6.7156063
+
+18 - 5 - 1 - 10 - 0 - 9 - 15 - 14 - 24 - Total route time: 5.7731525
+
+19 - 3 - 6 - 25 - Total route time: 2.1835724
+
+
+Cost of routes: 
+Route 0: 9.9997006
+Route 1: 10.8818
+Route 2: -4.7026536
+
+Cost of routes: 16.178847
+Route 2: 1
++++++++++++++++
+Block 1: 
+11 4 16 2 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 5.2553694
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 7.8798331
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 8.2213507
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 9.6698889
+current trying insertion position 5
+Feasible insertion r2: 0
+New time of route 2: 9.8188559
+current trying insertion position 6
+Feasible insertion r2: 0
+New time of route 2: 10.026535
+current trying insertion position 7
+Feasible insertion r2: 0
+New time of route 2: 10.316636
+current trying insertion position 8
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 2
++++++++++++++++
+Block 1: 
+11 4 16 2 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 3
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 0
++++++++++++++++
+Block 1: 
+5 1 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.31994109
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 8.7706057
+
+Total new route length in time: 10.116307
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 0.51854461
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+
++_+_+_+
+last passenger after insertion position: 2 in position 4
+
+_____
+Current values: end: 18.886913 - start: 8.5720021
+
+Total new route length in time: 10.314911
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 13.424099
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+pre time NF: 13.424099
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 13.508483
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+pre time NF: 13.508483
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 19.08666
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+pre time NF: 19.08666
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 2
++++++++++++++++
+Block 1: 
+5 1 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.53823786
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.9300296
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 7.8798331
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 5.676475
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 7.8798331
+pre time NF: 5.676475
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+5 1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.53823786
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.9300296
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 5.676475
+&&&&&&&& Start of block: 5.0333333
+&&&&&&&& End of block: 10.316636
+pre time NF: 5.676475
+Feasible insertion r2: 0
++++++++++++++++
+Block 1: 
+1 10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.36291199
+&&&&&&&& Start of block: 7.6833333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.8041335
+&&&&&&&& Start of block: 7.6833333
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 5.8172402
+&&&&&&&& Start of block: 7.6833333
+&&&&&&&& End of block: 10.316636
+
+_____
+Current values: end: 10.316636 - start: 3.1282928
+
+Total new route length in time: 7.1883431
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 10.8818
+ profit block1: 18.03477
+  a) removed arcs in r1: 5-1 // 14-24
+  b) Value of removed arcs in r1: 5.322575 0
+  c) added arcs in r1: 5 - 24: 0
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-1 // 14-25
+  f) Value of added arcs in r2: 20.720372 0
+******************************************
+
+Deltas: -4.7045854 3.8007451
++++++++++++++++
+Block 1: 
+10 0 9 15 14 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.3145299
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 3.6549986
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 3.7942217
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+Feasible insertion r2: 0
+New time of route 2: 5.3118652
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 5.7919257
+&&&&&&&& Start of block: 9.0905468
+&&&&&&&& End of block: 10.316636
+
+_____
+Current values: end: 10.316636 - start: 3.1282928
+
+Total new route length in time: 7.1883431
+Feasible insertion r2: 1
+******************************************
+Calculating deltas: 
+ Delta First: 
+ cost of route: 10.8818
+ profit block1: 18.966927
+  a) removed arcs in r1: 1-10 // 14-24
+  b) Value of removed arcs in r1: 10.585557 0
+  c) added arcs in r1: 1 - 24: 0
+  d) removed arcs in r2: 6 - 25: 0
+  e) added arcs in r2: 6-10 // 14-25
+  f) Value of added arcs in r2: 19.68248 0
+******************************************
+
+Deltas: -3.2157705 5.2103325
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 0
++++++++++++++++
+Block 1: 
+3 6 
+New time of route 2: 0
+current trying insertion position 1
+Feasible insertion r2: 0
+New time of route 2: 0.17388744
+current trying insertion position 2
+Feasible insertion r2: 0
+New time of route 2: 13.176348
+current trying insertion position 3
+Feasible insertion r2: 0
+New time of route 2: 13.311313
+current trying insertion position 4
+Feasible insertion r2: 0
+New time of route 2: 18.886913
+current trying insertion position 5
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+Route 2: 1
++++++++++++++++
+Block 1: 
+3 6 
+New time of route 2: 0
+current trying insertion position 1
+&&&&&&&& Calculated pretime: 0.25579269
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+Feasible insertion r2: 0
+New time of route 2: 5.2553694
+current trying insertion position 2
+&&&&&&&& Calculated pretime: 5.465549
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 5.465549
+Feasible insertion r2: 0
+New time of route 2: 7.8798331
+current trying insertion position 3
+&&&&&&&& Calculated pretime: 8.0016212
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 8.0016212
+Feasible insertion r2: 0
+New time of route 2: 8.2213507
+current trying insertion position 4
+&&&&&&&& Calculated pretime: 8.3613113
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 8.3613113
+Feasible insertion r2: 0
+New time of route 2: 9.6698889
+current trying insertion position 5
+&&&&&&&& Calculated pretime: 10.117733
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.117733
+Feasible insertion r2: 0
+New time of route 2: 9.8188559
+current trying insertion position 6
+&&&&&&&& Calculated pretime: 10.304543
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.304543
+Feasible insertion r2: 0
+New time of route 2: 10.026535
+current trying insertion position 7
+&&&&&&&& Calculated pretime: 10.391525
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.391525
+Feasible insertion r2: 0
+New time of route 2: 10.316636
+current trying insertion position 8
+&&&&&&&& Calculated pretime: 10.579515
+&&&&&&&& Start of block: 3.45
+&&&&&&&& End of block: 5.3118652
+pre time NF: 10.579515
+Feasible insertion r2: 0
+Current inipos of r2 in ILS function: 
+-1
+After relocate Block
+SARP Solution: 
+17 - 11 - 4 - 16 - 2 - 23 - Total route time: 6.7156063
+
+18 - 5 - 1 - 10 - 0 - 9 - 15 - 14 - 24 - Total route time: 5.7731525
+
+19 - 3 - 6 - 25 - Total route time: 2.1835724
+
+
+Cost of routes: 
+Route 0: 9.9997006
+Route 1: 10.8818
+Route 2: -4.7026536
+
+Cost of routes: 16.178847
+
+Relocate block Time: 0.04658
+Calling Perturbation: 
+Perturbed solution: 
+SARP Solution: 
+17 - 4 - 2 - 23 - Total route time: 6.6078853
+
+18 - 5 - 7 - 12 - 1 - 0 - 9 - 14 - 24 - Total route time: 5.647024
+
+19 - 3 - 8 - 13 - 6 - 25 - Total route time: 2.1835724
+
+
+Cost of routes: 
+Route 0: 3.0226673
+Route 1: 3.4809988
+Route 2: -2.478746
+
+Cost of routes: 4.0249202
+
+-----x-----
+Best Solution: SARP Solution: 
+17 - 11 - 4 - 16 - 2 - 23 - Total route time: 6.7156063
+
+18 - 5 - 7 - 12 - 1 - 10 - 0 - 9 - 15 - 14 - 24 - Total route time: 5.7731525
+
+19 - 3 - 8 - 13 - 6 - 25 - Total route time: 2.1835724
+
+
+
+Solution Best Cost: 
+Cost of routes: 
+Route 0: 9.9997006
+Route 1: 13.046777
+Route 2: -2.478746
+
+Cost of routes: 20.567732
+
+-----x-----
+
+Total Run Time: 0.047559
+END OF METHOD
