@@ -18,6 +18,9 @@ protected:
     vector<nodeStat> unservParc;
 
     int usedK;
+    int maxK;
+
+    int vCost = -1000;
     // vector<vector<vector<bool>>> pairNeighbStatus;
     vector <int> unserved;
     // void createRoutesVector();
@@ -27,7 +30,7 @@ protected:
 public:
 
     Runtime stats;
-    sarpSolution() { this->cost = INT32_MAX; this->usedK = 0; }
+    sarpSolution(instanceStat *inst) { this->cost = INT32_MAX; this->usedK = 0; this->maxK = inst->n-1;}
 
     // Solution(Data *data);
     // Solution(Data *data, vector<Route *> routesVec);
@@ -43,6 +46,8 @@ public:
     inline int getRoutesSize() const { return this->routes.size(); }
 
     void addRoute(sarpRoute* route);
+
+    void removeRoute();
     
     void updateRoutes(sarpRoute *route,  int idr);
 
@@ -81,6 +86,11 @@ public:
     pair <double, double> TwoOpt(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, 
                     int rid1, int rid2, pair <int, int> &currPairPos,
                     probStat* problem, sarpBlock &reqBlock1, sarpBlock &reqBlock2);
+
+    pair <double, double> exchangeBlocks(instanceStat *inst, double **Mdist,
+                        vector<nodeStat> &nodeVec, int rid1, int rid2, 
+                        pair <int, int> &currPairPos, probStat* problem,
+                        sarpBlock &reqBlock1, sarpBlock &reqBlock2);
 
     pair <double, double> relocateBlock(instanceStat *inst, double **Mdist,
                                         vector<nodeStat> &nodeVec, 

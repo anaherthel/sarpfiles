@@ -38,8 +38,6 @@ int main (int argc, char *argv[]) {
 
 	sarpILS sILS;
 
-	sarpSolution globalSol;
-
 	sStat.feasible = false;
 	
 	// while (!sStat.feasible){
@@ -80,12 +78,9 @@ int main (int argc, char *argv[]) {
 			// h.orgBundles(&inst, nodeVec, distMatrix, bStat, &problem);
 			// sCon.ConstrProc(&inst, nodeVec, distMatrix, &problem);
 
-			int mscount = 0;
-			int msMax = 15;
-
 			// clock_t seed = (argc == 5) ? time(NULL) : strtol(argv[4], NULL, 10);
 			
-			clock_t seed = 1637068142;
+ 			clock_t seed = 1639994133;
 
 			srand(seed);
 

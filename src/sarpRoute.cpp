@@ -205,12 +205,6 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
     totalBlock = newBlock.getEnd() - newBlock.getStart();
     totalRoute = this->endtime - this->starttime;
 
-    if (totalRoute + totalBlock > inst->maxTime){
-        feasible = 0;
-
-        return feasible;
-    }
-
     int firstpassafter, lastpassafter;//position of first passenger after the block
     
     firstpassafter = -1;
@@ -218,9 +212,9 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
     
     double pretime = newEnd + ((Mdist[nodes_[strPos - 1]][newBlock.getBlockReq(0)])/inst->vmed);
 
-    cout << "&&&&&&&& Calculated pretime: " << pretime << endl;
-    cout << "&&&&&&&& Start of block: " << newBlock.getStart() << endl;
-    cout << "&&&&&&&& End of block: " << newBlock.getEnd() << endl;
+    // cout << "&&&&&&&& Calculated pretime: " << pretime << endl;
+    // cout << "&&&&&&&& Start of block: " << newBlock.getStart() << endl;
+    // cout << "&&&&&&&& End of block: " << newBlock.getEnd() << endl;
     double postime, temptime;
 
     temptime = 0;
@@ -240,7 +234,7 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
 
     if (pretime > newBlock.getStart()){
         feasible = 0;
-        cout << "pre time NF: " << pretime << endl;
+        // cout << "pre time NF: " << pretime << endl;
 
         return feasible;        
     }
@@ -262,7 +256,7 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
                     return feasible;
                 }
                 else{
-                    cout << "\n+_+_+_+\nlast passenger after insertion position: " << nodes_[lastpassafter] << " in position " << lastpassafter << endl;
+                    // cout << "\n+_+_+_+\nlast passenger after insertion position: " << nodes_[lastpassafter] << " in position " << lastpassafter << endl;
                     endRoute = nodeVec[nodes_[lastpassafter]].e + nodeVec[nodes_[lastpassafter]].delta;
                     lastReq = 1;
 
@@ -365,8 +359,8 @@ bool sarpRoute::testBlockIns(instanceStat *inst,
         startRoute = newBlock.getStart() - ((Mdist[nodes_[0]][newBlock.getBlockReq(0)])/inst->vmed);
     }
     
-    cout << "\n_____\nCurrent values: end: " << endRoute << " - start: " << startRoute << endl;
-    cout << "\nTotal new route length in time: " << endRoute - startRoute << endl;
+    // cout << "\n_____\nCurrent values: end: " << endRoute << " - start: " << startRoute << endl;
+    // cout << "\nTotal new route length in time: " << endRoute - startRoute << endl;
     
     if (endRoute > inst->T){
         feasible = 0;
@@ -418,10 +412,11 @@ bool sarpRoute::fInsertionParcel(instanceStat *inst, vector<nodeStat> &nodeVec, 
     this->lastPass = -1;
     this->firstPassPos = -1;
     this->lastPassPos = -1;
+
 // - ((Mdist[this->nodes_[0]][pu])/inst->vmed)
-    this->starttime = nodeVec[0].e;
+    this->starttime = nodeVec[this->nodes_[0]].e;
     this->endtime = ((Mdist[this->nodes_[0]][pu])/inst->vmed) 
-                  + ((Mdist[this->nodes_[pu]][dl])/inst->vmed)
+                  + ((Mdist[pu][dl])/inst->vmed)
                   + nodeVec[pu].delta
                   + nodeVec[dl].delta;
 
@@ -2187,7 +2182,7 @@ bool sarpRoute::checkDelivery(instanceStat *inst, int pos1, int pos2, probStat* 
     int pu;
     pu = pdvec[nodes_[pos2]-inst->m-inst->n].first;
 
-    cout << "pu: " << pu << endl;
+    // cout << "pu: " << pu << endl;
 
     pair<int, int> interpu;
 
@@ -2196,7 +2191,7 @@ bool sarpRoute::checkDelivery(instanceStat *inst, int pos1, int pos2, probStat* 
     if (problem->dParcel > 0){
         if(pos1 <= pu){
             feasible = 0;
-            cout << "\nDelivery cant be put before its pickup" << endl;
+            // cout << "\nDelivery cant be put before its pickup" << endl;
         }
     }
     else{
@@ -2281,7 +2276,7 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
                     feasPos = 1;
                 }
                 if(nodeVec[nodes_[j]].load < 0){
-                    cout << "Check delivery" << endl;
+                    // cout << "Check delivery" << endl;
                     feasPos = checkDelivery(inst, i, j, problem);
                 }
 
@@ -2324,10 +2319,10 @@ double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nod
 	}
     if (swap){
 
-        cout << "pos1: " << pos1 << endl;
-        cout << "pos2: " << pos2 << endl;
-        cout << "element1: " << nodes_[pos1] << endl;
-        cout << "element2: " << nodes_[pos2] << endl;
+        // cout << "pos1: " << pos1 << endl;
+        // cout << "pos2: " << pos2 << endl;
+        // cout << "element1: " << nodes_[pos1] << endl;
+        // cout << "element2: " << nodes_[pos2] << endl;
 
         tempElement = nodes_[pos1];
         nodes_[pos1] = nodes_[pos2];

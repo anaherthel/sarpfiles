@@ -45,14 +45,20 @@ protected:
 
     int iterILS;
     int maxIterILS;
+    // int minK;
+    int iterMS;
+    int maxiterMS;
     
 public:
 
-    sarpSolution solution;
-    sarpSolution bestSol;
+    sarpSolution *solution;
+    sarpSolution *bestSol;
+    sarpSolution *globalBestSol;
     Runtime stats;
 
     void ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
+    
+    ~sarpILS(){};
 
     void RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
     
@@ -65,7 +71,9 @@ public:
     void relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
     void ThreeOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
-
+    
+    void exchangeBlocksAll(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
+    
     void RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
 
     void RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem);
