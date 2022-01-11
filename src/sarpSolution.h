@@ -23,6 +23,7 @@ protected:
     int vCost = -1000;
     // vector<vector<vector<bool>>> pairNeighbStatus;
     vector <int> unserved;
+
     // void createRoutesVector();
     // void updateCost();
     // void updateRoutes();
@@ -30,7 +31,7 @@ protected:
 public:
 
     Runtime stats;
-    sarpSolution(instanceStat *inst) { this->cost = INT32_MAX; this->usedK = 0; this->maxK = inst->n-1;}
+    sarpSolution() { this->cost = INT32_MAX; this->usedK = 0; }
 
     // Solution(Data *data);
     // Solution(Data *data, vector<Route *> routesVec);
@@ -67,6 +68,8 @@ public:
     vector<int>::iterator uend() { return unserved.end(); }
     vector<int>::const_iterator uend() const { return unserved.end(); }
     void addtounserved(int candidate);
+    void addtocustom(int candidate);
+
     void clearunserved() { unserved.clear(); }
     int unservedsize() { return unserved.size(); } 
 

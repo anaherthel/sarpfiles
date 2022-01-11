@@ -37,7 +37,9 @@ void sarpSolution::printSol(instanceStat *inst) {
         for(auto j: sroute){
             cout << j << " - ";
         }
+        cout << " Route Start Time: " << sroute.startTime() << " - " << endl;
         sroute.printTotalTime();
+        
         cout << endl;
     }
     cout << endl;
@@ -61,7 +63,6 @@ void sarpSolution::printLoadSol(instanceStat *inst) {
 void sarpSolution::addtounserved(int candidate) {
     unserved.push_back(candidate);
 }   
-
 
 void sarpSolution::printCosts(){
     cout << "Cost of routes: " << endl;

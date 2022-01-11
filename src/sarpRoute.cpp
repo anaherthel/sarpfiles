@@ -1746,7 +1746,7 @@ void sarpRoute::availablePos(instanceStat *inst, vector<nodeStat> &nodeVec, int 
     }
     else if(request < inst->n + inst->m){
         positions.clear();
-        if (problem->p2 == 0){
+        if (problem->p2 < 1){
             for(int i = 1; i < loadofroute.size()-1; i++){
                 if (loadofroute[i].first > 0){
                     continue;
@@ -1763,14 +1763,15 @@ void sarpRoute::availablePos(instanceStat *inst, vector<nodeStat> &nodeVec, int 
         }
     }
     else{//if the request is a delivery node
-        //first position is its pickup position + 2 (or +1 if AMcMp)
+        //first position is its pickup position + 1 (or the same if AMcMp)
         //last position is the next pickup 
-        if (problem->p2 == 0){
+        if (problem->p2 < 1){
             for(int i = positions[0] + 1; i < loadofroute.size(); i++){
                 if (loadofroute[i].first > 0){
                     continue;
                 }
                 else{
+                    // cout << "Position pickup: " << i << endl;
                     positions.push_back(i);
                 }
             }
@@ -1778,7 +1779,8 @@ void sarpRoute::availablePos(instanceStat *inst, vector<nodeStat> &nodeVec, int 
         else{
             // cout << "Here for 2mm" << endl;
             // getchar();
-            for(int i = positions[0]+1; i < loadofroute.size(); i++){
+            for(int i = positions[0]; i < loadofroute.size(); i++){
+                // cout << "Position delivery: " << i << endl;
                 positions.push_back(i);
             }
         }
@@ -1904,14 +1906,14 @@ void sarpRoute::cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &no
             availablePos(inst, nodeVec, node2, problem, positions2);
         }
 
-        // // /////////////////////////////////////////////
+        // /////////////////////////////////////////////
         // cout << "Available positions for insertion of candidate 2: " << node2 << endl;
         // for(int i = 0; i < positions2.size(); i++){
         //     cout << positions2[i] << ", ";
         // }
         // cout << endl;
         // cout << "***********************************************" << endl;               
-        // ////////////////////////////////////////////
+        ////////////////////////////////////////////
         // getchar();
 
         delta1 = nodeVec[node].profit - inst->costkm*((Mdist[nodes_[pos1-1]][node])
@@ -1972,19 +1974,19 @@ void sarpRoute::cheapestInsertionParcel(instanceStat *inst, vector<nodeStat> &no
                 deltaTotal = delta1 + delta2;
             }
 
-            // if (delta2 < pair2.second){
-            //     // cout << "Better delta 2." << endl;
-            //     // cout << "New position for dl:" << pos2 << endl;
-            //     pair2.second = delta2;
-            //     pair2.first = pos2;
-            // }
+            if (delta2 < pair2.second){
+                // cout << "Better delta 2." << endl;
+                // cout << "New position for dl:" << pos2 << endl;
+                pair2.second = delta2;
+                pair2.first = pos2;
+            }
 
             if (deltaTotal > bestDT){
                 bestDT = deltaTotal;
 
 
                 // cout << "Delta total: " << deltaTotal << endl;
-                // getchar();
+                // // getchar();
                 // cout << "Better delta 1: " << bestDT << endl;
                 // cout << "New position for pu:" << pos1 << endl;      
 
@@ -2025,6 +2027,7 @@ void sarpRoute::erase(instanceStat *inst, double **Mdist, int position, double p
     cost_ += delta;
     
     this->nodes_.erase(this->nodes_.begin() + position);
+
 }
 
 void sarpRoute::insertBlock(instanceStat *inst, double **Mdist, 

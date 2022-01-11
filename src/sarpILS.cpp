@@ -23,11 +23,11 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
     double currentCost;
     double profit;
 
-    globalBestSol = new sarpSolution(inst);
+    globalBestSol = new sarpSolution();
     while (iterMS <= maxiterMS){
 
         sarpConstruction sCon(inst, nodeVec);
-        solution = new sarpSolution(inst);
+        solution = new sarpSolution();
         
         sCon.ConstrProc(inst, nodeVec, Mdist, problem, solution);
 
@@ -104,10 +104,11 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
 
 
 
-            // cout << "\n-----x-----" << "\nSolution with perturbation: ";
-            // solution->printSol(inst);        
-            // solution->printCosts();
-            // cout << "\n-----x-----" << endl;
+            cout << "\n-----x-----" << "\nSolution with perturbation: ";
+            solution->printSol(inst);        
+            solution->printCosts();
+            cout << "\n-----x-----" << endl;
+            getchar();
 
             // solution->addunserved(inst, nodeVec, Mdist, problem);
 
@@ -1188,289 +1189,310 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     //removes 20% of passengers
     //removes 30% of parcels
 
-    //changing to 2 passengers and 1 parcel pair
+    //changing to 2 passengers and 1 parcel pair 
 
     sarpRoute sroute(inst, 0);
+    sarpRoute sroute1(inst, 0);
+    sarpRoute sroute2(inst, 0);
+
+    int rid1, rid2;
     int sizeRoute;
 
-    double profit;
+    double profp1, profp2, profc1, profc2;
     // int outcust = ceil(0.2*inst->n);
     // int outparc = ceil(0.3*inst->m);
 
-    int outcust = 2;
-    int outparc = 1;
+    // int outcust = 2;
+    // int outparc = 2;
 
     vector <int> vecoutcust, vecoutparc;
 
-    vector <int> avlPas; //available passengers to be removed from the solution
-    vector <int> avlParc; //available parcels to be removed from the solution
+    vector <int> avlPas1, avlPas2; //available passengers to be removed from the selected route (1 or 2)
+    vector <int> avlParc1, avlParc2; //available parcels to be removed from the selected route (1 or 2)
 
     int solSize = solution->getRoutesSize();
 
-    int req;
+    int par1, par2, par11, par22, pas1, pas2, req;
 
-    for (int i = 0; i < inst->n; i++){
-        avlPas.push_back(i);
-    }
-
-    for (int i = inst->n; i < inst->n+inst->m; i++){
-        avlParc.push_back(i);
-    }
-
-    for (int i = 0; i < outcust; i++){
-        req = rand() % avlPas.size();
-        vecoutcust.push_back(avlPas[req]);
-        avlPas.erase(avlPas.begin()+req);
-    }
-
-    for (int i = 0; i < outparc; i++){
-        req = rand() % avlParc.size();
-        vecoutparc.push_back(avlParc[req]);
-        avlParc.erase(avlParc.begin()+req);
-    }
-
-    cout << "Removing passengers: " << endl;
-
-    for (int i = 0; i < vecoutcust.size(); i++){
-        cout << vecoutcust[i] << " ";
-    }
-    cout << endl;
-    // // getchar();
-    cout << "\nRemoving parcels: " << endl;
-
-    for (int i = 0; i < vecoutparc.size(); i++){
-        cout << vecoutparc[i] << " ";
-    }
-    cout << endl;
-    // getchar();
-
-    //Erasing passengers
     bool found;
-    int candidate;
-    for (int a = 0; a < vecoutcust.size(); a++){
-        found = 0;
-        candidate = vecoutcust[a];
-        for (int rid = 0; rid < solSize; rid++){
-            sroute = solution->getRoute(rid);
-            sizeRoute = sroute.getNodesSize();
+    int candidate1, candidate2, candpar1, candpar2;
+    int pos1, pos2;
 
-            for(int c = 0; c < sizeRoute; c++){
-                int pass = sroute.getReq(c);
+    bool feasible;
 
-                if (candidate == pass){
-                    profit = sroute.getProfit(nodeVec, c);
-                    sroute.erase(inst, Mdist, c, profit);
-                    found = 1;
-                    break;
-                }
-            }
-            if (found){
-                sroute.updateAll(inst, nodeVec, Mdist);
-                sroute.calcCost(inst, nodeVec, Mdist);
-                solution->updateRoutes(&sroute, rid);
-                solution->updateCost();
-                break;
-            }
+    vector <int> inspositions1, inspositions2, candidates;
+
+    vector < pair <int, double> > unservPass;
+    pair <int, double> PassProf;
+
+    //selecting routes for perturbation
+    rid1 = rand() % solSize;
+    rid2 = rid1;
+    sroute2 = solution->getRoute(rid2);
+
+    while (rid2 == rid1 || sroute2.getPassPosSize() < 1){
+        rid2 = rand() % solSize;
+        sroute2 = solution->getRoute(rid2);
+    }
+
+    cout << "Routes for shaking: " << rid1 << " - " << rid2 << endl;
+
+    
+
+    sroute1 = solution->getRoute(rid1);
+    sroute2 = solution->getRoute(rid2);
+    
+    //finding passengers and parcels in the selected routes
+    for (int i = 0; i < sroute1.getNodesSize(); i++){
+        req = sroute1.getReq(i);
+        if (req < inst->n + inst->m){
+            avlParc1.push_back(i);
         }
     }
+
+    for (int i = 0; i < sroute2.getNodesSize(); i++){
+        req = sroute2.getReq(i);
+        if (req < inst->n + inst->m){
+            avlParc2.push_back(i);
+        }
+    }
+ 
+    //selecting parcels requests to exchange routes
+    par1 = rand() % avlParc1.size();
+    par2 = rand() % avlParc2.size();
+
+    candpar1 = sroute1.getReq(avlParc1[par1]);
+    candpar2 = sroute2.getReq(avlParc2[par2]);
+
+    cout << "Parcels for exchanging: " << endl;
+    cout << "route1: " << candpar1 << " - route2: " << candpar2 << endl;
+
+    par11 = sroute1.getDL(candpar1 - inst->m);
+    par22 = sroute2.getDL(candpar2 - inst->m);
 
     // Erasing parcels
-    int pos1, pos2;
-    for (int a = 0; a < vecoutparc.size(); a++){
-        found = 0;
-        for (int rid = 0; rid < solSize; rid++){
-            sroute = solution->getRoute(rid);
-            sizeRoute = sroute.getNodesSize();
-            for(int c = 0; c < sizeRoute; c++){
-                int parc = sroute.getReq(c);
-                int parc2 = parc + inst->m;
-                if (vecoutparc[a] == parc){
-                    // cout << "Pickup: " << parc << endl;
-                    // // getchar();
-                    pos1 = c;
-                    pos2 = sroute.getDL(vecoutparc[a]-inst->n);
+    profp1 = 0;
+    profp2 = 0;
+    sroute1.erase(inst, Mdist, par11, profp1);
+    profp1 = sroute1.getProfit(nodeVec, avlParc1[par1]);
+    sroute1.erase(inst, Mdist, avlParc1[par1], profp1);
 
-                    // cout << "Delivery: " << parc2 << " at " << pos2 << endl;
-                    // // getchar();
-                    profit = 0;
-                    sroute.erase(inst, Mdist, pos2, profit);
-                    profit = sroute.getProfit(nodeVec, pos1);
-                    sroute.erase(inst, Mdist, pos1, profit);
-                    solution->addtounserved(vecoutparc[a]);
-                    found = 1;
-                    break;
-                }
+    sroute2.erase(inst, Mdist, par22, profp2);
+    profp2 = sroute2.getProfit(nodeVec, avlParc2[par2]);
+    sroute2.erase(inst, Mdist, avlParc2[par2], profp2);
 
-            }
-            if (found){
-                sroute.updateAll(inst, nodeVec, Mdist);
-                sroute.calcCost(inst, nodeVec, Mdist);
-                solution->updateRoutes(&sroute, rid);
-                solution->updateCost();
+    solution->addtounserved(candpar1);
+    solution->addtounserved(candpar2);
 
-                // cout << "After 1 removal before: " << endl;
-                // solution->printSol(inst);
-                // solution->printCosts();
-                // // getchar();
+    sroute1.updateAll(inst, nodeVec, Mdist);
+    sroute1.calcCost(inst, nodeVec, Mdist);
+    solution->updateRoutes(&sroute1, rid1);
+    sroute2.updateAll(inst, nodeVec, Mdist);
+    sroute2.calcCost(inst, nodeVec, Mdist);
+    solution->updateRoutes(&sroute2, rid2);
+    solution->updateCost();
 
-                break;
-            }
+    cout << "After removal of parcels: " << endl;
+
+    solution->printSol(inst);
+    solution->printCosts();
+
+    //selecting passenger requests to exchange routes
+
+    for (int i = 0; i < sroute1.getNodesSize(); i++){
+        req = sroute1.getReq(i);
+        if (req < inst->n){
+            avlPas1.push_back(i);
         }
     }
-    // cout << "After removal of both stages: " << endl;
+
+    for (int i = 0; i < sroute2.getNodesSize(); i++){
+        req = sroute2.getReq(i);
+        if (req < inst->n){
+            avlPas2.push_back(i);
+        }
+    }
+
+    found = 0;
+    
+    pas1 = rand() % avlPas1.size();
+    pas2 = rand() % avlPas2.size();
+
+    candidate1 = sroute1.getReq(avlPas1[pas1]);
+    candidate2 = sroute2.getReq(avlPas2[pas2]);
+
+    candidates.push_back(candidate1);
+    candidates.push_back(candidate2);
+
+    cout << "Passengers for exchanging: " << endl;
+    cout << "loc1: " << avlPas1[pas1] << " - loc2: " << avlPas2[pas2] << endl;
+    cout << "route1: " << candidate1 << " - route2: " << candidate2 << endl;
+
+    getchar();
+
+    // Testing exchanging passengers
+
+    profc1 = sroute1.getProfit(nodeVec, avlPas1[pas1]);
+    sroute1.erase(inst, Mdist, avlPas1[pas1], profc1);
+
+    sroute1.updateAll(inst, nodeVec, Mdist);
+    sroute1.calcCost(inst, nodeVec, Mdist);
+    solution->updateRoutes(&sroute1, rid1);
+
+    profc2 = sroute2.getProfit(nodeVec, avlPas2[pas2]);
+    sroute2.erase(inst, Mdist, avlPas2[pas2], profc2);
+
+    sroute2.updateAll(inst, nodeVec, Mdist);
+    sroute2.calcCost(inst, nodeVec, Mdist);
+    solution->updateRoutes(&sroute2, rid2);
+    //adding back passengers in inverted routes
+
+    inspositions1.clear();
+    sroute1.availablePos(inst, nodeVec, candidate2, problem, inspositions1);
+
+    inspositions2.clear();
+    sroute2.availablePos(inst, nodeVec, candidate1, problem, inspositions2);
+
+    feasible = 0;
+    while (feasible < 1){
+
+    }
+    if (inspositions1.size() > 0){
+        feasible = 0;
+        for (int i = 0; i < inspositions1.size(); i++){
+            int cpos = inspositions1[i];
+            cout << "Testing " << candidate2 << " in position " << cpos << endl;
+            feasible = sroute1.testInsertion(inst, nodeVec, Mdist, cpos, candidate2);
+
+            if (feasible){
+                sroute1.insert(inst, Mdist, candidate2, cpos, profc2);
+                sroute1.updateAll(inst, nodeVec, Mdist);
+                sroute1.calcCost(inst, nodeVec, Mdist);
+                solution->updateRoutes(&sroute1, rid1);
+                break;
+            }
+        }
+        if (!feasible){
+            PassProf.first = candidate2;
+            PassProf.second = profc2;
+            unservPass.push_back(PassProf);
+        }
+    }
+    else{
+        PassProf.first = candidate2;
+        PassProf.second = profc2;
+        unservPass.push_back(PassProf);
+    }
+
+    if(inspositions2.size() > 0){
+        feasible = 0;
+        for (int i = 0; i < inspositions2.size(); i++){
+            int cpos = inspositions2[i];
+            cout << "Testing " << candidate1 << " in position " << cpos << endl;
+            feasible = sroute2.testInsertion(inst, nodeVec, Mdist, cpos, candidate1);
+
+            if (feasible){
+                cout << "Is feasible" << endl;
+                sroute2.insert(inst, Mdist, candidate1, cpos, profc1);
+                sroute2.updateAll(inst, nodeVec, Mdist);
+                sroute2.calcCost(inst, nodeVec, Mdist);
+                solution->updateRoutes(&sroute2, rid2);
+                break;
+            }
+        }
+        if (!feasible){
+            PassProf.first = candidate1;
+            PassProf.second = profc1;
+            unservPass.push_back(PassProf);
+        }
+    }
+    else{
+        PassProf.first = candidate1;
+        PassProf.second = profc1;
+        unservPass.push_back(PassProf);
+    }
+                  
+    solution->updateCost();
+
+    cout << "After shaking passengers: " << endl;
 
     solution->printSol(inst);
     solution->printCosts();
-    // getchar();
 
-    // Adding back passengers
-    int randRoute;
-    bool inserted;
-    bool emptyAdd;
-    int randPos;
-    int request;
-    int count; 
+    cout << "Unserved passengers size: " << unservPass.size() << endl;
 
-    solSize = solution->getRoutesSize();
-
-    for (int a = 0; a < vecoutcust.size(); a++){
-        request = vecoutcust[a];
-        count = 0;
-        // cout << "Request: " << request << endl;
-        // // getchar();
-        inserted = 0;
-        emptyAdd = 0;
-        vector<int> inspositions;
-
-        for (int rid = 0; rid < solSize; rid++){
-            sroute = solution->getRoute(rid);
-            if(sroute.getNodesSize() < 3){
-                // cout << "Adding to empty route" << endl;
-                // // getchar();
-                inserted = sroute.fInsertion(inst, nodeVec, Mdist, request);
-                randRoute = rid;
-                randPos = 1;
-                break;
-            }
-            else if (sroute.getPassPosSize() <= 0){
-                // cout << "Adding to route with no passengers" << endl;
-                // // getchar();
-                randRoute = rid;
-                inspositions.clear();
-                sroute.availablePos(inst, nodeVec, request, problem, inspositions);
-                for (int i = 0; i < inspositions.size();i++){
-                    randPos = inspositions[i];
-                    inserted = sroute.testInsertion(inst, nodeVec, Mdist, randPos, request);
-                    if (inserted){
-                        break;
-                    }
-                }            
-                break;
-            }
-        }
-
-        vector<int> routes;
-
-        if(!inserted){
-            routes.clear();
-            for (int rid = 0; rid < solSize; rid++){
-                routes.push_back(rid);
-            }
-        }
+    while (unservPass.size() > 0){
         
-        int counter = 0;
+    }  
 
-        while(!inserted && routes.size() > 0){
-        // for (int )
-            int routeNumber, posNumber;
+    int finalpos1, finalpos2;
 
-            inspositions.clear();
-            
-            routeNumber = rand() % routes.size();
+    while (unservPass.size() > 0){
+        for (int cand = 0; cand < unservPass.size(); cand++){
+            PassProf = unservPass[cand];
+            cout << "PassProf: " << PassProf.first << " " << PassProf.second << endl;
+            for (int rid = 0; rid < solSize; rid++){
+                sroute1 = solution->getRoute(rid);
+                inspositions1.clear();
+                sroute1.availablePos(inst, nodeVec, PassProf.first, problem, inspositions1);
+                
 
-            randRoute = routes[routeNumber];
+                cout << "Size of available pos: " << inspositions1.size() << endl;
 
-            sroute = solution->getRoute(randRoute);
-            sizeRoute = sroute.getNodesSize();
 
-            sroute.availablePos(inst, nodeVec, request, problem, inspositions);
 
-            if (inspositions.size() < 1){
-                routes.erase(routes.begin()+routeNumber);
-            }
-
-            else{
-                while(!inspositions.empty()){
-
-                    // /////////////////////////////////////////////
-                    // cout << "BEFORE Available positions for insertion of candidate " << request << endl;
-                    // for(int i = 0; i < inspositions.size(); i++){
-                    //     cout << "Insertion positions: " << inspositions[i] << endl;
-                    // }
-                    // ////////////////////////////////////////////
-                    posNumber =  rand() % inspositions.size();
-                    randPos = inspositions[posNumber];
-
-                    inserted = sroute.testInsertion(inst, nodeVec, Mdist, randPos, request);
-
-                    // cout << "Inserted: " << inserted << endl;
-                    // // getchar();
-
-                    // count++;
-
-                    if (!inserted){
-                        inspositions.erase(inspositions.begin()+posNumber);
+                if (inspositions1.size() > 0){
+                    feasible = 0;
+                    for (int i = 0; i < inspositions1.size(); i++){
+                        int avlpos = inspositions1[i];
+                        feasible = sroute1.testInsertion(inst, nodeVec, Mdist, avlpos, PassProf.first);
+                        cout << "For position " << inspositions1[i] << " feasible is " << feasible << endl;
+                        if (feasible){
+                            sroute1.insert(inst, Mdist, PassProf.first, avlpos, PassProf.second);
+                            sroute1.updateAll(inst, nodeVec, Mdist);
+                            sroute1.calcCost(inst, nodeVec, Mdist);
+                            solution->updateRoutes(&sroute1, rid1);
+                            unservPass.erase(unservPass.begin() + cand);
+                            break;
+                        }
                     }
-                    else{
-                        break;
-                    }
-                    /////////////////////////////////////////////
-                    // cout << "AFTER Available positions for insertion of candidate " << request << endl;
-                    // for(int i = 0; i < inspositions.size(); i++){
-                    //     cout << "Insertion positions: " << inspositions[i] << endl;
-                    // }
-                    ////////////////////////////////////////////
-
                 }
-                routes.erase(routes.begin()+routeNumber);
+            }
+            if (feasible){
+                break;
+            }       
+        }
+        bool removed = 0;
+        for (int rid = 0; rid < solSize; rid++){
+            sroute1 = solution->getRoute(rid);
+            pair <int, int> parcpudl;
+            int parcsize = sroute1.getPaPdvecSize();
+            if (parcsize > 0){
+                for (int a = 0; a < parcsize; a++){
+
+                    parcpudl = sroute1.getPDReq(a);
+                    candpar1 = sroute1.getReq(parcpudl.first);
+
+                    profp1 = 0;
+                    sroute1.erase(inst, Mdist, parcpudl.second, profp1);
+                    profp1 = sroute1.getProfit(nodeVec, parcpudl.first);
+                    sroute1.erase(inst, Mdist, parcpudl.first, profp1);
+
+                    solution->addtounserved(candpar1);
+
+                    sroute1.updateAll(inst, nodeVec, Mdist);
+                    sroute1.calcCost(inst, nodeVec, Mdist);
+                    solution->updateRoutes(&sroute1, rid1);
+                    solution->updateCost();
+                    removed = 1;
+                    break;
+                }
+            }  
+            if (removed){
+                break;
             }
         }
 
-        if (!inserted){
-            int vehicle = solution->getvehicle();
-            sarpRoute newroute(inst, vehicle);
-            inserted = newroute.fInsertion(inst, nodeVec, Mdist, candidate);
-            newroute.calcCost(inst, nodeVec, Mdist);
-            newroute.insert(inst, Mdist, candidate, 1, nodeVec[candidate].profit);
-            newroute.updatePass(inst, nodeVec);
-            newroute.updateLoad(inst, nodeVec);
-            newroute.updateTimes(inst, nodeVec, Mdist);
-            solution->addRoute(&newroute);
-            solution->updateVehicles();
-            solution->updateCost();
-            inserted = 1;
-            break;
-        }
-        // }
-        profit = nodeVec[request].profit;
+    }
 
-        sroute.insert(inst, Mdist,request, randPos, profit);
-        sroute.updateAll(inst, nodeVec, Mdist);
-        sroute.calcCost(inst, nodeVec, Mdist);
-
-        solution->updateRoutes(&sroute, randRoute);
-        solution->updateCost();
-
-        // cout << "New addition: " << endl;
-
-        // solution->printSol(inst);
-        // solution->printCosts();
-    } 
-
-
-    cout << "Perturbed solution: " << endl;
-
-    solution->printSol(inst);
-    solution->printCosts();
-    // // getchar();
 }

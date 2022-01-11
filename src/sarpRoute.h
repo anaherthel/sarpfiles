@@ -86,7 +86,6 @@ public:
     sarpRoute(instanceStat *inst, int vehicle);
     // access route elements
     double cost() const { return cost_; };
-    double length() const { return length_; };
     double startTime() const { return starttime; };
     double endTime() const { return endtime; };
     int fPass() const { return firstPass; };
