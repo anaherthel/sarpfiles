@@ -1216,6 +1216,8 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     int solSize = solution->getRoutesSize();
 
     int par1, par2, par11, par22, pas1, pas2, req;
+    par1 = -1;
+    par2 = -1;
 
     bool found;
     int candidate1, candidate2, candpar1, candpar2;
@@ -1258,19 +1260,6 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
             avlParc2.push_back(req);
         }
     }
- 
-    //selecting parcels to be readded
-    par1 = rand() % avlParc1.size();
-    par2 = rand() % avlParc2.size();
-
-    // candpar1 = sroute1.getReq(avlParc1[par1]);
-    // candpar2 = sroute2.getReq(avlParc2[par2]);
-
-    cout << "Parcels for exchanging: " << endl;
-    cout << "route1: " << par1 << " - route2: " << par2 << endl;
-
-    // par11 = sroute1.getDL(candpar1 - inst->m);
-    // par22 = sroute2.getDL(candpar2 - inst->m);
 
     //storing passengers (storing the item label)
     if (sroute1.fPass() > -1){
@@ -1333,7 +1322,31 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     solution->printSol(inst);
     solution->printCosts();
 
-    getchar();
+
+    //Reinserting pairs of parcels
+
+    //selecting parcels to be readded
+    if (avlParc1.size() > 1){
+        par1 = rand() % avlParc1.size();
+    }
+
+    if (avlParc2.size() > 1){
+        par2 = rand() % avlParc2.size();
+    }
+
+    candidate1 = avlParc1[par1];
+    candidate2 = avlParc2[par2];
+
+    cout << "Parcels for exchanging: " << endl;
+    cout << "route1: " << par1 << " - route2: " << par2 << endl;
+    
+    if (par1 > -1){
+        
+    }
+    if (par2 > -1){
+
+    }
+
 
 
 
