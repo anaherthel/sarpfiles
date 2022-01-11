@@ -44,6 +44,7 @@ public:
     vector<int> getBlock() { return block; };
 
     void makeBlock(vector<int> oriRoute, int starting, int ending);
+    
 
     void clearBlock() { block.clear(); };
 
@@ -92,6 +93,8 @@ public:
     int lPass() const { return lastPass; };
     
     void printTotalTime();
+
+    void clearRoute();
 
     inline int getNodesSize() { return nodes_.size(); };
     inline int getLoadSize() { return loadofroute.size(); };

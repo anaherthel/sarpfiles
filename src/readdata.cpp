@@ -449,12 +449,14 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //     vyf.push_back(vyf[vyf.size()-1]);
         // }
 
-        // cout << "Vector of vxf:" << endl;
+        // cout << "Vector of final points:" << endl;
 
         // for (int i = 0; i < vxf.size(); i++){
-        //     cout << i << ": " << vxf[i] << endl;
+        //     cout << i << ": " << vxf[i] << " " << vyf[i] << endl;
         // }
-        // cout << endl;       
+        // cout << endl;     
+
+
 
         // getchar();
 

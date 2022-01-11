@@ -342,7 +342,7 @@ Current route: 0
 Current route: 1
 Current route: 2
 
-Swap Time: 0.010737
+Swap Time: -7.2863542e+12
 
 After Intra: 
 SARP Solution: 
@@ -365,7 +365,7 @@ Route 2: -8.1209168
 Cost of routes: 22.645542
 Calling relocate intra: 
 
-RelocateK Time: 0.010811
+RelocateK Time: -7.2863542e+12
 
 After Intra: 
 SARP Solution: 
@@ -432,7 +432,7 @@ Route 2: -4.7026536
 
 Cost of routes: 24.285013
 
-Relocate Time: 0.00012
+Relocate Time: 0.000108
 iteration rvnd: 4
 Calling relocate block: 
 iteration rvnd: 5
@@ -476,7 +476,7 @@ Route 2: -2.478746
 
 Cost of routes: 26.014311
 
-Relocate Time: 0.000223
+Relocate Time: 0.000209
 iteration rvnd: 6
 Calling 2opt inter: 
 iteration rvnd: 7
@@ -521,7 +521,7 @@ Route 2: 2.1500996
 
 Cost of routes: 26.93283
 
-Relocate Time: 0.000328
+Relocate Time: 0.000344
 iteration rvnd: 9
 iteration rvnd: 10
 Calling relocate inter: 
@@ -564,7 +564,7 @@ Route 2: 2.1500996
 
 Cost of routes: 26.93283
 
-Relocate Time: 0.000424
+Relocate Time: 0.000442
 iteration rvnd: 11
 Calling relocate block: 
 iteration rvnd: 12
@@ -572,4 +572,42 @@ Calling 2opt inter:
 Calling Perturbation: 
 Routes for shaking: 1 - 0
 Parcels for exchanging: 
-route1: 4 - route2: 9
+route1: 0 - route2: 5
+After removal of everything: 
+SARP Solution: 
+17 - 23 -  Route Start Time: 0 - 
+Total route time: 0
+
+18 - 24 -  Route Start Time: 0 - 
+Total route time: 0
+
+19 - 11 - 16 - 3 - 8 - 13 - 6 - 25 -  Route Start Time: 2.7903913 - 
+Total route time: 2.5214739
+
+
+Final number of vehicles: 3
+Cost of routes: 
+Route 0: 0
+Route 1: 0
+Route 2: 2.1500996
+
+Cost of routes: 2.1500996
+After reinsertion of passengers: 
+SARP Solution: 
+17 - 4 - 2 - 23 -  Route Start Time: 12.279028 - 
+Total route time: 6.6078853
+
+18 - 5 - 1 - 0 - 24 -  Route Start Time: 4.5434834 - 
+Total route time: 5.1264054
+
+19 - 11 - 16 - 3 - 8 - 13 - 6 - 25 -  Route Start Time: 2.7903913 - 
+Total route time: 2.5214739
+
+
+Final number of vehicles: 3
+Cost of routes: 
+Route 0: 3.2415401
+Route 1: -3.2157705
+Route 2: 2.1500996
+
+Cost of routes: 2.1758692

@@ -33,7 +33,6 @@ void sarpBlock::blockProfit(instanceStat *inst,
 
         
     }
-
     
     revenue += nodeVec[block.back()].profit;
 
@@ -2213,6 +2212,28 @@ void sarpRoute::printTotalTime(){
     totaltime = this->endtime - this->starttime;
 
     cout << "Total route time: " << totaltime << endl;
+}
+
+void sarpRoute::clearRoute(){
+    pair<int, int> depots;
+    depots.first = nodes_[0];
+    depots.second = nodes_[nodes_.size()-1];
+    this->nodes_.clear();
+    this->nodes_.push_back(depots.first);    
+    this->nodes_.push_back(depots.second);
+
+    this->cost_ = 0;
+    this->length_ = 0;
+    this->starttime = 0;
+    this->endtime = 0;
+    this->firstPass = -1;
+    this->lastPass = -1;
+    this->firstPassPos = -1;
+    this->lastPassPos = -1;
+    
+    passandpos.clear();
+    pdvec.clear();
+    loadofroute.clear();
 }
 
 double sarpRoute::Swap(instanceStat *inst, double **Mdist, vector<nodeStat> &nodeVec, probStat* problem){
