@@ -187,7 +187,7 @@ public:
                         int pos1, int pos2, double profit);
 
     void printLoad();
-    
+    void printPDVec();
     pair <int, int> getInterval(int req);
     
     bool checkInterval(instanceStat *inst, int pos1, int pos2, pair <int, int> inter1, pair <int, int> inter2);

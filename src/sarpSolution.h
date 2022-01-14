@@ -70,6 +70,8 @@ public:
     void addtounserved(int candidate);
     void addtocustom(int candidate);
 
+    void removeunserved(int candidate);
+
     void clearunserved() { unserved.clear(); }
     int unservedsize() { return unserved.size(); } 
 
@@ -80,6 +82,8 @@ public:
 
     void printSol(instanceStat *inst);
     void printLoadSol(instanceStat *inst);
+    void printUnserved();
+
 
     double relocate (instanceStat *inst, vector<nodeStat> &nodeVec, 
                                 double **Mdist, probStat* problem,

@@ -195,9 +195,9 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
         // }
     }
 
-    cout << "Random additions: " << endl;
-    solution->printSol(inst);
-    solution->printCosts();
+    // cout << "Random additions: " << endl;
+    // solution->printSol(inst);
+    // solution->printCosts();
     // getchar();
 
     //greedy assignments
@@ -222,11 +222,11 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
                 cheapestpair.first = -1;
                 cheapestpair.second = -100000;
                 sroute = solution->getRoute(rid);
-                cout << "Current route (construction): " << endl;
-                for (auto a: sroute){
-                    cout << a << " - ";
-                }
-                cout << endl;
+                // cout << "Current route (construction): " << endl;
+                // for (auto a: sroute){
+                //     cout << a << " - ";
+                // }
+                // cout << endl;
                 // getchar();
                 inspositions.clear();
                 sroute.availablePos(inst, nodeVec, candidate, problem, inspositions);
@@ -307,9 +307,9 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
         //     cout << "The list is empty."  << endl;
         // }
     }
-    cout << "Solution with passengers: " << endl;
-    solution->printSol(inst);
-    solution->printCosts();
+    // cout << "Solution with passengers: " << endl;
+    // solution->printSol(inst);
+    // solution->printCosts();
     // // getchar();
 
     //inserting parcels
@@ -353,26 +353,26 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
                 cheapestMove[1].second = -100000;
 
                 sroute = solution->getRoute(rid);
-                cout << "Current route (construction parcels): " << endl;
-                for (auto a: sroute){
-                    cout << a << " - ";
-                }
-                cout << endl;
+                // cout << "Current route (construction parcels): " << endl;
+                // for (auto a: sroute){
+                //     cout << a << " - ";
+                // }
+                // cout << endl;
                 // getchar();
                 inspositions.clear();
                 inspositions2.clear();
                 
                 sroute.availablePos(inst, nodeVec, candidate, problem, inspositions);
 
-                // /////////////////////////////////////////////
-                cout << "Available positions for insertion of candidate1: " << candidate << endl;
-                for(int i = 0; i < inspositions.size(); i++){
-                    cout << inspositions[i] << ", ";
-                }
-                cout << endl;
-                cout << "***********************************************" << endl;               
-                ////////////////////////////////////////////
-                // getchar();
+                // // /////////////////////////////////////////////
+                // cout << "Available positions for insertion of candidate1: " << candidate << endl;
+                // for(int i = 0; i < inspositions.size(); i++){
+                //     cout << inspositions[i] << ", ";
+                // }
+                // cout << endl;
+                // cout << "***********************************************" << endl;               
+                // ////////////////////////////////////////////
+                // // getchar();
 
                 sroute.cheapestInsertionParcel(inst, nodeVec, Mdist, candidate, candidate2, inspositions, inspositions2, cheapestMove, problem);
                 
@@ -397,12 +397,12 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
 
             }
 
-            cout << "+++++++++++++++++++++++++++++++++++++++++" << endl;
-            cout << "Requests: " << candidate  << " - " << candidate2 << endl;
-            cout << "Best cost: " << best_cost << endl;
-            cout << "Best route: " << best_route << endl;
-            cout << "Best positions: " << bestpositions.first << " - " << bestpositions.second << endl;
-            cout << "+++++++++++++++++++++++++++++++++++++++++" << endl;
+            // cout << "+++++++++++++++++++++++++++++++++++++++++" << endl;
+            // cout << "Requests: " << candidate  << " - " << candidate2 << endl;
+            // cout << "Best cost: " << best_cost << endl;
+            // cout << "Best route: " << best_route << endl;
+            // cout << "Best positions: " << bestpositions.first << " - " << bestpositions.second << endl;
+            // cout << "+++++++++++++++++++++++++++++++++++++++++" << endl;
             // getchar();
 
             if (best_cost < -1000){

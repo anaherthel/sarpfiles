@@ -62,7 +62,30 @@ void sarpSolution::printLoadSol(instanceStat *inst) {
 }
 void sarpSolution::addtounserved(int candidate) {
     unserved.push_back(candidate);
+}
+
+void sarpSolution::removeunserved(int candidate) {
+    for (int i = 0; i < this->unserved.size(); i++){
+        if (candidate == unserved[i]){
+            this->unserved.erase(this->unserved.begin()+i);
+            break;
+        }
+    }
 }   
+
+void sarpSolution::printUnserved(){
+    cout << "Unserved Parcels: " << endl;
+
+    for (int i = 0; i < this->unserved.size(); i++){
+        if (i < this->unserved.size()-1){
+            cout << unserved[i] << " - ";
+        }
+        else{
+            cout << unserved[i] << endl;
+        }
+    }
+
+}
 
 void sarpSolution::printCosts(){
     cout << "Cost of routes: " << endl;
@@ -1185,12 +1208,7 @@ void sarpSolution::addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, do
                     newroute.updateAll(inst, nodeVec, Mdist);
                     addRoute(&newroute);
 
-                    for (int u = 0; u < unserved.size(); ++u) {
-                        if (this->unserved[u] == candidate) {
-                            this->unserved.erase(this->unserved.begin() + u);
-                            break;
-                        }
-                    }
+                    removeunserved(candidate);
 
                     updateVehicles();
                     inserted = 1;
@@ -1201,13 +1219,15 @@ void sarpSolution::addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, do
             }
             else{
                 addtounserved(candidate);
-                for (int u = 0; u < unserved.size(); ++u) {
-                    if (this->unserved[u] == candidate) {
-                        this->unserved.erase(this->unserved.begin() + u);
-                        break;
-                    }
-                }
+                
+                // for (int u = 0; u < unserved.size(); ++u) {
+                //     if (this->unserved[u] == candidate) {
+                //         this->unserved.erase(this->unserved.begin() + u);
+                //         break;
+                //     }
+                // }
                 break;
+
             }
         }
 
@@ -1235,12 +1255,7 @@ void sarpSolution::addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, do
             // cout << "New route cost: " << sroute.cost() << endl;
             // cout << endl << endl;
 
-            for (int u = 0; u < unserved.size(); ++u) {
-                if (this->unserved[u] == candidate) {
-                    this->unserved.erase(this->unserved.begin() + u);
-                    break;
-                }
-            }
+            removeunserved(candidate);
             break;
         }
 
