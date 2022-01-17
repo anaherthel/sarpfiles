@@ -2116,7 +2116,7 @@ void sarpRoute::updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double
                 if (nodeVec[nodes_[j]].load < 0){
                     if(nodes_[j] == nodes_[i]+inst->m){
                         updateParcels(nodes_[i]-inst->n, i, j);
-                        cout << "i: " << i << " j: " << j << endl;
+                        // cout << "i: " << i << " j: " << j << endl;
                         break;
                     }
                 }

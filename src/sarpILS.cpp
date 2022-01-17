@@ -108,7 +108,7 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
             solution->printSol(inst);        
             solution->printCosts();
             cout << "\n-----x-----" << endl;
-            getchar();
+            // getchar();
 
             // solution->addunserved(inst, nodeVec, Mdist, problem);
 
@@ -544,10 +544,20 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
         // solution->printSol(inst);
         // solution->printCosts();
 
+        //Removing last vehicle from solution if it is empty.
         int solSize = solution->getRoutesSize();
         sarpRoute sroute(inst, 0);
-        pair <int, int> temppair;
-        pair <nodeStat, int> temppass;
+
+        int routeid = solSize - 1;
+        sroute = solution->getRoute(routeid);
+
+        if (sroute.getNodesSize() < 3){
+            solution->removeRoute();
+        }
+
+
+        // pair <int, int> temppair;
+        // pair <nodeStat, int> temppass;
 
         // for (int rid = 0; rid < solSize; rid++){
         //     sroute = solution->getRoute(rid);
@@ -1230,31 +1240,54 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     vector < pair <int, double> > unservPass;
     pair <int, double> PassProf;
 
-    //selecting routes for perturbation
-    rid1 = rand() % solSize;
-    rid2 = rid1;
-    sroute2 = solution->getRoute(rid2);
+    //Purging empty routes
+    bool p1 = 1;
+    int emptyroute = -1;
 
-    while (rid2 == rid1 || sroute2.getPassPosSize() < 1){
-        rid2 = rand() % solSize;
-        sroute2 = solution->getRoute(rid2);
+    for (int rid = 0; rid < solSize - 1; rid++){
+        sroute = solution->getRoute(rid);
+        if (sroute.getNodesSize() < 3){
+            emptyroute = rid;
+            break;
+        }
     }
 
+    if (emptyroute > -1){
+        rid1 = emptyroute;
+        rid2 = solSize - 1;
+
+        cout << "Routes for purging: " << rid1 << " - " << rid2 << endl;
+        sroute1 = solution->getRoute(rid1);
+
+        sroute2 = solution->getRoute(rid2);
+    }
+    else{
+        //selecting routes for perturbation
+        rid1 = rand() % solSize;
+        rid2 = rid1;
+        sroute2 = solution->getRoute(rid2);
+
+        while (rid2 == rid1 || sroute2.getPassPosSize() < 1){
+            rid2 = rand() % solSize;
+            sroute2 = solution->getRoute(rid2);
+        }
+        
+        sroute1 = solution->getRoute(rid1);
+    }
     cout << "Routes for shaking: " << rid1 << " - " << rid2 << endl;
 
 
-    sroute1 = solution->getRoute(rid1);
-    sroute2 = solution->getRoute(rid2);
-    
     //finding passengers and parcels in the selected routes; storing item labels
-    for (int i = 0; i < sroute1.getNodesSize(); i++){
-        req = sroute1.getReq(i);
-        if (req < inst->n){
-            avlPas1.push_back(req);
-        }
-        else if (req < inst->n + inst->m){
-            avlParc1.push_back(req);
-            solution->addtounserved(req);
+    if (emptyroute < 0){
+        for (int i = 0; i < sroute1.getNodesSize(); i++){
+            req = sroute1.getReq(i);
+            if (req < inst->n){
+                avlPas1.push_back(req);
+            }
+            else if (req < inst->n + inst->m){
+                avlParc1.push_back(req);
+                solution->addtounserved(req);
+            }
         }
     }
 
@@ -1283,21 +1316,24 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     avlPas2.push_back(-1);
     avlPas1.push_back(-1);
 
-    blockpas1.makeBlock(avlPas1, 0, avlPas1.size()-1);
+    if (emptyroute < 0){
+        blockpas1.makeBlock(avlPas1, 0, avlPas1.size()-1);
+        blockpas1.blockProfit(inst, nodeVec, Mdist);
+        blockpas1.calcBlockTimes(inst, nodeVec, Mdist);
+        profc1 = blockpas1.profit();
+        sroute1.clearRoute();
+        solution->updateRoutes(&sroute1, rid1);
+    }
+
     blockpas2.makeBlock(avlPas2, 0, avlPas2.size()-1);
-    blockpas1.blockProfit(inst, nodeVec, Mdist);
     blockpas2.blockProfit(inst, nodeVec, Mdist);
-    blockpas1.calcBlockTimes(inst, nodeVec, Mdist);
     blockpas2.calcBlockTimes(inst, nodeVec, Mdist);
-    profc1 = blockpas1.profit();
     profc2 = blockpas2.profit();
 
     //clearing both routes
 
-    sroute1.clearRoute();
     sroute2.clearRoute();
 
-    solution->updateRoutes(&sroute1, rid1);
     solution->updateRoutes(&sroute2, rid2);
     solution->updateCost();     
 
@@ -1307,23 +1343,25 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     solution->printCosts();
 
     //Exchanging blocks of passengers
-    avlPas1.pop_back();
+    if (emptyroute < 0){
+        avlPas1.pop_back();
+        sroute2.insertBlock(inst, Mdist, avlPas1, 1, profc1);
+        sroute2.updateAll(inst, nodeVec, Mdist);
+        solution->updateRoutes(&sroute2, rid2);
+    }
+
     avlPas2.pop_back();
     sroute1.insertBlock(inst, Mdist, avlPas2, 1, profc2);
-    sroute2.insertBlock(inst, Mdist, avlPas1, 1, profc1);
     sroute1.updateAll(inst, nodeVec, Mdist);
-    sroute2.updateAll(inst, nodeVec, Mdist);
 
     
     solution->updateRoutes(&sroute1, rid1);
-    solution->updateRoutes(&sroute2, rid2);
     solution->updateCost();   
 
     cout << "After reinsertion of passengers: " << endl;
 
     solution->printSol(inst);
     solution->printCosts();
-
 
     //Reinserting pairs of parcels
 
@@ -1339,73 +1377,97 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     // cout << "Parcels for exchanging: " << endl;
     // cout << "route1: " << par1 << " - route2: " << par2 << endl;
 
-    if (par1 > -1){
-        candidate1 = avlParc1[par1];
-        cout << "Parcels for exchanging rid " << rid1 << ": " << candidate1 << endl;
+    if (emptyroute < 0){
+        if (par1 > -1){
+            candidate1 = avlParc1[par1];
+            cout << "Parcels for reinserting rid " << rid1 << ": " << candidate1 << endl;
+            
+
+            int cand11 = candidate1 + inst->m;
+
+            sroute1.availablePos(inst, nodeVec, candidate1, problem, inspositions1);
+            int randindex =  rand() % inspositions1.size();
+            pos1 = inspositions1[randindex];
+
+            cout << "positions of pickup insertion: " << endl;
+            for (int o = 0; o < inspositions2.size(); o++){
+                cout << inspositions2[o] << " ";
+            }
+            cout << endl;
+
+            // getchar();
+
+            inspositions2.push_back(pos1);
+            sroute1.availablePos(inst, nodeVec, cand11, problem, inspositions2);
+
+            cout << "positions of delivery insertion: " << endl;
+            for (int o = 0; o < inspositions2.size(); o++){
+                cout << inspositions2[o] << " ";
+            }
+            cout << endl;
+
+            // getchar();
+
+            randindex =  rand() % inspositions2.size();
+            pos2 = inspositions2[randindex];
+
+            sroute1.insert(inst, Mdist, candidate1, pos1, nodeVec[candidate1].profit);
+            sroute1.insert(inst, Mdist, cand11, pos2+1, nodeVec[cand11].profit);
+            
+            solution->removeunserved(candidate1);
+
+            sroute1.updateAll(inst, nodeVec, Mdist);
+            solution->updateRoutes(&sroute1, rid1);
+            solution->updateCost();
+
+        }
+        if (par2 > -1){    
+            candidate2 = avlParc2[par2];
+            
+            cout << "Parcels for reinserting rid " << rid2 << ": " << candidate2 << endl;
+
+            int cand22 = candidate2 + inst->m;
         
+            inspositions1.clear();
+            
+            sroute2.availablePos(inst, nodeVec, candidate2, problem, inspositions1);
+            int randindex =  rand() % inspositions1.size();
+            pos1 = inspositions1[randindex];
+            
+            inspositions2.clear();
+            
+            inspositions2.push_back(pos1);
+            sroute2.availablePos(inst, nodeVec, cand22, problem, inspositions2);
 
-        int cand11 = candidate1 + inst->m;
+            randindex =  rand() % inspositions2.size();
+            pos2 = inspositions2[randindex];
 
-        sroute1.availablePos(inst, nodeVec, candidate1, problem, inspositions1);
-        int randindex =  rand() % inspositions1.size();
-        pos1 = inspositions1[randindex];
+            sroute2.insert(inst, Mdist, candidate2, pos1, nodeVec[candidate2].profit);
+            sroute2.insert(inst, Mdist, cand22, pos2+1, nodeVec[cand22].profit);
+            
+            solution->removeunserved(candidate2);
+            sroute2.updateAll(inst, nodeVec, Mdist);
+            solution->updateRoutes(&sroute2, rid2);
+            solution->updateCost();
 
-        // inspositions2.push_back(pos1);
-        sroute1.availablePos(inst, nodeVec, cand11, problem, inspositions2);
-
-        // cout << "positions of delivery insertion: " << endl;
-        // for (int o = 0; o < inspositions2.size(); o++){
-        //     cout << inspositions2[o] << " ";
-        // }
-        // cout << endl;
-
-        // getchar();
-
-        randindex =  rand() % inspositions2.size();
-        pos2 = inspositions2[randindex];
-
-        sroute1.insert(inst, Mdist, candidate1, pos1, nodeVec[candidate1].profit);
-        sroute1.insert(inst, Mdist, cand11, pos2+1, nodeVec[cand11].profit);
-        
-        solution->removeunserved(candidate1);
-
-        sroute1.updateAll(inst, nodeVec, Mdist);
-        solution->updateRoutes(&sroute1, rid1);
-        solution->updateCost();
-
+        }
     }
-    if (par2 > -1){    
-        candidate2 = avlParc2[par2];
-        
-        cout << "Parcels for exchanging rid " << rid2 << ": " << candidate2 << endl;
-
-        int cand22 = candidate2 + inst->m;
-       
-        inspositions1.clear();
-        
-        sroute2.availablePos(inst, nodeVec, candidate2, problem, inspositions1);
-        int randindex =  rand() % inspositions1.size();
-        pos1 = inspositions1[randindex];
-        
-        inspositions2.clear();
-        
-        inspositions2.push_back(pos1);
-        sroute2.availablePos(inst, nodeVec, cand22, problem, inspositions2);
-
-        randindex =  rand() % inspositions2.size();
-        pos2 = inspositions2[randindex];
-
-        sroute2.insert(inst, Mdist, candidate2, pos1, nodeVec[candidate2].profit);
-        sroute2.insert(inst, Mdist, cand22, pos2+1, nodeVec[cand22].profit);
-        
-        solution->removeunserved(candidate2);
-        sroute2.updateAll(inst, nodeVec, Mdist);
-        solution->updateRoutes(&sroute2, rid2);
-        solution->updateCost();
-
-    }
-
+    
     cout << "After reinsertion of selected parcels: " << endl;
+
+    solution->printSol(inst);
+    solution->printCosts();
+
+    if (emptyroute > -1){
+        int routeid = solSize - 1;
+        sroute = solution->getRoute(routeid);
+
+        if (sroute.getNodesSize() < 3){
+            solution->removeRoute();
+        }
+    }
+
+    cout << "After purging: " << endl;
 
     solution->printSol(inst);
     solution->printCosts();
@@ -1413,5 +1475,5 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     // getchar();
     
     solution->printUnserved();
-
+    
 }
