@@ -58,8 +58,6 @@ protected:
 
     // the cost of this route
     double cost_;
-    // route length
-    double length_;
     //start time
     double starttime;
     //end time
@@ -85,6 +83,8 @@ public:
 
     // default constructor: route with only starting and ending depot visits
     sarpRoute(instanceStat *inst, int vehicle);
+    sarpRoute(const sarpRoute *rt);
+
     // access route elements
     double cost() const { return cost_; };
     double startTime() const { return starttime; };
@@ -188,6 +188,8 @@ public:
 
     void printLoad();
     void printPDVec();
+    void printPP();
+
     pair <int, int> getInterval(int req);
     
     bool checkInterval(instanceStat *inst, int pos1, int pos2, pair <int, int> inter1, pair <int, int> inter2);
@@ -205,22 +207,7 @@ public:
 
     double rmvVal (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, int candidate, bool isparcel);
 
-    
-    // // improve route with 2-opt
-    // // returns the number of improvements performed
-    // int two_opt(const CVRPInstance& inst);
 
-    // int local_search(const CVRPInstance& inst);
-
-    // int bestTwoOpt(const CVRPInstance& inst);
-
-    // // relocate K customers
-    // int relocateK(const CVRPInstance& inst, int k);
-
-    // //swap any 2 customers
-    // int swap(const CVRPInstance& inst);
-
-    // int VND(const CVRPInstance& inst);
 };
 
 #endif

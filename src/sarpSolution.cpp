@@ -1,6 +1,17 @@
 #include "sarpSolution.h"
 
 
+sarpSolution::sarpSolution(const sarpSolution &other) : unserved(other.unserved),
+                                            cost(other.cost),
+                                            usedK(other.usedK) {
+
+    for (int i = 0; i < other.getRoutesSize(); ++i) {
+        this->routes.push_back(new sarpRoute(&other.routes[i]));
+        // delete sroute;
+    }
+}
+
+
 void sarpSolution::addRoute(sarpRoute *route){
     this->routes.push_back(*route);
     this->updateCost();
@@ -60,6 +71,8 @@ void sarpSolution::printLoadSol(instanceStat *inst) {
     }
     cout << endl;
 }
+
+
 void sarpSolution::addtounserved(int candidate) {
     unserved.push_back(candidate);
 }
@@ -94,7 +107,7 @@ void sarpSolution::printCosts(){
         cout << "Route " << i << ": " << routes[i].cost() << endl;
     }
 
-    cout << "\nCost of routes: " << this->cost << endl;
+    cout << "\nCost of solution: " << this->cost << endl;
 }
 
 double sarpSolution::relocate (instanceStat *inst, vector<nodeStat> &nodeVec, 
@@ -1267,5 +1280,17 @@ void sarpSolution::addunserved(instanceStat *inst, vector<nodeStat> &nodeVec, do
 
     this->stats.setEnd();
     cout << "\nAdd Unserved Time: " << std::setprecision(8) << this->stats.printTime() << endl;
+
+}
+
+
+void sarpSolution::PurgeRoutes(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem){
+
+    //for a route in the set of routes - the last:
+    //check if it is empty and put last route in its place.
+    //Remove empty last vehicle
+    //check if last route is only parcels now
+    //if true, remove the parcels and add to unserved. Remove the empty last route.
+    //run this while any is true.
 
 }

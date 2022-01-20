@@ -467,7 +467,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     cout << "Initial solution: " << endl;
     solution->printSol(inst);
     solution->printCosts();
-    solution->printLoadSol(inst);
+    // solution->printLoadSol(inst);
     // getchar();
 
 

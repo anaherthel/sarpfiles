@@ -15,24 +15,16 @@ protected:
     vector<sarpRoute> routes;
     double cost;
 
-    vector<nodeStat> unservParc;
-
     int usedK;
     int maxK;
 
-    int vCost = -1000;
-    // vector<vector<vector<bool>>> pairNeighbStatus;
     vector <int> unserved;
-
-    // void createRoutesVector();
-    // void updateCost();
-    // void updateRoutes();
 
 public:
 
     Runtime stats;
     sarpSolution() { this->cost = INT32_MAX; this->usedK = 0; }
-
+    sarpSolution(const sarpSolution &other);
     // Solution(Data *data);
     // Solution(Data *data, vector<Route *> routesVec);
     // Solution(const Solution &other);
@@ -104,6 +96,8 @@ public:
                                         int rid1, int rid2, int &insPos,
                                         probStat* problem, sarpBlock &reqBlock);
 
+
+    void PurgeRoutes(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist, probStat* problem);
     // sarpRoute *getRoute(int idx) { return routes[idx]; }
     // inline int getRoutesSize() const { return this->routes.size(); }s
 };

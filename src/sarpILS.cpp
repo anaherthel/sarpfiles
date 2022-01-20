@@ -8,13 +8,12 @@
 
 void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
     
-    iterILS = 0;
     // maxIterILS = 10*inst->n+inst->m;
     
-    maxIterILS = 300;
+    maxIterILS = 15;
 
     iterMS = 0;
-    maxiterMS = 30;
+    maxiterMS = 2;
 
     sarpRoute sroute(inst, 0);
 
@@ -24,47 +23,27 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
     double profit;
 
     globalBestSol = new sarpSolution();
-    while (iterMS <= maxiterMS){
+    globalBestCost = 0;
 
+    double testcost = 0;
+    double globaltestcost = 0;
+    while (iterMS <= maxiterMS){
+        iterILS = 0;
+        cout << "Multistart count: " << iterMS << endl;
         sarpConstruction sCon(inst, nodeVec);
         solution = new sarpSolution();
         
+        solution->printUnserved();
         sCon.ConstrProc(inst, nodeVec, Mdist, problem, solution);
 
         currentCost = solution->getCost();
         bestCost = currentCost;
-        bestSol = solution;
-        globalBestCost = currentCost;
-        globalBestSol = solution;
-        // minK = solution->getvehicle();
+        bestSol = new sarpSolution(*solution);
+        // testcost = currentCost;
 
         int sol_size;
         sol_size = solution->getRoutesSize();
 
-        //Messing solution to test neighborhoods
-        // sroute = solution->getRoute(0);
-        
-        // profit = sroute.getProfit(nodeVec, 1);
-        // sroute.erase(inst, Mdist, 7, profit);
-        // sroute.updateAll(inst, nodeVec, Mdist);
-        // sroute.insert(inst, Mdist, 1, 5, profit);
-        // sroute.updateAll(inst, nodeVec, Mdist);
-
-        // sroute.calcCost(inst, nodeVec, Mdist);
-            
-        // solution->updateRoutes(&sroute, 0);
-        // solution->updateCost();
-
-        // cout << "Worse solution: " << endl;
-
-        // solution->printSol(inst);
-        // solution->printCosts();
-        // // getchar();
-        // profit = sroute.getProfit(nodeVec, 1);
-        // sroute.erase(inst, Mdist, 1, profit);
-        // sroute.insert(inst, Mdist, 11, 2, profit);
-
-        //Initial solution
         while (iterILS <= maxIterILS) {
             cout << "***********************" << endl;
             cout << "ITERATION: " << iterILS << endl;
@@ -75,61 +54,63 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
     
             RVNDInter(inst, nodeVec, Mdist, problem);
 
-
             // RVNDAll(inst, nodeVec, Mdist, problem);
             currentCost = solution->getCost();
             int currentK = solution->getvehicle();
-            if (bestCost > currentCost) {
-                bestSol = solution;
+
+
+            if (currentCost > bestCost) {
+                delete bestSol;
+                bestSol = new sarpSolution(*solution);
                 bestCost = currentCost;
         
-                //cout << endl << "\nBetter Solution Cost: " << solutionCost << endl << endl;
+                cout << endl << "\nBetter Solution Cost: " << currentCost << endl << endl;
         
                 iterILS = 0;
+
+                cout << "\n-----x-----" << "\nBest Solution so far: ";
+                bestSol->printSol(inst);
+
+                cout <<"\nSolution Best Cost: " << endl;
+                
+                bestSol->printCosts();
+                cout << "\n-----x-----" << endl;
             }
 
-            // cout << "\n-----x-----" << "\nBest Solution so far: ";
-            // bestSol.printSol(inst);
-
-            // cout <<"\nSolution Best Cost: " << endl;
+            cout << "\n-----x-----" << "\nSolution before perturbation (ILS): ";
+            solution->printSol(inst);        
+            solution->printCosts();
+            cout << "\n-----x-----" << endl;
             
-            // bestSol.printCosts();
-            // cout << "\n-----x-----" << endl;
 
             // bestSol.addunserved(inst, nodeVec, Mdist, problem);
-            solution = bestSol;
+
+            // solution = bestSol;
+            solution->PurgeRoutes(inst, nodeVec, Mdist, problem);
+
             cout << "Calling Perturbation: " << endl;
 
             Perturbation(inst, nodeVec, Mdist, problem);
-
-
 
             cout << "\n-----x-----" << "\nSolution with perturbation: ";
             solution->printSol(inst);        
             solution->printCosts();
             cout << "\n-----x-----" << endl;
-            // getchar();
-
-            // solution->addunserved(inst, nodeVec, Mdist, problem);
 
             iterILS++;
         }
 
-        cout << "\n-----x-----" << "\nBest Solution: ";
-        bestSol->printSol(inst);
-
-        cout <<"\nSolution Best Cost: " << endl;
-        
-        bestSol->printCosts();
-        cout << "\n-----x-----" << endl;
-
         if (bestCost > globalBestCost){
-            globalBestSol = bestSol;
+            delete globalBestSol;
+            globalBestSol = new sarpSolution(*bestSol);
             globalBestCost = bestCost;
+            // getchar();
         }
-        // cout << "\n-----x-----" << "\nBest Solution: ";
-        // printSolution(solutionBest);
-        // cout <<"\nSolution Best Cost: " << solutionBestCost << endl;
+
+
+        delete solution;
+        delete bestSol;
+
         iterMS++;
 
     }
@@ -141,6 +122,8 @@ void sarpILS::ILS(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, 
     
     globalBestSol->printCosts();
     cout << "\n-----x-----" << endl;
+    
+    delete globalBestSol;
     
 }
 
@@ -179,13 +162,17 @@ void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 			case 0:
                 cout << "Calling swap: " << endl;
 				SwapAll (inst, nodeVec, Mdist, problem);
-
+                cout << "\nAfter Swap Intra: " << endl;
+                solution->printSol(inst);
+                solution->printCosts();
 				break;
 
 			case 1:
                 cout << "Calling relocate intra: " << endl;
 				RelocateAll (inst, nodeVec, Mdist, problem);
-                      
+                cout << "\nAfter Relocate Intra: " << endl;
+                solution->printSol(inst);
+                solution->printCosts();                      
 				break;
 
             // case 2:
@@ -198,11 +185,6 @@ void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 		}
 
 		newCost = solution->getCost();
-
-        cout << "\nAfter Intra: " << endl;
-        solution->printSol(inst);
-        solution->printCosts();
-        // // getchar();
         
 		if (newCost > bestCost) {
 			bestCost = newCost;
@@ -217,6 +199,11 @@ void sarpILS::RVNDIntra(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 			usedNbr.push_back(neighbor);
 		}
 	}
+
+    cout << "\nAfter All Intra: " << endl;
+    solution->printSol(inst);
+    solution->printCosts();
+    // // getchar();
 }
 
 // void sarpILS::RVNDAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
@@ -321,17 +308,17 @@ void sarpILS::SwapAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdi
         delta = 0;
         sroute = solution->getRoute(rid);
 
-        cout << "Current route: " << rid << endl;
+        // cout << "Current route: " << rid << endl;
         delta = sroute.Swap(inst, Mdist, nodeVec, problem);
 
 
         if (delta > 0){
 
-            cout << "Route with swap: " << endl;
-            for (int a = 0; a < sroute.getNodesSize(); a++){
-                cout << sroute.getReq(a) << " - ";
-            }
-            cout << endl;
+            // cout << "Route with swap: " << endl;
+            // for (int a = 0; a < sroute.getNodesSize(); a++){
+            //     cout << sroute.getReq(a) << " - ";
+            // }
+            // cout << endl;
 
             // cout << "New route cost after 1 swap: " << sroute.cost() << endl;
             // // getchar();
@@ -368,7 +355,7 @@ void sarpILS::RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double *
     for (int rid = 0; rid < solSize; rid++) {
         delta = 0;
         sroute = solution->getRoute(rid);
-        cout << "rid: " << rid << endl;
+        // cout << "rid: " << rid << endl;
         delta = sroute.relocateK(inst, Mdist, nodeVec, problem, 1);
        
         if (delta > 0){
@@ -403,55 +390,6 @@ void sarpILS::RelocateAll(instanceStat *inst, vector<nodeStat> &nodeVec,double *
 
 }
 
-// void sarpILS::ThreeOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
-//    int solSize = solution->getRoutesSize();
-
-//     double delta;
-//     // int vehicle;
-//     // vehicle = solution->getvehicle();
-
-//     sarpRoute sroute(inst, 0);
-
-//     sroute.stats.setStart();
-
-//     for (int rid = 0; rid < solSize; rid++) {
-//         delta = 0;
-//         sroute = solution->getRoute(rid);
-
-//         cout << "Current route: " << rid << endl;
-//         delta = sroute.ThreeOpt(inst, Mdist, nodeVec, problem);
-
-//         if (delta > 0){
-
-//             cout << "Route with 3opt: " << endl;
-//             for (int a = 0; a < sroute.getNodesSize(); a++){
-//                 cout << sroute.getReq(a) << " - ";
-//             }
-//             cout << endl;
-
-//             // cout << "New route cost after 1 swap: " << sroute.cost() << endl;
-//             // // getchar();
-
-//             sroute.updateAll(inst, nodeVec, Mdist);
-//             solution->updateRoutes(&sroute, rid);
-//         }
-//         // cout << "In SWAP ALL: There was an improvement: " << 
-//         // "route: " << rid << " - " << delta << endl;
-//     }
-//     sroute.stats.setEnd();
-
-//     solution->updateCost();
-
-//     // cout << "After Swap all" << endl;
-//     // solution->printSol(inst);
-//     // solution->printCosts();
-//     // // getchar();
-
-//     cout << "\n3opt Time: " << std::setprecision(8) << sroute.stats.printTime() << endl;
-// }
-
-
-
 void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **Mdist, probStat* problem){
 
 	double bestCost = solution->getCost();
@@ -480,7 +418,7 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 
 	while (!nbrList.empty()) {
     // while (iterator < 2){
-        cout << "iteration rvnd: " << iterator << endl;
+        // cout << "iteration rvnd: " << iterator << endl;
 		
 		int neighbor = rand() % nbrList.size();
         // int neighbor = 0;
@@ -500,10 +438,10 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 			case 0:
                 cout << "Calling relocate inter: " << endl;
 				relocate (inst, nodeVec, Mdist, problem);
-                // cout << "\n++++++++After RelocateInter:++++++++++ " << endl;
-                // solution->printSol(inst);
-                // solution->printCosts();
-                // cout << "+++++++++++++++" << endl;
+                cout << "\n++++++++After RelocateInter:++++++++++ " << endl;
+                solution->printSol(inst);
+                solution->printCosts();
+                cout << "+++++++++++++++" << endl;
 				break;
 
             case 1:
@@ -513,23 +451,36 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
                 else{
                     cout << "Calling add unserved: " << endl;
                     solution->addunserved(inst, nodeVec, Mdist, problem);
+                    cout << "\nAfter Unserved: " << endl;
+                    solution->printSol(inst);
+                    solution->printCosts();
                 }
 				break;
             case 2:
-                cout << "Calling 2opt inter: " << endl;
+                // cout << "Calling 2opt inter: " << endl;
 				// TwoOptAll (inst, nodeVec, Mdist, problem);
+                // cout << "\nAfter 2opt: " << endl;
+                // solution->printSol(inst);
+                // solution->printCosts();                
 
 				break;
 
             case 3:
-                cout << "Calling relocate block: " << endl;
+                // cout << "Calling relocate block: " << endl;
 				// relocateBlockAll (inst, nodeVec, Mdist, problem);
+                // cout << "\nAfter relocate block: " << endl;
+                // solution->printSol(inst);
+                // solution->printCosts();    
 
 				break;
 
             case 4:
-                cout << "Calling exchange blocks: " << endl;
+                // cout << "Calling exchange blocks: " << endl;
 				// exchangeBlocksAll (inst, nodeVec, Mdist, problem);
+				// relocateBlockAll (inst, nodeVec, Mdist, problem);
+                // cout << "\nAfter exchange block: " << endl;
+                // solution->printSol(inst);
+                // solution->printCosts();    
 
 				break;
                 
@@ -539,10 +490,6 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
 		}
 
 		newCost = solution->getCost();
-
-        // cout << "\nAfter Inter: " << endl;
-        // solution->printSol(inst);
-        // solution->printCosts();
 
         //Removing last vehicle from solution if it is empty.
         int solSize = solution->getRoutesSize();
@@ -555,33 +502,7 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
             solution->removeRoute();
         }
 
-
-        // pair <int, int> temppair;
-        // pair <nodeStat, int> temppass;
-
-        // for (int rid = 0; rid < solSize; rid++){
-        //     sroute = solution->getRoute(rid);
-        //     cout << "Route: " << rid << endl << endl;
-        //     cout << "First passenger: " << sroute.fPass() << endl;
-        //     cout << "Last passenger: " << sroute.lPass() << endl;
-        //     cout << "Start time: " << sroute.startTime() << endl;
-        //     cout << "End time: " << sroute.endTime() << endl;
-        //     cout << "Passengers: " << endl;
-
-        //     for (int nid = 0; nid < sroute.getPassPosSize(); nid++){
-        //         temppass = sroute.getPassReq(nid);
-        //         cout << nid << ": " << temppass.first.index << " - " << temppass.second << endl; 
-        //     }
-        //     cout << "Parcels: " << endl;
-
-        //     for (int nid = 0; nid < sroute.getPaPdvecSize(); nid++){
-        //         temppair = sroute.getPDReq(nid);
-        //         cout << nid << ": " << temppair.first << " - " << temppair.second << endl; 
-        //     }
-        //     cout << endl;           
-        // }
-        // // getchar();
-        
+      
 		if (newCost > bestCost) {
 			bestCost = newCost;
 			if (nbrList.size() < 2) {
@@ -602,6 +523,10 @@ void sarpILS::RVNDInter(instanceStat *inst, vector<nodeStat> &nodeVec,double **M
         // // getchar();
         iterator++;
 	}
+
+    cout << "\nAfter All Inter: " << endl;
+    solution->printSol(inst);
+    solution->printCosts();
 }
 
 void sarpILS::relocate(instanceStat *inst,
@@ -631,9 +556,9 @@ void sarpILS::relocate(instanceStat *inst,
 
     solution->stats.setStart();
 
-    cout << "(((((Solution so far ))))))" << endl;
-    solution->printSol(inst);
-    solution->printCosts();
+    // cout << "(((((Solution so far ))))))" << endl;
+    // solution->printSol(inst);
+    // solution->printCosts();
     // // getchar();
 
     for (int rid1 = 0; rid1 < solSize; rid1++){
@@ -748,9 +673,9 @@ void sarpILS::relocate(instanceStat *inst,
 
     solution->stats.setEnd();
 
-    cout << "After Relocate Inter" << endl;
-    solution->printSol(inst);
-    solution->printCosts();
+    // cout << "After Relocate Inter" << endl;
+    // solution->printSol(inst);
+    // solution->printCosts();
 
     cout << "\nRelocate Time: " << std::setprecision(8) << solution->stats.printTime() << endl;
 
@@ -892,9 +817,9 @@ void sarpILS::TwoOptAll(instanceStat *inst, vector<nodeStat> &nodeVec,
 
     solution->stats.setEnd();
 
-    cout << "After 2opt" << endl;
-    solution->printSol(inst);
-    solution->printCosts();
+    // cout << "After 2opt" << endl;
+    // solution->printSol(inst);
+    // solution->printCosts();
 
     cout << "\n2opt Time: " << std::setprecision(8) << solution->stats.printTime() << endl;
 
@@ -942,7 +867,7 @@ void sarpILS::exchangeBlocksAll(instanceStat *inst, vector<nodeStat> &nodeVec,
             delta.first = 0;
             delta.second = 0;
 
-            cout << "r1: " << rid1 << " - r2: " << rid2 << endl;
+            // cout << "r1: " << rid1 << " - r2: " << rid2 << endl;
             // if (rid1 != rid2){
                 //this is the delta in solution value, so it is just a matter of cost.
 
@@ -1089,9 +1014,9 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
     
     solution->stats.setStart();
 
-    cout << "(((((Solution so far ))))))" << endl;
-    solution->printSol(inst);
-    solution->printCosts();
+    // cout << "(((((Solution so far ))))))" << endl;
+    // solution->printSol(inst);
+    // solution->printCosts();
     // // getchar();
 
     for (int rid1 = 0; rid1 < solSize; rid1++){
@@ -1099,7 +1024,7 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
             delta.first = 0;
             delta.second = 0;
             if (rid1 != rid2){
-                cout << "Route 2: " << rid2 << endl;
+                // cout << "Route 2: " << rid2 << endl;
                 //rid1: From where the block will come
                 //rid2: Where the block will go
                 //this is the delta in solution value, so it is just a matter of cost.
@@ -1110,8 +1035,8 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
                                                 problem, currBlock);                
                 
                 
-                cout << "Current inipos of r2 in ILS function: " << endl;
-                cout << insPos << endl;
+                // cout << "Current inipos of r2 in ILS function: " << endl;
+                // cout << insPos << endl;
 
                 // // getchar();
                 // cout << "After relocate" << endl;
@@ -1121,15 +1046,15 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
                 if (totaldelta > 0){
                     if (totaldelta > bestDelta){
                         
-                        cout << "-x----x----x-----x----x----x-" << endl;
-                        sroute1 = solution->getRoute(rid1);
-                        sroute2 = solution->getRoute(rid2);
-                        cout << "insertion position: " << insPos << endl; 
-                        cout << "relocating block from route " << rid1;
-                        cout << " to route "  << rid2 << endl;
-                        cout << "Delta obtained (first, second, total): " << delta.first;
-                        cout << " " << delta.second << " " << totaldelta << endl;
-                        cout << "-x----x----x-----x----x----x-" << endl;
+                        // cout << "-x----x----x-----x----x----x-" << endl;
+                        // sroute1 = solution->getRoute(rid1);
+                        // sroute2 = solution->getRoute(rid2);
+                        // cout << "insertion position: " << insPos << endl; 
+                        // cout << "relocating block from route " << rid1;
+                        // cout << " to route "  << rid2 << endl;
+                        // cout << "Delta obtained (first, second, total): " << delta.first;
+                        // cout << " " << delta.second << " " << totaldelta << endl;
+                        // cout << "-x----x----x-----x----x----x-" << endl;
                         // getchar();
 
                         bestDelta = totaldelta;
@@ -1161,11 +1086,11 @@ void sarpILS::relocateBlockAll(instanceStat *inst, vector<nodeStat> &nodeVec,
 
         movingVec = reqBlock.getBlock();
 
-        cout << "Moving vec: " << endl;
-        for (int i = 0; i < movingVec.size(); i++){
-            cout << movingVec[i] << " ";
-        }
-        cout << endl;
+        // cout << "Moving vec: " << endl;
+        // for (int i = 0; i < movingVec.size(); i++){
+        //     cout << movingVec[i] << " ";
+        // }
+        // cout << endl;
 
         int iniPosBlock = reqBlock.getiniPos();
 
@@ -1229,41 +1154,68 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     par1 = -1;
     par2 = -1;
 
-    bool found;
+    bool found, feasible, onlyparcel;
     int candidate1, candidate2, candpar1, candpar2;
     int pos1, pos2;
-
-    bool feasible;
 
     vector <int> inspositions1, inspositions2, candidates;
 
     vector < pair <int, double> > unservPass;
     pair <int, double> PassProf;
 
+    bool shakeparcelonly = (rand() % 100) < 60; //60% chance of shaking only parcels
+    // bool shakeparcelonly = 0;
+
     //Purging empty routes
     bool p1 = 1;
     int emptyroute = -1;
 
     for (int rid = 0; rid < solSize - 1; rid++){
-        sroute = solution->getRoute(rid);
-        if (sroute.getNodesSize() < 3){
+        sroute1 = solution->getRoute(rid);
+        if (shakeparcelonly){
+            if (sroute1.getPassPosSize() < 1){
+                for (int i = 1; i < sroute1.getNodesSize(); i++){
+                    int request = sroute1.getReq(i);
+                    // cout << "Request: " << request << endl;
+                    // getchar();
+                    if (nodeVec[request].load > 0){//if the request is a parcel pickup location
+                        solution->addtounserved(request);
+                    }
+                }
+                sroute1.clearRoute();
+                onlyparcel = 1;
+            }
+        }
+        if (sroute1.getNodesSize() < 3){
             emptyroute = rid;
             break;
         }
     }
 
-    if (emptyroute > -1){
+
+    if (emptyroute > -1){//if there are empty routes
         rid1 = emptyroute;
         rid2 = solSize - 1;
 
-        cout << "Routes for purging: " << rid1 << " - " << rid2 << endl;
-        sroute1 = solution->getRoute(rid1);
+        // cout << "Routes for purging: " << rid1 << " - " << rid2 << endl;
+        if (!onlyparcel){
+            sroute1 = solution->getRoute(rid1);
+        }
 
         sroute2 = solution->getRoute(rid2);
     }
     else{
         //selecting routes for perturbation
         rid1 = rand() % solSize;
+        sroute1 = solution->getRoute(rid1);
+
+        while (sroute1.getPassPosSize() < 1){
+            // cout << "found" << endl;
+            // getchar();
+            rid1 = rand() % solSize;
+            sroute1 = solution->getRoute(rid1);
+        }
+
         rid2 = rid1;
         sroute2 = solution->getRoute(rid2);
 
@@ -1272,13 +1224,12 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
             sroute2 = solution->getRoute(rid2);
         }
         
-        sroute1 = solution->getRoute(rid1);
     }
     cout << "Routes for shaking: " << rid1 << " - " << rid2 << endl;
 
 
     //finding passengers and parcels in the selected routes; storing item labels
-    if (emptyroute < 0){
+    if (emptyroute < 0){ //no empty routes in the solution 
         for (int i = 0; i < sroute1.getNodesSize(); i++){
             req = sroute1.getReq(i);
             if (req < inst->n){
@@ -1302,6 +1253,14 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
         }
     }
 
+    // cout << "Parcels from route rid1: " << endl;
+    // for (int a = 0; a < avlParc1.size(); a++){
+    //     cout << avlParc1[a] << " ";
+    // }
+    // cout << endl;
+
+    // // getchar(); 
+
     // cout << "Parcels from route rid2: " << endl;
     // for (int a = 0; a < avlParc2.size(); a++){
     //     cout << avlParc2[a] << " ";
@@ -1316,7 +1275,7 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     avlPas2.push_back(-1);
     avlPas1.push_back(-1);
 
-    if (emptyroute < 0){
+    if (emptyroute < 0){ // no empty routes in the solution
         blockpas1.makeBlock(avlPas1, 0, avlPas1.size()-1);
         blockpas1.blockProfit(inst, nodeVec, Mdist);
         blockpas1.calcBlockTimes(inst, nodeVec, Mdist);
@@ -1337,13 +1296,13 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     solution->updateRoutes(&sroute2, rid2);
     solution->updateCost();     
 
-    cout << "After removal of everything: " << endl;
+    // cout << "After removal of everything: " << endl;
 
-    solution->printSol(inst);
-    solution->printCosts();
+    // solution->printSol(inst);
+    // solution->printCosts();
 
     //Exchanging blocks of passengers
-    if (emptyroute < 0){
+    if (emptyroute < 0){ //no empty routes in the solution
         avlPas1.pop_back();
         sroute2.insertBlock(inst, Mdist, avlPas1, 1, profc1);
         sroute2.updateAll(inst, nodeVec, Mdist);
@@ -1358,55 +1317,38 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
     solution->updateRoutes(&sroute1, rid1);
     solution->updateCost();   
 
-    cout << "After reinsertion of passengers: " << endl;
+    // cout << "After reinsertion of passengers: " << endl;
 
-    solution->printSol(inst);
-    solution->printCosts();
+    // solution->printSol(inst);
+    // solution->printCosts();
 
     //Reinserting pairs of parcels
 
     //selecting parcels to be readded
-    if (avlParc1.size() > 1){
+    if (avlParc1.size() > 0){
         par1 = rand() % avlParc1.size();
     }
 
-    if (avlParc2.size() > 1){
+    if (avlParc2.size() > 0){
         par2 = rand() % avlParc2.size();
     }
 
     // cout << "Parcels for exchanging: " << endl;
     // cout << "route1: " << par1 << " - route2: " << par2 << endl;
 
-    if (emptyroute < 0){
+    if (emptyroute < 0){ //no empty route in the solution
         if (par1 > -1){
             candidate1 = avlParc1[par1];
-            cout << "Parcels for reinserting rid " << rid1 << ": " << candidate1 << endl;
+            // cout << "Parcels for reinserting rid " << rid1 << ": " << candidate1 << endl;
             
-
             int cand11 = candidate1 + inst->m;
 
             sroute1.availablePos(inst, nodeVec, candidate1, problem, inspositions1);
             int randindex =  rand() % inspositions1.size();
             pos1 = inspositions1[randindex];
 
-            cout << "positions of pickup insertion: " << endl;
-            for (int o = 0; o < inspositions2.size(); o++){
-                cout << inspositions2[o] << " ";
-            }
-            cout << endl;
-
-            // getchar();
-
             inspositions2.push_back(pos1);
             sroute1.availablePos(inst, nodeVec, cand11, problem, inspositions2);
-
-            cout << "positions of delivery insertion: " << endl;
-            for (int o = 0; o < inspositions2.size(); o++){
-                cout << inspositions2[o] << " ";
-            }
-            cout << endl;
-
-            // getchar();
 
             randindex =  rand() % inspositions2.size();
             pos2 = inspositions2[randindex];
@@ -1424,7 +1366,7 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
         if (par2 > -1){    
             candidate2 = avlParc2[par2];
             
-            cout << "Parcels for reinserting rid " << rid2 << ": " << candidate2 << endl;
+            // cout << "Parcels for reinserting rid " << rid2 << ": " << candidate2 << endl;
 
             int cand22 = candidate2 + inst->m;
         
@@ -1453,10 +1395,10 @@ void sarpILS::Perturbation(instanceStat *inst, vector<nodeStat> &nodeVec,double 
         }
     }
     
-    cout << "After reinsertion of selected parcels: " << endl;
+    // cout << "After reinsertion of selected parcels: " << endl;
 
-    solution->printSol(inst);
-    solution->printCosts();
+    // solution->printSol(inst);
+    // solution->printCosts();
 
     if (emptyroute > -1){
         int routeid = solSize - 1;

@@ -116,7 +116,6 @@ sarpRoute::sarpRoute(instanceStat *inst, int vehicle){
     nodes_.push_back(inst->n+2*inst->m+vehicle);
     nodes_.push_back(inst->n+2*inst->m+inst->K+vehicle);
     cost_ = 0;
-    length_ = 0;
     
     pair <int, int> buildpair;
     for (int i = 0; i < inst->m; i++){
@@ -124,6 +123,21 @@ sarpRoute::sarpRoute(instanceStat *inst, int vehicle){
         buildpair.second = -1;
         pdvec.push_back(buildpair);
     }
+}
+
+sarpRoute::sarpRoute(const sarpRoute *rt) : id(rt->id),
+                                   starttime(rt->starttime),
+                                   endtime(rt->endtime),
+                                   cost_(rt->cost_),
+                                   firstPass(rt->firstPass),
+                                   lastPass(rt->lastPass),
+                                   firstPassPos(rt->firstPassPos),
+                                   lastPassPos(rt->lastPassPos),
+                                   passandpos(rt->passandpos),
+                                   pdvec(rt->pdvec),
+                                   loadofroute(rt->loadofroute),
+                                   nodes_(rt->nodes_){
+
 }
 
 void sarpRoute::calcCost(instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist) {
@@ -2100,6 +2114,17 @@ void sarpRoute::printPDVec(){
         cout << i << ": " << pdvec[i].first << " - " << pdvec[i].second << endl;
     }
 }
+
+void sarpRoute::printPP(){
+
+    cout << "Passenger and position list: " << endl;
+    for (int i = 0; i < passandpos.size(); i++){
+        cout << i << ": " << passandpos[i].first.index << " - " << passandpos[i].second << endl;
+    }
+    
+
+}
+
 void sarpRoute::updateAll (instanceStat *inst, vector<nodeStat> &nodeVec, double **Mdist){
     updatePass(inst, nodeVec);
     // cout << "Here1" << endl;
@@ -2232,7 +2257,6 @@ void sarpRoute::clearRoute(){
     this->nodes_.push_back(depots.second);
 
     this->cost_ = 0;
-    this->length_ = 0;
     this->starttime = 0;
     this->endtime = 0;
     this->firstPass = -1;
@@ -2416,7 +2440,7 @@ double sarpRoute::relocateK(instanceStat *inst, double **Mdist, vector<nodeStat>
         inter1 = getInterval(i);
 
         candidate = nodes_[i];
-        cout << "candidate: " << candidate << endl;
+        // cout << "candidate: " << candidate << endl;
         // cout << "Interval of i: " << inter1.first <<  " - " << inter1.second << endl; 
 
         if(candidate < inst->n){
@@ -2427,7 +2451,7 @@ double sarpRoute::relocateK(instanceStat *inst, double **Mdist, vector<nodeStat>
             jstart = 1;
             
             temp = getDL(nodes_[i]-inst->n);
-            cout << "temp: " << temp << endl;
+            // cout << "temp: " << temp << endl;
             if (problem->dParcel > 0){
                 jend = temp + 1;
             }
