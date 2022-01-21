@@ -40,7 +40,7 @@ public:
 
     void addRoute(sarpRoute* route);
 
-    void removeRoute();
+    void removeRoute();//removes last route of the solution
     
     void updateRoutes(sarpRoute *route,  int idr);
 

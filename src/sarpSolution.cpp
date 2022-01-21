@@ -1292,5 +1292,98 @@ void sarpSolution::PurgeRoutes(instanceStat *inst, vector<nodeStat> &nodeVec, do
     //check if last route is only parcels now
     //if true, remove the parcels and add to unserved. Remove the empty last route.
     //run this while any is true.
+    int solsize;
+    sarpRoute sroute(inst, 0);
+    sarpRoute sroutenew(inst, 0);
+    
+    sarpBlock *blocktomove;
+                
+
+    vector<int> movingBlock;
+
+    bool keeppurge = 1;
+    // blockpas1.makeBlock(avlPas1, 0, avlPas1.size()-1);
+    // blockpas1.blockProfit(inst, nodeVec, Mdist);
+    // blockpas1.calcBlockTimes(inst, nodeVec, Mdist);
+    // profc1 = blockpas1.profit();
+    // sroute1.clearRoute();
+    // solution->updateRoutes(&sroute1, rid1);
+    while (keeppurge){
+        keeppurge = 0;
+        solsize = this->getRoutesSize();
+        for (int rid = 0; rid < solsize - 1; rid++){
+
+            sroute = this->getRoute(rid);
+            if (sroute.getNodesSize() < 3){
+                cout << "rid " << rid << " - this is an empy route"<< endl;
+                getchar();
+                sroutenew = this->getRoute(solsize - 1);
+                movingBlock.clear();
+                cout << "moving block items before: " << endl;
+                for (int a = 0; a < movingBlock.size(); a++){
+                    cout << movingBlock[a] << " ";
+                }
+                cout << endl;
+                for (int loc = 1; loc < sroutenew.getNodesSize()-1; loc++){
+                    int request = sroutenew.getReq(loc);
+                    movingBlock.push_back(request);
+
+                }
+
+                movingBlock.push_back(-1);
+                cout << "moving block items: " << endl;
+                for (int a = 0; a < movingBlock.size(); a++){
+                    cout << movingBlock[a] << " ";
+                }
+                cout << endl;
+                
+                blocktomove = new sarpBlock();
+                
+                blocktomove->makeBlock(movingBlock, 0, movingBlock.size()-1);
+                blocktomove->blockProfit(inst, nodeVec, Mdist);
+                blocktomove->calcBlockTimes(inst, nodeVec, Mdist);
+                double profitofblock = blocktomove->profit();
+                sroutenew.clearRoute();
+
+                movingBlock.pop_back();
+                sroute.insertBlock(inst, Mdist, movingBlock, 1, profitofblock);
+                sroute.updateAll(inst, nodeVec, Mdist);
+                this->updateRoutes(&sroute, rid);
+                this->removeRoute();
+                this->updateCost();
+                keeppurge = 1;
+
+                delete blocktomove;
+
+                cout << "After purging phase 1: " << endl;
+                this->printSol(inst);
+                this->printCosts();
+                getchar();
+                break;             
+            }
+
+        }
+        int ridout = solsize - 1;
+        sroute = this->getRoute(ridout);
+        if (sroute.getPassPosSize() < 1){
+            for (int i = 1; i < sroute.getNodesSize(); i++){
+                int request = sroute.getReq(i);
+                // cout << "Request: " << request << endl;
+                // getchar();
+                if (nodeVec[request].load > 0){//if the request is a parcel pickup location
+                    this->addtounserved(request);
+                }
+            }
+            sroute.clearRoute();
+            keeppurge = 1;
+            this->removeRoute(); 
+        }
+    }
+    // cout << "After purging: " << endl;
+    // this->printSol(inst);
+    // this->printCosts();
+    // getchar();
+
+
 
 }
