@@ -4,7 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
-#include <string.h>
+// #include <string.h>
+#include <cstring>
 #include <list>
 #include <vector>
 #include <algorithm>	
@@ -22,7 +23,6 @@
 #include <sys/time.h>
 #include <ctime>
 #include <unistd.h>
-// #include "functions.h"
 
 using namespace std;
 
@@ -38,6 +38,8 @@ struct nodeStat{
 	double yf;
     double delta;
     double profit;
+    double trip;
+    int index;
 };
 
 struct instanceStat{
@@ -45,20 +47,31 @@ struct instanceStat{
     int n;
     int m;
     int K;
-    int T;
+    double T = 24;
     int V;
+    double maxTime = 8;
     int dummy;
     double service;
-   	double gamma = 4; //initial fare for parcels
-	double mu = 2; //fare per km for parcels
-	double vmed;
-	// double vmed = 19.3;
-	// double vmed = 9;
-	double gamma2 = 7; //initial fare for passengers
-	double mu2 = 4; //fare per km for passengers
-	int nCluster;
-	int endCluster;
-	int startCluster;
+
+	double minpas = 3.24; //initial fare for passengers
+	double paskm = 1.03; //fare per km for passengers
+
+   	double minpar = 2.74; //initial fare for parcels
+	double parkm = 0.83; //fare per km for parcels
+
+	double costkm = 0.46;
+	double vmed = 41;
+	bool preInst;
+	string InstName;
+	string instType;
+
+	vector<int> instParam;
+	double totalCustomProfit;
+
+	double realAvg = 16;
+	double realStddv = 1.03;
+
+	bool min;
 
 };
 
@@ -67,13 +80,12 @@ struct probStat{
 	bool sim;
 	bool seq;
 	string scen;
+	string model;
+
+	bool p1, p2, dParcel;//1 is multi, 0 is single; p1 refers to customer, p2 to parcel, dParcel 1 allows for direct parcel delivery
+	int seed;
 };
 
-void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, vector<double> &passProfit);
-double calcEucDist (double *Xs, double *Ys, double *Xf, double *Yf, int I, int J);
-double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
-double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit);
-double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flongit, int I, int J);
-string getInstanceType (char **argv);
+void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, int trialK, double trialMulti);
 
 #endif

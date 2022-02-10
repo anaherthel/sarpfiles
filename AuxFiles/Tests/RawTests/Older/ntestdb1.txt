@@ -1,0 +1,84 @@
+K: 1
+
+size of n: 2
+
+size of m: 1
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 8
+CPXPARAM_TimeLimit                               3600
+Tried aggregator 1 time.
+MIP Presolve eliminated 34 rows and 13 columns.
+MIP Presolve added 4 rows and 0 columns.
+MIP Presolve modified 46 coefficients.
+Reduced MIP has 31 rows, 21 columns, and 83 nonzeros.
+Reduced MIP has 16 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.08 ticks)
+Found incumbent of value 101.001083 after 0.00 sec. (0.11 ticks)
+Probing fixed 9 vars, tightened 1 bounds.
+Probing time = 0.00 sec. (0.03 ticks)
+Cover probing fixed 0 vars, tightened 23 bounds.
+Tried aggregator 1 time.
+MIP Presolve eliminated 31 rows and 21 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.16 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.16 ticks)
+
+Sol status: Optimal
+
+Obj Val: 101.001083025231
+x(0, 1, 0)
+x(1, 3, 0)
+x(2, 0, 0)
+x(3, 5, 0)
+x(4, 2, 0)
+
+b(0): 10.3333333333333
+b(1): 11.6666666666667
+b(2): 9.25907202068342
+b(3): 13.4395671106449
+b(4): 9
+b(5): 17
+
+Number of Vehicles: 1
+
+Solution: 
+Vehicle 0: 4 - 2 - 0 - 1 - 3 - 5
+
+
+Solution structure: 
+Vehicle 0: S - P - d - d - D - f
+
+
+Total time: 2.20989558545118
+
+Total passenger time: 0
+
+Total parcel time: 0.840263039036016
+
+Total combined transportation time: 1.11056052573174
+
+Total idle time: 0.25907202068342
+
+Total distance: 33.0009847992078
+
+Total passenger distance: 0
+
+Total parcel distance: 13.0004099867284
+
+Total combined transportation distance: 15.0004848132893
+
+Total idle distance: 5.00008999919001
+
+Waiting time passenger: 1.27673111068898
+
+Waiting time goods: 1.03627374783811
+
+Total waiting time: 2.31300485852709

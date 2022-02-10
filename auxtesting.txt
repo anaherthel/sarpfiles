@@ -1,0 +1,221 @@
+
+NameOfInst: Instances/grubhub/grubhub-10-0.tsp
+RunningScen: 1A
+
+n: 6 m: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Implied bounds make row 'Constraint2_5' infeasible.
+Presolve time = 0.00 sec. (0.36 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.41 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.41 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.01
+
+NameOfInst: Instances/grubhub/grubhub-10-0.tsp
+RunningScen: 1A
+
+n: 6 m: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 8 rows and 12 columns.
+MIP Presolve modified 136 coefficients.
+Aggregator did 2 substitutions.
+Reduced MIP has 72 rows, 448 columns, and 2070 nonzeros.
+Reduced MIP has 448 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (4.19 ticks)
+Probing fixed 128 vars, tightened 0 bounds.
+Probing time = 0.01 sec. (7.69 ticks)
+Cover probing fixed 15 vars, tightened 0 bounds.
+Tried aggregator 2 times.
+MIP Presolve eliminated 9 rows and 179 columns.
+MIP Presolve modified 1 coefficients.
+Aggregator did 4 substitutions.
+Reduced MIP has 59 rows, 265 columns, and 1217 nonzeros.
+Reduced MIP has 265 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.90 ticks)
+Probing fixed 127 vars, tightened 0 bounds.
+Probing time = 0.01 sec. (3.32 ticks)
+Cover probing fixed 4 vars, tightened 0 bounds.
+Presolve time = 0.00 sec. (0.32 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.04 sec. (22.63 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.04 sec. (22.63 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.03
+
+NameOfInst: Instances/grubhub/grubhub-10-0.tsp
+RunningScen: 1A
+
+n: 6 m: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 12 rows and 18 columns.
+MIP Presolve modified 201 coefficients.
+Reduced MIP has 103 rows, 675 columns, and 3111 nonzeros.
+Reduced MIP has 675 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.09 ticks)
+Found incumbent of value -33.406400 after 0.01 sec. (8.67 ticks)
+Probing fixed 141 vars, tightened 0 bounds.
+Probing time = 0.02 sec. (16.19 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 141 columns.
+Aggregator did 3 substitutions.
+Reduced MIP has 100 rows, 531 columns, and 2439 nonzeros.
+Reduced MIP has 531 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.37 ticks)
+Probing time = 0.00 sec. (3.41 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 100 rows, 531 columns, and 2439 nonzeros.
+Reduced MIP has 531 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.99 ticks)
+Probing time = 0.00 sec. (3.44 ticks)
+Clique table members: 1195.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (1.68 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -33.4064     2076.4938              --- 
+      0     0       25.6275    28      -33.4064       25.6275      137  176.71%
+      0     0       25.5110    28      -33.4064      Cuts: 21      154  176.37%
+      0     0       25.0310    28      -33.4064       Cuts: 6      168  174.93%
+      0     0       21.8586    28      -33.4064       Cuts: 6      186  165.43%
+*     0+    0                           19.6138       21.8586            11.45%
+*     0+    0                           21.1870       21.8586             3.17%
+      0     0        cutoff             21.1870       21.8586      186    3.17%
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 63 rows and 487 columns.
+MIP Presolve modified 48 coefficients.
+Aggregator did 8 substitutions.
+Reduced MIP has 29 rows, 36 columns, and 154 nonzeros.
+Reduced MIP has 36 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.72 ticks)
+Probing fixed 18 vars, tightened 0 bounds.
+Probing changed sense of 2 constraints.
+Probing time = 0.00 sec. (0.08 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 27 rows and 34 columns.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+Represolve time = 0.00 sec. (1.20 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.07 sec. (69.16 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.07 sec. (69.16 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.07
+ LB: 21.187
+ UB: 21.187
+
+Obj Val: 21.187
+
+Solve Time: 0.07
+
+x(25, 33, 0)
+x(30, 25, 0)
+x(5, 10, 1)
+x(10, 34, 1)
+x(31, 5, 1)
+x(4, 21, 2)
+x(15, 35, 2)
+x(21, 15, 2)
+x(32, 4, 2)
+
+
+Customer profit: 55.179
+Parcel profit: 25.9644
+Costs: 59.9564
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 14 - 5 - 17
+Vehicle 1: 15 - 1 - 2 - 18
+Vehicle 2: 16 - 9 - 0 - 13 - 6 - 4 - 10 - 3 - 19
+
+
+Solution structure: 
+Vehicle 0: S - d - f
+Vehicle 1: S - d - d - f
+Vehicle 2: S - P - d - D - P - d - D - d - f
+
+
+size of n: 6
+
+size of m: 4
+
+*************
+
+
+Served parcels: 2
+
+Unserved parcels: 2
+
+*************
+
+Total time: 6.04162601626016
+
+Total passenger time: 1.46959349593496
+
+Total parcel time: 1.40894308943089
+
+Total combined transportation time: 1.05967479674797
+
+Total idle time: 2.10341463414634
+
+*************
+
+Total distance: 193.04
+
+Total passenger distance: 32.92
+
+Total parcel distance: 44.1
+
+Total combined transportation distance: 29.78
+
+Total idle distance: 86.24
+
+*************
+
+Waiting time passenger: 17.0121951219512
+
+Waiting time goods: 0.946178861788615
+
+Total waiting time: 17.9583739837398

@@ -1,0 +1,65 @@
+Solving:  grubhub-11-0.tsp :
+Scenario:  1A
+Tried aggregator 1 time.
+MIP Presolve eliminated 247 rows and 104 columns.
+MIP Presolve modified 586 coefficients.
+Reduced MIP has 296 rows, 347 columns, and 1694 nonzeros.
+Reduced MIP has 330 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Probing fixed 18 vars, tightened 0 bounds.
+Probing time =    0.01 sec.
+Tried aggregator 1 time.
+MIP Presolve eliminated 21 rows and 23 columns.
+MIP Presolve modified 12 coefficients.
+Reduced MIP has 275 rows, 324 columns, and 1568 nonzeros.
+Reduced MIP has 309 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time =    0.05 sec.
+Probing time =    0.01 sec.
+Clique table members: 1797.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 2 threads.
+Root relaxation solution time =    0.01 sec.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       92.4434    33                     92.4434      196         
+      0     0       92.2698    32                    Cuts: 33      221         
+      0     0       92.1041    53                    Cuts: 33      261         
+      0     0       92.0608    47                    Cuts: 35      309         
+      0     0       92.0575    54                    Cuts: 13      333         
+      0     0       92.0321    44                     Cuts: 7      355         
+      0     0       91.9984    54                    Cuts: 18      369         
+      0     0       91.9790    57                    Cuts: 16      396         
+      0     0       91.9491    52                    Cuts: 26      424         
+      0     0       91.9066    55                    Cuts: 17      478         
+      0     0       91.9063    58                    Cuts: 17      496         
+*     0+    0                           66.9140       91.9063      496   37.35%
+      0     2       91.9063    41       66.9140       91.9063      496   37.35%
+Elapsed real time =   0.44 sec. (tree size =  0.01 MB, solutions = 1)
+   1202   966       91.8609    44       66.9140       91.8690    20953   37.29%
+   1657  1341       91.7383    49       66.9140       91.7383    29816   37.10%
+   1836  1428       89.6522    46       66.9140       91.7375    31710   37.10%
+   3043  1799       90.8424    50       66.9140       91.5152    44894   36.77%
+   4198  2139       90.6401    37       66.9140       91.4176    61202   36.62%
+   5579  3235       91.0867    51       66.9140       91.3671    79784   36.54%
+   6850  4235       81.6019    33       66.9140       91.2976    97901   36.44%
+   7823  4960       86.8088    44       66.9140       91.2605   115086   36.38%
+   9174  5955       89.2900    32       66.9140       91.2043   136537   36.30%
+  13552  9289       90.4783    52       66.9140       91.1081   210251   36.16%
+Elapsed real time =  21.55 sec. (tree size =  5.96 MB, solutions = 1)
+  17622 12007       88.5093    27       66.9140       91.0403   288051   36.06%
+* 18243+12414                           72.1940       91.0227   300348   26.08%
+* 18243+12414                           72.5300       91.0227   300348   25.50%
+* 18243+12414                           72.5560       91.0227   300348   25.45%
+* 18244+12415                           73.5600       91.0227   300348   23.74%
+* 18244+12415                           75.5620       91.0227   300348   20.46%
+* 18245+ 8276                           80.9800       91.0227   300958   12.40%
+  18291  8015       90.6645    46       80.9800       91.0227   302241   12.40%
+* 19425  4265      integral     0       81.4800       91.0227   331878   11.71%
+  21603  4023       90.4176    50       81.4800       91.0227   400589   11.71%
+  23856  4019       90.4387    49       81.4800       90.7974   474398   11.44%
+* 25148  3999      integral     0       81.5220       90.6958   520065   11.25%
+  25622  4082       89.7291    48       81.5220       90.6510   542607   11.20%
+  27159  4497       88.7889    37       81.5220       90.5372   611032   11.06%
+  28649  4833        cutoff             81.5220       90.4165   680968   10.91%

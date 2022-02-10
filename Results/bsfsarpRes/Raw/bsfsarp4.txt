@@ -1,0 +1,879 @@
+Solving:  sfsarp-15-10-1.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance11/sf_data/sfsarp-15-10-1.txt
+RunningScen: 1A
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 1020 coefficients.
+Reduced MIP has 544 rows, 29436 columns, and 143619 nonzeros.
+Reduced MIP has 29436 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.15 sec. (105.68 ticks)
+Found incumbent of value 56.013826 after 0.56 sec. (308.55 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 544 rows, 29436 columns, and 143619 nonzeros.
+Reduced MIP has 29436 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.14 sec. (103.75 ticks)
+Probing fixed 480 vars, tightened 0 bounds.
+Probing time = 3.81 sec. (2589.97 ticks)
+Clique table members: 57331.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.22 sec. (326.01 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           56.0138   125177.6132              --- 
+      0     0       79.7905    42       56.0138       79.7905     1161   42.45%
+*     0+    0                           78.8193       79.7905             1.23%
+      0     0       79.7905    42       78.8193       Cuts: 4     1212    1.23%
+      0     0       79.7905    42       78.8193       Cuts: 4     1233    1.23%
+*     0+    0                           79.2400       79.7905             0.69%
+      0     0        cutoff             79.2400       79.7905     1233    0.69%
+
+Repeating presolve.
+Tried aggregator 3 times.
+MIP Presolve eliminated 322 rows and 27942 columns.
+MIP Presolve modified 278 coefficients.
+Aggregator did 12 substitutions.
+Reduced MIP has 210 rows, 1482 columns, and 7071 nonzeros.
+Reduced MIP has 1482 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.05 sec. (48.30 ticks)
+Probing fixed 12 vars, tightened 0 bounds.
+Probing time = 0.08 sec. (54.90 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 0 rows and 12 columns.
+Reduced MIP has 210 rows, 1470 columns, and 7010 nonzeros.
+Reduced MIP has 1470 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (4.39 ticks)
+Represolve time = 0.15 sec. (120.72 ticks)
+Probing time = 0.01 sec. (4.61 ticks)
+Clique table members: 3166.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (10.98 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           79.2400       79.7905             0.69%
+      0     0       79.7881    46       79.2400       79.7881     1641    0.69%
+      0     0       79.7731    46       79.2400      Cuts: 10     1659    0.67%
+      0     0       79.7731    46       79.2400      Cuts: 23     1676    0.67%
+      0     0       79.7731    46       79.2400     Covers: 1     1679    0.67%
+*     0+    0                           79.3456       79.7731             0.54%
+*     0+    0                           79.4054       79.7731             0.46%
+      0     0        cutoff             79.4054       79.7731     1679    0.46%
+Detecting symmetries...
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 33 rows and 637 columns.
+MIP Presolve modified 101 coefficients.
+Aggregator did 11 substitutions.
+Reduced MIP has 166 rows, 822 columns, and 3911 nonzeros.
+Reduced MIP has 822 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.04 ticks)
+Probing fixed 5 vars, tightened 0 bounds.
+Probing time = 0.04 sec. (25.53 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 0 rows and 5 columns.
+Reduced MIP has 166 rows, 817 columns, and 3882 nonzeros.
+Reduced MIP has 817 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.74 ticks)
+Represolve time = 0.07 sec. (46.67 ticks)
+Probing time = 0.01 sec. (3.64 ticks)
+Clique table members: 1597.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (7.00 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           79.4054       79.7731             0.46%
+      0     0       79.7731    60       79.4054       79.7731     2042    0.46%
+      0     0       79.7202    60       79.4054       Cuts: 2     2118    0.40%
+      0     0       79.7184    60       79.4054      Cuts: 19     2132    0.39%
+      0     0       79.7169    60       79.4054      Cuts: 24     2142    0.39%
+*     0+    0                           79.5525       79.7169             0.21%
+      0     0       79.7169    60       79.5525       Cuts: 6     2159    0.21%
+      0     0       79.7169    60       79.5525      Cuts: 14     2166    0.21%
+*     0+    0                           79.6522       79.7169             0.08%
+*     0+    0                           79.7130       79.7169             0.00%
+      0     0        cutoff             79.7130       79.7169     2166    0.00%
+Elapsed time = 6.66 sec. (4959.98 ticks, tree = 0.01 MB, solutions = 8)
+
+GUB cover cuts applied:  2
+Clique cuts applied:  1
+Zero-half cuts applied:  1
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    6.66 sec. (4962.16 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    6.66 sec. (4962.16 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 6.5
+ LB: 79.713
+ UB: 79.713
+
+Obj Val: 79.7130047651482
+
+Solve Time: 6.5
+
+x(35, 136, 0)
+x(127, 35, 0)
+x(136, 168, 0)
+x(165, 127, 0)
+x(5, 143, 1)
+x(45, 85, 1)
+x(85, 113, 1)
+x(113, 169, 1)
+x(143, 163, 1)
+x(163, 45, 1)
+x(166, 5, 1)
+x(21, 88, 2)
+x(22, 170, 2)
+x(62, 66, 2)
+x(66, 22, 2)
+x(88, 62, 2)
+x(99, 21, 2)
+x(167, 99, 2)
+
+
+Customer profit: 89.997696961179
+Parcel profit: 37.7381125282779
+Costs: 48.0228047243087
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 35 - 20 - 11 - 30 - 16 - 3 - 26 - 18 - 12 - 28 - 38
+Vehicle 1: 36 - 19 - 0 - 29 - 13 - 23 - 14 - 33 - 15 - 4 - 25 - 22 - 7 - 32 - 17 - 10 - 27 - 39
+Vehicle 2: 37 - 9 - 24 - 1 - 34 - 8 - 21 - 5 - 31 - 6 - 2 - 40
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - d - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - d - P - d - D - d - P - d - D - d - d - f
+
+
+size of n: 15
+
+size of m: 10
+
+*************
+
+
+Served parcels: 10
+
+Unserved parcels: 0
+
+*************
+
+Total time: 8.48434813259272
+
+Total passenger time: 1.86081980181916
+
+Total parcel time: 2.78278383872201
+
+Total combined transportation time: 2.41058357692192
+
+Total idle time: 1.43016091512963
+
+*************
+
+Total distance: 177.024940102968
+
+Total passenger distance: 42.1269452079189
+
+Total parcel distance: 45.7608040542692
+
+Total combined transportation distance: 30.5005933204652
+
+Total idle distance: 58.6365975203148
+
+*************
+
+Waiting time passenger: 3.76836904141773
+
+Waiting time goods: 11.7472828259895
+
+Total waiting time: 15.5156518674073
+Solving:  sfsarp-15-10-2.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance11/sf_data/sfsarp-15-10-2.txt
+RunningScen: 1A
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 2007 coefficients.
+Reduced MIP has 544 rows, 29886 columns, and 145557 nonzeros.
+Reduced MIP has 29886 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.16 sec. (132.46 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 544 rows, 29886 columns, and 145557 nonzeros.
+Reduced MIP has 29886 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.14 sec. (107.50 ticks)
+Probing time = 0.07 sec. (29.26 ticks)
+Clique table members: 50045.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.06 sec. (70.30 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        348         
+
+Root node processing (before b&c):
+  Real time             =    0.90 sec. (606.33 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.90 sec. (606.33 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.86
+
+NameOfInst: Instance11/sf_data/sfsarp-15-10-2.txt
+RunningScen: 1A
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 2007 coefficients.
+Reduced MIP has 544 rows, 29886 columns, and 145557 nonzeros.
+Reduced MIP has 29886 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.16 sec. (132.46 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 544 rows, 29886 columns, and 145557 nonzeros.
+Reduced MIP has 29886 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.14 sec. (107.50 ticks)
+Probing time = 0.07 sec. (29.26 ticks)
+Clique table members: 50045.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.06 sec. (70.30 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        348         
+
+Root node processing (before b&c):
+  Real time             =    0.90 sec. (606.33 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.90 sec. (606.33 ticks)
+
+Sol status: Infeasible
+ Tree_Size: 1
+ Total Time: 0.87
+
+NameOfInst: Instance11/sf_data/sfsarp-15-10-2.txt
+RunningScen: 1A
+K: 4
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 8 columns.
+MIP Presolve modified 2676 coefficients.
+Reduced MIP has 712 rows, 39848 columns, and 194076 nonzeros.
+Reduced MIP has 39848 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.22 sec. (182.70 ticks)
+Found incumbent of value 52.770204 after 0.74 sec. (448.77 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 712 rows, 39848 columns, and 194076 nonzeros.
+Reduced MIP has 39848 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.19 sec. (147.80 ticks)
+Probing time = 0.10 sec. (46.13 ticks)
+Clique table members: 77918.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.35 sec. (555.16 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           52.7702   179683.4695              --- 
+*     0     0      integral     0       77.9159       77.9159     1369    0.00%
+Elapsed time = 1.47 sec. (1257.55 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    1.47 sec. (1259.78 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    1.47 sec. (1259.78 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 1.42
+ LB: 77.9159
+ UB: 77.9159
+
+Obj Val: 77.9158542013303
+
+Solve Time: 1.42
+
+x(0, 22, 0)
+x(14, 169, 0)
+x(22, 14, 0)
+x(55, 0, 0)
+x(165, 55, 0)
+x(41, 147, 1)
+x(100, 41, 1)
+x(147, 163, 1)
+x(163, 170, 1)
+x(166, 100, 1)
+x(66, 79, 2)
+x(79, 120, 2)
+x(120, 139, 2)
+x(139, 171, 2)
+x(167, 66, 2)
+x(50, 172, 3)
+x(93, 121, 3)
+x(121, 50, 3)
+x(168, 93, 3)
+
+
+Customer profit: 69.9993516154528
+Parcel profit: 45.575072610405
+Costs: 37.6585700245274
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 35 - 5 - 0 - 2 - 17 - 1 - 27 - 39
+Vehicle 1: 36 - 15 - 9 - 25 - 22 - 3 - 32 - 18 - 13 - 28 - 23 - 14 - 33 - 40
+Vehicle 2: 37 - 6 - 16 - 7 - 26 - 24 - 10 - 34 - 21 - 12 - 31 - 41
+Vehicle 3: 38 - 19 - 8 - 29 - 11 - 20 - 4 - 30 - 42
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - d - P - d - D - P - d - D - P - d - D - f
+Vehicle 3: S - P - d - D - d - P - d - D - f
+
+
+size of n: 15
+
+size of m: 10
+
+*************
+
+
+Served parcels: 10
+
+Unserved parcels: 0
+
+*************
+
+Total time: 7.07908565953089
+
+Total passenger time: 1.10462121466455
+
+Total parcel time: 2.63328986128368
+
+Total combined transportation time: 2.31105493490553
+
+Total idle time: 1.03011964867713
+
+*************
+
+Total distance: 119.409178707433
+
+Total passenger distance: 11.12280313458
+
+Total parcel distance: 39.6315509792975
+
+Total combined transportation distance: 26.4199189977934
+
+Total idle distance: 42.2349055957622
+
+*************
+
+Waiting time passenger: 5.65658491873504
+
+Waiting time goods: 19.2643294217341
+
+Total waiting time: 24.9209143404691
+Solving:  sfsarp-15-10-3.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance11/sf_data/sfsarp-15-10-3.txt
+RunningScen: 1A
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 1341 coefficients.
+Reduced MIP has 544 rows, 27678 columns, and 134649 nonzeros.
+Reduced MIP has 27678 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.15 sec. (122.06 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 544 rows, 27678 columns, and 134649 nonzeros.
+Reduced MIP has 27678 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.13 sec. (97.64 ticks)
+Probing time = 0.07 sec. (29.39 ticks)
+Clique table members: 48424.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.18 sec. (259.63 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       57.6145    36                     57.6145      982         
+      0     0       57.5105    36                     Cuts: 2     1017         
+*     0+    0                           56.6567       57.5105             1.51%
+      0     0       57.4929    36       56.6567      Cuts: 14     1056    1.48%
+*     0+    0                           57.2902       57.4929             0.35%
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 468 rows and 27590 columns.
+MIP Presolve modified 48 coefficients.
+Aggregator did 30 substitutions.
+Reduced MIP has 46 rows, 58 columns, and 283 nonzeros.
+Reduced MIP has 58 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (22.04 ticks)
+Probing fixed 48 vars, tightened 0 bounds.
+Probing changed sense of 2 constraints.
+Probing time = 0.00 sec. (0.09 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 44 rows and 56 columns.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.06 ticks)
+Represolve time = 0.03 sec. (29.83 ticks)
+
+Root node processing (before b&c):
+  Real time             =    2.32 sec. (2125.59 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    2.32 sec. (2125.59 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 2.16
+ LB: 57.3677
+ UB: 57.3677
+
+Obj Val: 57.3676680736642
+
+Solve Time: 2.16
+
+x(53, 103, 0)
+x(103, 168, 0)
+x(165, 53, 0)
+x(33, 121, 1)
+x(72, 143, 1)
+x(88, 72, 1)
+x(115, 33, 1)
+x(121, 169, 1)
+x(143, 115, 1)
+x(166, 88, 1)
+x(0, 19, 2)
+x(19, 135, 2)
+x(24, 55, 2)
+x(55, 164, 2)
+x(78, 0, 2)
+x(135, 170, 2)
+x(164, 78, 2)
+x(167, 24, 2)
+
+
+Customer profit: 79.8797157432172
+Parcel profit: 35.8728841301306
+Costs: 58.3849317996837
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 35 - 23 - 4 - 33 - 18 - 9 - 28 - 38
+Vehicle 1: 36 - 8 - 20 - 6 - 30 - 13 - 19 - 10 - 29 - 3 - 11 - 39
+Vehicle 2: 37 - 16 - 2 - 26 - 5 - 24 - 14 - 34 - 15 - 7 - 25 - 0 - 22 - 1 - 32 - 17 - 12 - 27 - 40
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - f
+Vehicle 1: S - d - P - d - D - d - P - d - D - d - d - f
+Vehicle 2: S - P - d - D - d - P - d - D - P - d - D - d - P - d - D - P - d - D - f
+
+
+size of n: 15
+
+size of m: 10
+
+*************
+
+
+Served parcels: 9
+
+Unserved parcels: 1
+
+*************
+
+Total time: 8.43415753825042
+
+Total passenger time: 1.39900468221635
+
+Total parcel time: 3.39075876759962
+
+Total combined transportation time: 2.43945127598721
+
+Total idle time: 1.20494281244724
+
+*************
+
+Total distance: 181.800459068267
+
+Total passenger distance: 16.3591919708704
+
+Total parcel distance: 77.5211094715844
+
+Total combined transportation distance: 38.5175023154756
+
+Total idle distance: 49.4026553103367
+
+*************
+
+Waiting time passenger: 2.33053616311013
+
+Waiting time goods: 13.2353062986395
+
+Total waiting time: 15.5658424617496
+Solving:  sfsarp-15-10-4.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance11/sf_data/sfsarp-15-10-4.txt
+RunningScen: 1A
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 1491 coefficients.
+Reduced MIP has 544 rows, 26424 columns, and 128673 nonzeros.
+Reduced MIP has 26424 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.14 sec. (114.61 ticks)
+Found incumbent of value 44.417404 after 0.48 sec. (297.77 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 544 rows, 26424 columns, and 128673 nonzeros.
+Reduced MIP has 26424 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.12 sec. (93.98 ticks)
+Probing time = 0.06 sec. (32.73 ticks)
+Clique table members: 47971.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.14 sec. (200.92 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           44.4174    98985.6386              --- 
+      0     0       84.4922    49       44.4174       84.4922      845   90.22%
+      0     0       84.4888    49       44.4174       Cuts: 5      867   90.22%
+*     0+    0                           84.4888       84.4888             0.00%
+      0     0        cutoff             84.4888       84.4888      867    0.00%
+Elapsed time = 2.25 sec. (2121.82 ticks, tree = 0.01 MB, solutions = 2)
+
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    2.25 sec. (2123.33 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    2.25 sec. (2123.33 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 2.13
+ LB: 84.4888
+ UB: 84.4888
+
+Obj Val: 84.4887501384538
+
+Solve Time: 2.13
+
+x(3, 11, 0)
+x(11, 168, 0)
+x(95, 3, 0)
+x(121, 95, 0)
+x(165, 121, 0)
+x(41, 158, 1)
+x(57, 82, 1)
+x(82, 169, 1)
+x(158, 57, 1)
+x(166, 41, 1)
+x(22, 143, 2)
+x(44, 66, 2)
+x(66, 109, 2)
+x(109, 170, 2)
+x(110, 22, 2)
+x(141, 44, 2)
+x(143, 141, 2)
+x(167, 110, 2)
+
+
+Customer profit: 84.3663602303814
+Parcel profit: 42.753881682826
+Costs: 42.6314917747536
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 35 - 11 - 21 - 8 - 31 - 17 - 0 - 27 - 1 - 38
+Vehicle 1: 36 - 22 - 3 - 32 - 18 - 14 - 28 - 16 - 5 - 26 - 19 - 7 - 29 - 39
+Vehicle 2: 37 - 10 - 2 - 13 - 23 - 12 - 33 - 4 - 6 - 24 - 9 - 34 - 40
+
+
+Solution structure: 
+Vehicle 0: S - d - P - d - D - P - d - D - d - f
+Vehicle 1: S - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - d - d - d - P - d - D - d - d - P - d - D - f
+
+
+size of n: 15
+
+size of m: 10
+
+*************
+
+
+Served parcels: 8
+
+Unserved parcels: 2
+
+*************
+
+Total time: 7.62419080738823
+
+Total passenger time: 2.22651667062059
+
+Total parcel time: 2.65337721951573
+
+Total combined transportation time: 1.80392236362765
+
+Total idle time: 0.940374553624266
+
+*************
+
+Total distance: 155.425156436251
+
+Total passenger distance: 43.4538501621109
+
+Total parcel distance: 54.1217993334782
+
+Total combined transportation distance: 19.294150242067
+
+Total idle distance: 38.5553566985949
+
+*************
+
+Waiting time passenger: 8.44451542576975
+
+Waiting time goods: 7.93129376684201
+
+Total waiting time: 16.3758091926118
+Solving:  sfsarp-15-10-5.txt :
+Scenario:  1A
+ParcelP: 
+
+NameOfInst: Instance11/sf_data/sfsarp-15-10-5.txt
+RunningScen: 1A
+K: 3
+
+Dist Multiplier: 1.5
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 1284 coefficients.
+Reduced MIP has 544 rows, 28029 columns, and 136680 nonzeros.
+Reduced MIP has 28029 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.16 sec. (125.27 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 544 rows, 28029 columns, and 136680 nonzeros.
+Reduced MIP has 28029 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.14 sec. (101.57 ticks)
+Probing fixed 360 vars, tightened 0 bounds.
+Probing time = 3.41 sec. (2231.17 ticks)
+Clique table members: 57494.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.12 sec. (163.52 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       83.3927     8                     83.3927      784         
+*     0+    0                           80.9005       83.3927             3.08%
+*     0     0      integral     0       83.3667       Cuts: 3      804    0.00%
+      0     0        cutoff             83.3667       83.3667      804    0.00%
+Elapsed time = 4.76 sec. (3215.94 ticks, tree = 0.01 MB, solutions = 2)
+
+Cover cuts applied:  1
+Zero-half cuts applied:  1
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    4.76 sec. (3217.51 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    4.76 sec. (3217.51 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 4.68
+ LB: 83.3667
+ UB: 83.3667
+
+Obj Val: 83.3666968001052
+
+Solve Time: 4.68
+
+x(22, 108, 0)
+x(44, 77, 0)
+x(77, 137, 0)
+x(108, 44, 0)
+x(137, 168, 0)
+x(165, 22, 0)
+x(62, 112, 1)
+x(88, 169, 1)
+x(112, 88, 1)
+x(166, 62, 1)
+x(0, 153, 2)
+x(11, 0, 2)
+x(33, 11, 2)
+x(72, 33, 2)
+x(124, 170, 2)
+x(153, 124, 2)
+x(155, 72, 2)
+x(167, 155, 2)
+
+
+Customer profit: 66.301688337252
+Parcel profit: 70.33032996719
+Costs: 53.2653215043369
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 35 - 2 - 23 - 9 - 33 - 4 - 7 - 19 - 12 - 29 - 38
+Vehicle 1: 36 - 21 - 5 - 31 - 16 - 10 - 26 - 8 - 39
+Vehicle 2: 37 - 15 - 14 - 25 - 20 - 6 - 30 - 3 - 1 - 0 - 24 - 13 - 34 - 17 - 11 - 27 - 40
+
+
+Solution structure: 
+Vehicle 0: S - d - P - d - D - d - d - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - d - f
+Vehicle 2: S - P - d - D - P - d - D - d - d - d - P - d - D - P - d - D - f
+
+
+size of n: 15
+
+size of m: 10
+
+*************
+
+
+Served parcels: 8
+
+Unserved parcels: 2
+
+*************
+
+Total time: 7.41503505912522
+
+Total passenger time: 1.72935279410594
+
+Total parcel time: 2.85832330064092
+
+Total combined transportation time: 1.52810070770202
+
+Total idle time: 1.29925825667634
+
+*************
+
+Total distance: 146.849770757467
+
+Total passenger distance: 23.0701312250101
+
+Total parcel distance: 62.5245886596112
+
+Total combined transportation distance: 7.98546234911625
+
+Total idle distance: 53.2695885237299
+
+*************
+
+Waiting time passenger: 4.10472433110871
+
+Waiting time goods: 12.4802406097661
+
+Total waiting time: 16.5849649408748

@@ -1,0 +1,3133 @@
+Solving:  grubhub-15-0-03-0.tsp :
+Scenario:  1A
+ParcelP:  0
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2866 columns, and 12798 nonzeros.
+Reduced MIP has 2866 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (9.75 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2866 columns, and 12798 nonzeros.
+Reduced MIP has 2866 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.83 ticks)
+Probing time = 0.03 sec. (7.73 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5322.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (7.00 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        166         
+
+Root node processing (before b&c):
+  Real time             =    0.15 sec. (57.37 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.15 sec. (57.37 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2866 columns, and 12798 nonzeros.
+Reduced MIP has 2866 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.75 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2866 columns, and 12798 nonzeros.
+Reduced MIP has 2866 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.83 ticks)
+Probing time = 0.03 sec. (7.73 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5322.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (7.00 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        166         
+
+Root node processing (before b&c):
+  Real time             =    0.13 sec. (57.37 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.13 sec. (57.37 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+
+Cluster 18: [(63) [ 24] ]
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 180 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 4300 columns, and 19207 nonzeros.
+Reduced MIP has 4300 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (17.87 ticks)
+Found incumbent of value 121.598000 after 0.08 sec. (42.34 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 4300 columns, and 19207 nonzeros.
+Reduced MIP has 4300 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.81 ticks)
+Probing time = 0.03 sec. (9.72 ticks)
+Clique table members: 7933.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.03 sec. (15.36 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          121.5980    38498.3120              --- 
+*     0     0      integral     0      126.2390      126.2390      296    0.00%
+Elapsed time = 0.17 sec. (84.01 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.17 sec. (84.17 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.17 sec. (84.17 ticks)
+
+Sol status: Optimal
+
+Obj Val: 126.239
+x(8, 43, 0)
+x(16, 63, 0)
+x(24, 52, 0)
+x(43, 56, 0)
+x(52, 16, 0)
+x(56, 24, 0)
+x(60, 8, 0)
+x(4, 28, 1)
+x(12, 49, 1)
+x(20, 44, 1)
+x(28, 63, 1)
+x(36, 4, 1)
+x(44, 12, 1)
+x(49, 36, 1)
+x(61, 20, 1)
+x(2, 32, 2)
+x(32, 63, 2)
+x(62, 2, 2)
+
+Solution by nodes: 
+Vehicle 0: 21 - 2 - 17 - 10 - 20 - 14 - 6 - 13 - 4 - 24
+Vehicle 1: 22 - 5 - 11 - 3 - 15 - 12 - 18 - 9 - 1 - 7 - 24
+Vehicle 2: 23 - 16 - 0 - 19 - 8 - 24
+
+
+Solution structure: 
+Vehicle 0: S - d - P - d - D - d - d - d - d - f
+Vehicle 1: S - d - d - d - P - d - D - d - d - d - f
+Vehicle 2: S - P - d - D - d - f
+
+
+Total time: 3.57528497409326
+
+Total passenger time: 2.18352331606218
+
+Total parcel time: 0.599430051813471
+
+Total combined transportation time: 0.548445595854922
+
+Total idle time passenger: 0.204663212435233
+
+Total idle time goods: 0.0392227979274611
+
+Total distance: 10.3852227979275
+
+Total passenger distance: 3.542
+
+Total parcel distance: 1.919
+
+Total combined transportation distance: 0.935
+
+Total idle distance passenger: 3.95
+
+Total idle distance goods: 0.757
+
+Waiting time passenger: 0
+
+Waiting time goods: 0
+Solving:  grubhub-15-1-03-1.tsp :
+Scenario:  1A
+ParcelP:  0
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2872 columns, and 12826 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.75 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2872 columns, and 12826 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.82 ticks)
+Probing time = 0.04 sec. (7.81 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5334.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (6.19 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        145         
+
+Root node processing (before b&c):
+  Real time             =    0.13 sec. (57.22 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.13 sec. (57.22 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2872 columns, and 12826 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.75 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2872 columns, and 12826 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.82 ticks)
+Probing time = 0.03 sec. (7.81 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5334.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (6.19 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        145         
+
+Root node processing (before b&c):
+  Real time             =    0.12 sec. (57.22 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.12 sec. (57.22 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+
+Cluster 18: [(63) [ 24] ]
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 180 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 4309 columns, and 19249 nonzeros.
+Reduced MIP has 4309 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (17.90 ticks)
+Found incumbent of value 122.502000 after 0.07 sec. (41.52 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 4309 columns, and 19249 nonzeros.
+Reduced MIP has 4309 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.83 ticks)
+Probing time = 0.03 sec. (9.76 ticks)
+Clique table members: 7951.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.02 sec. (10.63 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          122.5020    39127.1960              --- 
+*     0     0      integral     0      126.5840      126.5840      238    0.00%
+Elapsed time = 0.14 sec. (78.15 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.14 sec. (78.31 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.14 sec. (78.31 ticks)
+
+Sol status: Optimal
+
+Obj Val: 126.584
+x(4, 63, 0)
+x(20, 44, 0)
+x(24, 4, 0)
+x(40, 48, 0)
+x(44, 40, 0)
+x(48, 24, 0)
+x(60, 20, 0)
+x(15, 56, 1)
+x(30, 63, 1)
+x(33, 52, 1)
+x(36, 30, 1)
+x(52, 36, 1)
+x(56, 33, 1)
+x(61, 15, 1)
+x(0, 16, 2)
+x(8, 0, 2)
+x(16, 63, 2)
+x(62, 8, 2)
+
+Solution by nodes: 
+Vehicle 0: 21 - 5 - 11 - 10 - 12 - 6 - 1 - 24
+Vehicle 1: 22 - 17 - 3 - 20 - 14 - 15 - 8 - 18 - 13 - 9 - 16 - 7 - 19 - 24
+Vehicle 2: 23 - 2 - 0 - 4 - 24
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - d - f
+Vehicle 1: S - P - d - D - d - P - d - D - d - d - P - d - D - f
+Vehicle 2: S - d - d - d - f
+
+
+Total time: 3.53160621761658
+
+Total passenger time: 2.21010362694301
+
+Total parcel time: 0.600569948186528
+
+Total combined transportation time: 0.525181347150259
+
+Total idle time passenger: 0.162383419689119
+
+Total idle time goods: 0.0333678756476684
+
+Total distance: 9.64936787564767
+
+Total passenger distance: 4.055
+
+Total parcel distance: 1.941
+
+Total combined transportation distance: 0.486
+
+Total idle distance passenger: 3.134
+
+Total idle distance goods: 0.644
+
+Waiting time passenger: 0
+
+Waiting time goods: 0
+Solving:  grubhub-15-2-03-2.tsp :
+Scenario:  1A
+ParcelP:  0
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2876 columns, and 12844 nonzeros.
+Reduced MIP has 2876 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.77 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2876 columns, and 12844 nonzeros.
+Reduced MIP has 2876 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.83 ticks)
+Probing time = 0.03 sec. (7.80 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5342.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (7.73 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        185         
+
+Root node processing (before b&c):
+  Real time             =    0.13 sec. (57.00 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.13 sec. (57.00 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2876 columns, and 12844 nonzeros.
+Reduced MIP has 2876 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.77 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2876 columns, and 12844 nonzeros.
+Reduced MIP has 2876 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.83 ticks)
+Probing time = 0.03 sec. (7.80 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5342.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.02 sec. (7.73 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        185         
+
+Root node processing (before b&c):
+  Real time             =    0.12 sec. (57.00 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.12 sec. (57.00 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+
+Cluster 18: [(63) [ 24] ]
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 180 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 4315 columns, and 19276 nonzeros.
+Reduced MIP has 4315 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (17.91 ticks)
+Found incumbent of value 120.390000 after 0.08 sec. (42.39 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 4315 columns, and 19276 nonzeros.
+Reduced MIP has 4315 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.84 ticks)
+Probing time = 0.03 sec. (9.76 ticks)
+Clique table members: 7963.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.02 sec. (15.37 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          120.3900    37817.5700              --- 
+*     0     0      integral     0      123.4020      123.4020      363    0.00%
+Elapsed time = 0.18 sec. (83.70 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.19 sec. (83.86 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.19 sec. (83.86 ticks)
+
+Sol status: Optimal
+
+Obj Val: 123.402
+x(28, 63, 0)
+x(36, 28, 0)
+x(40, 56, 0)
+x(56, 36, 0)
+x(60, 40, 0)
+x(0, 32, 1)
+x(11, 14, 1)
+x(14, 0, 1)
+x(16, 63, 1)
+x(24, 16, 1)
+x(32, 24, 1)
+x(61, 11, 1)
+x(4, 63, 2)
+x(20, 45, 2)
+x(45, 48, 2)
+x(48, 52, 2)
+x(52, 4, 2)
+x(62, 20, 2)
+
+Solution by nodes: 
+Vehicle 0: 21 - 10 - 14 - 9 - 7 - 24
+Vehicle 1: 22 - 17 - 2 - 20 - 16 - 3 - 19 - 0 - 8 - 6 - 4 - 24
+Vehicle 2: 23 - 5 - 15 - 11 - 18 - 12 - 13 - 1 - 24
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - f
+Vehicle 1: S - P - d - D - P - d - D - d - d - d - d - f
+Vehicle 2: S - d - P - d - D - d - d - d - f
+
+
+Total time: 3.48652849740933
+
+Total passenger time: 2.14046632124352
+
+Total parcel time: 0.557616580310881
+
+Total combined transportation time: 0.548238341968912
+
+Total idle time passenger: 0.204766839378238
+
+Total idle time goods: 0.035440414507772
+
+Total distance: 8.74144041450777
+
+Total passenger distance: 2.711
+
+Total parcel distance: 1.112
+
+Total combined transportation distance: 0.931
+
+Total idle distance passenger: 3.952
+
+Total idle distance goods: 0.684
+
+Waiting time passenger: 0
+
+Waiting time goods: 0
+Solving:  grubhub-15-3-03-3.tsp :
+Scenario:  1A
+ParcelP:  0
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2880 columns, and 12862 nonzeros.
+Reduced MIP has 2880 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.80 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2880 columns, and 12862 nonzeros.
+Reduced MIP has 2880 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.87 ticks)
+Probing time = 0.04 sec. (7.78 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5350.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (7.37 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        166         
+
+Root node processing (before b&c):
+  Real time             =    0.11 sec. (57.23 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.11 sec. (57.23 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2880 columns, and 12862 nonzeros.
+Reduced MIP has 2880 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.80 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2880 columns, and 12862 nonzeros.
+Reduced MIP has 2880 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.87 ticks)
+Probing time = 0.03 sec. (7.78 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5350.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.02 sec. (7.37 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        166         
+
+Root node processing (before b&c):
+  Real time             =    0.10 sec. (57.23 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.10 sec. (57.23 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+
+Cluster 18: [(63) [ 24] ]
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 180 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 4321 columns, and 19303 nonzeros.
+Reduced MIP has 4321 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (17.93 ticks)
+Found incumbent of value 118.636000 after 0.07 sec. (42.30 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 4321 columns, and 19303 nonzeros.
+Reduced MIP has 4321 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.85 ticks)
+Probing time = 0.03 sec. (9.75 ticks)
+Clique table members: 7975.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.02 sec. (11.85 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          118.6360    37638.0590              --- 
+*     0     0      integral     0      122.5500      122.5500      235    0.00%
+Elapsed time = 0.14 sec. (80.32 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.14 sec. (80.48 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.14 sec. (80.48 ticks)
+
+Sol status: Optimal
+
+Obj Val: 122.55
+x(4, 28, 0)
+x(8, 40, 0)
+x(12, 48, 0)
+x(24, 36, 0)
+x(28, 63, 0)
+x(36, 4, 0)
+x(40, 12, 0)
+x(48, 24, 0)
+x(60, 8, 0)
+x(16, 63, 1)
+x(21, 47, 1)
+x(32, 16, 1)
+x(47, 56, 1)
+x(56, 32, 1)
+x(61, 21, 1)
+x(0, 54, 2)
+x(54, 63, 2)
+x(62, 0, 2)
+
+Solution by nodes: 
+Vehicle 0: 21 - 2 - 10 - 3 - 12 - 6 - 9 - 1 - 7 - 24
+Vehicle 1: 22 - 15 - 5 - 18 - 17 - 11 - 20 - 14 - 8 - 4 - 24
+Vehicle 2: 23 - 0 - 16 - 13 - 19 - 24
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - d - d - d - f
+Vehicle 1: S - P - d - D - P - d - D - d - d - d - f
+Vehicle 2: S - d - P - d - D - f
+
+
+Total time: 3.43264248704663
+
+Total passenger time: 2.12829015544041
+
+Total parcel time: 0.604300518134715
+
+Total combined transportation time: 0.527150259067357
+
+Total idle time passenger: 0.157150259067358
+
+Total idle time goods: 0.0157512953367876
+
+Total distance: 8.06175129533679
+
+Total passenger distance: 2.476
+
+Total parcel distance: 2.013
+
+Total combined transportation distance: 0.524
+
+Total idle distance passenger: 3.033
+
+Total idle distance goods: 0.304
+
+Waiting time passenger: 0
+
+Waiting time goods: 0
+Solving:  grubhub-15-3-05-3.tsp :
+Scenario:  1A
+ParcelP:  0
+
+size of n: 15
+
+size of m: 5
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 20] (2) [ 16,  0, 21] (3) [ 17,  0, 22] (4) [ 18,  0, 23] (5) [ 19,  0, 24] ]
+
+Cluster 1: [(6) [  1] (7) [ 15,  1, 20] (8) [ 16,  1, 21] (9) [ 17,  1, 22] (10) [ 18,  1, 23] (11) [ 19,  1, 24] ]
+
+Cluster 2: [(12) [  2] (13) [ 15,  2, 20] (14) [ 16,  2, 21] (15) [ 17,  2, 22] (16) [ 18,  2, 23] (17) [ 19,  2, 24] ]
+
+Cluster 3: [(18) [  3] (19) [ 15,  3, 20] (20) [ 16,  3, 21] (21) [ 17,  3, 22] (22) [ 18,  3, 23] (23) [ 19,  3, 24] ]
+
+Cluster 4: [(24) [  4] (25) [ 15,  4, 20] (26) [ 16,  4, 21] (27) [ 17,  4, 22] (28) [ 18,  4, 23] (29) [ 19,  4, 24] ]
+
+Cluster 5: [(30) [  5] (31) [ 15,  5, 20] (32) [ 16,  5, 21] (33) [ 17,  5, 22] (34) [ 18,  5, 23] (35) [ 19,  5, 24] ]
+
+Cluster 6: [(36) [  6] (37) [ 15,  6, 20] (38) [ 16,  6, 21] (39) [ 17,  6, 22] (40) [ 18,  6, 23] (41) [ 19,  6, 24] ]
+
+Cluster 7: [(42) [  7] (43) [ 15,  7, 20] (44) [ 16,  7, 21] (45) [ 17,  7, 22] (46) [ 18,  7, 23] (47) [ 19,  7, 24] ]
+
+Cluster 8: [(48) [  8] (49) [ 15,  8, 20] (50) [ 16,  8, 21] (51) [ 17,  8, 22] (52) [ 18,  8, 23] (53) [ 19,  8, 24] ]
+
+Cluster 9: [(54) [  9] (55) [ 15,  9, 20] (56) [ 16,  9, 21] (57) [ 17,  9, 22] (58) [ 18,  9, 23] (59) [ 19,  9, 24] ]
+
+Cluster 10: [(60) [ 10] (61) [ 15, 10, 20] (62) [ 16, 10, 21] (63) [ 17, 10, 22] (64) [ 18, 10, 23] (65) [ 19, 10, 24] ]
+
+Cluster 11: [(66) [ 11] (67) [ 15, 11, 20] (68) [ 16, 11, 21] (69) [ 17, 11, 22] (70) [ 18, 11, 23] (71) [ 19, 11, 24] ]
+
+Cluster 12: [(72) [ 12] (73) [ 15, 12, 20] (74) [ 16, 12, 21] (75) [ 17, 12, 22] (76) [ 18, 12, 23] (77) [ 19, 12, 24] ]
+
+Cluster 13: [(78) [ 13] (79) [ 15, 13, 20] (80) [ 16, 13, 21] (81) [ 17, 13, 22] (82) [ 18, 13, 23] (83) [ 19, 13, 24] ]
+
+Cluster 14: [(84) [ 14] (85) [ 15, 14, 20] (86) [ 16, 14, 21] (87) [ 17, 14, 22] (88) [ 18, 14, 23] (89) [ 19, 14, 24] ]
+
+Cluster 15: [(90) [ 25] ]
+
+Cluster 16: [(91) [ 26] ]
+
+Cluster 17: [(92) [ 27] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 6492 columns, and 30170 nonzeros.
+Reduced MIP has 6492 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (21.03 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 6492 columns, and 30170 nonzeros.
+Reduced MIP has 6492 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (14.71 ticks)
+Probing time = 0.04 sec. (12.06 ticks)
+Clique table members: 12029.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.02 sec. (15.67 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        191         
+
+Root node processing (before b&c):
+  Real time             =    0.25 sec. (122.46 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.25 sec. (122.46 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 5
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 20] (2) [ 16,  0, 21] (3) [ 17,  0, 22] (4) [ 18,  0, 23] (5) [ 19,  0, 24] ]
+
+Cluster 1: [(6) [  1] (7) [ 15,  1, 20] (8) [ 16,  1, 21] (9) [ 17,  1, 22] (10) [ 18,  1, 23] (11) [ 19,  1, 24] ]
+
+Cluster 2: [(12) [  2] (13) [ 15,  2, 20] (14) [ 16,  2, 21] (15) [ 17,  2, 22] (16) [ 18,  2, 23] (17) [ 19,  2, 24] ]
+
+Cluster 3: [(18) [  3] (19) [ 15,  3, 20] (20) [ 16,  3, 21] (21) [ 17,  3, 22] (22) [ 18,  3, 23] (23) [ 19,  3, 24] ]
+
+Cluster 4: [(24) [  4] (25) [ 15,  4, 20] (26) [ 16,  4, 21] (27) [ 17,  4, 22] (28) [ 18,  4, 23] (29) [ 19,  4, 24] ]
+
+Cluster 5: [(30) [  5] (31) [ 15,  5, 20] (32) [ 16,  5, 21] (33) [ 17,  5, 22] (34) [ 18,  5, 23] (35) [ 19,  5, 24] ]
+
+Cluster 6: [(36) [  6] (37) [ 15,  6, 20] (38) [ 16,  6, 21] (39) [ 17,  6, 22] (40) [ 18,  6, 23] (41) [ 19,  6, 24] ]
+
+Cluster 7: [(42) [  7] (43) [ 15,  7, 20] (44) [ 16,  7, 21] (45) [ 17,  7, 22] (46) [ 18,  7, 23] (47) [ 19,  7, 24] ]
+
+Cluster 8: [(48) [  8] (49) [ 15,  8, 20] (50) [ 16,  8, 21] (51) [ 17,  8, 22] (52) [ 18,  8, 23] (53) [ 19,  8, 24] ]
+
+Cluster 9: [(54) [  9] (55) [ 15,  9, 20] (56) [ 16,  9, 21] (57) [ 17,  9, 22] (58) [ 18,  9, 23] (59) [ 19,  9, 24] ]
+
+Cluster 10: [(60) [ 10] (61) [ 15, 10, 20] (62) [ 16, 10, 21] (63) [ 17, 10, 22] (64) [ 18, 10, 23] (65) [ 19, 10, 24] ]
+
+Cluster 11: [(66) [ 11] (67) [ 15, 11, 20] (68) [ 16, 11, 21] (69) [ 17, 11, 22] (70) [ 18, 11, 23] (71) [ 19, 11, 24] ]
+
+Cluster 12: [(72) [ 12] (73) [ 15, 12, 20] (74) [ 16, 12, 21] (75) [ 17, 12, 22] (76) [ 18, 12, 23] (77) [ 19, 12, 24] ]
+
+Cluster 13: [(78) [ 13] (79) [ 15, 13, 20] (80) [ 16, 13, 21] (81) [ 17, 13, 22] (82) [ 18, 13, 23] (83) [ 19, 13, 24] ]
+
+Cluster 14: [(84) [ 14] (85) [ 15, 14, 20] (86) [ 16, 14, 21] (87) [ 17, 14, 22] (88) [ 18, 14, 23] (89) [ 19, 14, 24] ]
+
+Cluster 15: [(90) [ 25] ]
+
+Cluster 16: [(91) [ 26] ]
+
+Cluster 17: [(92) [ 27] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 6492 columns, and 30170 nonzeros.
+Reduced MIP has 6492 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (21.03 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 6492 columns, and 30170 nonzeros.
+Reduced MIP has 6492 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (14.71 ticks)
+Probing time = 0.04 sec. (12.06 ticks)
+Clique table members: 12029.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.02 sec. (15.67 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        191         
+
+Root node processing (before b&c):
+  Real time             =    0.24 sec. (122.46 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.24 sec. (122.46 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 5
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 20] (2) [ 16,  0, 21] (3) [ 17,  0, 22] (4) [ 18,  0, 23] (5) [ 19,  0, 24] ]
+
+Cluster 1: [(6) [  1] (7) [ 15,  1, 20] (8) [ 16,  1, 21] (9) [ 17,  1, 22] (10) [ 18,  1, 23] (11) [ 19,  1, 24] ]
+
+Cluster 2: [(12) [  2] (13) [ 15,  2, 20] (14) [ 16,  2, 21] (15) [ 17,  2, 22] (16) [ 18,  2, 23] (17) [ 19,  2, 24] ]
+
+Cluster 3: [(18) [  3] (19) [ 15,  3, 20] (20) [ 16,  3, 21] (21) [ 17,  3, 22] (22) [ 18,  3, 23] (23) [ 19,  3, 24] ]
+
+Cluster 4: [(24) [  4] (25) [ 15,  4, 20] (26) [ 16,  4, 21] (27) [ 17,  4, 22] (28) [ 18,  4, 23] (29) [ 19,  4, 24] ]
+
+Cluster 5: [(30) [  5] (31) [ 15,  5, 20] (32) [ 16,  5, 21] (33) [ 17,  5, 22] (34) [ 18,  5, 23] (35) [ 19,  5, 24] ]
+
+Cluster 6: [(36) [  6] (37) [ 15,  6, 20] (38) [ 16,  6, 21] (39) [ 17,  6, 22] (40) [ 18,  6, 23] (41) [ 19,  6, 24] ]
+
+Cluster 7: [(42) [  7] (43) [ 15,  7, 20] (44) [ 16,  7, 21] (45) [ 17,  7, 22] (46) [ 18,  7, 23] (47) [ 19,  7, 24] ]
+
+Cluster 8: [(48) [  8] (49) [ 15,  8, 20] (50) [ 16,  8, 21] (51) [ 17,  8, 22] (52) [ 18,  8, 23] (53) [ 19,  8, 24] ]
+
+Cluster 9: [(54) [  9] (55) [ 15,  9, 20] (56) [ 16,  9, 21] (57) [ 17,  9, 22] (58) [ 18,  9, 23] (59) [ 19,  9, 24] ]
+
+Cluster 10: [(60) [ 10] (61) [ 15, 10, 20] (62) [ 16, 10, 21] (63) [ 17, 10, 22] (64) [ 18, 10, 23] (65) [ 19, 10, 24] ]
+
+Cluster 11: [(66) [ 11] (67) [ 15, 11, 20] (68) [ 16, 11, 21] (69) [ 17, 11, 22] (70) [ 18, 11, 23] (71) [ 19, 11, 24] ]
+
+Cluster 12: [(72) [ 12] (73) [ 15, 12, 20] (74) [ 16, 12, 21] (75) [ 17, 12, 22] (76) [ 18, 12, 23] (77) [ 19, 12, 24] ]
+
+Cluster 13: [(78) [ 13] (79) [ 15, 13, 20] (80) [ 16, 13, 21] (81) [ 17, 13, 22] (82) [ 18, 13, 23] (83) [ 19, 13, 24] ]
+
+Cluster 14: [(84) [ 14] (85) [ 15, 14, 20] (86) [ 16, 14, 21] (87) [ 17, 14, 22] (88) [ 18, 14, 23] (89) [ 19, 14, 24] ]
+
+Cluster 15: [(90) [ 25] ]
+
+Cluster 16: [(91) [ 26] ]
+
+Cluster 17: [(92) [ 27] ]
+
+Cluster 18: [(93) [ 28] ]
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 270 columns.
+Reduced MIP has 311 rows, 9741 columns, and 45261 nonzeros.
+Reduced MIP has 9741 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.04 sec. (27.07 ticks)
+Found incumbent of value 123.867000 after 0.14 sec. (80.49 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 311 rows, 9741 columns, and 45261 nonzeros.
+Reduced MIP has 9741 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (19.12 ticks)
+Probing time = 0.05 sec. (15.50 ticks)
+Clique table members: 17941.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.05 sec. (42.07 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          123.8670    92022.6630              --- 
+*     0     0      integral     0      131.2640      131.2640      406    0.00%
+Elapsed time = 0.32 sec. (171.64 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.32 sec. (172.00 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.32 sec. (172.00 ticks)
+
+Sol status: Optimal
+
+Obj Val: 131.264
+x(12, 60, 0)
+x(18, 72, 0)
+x(28, 93, 0)
+x(49, 28, 0)
+x(60, 18, 0)
+x(72, 49, 0)
+x(90, 12, 0)
+x(6, 42, 1)
+x(33, 71, 1)
+x(36, 54, 1)
+x(42, 93, 1)
+x(54, 6, 1)
+x(71, 84, 1)
+x(84, 36, 1)
+x(91, 33, 1)
+x(0, 80, 2)
+x(80, 93, 2)
+x(92, 0, 2)
+
+Solution by nodes: 
+Vehicle 0: 25 - 2 - 10 - 3 - 12 - 15 - 8 - 20 - 18 - 4 - 23 - 28
+Vehicle 1: 26 - 17 - 5 - 22 - 19 - 11 - 24 - 14 - 6 - 9 - 1 - 7 - 28
+Vehicle 2: 27 - 0 - 16 - 13 - 21 - 28
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - d - d - d - d - d - f
+Vehicle 2: S - d - P - d - D - f
+
+
+Total time: 3.81799654576857
+
+Total passenger time: 1.77661485319516
+
+Total parcel time: 0.985561312607945
+
+Total combined transportation time: 0.878825561312608
+
+Total idle time passenger: 0.12160621761658
+
+Total idle time goods: 0.0553886010362694
+
+Total distance: 8.34038860103627
+
+Total passenger distance: 2.122
+
+Total parcel distance: 2.938
+
+Total combined transportation distance: 0.878
+
+Total idle distance passenger: 2.347
+
+Total idle distance goods: 1.069
+
+Waiting time passenger: 0
+
+Waiting time goods: 0
+Solving:  grubhub-15-4-03-4.tsp :
+Scenario:  1A
+ParcelP:  0
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2876 columns, and 12844 nonzeros.
+Reduced MIP has 2876 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (9.79 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2876 columns, and 12844 nonzeros.
+Reduced MIP has 2876 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.86 ticks)
+Probing time = 0.03 sec. (7.82 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5342.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (8.96 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        205         
+
+Root node processing (before b&c):
+  Real time             =    0.15 sec. (59.41 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.15 sec. (59.41 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2876 columns, and 12844 nonzeros.
+Reduced MIP has 2876 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.79 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2876 columns, and 12844 nonzeros.
+Reduced MIP has 2876 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.86 ticks)
+Probing time = 0.03 sec. (7.82 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5342.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.02 sec. (8.96 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        205         
+
+Root node processing (before b&c):
+  Real time             =    0.12 sec. (59.41 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.12 sec. (59.41 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+
+Cluster 18: [(63) [ 24] ]
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 180 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 4315 columns, and 19276 nonzeros.
+Reduced MIP has 4315 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (17.91 ticks)
+Found incumbent of value 119.145000 after 0.08 sec. (41.83 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 4315 columns, and 19276 nonzeros.
+Reduced MIP has 4315 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.84 ticks)
+Probing time = 0.03 sec. (9.83 ticks)
+Clique table members: 7963.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.02 sec. (17.09 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          119.1450    38320.7990              --- 
+      0     0      122.5705    32      119.1450      122.5705      322    2.88%
+*     0+    0                          122.0730      122.5705             0.41%
+*     0+    0                          122.5320      122.5705             0.03%
+      0     0        cutoff            122.5320                    333     --- 
+Elapsed time = 0.35 sec. (130.89 ticks, tree = 0.01 MB, solutions = 3)
+
+Cover cuts applied:  1
+Zero-half cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.35 sec. (131.08 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.35 sec. (131.08 ticks)
+
+Sol status: Optimal
+
+Obj Val: 122.532
+x(0, 24, 0)
+x(16, 63, 0)
+x(24, 16, 0)
+x(40, 0, 0)
+x(44, 40, 0)
+x(60, 44, 0)
+x(4, 63, 1)
+x(8, 51, 1)
+x(20, 8, 1)
+x(32, 52, 1)
+x(51, 32, 1)
+x(52, 4, 1)
+x(61, 20, 1)
+x(12, 57, 2)
+x(30, 63, 2)
+x(36, 30, 2)
+x(57, 36, 2)
+x(62, 12, 2)
+
+Solution by nodes: 
+Vehicle 0: 21 - 11 - 10 - 0 - 6 - 4 - 24
+Vehicle 1: 22 - 5 - 2 - 17 - 12 - 20 - 8 - 13 - 1 - 24
+Vehicle 2: 23 - 3 - 15 - 14 - 18 - 9 - 16 - 7 - 19 - 24
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - f
+Vehicle 1: S - d - d - P - d - D - d - d - d - f
+Vehicle 2: S - d - P - d - D - d - P - d - D - f
+
+
+Total time: 3.50155440414508
+
+Total passenger time: 2.13720207253886
+
+Total parcel time: 0.614818652849741
+
+Total combined transportation time: 0.531554404145078
+
+Total idle time passenger: 0.174145077720207
+
+Total idle time goods: 0.0438341968911917
+
+Total distance: 8.87783419689119
+
+Total passenger distance: 2.648
+
+Total parcel distance: 2.216
+
+Total combined transportation distance: 0.609
+
+Total idle distance passenger: 3.361
+
+Total idle distance goods: 0.846
+
+Waiting time passenger: 0
+
+Waiting time goods: 0
+Solving:  grubhub-15-5-03-5.tsp :
+Scenario:  1A
+ParcelP:  0
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2868 columns, and 12810 nonzeros.
+Reduced MIP has 2868 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (9.76 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2868 columns, and 12810 nonzeros.
+Reduced MIP has 2868 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.83 ticks)
+Probing time = 0.03 sec. (7.70 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5326.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (7.16 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        181         
+
+Root node processing (before b&c):
+  Real time             =    0.15 sec. (56.47 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.15 sec. (56.47 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2868 columns, and 12810 nonzeros.
+Reduced MIP has 2868 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.76 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2868 columns, and 12810 nonzeros.
+Reduced MIP has 2868 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.83 ticks)
+Probing time = 0.03 sec. (7.70 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5326.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (7.16 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        181         
+
+Root node processing (before b&c):
+  Real time             =    0.13 sec. (56.47 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.13 sec. (56.47 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+
+Cluster 18: [(63) [ 24] ]
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 180 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 4303 columns, and 19225 nonzeros.
+Reduced MIP has 4303 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (17.88 ticks)
+Found incumbent of value 121.162000 after 0.08 sec. (42.39 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 4303 columns, and 19225 nonzeros.
+Reduced MIP has 4303 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.82 ticks)
+Probing time = 0.03 sec. (9.73 ticks)
+Clique table members: 7939.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.04 sec. (18.28 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          121.1620    37589.3480              --- 
+*     0     0      integral     0      123.6340      123.6340      390    0.00%
+Elapsed time = 0.18 sec. (86.70 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.18 sec. (86.86 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.18 sec. (86.86 ticks)
+
+Sol status: Optimal
+
+Obj Val: 123.634
+x(4, 30, 0)
+x(20, 44, 0)
+x(24, 4, 0)
+x(30, 63, 0)
+x(44, 56, 0)
+x(56, 24, 0)
+x(60, 20, 0)
+x(9, 40, 1)
+x(40, 48, 1)
+x(48, 52, 1)
+x(52, 63, 1)
+x(61, 9, 1)
+x(0, 32, 2)
+x(12, 0, 2)
+x(19, 63, 2)
+x(32, 36, 2)
+x(36, 19, 2)
+x(62, 12, 2)
+
+Solution by nodes: 
+Vehicle 0: 21 - 5 - 11 - 14 - 6 - 1 - 16 - 7 - 19 - 24
+Vehicle 1: 22 - 15 - 2 - 18 - 10 - 12 - 13 - 24
+Vehicle 2: 23 - 3 - 0 - 8 - 9 - 17 - 4 - 20 - 24
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - P - d - D - f
+Vehicle 1: S - P - d - D - d - d - d - f
+Vehicle 2: S - d - d - d - d - P - d - D - f
+
+
+Total time: 3.4980310880829
+
+Total passenger time: 2.14310880829016
+
+Total parcel time: 0.583523316062176
+
+Total combined transportation time: 0.544248704663212
+
+Total idle time passenger: 0.184455958549223
+
+Total idle time goods: 0.0426943005181347
+
+Total distance: 8.83069430051813
+
+Total passenger distance: 2.762
+
+Total parcel distance: 1.612
+
+Total combined transportation distance: 0.854000000000001
+
+Total idle distance passenger: 3.56
+
+Total idle distance goods: 0.824
+
+Waiting time passenger: 0
+
+Waiting time goods: 0
+Solving:  grubhub-15-6-03-6.tsp :
+Scenario:  1A
+ParcelP:  0
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2872 columns, and 12828 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (9.78 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2872 columns, and 12828 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.84 ticks)
+Probing time = 0.03 sec. (7.77 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5334.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (7.73 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        192         
+
+Root node processing (before b&c):
+  Real time             =    0.15 sec. (55.88 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.15 sec. (55.88 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2872 columns, and 12828 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.78 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2872 columns, and 12828 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.84 ticks)
+Probing time = 0.03 sec. (7.77 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5334.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (7.73 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        192         
+
+Root node processing (before b&c):
+  Real time             =    0.13 sec. (55.88 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.13 sec. (55.88 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+
+Cluster 18: [(63) [ 24] ]
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 180 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 4309 columns, and 19252 nonzeros.
+Reduced MIP has 4309 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (17.89 ticks)
+Found incumbent of value 119.717000 after 0.08 sec. (41.77 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 4309 columns, and 19252 nonzeros.
+Reduced MIP has 4309 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.83 ticks)
+Probing time = 0.03 sec. (9.76 ticks)
+Clique table members: 7951.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.03 sec. (19.93 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          119.7170    36561.3530              --- 
+      0     0      120.9623    52      119.7170      120.9623      369    1.04%
+*     0+    0                          120.9400      120.9623             0.02%
+*     0+    0                          120.9420      120.9623             0.02%
+      0     0        cutoff            120.9420      120.9540      418    0.01%
+Elapsed time = 0.31 sec. (137.75 ticks, tree = 0.01 MB, solutions = 3)
+
+Cover cuts applied:  1
+Zero-half cuts applied:  9
+
+Root node processing (before b&c):
+  Real time             =    0.31 sec. (137.95 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.31 sec. (137.95 ticks)
+
+Sol status: Optimal
+
+Obj Val: 120.942
+x(16, 63, 0)
+x(20, 56, 0)
+x(56, 16, 0)
+x(60, 20, 0)
+x(2, 27, 1)
+x(9, 2, 1)
+x(27, 52, 1)
+x(28, 63, 1)
+x(36, 28, 1)
+x(52, 36, 1)
+x(61, 9, 1)
+x(4, 63, 2)
+x(12, 48, 2)
+x(32, 4, 2)
+x(40, 12, 2)
+x(44, 40, 2)
+x(48, 32, 2)
+x(62, 44, 2)
+
+Solution by nodes: 
+Vehicle 0: 21 - 5 - 14 - 4 - 24
+Vehicle 1: 22 - 15 - 2 - 18 - 16 - 0 - 19 - 17 - 6 - 20 - 13 - 9 - 7 - 24
+Vehicle 2: 23 - 11 - 10 - 3 - 12 - 8 - 1 - 24
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - f
+Vehicle 1: S - P - d - D - P - d - D - P - d - D - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - d - f
+
+
+Total time: 3.57274611398964
+
+Total passenger time: 2.13326424870466
+
+Total parcel time: 0.660932642487047
+
+Total combined transportation time: 0.543523316062176
+
+Total idle time passenger: 0.20279792746114
+
+Total idle time goods: 0.0322279792746114
+
+Total distance: 10.4642279792746
+
+Total passenger distance: 2.572
+
+Total parcel distance: 3.106
+
+Total combined transportation distance: 0.84
+
+Total idle distance passenger: 3.914
+
+Total idle distance goods: 0.622
+
+Waiting time passenger: 0
+
+Waiting time goods: 0
+Solving:  grubhub-15-7-03-7.tsp :
+Scenario:  1A
+ParcelP:  0
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2872 columns, and 12830 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (9.77 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2872 columns, and 12830 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.85 ticks)
+Probing time = 0.03 sec. (7.71 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5334.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (7.01 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        155         
+
+Root node processing (before b&c):
+  Real time             =    0.13 sec. (56.71 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.13 sec. (56.71 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2872 columns, and 12830 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.77 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2872 columns, and 12830 nonzeros.
+Reduced MIP has 2872 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.85 ticks)
+Probing time = 0.03 sec. (7.71 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5334.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (7.01 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        155         
+
+Root node processing (before b&c):
+  Real time             =    0.13 sec. (56.71 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.13 sec. (56.71 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+
+Cluster 18: [(63) [ 24] ]
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 180 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 4309 columns, and 19255 nonzeros.
+Reduced MIP has 4309 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (17.90 ticks)
+Found incumbent of value 118.576000 after 0.08 sec. (41.77 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 4309 columns, and 19255 nonzeros.
+Reduced MIP has 4309 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.83 ticks)
+Probing time = 0.03 sec. (9.76 ticks)
+Clique table members: 7951.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.02 sec. (8.96 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          118.5760    37645.0670              --- 
+*     0     0      integral     0      124.2350      124.2350      177    0.00%
+Elapsed time = 0.17 sec. (76.73 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.17 sec. (76.89 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.17 sec. (76.89 ticks)
+
+Sol status: Optimal
+
+Obj Val: 124.235
+x(9, 12, 0)
+x(12, 56, 0)
+x(22, 9, 0)
+x(24, 31, 0)
+x(31, 63, 0)
+x(56, 24, 0)
+x(60, 22, 0)
+x(4, 63, 1)
+x(32, 52, 1)
+x(48, 32, 1)
+x(52, 4, 1)
+x(61, 48, 1)
+x(0, 36, 2)
+x(16, 63, 2)
+x(36, 16, 2)
+x(40, 0, 2)
+x(44, 40, 2)
+x(62, 44, 2)
+
+Solution by nodes: 
+Vehicle 0: 21 - 16 - 5 - 19 - 15 - 2 - 18 - 3 - 14 - 6 - 17 - 7 - 20 - 24
+Vehicle 1: 22 - 12 - 8 - 13 - 1 - 24
+Vehicle 2: 23 - 11 - 10 - 0 - 9 - 4 - 24
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - d - d - d - P - d - D - f
+Vehicle 1: S - d - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - f
+
+
+Total time: 3.47974093264249
+
+Total passenger time: 2.14663212435233
+
+Total parcel time: 0.603108808290155
+
+Total combined transportation time: 0.544611398963731
+
+Total idle time passenger: 0.129067357512953
+
+Total idle time goods: 0.0563212435233161
+
+Total distance: 8.22832124352332
+
+Total passenger distance: 2.83
+
+Total parcel distance: 1.99
+
+Total combined transportation distance: 0.861
+
+Total idle distance passenger: 2.491
+
+Total idle distance goods: 1.087
+
+Waiting time passenger: 0
+
+Waiting time goods: 0
+Solving:  grubhub-15-8-03-8.tsp :
+Scenario:  1A
+ParcelP:  0
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2882 columns, and 12874 nonzeros.
+Reduced MIP has 2882 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.81 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2882 columns, and 12874 nonzeros.
+Reduced MIP has 2882 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.87 ticks)
+Probing time = 0.03 sec. (7.80 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5354.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (6.89 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        149         
+
+Root node processing (before b&c):
+  Real time             =    0.13 sec. (56.13 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.13 sec. (56.13 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2882 columns, and 12874 nonzeros.
+Reduced MIP has 2882 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.81 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2882 columns, and 12874 nonzeros.
+Reduced MIP has 2882 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.87 ticks)
+Probing time = 0.03 sec. (7.80 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5354.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (6.89 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        149         
+
+Root node processing (before b&c):
+  Real time             =    0.13 sec. (56.13 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.13 sec. (56.13 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+
+Cluster 18: [(63) [ 24] ]
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 180 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 4324 columns, and 19321 nonzeros.
+Reduced MIP has 4324 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (17.93 ticks)
+Found incumbent of value 124.452000 after 0.08 sec. (42.72 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 4324 columns, and 19321 nonzeros.
+Reduced MIP has 4324 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.85 ticks)
+Probing time = 0.03 sec. (9.81 ticks)
+Clique table members: 7981.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.02 sec. (13.70 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          124.4520    39186.9320              --- 
+*     0     0      integral     0      126.7050      126.7050      272    0.00%
+Elapsed time = 0.17 sec. (82.90 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.17 sec. (83.06 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.17 sec. (83.06 ticks)
+
+Sol status: Optimal
+
+Obj Val: 126.705
+x(0, 36, 0)
+x(8, 0, 0)
+x(20, 8, 0)
+x(36, 63, 0)
+x(60, 20, 0)
+x(18, 63, 1)
+x(27, 52, 1)
+x(32, 27, 1)
+x(40, 56, 1)
+x(52, 18, 1)
+x(56, 32, 1)
+x(61, 40, 1)
+x(4, 29, 2)
+x(12, 48, 2)
+x(29, 63, 2)
+x(44, 12, 2)
+x(48, 4, 2)
+x(62, 44, 2)
+
+Solution by nodes: 
+Vehicle 0: 21 - 5 - 2 - 0 - 9 - 24
+Vehicle 1: 22 - 10 - 14 - 8 - 17 - 6 - 20 - 13 - 16 - 4 - 19 - 24
+Vehicle 2: 23 - 11 - 3 - 12 - 1 - 15 - 7 - 18 - 24
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - f
+Vehicle 1: S - d - d - d - P - d - D - d - P - d - D - f
+Vehicle 2: S - d - d - d - d - P - d - D - f
+
+
+Total time: 3.46419689119171
+
+Total passenger time: 2.1740932642487
+
+Total parcel time: 0.565544041450777
+
+Total combined transportation time: 0.550777202072539
+
+Total idle time passenger: 0.129119170984456
+
+Total idle time goods: 0.0446632124352332
+
+Total distance: 8.14166321243524
+
+Total passenger distance: 3.36
+
+Total parcel distance: 1.265
+
+Total combined transportation distance: 0.98
+
+Total idle distance passenger: 2.492
+
+Total idle distance goods: 0.862
+
+Waiting time passenger: 0
+
+Waiting time goods: 0
+Solving:  grubhub-15-9-03-9.tsp :
+Scenario:  1A
+ParcelP:  0
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2870 columns, and 12816 nonzeros.
+Reduced MIP has 2870 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.76 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2870 columns, and 12816 nonzeros.
+Reduced MIP has 2870 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.84 ticks)
+Probing time = 0.03 sec. (7.74 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5330.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (5.80 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        138         
+
+Root node processing (before b&c):
+  Real time             =    0.10 sec. (54.34 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.10 sec. (54.34 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+Tried aggregator 2 times.
+Aggregator did 2 substitutions.
+Reduced MIP has 155 rows, 2870 columns, and 12816 nonzeros.
+Reduced MIP has 2870 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.76 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 155 rows, 2870 columns, and 12816 nonzeros.
+Reduced MIP has 2870 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.84 ticks)
+Probing time = 0.03 sec. (7.74 ticks)
+Cover probing fixed 52 vars, tightened 0 bounds.
+Clique table members: 5330.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (5.80 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    infeasible                                        138         
+
+Root node processing (before b&c):
+  Real time             =    0.12 sec. (54.34 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.12 sec. (54.34 ticks)
+
+Sol status: Infeasible
+
+size of n: 15
+
+size of m: 3
+
+Cluster 0: [(0) [  0] (1) [ 15,  0, 18] (2) [ 16,  0, 19] (3) [ 17,  0, 20] ]
+
+Cluster 1: [(4) [  1] (5) [ 15,  1, 18] (6) [ 16,  1, 19] (7) [ 17,  1, 20] ]
+
+Cluster 2: [(8) [  2] (9) [ 15,  2, 18] (10) [ 16,  2, 19] (11) [ 17,  2, 20] ]
+
+Cluster 3: [(12) [  3] (13) [ 15,  3, 18] (14) [ 16,  3, 19] (15) [ 17,  3, 20] ]
+
+Cluster 4: [(16) [  4] (17) [ 15,  4, 18] (18) [ 16,  4, 19] (19) [ 17,  4, 20] ]
+
+Cluster 5: [(20) [  5] (21) [ 15,  5, 18] (22) [ 16,  5, 19] (23) [ 17,  5, 20] ]
+
+Cluster 6: [(24) [  6] (25) [ 15,  6, 18] (26) [ 16,  6, 19] (27) [ 17,  6, 20] ]
+
+Cluster 7: [(28) [  7] (29) [ 15,  7, 18] (30) [ 16,  7, 19] (31) [ 17,  7, 20] ]
+
+Cluster 8: [(32) [  8] (33) [ 15,  8, 18] (34) [ 16,  8, 19] (35) [ 17,  8, 20] ]
+
+Cluster 9: [(36) [  9] (37) [ 15,  9, 18] (38) [ 16,  9, 19] (39) [ 17,  9, 20] ]
+
+Cluster 10: [(40) [ 10] (41) [ 15, 10, 18] (42) [ 16, 10, 19] (43) [ 17, 10, 20] ]
+
+Cluster 11: [(44) [ 11] (45) [ 15, 11, 18] (46) [ 16, 11, 19] (47) [ 17, 11, 20] ]
+
+Cluster 12: [(48) [ 12] (49) [ 15, 12, 18] (50) [ 16, 12, 19] (51) [ 17, 12, 20] ]
+
+Cluster 13: [(52) [ 13] (53) [ 15, 13, 18] (54) [ 16, 13, 19] (55) [ 17, 13, 20] ]
+
+Cluster 14: [(56) [ 14] (57) [ 15, 14, 18] (58) [ 16, 14, 19] (59) [ 17, 14, 20] ]
+
+Cluster 15: [(60) [ 21] ]
+
+Cluster 16: [(61) [ 22] ]
+
+Cluster 17: [(62) [ 23] ]
+
+Cluster 18: [(63) [ 24] ]
+Tried aggregator 2 times.
+MIP Presolve eliminated 0 rows and 180 columns.
+Aggregator did 2 substitutions.
+Reduced MIP has 217 rows, 4306 columns, and 19234 nonzeros.
+Reduced MIP has 4306 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (17.88 ticks)
+Found incumbent of value 115.888000 after 0.07 sec. (41.90 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 217 rows, 4306 columns, and 19234 nonzeros.
+Reduced MIP has 4306 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.82 ticks)
+Probing time = 0.03 sec. (9.78 ticks)
+Clique table members: 7945.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.01 sec. (12.08 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          115.8880    36238.9850              --- 
+*     0     0      integral     0      122.1040      122.1040      267    0.00%
+Elapsed time = 0.17 sec. (79.90 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.17 sec. (80.06 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.17 sec. (80.06 ticks)
+
+Sol status: Optimal
+
+Obj Val: 122.104
+x(0, 24, 0)
+x(4, 16, 0)
+x(16, 63, 0)
+x(24, 4, 0)
+x(60, 0, 0)
+x(8, 12, 1)
+x(12, 56, 1)
+x(37, 63, 1)
+x(56, 37, 1)
+x(61, 8, 1)
+x(20, 46, 2)
+x(28, 63, 2)
+x(35, 52, 2)
+x(40, 48, 2)
+x(46, 40, 2)
+x(48, 35, 2)
+x(52, 28, 2)
+x(62, 20, 2)
+
+Solution by nodes: 
+Vehicle 0: 21 - 0 - 6 - 1 - 4 - 24
+Vehicle 1: 22 - 2 - 3 - 14 - 15 - 9 - 18 - 24
+Vehicle 2: 23 - 5 - 16 - 11 - 19 - 10 - 12 - 17 - 8 - 20 - 13 - 7 - 24
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - f
+Vehicle 1: S - d - d - d - P - d - D - f
+Vehicle 2: S - d - P - d - D - d - d - P - d - D - d - d - f
+
+
+Total time: 3.52165803108808
+
+Total passenger time: 2.15901554404145
+
+Total parcel time: 0.595906735751295
+
+Total combined transportation time: 0.52119170984456
+
+Total idle time passenger: 0.196580310880829
+
+Total idle time goods: 0.0489637305699482
+
+Total distance: 9.17196373056995
+
+Total passenger distance: 3.069
+
+Total parcel distance: 1.851
+
+Total combined transportation distance: 0.409
+
+Total idle distance passenger: 3.794
+
+Total idle distance goods: 0.945
+
+Waiting time passenger: 0
+
+Waiting time goods: 0
