@@ -23,7 +23,7 @@
 #include <ctime>
 #include <unistd.h>
 #include "readdata.h"
-#include "functions.h"
+#include "SarpADS.h"
 
 using namespace std;
 

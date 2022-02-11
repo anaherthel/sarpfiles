@@ -21,6 +21,7 @@
 #include "sarpConstruction.h"
 #include "cpuTime.h"
 #include "Statistics.h"
+#include "SarpADS.h"
 
 using namespace std;
 
@@ -36,7 +37,6 @@ int main (int argc, char *argv[]) {
 	solStats sStat;
 	vector<nodeStat> nodeVec;
 
-	sarpILS sILS;
 
 	sStat.feasible = false;
 	
@@ -55,111 +55,31 @@ int main (int argc, char *argv[]) {
 		    cout << endl;
 		}
 
-		if (problem.model == "node"){
-			nodeMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
+		solveselect(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
 
-		}
-		else if (problem.model == "bundle"){
-			bundleMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
-		}
+		if (problem.scen == "PC"){
+			nodeVec.clear();
+			sStat.solvec.clear();
+			sStat.solBegin.clear();
+			sStat.feasible = false;
+			if (inst.min == true){
+				// if (trialK < inst.n + inst.m){
+				// 	trialK++;
+				// }
 
-		else if (problem.model == "math"){
-			// h.orderRequests(&inst, nodeVec, distMatrix, &problem);
-			// h.buildDistVec(&inst, nodeVec, distMatrix, &problem);
-			// h.buildBundles(&inst, nodeVec, distMatrix, &problem);
-			// h.orgBundles(&inst, nodeVec, distMatrix, bStat, &problem);
-			// h.hbundleMethod(&inst, nodeVec, distMatrix, &problem, &sStat);
-		}
+				readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
 
-		else if (problem.model == "sp"){
-			// h.orderRequests(&inst, nodeVec, distMatrix, &problem);
-			// h.buildDistVec(&inst, nodeVec, distMatrix, &problem);
-			// h.buildBundles(&inst, nodeVec, distMatrix, &problem);
-			// h.orgBundles(&inst, nodeVec, distMatrix, bStat, &problem);
-			// sCon.ConstrProc(&inst, nodeVec, distMatrix, &problem);
+				if (problem.model == "node"){
+					nodeMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
 
-			// clock_t seed = (argc == 5) ? time(NULL) : strtol(argv[4], NULL, 10);
-			
- 			clock_t seed = 1642521807;
-			srand(seed);
-
-
-			cout << "\n\nSeed: " << std::setprecision(5) << seed << endl << endl;
-			// getchar();
-			// t1 = sILS.get_wall_time();
-			sILS.stats.setStart();
-
-			sILS.ILS(&inst, nodeVec, distMatrix, &problem);
-
-			// t2 = sILS.get_wall_time();
-			// deltaT = t2 - t1;
-
-			sILS.stats.setEnd();
-
-			cout << "\nTotal Run Time: " << std::setprecision(8) <<  sILS.stats.printTime() << endl;
-
-			cout << "END OF METHOD" << endl;
-			// sILS.function();
-		}
-		// else if (problem.model == "twostage"){
-		// 	twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			
-		// }
-
-		// if (problem.scen == "PC"){
-		// 	if (trialMulti > 1){
-		// 		// if (trialK < inst.n + inst.m){
-		// 		if (trialK < inst.n){
-		// 			trialK++;	
-		// 		}
-
-		// 		else{
-		// 			break;
-		// 		}
-		// 	}
-		// 	else {
-		// 		trialMulti = 1.5;
-		// 	}
-		// }
-
-		// else{
-		// 	if (trialMulti > 1){
-		// 		if (trialK < inst.n){
-		// 			trialK++;	
-		// 		}
-
-		// 		else{
-		// 			break;
-		// 		}
-		// 	}
-		// 	else {
-		// 		trialMulti = 1.5;
-		// 	}	
-		// }
-		
-	// }
-
-	if (problem.scen == "PC"){
-		nodeVec.clear();
-		sStat.solvec.clear();
-    	sStat.solBegin.clear();
-		sStat.feasible = false;
-		if (inst.min == true){
-			// if (trialK < inst.n + inst.m){
-			// 	trialK++;
-			// }
-
-			readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
-
-			if (problem.model == "node"){
-				nodeMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
-
+				}
+				else if (problem.model == "bundle"){
+					bundleMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
+				}
+				inst.min = false;
 			}
-			else if (problem.model == "bundle"){
-				bundleMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
-			}
-			inst.min = false;
 		}
-	}
+	//}
 
 	return 0;
 }

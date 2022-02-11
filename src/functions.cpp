@@ -2,301 +2,6 @@
 #include <cstdlib>
 #include <stdio.h>
 
-void solStatIni(solStats *sStat){
-
-    sStat->tParcel = 0;
-    sStat->tPass = 0;
-    sStat->tBoth = 0;
-    sStat->tNone = 0;
-
-    sStat->tStillP = 0;
-    sStat->tStillG = 0;
-    sStat->tStill = 0;
-
-
-    sStat->dParcel = 0;
-    sStat->dPass = 0;
-    sStat->dBoth = 0;
-    sStat->dNone = 0;
-
-    sStat->solOrder.clear();sStat->solOrder.clear();
-
-    sStat->servedParcels = 0;
-
-    sStat->pProfit = 0;
-    sStat->costs = 0;
-
-    // sStat->solOrder.clear();
-    // sStat->solvec.clear();
-}
-
-void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat){
-
-    int load;
-    double distPass;
-    // load = 0;
-    double dij;
-    double stop;
-    double tij;
-    int currNode;
-    int nextNode;
-    
-    for (int k = 0; k < inst->K; k++){
-        load = 0;
-        for (int i = 0; i < sStat->solOrder[k].size() - 2; i++){
-            // dij = mdist[sStat->solOrder[k][i]][sStat->solOrder[k][i + 1]];
-            currNode = sStat->solOrder[k][i];
-            nextNode = sStat->solOrder[k][i + 1];
-            dij = mdist[currNode][nextNode];
-            tij = (mdist[currNode][nextNode])/(inst->vmed);
-
-            // stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-            
-            // // cout << "b - " << currNode << ": " << sStat->solBegin[currNode] << "; b - " << nextNode << ": " << sStat->solBegin[nextNode] << "; delta: " << nodeVec[currNode].delta << endl;
-            // // getchar();
-
-            // sStat->tStillP += stop;
-
-            // cout << "\nTesting idle still time: " << endl;
-            // cout << "tij: " << tij << " || stop: " << stop << " || sStat->tStill: " << sStat->tStill << endl;
-            // getchar();
-
-            if(currNode < inst->n){//from passenger
-                if(nextNode < inst->n){//to passenger
-                    if (load > 0){//carrying parcels
-                        sStat->tParcel += dij/inst->vmed;
-                        sStat->tBoth += nodeVec[nextNode].delta;   
-
-                        sStat->dParcel += dij;
-                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
-                        sStat->dBoth += distPass;
-                    }  
-                    else{//not carrying parcels
-                        sStat->tNone += dij/inst->vmed;
-                        // sStat->tNoneP += dij/inst->vmed;
-
-                        sStat->tPass += nodeVec[nextNode].delta;
-
-                        sStat->dNone += dij;
-
-                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
-                        sStat->dPass += distPass;
-                    }
-
-                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-
-
-                    sStat->tStillP += stop;
-                }
-
-                else if (nextNode < inst->n + inst->m){//from passenger to parcel PU
-                    if (load > 0){//with load
-                        sStat->tParcel += dij/inst->vmed;
-                        sStat->tParcel += inst->service;
-                        load++;
-
-                        sStat->dParcel += dij;
-                    }  
-                    else{//no load
-                        sStat->tNone += dij/inst->vmed;
-                        sStat->tParcel += inst->service;
-                        load++;
-
-                        sStat->dNone += dij;
-                    }
-                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-
-                    sStat->tStillG += stop;
-                }
-
-                else if (nextNode < inst->n + 2*inst->m){//from passenger to parcel DL
-                    sStat->tParcel += dij/inst->vmed;
-                    sStat->tParcel += inst->service;
-                    load--;
-
-                    sStat->dParcel += dij;
-
-                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-
-                    sStat->tStillG += stop;
-                }
-            }
-            else if (currNode < inst->n + inst->m){
-                if (nextNode < inst->n){
-                    sStat->tParcel += dij/inst->vmed;
-                    sStat->tBoth += nodeVec[nextNode].delta;
-
-                    sStat->dParcel += dij;
-                    distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
-                    sStat->dBoth += distPass;
-                    
-                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-
-                    sStat->tStillP += stop;  
-                }
-                else if(nextNode < inst->n + inst->m){
-                    sStat->tParcel += dij/inst->vmed;
-                    sStat->tParcel += inst->service;
-                    load++;
-
-                    sStat->dParcel += dij;         
-
-                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-
-                    sStat->tStillG += stop; 
-                }
-                else if (nextNode < inst->n + 2*inst->m){
-                    sStat->tParcel += dij/inst->vmed;
-                    sStat->tParcel += inst->service;
-                    load--;
-
-                    sStat->dParcel += dij;
-
-                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-
-                    sStat->tStillG += stop; 
-                }
-            }
-            else if (currNode < inst->n + 2*inst->m){
-                if(nextNode < inst->n){
-                    if (load > 0){
-                        sStat->tParcel += dij/inst->vmed;
-                        sStat->tBoth += nodeVec[nextNode].delta; 
-
-                        sStat->dParcel += dij;
-                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
-                        sStat->dBoth += distPass;                           
-                    }  
-                    else{
-                        sStat->tNone += dij/inst->vmed;
-                        sStat->tPass += nodeVec[nextNode].delta;
-
-                        sStat->dNone += dij;
-                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
-                        sStat->dPass += distPass;
-                                               
-                    }
-
-                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-
-                    sStat->tStillP += stop; 
-
-                }
-                else if(nextNode < inst->n + inst->m){
-                    if (load > 0){
-                        sStat->tParcel += dij/inst->vmed;
-                        sStat->tParcel += inst->service;
-                        load++;
-
-                        sStat->dParcel += dij;
-                    }  
-                    else{
-                        sStat->tNone += dij/inst->vmed;
-                        sStat->tParcel += inst->service;
-                        load++;
-
-                        sStat->dNone += dij;
-                    }
-
-                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-
-                    sStat->tStillG += stop;                                       
-                }
-                else if (nextNode < inst->n + 2*inst->m){
-                    sStat->tParcel += dij/inst->vmed;
-                    sStat->tParcel += inst->service;
-                    load--;
-
-                    sStat->dParcel += dij;
-
-                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-
-                    sStat->tStillG += stop; 
-                }
-            }
-            else{
-                if (nextNode < inst->n + 2*inst->m + inst->K){
-                    if(nextNode < inst->n){
-                        sStat->tNone += dij/inst->vmed;
-                        sStat->tPass += nodeVec[nextNode].delta;
-                        load = 0;
-
-                        sStat->dNone += dij;
-                        distPass = (nodeVec[nextNode].delta - (2 * inst->service))*inst->vmed;
-                        sStat->dPass += distPass;  
-
-                        stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-
-                        sStat->tStillP += stop; 
-                    }
-                    else if(nextNode < inst->n + inst->m){
-                        sStat->tNone += dij/inst->vmed;
-                        sStat->tParcel += inst->service;
-                        load++;
-
-                        sStat->dNone += dij;
-
-                        stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
-
-                        sStat->tStillG += stop;
-                    }  
-                }
-            }
-
-
-            // cout << "\nTotal passenger time: " << sStat->tPass << endl;
-            // cout << "\nTotal parcel time: " << sStat->tParcel << endl;
-            // cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
-            // cout << "\nTotal idle time: " << sStat->tNone << endl;
-
-            // cout << "\nTotal passenger distance: " << sStat->dPass << endl;
-            // cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
-            // cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
-            // cout << "\nTotal idle distance: " << sStat->dNone << endl;
-            // getchar();
-
-        }
-    }
-}
-
-void printStats(instanceStat *inst, solStats *sStat){
-    // for (int i = 0; i < inst->K; i++){
-
-
-        cout << "\nsize of n: " << inst->n << endl;
-        cout << "\nsize of m: " << inst->m << endl;
-        
-        cout << "\n*************" << endl;
-
-        cout << "\n\nServed parcels: " << sStat->servedParcels << endl;
-        cout << "\nUnserved parcels: " << inst->m - sStat->servedParcels << endl;
-
-
-        cout << "\n*************" << endl;
-
-        cout << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone << endl;
-        cout << "\nTotal passenger time: " << sStat->tPass << endl;
-        cout << "\nTotal parcel time: " << sStat->tParcel << endl;
-        cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
-        cout << "\nTotal idle time: " << sStat->tNone << endl;
-
-        cout << "\n*************" << endl;
-
-        cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
-        cout << "\nTotal passenger distance: " << sStat->dPass << endl;
-        cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
-        cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
-        cout << "\nTotal idle distance: " << sStat->dNone << endl;
-
-        cout << "\n*************" << endl;
-
-        cout << "\nWaiting time passenger: " << sStat->tStillP << endl;
-        cout << "\nWaiting time goods: " << sStat->tStillG << endl;
-        cout << "\nTotal waiting time: " << sStat->tStillG + sStat->tStillP << endl;
-    // }
-
-}
-
 void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempData, double *curAvg, int *scale){
     double distSum, avgDist, totalAvg;
 
@@ -422,8 +127,6 @@ string getInstName (char **argv){
 
     InstanceName.append(filename, loc+1, loc2-loc-1 );
 
-
-
     return InstanceName;
 }
 
@@ -443,4 +146,98 @@ void getInstParam (instanceStat *inst, vector<int> &instParam){
  
     instParam.push_back(stoi(param1));
     instParam.push_back(stoi(param2));
+}
+
+void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
+    
+    if (problem->model == "node"){
+        nodeMethod(node, inst, mdist, nodeVec, problem, sStat);
+
+    }
+    else if (problem->model == "bundle"){
+        bundleMethod(node, inst, mdist, nodeVec, problem, sStat);
+    }
+
+    // else if (){
+
+    // }
+
+    else if (problem->model == "math"){
+        // h.orderRequests(&inst, nodeVec, distMatrix, &problem);
+        // h.buildDistVec(&inst, nodeVec, distMatrix, &problem);
+        // h.buildBundles(&inst, nodeVec, distMatrix, &problem);
+        // h.orgBundles(&inst, nodeVec, distMatrix, bStat, &problem);
+        // h.hbundleMethod(&inst, nodeVec, distMatrix, &problem, &sStat);
+    }
+
+    else if (problem->model == "ils"){
+        // h.orderRequests(&inst, nodeVec, distMatrix, &problem);
+        // h.buildDistVec(&inst, nodeVec, distMatrix, &problem);
+        // h.buildBundles(&inst, nodeVec, distMatrix, &problem);
+        // h.orgBundles(&inst, nodeVec, distMatrix, bStat, &problem);
+        // sCon.ConstrProc(&inst, nodeVec, distMatrix, &problem);
+
+        // clock_t seed = (argc == 5) ? time(NULL) : strtol(argv[4], NULL, 10);
+        sarpILS sILS;
+
+        clock_t seed = 1642521807;
+        srand(seed);
+
+
+        cout << "\n\nSeed: " << std::setprecision(5) << seed << endl << endl;
+        // getchar();
+        // t1 = sILS.get_wall_time();
+        sILS.stats.setStart();
+
+        sILS.ILS(inst, nodeVec, mdist, problem);
+
+        // t2 = sILS.get_wall_time();
+        // deltaT = t2 - t1;
+
+        sILS.stats.setEnd();
+
+        cout << "\nTotal Run Time: " << std::setprecision(8) <<  sILS.stats.printTime() << endl;
+
+        cout << "END OF METHOD" << endl;
+        // sILS.function();
+    }
+    // else if (problem.model == "twostage"){
+    // 	twoStageMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);			
+    // }
+
+    // if (problem.scen == "PC"){
+    // 	if (trialMulti > 1){
+    // 		// if (trialK < inst.n + inst.m){
+    // 		if (trialK < inst.n){
+    // 			trialK++;	
+    // 		}
+
+    // 		else{
+    // 			break;
+    // 		}
+    // 	}
+    // 	else {
+    // 		trialMulti = 1.5;
+    // 	}
+    // }
+
+    // else{
+    // 	if (trialMulti > 1){
+    // 		if (trialK < inst.n){
+    // 			trialK++;	
+    // 		}
+
+    // 		else{
+    // 			break;
+    // 		}
+    // 	}
+    // 	else {
+    // 		trialMulti = 1.5;
+    // 	}	
+    // }
+    
+// }
+
+
+
 }

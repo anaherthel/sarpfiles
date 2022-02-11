@@ -195,9 +195,9 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
         // }
     }
 
-    // cout << "Random additions: " << endl;
-    // solution->printSol(inst);
-    // solution->printCosts();
+    cout << "Random additions: " << endl;
+    solution->printSol(inst);
+    solution->printCosts();
     // getchar();
 
     //greedy assignments
@@ -284,11 +284,11 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
                 solution->updateCost();
                 
                 inserted = 1;
-                // cout << "*****Route with insertion: " << endl;
-                // for (auto a: sroute){
-                //     cout << a << " - ";
-                // }
-                // cout << endl << endl;
+                cout << "*****Route with insertion: " << endl;
+                for (auto a: sroute){
+                    cout << a << " - ";
+                }
+                cout << endl << endl;
 
                 removeFromCL(candidate, 1);
                 break;
@@ -310,7 +310,7 @@ void sarpConstruction::ConstrProc(instanceStat *inst, vector<nodeStat> &nodeVec,
     // cout << "Solution with passengers: " << endl;
     // solution->printSol(inst);
     // solution->printCosts();
-    // // getchar();
+    // getchar();
 
     //inserting parcels
     //greedy assignments

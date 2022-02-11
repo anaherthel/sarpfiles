@@ -113,7 +113,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> m;
         // K = 3;
 
-        if (problem->model == "sp"){
+        if (problem->model == "ils"){
             K = n - 1;
         }
         // K = 11;
@@ -365,7 +365,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         inst->preInst = 1;
         // K = 11;
-        if (problem->model != "sp"){
+        if (problem->model != "ils"){
             if (trialK < K){
                 K = trialK;
             }
