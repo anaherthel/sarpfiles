@@ -238,7 +238,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             exp += x[u][v][k];
         }
         sprintf (var, "Constraint5_%d", k);
-        IloRange cons = (exp == 1);
+        IloRange cons = (exp <= 1);
         cons.setName(var);
         model.add(cons);
     }
@@ -254,7 +254,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         	exp += x[u][v][k];
 		}
 		sprintf (var, "Constraint6_%d", k);
-		IloRange cons = (exp == 1);
+		IloRange cons = (exp <= 1);
 		cons.setName(var);
 		model.add(cons);
 	}

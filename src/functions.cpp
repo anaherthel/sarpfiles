@@ -170,6 +170,10 @@ void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<node
         // h.hbundleMethod(&inst, nodeVec, distMatrix, &problem, &sStat);
     }
 
+    else if (problem->model == "mio"){
+        
+    }
+
     else if (problem->model == "ils"){
         // h.orderRequests(&inst, nodeVec, distMatrix, &problem);
         // h.buildDistVec(&inst, nodeVec, distMatrix, &problem);

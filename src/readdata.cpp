@@ -113,17 +113,24 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> m;
         // K = 3;
 
-        if (problem->model == "ils"){
-            K = n - 1;
-        }
-        // K = 11;
-
-        if (trialK >= K){
-            K = trialK;
+        if (n <= 10){
+            K = n-1;
         }
         else{
-            trialK = K;
+            K = ceil(0.6*n);
         }
+
+        // if (problem->model == "ils"){
+        //     K = n - 1;
+        // }
+        // K = 11;
+
+        // if (trialK >= K){
+        //     K = trialK;
+        // }
+        // else{
+        //     trialK = K;
+        // }
         
         cout << "K: " << K << endl;
         // getchar();
@@ -365,20 +372,26 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         inst->preInst = 1;
         // K = 11;
-        if (problem->model != "ils"){
-            if (trialK < K){
-                K = trialK;
-            }
-            else{
-                trialK = K;
-            }
-        }
+        // if (n <= 10){
+        //     K = n-1;
+        // }
+        // else{
+        //     K = ceil(0.6*n);
+        // }
+        // if (problem->model != "ils"){
+        //     if (trialK < K){
+        //         K = trialK;
+        //     }
+        //     else{
+        //         trialK = K;
+        //     }
+        // }
 
         cout << "\nn: " << n;
         cout << "\nm: " << m;
         cout << "\nK: " << K << endl;
         
-        // getchar();
+        getchar();
         service = service/60;
         V = n + 2*m + K;
 
@@ -595,7 +608,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     else if (inst->instType == "grubhub"){
 
         K = 1;
-
+        
         int scale;
         int scCounter = 0;
 
@@ -617,33 +630,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         long int seed;
         seed = (instParam[0]*power)*trialMulti;
         // seed = (instParam[0]*instParam[0]*power)*trialMulti;//new seed
-
-        
-        // if (instParam[0] < 14){
-        //     if (instParam[0] > 12 && instParam[1] == 7){
-        //         seed = (instParam[0]*power)*trialMulti;//old seed
-        //     }
-        //     else{
-        //         seed = (instParam[0]*instParam[0]*power)*trialMulti;//new seed
-        //     }                       
-        // }
-
-        // else if (instParam[0] > 14) {
-        //     seed = (instParam[0]*power)*trialMulti;//old seed
-        // }
-
-        // else{
-        //     if (instParam[1] > 1){
-        //         seed = (instParam[0]*power)*trialMulti;//old seed         
-        //     }
-        //     else{
-        //         seed = (instParam[0]*instParam[0]*power)*trialMulti;//new seed
-        //     }
-        // }
-
-        // for (int i = 0; i < instParam.size(); i++){
-        //     inst->instParam.push_back(instParam[i]);
-        // }
 
         // int seed = time(NULL);
         srand(seed);
@@ -742,14 +728,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 tempData[i].erase(tempData[i].begin());
             }   
         }
-        // cout << "\nDistance Matrix BEFORE (1): " << endl;
-        // for (int i = 0; i < tempData.size(); i++){
-        //     for (int j = 0; j < tempData[i].size(); j++){
-        //         cout << setw(5) << tempData[i][j] << " ";
-        //     }
-        //     cout << endl;
-        // }
-        // getchar();
 
         tempData.erase(tempData.begin() + tempData.size() - 1);
         
@@ -766,16 +744,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < tempData.size() - 1; i++){
             tempData[i].push_back(0);
         }
-
-        // cout << "\nDistance Matrix BEFORE (2): " << endl;
-        // for (int i = 0; i < tempData.size(); i++){
-        //     for (int j = 0; j < tempData[i].size(); j++){
-        //         cout << setw(5) << tempData[i][j] << " ";
-        //     }
-        //     cout << endl;
-        // }
-        // getchar();
-
 
         vector<double> dRow;
         vector<double> pRow;
@@ -947,51 +915,23 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // }
         // getchar();
 
-        // if (trialK > 1){
-        //     if (trialK >= K){
-        //         K = trialK;
-        //     }
-        //     else{
-        //         trialK = K;
-        //     } 
-        //     for (int l = 0; l < K -1; l++){
-        //         vector<double> distRow;
-        //         vector<double> dummyRow;
-
-        //         double valueDist;
-                
-        //         for (int i = 0; i < V + inst->dummy; i++){
-        //             valueDist = realData[i][realData[i].size() - 2];
-        //             realData[i].insert(realData[i].begin() + realData[i].size() - 1, valueDist);
-        //         }
-
-        //         for (int i = 0; i < V + inst->dummy; i++){
-        //             distRow.push_back(realData[V - 1][i]);
-        //             dummyRow.push_back(realData[V][i]);
-        //         }
-        //         distRow.push_back(0);
-        //         dummyRow.push_back(0); 
-
-        //         realData.pop_back();
-
-        //         realData.push_back(distRow);
-        //         realData.push_back(dummyRow);
-        //         V++;
-        //     }
-        // }
-
         vector<double> distRow;
         vector<double> dummyRow;
         vector<double> distColumn;
 
         // cout << "\nV: " << V << endl;
         // getchar();
+
+        if (n <= 10){
+            trialK = n-1;
+        }
+        else{
+            trialK = ceil(0.6*n);
+        }
+
         if (trialK > 1){
             if (trialK >= K){
                 K = trialK;
-            }
-            else{
-                trialK = K;
             }
 
             for (int i = 0; i < V - 1; i++){
@@ -1127,32 +1067,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 l[i] = 1440;
             } 
         }
-
-        // for (int i = 0; i < V + inst->dummy; i++){
-        //     if(i < n){
-        //         if(i == 0){
-        //             e[i] = 620;
-        //             l[i] = e[i];                    
-        //         }
-        //         else if(i == 1){
-        //             e[i] = 700;
-        //             l[i] = e[i];                    
-        //         }
-        //     }
-        //     else if (i < n + 2*m){
-        //         e[i] = 0;
-        //         l[i] = 1020;                
-        //     }
-        //     else if (i < V + inst->dummy - 1){
-        //         e[i] = 540;
-        //         l[i] = 1020;                    
-        //     }
-        //     else{
-        //         e[i] = 540;
-        //         l[i] = 1020;
-        //     } 
-        // }
-
         for (int i = 0; i < V + inst->dummy; i++){
             node->e = e[i]/60;
             node->l = l[i]/60;
