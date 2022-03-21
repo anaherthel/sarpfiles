@@ -120,20 +120,22 @@ struct solStats{
 };
 
 struct nodeArcsStruct{//for model node
-	vector< vector<bool> > arcs;
-	vector< pair<int,int> > allArcs;
-	pair<int, int> fArc;
-	vector< vector< pair<int,int> > > arcPlus;
-	vector< vector< pair<int,int> > > arcMinus;
+	vector< vector<bool> > arcs; //all arcs, either true or false. For each request to each request.
+	vector< pair<int,int> > allArcs; // the actual pairs of requests that form an arc
+	pair<int, int> fArc; 
+	vector< vector< pair<int,int> > > arcPlus; //arcs leaving a request (for K, for req, pair)
+	vector< vector< pair<int,int> > > arcMinus; //arcs arriving at a request (for K, for req, pair)
+	//for each request, arcs that are traverssed by a vehicle, for each request, pair of nodes
 	vector< vector< vector< pair<int,int> > > > vArcPlus;
 	vector< vector< vector< pair<int,int> > > > vArcMinus;
-	vector< pair<int,int> > arcNN;
-	vector< pair<int,int> > arcNplus;
-	vector< pair<int,int> > arcPP;
-	vector< pair<int,int> > arcnf;
-	vector< vector< vector<int> > > arcV;
-	vector< pair<int,int> > arcPass;
-	vector< pair<int,int> > arcParc;
+	vector< pair<int,int> > arcNN;//arcs between 2 passengers
+	vector< pair<int,int> > arcNplus; //arcs leaving a passenger
+	vector< pair<int,int> > arcPP; //arcs from parcel to passenger
+	vector< pair<int,int> > arcnf; //arcs that do not contain ending depot
+	// for each pair of requests, records the vehicles that can serve that arc
+	vector< vector< vector<int> > > arcV; 
+	//For each request, record the vehicles that can serve it
+	vector< vector<int> > reqV;
 };
 
 void solStatIni(solStats *sStat);

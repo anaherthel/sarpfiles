@@ -47,12 +47,11 @@ protected:
     // int iterMS;
     // int maxiterMS;
 
-    
+
     
 public:
 
-    void mioopt();
-
+    void mioopt(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat);
     // sarpSolution *solution;
     // sarpSolution *bestSol;
     // sarpSolution *globalBestSol;

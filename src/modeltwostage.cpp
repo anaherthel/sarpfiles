@@ -574,7 +574,7 @@ void twoStageMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<n
 //	}
 	// getchar();
 	initArcs(inst, &nas);
-	feasibleArcs (inst, &nas, problem);
+	feasibleArcs (inst, &nas, problem, nodeVec, mdist);
 
 	tsInitArcs(inst, &tsas);
 
