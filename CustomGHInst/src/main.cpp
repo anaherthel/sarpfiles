@@ -87,12 +87,8 @@ string getInstIndex (char **argv){
 
 void generateInst(int argc, char** argv, Info *info){
 
-
-    info->n = info->V - info->m; 
-    info->K = info->n - 1;
-
     cout << "n: " << info->n << " - m: " << info->m << endl;
-    info->seed = pow(info->n, 8) + pow(info->m, 8);
+    info->seed = pow(info->n, 8) + pow(info->m, 7) + pow(stod(info->index), 6);
     cout << "seed: " << info->seed << endl;
     srand(info->seed);
 
@@ -315,16 +311,21 @@ int main (int argc, char *argv[]) {
 
     cout << "Instance size: " << info.V << endl;
 
-    for (int i = 4; i < 8; i++){
+    for (int i = 5; i < 11; i++){
         info.parcelamounts.push_back(i);
     }
-    // for (int i = 0; i < info.parcelamounts.size(); i++){
-    //     cout << info.parcelamounts[i] << " - ";
-    // }  
-    // cout << endl;
+    for (int i = 0; i < info.parcelamounts.size(); i++){
+        cout << info.parcelamounts[i] << " - ";
+    }  
+    cout << endl;
     
     for (int i = 0; i < info.parcelamounts.size(); i++){
         info.m = info.parcelamounts[i];
+        info.n = info.V - info.m; 
+        if (info.n < 5){
+            break;
+        }
+        info.K = info.n - 1;
         generateInst(argc, argv, &info);
         clearInfo(&info);
     }

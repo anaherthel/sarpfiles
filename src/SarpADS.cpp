@@ -43,6 +43,9 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
     
     for (int k = 0; k < inst->K; k++){
         load = 0;
+        if (sStat->solOrder[k].size() < 1){
+            continue;
+        }
         for (int i = 0; i < sStat->solOrder[k].size() - 2; i++){
             // dij = mdist[sStat->solOrder[k][i]][sStat->solOrder[k][i + 1]];
             currNode = sStat->solOrder[k][i];
