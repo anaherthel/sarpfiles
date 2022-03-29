@@ -68,10 +68,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         problem->p2 = 1;
         problem->dParcel = 1;        
     }
-    // else if (problem->scen == "PC"){
-    // }
-    // else if (problem->scen == "BL2"){
-    // }
+    else if (problem->scen == "PC" || problem->scen == "BL2"){ //PC and BL2 scenarios
+        problem->p1 = -1;
+        problem->p2 = -1;
+        problem->dParcel = 1;    
+    }
+    //condition for osarp and fip later
+
 
     string file, ewf;
     int n;
@@ -88,7 +91,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     instance = argv[1];
 
     ifstream in(instance, ios::in);
-
     
     if( !in ) {
         cout << "the file could not be opened\n";
@@ -131,9 +133,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // getchar();
 
         service = service/60;
-        V = n + 2*m + K;
 
-        originalV = 2*n + 2*m + 1; 
+
+        originalV = 2*n + 2*m + 1;
+
+        if (problem->model != "osarp" && problem->model != "fip"){
+            V = n + 2*m + K;
+        }
+        else{
+            V = originalV;
+        }
+
         // inst->vmed = 19.3;
         inst->dummy = K;
 
@@ -200,15 +210,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         ve.erase(ve.begin());
         vl.erase(vl.begin());
 
-        for (int i = 0; i < n; i++){
-            vxs.erase(vxs.begin() + n + m);
-            vys.erase(vys.begin() + n + m);
-            vload.erase(vload.begin() + n + m);
-            ve.erase(ve.begin() + n + m);
-            vl.erase(vl.begin() + n + m);
-            vxf.erase(vxf.begin() + n + m);
-            vyf.erase(vyf.begin() + n + m);
+        if (problem->model != "osarp" && problem->model != "fip"){
+            for (int i = 0; i < n; i++){
+                vxs.erase(vxs.begin() + n + m);
+                vys.erase(vys.begin() + n + m);
+                vload.erase(vload.begin() + n + m);
+                ve.erase(ve.begin() + n + m);
+                vl.erase(vl.begin() + n + m);
+                vxf.erase(vxf.begin() + n + m);
+                vyf.erase(vyf.begin() + n + m);
+            }
         }
+
 
         for (int i = 0; i < n; i++){
             vl[i] = ve[i];
@@ -380,7 +393,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         getchar();
         service = service/60;
  
-
         originalV = 2*n + 2*m + originalK;
         
         V = n + 2*m + K;

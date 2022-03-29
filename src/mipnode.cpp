@@ -32,7 +32,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	// 	Q = inst->m + 1;
 	// }
 
-
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
 
@@ -86,9 +85,9 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
     objFunction += inst->totalCustomProfit;
 
-    for (int a = 0; a < nas->arcPP.size(); a++){
-        int i = nas->arcPP[a].first;
-        int j = nas->arcPP[a].second;
+    for (int a = 0; a < nas->arcPN.size(); a++){
+        int i = nas->arcPN[a].first;
+        int j = nas->arcPN[a].second;
         for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
             int k = nas->arcV[i][j][k1];
             objFunction += nodeVec[i].profit * x[i][j][k];

@@ -22,6 +22,7 @@
 #include "cpuTime.h"
 #include "Statistics.h"
 #include "SarpADS.h"
+#include "osarp.h"
 
 using namespace std;
 
