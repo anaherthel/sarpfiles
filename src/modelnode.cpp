@@ -71,17 +71,17 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
             nas->arcV[i][j].push_back(auxK);
         }
 
-        for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node (empty routes)
-            nas->arcs[i][j] = true;
-            nas->fArc.first = i;
-            nas->fArc.second = j;
-            nas->arcMinus[j].push_back(nas->fArc);
-            nas->arcPlus[i].push_back(nas->fArc);
-            nas->allArcs.push_back(nas->fArc);
+        int j = i + inst->K;
 
-            auxK = j - inst->V;
-            nas->arcV[i][j].push_back(auxK);
-        }        
+        nas->arcs[i][j] = true;
+        nas->fArc.first = i;
+        nas->fArc.second = j;
+        nas->arcMinus[j].push_back(nas->fArc);
+        nas->arcPlus[i].push_back(nas->fArc);
+        nas->allArcs.push_back(nas->fArc);
+
+        auxK = j - inst->V;
+        nas->arcV[i][j].push_back(auxK);    
     }
 
     for (int i = 0; i < inst->n; i++){//i is a passenger node

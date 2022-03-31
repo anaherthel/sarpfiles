@@ -115,19 +115,19 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	model.add(IloMaximize(env, objFunction));
 
-	for (int k = 0; k < inst->K; k++){
-        IloExpr exp(env);
-        for (int a = 0; a < nas->vArcPlus[inst->V - inst->K + k][k].size(); a++){
-            int u = nas->vArcPlus[inst->V - inst->K + k][k][a].first;
-            int v = nas->vArcPlus[inst->V - inst->K + k][k][a].second;
+	// for (int k = 0; k < inst->K; k++){
+    //     IloExpr exp(env);
+    //     for (int a = 0; a < nas->vArcPlus[inst->V - inst->K + k][k].size(); a++){
+    //         int u = nas->vArcPlus[inst->V - inst->K + k][k][a].first;
+    //         int v = nas->vArcPlus[inst->V - inst->K + k][k][a].second;
 
-            exp += x[u][v][k];
-        }
-        sprintf (var, "Constraint5_%d", k);
-        IloRange cons = (exp <= 1);
-        cons.setName(var);
-        model.add(cons);
-    }
+    //         exp += x[u][v][k];
+    //     }
+    //     sprintf (var, "Constraint5_%d", k);
+    //     IloRange cons = (exp <= 1);
+    //     cons.setName(var);
+    //     model.add(cons);
+    // }
 
 	//Creating constraints
 
@@ -248,7 +248,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 	}
 
-	//Constraint 5 - The route of every vehicle has to start at its starting position
+	//Constraint 5 - The route of every used vehicle has to start at its starting position
 
 
     for (int k = 0; k < inst->K; k++){
@@ -260,7 +260,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             exp += x[u][v][k];
         }
         sprintf (var, "Constraint5_%d", k);
-        IloRange cons = (exp <= 1);
+        IloRange cons = (exp == 1);
         cons.setName(var);
         model.add(cons);
     }
@@ -291,7 +291,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	// cons2.setName(var);
 	// model.add(cons2);
 
-	// Constraint 6 - The route of every vehicle has to end at dummy node f
+	// Constraint 6 - The route of every used vehicle has to end at dummy node f
 
 	for (int k = 0; k < inst->K; k++){
 		IloExpr exp(env);
@@ -302,7 +302,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         	exp += x[u][v][k];
 		}
 		sprintf (var, "Constraint6_%d", k);
-		IloRange cons = (exp <= 1);
+		IloRange cons = (exp == 1);
 		cons.setName(var);
 		model.add(cons);
 	}
@@ -405,7 +405,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
     }
 	
 	//Constraint 14  - bound number of passenger visits transporting parcel
-	if (problem->scen == "1A" || problem->scen == "1B"){
+	if (problem->p1 < 1){
 		for (int i = 0; i < nas->arcNN.size(); i++){
 			IloExpr exp(env);
 			IloExpr sumX(env);

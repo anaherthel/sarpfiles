@@ -9,14 +9,32 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	char var[100];
 	IloEnv env;
 	IloModel model(env, "bSARP");
-	int setN = bStat->bundleVec.size() - (2*inst->K);
-	int csetN = cStat->clusterVec.size() - (2*inst->K);
+	int setN;
+    int setP;//with passengers
+    int csetN;
+    int csetP; //with passengers
     int fcDummy = bStat->bundleVec.size() - inst->K;
 	int currSP;
 	int currParcel;
 	int currCluster;
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
+
+    // if (problem->scen == "1AD"){
+    //     setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
+    //     setN = bStat->bundleVec.size() - (2*inst->K);
+
+    //     csetN = cStat->clusterVec.size() - (2*inst->K);
+    //     csetP = cStat->clusterVec.size() - (inst->K*2) - inst->m;
+    // }
+    // else if (problem->scen == "1A"){
+        setP = bStat->bundleVec.size() - (2*inst->K);
+        setN = setP;
+
+        csetP = cStat->clusterVec.size() - (inst->K*2);
+        csetN = csetP;
+    // }
+
 
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, bStat->bundleVec.size());
@@ -97,7 +115,7 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	//Constraint 1 - Only one arc leaves the cluster
     // cout << "first part" << endl;
     // getchar();
-	for (int i = 0; i < csetN; i++){
+	for (int i = 0; i < csetP; i++){
 		IloExpr exp(env);
 		for (int k = 0; k < inst->K; k++){
 			for (int a = 0; a < cStat->vArcPlus[i][k].size(); a++){
@@ -113,7 +131,7 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 		model.add(cons1);
 	}
 
-    for (int i = 0; i < csetN; i++){
+    for (int i = 0; i < csetP; i++){
         IloExpr exp(env);
         for (int k = 0; k < inst->K; k++){
             for (int a = 0; a < cStat->vArcMinus[i][k].size(); a++){
@@ -128,6 +146,42 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
         cons.setName(var);
         model.add(cons);
     }
+
+    // if (problem->scen == "1AD"){
+    //     //at most one arc leaves parcel only clusters
+    //     for (int i = csetP; i < csetN; i++){
+    //         IloExpr exp(env);
+    //         for (int k = 0; k < inst->K; k++){
+    //             for (int a = 0; a < cStat->vArcPlus[i][k].size(); a++){
+    //                 int u = cStat->vArcPlus[i][k][a].first;
+    //                 int v = cStat->vArcPlus[i][k][a].second;
+
+    //                 exp += x[u][v][k];
+    //             }
+    //         }
+    //         sprintf (var, "Constraint8_%d", i);
+    //         IloRange cons1 = (exp <= 1);
+    //         cons1.setName(var);
+    //         model.add(cons1);
+    //     }
+        
+    //     //at most one arc arrives at parcel only clusters
+    //     for (int i = csetP; i < csetN; i++){
+    //         IloExpr exp(env);
+    //         for (int k = 0; k < inst->K; k++){
+    //             for (int a = 0; a < cStat->vArcMinus[i][k].size(); a++){
+    //                 int u = cStat->vArcMinus[i][k][a].first;
+    //                 int v = cStat->vArcMinus[i][k][a].second;
+
+    //                 exp += x[u][v][k];
+    //             }
+    //         }
+    //         sprintf (var, "Constraint9_%d", i);
+    //         IloRange cons = (exp <= 1);
+    //         cons.setName(var);
+    //         model.add(cons);
+    //     }
+    // }
 
 	// Constraint 2 - Only one arc comes into the cluster
 
@@ -144,7 +198,7 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	// 	model.add(cons);
 	// }
 
-	// Constraint 3 - Each vehicle leaves its starting node
+	// Constraint 3 - Each used vehicle leaves its starting node
 	
 	for (int k = 0; k < inst->K; k++){
 		IloExpr exp(env);
@@ -160,7 +214,7 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 		model.add(cons);
 	}
 
-	// // Constraint 4 - All vehicles end the trip at the dummy node f
+	// // Constraint 4 - Each used vehicle ends the trip at the dummy node f
 	
 	// //new version of constraint
 	for (int k = 0; k < inst->K; k++){

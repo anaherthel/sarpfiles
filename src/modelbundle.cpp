@@ -28,6 +28,24 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
             cStat->clusters.clear();
         }
 
+        if (problem->dParcel > 0){
+            for (int i = inst->n; i < inst->n + inst->m; i++){
+                int j = i + inst->m;
+                bStat->bundle.push_back(i);
+                bStat->bundle.push_back(j);
+                bStat->bundleTimes.push_back(nodeVec[i].delta + nodeVec[j].delta);
+                
+                bStat->bundleVec.push_back(bStat->bundle);
+                
+                cStat->clusters.push_back(bStat->bundleVec.size()-1);
+                bStat->bundle.clear();
+                cStat->clusterVec.push_back(cStat->clusters);
+                cStat->clusters.clear();                
+            }
+            
+            
+        }
+
         for (int i = 2*inst->m + inst->n; i < nodeVec.size(); i++){
             bStat->bundle.push_back(i);
             bStat->bundleVec.push_back(bStat->bundle);
@@ -40,6 +58,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
         }
     // }
 
+
 }
 
 void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
@@ -49,7 +68,7 @@ void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
     for (int i = 0; i < bStat->bundleVec.size(); i++){
         cost = 0;
         service = 0;
-        if (bStat->bundleVec[i].size() <= 1){
+        if (bStat->bundleVec[i].size() <= 2){//bundles of single requests and for parcel direct delivery
             cost = nodeVec[bStat->bundleVec[i][0]].profit;
             bStat->bundleProfVec.push_back(cost);
             service = nodeVec[bStat->bundleVec[i][0]].delta;
@@ -105,7 +124,7 @@ void initVecs (instanceStat *inst, vector< vector<bParcelStruct> > &clsParcel, b
         clsParcel.push_back(auxbpsvec);
     }
 
-    if (problem->scen == "1A"){
+    if (problem->scen == "1A" || problem->scen == "1AD"){
         for (int i = 0; i < inst->m; i++){
             bStat->parcelBundleVec.push_back(parcelBundle);
         }
@@ -188,7 +207,18 @@ void initArcs (instanceStat *inst, bundleStat *bStat, clSt *cStat){
 }
 
 void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem){
-    int setN = bStat->bundleVec.size() - (2*inst->K);
+    int setN; //last index of bundles before starting points
+    int setP; //last index of bundles with only passengers
+    
+    if (problem->scen == "1AD"){
+        setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
+        setN = bStat->bundleVec.size() - (2*inst->K);
+    }
+    else if (problem->scen == "1A"){
+        setP = bStat->bundleVec.size() - (2*inst->K);
+        setN = setP;
+    }
+
     int currentCluster = 0;
     int ref = inst->m;
     pair<int, int> bFArc;
@@ -198,7 +228,7 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
 
     for(int i = 0; i < bStat->bundleVec.size(); i++){
         if (i < fDummy){
-            if(i < setN){//i is not depot or dummy
+            if(i < setP){//i is not depot or dummy or parcel only
                 if (i > currentCluster*(ref + 1) + ref){
                     currentCluster++;
                 }
@@ -207,9 +237,14 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
                     if (i != j){
                         if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){
                             if (bStat->bundleEnd[j] <= inst->T){
-                                if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+                                if (bStat->bundleStart[j] > 0){
+                                    if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+                                        bStat->bArcs[i][j] = true;
+                                    } 
+                                }
+                                else{
                                     bStat->bArcs[i][j] = true;
-                                }                                
+                                }
                             }
                         }
                     } 
@@ -219,23 +254,50 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
                     bStat->bArcs[i][j] = true;                                     
                 }
             }
+            else if(setP != setN && setP <= i && i < setN){//will only run in 1AD
+                currentCluster++;
+                bStat->clofbundle.push_back(currentCluster);
+                for (int j = 0; j < setN; j++){//j is a request bundle
+                    if (i != j){
+                        if (bStat->bundleEnd[j] <= inst->T){
+                            if (bStat->bundleStart[j] > 0){
+                                if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+                                    bStat->bArcs[i][j] = true;                        
+                                }
+                            }
+                            else{
+                                bStat->bArcs[i][j] = true;
+                            }
+                        }
+                    }
+                }
+                for (int j = fDummy; j < bStat->bundleVec.size(); j++){//j is dummy node
+                    bStat->bArcs[i][j] = true;                                     
+                }                                
+            }
+
             else if (i >= setN){//i is a starting point bundle
                 currentCluster++;
                 bStat->clofbundle.push_back(currentCluster);
                 for (int j = 0; j < setN; j++){//j is a request bundle
                     if (bStat->bundleEnd[j] <= inst->T){
-                        if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
-                            bStat->bArcs[i][j] = true;                        
+                        if (bStat->bundleStart[j] > 0){
+                            if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+                                bStat->bArcs[i][j] = true;                        
+                            }
+                        }
+                        else{
+                            bStat->bArcs[i][j] = true;
                         }
                     }
                 }
+                bStat->bArcs[i][i + inst->K] = true;//direct trip to depot (empty vehicle)
             }              
         }
         else{
             currentCluster++;
             bStat->clofbundle.push_back(currentCluster);
         }
-
     }
 
     // cout << "list of cluster allocations: " <<endl;
@@ -316,9 +378,28 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
     int reqClusters = cStat->clusterVec.size() - (inst->K*2);
     int clusterA = 0;
     int clusterB;
-    int setN = bStat->bundleVec.size() - (inst->K*2);
+    int setN;
+    int setP;//with passengers
     int setS;
-    int cset = cStat->clusterVec.size() - (inst->K*2);
+    int cset;
+    int csetP; //with passengers
+
+    if (problem->scen == "1AD"){
+        setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
+        setN = bStat->bundleVec.size() - (2*inst->K);
+
+        cset = cStat->clusterVec.size() - (inst->K*2);
+        csetP = cStat->clusterVec.size() - (inst->K*2) - inst->m;
+    }
+    else if (problem->scen == "1A"){
+        setP = bStat->bundleVec.size() - (2*inst->K);
+        setN = setP;
+
+        csetP = cStat->clusterVec.size() - (inst->K*2);;
+        cset = csetP;
+    }
+
+
     // int setf;
     int ref = inst->m;
     pair<int, int> cFArc;
@@ -328,26 +409,26 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
     int auxK;
 
     for (int i = 0; i < bStat->bundleVec.size(); i++){
-        if (i < setN){//i is a request bundle
+        if (i < setP){//i is a request bundle
             if (i > clusterA*(ref + 1) + ref){
                 clusterA++;
             }           
         }
         else{
-            if(problem->scen == "1A"){
+            if(problem->scen == "1A" || problem->scen == "1AD"){
                 clusterA++;
             }
         }
 
         clusterB = 0;
         for (int j = 0; j < bStat->bundleVec.size(); j++){
-            if (j < setN){//j is a request bundle
+            if (j < setP){//j is a request bundle
                 if (j > clusterB*(ref + 1) + ref){
                     clusterB++;
                 }                
             }
             else{
-                if(problem->scen == "1A"){
+                if(problem->scen == "1A" || problem->scen == "1AD"){
                     clusterB++;
                 }
             }
@@ -373,46 +454,6 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
             }
         }
     }
-
-    // for (int i = 0; i < cStat->clusterVec.size(); i++){
-    //     for (int j = 0; j < cStat->clusterVec.size(); j++){
-    //         if(cStat->cArcs[i][j]){
-    //             cFArc.first = i;
-    //             cFArc.second = j;
-    //             cStat->cArcVec.push_back(cFArc);
-
-    //             if (i < cset){
-    //                 if (j < cset){
-    //                     for (int k = 0; k < inst->K; k++){
-    //                         cStat->arcV[i][j].push_back(k);
-    //                     }                        
-    //                 }
-    //                 else if (j >= fcDummy){
-    //                     auxK = j - fcDummy;
-    //                     cStat->arcV[i][j].push_back(auxK);
-    //                 }
-    //             }
-    //             else if (i < fcDummy){
-    //                 if (j < cset){
-    //                     auxK = i - cset;
-    //                     cStat->arcV[i][j].push_back(auxK);
-    //                 }                    
-    //             }
-    //         }
-    //     }
-    // }
-
-
-    // for (int a = 0; a < cStat->cArcVec.size(); a++){
-    //     int cA = cStat->cArcVec[a].first;
-    //     int cB = cStat->cArcVec[a].second;
-
-    //     for (int k1 = 0; k1 < cStat->arcV[cA][cB].size(); k1++){
-    //         int k = cStat->arcV[i][j][k1];
-    //         cStat->vArcPlus[i][k].push_back(cStat->cArcVec[a]);
-    //         cStat->vArcMinus[j][k].push_back(cStat->cArcVec[a]);
-    //     }
-    // }
 
     for (int a = 0; a < bStat->bArcVec.size(); a++){
         int i = bStat->bArcVec[a].first;
@@ -443,7 +484,7 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
 
 void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem){
     int parcelReq;
-    if (problem->scen == "1A"){
+    if (problem->scen == "1A" || problem->scen == "1AD"){
         for (int i = 0; i < bStat->bundleVec.size(); i++){
             for (int j = 0; j < bStat->bundleVec[i].size(); j++){
                 if (bStat->bundleVec[i][j] < inst->n){
@@ -499,11 +540,11 @@ void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeV
             for (int j = 0; j < bStat->bundleVec[i].size() - 1; j++){
                 
                 if (bStat->bundleVec[i][j] >= inst->n){//if the element of the bundle is not a passenger request
-                    parcelTime += ((mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]])/inst->vmed) + nodeVec[bStat->bundleVec[i][j]].delta;
+                    parcelTime += nodeVec[bStat->bundleVec[i][j]].delta;
 
                     if (bStat->bundleVec[i][j + 1] < inst->n){//if the next element is a passenger
-                        bundleTime = nodeVec[bStat->bundleVec[i][j + 1]].e - parcelTime;
-                        endTime += bundleTime + parcelTime;
+                        bundleTime = nodeVec[bStat->bundleVec[i][j + 1]].e - parcelTime - ((mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]])/inst->vmed);
+                        endTime += bundleTime + parcelTime + ((mdist[bStat->bundleVec[i][j]][bStat->bundleVec[i][j + 1]])/inst->vmed);
                         firstPassenger = true;
                         // break;
                     }
@@ -523,6 +564,10 @@ void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeV
             if (firstPassenger){
                 bStat->bundleStart.push_back(bundleTime);
             }
+            else{
+                bundleTime = nodeVec[bStat->bundleVec[i][0]].e;
+                bStat->bundleStart.push_back(bundleTime);                
+            }
         }
 
         else{
@@ -535,6 +580,12 @@ void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeV
         }
     }
 
+    // cout << "Start and end times: " << endl;
+    // for (int i = 0; i < bStat->bundleStart.size(); i++){
+    //     cout << "Bundle " << i << ": " << bStat->bundleStart[i] << " - " << bStat->bundleEnd[i] << endl;
+    // }
+    // cout << endl;
+    // getchar();
 }
 
 void makeBundleReference(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
@@ -557,7 +608,7 @@ bool compareCosts(const bParcelStruct &a, const bParcelStruct &b){
 
 void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, int p, vector< vector<bParcelStruct> > &clsParcel, probStat* problem, int Q){
 
-    if (problem->scen == "1A"){
+    if (problem->scen == "1A" || problem->scen == "1AD"){
         vector<bParcelStruct> vecOfDist;
         double singleCost;
         int counter;
@@ -902,23 +953,23 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 
     feasibleBundleArcs(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
 
-    // cout<< "\nFeasible arcs between bundles:" << endl;
-    // for (int i = 0; i < bStat.bundleVec.size(); i++){
-    //  if (i == 0){
-    //      cout << setw(3) << " ";
-    //  }
-    //  cout << setw(3) << std::right << i;
-    // }
-    // cout << endl;
+    cout<< "\nFeasible arcs between bundles:" << endl;
+    for (int i = 0; i < bStat.bundleVec.size(); i++){
+     if (i == 0){
+         cout << setw(3) << " ";
+     }
+     cout << setw(3) << std::right << i;
+    }
+    cout << endl;
 
-    // for (int i = 0; i < bStat.bundleVec.size(); i++){
-    //  cout << setw(3) << std::right << i;
-    //  for (int j = 0; j < bStat.bundleVec.size(); j++){
-    //      cout << setw(3) << std:: right << bStat.bArcs[i][j];
-    //  }
-    //  cout << endl;
-    // }
-    // getchar();
+    for (int i = 0; i < bStat.bundleVec.size(); i++){
+     cout << setw(3) << std::right << i;
+     for (int j = 0; j < bStat.bundleVec.size(); j++){
+         cout << setw(3) << std:: right << bStat.bArcs[i][j];
+     }
+     cout << endl;
+    }
+    getchar();
 
     // cout << "Bundle beginning times: " << endl;
     // for (int i = 0; i < bStat.bundleStart.size(); i++){
@@ -955,23 +1006,23 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     getchar();
     feasibleClusterArcs(inst, nodeVec, &bStat, &cStat, p, problem);
 
-    // cout<< "\nFeasible arcs between clusters:" << endl;
-    // for (int i = 0; i < cStat.clusterVec.size(); i++){
-    //  if (i == 0){
-    //      cout << setw(3) << " ";
-    //  }
-    //  cout << setw(3) << std::right << i;
-    // }
-    // cout << endl;
-    // for (int i = 0; i < cStat.clusterVec.size(); i++){
-    //  cout << setw(3) << std::right << i;
-    //  for (int j = 0; j < cStat.clusterVec.size(); j++){
-    //      cout << setw(3) << std:: right << cStat.cArcs[i][j];
-    //  }
-    //  cout << endl;
-    // }
+    cout<< "\nFeasible arcs between clusters:" << endl;
+    for (int i = 0; i < cStat.clusterVec.size(); i++){
+     if (i == 0){
+         cout << setw(3) << " ";
+     }
+     cout << setw(3) << std::right << i;
+    }
+    cout << endl;
+    for (int i = 0; i < cStat.clusterVec.size(); i++){
+     cout << setw(3) << std::right << i;
+     for (int j = 0; j < cStat.clusterVec.size(); j++){
+         cout << setw(3) << std:: right << cStat.cArcs[i][j];
+     }
+     cout << endl;
+    }
 
-    // getchar();
+    getchar();
 
     ///////////////////////////////////////
     

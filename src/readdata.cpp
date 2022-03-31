@@ -48,6 +48,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             problem->dParcel = 0;//1 allows for direct parcel delivery
         }
     }
+    if (problem->scen == "1AD"){//1A with direct parcel delivery
+
+        problem->p1 = 0; //1 is multi, 0 is single; p1 refers to customer
+        problem->p2 = 0; //p2 refers to parcel
+        problem->dParcel = 1;//1 allows for direct parcel delivery
+        
+    }
     else if (problem->scen == "2A"){
         problem->p1 = 1; //1 is multi, 0 is single; p1 refers to customer
         problem->p2 = 0; //p2 refers to parcel
@@ -68,12 +75,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         problem->p2 = 1;
         problem->dParcel = 1;        
     }
-    else if (problem->scen == "PC" || problem->scen == "BL2"){ //PC and BL2 scenarios
-        problem->p1 = -1;
+    else if (problem->scen == "PC" || problem->scen == "BL2"){ //PC: dedicated vehicles for each service; BL2: same car for both services, no shared trips
         problem->p2 = -1;
         problem->dParcel = 1;    
     }
-    //condition for osarp and fip later
+    //condition for osarp and fip later 
+    //osarp: original sarp with detours;
+    //fip: original freight insertion problem
 
 
     string file, ewf;
@@ -375,14 +383,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     else if (inst->instType == "csarp" || inst->instType == "ghsarp"){
         int originalK = 0;
     
-        if (inst->instType == "ghsarp"){
-            originalK = 1;
-        }
+
 
         in >> K;
         in >> service;
         in >> n;
         in >> m;
+
+        if (inst->instType == "ghsarp"){
+            originalK = 1;
+        }
+        else{
+            originalK = K;
+        }
 
         inst->preInst = 1;
 
@@ -390,11 +403,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         cout << "\nm: " << m;
         cout << "\nK: " << K << endl;
         
-        getchar();
         service = service/60;
  
         originalV = 2*n + 2*m + originalK;
-        
+
         V = n + 2*m + K;
         // inst->vmed = 19.3;
         inst->dummy = K;
