@@ -35,15 +35,16 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
         csetN = csetP;
     // }
 
-
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, bStat->bundleVec.size());
 
 	for (int i = 0; i < bStat->bundleVec.size(); i++){
 		x[i] = IloArray <IloBoolVarArray> (env, bStat->bundleVec.size());
+
 		for(int j = 0; j < bStat->bundleVec.size(); ++j){
 			if (bStat->bArcs[i][j] != true){
 				continue; // If arc i to j is invalid
+
 			} 
 
 			x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
@@ -372,13 +373,14 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
  //*******************************
 
-    //Forcing constraints
-    // IloExpr exp3(env);
+    // //Forcing constraints
+    // IloExpr expk(env);
+    // int a = 48;
+    // int b = 52;
+    // expk = x[a][b][3];
 
-    // exp3 = x[30][4][0];
-
-    // sprintf (var, "Constraint10");
-    // IloRange cons1 = (exp3 == 1);
+    // sprintf (var, "Constraint10_1");
+    // IloRange cons1 = (expk == 1);
     // cons1.setName(var);
     // model.add(cons1); 
 

@@ -205,7 +205,7 @@ void genPoints (int argc, char** argv, Info *info){
 
                     for (int j = 0; j < totalPoints; j++){
                         nodeVec.push_back(candidate);
-                    }
+                    } 
 
                     lambda = info->vecOfLambda[l];
 

@@ -425,6 +425,40 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 	}
 
+	//Constraint 15  - forcing constraints
+	// for (int i = 0; i < nas->arcNN.size(); i++){
+		// IloExpr exp(env);
+		// int u = 4;
+		// int v = 5;
+
+		// exp = x[u][v][0];
+
+		// sprintf (var, "Constraint15_1");
+		// IloRange cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
+
+		// u = 5;
+		// v = 1;
+
+		// exp = x[u][v][0];
+
+		// sprintf (var, "Constraint15_2");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
+
+		// u = 1;
+		// v = 10;
+
+		// exp = x[u][v][0];
+
+		// sprintf (var, "Constraint15_3");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
+	// }
+
 		//Constraint 14  -  no parcel transportation while serving passenger
 	if (problem->scen == "BL2"){
 		for (int i = 0; i < inst->n; i++){

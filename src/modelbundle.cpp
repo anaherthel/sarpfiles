@@ -52,6 +52,7 @@ void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bSt
         }
 
         for (int i = 2*inst->m + inst->n; i < nodeVec.size(); i++){
+            
             bStat->bundle.push_back(i);
             bStat->bundleVec.push_back(bStat->bundle);
             // cStat->clusters.push_back(bStat->bundle);
@@ -211,17 +212,18 @@ void initArcs (instanceStat *inst, bundleStat *bStat, clSt *cStat){
 void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem){
     int setN; //last index of bundles before starting points
     int setP; //last index of bundles with only passengers
-    
+    int ref;
+
     if (problem->scen == "1AD"){
         // setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
         setN = bStat->bundleVec.size() - (2*inst->K);
         setP = setN;
-        int ref = 3*inst->m;
+        ref = 3*inst->m;
     }
     else if (problem->scen == "1A"){
         setP = bStat->bundleVec.size() - (2*inst->K);
         setN = setP;
-        int ref = inst->m;
+        ref = inst->m;
     }
 
     int currentCluster = 0;
@@ -335,12 +337,16 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
                     }
                 }
                 else if (i < fDummy){//i is a starting bundle
-                     if (j < setN){ //j is a request bundle
+                    if (j < setN){ //j is a request bundle
                         auxK = i - setN;
                         bStat->arcV[i][j].push_back(auxK);                         
-                    }                  
+                    }              
                 }
             }
+        }
+        if (i >= setN && i < fDummy){//i is a starting bundle
+            auxK = i - setN; //arc from starting node to end depot
+            bStat->arcV[i][i + inst->K].push_back(auxK);
         }
     }
 
@@ -367,13 +373,18 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
     int setS;
     int cset;
     int csetP; //with passengers
+    int ref;
 
     if (problem->scen == "1AD"){
-        setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
+        // setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
         setN = bStat->bundleVec.size() - (2*inst->K);
+        setP = setN;
 
         cset = cStat->clusterVec.size() - (inst->K*2);
-        csetP = cStat->clusterVec.size() - (inst->K*2) - inst->m;
+        csetP = cset;
+        // csetP = cStat->clusterVec.size() - (inst->K*2) - inst->m;
+
+        ref = 3*inst->m;
     }
     else if (problem->scen == "1A"){
         setP = bStat->bundleVec.size() - (2*inst->K);
@@ -381,11 +392,11 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
 
         csetP = cStat->clusterVec.size() - (inst->K*2);;
         cset = csetP;
+        ref = inst->m;
     }
 
-
     // int setf;
-    int ref = inst->m;
+
     pair<int, int> cFArc;
     int fDummy = bStat->bundleVec.size() - inst->K;
     int fcDummy = cStat->clusterVec.size() - inst->K;
