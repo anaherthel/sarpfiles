@@ -438,13 +438,9 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
                     cStat->cArcs[clusterA][clusterB] = true;
                     cFArc.first = i;
                     cFArc.second = j;
-                    // cout << "something" << endl;
-                    // getchar();
+
                     cStat->cArcMinus[clusterB].push_back(cFArc);
                     cStat->cArcPlus[clusterA].push_back(cFArc);
-                    // cout << "other thing" << endl;
-                    // getchar();
-
                 }
             }
         }
@@ -473,8 +469,6 @@ void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleS
     //     }
     //     cout << endl;
     // }
-    // getchar();
-
 }
 
 void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem){
@@ -604,7 +598,6 @@ void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeV
     //     cout << "Bundle " << i << ": " << bStat->bundleStart[i] << " - " << bStat->bundleEnd[i] << endl;
     // }
     // cout << endl;
-    // getchar();
 }
 
 void makeBundleReference(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
@@ -702,8 +695,6 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
             auxPair.second = sStat->solvec[k][i].second;            
             auxVec.push_back(auxPair);
         }
-        // cout<< "here1";
-        // getchar();
         while(!auxVec.empty()){
             // if (sStat->solOrder[k].empty()){
             if (orderVec.empty()){
@@ -729,14 +720,10 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                         auxVec.erase(auxVec.begin()+j);
                     }
                 }
-            }
-            // cout << "innode3" << endl;
-            // getchar();            
+            }        
         // cout<< "auxvec size: " << auxVec.size();
         // getchar();
         }
-        // cout<< "here3";
-        // getchar();
         sStat->solOrder.push_back(orderVec);
         orderVec.clear();
     }
@@ -749,16 +736,6 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
             }
         }
     }
-
-
-    // cout << "Values before: " << endl;
-
-    // cout << "\ncosts: " << sStat->costs << endl;
-    // cout << "\nparcel profit: " << sStat->pProfit << endl;
-
-    // getchar();
-    // cout << "\nProfits: " << endl;
-
 
     for (int k = 0; k < inst->K; k++){
         for (int i = 0; i < sStat->solInNode[k].size() - 1; i++){
@@ -820,8 +797,6 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
         cout << endl;
     }
     cout << endl;   
-    // getchar(); 
-    // getchar();
 }
 
 void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
@@ -913,22 +888,22 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 
     makeBundles(inst, nodeVec, &bStat, &cStat, clsParcel, problem);
 
-    cout << "\nBundle Vector: [";
+    // cout << "\nBundle Vector: [";
 
-    for (int i = 0; i < bStat.bundleVec.size(); i++){
-        cout << "(" << i << "): [";
-        for (int j = 0; j < bStat.bundleVec[i].size(); j++){
-            cout << bStat.bundleVec[i][j];
-            if (j < bStat.bundleVec[i].size() - 1){
-                cout << ",";
-            }
-            else{
-                cout << "] ";
-            }
-        }
-        cout << endl;
-    }
-    getchar();
+    // for (int i = 0; i < bStat.bundleVec.size(); i++){
+    //     cout << "(" << i << "): [";
+    //     for (int j = 0; j < bStat.bundleVec[i].size(); j++){
+    //         cout << bStat.bundleVec[i][j];
+    //         if (j < bStat.bundleVec[i].size() - 1){
+    //             cout << ",";
+    //         }
+    //         else{
+    //             cout << "] ";
+    //         }
+    //     }
+    //     cout << endl;
+    // }
+    // getchar();
 
     makeParcelBundles(inst, nodeVec, &bStat, problem);
 
@@ -972,23 +947,23 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 
     feasibleBundleArcs(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
 
-    cout<< "\nFeasible arcs between bundles:" << endl;
-    for (int i = 0; i < bStat.bundleVec.size(); i++){
-     if (i == 0){
-         cout << setw(3) << " ";
-     }
-     cout << setw(3) << std::right << i;
-    }
-    cout << endl;
+    // cout<< "\nFeasible arcs between bundles:" << endl;
+    // for (int i = 0; i < bStat.bundleVec.size(); i++){
+    //  if (i == 0){
+    //      cout << setw(3) << " ";
+    //  }
+    //  cout << setw(3) << std::right << i;
+    // }
+    // cout << endl;
 
-    for (int i = 0; i < bStat.bundleVec.size(); i++){
-     cout << setw(3) << std::right << i;
-     for (int j = 0; j < bStat.bundleVec.size(); j++){
-         cout << setw(3) << std:: right << bStat.bArcs[i][j];
-     }
-     cout << endl;
-    }
-    getchar();
+    // for (int i = 0; i < bStat.bundleVec.size(); i++){
+    //  cout << setw(3) << std::right << i;
+    //  for (int j = 0; j < bStat.bundleVec.size(); j++){
+    //      cout << setw(3) << std:: right << bStat.bArcs[i][j];
+    //  }
+    //  cout << endl;
+    // }
+    // getchar();
 
     // cout << "Bundle beginning times: " << endl;
     // for (int i = 0; i < bStat.bundleStart.size(); i++){
@@ -1005,43 +980,44 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     // }
     // getchar();
 
-    for (int i = 0; i < cStat.clusterVec.size(); i++){
-        cout << "\nCluster " << i << ": [";
-        for(int k = 0; k < cStat.clusterVec[i].size(); k++){
-            cout << "(" << cStat.clusterVec[i][k] << ") " << "[";
-            for (int j = 0; j < bStat.bundleVec[cStat.clusterVec[i][k]].size(); j++){
-                cout << setw(3) << std:: right << bStat.bundleVec[cStat.clusterVec[i][k]][j];
-                if (j < bStat.bundleVec[cStat.clusterVec[i][k]].size() - 1){
-                    cout << ",";
-                }
-                else{
-                    cout << "] ";
-                }
-            }
+    // for (int i = 0; i < cStat.clusterVec.size(); i++){
+    //     cout << "\nCluster " << i << ": [";
+    //     for(int k = 0; k < cStat.clusterVec[i].size(); k++){
+    //         cout << "(" << cStat.clusterVec[i][k] << ") " << "[";
+    //         for (int j = 0; j < bStat.bundleVec[cStat.clusterVec[i][k]].size(); j++){
+    //             cout << setw(3) << std:: right << bStat.bundleVec[cStat.clusterVec[i][k]][j];
+    //             if (j < bStat.bundleVec[cStat.clusterVec[i][k]].size() - 1){
+    //                 cout << ",";
+    //             }
+    //             else{
+    //                 cout << "] ";
+    //             }
+    //         }
             
-        }
-        cout << "]" << endl;
-    }
-    getchar();
+    //     }
+    //     cout << "]" << endl;
+    // }
+    // getchar();
+    
     feasibleClusterArcs(inst, nodeVec, &bStat, &cStat, p, problem);
 
-    cout<< "\nFeasible arcs between clusters:" << endl;
-    for (int i = 0; i < cStat.clusterVec.size(); i++){
-     if (i == 0){
-         cout << setw(3) << " ";
-     }
-     cout << setw(3) << std::right << i;
-    }
-    cout << endl;
-    for (int i = 0; i < cStat.clusterVec.size(); i++){
-     cout << setw(3) << std::right << i;
-     for (int j = 0; j < cStat.clusterVec.size(); j++){
-         cout << setw(3) << std:: right << cStat.cArcs[i][j];
-     }
-     cout << endl;
-    }
+    // cout<< "\nFeasible arcs between clusters:" << endl;
+    // for (int i = 0; i < cStat.clusterVec.size(); i++){
+    //  if (i == 0){
+    //      cout << setw(3) << " ";
+    //  }
+    //  cout << setw(3) << std::right << i;
+    // }
+    // cout << endl;
+    // for (int i = 0; i < cStat.clusterVec.size(); i++){
+    //  cout << setw(3) << std::right << i;
+    //  for (int j = 0; j < cStat.clusterVec.size(); j++){
+    //      cout << setw(3) << std:: right << cStat.cArcs[i][j];
+    //  }
+    //  cout << endl;
+    // }
 
-    getchar();
+    // getchar();
 
     ///////////////////////////////////////
     

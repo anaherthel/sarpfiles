@@ -548,9 +548,9 @@ void createTimesLoad(Info *info, vector<CandStruct> &orgNodes)
             if (orgNodes[i].label2 == 1){//pickup
                 // tsVec[i].first = 560 + rand() % 480;
                 // tsVec[i].second = tsVec[i].first;
-                info->tsVec[i].first = rand() % 1440;
+                info->tsVec[i].first = 30 + rand() % 1300;
                 while (info->tsVec[i].first + info->delta[i] > 1440){
-                    info->tsVec[i].first = rand() % 1440;
+                    info->tsVec[i].first = 30 + rand() % 1300;
                     // cout << "Time point for node " << i << ": " << info->tsVec[i].first << endl; 
                     // //getchar();
                 }

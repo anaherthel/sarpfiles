@@ -25,7 +25,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     inst->InstName = getInstName(argv);
 
     cout << "Instance Name: " << inst->InstName;
-    getchar();
+    // getchar();
     // if (argv[2] == "sim"){
     //     problem->sim = true;
     // }
@@ -111,19 +111,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     if (inst->instType == "sf_data"){
         int tempNode;
 
-        // in >> K;
-        in >> tempNode;
+        in >> K;
+        // in >> tempNode;
         in >> service;
         in >> n;
         in >> m;
         // K = 3;
 
-        if (n <= 10){
-            K = n-1;
-        }
-        else{
-            K = ceil(0.6*n);
-        }
+        // if (n <= 10){
+        //     K = n-1;
+        // }
+        // else{
+        //     K = ceil(0.6*n);
+        // }
 
         // if (problem->model == "ils"){
         //     K = n - 1;
@@ -141,6 +141,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // getchar();
 
         service = service/60;
+
+        cout << "Service: " << service << endl;
 
 
         originalV = 2*n + 2*m + 1;
@@ -383,26 +385,46 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     else if (inst->instType == "csarp" || inst->instType == "ghsarp"){
         int originalK = 0;
     
-
-
         in >> K;
         in >> service;
         in >> n;
         in >> m;
+        // K = 1;
 
         if (inst->instType == "ghsarp"){
             originalK = 1;
         }
         else{
             originalK = K;
+            // originalK = 1;
         }
 
+        // if (n <= 10){
+        //     K = n-1;
+        // }
+        // else{
+        //     K = ceil(0.6*n);
+        // }
+
+        if (trialK >= n){
+            cout << "Exceeded K size" << endl;
+            
+            exit(1);
+        }
+
+        if (trialK >= K){
+            K = trialK;
+        }
+        else{
+            trialK = K;
+        }
+        
         inst->preInst = 1;
 
         cout << "\nn: " << n;
         cout << "\nm: " << m;
         cout << "\nK: " << K << endl;
-        
+        // getchar();
         service = service/60;
  
         originalV = 2*n + 2*m + originalK;
@@ -478,26 +500,26 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
 
-        cout << "Vector of final points:" << endl;
+        // cout << "Vector of final points:" << endl;
 
-        for (int i = 0; i < vxf.size(); i++){
-            cout << i << ": " << vxf[i] << " " << vyf[i] << endl;
-        }
-        cout << endl;     
+        // for (int i = 0; i < vxf.size(); i++){
+        //     cout << i << ": " << vxf[i] << " " << vyf[i] << endl;
+        // }
+        // cout << endl;     
 
 
 
-        getchar();
+        // getchar();
 
         for (int i = 0; i < n; i++){
             vload[i] = 0;
         }
 
-        cout << "\nve: " << endl;
-        for (int i = 0; i < ve.size(); i++){
-            cout << ve[i] << endl;
-        }
-        getchar();
+        // cout << "\nve: " << endl;
+        // for (int i = 0; i < ve.size(); i++){
+        //     cout << ve[i] << endl;
+        // }
+        // getchar();
 
         // Calculate distance matrix (Euclidian)
 

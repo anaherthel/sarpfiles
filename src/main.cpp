@@ -80,7 +80,8 @@ int main (int argc, char *argv[]) {
 				inst.min = false;
 			}
 		}
-	//}
+		// trialK++;
+	// }
 
 	return 0;
 }

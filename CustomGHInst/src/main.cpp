@@ -213,7 +213,7 @@ void generateInst(int argc, char** argv, Info *info){
     double timePoint;
 
     for (int i = 0; i < info->n; i++){
-            timePoint = rand() % 1440;
+            timePoint = 30 + (rand() % 1400);
 
             if (timePoint < 60){
                 timePoint += (rand() % 60)*2;
