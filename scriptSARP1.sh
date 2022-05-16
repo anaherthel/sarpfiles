@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances/sf_data'
-output='testingKchanges_sfsarp.txt'
+dirInstancias='Instances/csarp'
+output='testingKchanges_csarp.txt'
 #runs=10
 
 cat /dev/null > $output

@@ -27,9 +27,9 @@ struct NodesStruct{
 };
 
 struct CandStruct{
-    int index;
-    int realInd;
-    bool chosen;
+    int index; //index the random location will have in the final instance
+    int realInd; //index of the random location in the list it was created
+    bool chosen; //if this location is already assigned to a pass/parc/depot
     int label1;
     int label2;
     //l1: 1 - customer; 2 - parcel; 3 - depot
@@ -102,7 +102,7 @@ void genPoints (int argc, char** argv, Info *info){
     candidate.label1 = 0;
     candidate.label2 = 0;
 
-    int totalPoints;
+    int totalPoints, totalGenerated;
     double lb = 0;
     double ub = 25;
     int multiplier = 1;
@@ -116,13 +116,16 @@ void genPoints (int argc, char** argv, Info *info){
                        
                 info->K = info->n - 1;
                 totalPoints = (info->n + info->m)*2 + (info->K);
+                totalGenerated = totalPoints + ceil(totalPoints/5);//generating more than needed because of bugs of missing coordinates
 
-                for (int j = 0; j < totalPoints; j++){
+                for (int j = 0; j < totalGenerated; j++){
                     coordinate.first = fRand(lb, ub);
                     coordinate.second = fRand(lb, ub);
 
                     info->coordVec.push_back(coordinate);           
                 }
+
+
                 for (int j = 0; j < info->coordVec.size(); j++){
                     for (int k = 0; k < info->coordVec.size(); k++){
                         rowvec.push_back(0);
@@ -134,33 +137,33 @@ void genPoints (int argc, char** argv, Info *info){
                 for (int j = 0; j < info->coordVec.size(); j++){
                     for (int k = 0; k < info->coordVec.size(); k++){
                         if(j == k){
-                        dist[j][k] = 0;
+                            dist[j][k] = 0;
                         }
                         else{
                             dist[j][k] = CalcDistEuc(info->coordVec[j].first, info->coordVec[j].second, info->coordVec[k].first, info->coordVec[k].second);
                         }
                     }
                 }
-                cout << "Coordinates: " << endl;
+                // cout << "Coordinates: " << endl;
  
-                for (int j = 0; j < info->coordVec.size(); j++){
-                    cout << j << "\t" << setw(5) << info->coordVec[j].first << " " << setw(5) << info->coordVec[j].second << endl;
-                }
+                // for (int j = 0; j < info->coordVec.size(); j++){
+                //     cout << j << "\t" << setw(5) << info->coordVec[j].first << " " << setw(5) << info->coordVec[j].second << endl;
+                // }
 
-                cout << endl;
+                // cout << endl;
 
-                //getchar();
+                // getchar();
 
-                cout<< "Distance Matrix: " << endl;
+                // cout<< "Distance Matrix: " << endl;
 
-                for (int j = 0; j < dist.size(); j++){
-                    for(int k = 0; k < dist[j].size(); k++){
-                        cout << setw(6) << dist[j][k] << " ";
-                    }
-                    cout << endl;
-                }
+                // for (int j = 0; j < dist.size(); j++){
+                //     for(int k = 0; k < dist[j].size(); k++){
+                //         cout << setw(6) << dist[j][k] << " ";
+                //     }
+                //     cout << endl;
+                // }
 
-                cout << endl;
+                // cout << endl;
                 //getchar();
 
                 double distSum, avgDist, totalAvg;
@@ -199,15 +202,16 @@ void genPoints (int argc, char** argv, Info *info){
 
                 for (int l = 0; l < info->vecOfLambda.size(); l++){
 
-                    for (int j = 0; j < totalPoints; j++){
+                    for (int j = 0; j < totalGenerated; j++){
                         unclassVec.push_back(j);
                     }
 
-                    for (int j = 0; j < totalPoints; j++){
+                    for (int j = 0; j < totalGenerated; j++){
                         nodeVec.push_back(candidate);
                     } 
 
                     lambda = info->vecOfLambda[l];
+
 
                     info->seed += pow(l + 1, 5); //different tw for different class instances (A, B and C)
                     srand(info->seed);
@@ -341,6 +345,12 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
 
         sort(closeVec.begin(), closeVec.end(), compareDist);
 
+
+        // cout << "Close vec after sorting: " << endl;
+        // for (int i = 0; i < closeVec.size(); i++){
+
+        // }
+
         if (*lambda > 0){
             limit = *lambda;
         }
@@ -415,6 +425,8 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
         closeVec.clear();
     }
 
+
+
     // for (int i = 0; i < K; i++){
     //     number = rand() % unclassVec.size();
     //     candPU = unclassVec[number];
@@ -425,6 +437,12 @@ void classNodes(Info *info, int *lambda, NodesStruct nodeVar, vector<NodesStruct
     //     nodeVec[candPU].label2 = 3;
 
     //     unclassVec.erase(unclassVec.begin() + number);
+    // }
+    // cout << "Final vector: " << unclassVec.size() << endl;
+    // getchar();
+    // cout << "Node  Vec so far: " << endl;
+    // for (int i = 0; i < nodeVec.size(); i++){
+
     // }
 }
 

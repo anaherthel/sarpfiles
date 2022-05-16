@@ -39,5 +39,4 @@ string getInstName (char **argv);
 void getInstParam (instanceStat *inst, vector<int> &instParam);
 void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat);
 
-
 #endif

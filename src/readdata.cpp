@@ -48,7 +48,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             problem->dParcel = 0;//1 allows for direct parcel delivery
         }
     }
-    if (problem->scen == "1AD"){//1A with direct parcel delivery
+    else if (problem->scen == "1AD"){//1A with direct parcel delivery
 
         problem->p1 = 0; //1 is multi, 0 is single; p1 refers to customer
         problem->p2 = 0; //p2 refers to parcel
@@ -145,13 +145,16 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         cout << "Service: " << service << endl;
 
 
+
         originalV = 2*n + 2*m + 1;
 
         if (problem->model != "osarp" && problem->model != "fip"){
             V = n + 2*m + K;
+            inst->sigma = n;
         }
         else{
-            V = originalV;
+            V = 2*n + 2*m + K;
+            inst->sigma = 2*n;
         }
 
         // inst->vmed = 19.3;
@@ -193,14 +196,21 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         // ve[ve.size()-1] = 0;
+        if (problem->model != "osarp" && problem->model != "fip"){
+            for (int i = 0; i < vxs.size(); i++){
+                vxf.push_back(vxs[i]);
+                vyf.push_back(vys[i]);
 
-        for (int i = 0; i < vxs.size(); i++){
-            vxf.push_back(vxs[i]);
-            vyf.push_back(vys[i]);
-
-            if (vload[i] < -2.0){
-                vxf[i - m - n] = vxs[i];
-                vyf[i - m - n] = vys[i];
+                if (vload[i] < -2.0){//if i is a parcel or a depot
+                    vxf[i - m - n] = vxs[i];
+                    vyf[i - m - n] = vys[i];
+                }
+            }
+        }
+        else{
+            for (int i = 0; i < vxs.size(); i++){
+                vxf.push_back(vxs[i]);
+                vyf.push_back(vys[i]);
             }
         }
 
@@ -230,83 +240,114 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 vxf.erase(vxf.begin() + n + m);
                 vyf.erase(vyf.begin() + n + m);
             }
+
+            for (int i = 0; i < n; i++){
+                vl[i] = ve[i];
+            }
+
+            for (int i = n; i < originalV; i++){
+                ve[i] = 0;
+                vl[i] = 1440;
+            }
+
+            for (int i = 0; i < n; i++){
+                vload[i] = 0;
+            }
         }
-
-
-        for (int i = 0; i < n; i++){
-            vl[i] = ve[i];
+        else{
+            for (int i = n; i < n + m; i++){
+                ve[i] = 0;
+                vl[i] = 1440;
+            }
+            for (int i = 2*n + m; i < 2*n + 2*m; i++){
+                ve[i] = 0;
+                vl[i] = 1440;
+            }
+            for (int i =  2*n + 2*m; i <  originalV; i++){
+                ve[i] = 0;
+                vl[i] = 1440;
+            }
         }
-
-        for (int i = n; i < originalV; i++){
-            ve[i] = 0;
-            vl[i] = 1440;
-        }
-
-        // for (int i = 0; i < K; i++){
-        //     vxs.push_back(vxs[vxs.size()-1]);
-        //     vys.push_back(vys[vys.size()-1]);
-        //     vload.push_back(vload[vload.size()-1]);
-        //     ve.push_back(ve[ve.size()-1]);
-        //     vl.push_back(vl[vl.size()-1]);
-        //     vxf.push_back(vxf[vxf.size()-1]);
-        //     vyf.push_back(vyf[vyf.size()-1]);
-        // }
-
-        for (int i = 0; i < n; i++){
-            vload[i] = 0;
-        }
-
-
-        // cout << "\nve-vf: " << endl;
-        // for (int i = 0; i < ve.size(); i++){
-        //     cout << ve[i] << "-" << vl[i] << endl;
-        // }
-
-
-        // getchar();
 
         // Calculate distance matrix (Geolocation)
 
         CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
 
         double singleProfit;
-        for (int i = 0; i < V + inst->dummy; i++){
-            if (i < n){ 
-                delta[i] = (2 * (service)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
-                profit[i] = inst->minpas + inst->paskm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - inst->costkm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
-            }
-            else if (i < V - K){ 
-                delta[i] = service;
-                if (i < n + m){
-                    profit[i] = inst->minpar + inst->parkm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
+        if  (problem->model != "osarp" && problem->model != "fip"){
+            for (int i = 0; i < V + inst->dummy; i++){
+                if (i < n){ 
+                    delta[i] = (2 * (service)) + (CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i))/inst->vmed;
+                    profit[i] = inst->minpas + inst->paskm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i) - inst->costkm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
                 }
-                else{
-                    profit[i] = 0;
-                }
-            }
-            else if (i >= V - K){
-                delta[i] = 0;
-                profit[i] = 0;
-            }
-            for (int j = 0; j < V + inst->dummy; j++){
-                if(i == j){
-                   dist[i][j] = 0;
-                }
-                else{
-                    if (i < V){
-                        if (j < V){
-                            dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
-                        }
-                        else if (j >= V){
-                            dist[i][j] = 0;
-                        }
+                else if (i < V - K){ 
+                    delta[i] = service;
+                    if (i < n + m){
+                        profit[i] = inst->minpar + inst->parkm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
                     }
                     else{
+                        profit[i] = 0;
+                    }
+                }
+                else if (i >= V - K){
+                    delta[i] = 0;
+                    profit[i] = 0;
+                }
+                for (int j = 0; j < V + inst->dummy; j++){
+                    if(i == j){
                         dist[i][j] = 0;
+                    }
+                    else{
+                        if (i < V){
+                            if (j < V){
+                                dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
+                            }
+                            else if (j >= V){
+                                dist[i][j] = 0;
+                            }
+                        }
+                        else{
+                            dist[i][j] = 0;
+                        }
                     }
                 }
             }
         }
+        else{
+            for (int i = 0; i < V + inst->dummy; i++){
+                delta[i] = service;
+                if (i < n){
+                    profit[i] = inst->minpas + inst->paskm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+n+m);
+                }
+                else if (i < n + m){
+                    profit[i] = inst->minpar + inst->parkm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+n+m);
+                }
+                else{
+                    profit[i] = 0;   
+                }
+                if (i >= V - K){
+                    delta[i] = 0;
+                }
+                for (int j = 0; j < V + inst->dummy; j++){
+                    if(i == j){
+                        dist[i][j] = 0;
+                    }
+                    else{
+                        if (i < V){
+                            if (j < V){
+                                dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
+                            }
+                            else if (j >= V){
+                                dist[i][j] = 0;
+                            }
+                        }
+                        else{
+                            dist[i][j] = 0;
+                        }
+                    }
+                }            
+            }
+        }      
 
         for (int i = 0; i < V; i++){
             node->xs = vxs[i];
@@ -406,18 +447,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //     K = ceil(0.6*n);
         // }
 
-        if (trialK >= n){
-            cout << "Exceeded K size" << endl;
+        // if (trialK >= n){
+        //     cout << "Exceeded K size" << endl;
             
-            exit(1);
-        }
+        //     exit(1);
+        // }
 
-        if (trialK >= K){
-            K = trialK;
-        }
-        else{
-            trialK = K;
-        }
+        // if (trialK >= K){
+        //     K = trialK;
+        // }
+        // else{
+        //     trialK = K;
+        // }
         
         inst->preInst = 1;
 
@@ -426,10 +467,16 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         cout << "\nK: " << K << endl;
         // getchar();
         service = service/60;
- 
+
+        if (problem->model != "osarp" && problem->model != "fip"){
+            V = n + 2*m + K;
+        }
+        else{
+            V = 2*n + 2*m + K;
+        }
+
         originalV = 2*n + 2*m + originalK;
 
-        V = n + 2*m + K;
         // inst->vmed = 19.3;
         inst->dummy = K;
 
@@ -465,25 +512,31 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         // ve[ve.size()-1] = 0;
+        if (problem->model != "osarp" && problem->model != "fip"){
+            for (int i = 0; i < vxs.size(); i++){
+                vxf.push_back(vxs[i]);
+                vyf.push_back(vys[i]);
 
-        for (int i = 0; i < vxs.size(); i++){
-            vxf.push_back(vxs[i]);
-            vyf.push_back(vys[i]);
-
-            if (vload[i] < -2.0){
-                vxf[i - n] = vxs[i];
-                vyf[i - n] = vys[i];
+                if (vload[i] < -2.0){
+                    vxf[i - n] = vxs[i];
+                    vyf[i - n] = vys[i];
+                }
             }
-        }
 
-        for (int i = 0; i < n; i++){
-            vxs.erase(vxs.begin() + n);
-            vys.erase(vys.begin() + n);
-            vload.erase(vload.begin() + n);
-            ve.erase(ve.begin() + n);
-            vl.erase(vl.begin() + n);
-            vxf.erase(vxf.begin() + n);
-            vyf.erase(vyf.begin() + n);
+
+            for (int i = 0; i < n; i++){
+                vxs.erase(vxs.begin() + n);
+                vys.erase(vys.begin() + n);
+                vload.erase(vload.begin() + n);
+                ve.erase(ve.begin() + n);
+                vl.erase(vl.begin() + n);
+                vxf.erase(vxf.begin() + n);
+                vyf.erase(vyf.begin() + n);
+            }
+
+            for (int i = 0; i < n; i++){
+                vload[i] = 0;
+            }            
         }
 
 
@@ -502,8 +555,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // cout << "Vector of final points:" << endl;
 
-        // for (int i = 0; i < vxf.size(); i++){
-        //     cout << i << ": " << vxf[i] << " " << vyf[i] << endl;
+        // for (int i = 0; i < vxs.size(); i++){
+        //     cout << i << ": " << vxs[i] << " " << vys[i] << endl;
         // }
         // cout << endl;     
 
@@ -511,9 +564,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // getchar();
 
-        for (int i = 0; i < n; i++){
-            vload[i] = 0;
-        }
+
+
 
         // cout << "\nve: " << endl;
         // for (int i = 0; i < ve.size(); i++){
@@ -658,11 +710,16 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     }
 
+    cout << "Coordinates: " << endl;
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].xs << " - " << nodeVec[i].ys << endl;
+    }
+    getchar();
     //Print starting and end times: (debugging)
-    cout << "\nEarlier times: " << endl;
+    cout << "\nTime windows: " << endl;
 
     for (int i = 0; i < nodeVec.size(); i++){
-        cout << i << ": " << nodeVec[i].e << endl;
+        cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
     }
 
     // cout << "\nLater times: " << endl;
@@ -692,6 +749,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // for (int i = 0; i < inst->n; i++){
     //     cout << i << ": " << nodeVec[i].e << endl;
     // }
+
+    cout << "\nLoads: " << endl;
+
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].load << endl;
+    }
 
     // cout << "\nDeltas: " << endl;
 

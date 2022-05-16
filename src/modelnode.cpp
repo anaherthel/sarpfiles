@@ -1158,3 +1158,28 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	delete[] mdist;
 }
 
+
+void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat*problem, solStats *sStat){
+
+    nodeArcsStruct nas;
+    initArcs(inst, &nas);
+	// feasibleArcsFip (inst, &nas, problem, nodeVec, mdist);
+
+    // cout<< "\nFeasible arcs between nodes:" << endl;
+    // for (int i = 0; i < nas.arcs.size(); i++){
+    //     if (i == 0){
+    //         cout << setw(3) << " ";
+    //     }
+    //     cout << setw(3) << std::right << i << " ";
+    // }
+    // cout << endl;
+    // for(int i = 0; i < nas.arcs.size(); i++){
+    //     cout << setw(3) << std::right << i;
+    //     for(int j = 0; j < nas.arcs[i].size(); j++){
+    //         cout << setw(3) <<  nas.arcs[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+    // cout << endl;
+    // getchar();
+}

@@ -52,6 +52,8 @@ struct instanceStat{
     int dummy;
     double service;
 
+	int sigma;
+
 	double minpas = 3.24; //initial fare for passengers
 	double paskm = 1.03; //fare per km for passengers
 
