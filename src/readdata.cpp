@@ -212,6 +212,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 vxf.push_back(vxs[i]);
                 vyf.push_back(vys[i]);
             }
+            for (int i = n+m; i < 2*n + m; i++){
+                
+                ve[i] = ve[i-n-m] + 18 + rand() % 14;//using data from Uber to obtain an average trip duration.
+
+                vl[i] = ve[i];
+            }
         }
 
         vxs.push_back(vxs[0]);
@@ -522,8 +528,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     vyf[i - n] = vys[i];
                 }
             }
-
-
             for (int i = 0; i < n; i++){
                 vxs.erase(vxs.begin() + n);
                 vys.erase(vys.begin() + n);
@@ -539,8 +543,21 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }            
         }
 
+        else{
+            for (int i = 0; i < vxs.size(); i++){
+                vxf.push_back(vxs[i]);
+                vyf.push_back(vys[i]);
+            }
 
-        if (inst->instType == "ghsarp"){
+            for (int i = n; i < 2*n; i++){
+                
+                ve[i] = ve[i-n] + 18 + rand() % 14;//using data from Uber to obtain an average trip duration.
+
+                vl[i] = ve[i];
+            }
+        }
+
+        if (inst->instType == "ghsarp"){ //multiplying depots
             for (int i = 1; i < K; i++){
                 vxs.push_back(vxs[vxs.size()-1]);
                 vys.push_back(vys[vys.size()-1]);
@@ -560,12 +577,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // }
         // cout << endl;     
 
-
-
         // getchar();
-
-
-
 
         // cout << "\nve: " << endl;
         // for (int i = 0; i < ve.size(); i++){
@@ -578,56 +590,117 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         double singleProfit;
         double euclidean;
         double scalingfactor = 50; //to scale grubhub (ghsarp) distance values
-        for (int i = 0; i < V + inst->dummy; i++){
-            if (i < n){
-                euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i);
-                if (inst->instType == "ghsarp"){
-                    euclidean = euclidean/scalingfactor;
-                }
-                delta[i] = (2 * (service)) + (euclidean)/inst->vmed;
-                profit[i] = inst->minpas + inst->paskm*euclidean - inst->costkm*euclidean;
-            }
-            else if (i < V - K){ 
-                delta[i] = service;
-                if (i < n + m){
-                    euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i+m);
+
+        if (problem->model != "osarp" && problem->model != "fip"){
+            for (int i = 0; i < V + inst->dummy; i++){
+                if (i < n){
+                    euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i);
                     if (inst->instType == "ghsarp"){
                         euclidean = euclidean/scalingfactor;
                     }
-                    profit[i] = inst->minpar + inst->parkm*euclidean;
+                    delta[i] = (2 * (service)) + (euclidean)/inst->vmed;
+                    profit[i] = inst->minpas + inst->paskm*euclidean - inst->costkm*euclidean;
                 }
-                else{
-                    profit[i] = 0;
-                }
-            }
-            else if (i >= V - K){
-                delta[i] = 0;
-                profit[i] = 0;
-            }
-            for (int j = 0; j < V + inst->dummy; j++){
-                if(i == j){
-                   dist[i][j] = 0;
-                }
-                else{
-                    if (i < V){
-                        if (j < V){
-                            euclidean = calcEucDist(vxs, vys, vxf, vyf, i, j);
-                            if (inst->instType == "ghsarp"){
-                                euclidean = euclidean/scalingfactor;
-                            }                           
-                            dist[i][j] = euclidean;
-
+                else if (i < V - K){ 
+                    delta[i] = service;
+                    if (i < n + m){
+                        euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i+m);
+                        cout<< i << "- euclidean: " << euclidean << endl;
+                        if (inst->instType == "ghsarp"){
+                            euclidean = euclidean/scalingfactor;
                         }
-                        else if (j >= V){
-                            dist[i][j] = 0;
-                        }
+                        profit[i] = inst->minpar + inst->parkm*euclidean;
                     }
                     else{
-                        dist[i][j] = 0;
+                        profit[i] = 0;
+                    }
+                }
+                else if (i >= V - K){
+                    delta[i] = 0;
+                    profit[i] = 0;
+                }
+                for (int j = 0; j < V + inst->dummy; j++){
+                    if(i == j){
+                    dist[i][j] = 0;
+                    }
+                    else{
+                        if (i < V){
+                            if (j < V){
+                                euclidean = calcEucDist(vxs, vys, vxf, vyf, i, j);
+                                if (inst->instType == "ghsarp"){
+                                    euclidean = euclidean/scalingfactor;
+                                }                           
+                                dist[i][j] = euclidean;
+
+                            }
+                            else if (j >= V){
+                                dist[i][j] = 0;
+                            }
+                        }
+                        else{
+                            dist[i][j] = 0;
+                        }
                     }
                 }
             }
         }
+
+        else{
+            for (int i = 0; i < V + inst->dummy; i++){
+                delta[i] = service;
+                if (i < n){
+                    euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i+n);
+                    
+                    if (inst->instType == "ghsarp"){
+                        euclidean = euclidean/scalingfactor;
+                    }
+                    profit[i] = inst->minpas + inst->paskm*euclidean;
+                }
+                else if (i < V - K){ 
+                    if (i < 2*n){
+                        profit[i] = 0;
+                    }
+                    else if (i < 2*n + m){
+                        euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i+m);
+                        cout<< i << "- euclidean: " << euclidean << endl;
+                        if (inst->instType == "ghsarp"){
+                            euclidean = euclidean/scalingfactor;
+                        }
+                        profit[i] = inst->minpar + inst->parkm*euclidean;
+                    }
+                    else{
+                        profit[i] = 0;
+                    }
+                }
+                else if (i >= V - K){
+                    delta[i] = 0;
+                    profit[i] = 0;
+                }
+                for (int j = 0; j < V + inst->dummy; j++){
+                    if(i == j){
+                    dist[i][j] = 0;
+                    }
+                    else{
+                        if (i < V){
+                            if (j < V){
+                                euclidean = calcEucDist(vxs, vys, vxf, vyf, i, j);
+                                if (inst->instType == "ghsarp"){
+                                    euclidean = euclidean/scalingfactor;
+                                }                           
+                                dist[i][j] = euclidean;
+
+                            }
+                            else if (j >= V){
+                                dist[i][j] = 0;
+                            }
+                        }
+                        else{
+                            dist[i][j] = 0;
+                        }
+                    }
+                }
+            }
+        }        
 
         for (int i = 0; i < V; i++){
             node->xs = vxs[i];
