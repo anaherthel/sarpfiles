@@ -273,6 +273,24 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 ve[i] = 0;
                 vl[i] = 1440;
             }
+            for (int i = n; i < n + m; i++){
+                vxs.insert(vxs.begin() + i + n + m, vxs[i]);
+                vys.insert(vys.begin() + i + n + m, vys[i]);
+                vload.insert(vload.begin() + i + n + m, vload[i]);
+                ve.insert(ve.begin() + i + n + m, ve[i]);
+                vl.insert(vl.begin() + i + n + m, vl[i]);
+                vxf.insert(vxf.begin() + i + n + m, vxf[i]);
+                vyf.insert(vyf.begin() + i + n + m, vyf[i]);
+            }           
+            for (int i = n; i < n + m; i++){
+                vxs.erase(vxs.begin() + n);
+                vys.erase(vys.begin() + n);
+                vload.erase(vload.begin() + n);
+                ve.erase(ve.begin() + n);
+                vl.erase(vl.begin() + n);
+                vxf.erase(vxf.begin() + n);
+                vyf.erase(vyf.begin() + n);
+            } 
         }
 
         // Calculate distance matrix (Geolocation)
@@ -322,26 +340,32 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         else{
             for (int i = 0; i < V + inst->dummy; i++){
                 delta[i] = service;
-                if (i < n){
-                    profit[i] = inst->minpas + inst->paskm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+n+m);
+                if (i < n){                    
+                    profit[i] = inst->minpas + inst->paskm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+n);
                 }
-                else if (i < n + m){
-                    profit[i] = inst->minpar + inst->parkm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+n+m);
+                else if (i < V - K){ 
+                    if (i < 2*n){
+                        profit[i] = 0;
+                    }
+                    else if (i < 2*n + m){
+                        profit[i] =  inst->minpar + inst->parkm*CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
+                    }
+                    else{
+                        profit[i] = 0;
+                    }
                 }
-                else{
-                    profit[i] = 0;   
-                }
-                if (i >= V - K){
+                else if (i >= V - K){
                     delta[i] = 0;
+                    profit[i] = 0;
                 }
                 for (int j = 0; j < V + inst->dummy; j++){
                     if(i == j){
-                        dist[i][j] = 0;
+                    dist[i][j] = 0;
                     }
                     else{
                         if (i < V){
-                            if (j < V){
-                                dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
+                            if (j < V){                           
+                                dist[i][j] = dist[i][j] = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
                             }
                             else if (j >= V){
                                 dist[i][j] = 0;
@@ -351,9 +375,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                             dist[i][j] = 0;
                         }
                     }
-                }            
+                }
             }
-        }      
+        }           
 
         for (int i = 0; i < V; i++){
             node->xs = vxs[i];
@@ -605,7 +629,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     delta[i] = service;
                     if (i < n + m){
                         euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i+m);
-                        cout<< i << "- euclidean: " << euclidean << endl;
                         if (inst->instType == "ghsarp"){
                             euclidean = euclidean/scalingfactor;
                         }
@@ -662,7 +685,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     }
                     else if (i < 2*n + m){
                         euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i+m);
-                        cout<< i << "- euclidean: " << euclidean << endl;
                         if (inst->instType == "ghsarp"){
                             euclidean = euclidean/scalingfactor;
                         }
@@ -783,23 +805,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     }
 
-    cout << "Coordinates: " << endl;
-    for (int i = 0; i < nodeVec.size(); i++){
-        cout << i << ": " << nodeVec[i].xs << " - " << nodeVec[i].ys << endl;
-    }
-    getchar();
-    //Print starting and end times: (debugging)
+    // cout << "Coordinates: " << endl;
+    // for (int i = 0; i < nodeVec.size(); i++){
+    //     cout << i << ": " << nodeVec[i].xs << " - " << nodeVec[i].ys << endl;
+    // }
+    // getchar();
+
     cout << "\nTime windows: " << endl;
 
     for (int i = 0; i < nodeVec.size(); i++){
         cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
     }
 
-    // cout << "\nLater times: " << endl;
-
-    // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].l << endl;
-    // }
     // cout << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
 
@@ -815,13 +832,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         cout << i << ": " << nodeVec[i].profit << endl;
     }
 
-    // getchar();
+    // // getchar();
 
-    // cout << "\nEarlier times: " << endl;
+    // // cout << "\nEarlier times: " << endl;
 
-    // for (int i = 0; i < inst->n; i++){
-    //     cout << i << ": " << nodeVec[i].e << endl;
-    // }
+    // // for (int i = 0; i < inst->n; i++){
+    // //     cout << i << ": " << nodeVec[i].e << endl;
+    // // }
 
     cout << "\nLoads: " << endl;
 

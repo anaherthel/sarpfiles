@@ -13,7 +13,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	long M2 = 2*(inst->n + inst->m + 1);
 	long W = inst->m + 1;
 	int Q;
-	Q = inst->m;
 
     int fDepot = inst->n + 2*inst->m;
     int fDummy = inst->n + 2*inst->m + inst->K;
@@ -22,15 +21,13 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
 
-	// if (problem->scen == "1A" || problem->scen == "2A"){
-	// 	Q = 1;
-	// }
-	// else if (problem->scen == "1B" || problem->scen == "2B"){
-	// 	Q = inst->m;
-	// }
-	// else{
-	// 	Q = inst->m + 1;
-	// }
+	if (problem->p2 < 1){ //single parcel setting
+		Q = 1;
+	}
+	else{
+		Q = inst->m;
+	}
+
 
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
@@ -71,7 +68,9 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	}
 
 	//Load variable
+
 	IloNumVarArray w(env, nodeVec.size(), 0, Q);
+
 
 
 	for (int i = 0; i < nodeVec.size(); i++){
