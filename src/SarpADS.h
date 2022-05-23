@@ -140,12 +140,11 @@ struct nodeArcsStruct{//for model node
 	vector< pair<int,int> > arcnf; //arcs that do not contain ending depot
 	// for each pair of requests, records the vehicles that can serve that arc
 	vector< vector< vector<int> > > arcV; 
-	//For each request, record the vehicles that can serve it
-	vector< vector<int> > reqV;
 };
 
 void solStatIni(solStats *sStat);
 void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat);
 void printStats(instanceStat *inst, solStats *sStat);
+void printStructures(nodeArcsStruct *nas);
 
 #endif

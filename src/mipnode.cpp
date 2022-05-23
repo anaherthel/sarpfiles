@@ -28,7 +28,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		Q = inst->m;
 	}
 
-
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
 
