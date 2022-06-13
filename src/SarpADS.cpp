@@ -319,73 +319,138 @@ void printStructures(nodeArcsStruct *nas){
     cout << endl;
     // getchar();
 
-    cout << "\n\nAll Arcs: " << endl;
-    for (int i = 0; i < nas->allArcs.size(); i++){
-        cout << nas->allArcs[i].first << "-" << nas->allArcs[i].second << " ==== ";
-    }
+    // cout << "\n\nAll Arcs: " << endl;
+    // for (int i = 0; i < nas->allArcs.size(); i++){
+    //     cout << nas->allArcs[i].first << "-" << nas->allArcs[i].second << " ==== ";
+    // }
     
-    cout << "\n\nArcs Plus: " << endl;
-    for (int i = 0; i < nas->arcPlus.size(); i++){
-        for (int j = 0; j < nas->arcPlus[i].size(); j++){
-            cout << nas->arcPlus[i][j].first << "-" << nas->arcPlus[i][j].second << " ==== ";
-        }
-    }
+    // cout << "\n\nArcs Plus: " << endl;
+    // for (int i = 0; i < nas->arcPlus.size(); i++){
+    //     for (int j = 0; j < nas->arcPlus[i].size(); j++){
+    //         cout << nas->arcPlus[i][j].first << "-" << nas->arcPlus[i][j].second << " ==== ";
+    //     }
+    // }
 
-    cout << "\n\nArcs Minus: " << endl;
-    for (int i = 0; i < nas->arcMinus.size(); i++){
-        for (int j = 0; j < nas->arcMinus[i].size(); j++){
-            cout << nas->arcMinus[i][j].first << "-" << nas->arcMinus[i][j].second << " ==== ";
-        }
-    }
+    // cout << "\n\nArcs Minus: " << endl;
+    // for (int i = 0; i < nas->arcMinus.size(); i++){
+    //     for (int j = 0; j < nas->arcMinus[i].size(); j++){
+    //         cout << nas->arcMinus[i][j].first << "-" << nas->arcMinus[i][j].second << " ==== ";
+    //     }
+    // }
 
-    cout << "\n\nArc NN: " << endl;
-    for (int i = 0; i < nas->arcNN.size(); i++){
-        cout << nas->arcNN[i].first << "-" << nas->arcNN[i].second << " ==== ";
-    }
+    // cout << "\n\nArc NN: " << endl;
+    // for (int i = 0; i < nas->arcNN.size(); i++){
+    //     cout << nas->arcNN[i].first << "-" << nas->arcNN[i].second << " ==== ";
+    // }
 
-    cout << "\n\nArc Nplus: " << endl;
-    for (int i = 0; i < nas->arcNplus.size(); i++){
-        cout << nas->arcNplus[i].first << "-" << nas->arcNplus[i].second << " ==== ";
-    }
+    // cout << "\n\nArc Nplus: " << endl;
+    // for (int i = 0; i < nas->arcNplus.size(); i++){
+    //     cout << nas->arcNplus[i].first << "-" << nas->arcNplus[i].second << " ==== ";
+    // }
     
-    cout << "\n\nArc PN: " << endl;
-    for (int i = 0; i < nas->arcPN.size(); i++){
-    cout << nas->arcPN[i].first << "-" << nas->arcPN[i].second << " ==== ";
-    }
+    // cout << "\n\nArc PN: " << endl;
+    // for (int i = 0; i < nas->arcPN.size(); i++){
+    // cout << nas->arcPN[i].first << "-" << nas->arcPN[i].second << " ==== ";
+    // }
 
-    cout << "\n\nArc nf: " << endl;
-    for (int i = 0; i < nas->arcnf.size(); i++){
-        cout << nas->arcnf[i].first << "-" << nas->arcnf[i].second << " ==== ";
-    }
+    // cout << "\n\nArc nf: " << endl;
+    // for (int i = 0; i < nas->arcnf.size(); i++){
+    //     cout << nas->arcnf[i].first << "-" << nas->arcnf[i].second << " ==== ";
+    // }
 
-    cout << "\n\nArc V Plus: " << endl;
-    for (int i = 0; i < nas->vArcPlus.size(); i++){
-        for (int j = 0; j < nas->vArcPlus[i].size(); j++){
-            for(int k = 0; k < nas->vArcPlus[i][j].size(); k++){
-                cout << nas->vArcPlus[i][j][k].first << "-" << nas->vArcPlus[i][j][k].second << " ==== ";
-            }
-        }
-        cout << endl;
-    } 
+    // cout << "\n\nArc V Plus: " << endl;
+    // for (int i = 0; i < nas->vArcPlus.size(); i++){
+    //     cout << "i: " << i << endl;
+    //     for (int j = 0; j < nas->vArcPlus[i].size(); j++){
+    //         cout << "j(k): " << j << endl;
+    //         for(int k = 0; k < nas->vArcPlus[i][j].size(); k++){
+    //             cout << nas->vArcPlus[i][j][k].first << "-" << nas->vArcPlus[i][j][k].second << " ==== ";
+    //         }
+    //     }
+    //     cout << endl;
+    // } 
 
-    cout << "\n\nArc V Minus: " << endl;
-    for (int i = 0; i < nas->vArcMinus.size(); i++){
-        for (int j = 0; j < nas->vArcMinus[i].size(); j++){
-            for(int k = 0; k < nas->vArcMinus[i][j].size(); k++){
-                cout << nas->vArcMinus[i][j][k].first << "-" << nas->vArcMinus[i][j][k].second << " ==== ";
-            }
-        }
-        cout << endl;
-    }
+    // cout << "\n\nArc V Minus: " << endl;
+    // for (int i = 0; i < nas->vArcMinus.size(); i++){
+    //     cout << "i: " << i << endl;
+    //     for (int j = 0; j < nas->vArcMinus[i].size(); j++){
+    //         cout << "j(k): " << j << endl;
+    //         for(int k = 0; k < nas->vArcMinus[i][j].size(); k++){
+    //             cout << nas->vArcMinus[i][j][k].first << "-" << nas->vArcMinus[i][j][k].second << " ==== ";
+    //         }
+    //     }
+    //     cout << endl;
+    // }
 
-    cout << "\n\narc V:" << endl;
-    for (int i = 0; i < nas->arcV.size(); i++){
-        for (int j = 0; j < nas->arcV[i].size(); j++){
-            for(int k = 0; k < nas->arcV[i][j].size(); k++){
-                cout << i << " - " << j << " - " << k << ": " << nas->arcV[i][j][k] << " ==== ";
-            }
-        }
-        cout << endl;
-    }
+    // cout << "\n\narc V:" << endl;
+    // for (int i = 0; i < nas->arcV.size(); i++){
+    //     cout << "i: " << i << endl;
+    //     for (int j = 0; j < nas->arcV[i].size(); j++){
+    //         cout << "j: " << j << endl;
+    //         for(int k = 0; k < nas->arcV[i][j].size(); k++){
+    //             cout << nas->arcV[i][j][k] << " ==== ";
+    //         }
+    //     }
+    //     cout << endl;
+    // }
 
 }
+
+void fipStruct(instanceStat *inst, solStats *sStat){
+
+    vector<int> pulocations;
+
+    for (int i = 0; i < sStat->solOrder.size(); i++){
+        for (int j = 0; j < sStat->solOrder[i].size(); j++){
+            if (sStat->solOrder[i][j] < 2*inst->n){
+                pulocations.push_back(sStat->solOrder[i][j]);
+            }
+        }
+        sStat->solPass.push_back(pulocations);
+        pulocations.clear();
+    }
+    pulocations.clear();
+
+    for (int k = 0; k < inst->K; k++){
+        for (int i = 0; i < sStat->solPass[k].size(); i++){
+            if(sStat->solPass[k][i] < inst->n){
+                pulocations.push_back(sStat->solPass[k][i]);
+            }
+        }
+        sStat->solPassOrigins.push_back(pulocations);
+        pulocations.clear();
+    }
+
+    // cout << "\nSolution part II: " << endl;
+    // for (int k = 0; k < inst->K; k++){
+    //     cout << "Vehicle " << k << ": ";
+    //     for (int i = 0; i < sStat->solPass[k].size(); i++){
+    //         if (i < sStat->solPass[k].size() - 1){
+    //             cout << sStat->solPass[k][i] << " - ";
+    //         }
+    //         else{
+    //             cout << sStat->solPass[k][i];
+    //         }
+    //     }
+    //     cout << endl;
+    // }
+    // cout << endl;
+
+    // cout << "\nSolution part III - pickup locations: " << endl;
+    // for (int k = 0; k < inst->K; k++){
+    //     cout << "Vehicle " << k << ": ";
+    //     for (int i = 0; i < sStat->solPassOrigins[k].size(); i++){
+    //         if (i < sStat->solPassOrigins[k].size() - 1){
+    //             cout << sStat->solPassOrigins[k][i] << " - ";
+    //         }
+    //         else{
+    //             cout << sStat->solPassOrigins[k][i];
+    //         }
+    //     }
+    //     cout << endl;
+    // }
+    // cout << endl;
+
+
+}
+

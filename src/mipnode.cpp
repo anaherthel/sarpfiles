@@ -654,3 +654,703 @@ void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<no
             inst->min = false;
         }
 }
+
+void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat){
+
+	char var[100];
+	IloEnv env;
+	IloModel model(env, "nSARP");
+	int currSP;
+	// long M = 2*inst->T;
+	// long M2 = 2*(inst->n + inst->m + 1);
+	// long W = inst->m + 1;
+	// int Q;
+
+    int fDepot = 2*inst->n + 2*inst->m;
+    int fDummy = 2*inst->n + 2*inst->m + inst->K;
+
+
+	vector< pair<int, int> > auxPairVec;
+	pair<int, int> auxPair;
+
+	//Creating variables only for pass PU and DL
+	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
+
+    for (int i = 0; i < nodeVec.size(); i++){
+        x[i] = IloArray <IloBoolVarArray> (env, nodeVec.size());
+        for(int j = 0; j <  nodeVec.size(); ++j){
+            if (nas->arcs[i][j] != true){
+                continue; // If arc i to j is invalid
+            } 
+            x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
+            for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+                int k = nas->arcV[i][j][k1];
+                sprintf(var, "x(%d,%d,%d)", i, j, k);
+                x[i][j][k].setName(var);
+                model.add(x[i][j][k]);
+                // cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
+            }
+        }
+    }
+
+	// Variable start of service time
+	IloArray <IloNumVarArray> b(env, nodeVec.size());
+	for (int i = 0; i < nodeVec.size(); i++){
+		b[i] = IloNumVarArray (env, inst->K, 0, inst->T);
+		for (int k = 0; k < inst->K; k++){
+			sprintf(var, "b(%d,%d)", i, k);
+			b[i][k].setName(var);
+			model.add(b[i][k]);
+			// cout << "b: [" << i << "][" << k << "]" << endl;
+		}
+	}
+
+
+	IloExpr objFunction(env);
+
+	for (int i = 0; i < inst->n; i++){
+		for (int j = 0; j < nodeVec.size(); j++){
+			if (nas->arcs[i][j] != true){
+				continue; // If arc i to j is invalid
+			}
+			for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+				int k = nas->arcV[i][j][k1];
+				objFunction += (inst->minpas + (inst->paskm*(mdist[i][i+inst->n]))) * x[i][j][k];
+			}
+		}
+    }
+
+	for (int i = 0; i < nodeVec.size(); i++){
+		for (int j = 0; j < nodeVec.size(); j++){
+			for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+				int k = nas->arcV[i][j][k1];
+				objFunction -= (double)inst->costkm*mdist[i][j] * x[i][j][k];
+        	}
+		}
+	}
+
+	model.add(IloMaximize(env, objFunction));
+
+	//Creating constraints
+
+	//Constraint 1 - All passenger pu nodes go directly to the deliveries
+
+	for (int i = 0; i < inst->n; i++){
+		IloExpr exp(env);
+		int j = i + inst->n;
+		for (int k = 0; k < inst->K; k++){
+			exp += x[i][j][k];
+		}
+
+		sprintf (var, "Constraint1_%d", i);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	//Set all parcel variables to 0;
+
+	for (int i = 2*inst->n; i < 2*inst->n + 2*inst->m; i++){
+		IloExpr exp(env);
+		for (int j = 0; j < nas->arcPlus[i].size();j++){
+			int u = nas->arcPlus[i][j].first;
+			int v = nas->arcPlus[i][j].second;
+
+			for(int k1 = 0; k1 < nas->arcV[u][v].size(); k1++){
+				int k = nas->arcV[u][v][k1];
+				exp += x[u][v][k];
+			}
+		}
+		for (int j = 0; j < nas->arcMinus[i].size();j++){
+			int u = nas->arcMinus[i][j].first;
+			int v = nas->arcMinus[i][j].second;
+
+			for(int k1 = 0; k1 < nas->arcV[u][v].size(); k1++){
+				int k = nas->arcV[u][v][k1];
+				exp += x[u][v][k];
+			}
+		}
+		sprintf (var, "Constraint2_%d", i);
+		IloRange cons = (exp == 0);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	//Constraint 3 - passenger that is picked up, has to be delivered by the same vehicle
+	//test without it
+
+	// for (int i = 0; i < inst->n; i++){
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		IloExpr exp1(env);
+	// 		IloExpr exp2(env);
+
+	// 		for (int a = 0; a < nas->vArcPlus[i][k].size(); a++){
+    //             int u = nas->vArcPlus[i][k][a].first;
+    //             int v = nas->vArcPlus[i][k][a].second;
+
+	// 			exp1 += x[u][v][k];
+	// 		}
+	// 		for (int a = 0; a < nas->vArcPlus[i + inst->m][k].size(); a++){
+	// 			int u = nas->vArcPlus[i + inst->m][k][a].first;
+    //             int v = nas->vArcPlus[i + inst->m][k][a].second;
+
+    //             exp2 += x[u][v][k];
+	// 		}
+	// 		sprintf (var, "Constraint3_%d_%d", i, k);
+	// 		IloRange cons = ((exp1-exp2) == 0);
+	// 		cons.setName(var);
+	// 		model.add(cons);			
+	// 	}
+	// }
+
+	// //Constraint 4 - Flow conservation
+
+	for (int a = 0; a < 2*inst->n + 2*inst->m; a++){
+		for (int k = 0; k < inst->K; k++){
+			IloExpr exp1(env);
+			IloExpr exp2(env);
+			//Left side: arc leaves i
+			for (int b = 0; b < nas->vArcPlus[a][k].size(); b++){
+                int i = nas->vArcPlus[a][k][b].first;
+                int j = nas->vArcPlus[a][k][b].second;
+				exp1 += x[i][j][k];
+			}
+			//Right side: arc enters i
+			for (int b = 0; b < nas->vArcMinus[a][k].size(); b++){
+                int i = nas->vArcMinus[a][k][b].first;
+                int j = nas->vArcMinus[a][k][b].second;
+				exp2 += x[i][j][k];
+
+			}
+			sprintf (var, "Constraint4_%d_%d", a, k);
+			IloRange cons = ((exp1-exp2) == 0);
+			cons.setName(var);
+			model.add(cons);
+		}
+	}
+
+	// //Constraint 5 - The route of every used vehicle has to start at its starting position
+
+
+    for (int k = 0; k < inst->K; k++){
+        IloExpr exp(env);
+        for (int a = 0; a < nas->vArcPlus[inst->V - inst->K + k][k].size(); a++){
+            int u = nas->vArcPlus[inst->V - inst->K + k][k][a].first;
+            int v = nas->vArcPlus[inst->V - inst->K + k][k][a].second;
+
+            exp += x[u][v][k];
+        }
+        sprintf (var, "Constraint5_%d", k);
+        IloRange cons = (exp == 1);
+        cons.setName(var);
+        model.add(cons);
+    }
+
+	// Constraint 6 - The route of every used vehicle has to end at dummy node f
+
+	for (int k = 0; k < inst->K; k++){
+		IloExpr exp(env);
+		for (int a = 0; a < nas->vArcMinus[inst->V + k][k].size(); a++){
+            int u = nas->vArcMinus[inst->V + k][k][a].first;
+            int v = nas->vArcMinus[inst->V + k][k][a].second;
+
+        	exp += x[u][v][k];
+		}
+		sprintf (var, "Constraint6_%d", k);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	//Constraints 9 - TW bj >= (bi + tij)xijk
+
+	for (int a = 0; a < nas->allArcs.size(); a++){
+		IloExpr exp(env);
+        int i = nas->allArcs[a].first;
+        int j = nas->allArcs[a].second;
+		double M = max(double(0),nodeVec[i].l + (mdist[i][j]/inst->vmed)-nodeVec[j].e);
+        for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+            int k = nas->arcV[i][j][k1];
+
+			exp =  b[j][k] - b[i][k] - (5/60) - (mdist[i][j]/inst->vmed) - M * (x[i][j][k] - 1);
+			sprintf (var, "Constraint7_%d_%d_%d", i, j, k);
+			IloRange cons = (exp >= 0);
+			cons.setName(var);
+			model.add(cons);			
+		}
+	}
+
+	// //Constraints 11 and 12 - bound the service beginning time by the earlier and later service times for each node
+
+	for (int i = 0; i < nodeVec.size(); i++){
+		for (int k = 0; k < inst->K; k++){
+			IloExpr exp(env);
+			exp = b[i][k];
+
+			sprintf (var, "Constraint8_%d_%d", i, k);
+			IloRange cons1 = (exp <= nodeVec[i].l);
+			cons1.setName(var);
+			model.add(cons1);
+			
+			sprintf (var, "Constraint9_%d_%d", i, k);
+			IloRange cons2 = (nodeVec[i].e <= exp);
+			cons2.setName(var);
+			model.add(cons2);
+		}
+			
+	}
+
+    //Constraints 13 - maximum driving time
+
+    for (int i = fDepot; i < fDummy; i++){
+		int k = i - fDepot;
+        IloExpr exp(env);
+        exp = b[i + inst->K][k] - b[i][k];
+
+        sprintf (var, "Constraint10_%d_%d", i, k);
+        IloRange cons1 = (exp <= inst->maxTime);
+        cons1.setName(var);
+        model.add(cons1);        
+    }
+
+	//Constraint 11 - No passenger repeated
+
+	for (int i = 0; i < 2*inst->n; i++){
+		IloExpr exp(env);
+		for (int k = 0; k < inst->K; k++){
+			for (int a = 0; a < nas->vArcPlus[i][k].size(); a++){
+                int u = nas->vArcPlus[i][k][a].first;
+                int v = nas->vArcPlus[i][k][a].second;
+
+				exp += x[u][v][k];
+			}
+		}
+		sprintf (var, "Constraint11_%d", i);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	int threads;
+
+    threads = 1;
+
+    cout << "\nThreads: " << threads << endl;
+
+	IloCplex nSARP(model);
+	nSARP.exportModel("fipSARP.lp");
+	nSARP.setParam(IloCplex::Threads, threads);
+	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
+
+    IloNum start;
+    IloNum time;
+    start = nSARP.getTime();
+	nSARP.solve();
+    time = (nSARP.getTime() - start)/threads;
+	cout << "\nSol status: " << nSARP.getStatus() << endl;
+	sStat->feasible = nSARP.isPrimalFeasible();
+
+    // cout << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
+    cout << " Total Time: " << time << endl;
+
+	if (sStat->feasible){
+
+        cout << " LB: " << nSARP.getObjValue() << endl;
+        cout << " UB: " << nSARP.getBestObjValue() << endl;
+        sStat->solprofit = nSARP.getObjValue();
+        sStat->time = time;
+
+        for (int k = 0; k < inst->K; k++){
+            sStat->solvec.push_back(auxPairVec);
+        }
+
+        for (int i = 0; i < nodeVec.size(); i++){
+            for(int j = 0; j < nodeVec.size(); j++){                
+                if (nas->arcs[i][j] == true){
+                    for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+                        int k = nas->arcV[i][j][k1];
+                        if (nSARP.getValue(x[i][j][k]) > 0.5){
+                            auxPair.first = i;
+                            auxPair.second = j;
+                            sStat->solvec[k].push_back(auxPair);
+                            // cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            // getchar();
+                        }
+                    }
+                }
+            }   
+        }
+
+        for (int i = 0; i < nodeVec.size(); i++){
+            for(int j = 0; j < nodeVec.size(); j++){                
+                if (nas->arcs[i][j] == true){
+                    for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+                        int k = nas->arcV[i][j][k1];
+                        if (nSARP.getValue(x[i][j][k]) > 0.5){
+							sStat->solBegin.push_back(nSARP.getValue(b[i][k]));
+							// cout << "b(" << i << ", " << k << "): " << nSARP.getValue(b[i][k]);
+							// getchar();
+                            // cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            // getchar();
+                        }
+                    }
+                }
+            }   
+        }
+        printResults(inst, mdist, sStat, nodeVec);
+
+	}
+	env.end();
+
+}
+
+void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat){
+
+	char var[100];
+	IloEnv env;
+	IloModel model(env, "nSARP");
+	int currSP;
+	// long M = 2*inst->T;
+	// long M2 = 2*(inst->n + inst->m + 1);
+	// long W = inst->m + 1;
+	// int Q;
+
+    int fDepot = 2*inst->n + 2*inst->m;
+    int fDummy = 2*inst->n + 2*inst->m + inst->K;
+
+
+	vector< pair<int, int> > auxPairVec;
+	pair<int, int> auxPair;
+
+
+
+	//Creating variable (i in set of assigned passengers, except last one)
+	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
+
+    for (int i = 0; i < nodeVec.size(); i++){
+        x[i] = IloArray <IloBoolVarArray> (env, nodeVec.size());
+        for(int j = 0; j <  nodeVec.size(); ++j){
+            if (nas->arcs[i][j] != true){
+                continue; // If arc i to j is invalid
+            } 
+            x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
+            for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+                int k = nas->arcV[i][j][k1];
+                sprintf(var, "x(%d,%d,%d)", i, j, k);
+                x[i][j][k].setName(var);
+                model.add(x[i][j][k]);
+                // cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
+            }
+        }
+    }
+
+	// Variable start of service time
+	IloArray <IloNumVarArray> b(env, nodeVec.size());
+	for (int i = 0; i < nodeVec.size(); i++){
+		b[i] = IloNumVarArray (env, inst->K, 0, inst->T);
+		for (int k = 0; k < inst->K; k++){
+			sprintf(var, "b(%d,%d)", i, k);
+			b[i][k].setName(var);
+			model.add(b[i][k]);
+			// cout << "b: [" << i << "][" << k << "]" << endl;
+		}
+	}
+
+
+	IloExpr objFunction(env);
+
+	for (int i = 0; i < inst->n; i++){
+		for (int j = 0; j < nodeVec.size(); j++){
+			if (nas->arcs[i][j] != true){
+				continue; // If arc i to j is invalid
+			}
+			for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+				int k = nas->arcV[i][j][k1];
+				objFunction += (inst->minpas + (inst->paskm*(mdist[i][i+inst->n]))) * x[i][j][k];
+			}
+		}
+    }
+
+	for (int i = 0; i < nodeVec.size(); i++){
+		for (int j = 0; j < nodeVec.size(); j++){
+			for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+				int k = nas->arcV[i][j][k1];
+				objFunction -= (double)inst->costkm*mdist[i][j] * x[i][j][k];
+        	}
+		}
+	}
+
+	model.add(IloMaximize(env, objFunction));
+
+	//Creating constraints
+
+	//Constraint 1 - All passenger pu nodes go directly to the deliveries
+
+	for (int i = 0; i < inst->n; i++){
+		IloExpr exp(env);
+		int j = i + inst->n;
+		for (int k = 0; k < inst->K; k++){
+			exp += x[i][j][k];
+		}
+
+		sprintf (var, "Constraint1_%d", i);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	//Set all parcel variables to 0;
+
+	for (int i = 2*inst->n; i < 2*inst->n + 2*inst->m; i++){
+		IloExpr exp(env);
+		for (int j = 0; j < nas->arcPlus[i].size();j++){
+			int u = nas->arcPlus[i][j].first;
+			int v = nas->arcPlus[i][j].second;
+
+			for(int k1 = 0; k1 < nas->arcV[u][v].size(); k1++){
+				int k = nas->arcV[u][v][k1];
+				exp += x[u][v][k];
+			}
+		}
+		for (int j = 0; j < nas->arcMinus[i].size();j++){
+			int u = nas->arcMinus[i][j].first;
+			int v = nas->arcMinus[i][j].second;
+
+			for(int k1 = 0; k1 < nas->arcV[u][v].size(); k1++){
+				int k = nas->arcV[u][v][k1];
+				exp += x[u][v][k];
+			}
+		}
+		sprintf (var, "Constraint2_%d", i);
+		IloRange cons = (exp == 0);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	//Constraint 3 - passenger that is picked up, has to be delivered by the same vehicle
+	//test without it
+
+	// for (int i = 0; i < inst->n; i++){
+	// 	for (int k = 0; k < inst->K; k++){
+	// 		IloExpr exp1(env);
+	// 		IloExpr exp2(env);
+
+	// 		for (int a = 0; a < nas->vArcPlus[i][k].size(); a++){
+    //             int u = nas->vArcPlus[i][k][a].first;
+    //             int v = nas->vArcPlus[i][k][a].second;
+
+	// 			exp1 += x[u][v][k];
+	// 		}
+	// 		for (int a = 0; a < nas->vArcPlus[i + inst->m][k].size(); a++){
+	// 			int u = nas->vArcPlus[i + inst->m][k][a].first;
+    //             int v = nas->vArcPlus[i + inst->m][k][a].second;
+
+    //             exp2 += x[u][v][k];
+	// 		}
+	// 		sprintf (var, "Constraint3_%d_%d", i, k);
+	// 		IloRange cons = ((exp1-exp2) == 0);
+	// 		cons.setName(var);
+	// 		model.add(cons);			
+	// 	}
+	// }
+
+	// //Constraint 4 - Flow conservation
+
+	for (int a = 0; a < 2*inst->n + 2*inst->m; a++){
+		for (int k = 0; k < inst->K; k++){
+			IloExpr exp1(env);
+			IloExpr exp2(env);
+			//Left side: arc leaves i
+			for (int b = 0; b < nas->vArcPlus[a][k].size(); b++){
+                int i = nas->vArcPlus[a][k][b].first;
+                int j = nas->vArcPlus[a][k][b].second;
+				exp1 += x[i][j][k];
+			}
+			//Right side: arc enters i
+			for (int b = 0; b < nas->vArcMinus[a][k].size(); b++){
+                int i = nas->vArcMinus[a][k][b].first;
+                int j = nas->vArcMinus[a][k][b].second;
+				exp2 += x[i][j][k];
+
+			}
+			sprintf (var, "Constraint4_%d_%d", a, k);
+			IloRange cons = ((exp1-exp2) == 0);
+			cons.setName(var);
+			model.add(cons);
+		}
+	}
+
+	// //Constraint 5 - The route of every used vehicle has to start at its starting position
+
+
+    for (int k = 0; k < inst->K; k++){
+        IloExpr exp(env);
+        for (int a = 0; a < nas->vArcPlus[inst->V - inst->K + k][k].size(); a++){
+            int u = nas->vArcPlus[inst->V - inst->K + k][k][a].first;
+            int v = nas->vArcPlus[inst->V - inst->K + k][k][a].second;
+
+            exp += x[u][v][k];
+        }
+        sprintf (var, "Constraint5_%d", k);
+        IloRange cons = (exp == 1);
+        cons.setName(var);
+        model.add(cons);
+    }
+
+	// Constraint 6 - The route of every used vehicle has to end at dummy node f
+
+	for (int k = 0; k < inst->K; k++){
+		IloExpr exp(env);
+		for (int a = 0; a < nas->vArcMinus[inst->V + k][k].size(); a++){
+            int u = nas->vArcMinus[inst->V + k][k][a].first;
+            int v = nas->vArcMinus[inst->V + k][k][a].second;
+
+        	exp += x[u][v][k];
+		}
+		sprintf (var, "Constraint6_%d", k);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	//Constraints 9 - TW bj >= (bi + tij)xijk
+
+	for (int a = 0; a < nas->allArcs.size(); a++){
+		IloExpr exp(env);
+        int i = nas->allArcs[a].first;
+        int j = nas->allArcs[a].second;
+		double M = max(double(0),nodeVec[i].l + (mdist[i][j]/inst->vmed)-nodeVec[j].e);
+        for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+            int k = nas->arcV[i][j][k1];
+
+			exp =  b[j][k] - b[i][k] - (5/60) - (mdist[i][j]/inst->vmed) - M * (x[i][j][k] - 1);
+			sprintf (var, "Constraint7_%d_%d_%d", i, j, k);
+			IloRange cons = (exp >= 0);
+			cons.setName(var);
+			model.add(cons);			
+		}
+	}
+
+	// //Constraints 11 and 12 - bound the service beginning time by the earlier and later service times for each node
+
+	for (int i = 0; i < nodeVec.size(); i++){
+		for (int k = 0; k < inst->K; k++){
+			IloExpr exp(env);
+			exp = b[i][k];
+
+			sprintf (var, "Constraint8_%d_%d", i, k);
+			IloRange cons1 = (exp <= nodeVec[i].l);
+			cons1.setName(var);
+			model.add(cons1);
+			
+			sprintf (var, "Constraint9_%d_%d", i, k);
+			IloRange cons2 = (nodeVec[i].e <= exp);
+			cons2.setName(var);
+			model.add(cons2);
+		}
+			
+	}
+
+    //Constraints 13 - maximum driving time
+
+    for (int i = fDepot; i < fDummy; i++){
+		int k = i - fDepot;
+        IloExpr exp(env);
+        exp = b[i + inst->K][k] - b[i][k];
+
+        sprintf (var, "Constraint10_%d_%d", i, k);
+        IloRange cons1 = (exp <= inst->maxTime);
+        cons1.setName(var);
+        model.add(cons1);        
+    }
+
+	//Constraint 11 - No passenger repeated
+
+	for (int i = 0; i < 2*inst->n; i++){
+		IloExpr exp(env);
+		for (int k = 0; k < inst->K; k++){
+			for (int a = 0; a < nas->vArcPlus[i][k].size(); a++){
+                int u = nas->vArcPlus[i][k][a].first;
+                int v = nas->vArcPlus[i][k][a].second;
+
+				exp += x[u][v][k];
+			}
+		}
+		sprintf (var, "Constraint11_%d", i);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+	int threads;
+
+    threads = 1;
+
+    cout << "\nThreads: " << threads << endl;
+
+	IloCplex nSARP(model);
+	nSARP.exportModel("fipSARP.lp");
+	nSARP.setParam(IloCplex::Threads, threads);
+	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
+
+    IloNum start;
+    IloNum time;
+    start = nSARP.getTime();
+	nSARP.solve();
+    time = (nSARP.getTime() - start)/threads;
+	cout << "\nSol status: " << nSARP.getStatus() << endl;
+	sStat->feasible = nSARP.isPrimalFeasible();
+
+    // cout << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
+    cout << " Total Time: " << time << endl;
+
+	if (sStat->feasible){
+
+        cout << " LB: " << nSARP.getObjValue() << endl;
+        cout << " UB: " << nSARP.getBestObjValue() << endl;
+        sStat->solprofit = nSARP.getObjValue();
+        sStat->time = time;
+
+        for (int k = 0; k < inst->K; k++){
+            sStat->solvec.push_back(auxPairVec);
+        }
+
+        for (int i = 0; i < nodeVec.size(); i++){
+            for(int j = 0; j < nodeVec.size(); j++){                
+                if (nas->arcs[i][j] == true){
+                    for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+                        int k = nas->arcV[i][j][k1];
+                        if (nSARP.getValue(x[i][j][k]) > 0.5){
+                            auxPair.first = i;
+                            auxPair.second = j;
+                            sStat->solvec[k].push_back(auxPair);
+                            // cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            // getchar();
+                        }
+                    }
+                }
+            }   
+        }
+
+        for (int i = 0; i < nodeVec.size(); i++){
+            for(int j = 0; j < nodeVec.size(); j++){                
+                if (nas->arcs[i][j] == true){
+                    for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+                        int k = nas->arcV[i][j][k1];
+                        if (nSARP.getValue(x[i][j][k]) > 0.5){
+							sStat->solBegin.push_back(nSARP.getValue(b[i][k]));
+							// cout << "b(" << i << ", " << k << "): " << nSARP.getValue(b[i][k]);
+							// getchar();
+                            // cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            // getchar();
+                        }
+                    }
+                }
+            }   
+        }
+        printResults(inst, mdist, sStat, nodeVec);
+
+	}
+	env.end();
+
+}

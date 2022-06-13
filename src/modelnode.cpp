@@ -8,15 +8,18 @@ void initArcs (instanceStat *inst, nodeArcsStruct *nas){
 
     vector<int> aux1d;
     vector< vector<int> > aux2d;
-
-    nas->arcPlus.clear();
+    
+    nas->arcs.clear();
+    nas->allArcs.clear();
     nas->vArcPlus.clear();
     nas->vArcMinus.clear();
     nas->arcV.clear();
     nas->arcPlus.clear();
     nas->arcMinus.clear();
-    auxVec.clear();
-
+    nas->arcNN.clear();
+    nas->arcNplus.clear();
+    nas->arcPN.clear();
+    nas->arcnf.clear();
 
     for (int k = 0; k < inst->K; k++){
         nas->arcPlus.push_back(auxPairVec);
@@ -45,7 +48,6 @@ void initArcs (instanceStat *inst, nodeArcsStruct *nas){
         
         auxVec.clear();
     }
-
 } 
 
 void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<nodeStat> &nodeVec, double **mdist){
@@ -74,7 +76,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
 
             double ttij = mdist[i][j]/inst->vmed;
 
-            if (nodeVec[i].e + ttij <= nodeVec[j].l){
+            if (nodeVec[i].e + ttij < nodeVec[j].l){
                 nas->arcs[i][j] = true;
                 nas->fArc.first = i;
                 nas->fArc.second = j;
@@ -112,7 +114,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                 //if lowest time for req i + travel time from i to j is lower or equal to
                 //the latest point in time to serve request j. If latest time == T, it is always valid                        
 
-                if (nodeVec[i].e + ttij <= nodeVec[j].l){
+                if (nodeVec[i].e + ttij < nodeVec[j].l){
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
                     nas->fArc.second = j;
@@ -154,7 +156,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                     double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
                     //if lowest time for req i + travel time from i to j is lower or equal to
                     //the latest point in time to serve request j. If latest time == T, it is always valid                        
-                    if (nodeVec[i].e + ttij <= nodeVec[j].l){                
+                    if (nodeVec[i].e + ttij < nodeVec[j].l){                
                         nas->arcs[i][j] = true;
                         nas->fArc.first = i;
                         nas->fArc.second = j;
@@ -232,7 +234,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                 double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
                 //if lowest time for req i + travel time from i to j is lower or equal to
                 //the latest point in time to serve request j. If latest time == T, it is always valid                        
-                if (nodeVec[i].e + ttij <= nodeVec[j].l){
+                if (nodeVec[i].e + ttij < nodeVec[j].l){
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
                     nas->fArc.second = j;
@@ -434,6 +436,7 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
     }
     cout << endl;
 
+    // disregard if fip
     cout << "\nSolution structure: " << endl;
     for (int k = 0; k < inst->K; k++){
         cout << "Vehicle " << k << ": ";
@@ -461,7 +464,7 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
         cout << endl;
     }
     cout << endl;   
-    // getchar();    
+    // getchar();  
 }
 
 void output(instanceStat *inst, vector<nodeStat> &nodeVec,  solStats *sStat, probStat* problem){
@@ -528,7 +531,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem, nodeVec, mdist);
     
-    printStructures(&nas);
+    // printStructures(&nas);
 
     getchar();
 
@@ -566,7 +569,9 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	delete[] mdist;
 }
 
-void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<nodeStat> &nodeVec, double **mdist){
+void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<nodeStat> &nodeVec, double **mdist, int stage){
+    //stage 1: solution with only passengers
+    //stage 2: solution with parcels as well
     int auxK;
 
     int fDepot = 2*inst->n + 2*inst->m;
@@ -600,28 +605,30 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
             nas->arcV[i][l].push_back(auxK);
         }
 
-        //Check if we can add parcel between depot and passenger
-        // for (int l = 2*inst->n; l < 2*inst->n + inst->m; l++){//l is a parcel pu node
-        //     nas->arcs[i][l] = true;
-        //     nas->fArc.first = i;
-        //     nas->fArc.second = l;
-        //     nas->arcMinus[l].push_back(nas->fArc);
-        //     nas->arcPlus[i].push_back(nas->fArc);
-        //     nas->allArcs.push_back(nas->fArc);
-        //     nas->arcnf.push_back(nas->fArc);
-        //     auxK = i - fDepot;
-        //     nas->arcV[i][l].push_back(auxK);
-        // }
+        if (stage > 1){
+            //Check if we can add parcel between depot and passenger (we cant but there is no prunning of arcs)
+            for (int l = 2*inst->n; l < 2*inst->n + inst->m; l++){//l is a parcel pu node
+                nas->arcs[i][l] = true;
+                nas->fArc.first = i;
+                nas->fArc.second = l;
+                nas->arcMinus[l].push_back(nas->fArc);
+                nas->arcPlus[i].push_back(nas->fArc);
+                nas->allArcs.push_back(nas->fArc);
+                nas->arcnf.push_back(nas->fArc);
+                auxK = i - fDepot;
+                nas->arcV[i][l].push_back(auxK);
+            }
+        }
     }
 
     for (int i = 0; i < 2*inst->n; i++){//i is a passenger node (PU or DL)
         for(int j = 0; j < 2*inst->n; j++){// j is a passenger req (PU or DL)
-            if(i != j && j != i - inst->n){//not the same node; not a DL to its PU
+            if(i != j && j != i - inst->n){//not the same node; not a DL to its PU; not PU to PU or DL to DL
                 double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
                 //if lowest time for req i + travel time from i to j is lower or equal to
                 //the latest point in time to serve request j. If latest time == T, it is always valid                        
 
-                if (nodeVec[i].e + ttij <= nodeVec[j].l){
+                if (nodeVec[i].e + ttij < nodeVec[j].l){
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
                     nas->fArc.second = j;
@@ -673,23 +680,57 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
 
     }
 
+
     for (int i = 2*inst->n; i < 2*inst->n + 2*inst->m; i++){//i is a parcel request (PU or DL)
         for (int j = 0; j < 2*inst->n; j++){ //j is a passenger request (PU or DL)
-                nas->arcs[i][j] = true;
-                nas->fArc.first = i;
-                nas->fArc.second = j;
-                nas->arcMinus[j].push_back(nas->fArc);
-                nas->arcPlus[i].push_back(nas->fArc);
-                if (i < 2*inst->n + inst->m){
-                    nas->arcPN.push_back(nas->fArc);
-                }
-                nas->allArcs.push_back(nas->fArc);
-                nas->arcnf.push_back(nas->fArc);
-                for (int k = 0; k < inst->K; k++){
-                    nas->arcV[i][j].push_back(k);
-                }
+            nas->arcs[i][j] = true;
+            nas->fArc.first = i;
+            nas->fArc.second = j;
+            nas->arcMinus[j].push_back(nas->fArc);
+            nas->arcPlus[i].push_back(nas->fArc);
+            if (i < 2*inst->n + inst->m){
+                nas->arcPN.push_back(nas->fArc);
+            }
+            nas->allArcs.push_back(nas->fArc);
+            nas->arcnf.push_back(nas->fArc);
+            for (int k = 0; k < inst->K; k++){
+                nas->arcV[i][j].push_back(k);
+            }
         }
+        if (stage > 1){
+            for (int j = 2*inst->n; j < 2*inst->n + 2*inst->m; j++){//j is a parcel request (PU or DL)
+                if (i != j && j != i - inst->m){
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
+                    for (int k = 0; k < inst->K; k++){
+                        nas->arcV[i][j].push_back(k);
+                    }    
+                }
+            }
+            if (i >= 2*inst->n + inst->m){ //only passenger requests of delivery get to go to the dummy node
+                for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+
+                    nas->allArcs.push_back(nas->fArc);
+                    auxK = j - inst->V;
+                    nas->arcV[i][j].push_back(auxK);
+                }
+            }
+        }
+
+        
     }
+
+
 
     //check if they can be last before dummy
     // for (int i = 2*inst->n + inst->m; i < 2*inst->n + 2*inst->m; i++){//i is a parcel dl node           
@@ -706,46 +747,6 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
     //     }
     // }
 
-    //building reqV
-    //for every request, for every vehicle, check if the vehicle start time + time of
-    // travel from the starting point to request is < starting time of request TW
-    //only parcel pickup and customer
-    // vector <int> vehs;
-
-    // for (int i = 0; i < 2*inst->n + 2*inst->m; i++){
-    //     for (int k = 0; k < inst->K; k++){
-    //         int startdepot = 2*inst->n + 2*inst->m + k;
-    //         double ttSI = mdist[startdepot][i]/inst->vmed;//travel time between starting depot of k and request i
-    //         //if the online time of vehicle k + travel time to node i is lower or equal to
-    //         //the latest point in time to serve request i. If latest time == T, it is always valid
-    //         if (nodeVec[startdepot].e + ttSI <= nodeVec[i].l){
-    //             vehs.push_back(k);
-    //         }
-    //     }
-    //     nas->reqV.push_back(vehs);
-    //     vehs.clear();
-    // }
-
-    // cout << "allowed vehicles: " << endl;
-
-    // for (int i = 0; i < nas->arcV.size(); i++){
-    //     for (int j = 0; j < nas->arcV[i].size(); j++){
-    //         if (nas->arcs[i][j]){
-    //             printf("\narc %i, %i, Vehicles: ", i, j);
-    //             for (int k = 0; k < nas->arcV[i][j].size(); k++){
-    //                 cout << nas->arcV[i][j][k] << endl;
-    //             }
-    //             cout << endl;                
-    //         }
-    //     }
-    // }
-    // getchar();
-
-    // int auxK;
-
-    // int fDepot = inst->n + 2*inst->m;
-    // int fDummy = inst->n + 2*inst->m + inst->K;
-
     for (int a = 0; a < nas->allArcs.size(); a++){
         int i = nas->allArcs[a].first;
         int j = nas->allArcs[a].second;
@@ -757,44 +758,41 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
         }
 
     }
-
-    // cout << "allowed vehicles: " << endl;
-
-    // for (int i = 0; i < nas->arcV.size(); i++){
-    //     for (int j = 0; j < nas->arcV[i].size(); j++){
-    //         if (nas->arcs[i][j]){
-    //             printf("\narc %i, %i, Vehicles: ", i, j);
-    //             for (int k = 0; k < nas->arcV[i][j].size(); k++){
-    //                 cout << nas->arcV[i][j][k] << endl;
-    //             }
-    //             cout << endl;                
-    //         }
-    //     }
-    // }
-    // getchar();
 }
 
 void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat*problem, solStats *sStat){
 
     nodeArcsStruct nas;
     initArcs(inst, &nas);
-	fipArcs (inst, &nas, problem, nodeVec, mdist);
+	fipArcs (inst, &nas, problem, nodeVec, mdist, 1);
+    printStructures(&nas);
 
-    // cout<< "\nFeasible arcs between nodes:" << endl;
-    // for (int i = 0; i < nas.arcs.size(); i++){
-    //     if (i == 0){
-    //         cout << setw(3) << " ";
-    //     }
-    //     cout << setw(3) << std::right << i << " ";
-    // }
-    // cout << endl;
-    // for(int i = 0; i < nas.arcs.size(); i++){
-    //     cout << setw(3) << std::right << i;
-    //     for(int j = 0; j < nas.arcs[i].size(); j++){
-    //         cout << setw(3) <<  nas.arcs[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
-    // cout << endl;
-    // getchar();
+    fippass(inst, nodeVec, mdist, problem, &nas, sStat);
+    
+	if(sStat->feasible){
+		viewSol (inst, mdist, nodeVec, sStat);
+
+		mipSolStats (inst, mdist, nodeVec, sStat);
+
+		printStats(inst, sStat);
+
+        if (inst->preInst == 1) {
+            output(inst, nodeVec,  sStat, problem);
+        }
+	}
+
+    fipStruct(inst, sStat);
+
+    initArcs(inst, &nas);
+	fipArcs (inst, &nas, problem, nodeVec, mdist, 2);
+    // printStructures(&nas);
+    fipmip(inst, nodeVec, mdist, problem, &nas, sStat);
+
+	for ( int i = 0; i < inst->V + inst->dummy; i++) {
+		delete[] mdist[i];
+	}
+	delete[] mdist;
+
+    
+
 }

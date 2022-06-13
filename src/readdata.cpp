@@ -212,12 +212,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 vxf.push_back(vxs[i]);
                 vyf.push_back(vys[i]);
             }
-            for (int i = n+m; i < 2*n + m; i++){
-                
-                ve[i] = ve[i-n-m] + 18 + rand() % 14;//using data from Uber to obtain an average trip duration.
-
-                vl[i] = ve[i];
-            }
         }
 
         vxs.push_back(vxs[0]);
@@ -261,6 +255,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
         }
         else{
+            // for (int i = 0; i < n; i++){
+            //     vl[i] = ve[i] + 10;
+            // }
             for (int i = n; i < n + m; i++){
                 ve[i] = 0;
                 vl[i] = 1440;
@@ -273,6 +270,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 ve[i] = 0;
                 vl[i] = 1440;
             }
+            //Fixing ordering of requests
             for (int i = n; i < n + m; i++){
                 vxs.insert(vxs.begin() + i + n + m, vxs[i]);
                 vys.insert(vys.begin() + i + n + m, vys[i]);
@@ -377,6 +375,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     }
                 }
             }
+
+            //fixing passenger dl tw
+            for (int i = n; i < 2*n; i++){
+                double vmed2 = 0.683333;
+                // ve[i] = ceil(vl[i-n] + ((dist[i-n][i]/vmed2)) + 5 + (rand() % 10));
+                ve[i] = ve[i-n] + 10;
+                vl[i] = ve[i] + dist[i-n][i]/vmed2 + 5;
+                // cout << "i: " << i << "; " << i-n << " - tw: " << endl;
+                // cout << "ve[i]: " << ve[i] << " - vl[i-n]: " << vl[i-n] << " - dist[i-n][i]: " << dist[i-n][i] << " - tij: " << (dist[i-n][i]/inst->vmed) << endl;                
+            }
+
         }           
 
         for (int i = 0; i < V; i++){
@@ -392,6 +401,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->index = i;
             nodeVec.push_back(*node);
         }
+
+
 
         // Adding dummy nodes
         for (int i = 0; i < inst->dummy; i++){
@@ -573,12 +584,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 vyf.push_back(vys[i]);
             }
 
-            for (int i = n; i < 2*n; i++){
+            // for (int i = n; i < 2*n; i++){
                 
-                ve[i] = ve[i-n] + 18 + rand() % 14;//using data from Uber to obtain an average trip duration.
+            //     ve[i] = ve[i-n] + 18 + rand() % 14;//using data from Uber to obtain an average trip duration.
 
-                vl[i] = ve[i];
-            }
+            //     vl[i] = ve[i];
+            // }
         }
 
         if (inst->instType == "ghsarp"){ //multiplying depots
@@ -722,6 +733,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     }
                 }
             }
+
+
+            //fixing passenger dl tw
+            for (int i = n; i < 2*n; i++){
+                double vmed2 = 0.683333;
+                // ve[i] = ceil(vl[i-n] + ((dist[i-n][i]/vmed2)) + 5 + (rand() % 10));
+                ve[i] = ve[i-n] + 10;
+                vl[i] = ve[i] + dist[i-n][i]/vmed2 + 5;
+                // cout << "i: " << i << "; " << i-n << " - tw: " << endl;
+                // cout << "ve[i]: " << ve[i] << " - vl[i-n]: " << vl[i-n] << " - dist[i-n][i]: " << dist[i-n][i] << " - tij: " << (dist[i-n][i]/inst->vmed) << endl;                
+            }
+
         }        
 
         for (int i = 0; i < V; i++){

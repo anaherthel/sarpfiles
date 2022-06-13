@@ -54,17 +54,19 @@ struct instanceStat{
 
 	int sigma;
 
-	double minpas = 3.24; //initial fare for passengers
-	double paskm = 1.03; //fare per km for passengers
+	double minpas = 3.24; //initial fare for passengers; alfa
+	double paskm = 1.03; //fare per km for passengers; gamma1
 
-   	double minpar = 2.74; //initial fare for parcels
-	double parkm = 0.83; //fare per km for parcels
+   	double minpar = 2.74; //initial fare for parcels; beta
+	double parkm = 0.83; //fare per km for parcels; gamma2
 
-	double costkm = 0.46;
+	double costkm = 0.46;//cost per travelled km; gamma3
 	double vmed = 41;
 	bool preInst;
 	string InstName;
 	string instType;
+
+	double discpas = 4.20; //discount value for passenger detour (fip/osarp); gamma4
 
 	vector<int> instParam;
 	double totalCustomProfit;
@@ -111,7 +113,10 @@ struct solStats{
 
 	int servedParcels;
 	
-    vector< vector<int> > solOrder;
+
+    vector< vector<int> > solOrder; //for each k in K, the whole solution
+	vector< vector<int> > solPass; //for each k in K, the passenger locations
+	vector< vector<int> > solPassOrigins; //for each k in K, the passenger PU locations
 	vector< vector<int> > solInNode;
 	vector< vector< pair<int, int> > > solvec;
 
@@ -129,9 +134,9 @@ struct nodeArcsStruct{//for model node
 	vector< vector<bool> > arcs; //all arcs, either true or false. For each request to each request.
 	vector< pair<int,int> > allArcs; // the actual pairs of requests that form an arc
 	pair<int, int> fArc; 
-	vector< vector< pair<int,int> > > arcPlus; //arcs leaving a request (for K, for req, pair)
-	vector< vector< pair<int,int> > > arcMinus; //arcs arriving at a request (for K, for req, pair)
-	//for each request, arcs that are traverssed by a vehicle, for each request, pair of nodes
+	vector< vector< pair<int,int> > > arcPlus; //arcs leaving a request (for req, vector of pairs, pair)
+	vector< vector< pair<int,int> > > arcMinus; //arcs arriving at a request (for req, vector of pairs, pair)
+	//for each request, for every vehicle, vector of arcs that are traverssed by that vehicle and contain that request
 	vector< vector< vector< pair<int,int> > > > vArcPlus;
 	vector< vector< vector< pair<int,int> > > > vArcMinus;
 	vector< pair<int,int> > arcNN;//arcs between 2 passengers
@@ -142,9 +147,16 @@ struct nodeArcsStruct{//for model node
 	vector< vector< vector<int> > > arcV; 
 };
 
+// struct fipSol{
+
+// 	vector< vector<int> > setH;
+
+// };
+
 void solStatIni(solStats *sStat);
 void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat);
 void printStats(instanceStat *inst, solStats *sStat);
 void printStructures(nodeArcsStruct *nas);
+void fipStruct(instanceStat *inst, solStats *sStat);
 
 #endif
