@@ -115,8 +115,6 @@ struct solStats{
 	
 
     vector< vector<int> > solOrder; //for each k in K, the whole solution
-	vector< vector<int> > solPass; //for each k in K, the passenger locations
-	vector< vector<int> > solPassOrigins; //for each k in K, the passenger PU locations
 	vector< vector<int> > solInNode;
 	vector< vector< pair<int, int> > > solvec;
 
@@ -127,6 +125,17 @@ struct solStats{
 
 	double pProfit;
 	double costs;
+};
+
+struct fipStats{
+
+	vector< vector<int> > solPass; //for each k in K, the passenger locations
+	vector< vector< pair<int,int> > > solPassOrigins; //for each k in K, the passenger PU locations and its position in the solution.
+
+	bool fipstage;
+	vector< vector< pair<int, int> > > solvec; //solution vector with parcel additions
+	vector<double> solBegin;
+	vector<double> solBeginParcel;
 
 };
 
@@ -157,6 +166,8 @@ void solStatIni(solStats *sStat);
 void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat);
 void printStats(instanceStat *inst, solStats *sStat);
 void printStructures(nodeArcsStruct *nas);
-void fipStruct(instanceStat *inst, solStats *sStat);
+void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat);
+// void mergeFipSol(solStats *sStat, fipStats *fipStat);
+// void fipStats(solStats *sStat, solStats *sStat, fipStats *fipStat);
 
 #endif

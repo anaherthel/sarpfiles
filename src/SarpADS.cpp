@@ -19,14 +19,12 @@ void solStatIni(solStats *sStat){
     sStat->dBoth = 0;
     sStat->dNone = 0;
 
-    sStat->solOrder.clear();sStat->solOrder.clear();
-
+    sStat->solOrder.clear();
     sStat->servedParcels = 0;
 
     sStat->pProfit = 0;
     sStat->costs = 0;
 
-    // sStat->solOrder.clear();
     // sStat->solvec.clear();
 }
 
@@ -396,9 +394,11 @@ void printStructures(nodeArcsStruct *nas){
 
 }
 
-void fipStruct(instanceStat *inst, solStats *sStat){
+void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat){
 
     vector<int> pulocations;
+    pair <int, int> pairpuloc;
+    vector< pair<int, int> > pupairs;
 
     for (int i = 0; i < sStat->solOrder.size(); i++){
         for (int j = 0; j < sStat->solOrder[i].size(); j++){
@@ -406,30 +406,33 @@ void fipStruct(instanceStat *inst, solStats *sStat){
                 pulocations.push_back(sStat->solOrder[i][j]);
             }
         }
-        sStat->solPass.push_back(pulocations);
+        fipStat->solPass.push_back(pulocations);
         pulocations.clear();
     }
     pulocations.clear();
 
+
     for (int k = 0; k < inst->K; k++){
-        for (int i = 0; i < sStat->solPass[k].size(); i++){
-            if(sStat->solPass[k][i] < inst->n){
-                pulocations.push_back(sStat->solPass[k][i]);
+        for (int i = 0; i < fipStat->solPass[k].size(); i++){
+            if(fipStat->solPass[k][i] < inst->n){
+                pairpuloc.first = fipStat->solPass[k][i];
+                pairpuloc.second = i;
+                pupairs.push_back(pairpuloc);
             }
         }
-        sStat->solPassOrigins.push_back(pulocations);
-        pulocations.clear();
+        fipStat->solPassOrigins.push_back(pupairs);
+        pupairs.clear();
     }
 
     // cout << "\nSolution part II: " << endl;
     // for (int k = 0; k < inst->K; k++){
     //     cout << "Vehicle " << k << ": ";
-    //     for (int i = 0; i < sStat->solPass[k].size(); i++){
-    //         if (i < sStat->solPass[k].size() - 1){
-    //             cout << sStat->solPass[k][i] << " - ";
+    //     for (int i = 0; i < fipStat->solPass[k].size(); i++){
+    //         if (i < fipStat->solPass[k].size() - 1){
+    //             cout << fipStat->solPass[k][i] << " - ";
     //         }
     //         else{
-    //             cout << sStat->solPass[k][i];
+    //             cout << fipStat->solPass[k][i];
     //         }
     //     }
     //     cout << endl;
@@ -439,18 +442,73 @@ void fipStruct(instanceStat *inst, solStats *sStat){
     // cout << "\nSolution part III - pickup locations: " << endl;
     // for (int k = 0; k < inst->K; k++){
     //     cout << "Vehicle " << k << ": ";
-    //     for (int i = 0; i < sStat->solPassOrigins[k].size(); i++){
-    //         if (i < sStat->solPassOrigins[k].size() - 1){
-    //             cout << sStat->solPassOrigins[k][i] << " - ";
+    //     for (int i = 0; i < fipStat->solPassOrigins[k].size(); i++){
+    //         if (i < fipStat->solPassOrigins[k].size() - 1){
+    //             cout << fipStat->solPassOrigins[k][i].first << " : " << fipStat->solPassOrigins[k][i].second <<  " - ";
     //         }
     //         else{
-    //             cout << sStat->solPassOrigins[k][i];
+    //             cout << fipStat->solPassOrigins[k][i].first << " : " << fipStat->solPassOrigins[k][i].second;
     //         }
     //     }
     //     cout << endl;
     // }
     // cout << endl;
 
+    // sStat->solvec.clear();
 
+    // //test sf sarp 5-6-1
+    // for(int k = 0; k < inst->K; k++){
+    //     fipStat->solPass.push_back(pulocations);
+    //     fipStat->solPassOrigins.push_back(pupairs);
+    // }
+
+    // fipStat->solPass[0].push_back(0);
+    // fipStat->solPass[0].push_back(5);
+    // fipStat->solPass[0].push_back(4);
+    // fipStat->solPass[0].push_back(9);
+    // fipStat->solPass[0].push_back(2);
+    // fipStat->solPass[0].push_back(7);
+    // fipStat->solPass[1].push_back(1);
+    // fipStat->solPass[1].push_back(6);
+    // fipStat->solPass[1].push_back(3);
+    // fipStat->solPass[1].push_back(8);
+    
+    // pairpuloc.first = 0;
+    // pairpuloc.second = 0;
+    // fipStat->solPassOrigins[0].push_back(pairpuloc);
+
+    // pairpuloc.first = 4;
+    // pairpuloc.second = 2;
+    // fipStat->solPassOrigins[0].push_back(pairpuloc);
+
+    // pairpuloc.first = 2;
+    // pairpuloc.second = 4;
+    // fipStat->solPassOrigins[0].push_back(pairpuloc);
+
+    // pairpuloc.first = 1;
+    // pairpuloc.second = 0;
+    // fipStat->solPassOrigins[1].push_back(pairpuloc);
+
+    // pairpuloc.first = 3;
+    // pairpuloc.second = 2;
+    // fipStat->solPassOrigins[1].push_back(pairpuloc);
 }
 
+// void mergeFipSol(solStats *sStat, fipStats *fipStat){
+
+//     for (int i = 0; i < sStat->solvec.size(); i++){
+
+//     }
+
+
+
+// }
+
+// void fipStats(solStats *sStat, solStats *sStat, fipStats *fipStat){
+
+//     cout << "\n\nPassenger service: " << endl;
+
+//     for ()
+
+
+// }
