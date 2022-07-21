@@ -66,7 +66,7 @@ struct instanceStat{
 	string InstName;
 	string instType;
 
-	double discpas = 4.20; //discount value for passenger detour (fip/osarp); gamma4
+	double discpas = 3.24; //discount value for passenger detour (fip/osarp); gamma4 (same value as minpas'alpha')
 
 	vector<int> instParam;
 	double totalCustomProfit;
@@ -134,9 +134,13 @@ struct fipStats{
 
 	bool fipstage;
 	vector< vector< pair<int, int> > > solvec; //solution vector with parcel additions
-	vector<double> solBegin;
-	vector<double> solBeginParcel;
+	vector<double> solBegin; //stores values of b[i][k]
+	vector<double> solBeginParcel;//stores values of s[j]
 
+
+	vector< vector<int> > fullSol; //merged solution with passengers and parcels.
+	vector< vector<double> > fullBegin; // beginning of service for all passengers and served parcels.
+	double solprofit;
 };
 
 struct nodeArcsStruct{//for model node
@@ -167,7 +171,7 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
 void printStats(instanceStat *inst, solStats *sStat);
 void printStructures(nodeArcsStruct *nas);
 void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat);
-// void mergeFipSol(solStats *sStat, fipStats *fipStat);
+void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat, fipStats *fipStat);
 // void fipStats(solStats *sStat, solStats *sStat, fipStats *fipStat);
 
 #endif

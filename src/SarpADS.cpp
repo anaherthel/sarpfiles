@@ -424,6 +424,25 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat){
         pupairs.clear();
     }
 
+    for (int i = 0; i < 2*inst->n; i++){
+        fipStat->solBegin.push_back(sStat->solBegin[i]);
+    }
+
+
+    // for (int i = 0; i < 2*inst->n; i++){
+    //     fipStat->fullBegin.push_back(fipStat->solBegin[i]);
+    // }
+
+    // for (int i = 2*inst->n; i < 2*inst->n + 2*inst->m; i++){
+    //     fipStat->fullBegin.push_back(0);
+    // }
+
+    // cout << "Beginning of service: " << endl;
+
+    // for (int a = 0; a < fipStat->solBegin.size(); a++){
+    //     cout << "b(" << a << "): " << fipStat->solBegin[a] << endl;
+    // }
+
     // cout << "\nSolution part II: " << endl;
     // for (int k = 0; k < inst->K; k++){
     //     cout << "Vehicle " << k << ": ";
@@ -494,15 +513,117 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat){
     // fipStat->solPassOrigins[1].push_back(pairpuloc);
 }
 
-// void mergeFipSol(solStats *sStat, fipStats *fipStat){
+void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat, fipStats *fipStat){
+    
+    vector<int> auxVec;
+    vector<double> timeVec;
+    // //starting the full solution vector with only passengers (copying existing initial solution)
+    // for (int k = 0; k < fipStat->solPass.size(); k++){
+    //     for (int i = 0; i < fipStat->solPass[k].size(); i++){
+    //         auxVec.push_back(fipStat->solPass[k][i]); 
+    //     }
+    //     fipStat->fullSol.push_back(auxVec);
+    //     auxVec.clear();
+    // }
 
-//     for (int i = 0; i < sStat->solvec.size(); i++){
+    fipStat->solprofit = 0;
+    for (int i = 0; i < inst->n; i++){
+        fipStat->solprofit += nodeVec[i].profit;
+    }
 
-//     }
+    for (int k = 0; k < inst->K; k++){
+        for (int i = 0; i < fipStat->solPass[k].size(); i++){
+            // fipStat->solBeginParcel.
+            auxVec.push_back(fipStat->solPass[k][i]);
+            cout << "k, i: " << fipStat->solPass[k][i] << endl;
+            for (int j = 0; j < fipStat->solvec[k].size(); j++){
+                if (fipStat->solPass[k][i] == fipStat->solvec[k][j].first){
+                    cout << "k, j: " << fipStat->solPass[k][i] << endl;
+                    auxVec.push_back(fipStat->solvec[k][j].second);
+                    fipStat->solprofit += nodeVec[fipStat->solvec[k][j].second].profit;
+                }
+            }
+
+        }
+
+        fipStat->fullSol.push_back(auxVec);
+        auxVec.clear();
+    }
+
+    cout<< "\n\nFull solution: " << endl;
+
+    for (int k = 0; k < fipStat->fullSol.size(); k++){
+        cout << "Vehicle: ";
+        for (int j = 0; j < fipStat->fullSol[k].size(); j++){
+            if (j == fipStat->fullSol[k].size() - 1){
+                cout << fipStat->fullSol[k][j] << endl;
+            }
+            else{
+                cout << fipStat->fullSol[k][j] << " - ";
+            }
+        }
+        
+    }
 
 
 
-// }
+    //Calculate beginning times for each location
+
+    double currentT = 0;
+    for (int k = 0; k < fipStat->fullSol.size(); k++){
+        int currentDepot = 2*inst->n + 2*inst->m + k;
+        int u = fipStat->fullSol[k][0];
+
+        fipStat->solprofit -= inst->costkm*mdist[currentDepot][u];
+
+        currentT = nodeVec[u].e;
+        timeVec.push_back(currentT);
+
+        for (int i = 0; i < fipStat->fullSol[k].size() - 1; i++){
+            u = fipStat->fullSol[k][i];
+            int v = fipStat->fullSol[k][i+1];
+            currentT += mdist[u][v]/inst->vmed + inst->service;
+
+            fipStat->solprofit -= inst->costkm*mdist[u][v];
+            
+            if (v < 2*inst->n){
+                if (currentT < nodeVec[v].e){
+                    currentT = nodeVec[v].e;
+                }
+
+            }
+            timeVec.push_back(currentT);
+
+        }
+
+        fipStat->fullBegin.push_back(timeVec);
+        timeVec.clear();
+    }
+
+
+    cout<< "\n\nFull solution with times: " << endl;
+
+    for (int k = 0; k < fipStat->fullSol.size(); k++){
+        cout << "Vehicle: ";
+        for (int j = 0; j < fipStat->fullSol[k].size(); j++){
+            if (j == fipStat->fullSol[k].size() - 1){
+                cout << fipStat->fullSol[k][j] << "(" << fipStat->fullBegin[k][j] << ")"<< endl;
+            }
+            else{
+                cout << fipStat->fullSol[k][j] << "(" << fipStat->fullBegin[k][j] << ")"<< " - ";
+            }
+        }
+        
+    }
+
+    cout << "\n\nFull solution value: " << fipStat->solprofit << endl;
+ 
+
+
+    
+
+
+}
 
 // void fipStats(solStats *sStat, solStats *sStat, fipStats *fipStat){
 

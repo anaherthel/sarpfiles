@@ -1043,7 +1043,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
 	IloExpr objFunction(env);
 
-	objFunction += inst->totalCustomProfit;
+	// objFunction += inst->totalCustomProfit;
 
 	for (int k = 0; k < fipStat->solPass.size(); k++){
 		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
@@ -1055,7 +1055,11 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 				}
 				double deltaij = (mdist[u][j]) + (mdist[j][v]) - (mdist[u][v]);
 
-				objFunction += (inst->minpar + (inst->parkm*mdist[u][u+inst->n]) - (inst->costkm*deltaij)) * x[u][j][k];
+				double profitj = nodeVec[j].profit;
+				// objFunction += (inst->minpar + (inst->parkm*mdist[j][j+inst->m]) - (inst->costkm*deltaij)) * x[u][j][k];
+
+				objFunction += (profitj - (inst->costkm*deltaij)) * x[u][j][k];
+
 			}
 		}
     }
@@ -1066,9 +1070,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 		for (int i = 0; i < fipStat->solPassOrigins[k].size(); i++){
 
 			int u = fipStat->solPassOrigins[k][i].first;
-			int v = fipStat->solPass[k][fipStat->solPassOrigins[k][i].second + 1];
+			// int v = fipStat->solPass[k][fipStat->solPassOrigins[k][i].second + 1];
 
-			expnew += ((b[k][u+inst->n] - b[k][u])/((mdist[u][v]/inst->vmed)-1));
+			expnew += ((b[k][u+inst->n] - b[k][u] - inst->service)/((mdist[u][u+inst->n]/inst->vmed))) - 1;
 		}
 	}
 
@@ -1162,7 +1166,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 			IloExpr exp2(env);
 
 			// exp1 = b[k][v] - b[k][u] - (mdist[u][v]/inst->vmed);
-			exp1 = b[k][v] - (b[k][u] + inst->service) - (mdist[u][v]/inst->vmed);
+			exp1 = b[k][v] - (b[k][u]) - inst->service - (mdist[u][v]/inst->vmed);
 
 			for(int j = 2*inst->n; j < 2*inst->n + 2*inst->m; j++){
 				double deltaij = (mdist[u][j]) + (mdist[j][v]) - (mdist[u][v]);
@@ -1180,7 +1184,6 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
         }
 
     }
-
 	// Constraint 6 - TW constraint (28)
 
     for (int k = 0; k < fipStat->solPass.size(); k++){
@@ -1265,22 +1268,22 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	}
 
 	// //Passengers cannot exceed max service time (2*ti,i+sigma) (32)
-	// for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
-	// 	for (int i = 0 ; i < fipStat->solPassOrigins[k].size(); i++){
-	// 		IloExpr exp(env);
+	for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
+		for (int i = 0 ; i < fipStat->solPassOrigins[k].size(); i++){
+			IloExpr exp(env);
 			
-	// 		int u = fipStat->solPassOrigins[k][i].first;
-	// 		int posu = fipStat->solPassOrigins[k][i].second;
-	// 		int v = fipStat->solPass[k][posu + 1];
+			int u = fipStat->solPassOrigins[k][i].first;
+			int posu = fipStat->solPassOrigins[k][i].second;
+			int v = fipStat->solPass[k][posu + 1];
 
-	// 		exp = b[k][v] - b[k][u] + inst->service;
+			exp = b[k][v] - b[k][u] + inst->service;
 
-	// 		sprintf (var, "Constraint12_%d_%d", k, u);
-	// 		IloRange cons = (exp <= 2*(mdist[u][u+inst->n]/inst->vmed));
-	// 		cons.setName(var);
-	// 		model.add(cons);
-	// 	}
-	// }
+			sprintf (var, "Constraint12_%d_%d", k, u);
+			IloRange cons = (exp <= 2*(mdist[u][u+inst->n]/inst->vmed)+2*inst->service);
+			cons.setName(var);
+			model.add(cons);
+		}
+	}
 
 	//Load constraints (33) Maybe remove it
 
@@ -1312,7 +1315,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	//test constraints
 
 	// IloExpr exp(env);
-	// exp = x[0][13][0];
+	// exp = x[8][15][0];
 
 	// sprintf (var, "Constraint14");
 
@@ -1320,7 +1323,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	// cons.setName(var);
 	// model.add(cons);
 
-	// exp = x[5][19][0];
+	// exp = x[2][21][0];
 
 	// sprintf (var, "Constraint15");
 	// cons = (exp == 1);
@@ -1428,18 +1431,18 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	// nSARP.setParam(IloCplex::Param::Advance, 2);
 
 	//MIP Start
-	IloNumVarArray startVar(env);
-    IloNumArray startVal(env);
-	for (int k = 0; k < fipStat->solPass.size(); k++){
-		for (int i = 0; i < fipStat->solPass[k].size()-1; i++){
-			int u = fipStat->solPass[k][i];
-			int v = fipStat->solPass[k][i + 1];
+	// IloNumVarArray startVar(env);
+    // IloNumArray startVal(env);
+	// for (int k = 0; k < fipStat->solPass.size(); k++){
+	// 	for (int i = 0; i < fipStat->solPass[k].size()-1; i++){
+	// 		int u = fipStat->solPass[k][i];
+	// 		int v = fipStat->solPass[k][i + 1];
 
-			startVar.add(x[u][v][k]);
-			startVal.add(1);
-		}
-	}
-	nSARP.addMIPStart(startVar, startVal);
+	// 		startVar.add(x[u][v][k]);
+	// 		startVal.add(1);
+	// 	}
+	// }
+	// nSARP.addMIPStart(startVar, startVal);
 
 
 	// IloNumVarArray startVar2(env);
@@ -1513,6 +1516,16 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
             }   
         }
 
+		// for (int k = 0; k < inst->K; k++){
+		// 	for (int i = 0; i < 2*inst->n; i++){
+		// 		// fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
+		// 		cout << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
+		// 		// getchar();
+		// 		// cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+		// 		// getchar();
+		// 	}
+		// }
+
 
 		for (int j = 2*inst->n; j < 2*inst->n+2*inst->m; j++){
 			// cout << "i: " << endl;
@@ -1537,8 +1550,8 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
 	}
 	env.end();
-    startVal.end();
-    startVar.end();
+    // startVal.end();
+    // startVar.end();
 	// startVal2.end();
     // startVar2.end();
 }

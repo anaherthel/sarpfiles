@@ -877,7 +877,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     cout << endl << endl << "______PART II_____" << endl << endl;
     fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
 
-    // mergeFipSol(sStat, &fipStat);
+    mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat);
 
 	// if(sStat->feasible){
 	// 	viewSol (inst, mdist, nodeVec, sStat);

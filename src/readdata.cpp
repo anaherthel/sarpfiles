@@ -408,20 +408,20 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         //fixing passenger pu tw
         for (int i = 0; i < n; i++){
-            nodeVec[i].l = nodeVec[i].e + service; //5 minutes of tw
+            nodeVec[i].l = nodeVec[i].e + 2*service; //10 minutes of tw
         }
 
         //fixing passenger dl tw
         for (int i = n; i < 2*n; i++){
             // ve[i] = ceil(vl[i-n] + ((dist[i-n][i]/vmed2)) + 5 + (rand() % 10));
             // ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + 7;
-            nodeVec[i].e = nodeVec[i - n].e + (dist[i-n][i]/inst->vmed) + max(double(service), (dist[i-n][i]*0.5)/inst->vmed);
+            nodeVec[i].e = nodeVec[i - n].e + (dist[i-n][i]/inst->vmed) + max(double(service), ((dist[i-n][i]*0.5)/inst->vmed));
 
             // ve[i] = ve[i-n] + ((dist[i-n][i]/inst->vmed)*0.5);
             cout << "i: " << i << " - ve(i): " << nodeVec[i].e << endl; 
             // vl[i] = vl[i-n] + dist[i-n][i]/vmed2 + 5;                
             // vl[i] = ve[i] + dist[i-n][i]/vmed2 + 5; //previous tw for dl (working)
-            nodeVec[i].l = nodeVec[i].e + service;//5 minutes of tw
+            nodeVec[i].l = nodeVec[i].e + 2*service;//10 minutes of tw
             // cout << "i: " << i << "; " << i-n << " - tw: " << endl;
             // cout << "ve[i]: " << ve[i] << " - vl[i-n]: " << vl[i-n] << " - dist[i-n][i]: " << dist[i-n][i] << " - tij: " << (dist[i-n][i]/inst->vmed) << endl;                
         }
