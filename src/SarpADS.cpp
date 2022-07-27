@@ -565,7 +565,9 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         
     }
 
-
+    for (int i = 0; i < 2*inst->n; i++){
+        fipStat->beginPass.push_back(0);
+    }
 
     //Calculate beginning times for each location
 
@@ -578,6 +580,7 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
 
         currentT = nodeVec[u].e;
         timeVec.push_back(currentT);
+        fipStat->beginPass[u] = currentT;
 
         for (int i = 0; i < fipStat->fullSol[k].size() - 1; i++){
             u = fipStat->fullSol[k][i];
@@ -590,7 +593,7 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
                 if (currentT < nodeVec[v].e){
                     currentT = nodeVec[v].e;
                 }
-
+                fipStat->beginPass[v] = currentT;
             }
             timeVec.push_back(currentT);
 
@@ -613,23 +616,39 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
                 cout << fipStat->fullSol[k][j] << "(" << fipStat->fullBegin[k][j] << ")"<< " - ";
             }
         }
-        
+        cout << " --> Total travel time: " << fipStat->fullBegin[k][fipStat->fullSol[k].size()-1] - fipStat->fullBegin[k][0] << endl;
     }
 
-    cout << "\n\nFull solution value: " << fipStat->solprofit << endl;
- 
-
-
+    // cout << "\n\nbegin pass vector: "<< endl;
+    // for(int i = 0; i < fipStat->beginPass.size(); i++){
+    //     cout << i << ": " << fipStat->beginPass[i] << " - ";
+    // }
     
+    cout << "\n\nFull solution value: " << fipStat->solprofit << endl;
 
 
 }
 
-// void fipStats(solStats *sStat, solStats *sStat, fipStats *fipStat){
+void calcPassDetour(instanceStat *inst, vector<nodeStat> &nodeVec, fipStats *fipStat){
 
-//     cout << "\n\nPassenger service: " << endl;
+    double ntrip, dtrip;
+    double detour;
 
-//     for ()
+    for (int i = inst->n; i < 2*inst->n; i++){
+        ntrip = nodeVec[i].e - nodeVec[i - inst->n].e;
+        dtrip = fipStat->beginPass[i] - fipStat->beginPass[i - inst->n];
+        // cout << "dtrip: " << dtrip << " - ntrip" << ntrip << endl;
+        // getchar();
+        detour = (double)((dtrip - ntrip)/(ntrip))*(double)(100);
+        fipStat->passDetour.push_back(detour);
+    }
+
+    cout << "\n\nPassenger detour (%): " << endl;
+    
+    for (int i = 0; i < inst->n; i++){
+        cout << i << ": " << fipStat->passDetour[i] << endl;
+    }
+    
 
 
-// }
+}

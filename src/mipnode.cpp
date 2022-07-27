@@ -1267,7 +1267,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 		model.add(cons2);
 	}
 
-	// //Passengers cannot exceed max service time (2*ti,i+sigma) (32)
+	//Passengers cannot exceed max service time (2*ti,i+sigma) (32)
 	for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
 		for (int i = 0 ; i < fipStat->solPassOrigins[k].size(); i++){
 			IloExpr exp(env);

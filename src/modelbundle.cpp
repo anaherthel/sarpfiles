@@ -688,6 +688,8 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
     int currSP;
     vector<int> orderVec;
 
+    
+
     for (int k = 0; k < inst->K; k++){
         currSP = setN + k;
         for (int i = 0; i < sStat->solvec[k].size(); i++){
@@ -754,9 +756,20 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
     cout << "\nNumber of Vehicles: " << inst->K << endl;
 
     cout << "\nSolution by nodes: " << endl;
+    
+    //adjust K
+    int usedVehicles = 0;
+
+    vector<int> vehicleNumbers;
 
     for (int k = 0; k < inst->K; k++){
         cout << "Vehicle " << k << ": ";
+
+        if (sStat->solInNode[k].size() > 2){
+            usedVehicles++;
+            vehicleNumbers.push_back(k);
+        }
+
         for (int i = 0; i < sStat->solInNode[k].size(); i++){
             if (i < sStat->solInNode[k].size() - 1){
                 cout << sStat->solInNode[k][i] << " - ";
@@ -765,7 +778,11 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
                 cout << sStat->solInNode[k][i];
             }
         }
-        cout << endl;
+        currSP = inst->n + 2*inst->m + k;
+
+        // cout << " // Bundle selection: " << (mdist[currSP][bStat->firstElement[sStat->solOrder[k][1]]]/inst->vmed);
+
+        cout << " - Total time: " << bStat->bundleEnd[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - bStat->bundleStart[sStat->solOrder[k][1]] + (mdist[currSP][bStat->firstElement[sStat->solOrder[k][1]]]/inst->vmed) << endl;
     }
     cout << endl;
 
@@ -796,7 +813,14 @@ void nodeSolution (instanceStat *inst, double **mdist, bundleStat *bStat, vector
         }
         cout << endl;
     }
-    cout << endl;   
+    cout << endl;
+
+    cout << "Used vehicles: " << usedVehicles << endl;
+    cout << "Vehicle numbers: ";
+    for (int i = 0; i < vehicleNumbers.size(); i++){
+        cout << vehicleNumbers[i] << " ";
+    }
+    cout << endl;
 }
 
 void stillTimeBundle(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
@@ -970,7 +994,7 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     //     cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleStart[i];
     //     cout << endl;
     // }
-    // getchar();
+    // // getchar();
 
 
     // cout << "Bundle ending times: " << endl;
@@ -1035,6 +1059,7 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
         // // cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
 
         printStats(inst, sStat);
+        
     }
 
     for ( int i = 0; i < inst->V + inst->dummy; i++) {

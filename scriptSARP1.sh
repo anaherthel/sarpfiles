@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances/ghsarp'
-output='testingfipghsarp.txt'
+dirInstancias='Instances_M/sf_data'
+#output='testinginstancesMsfsarp.txt'
 #runs=10
 
 cat /dev/null > $output
@@ -14,8 +14,8 @@ cat /dev/null > $output
 		for arquivo in `ls ${dirInstancias}` #lista todos os arquivos na pasta que contem as instancias que vc quer rodar
 		do
 			echo "Solving: " ${arquivo} ":" #>> $output #output pra saber que instancia ta sendo rodada
-			echo "Scenario: 1A fip "  #>> $output
-			./exeSARP ${dirInstancias}/${arquivo} 1A fip #>> $output
+			echo "Scenario: 1A bundle "  #>> $output
+			./exeSARP ${dirInstancias}/${arquivo} 1A bundle #>> $output
 		done
 #	done
 #done

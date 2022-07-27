@@ -137,10 +137,13 @@ struct fipStats{
 	vector<double> solBegin; //stores values of b[i][k]
 	vector<double> solBeginParcel;//stores values of s[j]
 
+	vector<double> beginPass;//stores values of starting times for passengers after the solutions merging
 
 	vector< vector<int> > fullSol; //merged solution with passengers and parcels.
 	vector< vector<double> > fullBegin; // beginning of service for all passengers and served parcels.
 	double solprofit;
+
+	vector <double> passDetour;//increase in percentage to the trip with no detours
 };
 
 struct nodeArcsStruct{//for model node
@@ -172,6 +175,6 @@ void printStats(instanceStat *inst, solStats *sStat);
 void printStructures(nodeArcsStruct *nas);
 void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat);
 void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat, fipStats *fipStat);
-// void fipStats(solStats *sStat, solStats *sStat, fipStats *fipStat);
+void calcPassDetour(instanceStat *inst, vector<nodeStat> &nodeVec, fipStats *fipStat);
 
 #endif

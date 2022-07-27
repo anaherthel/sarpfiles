@@ -500,7 +500,7 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
                     cout << sStat->solOrder[k][i];
                 }
             }
-            cout << endl;
+            cout << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
         }
         cout << endl;
 
@@ -878,6 +878,8 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
 
     mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat);
+
+    calcPassDetour(inst, nodeVec, &fipStat);
 
 	// if(sStat->feasible){
 	// 	viewSol (inst, mdist, nodeVec, sStat);
