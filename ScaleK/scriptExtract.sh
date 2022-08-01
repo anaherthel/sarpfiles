@@ -3,11 +3,11 @@
 dirTestes='tests'
 dirDest='ScaleK'
 
-for i in $(ls ${dirTestes}/outputMcsarp.txt)
+for i in $(ls ${dirTestes}/outputMcsarpNew.txt)
 	do
 		grep 'Instance Name' $i | cut -d " " -f 3 > /tmp/instance
 		grep 'Number of Vehicles' $i | cut -d " " -f 4 > /tmp/k
 		grep 'Used vehicles' $i | cut -d " " -f 3 > /tmp/u
 		grep 'Vehicle numbers' $i | cut -d ":" -f 2 > /tmp/l
-		paste /tmp/instance /tmp/k /tmp/u /tmp/l >> McsarpK4.txt
+		paste /tmp/instance /tmp/k /tmp/u /tmp/l >> McsarpK5.txt
 	done

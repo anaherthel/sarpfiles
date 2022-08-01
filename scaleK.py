@@ -22,6 +22,24 @@ def makeinstList(filename):
         
     return instlist, klist
 
+def makeinstListMulti(filename):
+    instlist = []
+    klist = []
+    vnumber = []
+    with open(filename, 'r') as f:
+        for line in f:
+            words = line.split()
+            instlist.append(words[0]+'.txt')
+
+            # knumber = words[1].strip('\n')
+            klist.append(words[1])
+            vline = []
+            for a in range(2, len(words)):
+                vline.append(int(words[a]))
+            vnumber.append(vline)
+        
+    return instlist, klist, vnumber
+
 def changeK(instlist, Klist):
     for i in range(len(instlist)):
         filename = instlist[i]
@@ -43,9 +61,53 @@ def changeK(instlist, Klist):
             for line in newf:
                 f.write(line)
 
+def changeKmulti(instlist, Klist, vnumber):
+    for i in range(len(instlist)):
+        filename = instlist[i]
+        with open('Instances_M/csarp/'+filename, 'r') as f:
+            newf = f.readlines()
+            words = newf[0].split()
+            words[0] = Klist[i]
+            n = int(words[2])
+            m = int(words[3])
+            
+        newline = words[0] + "\t"
+        for w in range(1,len(words) - 1):
+            newline += words[w]+'\t'
+        
+        newline += words[-1] + '\n'
+        
+        print(newline)
+        newf.pop(0)
+        newf.insert(0, newline)
+        counter = 0
+        counter2 = 2*n+2*m
+        print('counter2: ', counter2)
+        with open('Instances_M/csarp/'+filename, 'w') as f:
+            for line in newf:
+                words = line.split('\t')
+                if words[3] == '0':
+                    if counter in vnumber[i]:
+                        words[0] = str(counter2)
+                        newline = words[0] + "\t"        
+                        for w in range(1,len(words) - 1):
+                            newline += words[w]+'\t'
+                        
+                        newline += words[-1]
+                        print(newline)
+                        f.write(newline)
+                        counter2 += 1
+                    counter += 1
 
-instlist, Klist = makeinstList('sfsarpKlist.txt')
-changeK(instlist, Klist)
+                else:
+                    f.write(line)
+
+
+# instlist, Klist = makeinstList('sfsarpKlist.txt')
+instlist, Klist, vnumber = makeinstListMulti('csarpKlist.txt')
+
+changeKmulti(instlist, Klist, vnumber)
 
 print(instlist)
 print(Klist)
+print(vnumber)
