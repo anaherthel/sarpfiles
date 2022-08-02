@@ -41,6 +41,7 @@ struct instInfoN
     double ub; //uppper bound
     double gap; //gap btw ub lb
     long int tree; //size of tree
+    vector <double> detours; //passenger detours
 };
 
 struct distInfo
@@ -605,6 +606,7 @@ void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<dist
 
     bool flag = false;
     bool part2 = false;
+    bool 
 	if(in.is_open()) {
 
 	    while(getline(in, line)) {
@@ -630,7 +632,39 @@ void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<dist
                 // cout << "Name of scenario:" << inst.scen << endl;
                 // getchar();
             }
+            
             flag = false;            
+
+            flag = substrPosition(line, "Obj Val");
+
+            if (flag) {
+                loc = line.find_first_of(":");
+                inst.pCust = stod(line.substr(loc + 1, line.size() - loc - 1));
+                // cout << "objval:" << inst.objval << endl;
+                // getchar();
+            }
+            flag = false;
+
+            flag = substrPosition(line, "size of n");
+
+            if (flag) {
+                loc = line.find_first_of(":");
+                inst.n = stoi(line.substr(loc + 1, line.size() - loc - 1));
+                // cout << "num of n:" << inst.n << endl;
+                // getchar();
+            }
+            flag = false;
+
+            flag = substrPosition(line, "size of m");
+
+            if (flag) {
+                loc = line.find_first_of(":");
+                inst.m = stoi(line.substr(loc + 1, line.size() - loc - 1));
+                // cout << "num of m:" << inst.m << endl;
+                // getchar();
+            }
+            flag = false;
+
 
             part2 = substrPosition(line, "______PART II_____");
 
@@ -655,12 +689,12 @@ void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<dist
 
                 if (optflag){
 
-                    flag = substrPosition(line, "Tree_Size");
+                    flag = substrPosition(line, "Total Time");
 
                     if (flag) {
                         loc = line.find_first_of(":");
-                        inst.tree = stoi(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "tree size:" << inst.tree << endl;
+                        inst.soltime = stod(line.substr(loc + 1, line.size() - loc - 1));
+                        // cout << "objval:" << inst.soltime << endl;
                         // getchar();
                     }
                     flag = false;
@@ -688,7 +722,7 @@ void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<dist
                     }
                     flag = false;
 
-                    flag = substrPosition(line, "Obj Val");
+                    flag = substrPosition(line, "Full solution value");
 
                     if (flag) {
                         loc = line.find_first_of(":");
@@ -698,22 +732,22 @@ void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<dist
                     }
                     flag = false;
 
-                    flag = substrPosition(line, "Solve Time");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        inst.soltime = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "objval:" << inst.soltime << endl;
-                        // getchar();
-                    }
-                    flag = false;
-
-                flag = substrPosition(line, "Customer profit");
+                    flag = substrPosition(line, "Passenger detour (%)");
 
                     if (flag) {
                         loc = line.find_first_of(":");
                         inst.pCust = stod(line.substr(loc + 1, line.size() - loc - 1));
                         // cout << "numVeh:" << inst.K << endl;
+                        // getchar();
+                    }
+                    flag = false;
+                    
+                    flag = substrPosition(line, "Served parcels");
+
+                    if (flag) {
+                        loc = line.find_first_of(":");
+                        inst.servP = stoi(line.substr(loc + 1, line.size() - loc - 1));
+                        // cout << "Served parcels:" << inst.servP << endl;
                         // getchar();
                     }
                     flag = false;
@@ -749,35 +783,9 @@ void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<dist
                     }
                     flag = false;
 
-                    flag = substrPosition(line, "size of n");
 
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        inst.n = stoi(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "num of n:" << inst.n << endl;
-                        // getchar();
-                    }
-                    flag = false;
 
-                    flag = substrPosition(line, "size of m");
 
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        inst.m = stoi(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "num of m:" << inst.m << endl;
-                        // getchar();
-                    }
-                    flag = false;
-
-                    flag = substrPosition(line, "Served parcels");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        inst.servP = stoi(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "Served parcels:" << inst.servP << endl;
-                        // getchar();
-                    }
-                    flag = false;
 
                     //*******************************
 

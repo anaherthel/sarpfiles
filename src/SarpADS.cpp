@@ -517,6 +517,9 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     
     vector<int> auxVec;
     vector<double> timeVec;
+    double profCustomer = 0;
+    double profParcel = 0;
+    double costs = 0;
     // //starting the full solution vector with only passengers (copying existing initial solution)
     // for (int k = 0; k < fipStat->solPass.size(); k++){
     //     for (int i = 0; i < fipStat->solPass[k].size(); i++){
@@ -530,6 +533,7 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     fipStat->solprofit = 0;
     for (int i = 0; i < inst->n; i++){
         fipStat->solprofit += nodeVec[i].profit;
+        profCustomer += nodeVec[i].profit;
     }
 
     for (int k = 0; k < inst->K; k++){
@@ -584,6 +588,7 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         int u = fipStat->fullSol[k][0];
 
         fipStat->solprofit -= inst->costkm*mdist[currentDepot][u];
+        costs += inst->costkm*mdist[currentDepot][u];
 
         currentT = nodeVec[u].e;
         timeVec.push_back(currentT);
@@ -595,12 +600,15 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
             currentT += mdist[u][v]/inst->vmed + inst->service;
 
             fipStat->solprofit -= inst->costkm*mdist[u][v];
-            
+            costs += inst->costkm*mdist[u][v];
             if (v < 2*inst->n){
                 if (currentT < nodeVec[v].e){
                     currentT = nodeVec[v].e;
                 }
                 fipStat->beginPass[v] = currentT;
+            }
+            else if (v < 2*inst->n + inst->m){
+                profParcel += nodeVec[v].profit;
             }
             timeVec.push_back(currentT);
 
@@ -634,6 +642,16 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     cout << "\n\nFull solution value: " << fipStat->solprofit << endl;
 
     cout << "\n\nServed parcels: " << parcelCount << endl;
+
+    cout << "\n\nProfit of customers: " << profCustomer << endl;
+
+    cout << "\n\nProfit of parcels: " << profParcel << endl;
+    
+    cout << "\n\nCosts: " << costs << endl;
+
+    //calculating individual costs and profits:
+
+
 }
 
 void calcPassDetour(instanceStat *inst, vector<nodeStat> &nodeVec, fipStats *fipStat){
