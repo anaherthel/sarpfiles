@@ -525,6 +525,7 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     //     fipStat->fullSol.push_back(auxVec);
     //     auxVec.clear();
     // }
+    int parcelCount = 0;
 
     fipStat->solprofit = 0;
     for (int i = 0; i < inst->n; i++){
@@ -532,6 +533,9 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     }
 
     for (int k = 0; k < inst->K; k++){
+        if (fipStat->solPass[k].size() < 1){
+			continue;
+		}
         for (int i = 0; i < fipStat->solPass[k].size(); i++){
             // fipStat->solBeginParcel.
             auxVec.push_back(fipStat->solPass[k][i]);
@@ -560,6 +564,9 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
             }
             else{
                 cout << fipStat->fullSol[k][j] << " - ";
+            }
+            if (fipStat->fullSol[k][j] >= 2*inst->n && fipStat->fullSol[k][j] < 2*inst->n+inst->m){
+                parcelCount++;
             }
         }
         
@@ -626,7 +633,7 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     
     cout << "\n\nFull solution value: " << fipStat->solprofit << endl;
 
-
+    cout << "\n\nServed parcels: " << parcelCount << endl;
 }
 
 void calcPassDetour(instanceStat *inst, vector<nodeStat> &nodeVec, fipStats *fipStat){

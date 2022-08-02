@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances_M/csarp'
-output='fip12mcsarp.txt'
+output='fip12mcsarpSc.txt'
 #runs=10
 
 cat /dev/null > $output

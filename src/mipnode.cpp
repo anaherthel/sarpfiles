@@ -263,7 +263,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         model.add(cons);
     }
 
-
 	//testing constraint
 	// IloExpr exp(env);
 	// for (int a = 0; a < nas->vArcPlus[inst->V - inst->K + 5][5].size(); a++){
@@ -1046,6 +1045,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	// objFunction += inst->totalCustomProfit;
 
 	for (int k = 0; k < fipStat->solPass.size(); k++){
+		if (fipStat->solPass[k].size() < 1){
+			continue;
+		}
 		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
 			int u = fipStat->solPass[k][i];
 			int v = fipStat->solPass[k][i + 1];
@@ -1067,6 +1069,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	IloExpr expnew(env);
 
 	for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
+		if (fipStat->solPassOrigins[k].size() < 1){
+			continue;
+		}
 		for (int i = 0; i < fipStat->solPassOrigins[k].size(); i++){
 
 			int u = fipStat->solPassOrigins[k][i].first;
@@ -1087,6 +1092,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	for(int j = 2*inst->n; j < 2*inst->n+2*inst->m; j++){
 		IloExpr exp(env);
 		for (int k = 0; k < fipStat->solPass.size(); k++){
+			if (fipStat->solPass[k].size() < 1){
+				continue;
+			}
 			for (int i = 0; i < fipStat->solPass[k].size(); i++){
 				int u = fipStat->solPass[k][i];
 				exp += x[u][j][k];
@@ -1101,6 +1109,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	//Constraint 2 - At most 1 parcel between passenger nodes (24)
 
 	for (int k = 0; k < fipStat->solPass.size(); k++){
+		if (fipStat->solPass[k].size() < 1){
+			continue;
+		}
 		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
 			IloExpr exp(env);
 			int u = fipStat->solPass[k][i];
@@ -1118,6 +1129,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	// Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle (25)
 
 	for (int k = 0; k < fipStat->solPass.size(); k++){
+		if (fipStat->solPass[k].size() < 1){
+			continue;
+		}
 		for(int j = 2*inst->n; j < 2*inst->n+inst->m; j++){
 			IloExpr exp1(env);
 			IloExpr exp2(env);
@@ -1136,6 +1150,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	//Constraint 4 - Parcel origin precedes its destination (26)
 
 	for (int k = 0; k < fipStat->solPass.size(); k++){
+		if (fipStat->solPass[k].size() < 1){
+			continue;
+		}
 		for(int j = 2*inst->n; j < 2*inst->n+inst->m; j++){
 			for (int i = 1; i < fipStat->solPass[k].size() - 1; i++){ //maybe start from i = 0
 				int u = fipStat->solPass[k][i];
@@ -1159,6 +1176,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	// Constraint 5 - TW constraint (27)
 
     for (int k = 0; k < fipStat->solPass.size(); k++){
+		if (fipStat->solPass[k].size() < 1){
+			continue;
+		}
         for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
 			int u = fipStat->solPass[k][i];
 			int v = fipStat->solPass[k][i + 1];
@@ -1184,9 +1204,13 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
         }
 
     }
+
 	// Constraint 6 - TW constraint (28)
 
     for (int k = 0; k < fipStat->solPass.size(); k++){
+		if (fipStat->solPass[k].size() < 1){
+			continue;
+		}
         for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
 			int u = fipStat->solPass[k][i];
 
@@ -1213,6 +1237,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	// Constraint 7 - Maximum driving time (29)
 
 	for (int k = 0; k < fipStat->solPass.size(); k++){
+		if (fipStat->solPass[k].size() < 1){
+			continue;
+		}
 		IloExpr exp(env);
 		int u = fipStat->solPass[k][0];
 		int v = fipStat->solPass[k][fipStat->solPass[k].size()-1];
@@ -1230,6 +1257,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
 
 	for (int k = 0; k < fipStat->solPass.size(); k++){
+		if (fipStat->solPass[k].size() < 1){
+			continue;
+		}
 		for (int i = 0; i < fipStat->solPass[k].size(); i++){
 			IloExpr exp(env);
 			
@@ -1269,6 +1299,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
 	//Passengers cannot exceed max service time (2*ti,i+sigma) (32)
 	for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
+		if (fipStat->solPassOrigins[k].size() < 1){
+			continue;
+		}
 		for (int i = 0 ; i < fipStat->solPassOrigins[k].size(); i++){
 			IloExpr exp(env);
 			
@@ -1288,6 +1321,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	//Load constraints (33) Maybe remove it
 
 	for (int k = 0; k < fipStat->solPass.size(); k++){
+		if (fipStat->solPass[k].size() < 1){
+			continue;
+		}
         for (int i = 1; i < fipStat->solPass[k].size() - 1; i++){//maybe start from i = 0
 			IloExpr exp1(env);
 			IloExpr exp2(env);
@@ -1329,93 +1365,6 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	// cons = (exp == 1);
 	// cons.setName(var);
 	// model.add(cons);
-
-	// exp = x[19][10][0];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[10][4][0];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[4][9][0];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[9][16][0];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[16][15][0];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[15][2][0];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[2][7][0];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[7][21][0];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[7][21][0];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[1][11][1];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-
-	// exp = x[11][6][1];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[6][3][1];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[3][8][1];
-	
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-
-
-
-
-
-
-
 
 
 	int threads;
@@ -1548,6 +1497,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 		cout << endl;
         // printResults(inst, mdist, sStat, nodeVec);
 
+	}
+	else{
+		cout << "\n\nServed parcels: " << 0 << endl;
 	}
 	env.end();
     // startVal.end();

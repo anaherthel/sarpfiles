@@ -868,29 +868,19 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
         }
 	}
 
-    fipStat.fipstage = 1;
-    fipStruct(inst, sStat, &fipStat);
+    // fipStat.fipstage = 1;
+    // fipStruct(inst, sStat, &fipStat);
 
-    initArcs(inst, &nas);
-	fipArcs (inst, &nas, problem, nodeVec, mdist, 2);
-    // printStructures(&nas);
-    cout << endl << endl << "______PART II_____" << endl << endl;
-    fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
-
-    mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat);
-
-    calcPassDetour(inst, nodeVec, &fipStat);
+    // initArcs(inst, &nas);
+	// fipArcs (inst, &nas, problem, nodeVec, mdist, 2);
+    // // printStructures(&nas);
+    // cout << endl << endl << "______PART II_____" << endl << endl;
+    // fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
 
 	// if(sStat->feasible){
-	// 	viewSol (inst, mdist, nodeVec, sStat);
+    //     mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat);
 
-	// 	// mipSolStats (inst, mdist, nodeVec, sStat);
-
-	// 	// printStats(inst, sStat);
-
-    //     // if (inst->preInst == 1) {
-    //     //     output(inst, nodeVec,  sStat, problem);
-    //     // }
+    //     calcPassDetour(inst, nodeVec, &fipStat);
 	// }
 
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {

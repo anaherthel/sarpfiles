@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances_M/sf_data'
-output='fip12msfsarp.txt'
+output='fip12msfsarpSc.txt'
 #runs=10
 
 cat /dev/null > $output
