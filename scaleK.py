@@ -150,7 +150,7 @@ def changeKmulti(instlist, Klist):
                 counter += 1
 
 # instlist, Klist = makeinstList('sfsarpKlist.txt')
-instlist, Klist = makeinstList('SsfsarpKfipN.txt')
+instlist, Klist = makeinstList('SsfsarpKbdlN.txt')
 
 # changeKmulti(instlist, Klist)
 changeK(instlist, Klist)
