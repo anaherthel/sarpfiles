@@ -116,7 +116,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> service;
         in >> n;
         in >> m;
-        // K = 4;
+        K = n - 1;
 
         // if (n <= 10){
         //     K = n-1;
@@ -494,7 +494,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> n;
         in >> m;
         // K = 6;
-
+        K = n-1;
         if (inst->instType == "ghsarp"){
             originalK = 1;
         }

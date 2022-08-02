@@ -56,9 +56,9 @@ def changeK(instlist, Klist):
 
 
 # instlist, Klist = makeinstList('sfsarpKlist.txt')
-instlist, Klist = makeinstList('scaled/SsfsarpKfip.txt')
+instlist, Klist = makeinstList('scaled/MsfsarpKfip.txt')
 
-write_file('SsfsarpKfipN.txt', instlist, Klist)
+write_file('MsfsarpKfipN.txt', instlist, Klist)
 
 # makenewfile()
 
