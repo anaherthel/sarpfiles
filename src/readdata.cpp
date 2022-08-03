@@ -116,7 +116,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> service;
         in >> n;
         in >> m;
-        K = n - 1;
+        // K = n - 1;
 
         // if (n <= 10){
         //     K = n-1;
@@ -130,12 +130,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // }
         // K = 11;
 
-        if (trialK <= K){
-            K = trialK;
-        }
-        else{
-            trialK = K;
-        }
+        // if (trialK <= K){
+        //     K = trialK;
+        // }
+        // else{
+        //     trialK = K;
+        // }
         
         cout << "K: " << K << endl;
         // getchar();
@@ -494,7 +494,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> n;
         in >> m;
         // K = 6;
-        K = n-1;
+        // K = n-1;
+        
         if (inst->instType == "ghsarp"){
             originalK = 1;
         }
@@ -516,7 +517,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //     exit(1);
         // }
 
-        if (trialK <= K){
+        if (trialK >= K){
             K = trialK;
         }
         else{

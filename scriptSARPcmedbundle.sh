@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances_M/csarp'
-output='bundlemcsarpNS.txt'
+output='bundlemcsarpNS3.txt'
 #runs=10
 
 cat /dev/null > $output
