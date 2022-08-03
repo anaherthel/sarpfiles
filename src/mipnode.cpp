@@ -1418,6 +1418,10 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
     // cout << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
     cout << " Total Time: " << time << endl;
 
+	if (time >= 7180){
+		sStat->feasible = false;
+	}
+
 	if (sStat->feasible){
 
         cout << " LB: " << nSARP.getObjValue() << endl;
