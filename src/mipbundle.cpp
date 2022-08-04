@@ -392,6 +392,7 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	bSARP.setParam(IloCplex::Threads, threads);
 
     bSARP.setParam(IloCplex::Param::TimeLimit, 7200);
+    // bSARP.setParam(IloCplex::Param::TimeLimit, 10);
 
     IloNum start;
     IloNum time;
@@ -974,6 +975,9 @@ void miphbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
     // getchar();
     cout << " Tree_Size: " <<  bhSARP.getNnodes() + bhSARP.getNnodesLeft() + 1 << endl;
     cout << " Total Time: " << time << endl;
+
+
+
 
 	if(sStat->feasible){
 
