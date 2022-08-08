@@ -668,12 +668,12 @@ void calcPassDetour(instanceStat *inst, vector<nodeStat> &nodeVec, fipStats *fip
         fipStat->passDetour.push_back(detour);
     }
 
-    cout << "\n\nPassenger detour (%): " << endl;
+    cout << "\n\nPassenger detour (%): ";
     
     for (int i = 0; i < inst->n; i++){
-        cout << i << ": " << fipStat->passDetour[i] << endl;
+        cout << i << ": " << fipStat->passDetour[i] << " ";
     }
-    
+    cout << endl << endl;
 
 
 }
