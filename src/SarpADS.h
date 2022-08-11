@@ -144,6 +144,21 @@ struct fipStats{
 	double solprofit;
 
 	vector <double> passDetour;//increase in percentage to the trip with no detours
+	
+	double tParcel;
+	double tPass;
+	double tBoth;
+	double tNone;
+
+	double tStillP;
+	double tStillG;
+	double tStill;
+
+	double dParcel;
+	double dPass;
+	double dBoth;
+	double dNone;
+
 };
 
 struct nodeArcsStruct{//for model node
@@ -170,6 +185,7 @@ struct nodeArcsStruct{//for model node
 // };
 
 void solStatIni(solStats *sStat);
+void fipStatIni(fipStats *fipStat);
 void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat);
 void printStats(instanceStat *inst, solStats *sStat);
 void printStructures(nodeArcsStruct *nas);

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances/ghsarp'
-output='fip12sghsarpA.txt'
+output='fip12sghsarpNew.txt'
 #runs=10
 
 cat /dev/null > $output

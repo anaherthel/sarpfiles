@@ -28,6 +28,22 @@ void solStatIni(solStats *sStat){
     // sStat->solvec.clear();
 }
 
+void fipStatIni(fipStats *fipStat){
+
+    fipStat->solprofit = 0;
+
+    fipStat->tParcel = 0;
+    fipStat->tPass = 0;
+    fipStat->tBoth = 0;
+    fipStat->tNone = 0;
+
+    fipStat->dParcel = 0;
+    fipStat->dPass = 0;
+    fipStat->dBoth = 0;
+    fipStat->dNone = 0;
+
+}
+
 void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat){
 
     int load;
@@ -530,6 +546,8 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     // }
     int parcelCount = 0;
 
+    int currDepot;
+
     fipStat->solprofit = 0;
     for (int i = 0; i < inst->n; i++){
         fipStat->solprofit += nodeVec[i].profit;
@@ -561,7 +579,8 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     cout<< "\n\nFull solution: " << endl;
 
     for (int k = 0; k < fipStat->fullSol.size(); k++){
-        cout << "Vehicle: ";
+        currDepot = 2*inst->n + 2*inst->m + k;
+        cout << "Vehicle: " << currDepot << ": ";
         for (int j = 0; j < fipStat->fullSol[k].size(); j++){
             if (j == fipStat->fullSol[k].size() - 1){
                 cout << fipStat->fullSol[k][j] << endl;
@@ -649,7 +668,291 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     
     cout << "\n\nCosts: " << costs << endl;
 
-    //calculating individual costs and profits:
+    fipStatIni(fipStat);
+
+    //calculating specific distances and times:
+    int load;//load of parcel
+    int load2;//load of passenger
+    double distPass;
+    // load = 0;
+    double dij;
+    int currNode;
+    int nextNode;
+
+    double stop;
+    double tij;
+
+
+
+
+    for (int k = 0; k < inst->K; k++){
+        load = 0;
+        load2 = 0;
+        currDepot = 2*inst->n + 2*inst->m + k;
+
+        dij = mdist[currDepot][fipStat->fullSol[k][0]];
+
+        fipStat->tNone += dij/inst->vmed;
+        fipStat->tNone += inst->service;
+        fipStat->dNone += dij;
+        if(fipStat->fullSol[k][0] < inst->n){
+            load = 0;
+
+            load2++;
+        }
+        else if(fipStat->fullSol[k][0] < 2*inst->n + inst->m){
+            load++;
+
+            load2 = 0;
+        }
+
+        for (int i = 0; i < fipStat->fullSol[k].size() - 1; i++){
+            // dij = mdist[sStat->solInNode[k][i]][sStat->solInNode[k][i + 1]];
+            currNode = fipStat->fullSol[k][i];
+            nextNode = fipStat->fullSol[k][i + 1];
+            dij = mdist[currNode][nextNode];            
+
+            if(currNode < inst->n){ //pass PU
+                if(nextNode < 2*inst->n){ //pass DL 
+                    if (load > 0){
+                        fipStat->tBoth += dij/inst->vmed;
+                        fipStat->tBoth += inst->service;
+
+                        fipStat->dBoth += dij;
+                        load2--;
+                    }  
+                    else{
+                        fipStat->tPass +=  dij/inst->vmed;
+                        fipStat->tPass +=  inst->service;
+
+                        fipStat->dPass += dij;
+                        load2--;
+                    }
+                }
+
+                else if (nextNode < 2*inst->n + inst->m){//parcel PU
+                    if (load > 0){
+                        fipStat->tBoth += dij/inst->vmed;
+                        fipStat->tBoth += inst->service;
+
+                        fipStat->dBoth += dij;
+                        load++;
+                    }  
+                    else{
+                        fipStat->tPass +=  dij/inst->vmed;
+                        fipStat->tPass +=  inst->service;
+
+                        fipStat->dPass += dij;
+                        load++;
+                    }
+                }
+
+                else if (nextNode < 2*inst->n + 2*inst->m){//parcel DL
+                    fipStat->tBoth += dij/inst->vmed;
+                    fipStat->tBoth += inst->service;
+
+                    fipStat->dBoth += dij;
+                    load--;
+                }
+            }
+            else if (currNode < 2*inst->n){ //Passenger DL
+                if(nextNode < inst->n){ //pass PU
+                    if (load > 0){
+                        fipStat->tParcel += dij/inst->vmed;
+                        fipStat->tParcel += inst->service;
+
+                        fipStat->dParcel += dij;
+                        load2++;
+                    }  
+                    else{
+                        fipStat->tNone +=  dij/inst->vmed;
+                        fipStat->tNone +=  inst->service;
+
+                        fipStat->dNone += dij;
+                        load2++;
+                    }
+                }
+
+                else if (nextNode < 2*inst->n + inst->m){//parcel PU
+                    if (load > 0){
+                        fipStat->tParcel += dij/inst->vmed;
+                        fipStat->tParcel += inst->service;
+
+                        fipStat->dParcel += dij;
+                        load++;
+                    }  
+                    else{
+                        fipStat->tNone +=  dij/inst->vmed;
+                        fipStat->tNone +=  inst->service;
+
+                        fipStat->dNone += dij;
+                        load++;
+                    }
+                }
+
+                else if (nextNode < 2*inst->n + 2*inst->m){//parcel DL
+                    fipStat->tParcel += dij/inst->vmed;
+                    fipStat->tParcel += inst->service;
+
+                    fipStat->dParcel += dij;
+                    load--;
+                }
+            }
+
+            else if (currNode < 2*inst->n + inst->m){ //parcel PU
+                if (nextNode < inst->n){//passenger PU
+                    fipStat->tParcel += dij/inst->vmed;
+                    fipStat->tParcel += inst->service;
+
+                    fipStat->dParcel += dij;
+                    load2++;
+                }                
+                else if (nextNode < 2*inst->n){//passenger DL
+                    fipStat->tBoth += dij/inst->vmed;
+                    fipStat->tBoth += inst->service;
+
+                    fipStat->dBoth += dij;
+                    load2--;
+                }
+                else if(nextNode < 2*inst->n + inst->m){//parcel PU
+                    if (load2 > 0){
+                        fipStat->tBoth += dij/inst->vmed;
+                        fipStat->tBoth += inst->service;
+
+                        fipStat->dBoth += dij;
+                        load++;
+                    }
+                    else{
+                        fipStat->tParcel += dij/inst->vmed;
+                        fipStat->tParcel += inst->service;
+                        load++;
+
+                        fipStat->dParcel += dij;   
+                    }
+      
+                }
+                else if (nextNode < 2*inst->n + 2*inst->m){//parcel DL
+                    if (load2 > 0){
+                        fipStat->tBoth += dij/inst->vmed;
+                        fipStat->tBoth += inst->service;
+
+                        fipStat->dBoth += dij;
+                        load--;                        
+                    }
+                    else{
+                        fipStat->tParcel += dij/inst->vmed;
+                        fipStat->tParcel += inst->service;
+                        load--;
+  
+                        fipStat->dParcel += dij;                       
+                    }
+
+                }
+            }
+            else if (currNode < 2*inst->n + 2*inst->m){ //parcel DL
+                if(nextNode < inst->n){ // if next is a Pass PU, there will not be a load2 > 0
+                    if (load > 0){
+                        fipStat->tParcel += dij/inst->vmed;
+                        fipStat->tParcel += inst->service;
+
+                        fipStat->dParcel += dij;
+                        load2++;
+                    } 
+                    else{
+                        fipStat->tNone += dij/inst->vmed;
+                        fipStat->tNone += inst->service;
+
+                        fipStat->dNone += dij;
+                        load2++;
+                    }
+                }
+                else if (nextNode < 2*inst->n){ //pass DL
+                    if (load > 0){
+                        fipStat->tBoth += dij/inst->vmed;
+                        fipStat->tBoth += inst->service;
+
+                        fipStat->dBoth += dij;
+                        load2--;                             
+                    } 
+                    else{
+                        fipStat->tPass += dij/inst->vmed;
+                        fipStat->tPass += inst->service;
+
+                        fipStat->dPass += dij;
+                        load2--;                                                  
+                    }                    
+                }
+                else if(nextNode < 2*inst->n + inst->m){//parcel PU
+                    if (load > 0){
+                        if (load2 > 0){
+                            fipStat->tBoth += dij/inst->vmed;
+                            fipStat->tBoth += inst->service;
+
+                            fipStat->dBoth += dij;
+                            load++;
+                        }
+                        else{
+                            fipStat->tParcel += dij/inst->vmed;
+                            fipStat->tParcel += inst->service;
+                            load++;
+
+                            fipStat->dParcel += dij;
+                        }
+                    } 
+                    else{
+                        if (load2 > 0){
+                            fipStat->tPass += dij/inst->vmed;
+                            fipStat->tPass += inst->service;
+
+                            fipStat->dPass += dij;
+                            load++;  
+                        }
+                        else{
+                            fipStat->tNone += dij/inst->vmed;
+                            fipStat->tNone += inst->service;
+                            load++;
+
+                            fipStat->dNone += dij;
+                        }
+
+                    }                  
+                }
+                else if (nextNode < 2*inst->n + 2*inst->m){//parcel DL
+                    if (load2 > 0){
+                        fipStat->tBoth += dij/inst->vmed;
+                        fipStat->tBoth += inst->service;
+                        load--;
+
+                        fipStat->dBoth += dij;
+                    }
+                    else{
+                        fipStat->tParcel += dij/inst->vmed;
+                        fipStat->tParcel += inst->service;
+                        load--;
+
+                        fipStat->dParcel += dij;
+                    }
+
+                }
+            }
+        }
+    }
+
+    cout << "\n*************" << endl;
+
+    cout << "\nTotal time: " << fipStat->tPass + fipStat->tParcel + fipStat->tBoth + fipStat->tNone << endl;
+    cout << "\nTotal passenger time: " << fipStat->tPass << endl;
+    cout << "\nTotal parcel time: " << fipStat->tParcel << endl;
+    cout << "\nTotal combined transportation time: " << fipStat->tBoth << endl;
+    cout << "\nTotal idle time: " << fipStat->tNone << endl;
+
+    cout << "\n*************" << endl;
+
+    cout << "\nTotal distance: " << fipStat->dPass + fipStat->dParcel + fipStat->dBoth + fipStat->dNone << endl;
+    cout << "\nTotal passenger distance: " << fipStat->dPass << endl;
+    cout << "\nTotal parcel distance: " << fipStat->dParcel << endl;
+    cout << "\nTotal combined transportation distance: " << fipStat->dBoth << endl;
+    cout << "\nTotal idle distance: " << fipStat->dNone << endl;
 
 
 }
