@@ -683,13 +683,15 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     double tij;
 
 
-
-
     for (int k = 0; k < inst->K; k++){
         load = 0;
         load2 = 0;
         currDepot = 2*inst->n + 2*inst->m + k;
 
+        if (fipStat->fullSol[k].size() < 3){
+            continue;
+        }
+        
         dij = mdist[currDepot][fipStat->fullSol[k][0]];
 
         fipStat->tNone += dij/inst->vmed;
