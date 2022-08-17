@@ -561,10 +561,10 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         for (int i = 0; i < fipStat->solPass[k].size(); i++){
             // fipStat->solBeginParcel.
             auxVec.push_back(fipStat->solPass[k][i]);
-            cout << "k, i: " << fipStat->solPass[k][i] << endl;
+            // cout << "k, i: " << fipStat->solPass[k][i] << endl;
             for (int j = 0; j < fipStat->solvec[k].size(); j++){
                 if (fipStat->solPass[k][i] == fipStat->solvec[k][j].first){
-                    cout << "k, j: " << fipStat->solPass[k][i] << endl;
+                    // cout << "k, j: " << fipStat->solPass[k][i] << endl;
                     auxVec.push_back(fipStat->solvec[k][j].second);
                     fipStat->solprofit += nodeVec[fipStat->solvec[k][j].second].profit;
                 }
@@ -691,7 +691,7 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         if (fipStat->fullSol[k].size() < 3){
             continue;
         }
-        
+
         dij = mdist[currDepot][fipStat->fullSol[k][0]];
 
         fipStat->tNone += dij/inst->vmed;

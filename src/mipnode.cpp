@@ -672,7 +672,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
 
-	cout << "service: " << inst->service << endl;
+	// cout << "service: " << inst->service << endl;
 
 	//Creating variables only for pass PU and DL
 	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
@@ -1297,26 +1297,26 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 		model.add(cons2);
 	}
 
-	//Passengers cannot exceed max service time (2*ti,i+sigma) (32)
-	for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
-		if (fipStat->solPassOrigins[k].size() < 1){
-			continue;
-		}
-		for (int i = 0 ; i < fipStat->solPassOrigins[k].size(); i++){
-			IloExpr exp(env);
+	// //Passengers cannot exceed max service time (2*ti,i+sigma) (32)
+	// for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
+	// 	if (fipStat->solPassOrigins[k].size() < 1){
+	// 		continue;
+	// 	}
+	// 	for (int i = 0 ; i < fipStat->solPassOrigins[k].size(); i++){
+	// 		IloExpr exp(env);
 			
-			int u = fipStat->solPassOrigins[k][i].first;
-			int posu = fipStat->solPassOrigins[k][i].second;
-			int v = fipStat->solPass[k][posu + 1];
+	// 		int u = fipStat->solPassOrigins[k][i].first;
+	// 		int posu = fipStat->solPassOrigins[k][i].second;
+	// 		int v = fipStat->solPass[k][posu + 1];
 
-			exp = b[k][v] - b[k][u] + inst->service;
+	// 		exp = b[k][v] - b[k][u] + inst->service;
 
-			sprintf (var, "Constraint12_%d_%d", k, u);
-			IloRange cons = (exp <= 2*(mdist[u][u+inst->n]/inst->vmed)+2*inst->service);
-			cons.setName(var);
-			model.add(cons);
-		}
-	}
+	// 		sprintf (var, "Constraint12_%d_%d", k, u);
+	// 		IloRange cons = (exp <= 2*(mdist[u][u+inst->n]/inst->vmed)+2*inst->service);
+	// 		cons.setName(var);
+	// 		model.add(cons);
+	// 	}
+	// }
 
 	//Load constraints (33) Maybe remove it
 
@@ -1439,7 +1439,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
                             auxPair.first = i;
                             auxPair.second = j;
                             fipStat->solvec[k].push_back(auxPair);
-                            cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            // cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }
@@ -1456,7 +1456,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 						// cout << "k: " << k << endl;
                         if (nSARP.getValue(x[i][j][k]) > 0.5){
 							fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
-							cout << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
+							// cout << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
 							// getchar();
                             // cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
@@ -1486,7 +1486,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 						// cout << "k: " << k << endl;
                         if (nSARP.getValue(x[i][j][k]) > 0.5){
 							fipStat->solBeginParcel.push_back(nSARP.getValue(s[j]));
-							cout << "\ns(" << j << "): " << nSARP.getValue(s[j]);
+							// cout << "\ns(" << j << "): " << nSARP.getValue(s[j]);
 							// getchar();
                             // cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
