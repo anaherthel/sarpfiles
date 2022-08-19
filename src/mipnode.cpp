@@ -749,6 +749,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		model.add(cons);
 	}
 
+
 	//Set all parcel variables to 0;
 
 	for (int i = 2*inst->n; i < 2*inst->n + 2*inst->m; i++){
@@ -890,7 +891,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	//Constraint 11 - No passenger repeated
 
-	for (int i = 0; i < 2*inst->n; i++){
+	for (int i = 0; i < inst->n; i++){
 		IloExpr exp(env);
 		for (int k = 0; k < inst->K; k++){
 			for (int a = 0; a < nas->vArcPlus[i][k].size(); a++){
@@ -905,6 +906,26 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		cons.setName(var);
 		model.add(cons);
 	}
+
+	// for (int i = 0; i < inst->n; i++){
+	// 	IloExpr exp(env);
+	// 	for (int j = 0; j < 2*inst->n+2*inst->m; j++){
+	// 		if (nas->arcs[i][j] != true){
+    //             continue; // If arc i to j is invalid
+    //         } 
+
+	// 		for (int k = 0; k < inst->K; k++){
+	// 			exp += x[i][j][k];
+	// 		}
+	// 	}
+
+	// 	sprintf (var, "Constraint11_%d", i);
+	// 	IloRange cons = (exp == 1);
+	// 	cons.setName(var);
+	// 	model.add(cons);
+	// }
+
+
 
 	int threads;
 
@@ -1423,7 +1444,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
         cout << " LB: " << nSARP.getObjValue() << endl;
         cout << " UB: " << nSARP.getBestObjValue() << endl;
-        sStat->solprofit = nSARP.getObjValue();
+        fipStat->solprofit = nSARP.getObjValue();
         sStat->time = time;
 
         for (int k = 0; k < inst->K; k++){

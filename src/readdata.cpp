@@ -397,6 +397,21 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     }
                 }
             }
+
+
+            //fixing passenger pu tw
+            for (int i = 0; i < n; i++){
+                vl[i] = ve[i] + 10;//10 minutes of tw
+            }
+
+            //fixing passenger dl tw
+            for (int i = n; i < 2*n; i++){
+                double vmed2 = 0.683333;
+                ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + max(double(5), ((dist[i-n][i]*0.5)/vmed2));
+                vl[i] = ve[i] + 10;//10 minutes of tw
+            }
+
+
         }           
 
         for (int i = 0; i < V; i++){
@@ -413,27 +428,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             nodeVec.push_back(*node);
         }
 
-        if  (problem->model == "osarp" || problem->model == "fip"){
-            //fixing passenger pu tw
-            for (int i = 0; i < n; i++){
-                nodeVec[i].l = nodeVec[i].e + 2*service; //10 minutes of tw
-            }
 
-            //fixing passenger dl tw
-            for (int i = n; i < 2*n; i++){
-                // ve[i] = ceil(vl[i-n] + ((dist[i-n][i]/vmed2)) + 5 + (rand() % 10));
-                // ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + 7;
-                nodeVec[i].e = nodeVec[i - n].e + (dist[i-n][i]/inst->vmed) + max(double(service), ((dist[i-n][i]*0.5)/inst->vmed));
 
-                // ve[i] = ve[i-n] + ((dist[i-n][i]/inst->vmed)*0.5);
-                // cout << "i: " << i << " - ve(i): " << nodeVec[i].e << endl; 
-                // vl[i] = vl[i-n] + dist[i-n][i]/vmed2 + 5;                
-                // vl[i] = ve[i] + dist[i-n][i]/vmed2 + 5; //previous tw for dl (working)
-                nodeVec[i].l = nodeVec[i].e + 2*service;//10 minutes of tw
-                // cout << "i: " << i << "; " << i-n << " - tw: " << endl;
-                // cout << "ve[i]: " << ve[i] << " - vl[i-n]: " << vl[i-n] << " - dist[i-n][i]: " << dist[i-n][i] << " - tij: " << (dist[i-n][i]/inst->vmed) << endl;                
-            }
-        }
         // Adding dummy nodes
         for (int i = 0; i < inst->dummy; i++){
             node->xs = 0;
@@ -868,11 +864,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // }
     // getchar();
 
-    // cout << "\nTime windows: " << endl;
+    cout << "\nTime windows: " << endl;
 
-    // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
-    // }
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
+    }
 
     // // cout << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
@@ -884,10 +880,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     // getchar();
 
-    // cout << "Profits: " << endl;
-    // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].profit << endl;
-    // }
+    cout << "Profits: " << endl;
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].profit << endl;
+    }
 
     // // getchar();
 

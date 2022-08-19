@@ -876,18 +876,26 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     // printStructures(&nas);
     cout << endl << endl << "______PART II_____" << endl << endl;
     fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
+	
+    bool feasFlag = false;
+    
+    if(sStat->feasible){
+        feasFlag = true;
+    }
 
-	if(sStat->feasible){
-        mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat);
+	// if(sStat->feasible){
+        mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat, feasFlag);
 
         calcPassDetour(inst, nodeVec, &fipStat);
-	}
+	// }
+
 
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
 		delete[] mdist[i];
 	}
 	delete[] mdist;
 
+    clearStats(sStat, &fipStat);
     
 
 }

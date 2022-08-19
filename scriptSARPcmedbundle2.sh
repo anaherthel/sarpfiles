@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances_M2/csarp'
-output='bundlemcsarpSCMemA2.txt'
+output='bundlemcsarpC2.txt'
 #runs=10
 
 cat /dev/null > $output

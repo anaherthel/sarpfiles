@@ -128,7 +128,7 @@ struct solStats{
 };
 
 struct fipStats{
-
+	
 	vector< vector<int> > solPass; //for each k in K, the passenger locations
 	vector< vector< pair<int,int> > > solPassOrigins; //for each k in K, the passenger PU locations and its position in the solution.
 
@@ -190,7 +190,7 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
 void printStats(instanceStat *inst, solStats *sStat);
 void printStructures(nodeArcsStruct *nas);
 void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat);
-void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat, fipStats *fipStat);
+void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat, fipStats *fipStat, bool feasFlag);
 void calcPassDetour(instanceStat *inst, vector<nodeStat> &nodeVec, fipStats *fipStat);
-
+void clearStats(solStats *sStat, fipStats *fipStat);
 #endif

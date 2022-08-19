@@ -529,7 +529,7 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat){
     // fipStat->solPassOrigins[1].push_back(pairpuloc);
 }
 
-void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat, fipStats *fipStat){
+void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat, fipStats *fipStat, bool feasFlag){
     
     vector<int> auxVec;
     vector<double> timeVec;
@@ -554,26 +554,40 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         profCustomer += nodeVec[i].profit;
     }
 
-    for (int k = 0; k < inst->K; k++){
-        if (fipStat->solPass[k].size() < 1){
-			continue;
-		}
-        for (int i = 0; i < fipStat->solPass[k].size(); i++){
-            // fipStat->solBeginParcel.
-            auxVec.push_back(fipStat->solPass[k][i]);
-            // cout << "k, i: " << fipStat->solPass[k][i] << endl;
-            for (int j = 0; j < fipStat->solvec[k].size(); j++){
-                if (fipStat->solPass[k][i] == fipStat->solvec[k][j].first){
-                    // cout << "k, j: " << fipStat->solPass[k][i] << endl;
-                    auxVec.push_back(fipStat->solvec[k][j].second);
-                    fipStat->solprofit += nodeVec[fipStat->solvec[k][j].second].profit;
+    if (feasFlag){
+        for (int k = 0; k < inst->K; k++){
+            if (fipStat->solPass[k].size() < 1){
+                continue;
+            }
+            for (int i = 0; i < fipStat->solPass[k].size(); i++){
+                // fipStat->solBeginParcel.
+                auxVec.push_back(fipStat->solPass[k][i]);
+                // cout << "k, i: " << fipStat->solPass[k][i] << endl;
+                for (int j = 0; j < fipStat->solvec[k].size(); j++){
+                    if (fipStat->solPass[k][i] == fipStat->solvec[k][j].first){
+                        // cout << "k, j: " << fipStat->solPass[k][i] << endl;
+                        auxVec.push_back(fipStat->solvec[k][j].second);
+                        fipStat->solprofit += nodeVec[fipStat->solvec[k][j].second].profit;
+                    }
                 }
+
             }
 
+            fipStat->fullSol.push_back(auxVec);
+            auxVec.clear();
         }
-
-        fipStat->fullSol.push_back(auxVec);
-        auxVec.clear();
+    }
+    else{
+        for (int k = 0; k < inst->K; k++){
+            if (fipStat->solPass[k].size() < 1){
+                continue;
+            }
+            for (int i = 0; i < fipStat->solPass[k].size(); i++){
+                auxVec.push_back(fipStat->solPass[k][i]);
+            }
+            fipStat->fullSol.push_back(auxVec);
+            auxVec.clear();
+        }
     }
 
     cout<< "\n\nFull solution: " << endl;
@@ -980,5 +994,32 @@ void calcPassDetour(instanceStat *inst, vector<nodeStat> &nodeVec, fipStats *fip
     }
     cout << endl << endl;
 
+
+}
+
+void clearStats(solStats *sStat, fipStats *fipStat){
+
+    sStat->solOrder.clear(); 
+	sStat->solInNode.clear();
+	sStat->solvec.clear();
+
+	sStat->solBegin.clear();
+	sStat->solLoad.clear();
+
+
+    fipStat->solPass.clear(); 
+	fipStat->solPassOrigins.clear(); 
+
+	fipStat->solvec.clear();
+	fipStat->solBegin.clear();
+	fipStat->solBeginParcel.clear();
+
+	fipStat->beginPass.clear();
+
+	fipStat->fullSol.clear();
+	fipStat->fullBegin.clear();
+
+
+	fipStat->passDetour.clear();
 
 }
