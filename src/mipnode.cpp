@@ -1319,25 +1319,25 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	}
 
 	// //Passengers cannot exceed max service time (2*ti,i+sigma) (32)
-	for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
-		if (fipStat->solPassOrigins[k].size() < 1){
-			continue;
-		}
-		for (int i = 0 ; i < fipStat->solPassOrigins[k].size(); i++){
-			IloExpr exp(env);
+	// for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
+	// 	if (fipStat->solPassOrigins[k].size() < 1){
+	// 		continue;
+	// 	}
+	// 	for (int i = 0 ; i < fipStat->solPassOrigins[k].size(); i++){
+	// 		IloExpr exp(env);
 			
-			int u = fipStat->solPassOrigins[k][i].first;
-			int posu = fipStat->solPassOrigins[k][i].second;
-			int v = fipStat->solPass[k][posu + 1];
+	// 		int u = fipStat->solPassOrigins[k][i].first;
+	// 		int posu = fipStat->solPassOrigins[k][i].second;
+	// 		int v = fipStat->solPass[k][posu + 1];
 
-			exp = b[k][v] - b[k][u] + inst->service;
+	// 		exp = b[k][v] - b[k][u] + inst->service;
 
-			sprintf (var, "Constraint12_%d_%d", k, u);
-			IloRange cons = (exp <= 2*(mdist[u][u+inst->n]/inst->vmed)+2*inst->service);
-			cons.setName(var);
-			model.add(cons);
-		}
-	}
+	// 		sprintf (var, "Constraint12_%d_%d", k, u);
+	// 		IloRange cons = (exp <= 2*(mdist[u][u+inst->n]/inst->vmed)+2*inst->service);
+	// 		cons.setName(var);
+	// 		model.add(cons);
+	// 	}
+	// }
 
 	//Load constraints (33) Maybe remove it
 
