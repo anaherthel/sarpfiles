@@ -724,6 +724,16 @@ void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<dist
             }
             flag = false;
 
+            flag = substrPosition(line, "Obj Val");
+
+            if (flag) {
+                loc = line.find_first_of(":");
+                inst.objval = stod(line.substr(loc + 1, line.size() - loc - 1));
+                // cout << "objval:" << inst.objval << endl;
+                // getchar();
+            }
+            flag = false;
+
             flag = substrPosition(line, "Number of Vehicles");
 
             if (flag) {
@@ -779,7 +789,7 @@ void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<dist
                     loc = line.find_first_of(":");
                     testStr = line.substr(loc + 2, line.size() - loc - 2);
 
-                    if (testStr == "Optimal" || testStr == "Feasible" ){
+                    if (testStr == "Optimal" || testStr == "Feasible"){
                         optflag = true;
                         inst.stats = testStr;
                         // cout << "Status:" << inst.stats << endl;
@@ -791,17 +801,17 @@ void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<dist
                 }
                 flag = false;
 
+                flag = substrPosition(line, "Total Time");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.soltime = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "time:" << inst.soltime << endl;
+                    // getchar();
+                }
+                flag = false;
+
                 if (optflag){
-
-                    flag = substrPosition(line, "Total Time");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        inst.soltime = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "time:" << inst.soltime << endl;
-                        // getchar();
-                    }
-                    flag = false;
                     
                     flag = substrPosition(line, "LB");
 
@@ -835,155 +845,156 @@ void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<dist
                         // getchar();
                     }
                     flag = false;
-
-                    flag = substrPosition(line, "Served parcels");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        inst.servP = stoi(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "Served parcels:" << inst.servP << endl;
-                        // getchar();
-                    }
-                    flag = false;
-
-
-                    flag = substrPosition(line, "Profit of customers");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        inst.pCust = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "pCust:" << inst.pCust << endl;
-                        // getchar();
-                    }
-                    flag = false;
-                    
-                    flag = substrPosition(line, "Profit of parcels");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        inst.pParc = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "pParc:" << inst.pParc << endl;
-                        // getchar();
-                    }
-                    flag = false;
-
-                    flag = substrPosition(line, "Costs");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        inst.costs = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "costs:" << inst.costs << endl;
-                        // getchar();
-                    }
-                    flag = false;
-
-                    //*******************************
-
-                    flag = substrPosition(line, "Total passenger time");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        time.cTime = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "Customer Time:" << time.cTime << endl;
-                        // getchar();
-                    }
-                    flag = false;
-                
-                    flag = substrPosition(line, "Total parcel time");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        time.pTime = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "Parcel Time:" << time.pTime << endl;
-                        // getchar();
-                    }
-                    flag = false;
-
-                    flag = substrPosition(line, "Total combined transportation time");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        time.bTime = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "Both Time:" << time.bTime << endl;
-                        // getchar();
-                    }
-                    flag = false;
-
-                    flag = substrPosition(line, "Total idle time");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        time.eTime = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "Empty Time:" << time.eTime << endl;
-                        // getchar();
-                    }
-                    flag = false;
-                    
-                
-                    //******************************************
-
-                    flag = substrPosition(line, "Total passenger distance");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        dist.cDist = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "Client dist:" << dist.cDist << endl;
-                        // getchar();
-                    }
-                    flag = false;
-
-                    flag = substrPosition(line, "Total parcel distance");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        dist.pDist = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "Parcel dist:" << dist.pDist << endl;
-                        // getchar();
-                    }
-                    flag = false;
-
-                    flag = substrPosition(line, "Total combined transportation distance");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        dist.bDist = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "Both dist:" << dist.bDist << endl;
-                        // getchar();
-                    }
-                    flag = false;
-
-                    flag = substrPosition(line, "Total idle distance");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        dist.eDist = stod(line.substr(loc + 1, line.size() - loc - 1));
-                        // cout << "Empty dist:" << dist.eDist << endl;
-                        // getchar();
-
-                    }
-
-                    flag = false;
-
-                    flag = substrPosition(line, "Passenger detour (%)");
-
-                    if (flag) {
-                        loc = line.find_first_of(":");
-                        detstr = line.substr(loc + 2, line.size() - loc - 1);
-                        // cout << "detstr:" << detstr << endl;
-                        makeDetourVec(detstr, inst);
-                        // cout << "Vec of detours (after function): " << endl;
-
-                        // for (int i = 0; i < inst.detours.size();i++){
-                        //     cout << inst.detours[i] << " ";
-                        // }
-
-                        // getchar();
-
-                        okall = true; 
-                    }
-                    flag = false;
-                    
                 }
+
+                flag = substrPosition(line, "Served parcels");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.servP = stoi(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Served parcels:" << inst.servP << endl;
+                    // getchar();
+                }
+                flag = false;
+
+
+                flag = substrPosition(line, "Profit of customers");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.pCust = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "pCust:" << inst.pCust << endl;
+                    // getchar();
+                }
+                flag = false;
+                
+                flag = substrPosition(line, "Profit of parcels");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.pParc = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "pParc:" << inst.pParc << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Costs");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.costs = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "costs:" << inst.costs << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                //*******************************
+
+                flag = substrPosition(line, "Total passenger time");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    time.cTime = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Customer Time:" << time.cTime << endl;
+                    // getchar();
+                }
+                flag = false;
+            
+                flag = substrPosition(line, "Total parcel time");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    time.pTime = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Parcel Time:" << time.pTime << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Total combined transportation time");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    time.bTime = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Both Time:" << time.bTime << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Total idle time");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    time.eTime = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Empty Time:" << time.eTime << endl;
+                    // getchar();
+                }
+                flag = false;
+                
+            
+                //******************************************
+
+                flag = substrPosition(line, "Total passenger distance");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    dist.cDist = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Client dist:" << dist.cDist << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Total parcel distance");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    dist.pDist = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Parcel dist:" << dist.pDist << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Total combined transportation distance");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    dist.bDist = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Both dist:" << dist.bDist << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Total idle distance");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    dist.eDist = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Empty dist:" << dist.eDist << endl;
+                    // getchar();
+
+                }
+
+                flag = false;
+
+                flag = substrPosition(line, "Passenger detour (%)");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    detstr = line.substr(loc + 2, line.size() - loc - 1);
+                    // cout << "detstr:" << detstr << endl;
+                    makeDetourVec(detstr, inst);
+                    // cout << "Vec of detours (after function): " << endl;
+
+                    // for (int i = 0; i < inst.detours.size();i++){
+                    //     cout << inst.detours[i] << " ";
+                    // }
+
+                    // getchar();
+
+                    okall = true; 
+                }
+                flag = false;
+                    
+                
 
 
             }

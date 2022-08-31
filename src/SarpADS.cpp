@@ -556,23 +556,21 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
 
     if (feasFlag){
         for (int k = 0; k < inst->K; k++){
-            if (fipStat->solPass[k].size() < 1){
-                continue;
-            }
-            for (int i = 0; i < fipStat->solPass[k].size(); i++){
-                // fipStat->solBeginParcel.
-                auxVec.push_back(fipStat->solPass[k][i]);
-                // cout << "k, i: " << fipStat->solPass[k][i] << endl;
-                for (int j = 0; j < fipStat->solvec[k].size(); j++){
-                    if (fipStat->solPass[k][i] == fipStat->solvec[k][j].first){
-                        // cout << "k, j: " << fipStat->solPass[k][i] << endl;
-                        auxVec.push_back(fipStat->solvec[k][j].second);
-                        fipStat->solprofit += nodeVec[fipStat->solvec[k][j].second].profit;
+            if (fipStat->solPass[k].size() >= 1){
+                for (int i = 0; i < fipStat->solPass[k].size(); i++){
+                    // fipStat->solBeginParcel.
+                    auxVec.push_back(fipStat->solPass[k][i]);
+                    // cout << "k, i: " << fipStat->solPass[k][i] << endl;
+                    for (int j = 0; j < fipStat->solvec[k].size(); j++){
+                        if (fipStat->solPass[k][i] == fipStat->solvec[k][j].first){
+                            // cout << "k, j: " << fipStat->solPass[k][i] << endl;
+                            auxVec.push_back(fipStat->solvec[k][j].second);
+                            fipStat->solprofit += nodeVec[fipStat->solvec[k][j].second].profit;
+                        }
                     }
+
                 }
-
             }
-
             fipStat->fullSol.push_back(auxVec);
             auxVec.clear();
         }
@@ -580,6 +578,7 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     else{
         for (int k = 0; k < inst->K; k++){
             if (fipStat->solPass[k].size() < 1){
+                fipStat->fullSol.push_back(auxVec);
                 continue;
             }
             for (int i = 0; i < fipStat->solPass[k].size(); i++){
@@ -595,30 +594,45 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     for (int k = 0; k < fipStat->fullSol.size(); k++){
         currDepot = 2*inst->n + 2*inst->m + k;
         cout << "Vehicle: " << currDepot << ": ";
-        for (int j = 0; j < fipStat->fullSol[k].size(); j++){
-            if (j == fipStat->fullSol[k].size() - 1){
-                cout << fipStat->fullSol[k][j] << endl;
-            }
-            else{
-                cout << fipStat->fullSol[k][j] << " - ";
-            }
-            if (fipStat->fullSol[k][j] >= 2*inst->n && fipStat->fullSol[k][j] < 2*inst->n+inst->m){
-                parcelCount++;
-            }
+        if(fipStat->fullSol[k].size() < 1){
+            cout << endl;
         }
-        
+        else{
+            for (int j = 0; j < fipStat->fullSol[k].size(); j++){
+                if (j == fipStat->fullSol[k].size() - 1){
+                    cout << fipStat->fullSol[k][j] << endl;
+                }
+                else{
+                    cout << fipStat->fullSol[k][j] << " - ";
+                }
+                if (fipStat->fullSol[k][j] >= 2*inst->n && fipStat->fullSol[k][j] < 2*inst->n+inst->m){
+                    parcelCount++;
+                }
+            }
+        }        
     }
+
 
     for (int i = 0; i < 2*inst->n; i++){
         fipStat->beginPass.push_back(0);
     }
+
 
     //Calculate beginning times for each location
 
     double currentT = 0;
     for (int k = 0; k < fipStat->fullSol.size(); k++){
         int currentDepot = 2*inst->n + 2*inst->m + k;
+
+        if(fipStat->fullSol[k].size() < 1){
+            currentT = nodeVec[currentDepot].e;
+            timeVec.push_back(currentT);
+            fipStat->fullBegin.push_back(timeVec);
+            continue;
+        }
+
         int u = fipStat->fullSol[k][0];
+        
 
         fipStat->solprofit -= inst->costkm*mdist[currentDepot][u];
         costs += inst->costkm*mdist[currentDepot][u];
@@ -626,7 +640,7 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         currentT = nodeVec[u].e;
         timeVec.push_back(currentT);
         fipStat->beginPass[u] = currentT;
-
+        
         for (int i = 0; i < fipStat->fullSol[k].size() - 1; i++){
             u = fipStat->fullSol[k][i];
             int v = fipStat->fullSol[k][i+1];
@@ -655,7 +669,14 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     cout<< "\n\nFull solution with times: " << endl;
 
     for (int k = 0; k < fipStat->fullSol.size(); k++){
-        cout << "Vehicle: ";
+        currDepot = 2*inst->n + 2*inst->m + k;
+        cout << "Vehicle: " << currDepot << ": ";
+
+        if ( fipStat->fullSol[k].size() < 1){
+            cout << " --> Total travel time: " << 0 << endl;
+            continue;
+
+        }
         for (int j = 0; j < fipStat->fullSol[k].size(); j++){
             if (j == fipStat->fullSol[k].size() - 1){
                 cout << fipStat->fullSol[k][j] << "(" << fipStat->fullBegin[k][j] << ")"<< endl;
@@ -727,8 +748,8 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
             currNode = fipStat->fullSol[k][i];
             nextNode = fipStat->fullSol[k][i + 1];
             dij = mdist[currNode][nextNode];            
-
             if(currNode < inst->n){ //pass PU
+
                 if(nextNode < 2*inst->n){ //pass DL 
                     if (load > 0){
                         fipStat->tBoth += dij/inst->vmed;
@@ -771,6 +792,9 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
                     load--;
                 }
             }
+
+                
+
             else if (currNode < 2*inst->n){ //Passenger DL
                 if(nextNode < inst->n){ //pass PU
                     if (load > 0){
@@ -865,6 +889,8 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
 
                 }
             }
+
+
             else if (currNode < 2*inst->n + 2*inst->m){ //parcel DL
                 if(nextNode < inst->n){ // if next is a Pass PU, there will not be a load2 > 0
                     if (load > 0){
@@ -931,9 +957,10 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
                             fipStat->dNone += dij;
                         }
 
-                    }                  
+                    } 
+           
                 }
-                else if (nextNode < 2*inst->n + 2*inst->m){//parcel DL
+                else if (nextNode < 2*inst->n + 2*inst->m){//parcel DL                
                     if (load2 > 0){
                         fipStat->tBoth += dij/inst->vmed;
                         fipStat->tBoth += inst->service;

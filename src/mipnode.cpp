@@ -1318,7 +1318,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 		model.add(cons2);
 	}
 
-	// //Passengers cannot exceed max service time (2*ti,i+sigma) (32)
+	//Passengers cannot exceed max service time (2*ti,i+sigma) (32)
 	// for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
 	// 	if (fipStat->solPassOrigins[k].size() < 1){
 	// 		continue;
@@ -1398,6 +1398,8 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	nSARP.exportModel("fipSARP.lp");
 	nSARP.setParam(IloCplex::Threads, threads);
 	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
+	// nSARP.setParam(IloCplex::Param::Preprocessing::Aggregator, 0);
+	// nSARP.setParam(IloCplex::Param::MIP::Display, 5);
 	// nSARP.setParam(IloCplex::Param::Advance, 2);
 
 	//MIP Start
