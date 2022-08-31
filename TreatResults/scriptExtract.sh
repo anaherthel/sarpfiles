@@ -12,11 +12,11 @@ mkdir -p ${dirDest}/${dist}
 mkdir -p ${dirDest}/${time}
 mkdir -p ${dirDest}/${detours}
 
-for i in $(ls ${dirTestes}/bundlemsfsarpC*.txt)
+for i in $(ls ${dirTestes}/fipn12mcsarpE*.txt)
 	do
 		fileid=$(echo $i | cut -d '/' -f 2 | cut -d '.' -f 1)
 
-		./exeTreatRes $i bundle
+		./exeTreatRes $i fip
 		mv dist${fileid}* ${dirDest}/${dist}/
 		mv stats${fileid}* ${dirDest}/${stats}/
 		mv time${fileid}* ${dirDest}/${time}/
