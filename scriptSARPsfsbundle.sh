@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances/sf_data'
-output='bundlessfsarpC.txt'
+output='bundlessfsarpF.txt'
 #runs=10
 
 cat /dev/null > $output

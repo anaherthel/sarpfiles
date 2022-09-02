@@ -843,7 +843,8 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		IloExpr exp(env);
         int i = nas->allArcs[a].first;
         int j = nas->allArcs[a].second;
-		double M = max(double(0),nodeVec[i].l + (mdist[i][j]/inst->vmed)-nodeVec[j].e);
+		// double M = max(double(0),nodeVec[i].l + (mdist[i][j]/inst->vmed)-nodeVec[j].e);
+		double M = nodeVec[j].l;
         for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
             int k = nas->arcV[i][j][k1];
 
@@ -1083,26 +1084,37 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
 				objFunction += (profitj - (inst->costkm*deltaij)) * x[u][j][k];
 
+				if (nas->arcs[j][u] != true){
+					continue; // If arc i to j is invalid
+				}
+				
+				deltaij = (mdist[j][u]) + (mdist[fDepot+k][j]) - (mdist[fDepot+k][u]);
+
+				profitj = nodeVec[j].profit;
+				// objFunction += (inst->minpar + (inst->parkm*mdist[j][j+inst->m]) - (inst->costkm*deltaij)) * x[u][j][k];
+
+				objFunction += (profitj - (inst->costkm*deltaij)) * x[j][u][k];
 			}
 		}
     }
 
-	IloExpr expnew(env);
+	//Detour component of OF
+	// IloExpr expnew(env);
 
-	for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
-		if (fipStat->solPassOrigins[k].size() < 1){
-			continue;
-		}
-		for (int i = 0; i < fipStat->solPassOrigins[k].size(); i++){
+	// for (int k = 0; k < fipStat->solPassOrigins.size(); k++){
+	// 	if (fipStat->solPassOrigins[k].size() < 1){
+	// 		continue;
+	// 	}
+	// 	for (int i = 0; i < fipStat->solPassOrigins[k].size(); i++){
 
-			int u = fipStat->solPassOrigins[k][i].first;
-			// int v = fipStat->solPass[k][fipStat->solPassOrigins[k][i].second + 1];
+	// 		int u = fipStat->solPassOrigins[k][i].first;
+	// 		// int v = fipStat->solPass[k][fipStat->solPassOrigins[k][i].second + 1];
 
-			expnew += ((b[k][u+inst->n] - b[k][u] - inst->service)/((mdist[u][u+inst->n]/inst->vmed))) - 1;
-		}
-	}
+	// 		expnew += ((b[k][u+inst->n] - b[k][u] - inst->service)/((mdist[u][u+inst->n]/inst->vmed))) - 1;
+	// 	}
+	// }
 
-	objFunction -= inst->discpas*expnew;
+	// objFunction -= inst->discpas*expnew;
 
 	model.add(IloMaximize(env, objFunction));
 
@@ -1120,6 +1132,8 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 				int u = fipStat->solPass[k][i];
 				exp += x[u][j][k];
 			}
+			int u = fDepot + k;
+			exp += x[u][j][k];
 		}
 		sprintf (var, "Constraint1_%d", j);
 		IloRange cons = (exp <= 1);

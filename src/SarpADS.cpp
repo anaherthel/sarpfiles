@@ -416,6 +416,10 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat){
     pair <int, int> pairpuloc;
     vector< pair<int, int> > pupairs;
 
+    for (int i = 0; i < inst->n; i++){
+        fipStat->vehicleVec.push_back(-1);
+    }
+
     for (int i = 0; i < sStat->solOrder.size(); i++){
         for (int j = 0; j < sStat->solOrder[i].size(); j++){
             if (sStat->solOrder[i][j] < 2*inst->n){
@@ -434,6 +438,7 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat){
                 pairpuloc.first = fipStat->solPass[k][i];
                 pairpuloc.second = i;
                 pupairs.push_back(pairpuloc);
+                fipStat->vehicleVec[fipStat->solPass[k][i]] = k;
             }
         }
         fipStat->solPassOrigins.push_back(pupairs);
@@ -443,7 +448,6 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat){
     for (int i = 0; i < 2*inst->n; i++){
         fipStat->solBegin.push_back(sStat->solBegin[i]);
     }
-
 
     // for (int i = 0; i < 2*inst->n; i++){
     //     fipStat->fullBegin.push_back(fipStat->solBegin[i]);

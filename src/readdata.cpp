@@ -399,19 +399,29 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
 
 
-            //fixing passenger pu tw
+            // //fixing passenger pu tw (with detours)
+            // for (int i = 0; i < n; i++){
+            //     vl[i] = ve[i] + 10;//10 minutes of tw
+            // }
+
+            // //fixing passenger dl tw
+            // for (int i = n; i < 2*n; i++){
+            //     double vmed2 = 0.683333;
+            //     ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + max(double(5), ((dist[i-n][i]*0.5)/vmed2));
+            //     vl[i] = ve[i] + 10;//10 minutes of tw
+            // }
+
+            //fixing passenger pu tw (NO detours)
             for (int i = 0; i < n; i++){
-                vl[i] = ve[i] + 10;//10 minutes of tw
+                vl[i] = ve[i];//10 minutes of tw
             }
 
             //fixing passenger dl tw
             for (int i = n; i < 2*n; i++){
                 double vmed2 = 0.683333;
-                ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + max(double(5), ((dist[i-n][i]*0.5)/vmed2));
-                vl[i] = ve[i] + 10;//10 minutes of tw
+                ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + double(5);
+                vl[i] = ve[i];
             }
-
-
         }           
 
         for (int i = 0; i < V; i++){
@@ -763,16 +773,28 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
 
 
-            //fixing passenger pu tw
+            // //fixing passenger pu tw
+            // for (int i = 0; i < n; i++){
+            //     vl[i] = ve[i] + 10;//10 minutes of tw
+            // }
+
+            // //fixing passenger dl tw
+            // for (int i = n; i < 2*n; i++){
+            //     double vmed2 = 0.683333;
+            //     ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + max(double(5), ((dist[i-n][i]*0.5)/vmed2));
+            //     vl[i] = ve[i] + 10;//10 minutes of tw
+            // }
+
+            //fixing passenger pu tw (NO detours)
             for (int i = 0; i < n; i++){
-                vl[i] = ve[i] + 10;//10 minutes of tw
+                vl[i] = ve[i];//10 minutes of tw
             }
 
             //fixing passenger dl tw
             for (int i = n; i < 2*n; i++){
                 double vmed2 = 0.683333;
-                ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + max(double(5), ((dist[i-n][i]*0.5)/vmed2));
-                vl[i] = ve[i] + 10;//10 minutes of tw
+                ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + double(5);
+                vl[i] = ve[i];
             }
 
         }        

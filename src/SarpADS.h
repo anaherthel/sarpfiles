@@ -136,6 +136,7 @@ struct fipStats{
 	vector< vector< pair<int, int> > > solvec; //solution vector with parcel additions
 	vector<double> solBegin; //stores values of b[i][k]
 	vector<double> solBeginParcel;//stores values of s[j]
+	vector<int> vehicleVec;
 
 	vector<double> beginPass;//stores values of starting times for passengers after the solutions merging
 
