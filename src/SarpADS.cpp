@@ -41,7 +41,6 @@ void fipStatIni(fipStats *fipStat){
     fipStat->dPass = 0;
     fipStat->dBoth = 0;
     fipStat->dNone = 0;
-
 }
 
 void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat){
@@ -415,17 +414,23 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat){
     vector<int> pulocations;
     pair <int, int> pairpuloc;
     vector< pair<int, int> > pupairs;
+    int fdepot = 2*inst->n + 2*inst->m;
+    int fdummy = fdepot + inst->K;
 
     for (int i = 0; i < inst->n; i++){
         fipStat->vehicleVec.push_back(-1);
     }
 
     for (int i = 0; i < sStat->solOrder.size(); i++){
+        int depot = fdepot + i;
+        int dummy = fdummy + i;
+        pulocations.push_back(depot);
         for (int j = 0; j < sStat->solOrder[i].size(); j++){
             if (sStat->solOrder[i][j] < 2*inst->n){
                 pulocations.push_back(sStat->solOrder[i][j]);
             }
         }
+        pulocations.push_back(dummy);
         fipStat->solPass.push_back(pulocations);
         pulocations.clear();
     }
@@ -628,30 +633,52 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     for (int k = 0; k < fipStat->fullSol.size(); k++){
         int currentDepot = 2*inst->n + 2*inst->m + k;
 
-        if(fipStat->fullSol[k].size() < 1){
+        if(fipStat->fullSol[k].size() < 3){
             currentT = nodeVec[currentDepot].e;
             timeVec.push_back(currentT);
             fipStat->fullBegin.push_back(timeVec);
             continue;
         }
-
-        int u = fipStat->fullSol[k][0];
         
+        if (fipStat->fullSol[k][1] < 2*inst->n){
 
-        fipStat->solprofit -= inst->costkm*mdist[currentDepot][u];
-        costs += inst->costkm*mdist[currentDepot][u];
+            int u = fipStat->fullSol[k][1];
 
-        currentT = nodeVec[u].e;
-        timeVec.push_back(currentT);
-        fipStat->beginPass[u] = currentT;
-        
-        for (int i = 0; i < fipStat->fullSol[k].size() - 1; i++){
-            u = fipStat->fullSol[k][i];
+            fipStat->solprofit -= inst->costkm*mdist[currentDepot][u];
+            costs += inst->costkm*mdist[currentDepot][u];
+            
+            currentT = nodeVec[u].e - mdist[currentDepot][u]/inst->vmed;
+            timeVec.push_back(currentT);
+
+            currentT = nodeVec[u].e;
+            timeVec.push_back(currentT);
+            fipStat->beginPass[u] = currentT;
+        }
+
+        else{
+            currentT = fipStat->solBegin[currentDepot];
+
+            timeVec.push_back(currentT);
+        }
+     
+        for (int i = 0; i < fipStat->fullSol[k].size() - 2; i++){
+            if(fipStat->fullSol[k][1] < 2*inst->n){
+                continue;
+            }
+
+            int u = fipStat->fullSol[k][i];
             int v = fipStat->fullSol[k][i+1];
-            currentT += mdist[u][v]/inst->vmed + inst->service;
+
+            if (i > 0){
+                currentT += mdist[u][v]/inst->vmed + inst->service;
+            }
+            else{
+                currentT += mdist[u][v]/inst->vmed;
+            }
 
             fipStat->solprofit -= inst->costkm*mdist[u][v];
             costs += inst->costkm*mdist[u][v];
+
             if (v < 2*inst->n){
                 if (currentT < nodeVec[v].e){
                     currentT = nodeVec[v].e;
@@ -664,6 +691,9 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
             timeVec.push_back(currentT);
 
         }
+        currentT += inst->service;
+
+        timeVec.push_back(currentT);
 
         fipStat->fullBegin.push_back(timeVec);
         timeVec.clear();
@@ -676,7 +706,7 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         currDepot = 2*inst->n + 2*inst->m + k;
         cout << "Vehicle: " << currDepot << ": ";
 
-        if ( fipStat->fullSol[k].size() < 1){
+        if ( fipStat->fullSol[k].size() < 3){
             cout << " --> Total travel time: " << 0 << endl;
             continue;
 

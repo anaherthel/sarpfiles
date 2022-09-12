@@ -836,10 +836,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // cout << endl;
         // getchar();
 
-        // cout << "Service times: " << endl;
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << i << ": " << nodeVec[i].delta << endl;
-        // }
+        cout << "Service times: " << endl;
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << i << ": " << nodeVec[i].delta << endl;
+        }
 
         // getchar();
 
