@@ -1129,9 +1129,9 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 
     initArcs(inst, &bStat, &cStat);
 
-    feasibleBundleArcs(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
+    // feasibleBundleArcs(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
 
-    // feasibleBundleArcsPass(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
+    feasibleBundleArcsPass(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
 
     // cout<< "\nFeasible arcs between bundles:" << endl;
     // for (int i = 0; i < bStat.bundleVec.size(); i++){

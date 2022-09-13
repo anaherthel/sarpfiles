@@ -660,11 +660,14 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
 
             timeVec.push_back(currentT);
         }
-     
-        for (int i = 0; i < fipStat->fullSol[k].size() - 2; i++){
-            if(fipStat->fullSol[k][1] < 2*inst->n){
-                continue;
-            }
+
+        int counter = 0;
+
+        if(fipStat->fullSol[k][1] < 2*inst->n){
+            counter = 1;
+        }
+
+        for (int i = counter; i < fipStat->fullSol[k].size() - 2; i++){
 
             int u = fipStat->fullSol[k][i];
             int v = fipStat->fullSol[k][i+1];

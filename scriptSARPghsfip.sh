@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances/ghsarp'
-output='fipn12sghsarpD.txt'
+output='fipq5sghsarpG.txt'
 #runs=10
 
 cat /dev/null > $output

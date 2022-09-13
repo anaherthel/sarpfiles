@@ -873,7 +873,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
 
     initArcs(inst, &nas);
 	fipArcs (inst, &nas, problem, nodeVec, mdist, 2);
-    printStructures(&nas);
+    // printStructures(&nas);
     cout << endl << endl << "______PART II_____" << endl << endl;
 
     fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
