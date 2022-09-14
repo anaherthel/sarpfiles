@@ -1267,7 +1267,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	// long M2 = 2*(inst->n + inst->m + 1);
 	// long W = inst->m + 1;
 	// int Q = 5;
-	int Q = 5;
+	int Q = inst->m;
 
     int fDepot = 2*inst->n + 2*inst->m;
     int fDummy = 2*inst->n + 2*inst->m + inst->K;

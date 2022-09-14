@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances_M3/csarp'
-output='fipq5mcsarpG3.txt'
+output='fippassmcsarpG3.txt'
 #runs=10
 
 cat /dev/null > $output

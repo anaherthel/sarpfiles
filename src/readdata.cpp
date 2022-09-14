@@ -137,16 +137,23 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //     trialK = K;
         // }
 
-        if (K + trialK <= n - 1){
-            K += trialK;
-        }
-        else{
-            cout << "\nExceeded max number of vehicles\n";            
-            exit(1);
-        }
+        // if (K + trialK <= n - 1){
+        //     K += trialK;
+        // }
+        // else{
+        //     cout << "\nExceeded max number of vehicles\n";            
+        //     exit(1);
+        // }
+
+
         
         cout << "K: " << K << endl;
         // getchar();
+
+        if (K > n - 1){
+            cout << "\nExceeded max number of vehicles\n";            
+            exit(1);
+        }
 
         service = service/60;
 
@@ -525,19 +532,26 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //     K = ceil(0.6*n);
         // }
 
+        // if (trialK <= K){
+        //     K = trialK;
+        // }
+        // else{
+        //     trialK = K;
+        // }
+
         // if (trialK >= n){
         //     cout << "Exceeded K size" << endl;
             
         //     exit(1);
         // }
 
-        if (K + trialK <= n - 1){
-            K += trialK;
-        }
-        else{
-            cout << "\nExceeded max number of vehicles\n";            
-            exit(1);
-        }
+        // if (K + trialK <= n - 1){
+        //     K += trialK;
+        // }
+        // else{
+        //     cout << "\nExceeded max number of vehicles\n";            
+        //     exit(1);
+        // }
         
         inst->preInst = 1;
 
