@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances_M2/sf_data'
-output='fippassmsfsarpG2.txt'
+output='fipqmmsfsarpJ2.txt'
 #runs=10
 
 cat /dev/null > $output

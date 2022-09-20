@@ -57,7 +57,7 @@ def makeinstList(filename):
 def changeK(instlist, Klist):
     for i in range(len(instlist)):
         filename = instlist[i]
-        with open('Instances_M2/csarp/'+filename, 'r') as f:
+        with open('Instances_L/sf_data/'+filename, 'r') as f:
             newf = f.readlines()
             words = newf[0].split()
             words[0] = Klist[i]
@@ -71,7 +71,7 @@ def changeK(instlist, Klist):
         print(newline)
         newf.pop(0)
         newf.insert(0, newline)
-        with open('Instances_M2/csarp/'+filename, 'w') as f:
+        with open('Instances_L/sf_data/'+filename, 'w') as f:
             for line in newf:
                 f.write(line)
                 
@@ -121,7 +121,7 @@ def changeK(instlist, Klist):
 def changeKmulti(instlist, Klist):
     for i in range(len(instlist)):
         filename = instlist[i]
-        with open('Instances_M4/csarp/'+filename, 'r') as f:
+        with open('Instances_L/sf_data/'+filename, 'r') as f:
             newf = f.readlines()
             words = newf[0].split()
             words[0] = Klist[i]
@@ -142,7 +142,7 @@ def changeKmulti(instlist, Klist):
         # print(nlines)
         # print(newf)
                      
-        with open('Instances_M4/csarp/'+filename, 'w') as f:
+        with open('Instances_L/sf_data/'+filename, 'w') as f:
             counter = 0
             while counter < nlines:
                 line = newf[counter]
@@ -150,10 +150,10 @@ def changeKmulti(instlist, Klist):
                 counter += 1
 
 # instlist, Klist = makeinstList('sfsarpKlist.txt')
-instlist, Klist = makeinstList('Mbdlcsarp4.txt')
+instlist, Klist = makeinstList('Lbdlsfsarp1.txt')
 
-changeKmulti(instlist, Klist)
-# changeK(instlist, Klist)
+# changeKmulti(instlist, Klist)
+changeK(instlist, Klist)
 
 # print(instlist)
 # print(Klist)

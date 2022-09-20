@@ -56,9 +56,9 @@ def changeK(instlist, Klist):
 
 
 # instlist, Klist = makeinstList('sfsarpKlist.txt')
-instlist, Klist = makeinstList('scaled/McsarpKbdl2.txt')
+instlist, Klist = makeinstList('scaled/LsfsarpKbundle1.txt')
 
-write_file('Mbdlcsarp5.txt', instlist, Klist)
+write_file('Lbdlsfsarp1.txt', instlist, Klist)
 
 # makenewfile()
 

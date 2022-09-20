@@ -764,23 +764,23 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
             continue;
         }
 
-        dij = mdist[currDepot][fipStat->fullSol[k][0]];
+        dij = mdist[currDepot][fipStat->fullSol[k][1]];
 
         fipStat->tNone += dij/inst->vmed;
         fipStat->tNone += inst->service;
         fipStat->dNone += dij;
-        if(fipStat->fullSol[k][0] < inst->n){
+        if(fipStat->fullSol[k][1] < inst->n){
             load = 0;
 
             load2++;
         }
-        else if(fipStat->fullSol[k][0] < 2*inst->n + inst->m){
+        else if(fipStat->fullSol[k][1] < 2*inst->n + inst->m){
             load++;
 
             load2 = 0;
         }
 
-        for (int i = 0; i < fipStat->fullSol[k].size() - 1; i++){
+        for (int i = 1; i < fipStat->fullSol[k].size() - 1; i++){
             // dij = mdist[sStat->solInNode[k][i]][sStat->solInNode[k][i + 1]];
             currNode = fipStat->fullSol[k][i];
             nextNode = fipStat->fullSol[k][i + 1];

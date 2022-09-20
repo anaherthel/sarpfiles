@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances_L2/sf_data'
-output='bundlepasslsfsarpG2.txt'
+output='bundlelsfsarpH2.txt'
 #runs=10
 
 cat /dev/null > $output

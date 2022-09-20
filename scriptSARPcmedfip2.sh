@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances_M2/csarp'
-output='fippassmcsarpG2.txt'
+output='fipqmmcsarpJ2.txt'
 #runs=10
 
 cat /dev/null > $output

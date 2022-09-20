@@ -12,7 +12,7 @@ mkdir -p ${dirDest}/${dist}
 mkdir -p ${dirDest}/${time}
 mkdir -p ${dirDest}/${detours}
 
-for i in $(ls ${dirTestes}/fipqms*sarpG*.txt)
+for i in $(ls ${dirTestes}/fipq4msfsarpJ*.txt)
 	do
 		fileid=$(echo $i | cut -d '/' -f 2 | cut -d '.' -f 1)
 

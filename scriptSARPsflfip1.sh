@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances_L/sf_data'
-output='fipqmlsfsarpG1.txt'
+output='fipq4lsfsarpH1.txt'
 #runs=10
 
 cat /dev/null > $output
