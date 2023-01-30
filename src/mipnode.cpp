@@ -456,27 +456,59 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		// model.add(cons1);
 	// }
 
+		// IloExpr exp(env);
+		// int u = 24;
+		// int v = 8;
+
+		// exp = x[u][v][1];
+
+		// sprintf (var, "Constraint15_1");
+		// IloRange cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
+
+		// u = 8;
+		// v = 16;
+
+		// exp = x[u][v][1];
+
+		// sprintf (var, "Constraint15_2");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
+
+		// u = 16;
+		// v = 3;
+
+		// exp = x[u][v][1];
+
+		// sprintf (var, "Constraint15_3");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
+
 		//Constraint 14  -  no parcel transportation while serving passenger
-	if (problem->scen == "BL2"){
-		for (int i = 0; i < inst->n; i++){
-			IloExpr exp(env);
+	// if (problem->scen == "BL2"){
+	// 	for (int i = 0; i < inst->n; i++){
+	// 		IloExpr exp(env);
 
-			exp = w[i];
+	// 		exp = w[i];
 
-			sprintf (var, "Constraint14_%d", i);
-			IloRange cons1 = (exp == 0);
-			cons1.setName(var);
-			model.add(cons1);
+	// 		sprintf (var, "Constraint14_%d", i);
+	// 		IloRange cons1 = (exp == 0);
+	// 		cons1.setName(var);
+	// 		model.add(cons1);
 
-		}
-	}
+	// 	}
+	// }
 
-	// else if (problem->scen == "BL2"){
+
+	// if (problem->scen == "BL2"){
 	// 	for (int i = 0; i < nas->arcNN.size(); i++){
 	// 		IloExpr exp(env);
 	// 		IloExpr sumX(env);
- //            int u = nas->arcNN[i].first;
- //            int v = nas->arcNN[i].second;
+    //         int u = nas->arcNN[i].first;
+    //         int v = nas->arcNN[i].second;
 
 	// 		for (int k = 0; k < inst->K; k++){
 	// 			sumX += x[u][v][k];

@@ -148,9 +148,13 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
         }
     }
 
-    if (problem->p1 < 0){ // arcs for baseline scenarios
+    if (problem->p2 < 0){ // arcs for baseline scenarios
         //passenger-passenger
-        if (problem->scen == "BL2"){
+        cout << "PC 1" << endl;
+        getchar();
+        if (problem->p1 > 0){ //if BL2
+            cout << "PC?" << endl;
+            getchar();
             for (int i = 0; i < inst->n; i++){ //i is a passenger request
                 for (int j = inst->n; j < inst->n + inst->m; j++){// j is a parcel pu req
                     double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
@@ -208,7 +212,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                     } 
                 }
             }
-            if (problem->scen == "BL2"){
+            if (problem->p1 > 0){ //if BL2
                 for (int j = 0; j < inst->n; j++){//j is a passenger node
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
@@ -224,11 +228,25 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                         nas->arcV[i][j].push_back(k);
                     }  
                 } 
+            }
+
+            for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
+                nas->arcs[i][j] = true;
+                nas->fArc.first = i;
+                nas->fArc.second = j;
+                nas->arcMinus[j].push_back(nas->fArc);
+                nas->arcPlus[i].push_back(nas->fArc);
+
+                nas->allArcs.push_back(nas->fArc);
+                auxK = j - inst->V;
+                nas->arcV[i][j].push_back(auxK);
             } 
         }
     }
 
     else{
+        cout << "Not baseline" << endl;
+        getchar();
         for (int i = 0; i < inst->n; i++){//i is a passenger node
             for(int j = inst->n; j < inst->n + 2*inst->m; j++){// j is a parcel req (pu or del)
                 double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
@@ -600,7 +618,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem, nodeVec, mdist);
     
-    // printStructures(&nas);
+    printStructures(&nas);
 
     getchar();
 

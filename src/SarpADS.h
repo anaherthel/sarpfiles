@@ -85,7 +85,7 @@ struct probStat{
 	string scen;
 	string model;
 
-	bool p1, p2, dParcel;//1 is multi, 0 is single; p1 refers to customer, p2 to parcel, dParcel 1 allows for direct parcel delivery
+	int p1, p2, dParcel;//1 is multi, 0 is single; p1 refers to customer, p2 to parcel, dParcel 1 allows for direct parcel delivery
 	//p1 = 1; multi customer
 	//p2 = 1; multi parcel
 	//dParcel = 1; allow direct delivery

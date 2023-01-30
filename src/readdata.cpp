@@ -75,10 +75,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         problem->p2 = 1;
         problem->dParcel = 1;        
     }
-    else if (problem->scen == "PC" || problem->scen == "BL2"){ //PC: dedicated vehicles for each service; BL2: same car for both services, no shared trips
+    else if (problem->scen == "PC" ){ //PC: dedicated vehicles for each service (basically, passenger only);
+        problem->p1 = -1;
+        problem->p2 = -1;
+        problem->dParcel = 1;
+    }   
+    else if (problem->scen == "BL2" ){ //BL2: same car for both services, no shared trips
+        problem->p1 = 1;
         problem->p2 = -1;
         problem->dParcel = 1;    
     }
+
+    
     //condition for osarp and fip later 
     //osarp: original sarp with detours;
     //fip: original freight insertion problem

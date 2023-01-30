@@ -58,28 +58,28 @@ int main (int argc, char *argv[]) {
 
 		solveselect(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
 
-		if (problem.scen == "PC"){
-			nodeVec.clear();
-			sStat.solvec.clear();
-			sStat.solBegin.clear();
-			sStat.feasible = false;
-			if (inst.min == true){
-				// if (trialK < inst.n + inst.m){
-				// 	trialK++;
-				// }
+		// if (problem.scen == "PC"){
+		// 	nodeVec.clear();
+		// 	sStat.solvec.clear();
+		// 	sStat.solBegin.clear();
+		// 	sStat.feasible = false;
+		// 	if (inst.min == true){
+		// 		// if (trialK < inst.n + inst.m){
+		// 		// 	trialK++;
+		// 		// }
 
-				readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
+		// 		readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
 
-				if (problem.model == "node"){
-					nodeMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
+		// 		if (problem.model == "node"){
+		// 			nodeMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
 
-				}
-				else if (problem.model == "bundle"){
-					bundleMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
-				}
-				inst.min = false;
-			}
-		}
+		// 		}
+		// 		else if (problem.model == "bundle"){
+		// 			bundleMethod(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
+		// 		}
+		// 		inst.min = false;
+		// 	}
+		// }
 	// 	trialK++;
 	// 	cout << "trial K: " << trialK << endl;
 	// }
