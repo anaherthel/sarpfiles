@@ -150,11 +150,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
 
     if (problem->p2 < 0){ // arcs for baseline scenarios
         //passenger-passenger
-        cout << "PC 1" << endl;
-        getchar();
         if (problem->p1 > 0){ //if BL2
-            cout << "PC?" << endl;
-            getchar();
             for (int i = 0; i < inst->n; i++){ //i is a passenger request
                 for (int j = inst->n; j < inst->n + inst->m; j++){// j is a parcel pu req
                     double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
@@ -245,8 +241,6 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
     }
 
     else{
-        cout << "Not baseline" << endl;
-        getchar();
         for (int i = 0; i < inst->n; i++){//i is a passenger node
             for(int j = inst->n; j < inst->n + 2*inst->m; j++){// j is a parcel req (pu or del)
                 double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
@@ -618,9 +612,9 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem, nodeVec, mdist);
     
-    printStructures(&nas);
+    // printStructures(&nas);
 
-    getchar();
+    // getchar();
 
  //    cout << "arcs NN: " << endl;
 	// for (int i = 0; i < nas.arcNN.size(); i++){
