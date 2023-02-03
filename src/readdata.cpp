@@ -45,6 +45,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         else{
             problem->p1 = 0; //1 is multi, 0 is single; p1 refers to customer
             problem->p2 = 0; //p2 refers to parcel
+            problem->p3 = 0; //p3 refers to baseline scenarios
             problem->dParcel = 0;//1 allows for direct parcel delivery
         }
     }
@@ -52,45 +53,50 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         problem->p1 = 0; //1 is multi, 0 is single; p1 refers to customer
         problem->p2 = 0; //p2 refers to parcel
+        problem->p3 = 0;
         problem->dParcel = 1;//1 allows for direct parcel delivery
         
     }
     else if (problem->scen == "2A"){
         problem->p1 = 1; //1 is multi, 0 is single; p1 refers to customer
-        problem->p2 = 0; //p2 refers to parcel
+        problem->p2 = 0; //p2 refers to parcel; -1: No P-d arcs
+        problem->p3 = 0;
         problem->dParcel = 0;//1 allows for direct parcel delivery
     }
     else if (problem->scen == "1B"){
         problem->p1 = 0;
         problem->p2 = 1;
+        problem->p3 = 0;
         problem->dParcel = 0;
     }
     else if (problem->scen == "2B"){
         problem->p1 = 1;
         problem->p2 = 1;
+        problem->p3 = 0;
         problem->dParcel = 0;        
     }
     else if (problem->scen == "2MM"){
         problem->p1 = 1;
         problem->p2 = 1;
+        problem->p3 = 0;
         problem->dParcel = 1;        
     }
     else if (problem->scen == "PC" ){ //PC: dedicated vehicles for each service (basically, passenger only);
         problem->p1 = -1;
         problem->p2 = -1;
+        problem->p3 = -1;
         problem->dParcel = 1;
     }   
     else if (problem->scen == "BL2" ){ //BL2: same car for both services, no shared trips
         problem->p1 = 1;
-        problem->p2 = -1;
-        problem->dParcel = 1;    
+        problem->p2 = 1;
+        problem->p3 = 1;
+        problem->dParcel = 1;
     }
 
-    
     //condition for osarp and fip later 
     //osarp: original sarp with detours;
     //fip: original freight insertion problem
-
 
     string file, ewf;
     int n;
@@ -124,6 +130,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> service;
         in >> n;
         in >> m;
+        // K++;
+
         // K = n - 1;
 
         // if (n <= 10){
@@ -522,7 +530,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> service;
         in >> n;
         in >> m;
-        // K = 6;
         // K = n-1;
         
         if (inst->instType == "ghsarp"){

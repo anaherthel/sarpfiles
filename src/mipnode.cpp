@@ -91,6 +91,27 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             objFunction += nodeVec[i].profit * x[i][j][k];
         }
     }
+	if (problem->dParcel > 0){
+		for (int a = 0; a < nas->arcPD.size(); a++){
+			int i = nas->arcPD[a].first;
+			int j = nas->arcPD[a].second;
+			for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+				int k = nas->arcV[i][j][k1];
+				objFunction += nodeVec[i].profit * x[i][j][k];
+			}
+    	}
+	}
+	if (problem->p2 > 0){
+		for (int a = 0; a < nas->arcPP.size(); a++){
+			int i = nas->arcPP[a].first;
+			int j = nas->arcPP[a].second;
+			for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+				int k = nas->arcV[i][j][k1];
+				objFunction += nodeVec[i].profit * x[i][j][k];
+			}
+    	}
+	}
+
 
     for (int a = 0; a < nas->allArcs.size(); a++){
         int i = nas->allArcs[a].first;
@@ -403,6 +424,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	
 	//Constraint 14  - bound number of passenger visits transporting parcel
 	if (problem->p1 < 1){
+		cout << "Constraint 14" << endl;
+		getchar();
 		for (int i = 0; i < nas->arcNN.size(); i++){
 			IloExpr exp(env);
 			IloExpr sumX(env);
@@ -457,32 +480,122 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	// }
 
 		// IloExpr exp(env);
-		// int u = 24;
-		// int v = 8;
+		// int u = 12;
+		// int v = 3;
 
-		// exp = x[u][v][1];
+		// exp = x[u][v][0];
 
 		// sprintf (var, "Constraint15_1");
 		// IloRange cons1 = (exp == 1);
 		// cons1.setName(var);
 		// model.add(cons1);
 
-		// u = 8;
-		// v = 16;
+		// u = 3;
+		// v = 6;
 
-		// exp = x[u][v][1];
+		// exp = x[u][v][0];
 
 		// sprintf (var, "Constraint15_2");
 		// cons1 = (exp == 1);
 		// cons1.setName(var);
 		// model.add(cons1);
 
-		// u = 16;
-		// v = 3;
+		// u = 6;
+		// v = 11;
+
+		// exp = x[u][v][0];
+
+		// sprintf (var, "Constraint15_3");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
+
+		// u = 11;
+		// v = 8;
+
+		// exp = x[u][v][0];
+
+		// sprintf (var, "Constraint15_4");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
+
+		// u = 8;
+		// v = 0;
+
+		// exp = x[u][v][0];
+
+		// sprintf (var, "Constraint15_5");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);		
+
+		// u = 0;
+		// v = 4;
+
+		// exp = x[u][v][0];
+
+		// sprintf (var, "Constraint15_6");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);	
+
+		// u = 4;
+		// v = 9;
+
+		// exp = x[u][v][0];
+
+		// sprintf (var, "Constraint15_7");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);	
+
+		// u = 13;
+		// v = 2;
 
 		// exp = x[u][v][1];
 
-		// sprintf (var, "Constraint15_3");
+		// sprintf (var, "Constraint16_1");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
+
+		// u = 2;
+		// v = 7;
+
+		// exp = x[u][v][1];
+
+		// sprintf (var, "Constraint16_2");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
+
+		// u = 7;
+		// v = 1;
+
+		// exp = x[u][v][1];
+
+		// sprintf (var, "Constraint16_3");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);		
+
+		// u = 1;
+		// v = 5;
+
+		// exp = x[u][v][1];
+
+		// sprintf (var, "Constraint16_4");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);	
+
+		// u = 5;
+		// v = 10;
+
+		// exp = x[u][v][1];
+
+		// sprintf (var, "Constraint16_5");
 		// cons1 = (exp == 1);
 		// cons1.setName(var);
 		// model.add(cons1);

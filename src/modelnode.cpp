@@ -19,6 +19,8 @@ void initArcs (instanceStat *inst, nodeArcsStruct *nas){
     nas->arcNN.clear();
     nas->arcNplus.clear();
     nas->arcPN.clear();
+    nas->arcPD.clear();
+    nas->arcPP.clear();
     nas->arcnf.clear();
 
     for (int k = 0; k < inst->K; k++){
@@ -148,7 +150,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
         }
     }
 
-    if (problem->p2 < 0){ // arcs for baseline scenarios
+    if (problem->p3 > 0){ // arcs for baseline scenarios
         //passenger-passenger
         if (problem->p1 > 0){ //if BL2
             for (int i = 0; i < inst->n; i++){ //i is a passenger request
@@ -183,7 +185,11 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                     nas->fArc.second = j;
                     nas->arcMinus[j].push_back(nas->fArc);
                     nas->arcPlus[i].push_back(nas->fArc);
-    
+                    
+                    if (j < inst->n + inst->m){
+                        nas->arcPP.push_back(nas->fArc);
+                    }
+
                     nas->allArcs.push_back(nas->fArc);
                     nas->arcnf.push_back(nas->fArc);
                     for (int k = 0; k < inst->K; k++){
@@ -279,7 +285,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                 for (int k = 0; k < inst->K; k++){
                     nas->arcV[i][j].push_back(k);
                 }
-            }
+            }      
         }
 
         for (int i = inst->n + inst->m; i < inst->n + 2*inst->m; i++){//i is a parcel dl node           
@@ -329,6 +335,10 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                         nas->arcMinus[j].push_back(nas->fArc);
                         nas->arcPlus[i].push_back(nas->fArc);
 
+                        if (j < inst->n + inst->m){
+                            nas->arcPP.push_back(nas->fArc);
+                        }
+                        
                         nas->allArcs.push_back(nas->fArc);
                         nas->arcnf.push_back(nas->fArc);
                         for (int k = 0; k < inst->K; k++){
@@ -340,6 +350,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
         }
 
         if (problem->dParcel > 0){//direct parcel delivery
+
             for (int i = inst->n; i < inst->n + inst->m; i++){//i is a parcel pu node
                 int j = i + inst->m; //j is i's delivery location
 
@@ -348,6 +359,9 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                 nas->fArc.second = j;
                 nas->arcMinus[j].push_back(nas->fArc);
                 nas->arcPlus[i].push_back(nas->fArc);
+
+                nas->arcPD.push_back(nas->fArc);
+
                 nas->allArcs.push_back(nas->fArc);
                 nas->arcnf.push_back(nas->fArc);
                 for (int k = 0; k < inst->K; k++){
@@ -601,12 +615,12 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
     // cout << endl;
     // getchar();
 
-    // cout << "\nProfit vector: " << endl;
+    cout << "\nProfit vector: " << endl;
 
-    // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].profit << endl;
-    // }
-    // cout << endl;
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].profit << endl;
+    }
+    cout << endl;
     // getchar();
 
 	initArcs(inst, &nas);

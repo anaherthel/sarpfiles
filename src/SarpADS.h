@@ -85,7 +85,7 @@ struct probStat{
 	string scen;
 	string model;
 
-	int p1, p2, dParcel;//1 is multi, 0 is single; p1 refers to customer, p2 to parcel, dParcel 1 allows for direct parcel delivery
+	int p1, p2, p3, dParcel;//1 is multi, 0 is single; p1 refers to customer, p2 to parcel, p3 1 for baseline2, dParcel 1 allows for direct parcel delivery
 	//p1 = 1; multi customer
 	//p2 = 1; multi parcel
 	//dParcel = 1; allow direct delivery
@@ -174,6 +174,8 @@ struct nodeArcsStruct{//for model node
 	vector< pair<int,int> > arcNN;//arcs between 2 passengers
 	vector< pair<int,int> > arcNplus; //arcs leaving a passenger
 	vector< pair<int,int> > arcPN; //arcs from parcel to passenger
+	vector< pair<int,int> > arcPD; //arcs from a parcel to its delivery
+	vector< pair<int,int> > arcPP; //arcs from parcel to parcel
 	vector< pair<int,int> > arcnf; //arcs that do not contain ending depot
 	// for each pair of requests, records the vehicles that can serve that arc
 	vector< vector< vector<int> > > arcV; 
