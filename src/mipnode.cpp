@@ -481,36 +481,36 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		// model.add(cons1);
 	// }
 
-		IloExpr exp(env);
-		int u = 8;
-		int v = 0;
+		// IloExpr exp(env);
+		// int u = 8;
+		// int v = 0;
 
-		exp = x[u][v][0];
+		// exp = x[u][v][0];
 
-		sprintf (var, "Constraint15_1");
-		IloRange cons1 = (exp == 1);
-		cons1.setName(var);
-		model.add(cons1);
+		// sprintf (var, "Constraint15_1");
+		// IloRange cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
 
-		u = 0;
-		v = 4;
+		// u = 0;
+		// v = 4;
 
-		exp = x[u][v][0];
+		// exp = x[u][v][0];
 
-		sprintf (var, "Constraint15_2");
-		cons1 = (exp == 1);
-		cons1.setName(var);
-		model.add(cons1);
+		// sprintf (var, "Constraint15_2");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
 
-		u = 4;
-		v = 9;
+		// u = 4;
+		// v = 9;
 
-		exp = x[u][v][0];
+		// exp = x[u][v][0];
 
-		sprintf (var, "Constraint15_3");
-		cons1 = (exp == 1);
-		cons1.setName(var);
-		model.add(cons1);
+		// sprintf (var, "Constraint15_3");
+		// cons1 = (exp == 1);
+		// cons1.setName(var);
+		// model.add(cons1);
 
 		// u = 11;
 		// v = 8;

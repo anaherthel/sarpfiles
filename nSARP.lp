@@ -732,9 +732,6 @@ Subject To
  Constraint12_15:    b(15) >= 0
  Constraint13_12:    - b(12) + b(14) <= 8
  Constraint13_13:    - b(13) + b(15) <= 8
- Constraint15_1:     x(8,0,0)  = 1
- Constraint15_2:     x(0,4,0)  = 1
- Constraint15_3:     x(4,9,0)  = 1
 Bounds
  0 <= x(0,1,0) <= 1
  0 <= x(0,1,1) <= 1
