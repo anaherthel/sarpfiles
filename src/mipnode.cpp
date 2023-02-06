@@ -91,7 +91,9 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             objFunction += nodeVec[i].profit * x[i][j][k];
         }
     }
+
 	if (problem->dParcel > 0){
+		
 		for (int a = 0; a < nas->arcPD.size(); a++){
 			int i = nas->arcPD[a].first;
 			int j = nas->arcPD[a].second;
@@ -479,36 +481,36 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		// model.add(cons1);
 	// }
 
-		// IloExpr exp(env);
-		// int u = 12;
-		// int v = 3;
+		IloExpr exp(env);
+		int u = 8;
+		int v = 0;
 
-		// exp = x[u][v][0];
+		exp = x[u][v][0];
 
-		// sprintf (var, "Constraint15_1");
-		// IloRange cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+		sprintf (var, "Constraint15_1");
+		IloRange cons1 = (exp == 1);
+		cons1.setName(var);
+		model.add(cons1);
 
-		// u = 3;
-		// v = 6;
+		u = 0;
+		v = 4;
 
-		// exp = x[u][v][0];
+		exp = x[u][v][0];
 
-		// sprintf (var, "Constraint15_2");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+		sprintf (var, "Constraint15_2");
+		cons1 = (exp == 1);
+		cons1.setName(var);
+		model.add(cons1);
 
-		// u = 6;
-		// v = 11;
+		u = 4;
+		v = 9;
 
-		// exp = x[u][v][0];
+		exp = x[u][v][0];
 
-		// sprintf (var, "Constraint15_3");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+		sprintf (var, "Constraint15_3");
+		cons1 = (exp == 1);
+		cons1.setName(var);
+		model.add(cons1);
 
 		// u = 11;
 		// v = 8;

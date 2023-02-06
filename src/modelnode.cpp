@@ -179,7 +179,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
         //parcelpu-parcel
         for (int i = inst->n; i < inst->n + inst->m; i++){//i is a parcel pu node
             for (int j = inst->n; j < inst->n + 2*inst->m; j++){//j is a parcel pu or dl node
-                if (i != j){
+                if (j + inst->m != i && i != j && i + inst->m != j){
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
                     nas->fArc.second = j;
@@ -198,6 +198,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                 }
             }
         }
+
         //parceldl-parcel
         for (int i = inst->n + inst->m; i < inst->n + 2*inst->m; i++){//i is a parcel dl node
             for (int j = inst->n; j < inst->n + 2*inst->m; j++){//j is a parcel pu or dl node
@@ -243,6 +244,27 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                 auxK = j - inst->V;
                 nas->arcV[i][j].push_back(auxK);
             } 
+        }
+
+        if (problem->dParcel > 0){//direct parcel delivery
+
+            for (int i = inst->n; i < inst->n + inst->m; i++){//i is a parcel pu node
+                int j = i + inst->m; //j is i's delivery location
+
+                nas->arcs[i][j] = true;
+                nas->fArc.first = i;
+                nas->fArc.second = j;
+                nas->arcMinus[j].push_back(nas->fArc);
+                nas->arcPlus[i].push_back(nas->fArc);
+
+                nas->arcPD.push_back(nas->fArc);
+
+                nas->allArcs.push_back(nas->fArc);
+                nas->arcnf.push_back(nas->fArc);
+                for (int k = 0; k < inst->K; k++){
+                    nas->arcV[i][j].push_back(k);
+                }                                                
+            }
         }
     }
 
