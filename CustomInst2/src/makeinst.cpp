@@ -763,9 +763,55 @@ void getInstanceScale(int argc, char** argv, Info *info){
             }
         }
     }
+    else if(info->scale == "LL1"){
+       for (int i = 60; i < 101; i++){
+            if (i % 10 == 0){
+                info->vecOfn.push_back(i);
+            }
+        }
+        for (int i = 80; i < 201; i++){
+            if (i % 10 == 0){
+                info->vecOfm.push_back(i);
+            }
+        }
+
+        for (int i = 140; i < 301; i++){
+             if (i % 10 == 0){
+                info->scaleVec.push_back(i);
+                info->dimVec.push_back(auxvec);
+            }           
+        }
+
+        for (int k = 0; k < info->scaleVec.size(); k++){
+            for (int i = 0; i < info->vecOfn.size(); i++){
+                for (int j = 0; j < info->vecOfm.size(); j++){
+                    dimensions.first = info->vecOfn[i];
+                    dimensions.second = info->vecOfm[j];
+                    if (dimensions.first + dimensions.second < info->scaleVec[k]){
+                        continue;
+                    }
+                    else if (dimensions.first + dimensions.second > info->scaleVec[k]){
+                        break;
+                    }
+                    else{
+                        info->dimVec[k].push_back(dimensions);
+                    }
+                }
+            }
+        }
+
+        cout << "Vectors of dimensions: " << endl;
+        for (int i = 0; i < info->dimVec.size(); i++){
+            cout << "dimension: " << info->scaleVec[i] << ": " << endl;
+            for (int j = 0; j < info->dimVec[i].size(); j++){
+                cout << info->dimVec[i][j].first << " - " << info->dimVec[i][j].second << endl;
+            }
+        }
+        getchar();
+    }
     else{
         cout << "\nInstance scale should be:\n";
-        cout << "1.Small (S)\n2.Medium (M)\n3.Large (L)\n" << endl;
+        cout << "1.Small (S)\n2.Medium (M)\n3.Large (L)\n4.Larger1 (LL1)\n" << endl;
         exit(1);
     }
 }
