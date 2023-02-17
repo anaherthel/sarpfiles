@@ -112,9 +112,9 @@ void genPoints (int argc, char** argv, Info *info){
             for (int scd = 0; scd < info->dimVec[i].size(); scd++){
                 info->n = info->dimVec[i][scd].first;
                 info->m = info->dimVec[i][scd].second;
-                info->seed = pow(info->n, 8) + pow(info->m, 7) + pow(p, 6);//changed (same as gh)
+                info->seed = pow((info->n-1), 8) + pow((info->m-1), 7) + pow(p, 6);//changed (same as gh)
                        
-                info->K = info->n - 1;
+                info->K = floor(info->n/2);
                 totalPoints = (info->n + info->m)*2 + (info->K);
                 totalGenerated = totalPoints + ceil(totalPoints/5);//generating more than needed because of bugs of missing coordinates
 
@@ -764,41 +764,71 @@ void getInstanceScale(int argc, char** argv, Info *info){
         }
     }
     else if(info->scale == "LL1"){
-       for (int i = 60; i < 101; i++){
-            if (i % 10 == 0){
-                info->vecOfn.push_back(i);
-            }
-        }
-        for (int i = 80; i < 201; i++){
-            if (i % 10 == 0){
-                info->vecOfm.push_back(i);
-            }
-        }
+    //    for (int i = 60; i < 201; i++){
+    //         if (i % 20 == 0){
+    //             info->vecOfn.push_back(i);
+    //         }
+    //     }
+    //     for (int i = 80; i < 201; i++){
+    //         if (i % 30 == 0){
+    //             info->vecOfm.push_back(i);
+    //         }
+    //     }
 
-        for (int i = 140; i < 301; i++){
-             if (i % 10 == 0){
+        for (int i = 150; i < 301; i++){
+             if (i % 50 == 0){
                 info->scaleVec.push_back(i);
                 info->dimVec.push_back(auxvec);
             }           
         }
 
-        for (int k = 0; k < info->scaleVec.size(); k++){
-            for (int i = 0; i < info->vecOfn.size(); i++){
-                for (int j = 0; j < info->vecOfm.size(); j++){
-                    dimensions.first = info->vecOfn[i];
-                    dimensions.second = info->vecOfm[j];
-                    if (dimensions.first + dimensions.second < info->scaleVec[k]){
-                        continue;
-                    }
-                    else if (dimensions.first + dimensions.second > info->scaleVec[k]){
-                        break;
-                    }
-                    else{
-                        info->dimVec[k].push_back(dimensions);
-                    }
-                }
-            }
-        }
+    //     for (int k = 0; k < info->scaleVec.size(); k++){
+    //         for (int i = 0; i < info->vecOfn.size(); i++){
+    //             for (int j = 0; j < info->vecOfm.size(); j++){
+    //                 dimensions.first = info->vecOfn[i];
+    //                 dimensions.second = info->vecOfm[j];
+    //                 if (dimensions.first + dimensions.second < info->scaleVec[k]){
+    //                     continue;
+    //                 }
+    //                 else if (dimensions.first + dimensions.second > info->scaleVec[k]){
+    //                     break;
+    //                 }
+    //                 else{
+    //                     info->dimVec[k].push_back(dimensions);
+    //                 }
+    //             }
+    //         }
+    //     }
+        dimensions.first = 60;
+        dimensions.second = 90;
+        info->dimVec[0].push_back(dimensions);
+        dimensions.first = 70;
+        dimensions.second = 80;
+        info->dimVec[0].push_back(dimensions);
+        dimensions.first = 80;
+        dimensions.second = 120;
+        info->dimVec[1].push_back(dimensions);
+        dimensions.first = 100;
+        dimensions.second = 100;
+        info->dimVec[1].push_back(dimensions);
+        dimensions.first = 120;
+        dimensions.second = 80;
+        info->dimVec[1].push_back(dimensions);
+        dimensions.first = 80;
+        dimensions.second = 170;
+        info->dimVec[2].push_back(dimensions);
+        dimensions.first = 100;
+        dimensions.second = 150;
+        info->dimVec[2].push_back(dimensions);
+        dimensions.first = 150;
+        dimensions.second = 100;
+        info->dimVec[2].push_back(dimensions);
+        dimensions.first = 100;
+        dimensions.second = 200;
+        info->dimVec[3].push_back(dimensions);       
+        dimensions.first = 200;
+        dimensions.second = 100;
+        info->dimVec[3].push_back(dimensions);       
 
         cout << "Vectors of dimensions: " << endl;
         for (int i = 0; i < info->dimVec.size(); i++){

@@ -426,8 +426,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	
 	//Constraint 14  - bound number of passenger visits transporting parcel
 	if (problem->p1 < 1){
-		cout << "Constraint 14" << endl;
-		getchar();
+		// cout << "Constraint 14" << endl;
+		// getchar();
 		for (int i = 0; i < nas->arcNN.size(); i++){
 			IloExpr exp(env);
 			IloExpr sumX(env);
