@@ -70,8 +70,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	IloNumVarArray w(env, nodeVec.size(), 0, Q);
 
-
-
 	for (int i = 0; i < nodeVec.size(); i++){
 		sprintf(var, "w(%d)", i);
 		w[i].setName(var);
@@ -286,31 +284,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         model.add(cons);
     }
 
-	//testing constraint
-	// IloExpr exp(env);
-	// for (int a = 0; a < nas->vArcPlus[inst->V - inst->K + 5][5].size(); a++){
-	// 	int u = nas->vArcPlus[inst->V - inst->K + 5][5][a].first;
-	// 	int v = nas->vArcPlus[inst->V - inst->K + 5][5][a].second;
-
-	// 	exp += x[u][v][5];
-	// }
-	// sprintf (var, "Constraint20_%d", 5);
-	// IloRange cons = (exp == 0);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// IloExpr exp2(env);
-	// for (int a = 0; a < nas->vArcPlus[inst->V - inst->K + 1][1].size(); a++){
-	// 	int u = nas->vArcPlus[inst->V - inst->K + 1][1][a].first;
-	// 	int v = nas->vArcPlus[inst->V - inst->K + 1][1][a].second;
-
-	// 	exp2 += x[u][v][1];
-	// }
-	// sprintf (var, "Constraint21_%d", 1);
-	// IloRange cons2 = (exp2 == 0);
-	// cons2.setName(var);
-	// model.add(cons2);
-
 	// Constraint 6 - The route of every used vehicle has to end at dummy node f
 
 	for (int k = 0; k < inst->K; k++){
@@ -447,218 +420,153 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 	}
 
-	//Constraint 15  - forcing constraints
-	// for (int i = 0; i < nas->arcNN.size(); i++){
-		// IloExpr exp(env);
-		// int u = 4;
-		// int v = 5;
+	////test constraints
 
-		// exp = x[u][v][0];
+	//IloExpr exp(env);
+	//exp = x[15][4][0];
 
-		// sprintf (var, "Constraint15_1");
-		// IloRange cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+	//sprintf (var, "Constraint15");
 
-		// u = 5;
-		// v = 1;
+	//IloRange cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// exp = x[u][v][0];
+	//exp = x[4][3][0];
 
-		// sprintf (var, "Constraint15_2");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+	//sprintf (var, "Constraint16");
 
-		// u = 1;
-		// v = 10;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// exp = x[u][v][0];
+	//exp = x[3][9][0];
 
-		// sprintf (var, "Constraint15_3");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
-	// }
+	//sprintf (var, "Constraint17");
 
-		// IloExpr exp(env);
-		// int u = 8;
-		// int v = 0;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// exp = x[u][v][0];
+	//exp = x[9][14][0];
 
-		// sprintf (var, "Constraint15_1");
-		// IloRange cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+	//sprintf (var, "Constraint18");
 
-		// u = 0;
-		// v = 4;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// exp = x[u][v][0];
+	//exp = x[14][5][0];
 
-		// sprintf (var, "Constraint15_2");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+	//sprintf (var, "Constraint19");
 
-		// u = 4;
-		// v = 9;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// exp = x[u][v][0];
+	//exp = x[5][10][0];
 
-		// sprintf (var, "Constraint15_3");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+	//sprintf (var, "Constraint20");
 
-		// u = 11;
-		// v = 8;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// exp = x[u][v][0];
+	//exp = x[10][1][0];
 
-		// sprintf (var, "Constraint15_4");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+	//sprintf (var, "Constraint21");
 
-		// u = 8;
-		// v = 0;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// exp = x[u][v][0];
+	//exp = x[16][7][1];
 
-		// sprintf (var, "Constraint15_5");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);		
+	//sprintf (var, "Constraint22");
 
-		// u = 0;
-		// v = 4;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// exp = x[u][v][0];
+	//exp = x[7][12][1];
 
-		// sprintf (var, "Constraint15_6");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);	
+	//sprintf (var, "Constraint23");
 
-		// u = 4;
-		// v = 9;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// exp = x[u][v][0];
+	//exp = x[12][6][1];
 
-		// sprintf (var, "Constraint15_7");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);	
+	//sprintf (var, "Constraint24");
 
-		// u = 13;
-		// v = 2;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// exp = x[u][v][1];
+	//exp = x[6][11][1];
 
-		// sprintf (var, "Constraint16_1");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+	//sprintf (var, "Constraint25");
 
-		// u = 2;
-		// v = 7;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// exp = x[u][v][1];
+	//exp = x[11][2][1];
 
-		// sprintf (var, "Constraint16_2");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+	//sprintf (var, "Constraint26");
 
-		// u = 7;
-		// v = 1;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
+		
+	//exp = x[17][0][2];
 
-		// exp = x[u][v][1];
+	//sprintf (var, "Constraint27");
 
-		// sprintf (var, "Constraint16_3");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);		
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// u = 1;
-		// v = 5;
+	//exp = x[0][8][2];
 
-		// exp = x[u][v][1];
+	//sprintf (var, "Constraint28");
 
-		// sprintf (var, "Constraint16_4");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);	
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		// u = 5;
-		// v = 10;
+	//exp = x[8][13][2];
 
-		// exp = x[u][v][1];
+	//sprintf (var, "Constraint29");
 
-		// sprintf (var, "Constraint16_5");
-		// cons1 = (exp == 1);
-		// cons1.setName(var);
-		// model.add(cons1);
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-		//Constraint 14  -  no parcel transportation while serving passenger
-	// if (problem->scen == "BL2"){
-	// 	for (int i = 0; i < inst->n; i++){
-	// 		IloExpr exp(env);
+	//exp = x[1][18][0];
 
-	// 		exp = w[i];
+	//sprintf (var, "Constraint30");
 
-	// 		sprintf (var, "Constraint14_%d", i);
-	// 		IloRange cons1 = (exp == 0);
-	// 		cons1.setName(var);
-	// 		model.add(cons1);
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-	// 	}
-	// }
+	//exp = x[2][19][1];
 
+	//sprintf (var, "Constraint31");
 
-	// if (problem->scen == "BL2"){
-	// 	for (int i = 0; i < nas->arcNN.size(); i++){
-	// 		IloExpr exp(env);
-	// 		IloExpr sumX(env);
-    //         int u = nas->arcNN[i].first;
-    //         int v = nas->arcNN[i].second;
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-	// 		for (int k = 0; k < inst->K; k++){
-	// 			sumX += x[u][v][k];
-	// 		}
-	// 		exp = - (w[u]);
+	//exp = x[13][20][2];
 
-	// 		sprintf (var, "Constraint14_%d", i);
-	// 		IloRange cons1 = (sumX - exp >= 1);
-	// 		cons1.setName(var);
-	// 		model.add(cons1);
+	//sprintf (var, "Constraint32");
 
-	// 	}
-	// }
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-	// else if (problem->scen == "PC" && inst->min){
-	// 	IloExpr exp(env);
-
-	// 	for (int i = inst->n; i < inst->n + inst->m; i++){
-	// 		for (int k = 0; k < inst->K; k++){
-	// 			for (int a = 0; a < nas->vArcPlus[i][k].size(); a++){
-	// 	            int u = nas->vArcPlus[i][k][a].first;
-	// 	            int v = nas->vArcPlus[i][k][a].second;
-
-	// 				exp += x[u][v][k];
-	// 			}
-	// 		}
-	// 	}
-
-	// 	sprintf (var, "Constraint14");
-	// 	IloRange cons = (exp >= 1);
-	// 	cons.setName(var);
-	// 	model.add(cons);
-	// }
-
- //    //*******************************
 
     int threads;
 
@@ -792,6 +700,7 @@ void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<no
         cout << "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
         cout << "Parcel profit: " << sStat->pProfit << endl;
         cout << "Costs: " << sStat->costs << endl;
+		cout << "Without fixed: " << sStat->costs - sStat->pProfit << endl;
         
         if (sStat->pProfit == 0){
         	inst->min = true;
@@ -948,7 +857,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
                 int i = nas->vArcMinus[a][k][b].first;
                 int j = nas->vArcMinus[a][k][b].second;
 				exp2 += x[i][j][k];
-
+				
 			}
 			sprintf (var, "Constraint3_%d_%d", a, k);
 			IloRange cons = ((exp1-exp2) == 0);
@@ -1117,211 +1026,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	// cons.setName(var);
 	// model.add(cons);
 
-	// exp = x[6][32][0];
-
-	// sprintf (var, "Constraint14B");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-
-	// exp = x[29][2][1];
-
-	// sprintf (var, "Constraint15");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[2][7][1];
-
-	// sprintf (var, "Constraint15A");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[7][33][1];
-
-	// sprintf (var, "Constraint15B");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[30][3][2];
-
-	// sprintf (var, "Constraint16");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[3][8][2];
-
-	// sprintf (var, "Constraint16A");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[8][34][2];
-
-	// sprintf (var, "Constraint16B");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[31][4][3];
-
-	// sprintf (var, "Constraint17");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[4][9][3];
-
-	// sprintf (var, "Constraint17A");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[9][0][3];
-
-	// sprintf (var, "Constraint17B");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[0][5][3];
-
-	// sprintf (var, "Constraint17C");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[5][35][3];
-
-	// sprintf (var, "Constraint17D");
-
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = b[28];
-
-	// sprintf (var, "Constraint18");
-
-	// cons = (exp == 0);
-	// cons.setName(var);
-	// model.add(cons);
-
-
-	// exp = b[29];
-
-	// sprintf (var, "Constraint19");
-
-	// cons = (exp == 16);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = b[30];
-
-	// sprintf (var, "Constraint20");
-
-	// cons = (exp == 9.56635131118379);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = b[31];
-
-	// sprintf (var, "Constraint21");
-
-	// cons = (exp == 12.3160799711268);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = b[32];
-
-	// sprintf (var, "Constraint22");
-
-	// cons = (exp == 7.99999999999999);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = b[33];
-
-	// sprintf (var, "Constraint23");
-
-	// cons = (exp == 24);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = b[34];
-
-	// sprintf (var, "Constraint24");
-
-	// cons = (exp == 17.5663513111838);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = b[35];
-
-	// sprintf (var, "Constraint25");
-
-	// cons = (exp == 20.3160799711268);
-	// cons.setName(var);
-	// model.add(cons);
-
-
-	// exp = x[30][3][2];
-
-	// sprintf (var, "Constraint16");
-	// cons = (exp == 0);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[31][4][3];
-
-	// sprintf (var, "Constraint17");
-	// cons = (exp == 0);
-	// cons.setName(var);
-	// model.add(cons);
-
-	// exp = x[4][9][3];
-
-	// sprintf (var, "Constraint17A");
-	// cons = (exp == 0);
-	// cons.setName(var);
-	// model.add(cons);
-	//*****
-
-	// for (int i = 0; i < inst->n; i++){
-	// 	IloExpr exp(env);
-	// 	for (int j = 0; j < 2*inst->n+2*inst->m; j++){
-	// 		if (nas->arcs[i][j] != true){
-    //             continue; // If arc i to j is invalid
-    //         } 
-
-	// 		for (int k = 0; k < inst->K; k++){
-	// 			exp += x[i][j][k];
-	// 		}
-	// 	}
-
-	// 	sprintf (var, "Constraint11_%d", i);
-	// 	IloRange cons = (exp == 1);
-	// 	cons.setName(var);
-	// 	model.add(cons);
-	// }
-
-
-
+	
 	int threads;
 
     threads = 1;
