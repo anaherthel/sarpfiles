@@ -41,7 +41,7 @@ int main (int argc, char *argv[]) {
 
 	sStat.feasible = false;
 	
-	while (!sStat.feasible){
+	//while (!sStat.feasible){
 		nodeVec.clear();
 
 		readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
@@ -80,9 +80,9 @@ int main (int argc, char *argv[]) {
 		// 		inst.min = false;
 		// 	}
 		// }
-		trialK++;
-		cout << "trial K: " << trialK << endl;
-	}
+	//	trialK++;
+	//	cout << "trial K: " << trialK << endl;
+	//}
 
 	return 0;
 }
