@@ -607,6 +607,295 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
     // }
 }
 
+void testRoute (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec){
+    bool inserted;
+
+    vector< pair <int, int> > auxVec;
+    pair<int, int> auxPair;
+    vector<int> auxSolOrder;
+
+    // int setN = bStat->bundleVec.size() - inst->K - 1;
+    int currSP;
+    vector<int> orderVec;
+
+    vector<int> infroute {0 ,4, 3, 0 };
+	// solStatIni(sStat);
+    vector<int> infroutenew;
+    
+    int newindex, dummydepot;
+
+    double travel_time = 0, duration = 0, startPoint = 0, endPoint = 0, lpasse = 0, fpasse = 0, accTime;
+
+    for(int i = 0; i < infroute.size() - 1; i++){
+        if (infroute[i] < inst->K){
+            newindex = inst->n + 2*inst->m + infroute[i];
+            dummydepot = newindex + infroute[i];
+            infroutenew.push_back(newindex);
+        }
+        else{
+            newindex = infroute[i] - inst->K;
+            infroutenew.push_back(newindex);
+        }
+    }
+
+    infroutenew.push_back(dummydepot);
+
+    int a = infroutenew[0];
+    int b = infroutenew[1];
+
+    accTime = mdist[a][b]/inst->vmed;
+    travel_time += mdist[a][b]/inst->vmed;
+    bool firstPass = false;
+
+    for (int i = 1; i < infroutenew.size() - 2; i++){
+        int a = infroutenew[i];
+        int b = infroutenew[i+1];
+
+        travel_time += mdist[a][b]/inst->vmed + nodeVec[a].delta;
+
+        if (!firstPass){
+            if (a < inst->n){
+                fpasse = nodeVec[a].e;
+                firstPass = true;
+            }
+            else{                 
+                accTime += mdist[a][b]/inst->vmed + inst->service;
+            }
+        }
+    }
+    b = infroutenew[infroutenew.size() - 2];
+    travel_time += nodeVec[b].delta;
+    startPoint = fpasse - accTime;
+    accTime = 0;
+
+    for (int i = infroutenew.size() - 2; i > 0; i--){
+        int a = infroutenew[i];
+        int b = infroutenew[i-1];
+
+        //if (a < inst->n){
+        //    fpasse = nodeVec[a].e;
+        //    break;
+        //}
+        //else{
+        //    accTime += mdist[b][a]/inst->vmed + inst->service;
+        //}
+        
+        if (a < inst->n){
+            lpasse = nodeVec[a].e + nodeVec[a].delta;
+            break;
+        }
+        else{
+            accTime += mdist[b][a]/inst->vmed + inst->service;
+        }
+    }
+
+    endPoint = lpasse + accTime;
+    accTime = 0;
+    
+    for (int i = 0; i < infroutenew.size(); i++){
+        if (i < infroutenew.size() - 1){
+
+            cout << infroutenew[i] << " - ";
+        }
+        else{
+
+            cout << infroutenew[i];
+        }
+    }
+    cout << " duration:" << endPoint - startPoint << " sum_travel_times:" << travel_time << endl;
+
+    for (int i = 0; i < infroute.size() - 1; i++){
+        int a = infroute[i];
+        int b = infroute[i+1];
+        if (i < infroute.size() - 2){
+            cout << "Xi" << a << "_" << b << "_" << infroute[0] << "_OspV +";
+
+        }
+        else{
+            cout << "Xi" << a << "_" << b << "_" << infroute[0] << "_OspV <=" << infroute.size() - 2 << endl;
+
+        }
+    }
+
+    for (int i = 0; i < infroutenew.size(); i++){
+        if (i < infroutenew.size() - 1){
+            if (infroutenew[i] < inst->n){
+                cout << "d" << " - ";
+            }
+            else if (infroutenew[i] < inst->n + inst->m){
+                cout << "P" << " - ";
+                //sStat->servedParcels++;
+            }
+            else if (infroutenew[i] < inst->n + 2*inst->m){
+                cout << "D" << " - ";
+            }
+            else if (infroutenew[i] < inst->n + 2*inst->m + inst->K){
+                cout << "S" << " - ";
+            }                                      
+        }
+        else{
+
+            cout << "f";
+        }
+    }
+    cout << endl;
+}
+
+void viewSolVRPS (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat){
+    bool inserted;
+
+    vector< pair <int, int> > auxVec;
+    pair<int, int> auxPair;
+    vector<int> auxSolOrder;
+    // int setN = bStat->bundleVec.size() - inst->K - 1;
+    int currSP;
+    vector<int> orderVec;
+
+	// solStatIni(sStat);
+
+    for (int k = 0; k < inst->K; k++){
+        sStat->solOrder.push_back(auxSolOrder);
+    }
+
+    for (int k = 0; k < inst->K; k++){
+        currSP = inst->V - inst->K + k;
+
+        for (int i = 0; i < sStat->solvec[k].size(); i++){
+            auxPair.first = sStat->solvec[k][i].first;
+            auxPair.second = sStat->solvec[k][i].second;            
+            auxVec.push_back(auxPair);
+        }
+        // cout<< "here1";
+        // getchar();
+        // cout << "auxVec: " << endl;
+        // for (int i = 0; i < auxVec.size(); i++){
+        //     cout << auxVec[i].first << " " << auxVec[i].second << endl;
+        // }
+
+        while(!auxVec.empty()){
+            if (sStat->solOrder[k].empty()){
+
+                for (int i = 0; i < auxVec.size(); i++){
+                    if (auxVec[i].first == currSP){
+                        sStat->solOrder[k].push_back(auxVec[i].first);
+                        sStat->solOrder[k].push_back(auxVec[i].second);
+
+                        auxVec.erase(auxVec.begin()+i);
+
+                    }
+                }
+            }
+            else{
+
+                for (int j = 0; j < auxVec.size(); j++){
+                    if(auxVec[j].first == sStat->solOrder[k].back()){
+                        sStat->solOrder[k].push_back(auxVec[j].second);
+
+                        auxVec.erase(auxVec.begin()+j);
+                    }
+                }
+            }       
+        // cout<< "auxvec size: " << auxVec.size();
+        // getchar();
+        }
+        // cout<< "here3";
+        // getchar();
+    }
+
+    //cout << "\nNumber of Vehicles: " << inst->K << endl;
+
+    for (int k = 0; k < inst->K; k++){
+        cout << "-------------------------" << endl;
+        
+        cout << "nbVar = " << sStat->solOrder[k].size() - 1 << endl;
+        cout << "Ordered solution : 0(0,0,0) -> ";
+        double btime = 0;
+        double partialSol = 0;
+        double triplen = 0;
+        int load = 0;
+
+        for (int i = 1; i < sStat->solOrder[k].size() - 1; i++){
+            triplen = mdist[sStat->solOrder[k][i - 1]][sStat->solOrder[k][i]]/inst->vmed;
+            btime = sStat->solBegin[sStat->solOrder[k][i]];
+            double ttime = nodeVec[sStat->solOrder[k][i]].delta + triplen;
+
+            if (sStat->solOrder[k][i] < inst->n){             
+                if (sStat->solOrder[k][i - 1] >= inst->n && sStat->solOrder[k][i - 1] < inst->n + inst->m){
+                    load = 5;
+                }
+                else{
+                    load = 1;
+                }
+            }
+            else if (sStat->solOrder[k][i] >= inst->n + inst->m && sStat->solOrder[k][i] < inst->n + 2*inst->m){
+                load = 0;
+            }
+            if (i < sStat->solOrder[k].size() - 1){
+                cout << sStat->solOrder[k][i] + 1 << "(" << btime << ","<< load << "," << ttime << ") -> ";
+            }
+            else{
+                cout << sStat->solOrder[k][i] + 1 << "(" << btime << ","<< load << "," << ttime << ")";
+            }
+        }
+        cout << endl;
+        for (int i = 0; i < sStat->solOrder[k].size() - 2; i++){
+            double arcCost = 0;
+            if (sStat->solOrder[k][i] < inst->n){
+                arcCost = - inst->costkm*(mdist[sStat->solOrder[k][i]][sStat->solOrder[k][i+1]]);
+
+            }
+            else{
+                arcCost = nodeVec[sStat->solOrder[k][i]].profit - inst->costkm*(mdist[sStat->solOrder[k][i]][sStat->solOrder[k][i+1]]);
+            }
+            partialSol += arcCost;
+            if (i < 1){
+                cout << "Solution includes var[Xi" << k << "_" << sStat->solOrder[k][i+1] + inst->K << "_" << k << "_OspV(" << arcCost << ")] = 1" << endl;
+            }
+            else if (i + 1 < sStat->solOrder[k].size() - 1){
+                cout << "Solution includes var[Xi" << sStat->solOrder[k][i] + inst->K << "_" << sStat->solOrder[k][i+1] + inst->K << "_" << k << "_OspV(" << arcCost << ")] = 1" << endl;
+            }
+            else{
+
+            }
+        }
+
+        cout << "Solution: solCost = " << partialSol << endl;
+
+        //cout << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
+    }
+    cout << endl;
+
+    // disregard if fip
+    cout << "\nSolution structure: " << endl;
+    for (int k = 0; k < inst->K; k++){
+        cout << "Vehicle " << k << ": ";
+        for (int i = 0; i < sStat->solOrder[k].size(); i++){
+            if (i < sStat->solOrder[k].size() - 1){
+                if (sStat->solOrder[k][i] < inst->n){
+                    cout << "d" << " - ";
+                }
+                else if (sStat->solOrder[k][i] < inst->n + inst->m){
+                    cout << "P" << " - ";
+                    sStat->servedParcels++;
+                }
+                else if (sStat->solOrder[k][i] < inst->n + 2*inst->m){
+                    cout << "D" << " - ";
+                }
+                else if (sStat->solOrder[k][i] < inst->n + 2*inst->m + inst->K){
+                    cout << "S" << " - ";
+                }                                      
+            }
+            else{
+
+                cout << "f";
+            }
+        }
+        cout << endl;
+    }
+    cout << endl;   
+
+}
+
 void output(instanceStat *inst, vector<nodeStat> &nodeVec,  solStats *sStat, probStat* problem){
 
     //output
@@ -660,12 +949,12 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
     // cout << endl;
     // getchar();
 
-    cout << "\nProfit vector: " << endl;
+    //cout << "\nProfit vector: " << endl;
 
-    for (int i = 0; i < nodeVec.size(); i++){
-        cout << i << ": " << nodeVec[i].profit << endl;
-    }
-    cout << endl;
+    //for (int i = 0; i < nodeVec.size(); i++){
+    //    cout << i << ": " << nodeVec[i].profit << endl;
+    //}
+    //cout << endl;
     // getchar();
 
 	initArcs(inst, &nas);
@@ -692,7 +981,9 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
     // mtznode(inst, nodeVec, mdist, problem, &nas, sStat);
 
 	if(sStat->feasible){
-		viewSol (inst, mdist, nodeVec, sStat);
+        viewSolVRPS (inst, mdist, nodeVec, sStat);
+
+		//viewSol (inst, mdist, nodeVec, sStat);
 
 		mipSolStats (inst, mdist, nodeVec, sStat);
 
@@ -702,6 +993,9 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
             output(inst, nodeVec,  sStat, problem);
         }
 	}
+
+    testRoute(inst, mdist, nodeVec);
+
     
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
 		delete[] mdist[i];
