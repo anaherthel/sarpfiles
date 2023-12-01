@@ -976,21 +976,29 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// }
 	// cout << endl;
 
+    
+
     mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
     
     // mtznode(inst, nodeVec, mdist, problem, &nas, sStat);
 
 	if(sStat->feasible){
-        viewSolVRPS (inst, mdist, nodeVec, sStat);
+        //viewSolVRPS (inst, mdist, nodeVec, sStat);
 
-		//viewSol (inst, mdist, nodeVec, sStat);
+		viewSol (inst, mdist, nodeVec, sStat);
 
 		mipSolStats (inst, mdist, nodeVec, sStat);
+
+
+
 
 		printStats(inst, sStat);
 
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
+
+
+
         }
 	}
 

@@ -9,7 +9,7 @@ import csv
 import math as m
 import os
 
-
+# Automate the creation of lists of solution values to pass as cut off values to bapcode
 
 def read_csv_lists(file_path):
     list_of_files = []
@@ -18,15 +18,15 @@ def read_csv_lists(file_path):
         reader = csv.reader(csv_file)
         for line in reader:
             list_of_files.append(line[0])
-            if float(line[1]) < 0:
-                line[1] = 0
+            # if float(line[1]) < 0:
+            #     line[1] = 0
             list_of_values.append(m.ceil(float(line[1])))
 
     return list_of_files, list_of_values
 
 def make_cutoff_file(l_f, l_v):
-    folder_name = 'sol_sfsarp'
-    folder_path = './sol_sfsarp'
+    folder_name = 'sol_csarpm1'
+    folder_path = './sol_csarpm1'
     os.mkdir(folder_name)
 
     for i in range(len(l_f)):
@@ -36,7 +36,7 @@ def make_cutoff_file(l_f, l_v):
             f.write(str(l_v[i]))
         
     
-file = "cutvaluessfsarpS.csv"
+file = "cutvaluescsarpMscsp.csv"
 
 l_f, l_v = read_csv_lists(file)
 

@@ -245,7 +245,143 @@ void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<node
     // }
     
 // }
+}
 
+int permutationCount = 0;
+int setCount = 0;
+int infSets, feasSets;
 
+int testDurations(int a, int b, int c, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec) {
+    // Process the current permutation here.
+    //std::cout << a << " " << b << " " << c << std::endl;
+    permutationCount++;
+    int counter = 0;
+    double avgOK, avgInfeasible, avgExceeded;
+
+    int result; //1- feasible; 2- infeasible; 3- exceed duration
+
+    double duration = 0;
+    double start, end;
+    double cumulativeTT = 0;
+    bool passenger = false;
+
+    if (a < inst->n){
+        passenger = true;
+    }
+    else{
+        if(a > inst->n+inst->m && (a == b + inst->m || a == c + inst->m)){
+            return 2;
+        }
+    }
+    start = nodeVec[a].e;
+    end = nodeVec[a].e + nodeVec[a].delta;
+
+    if (b < inst->n){
+        if(!passenger){
+            passenger = true;
+            start = nodeVec[b].e - mdist[a][b]/inst->vmed - nodeVec[a].delta;
+        }
+        else{
+            if ((nodeVec[a].e > nodeVec[b].e) ||
+                (end + mdist[a][b]/inst->vmed + nodeVec[a].delta > nodeVec[b].e)){
+                return 2;
+            }
+            end = nodeVec[b].e + nodeVec[b].delta;
+        }
+    }
+    else{
+        if(b > inst->n+inst->m && b == c + inst->m){
+            return 2;
+        }
+        end = end + mdist[a][b]/inst->vmed + nodeVec[b].delta;
+    }
+    if (c < inst->n){
+        if (!passenger){
+            passenger = true;
+            start = nodeVec[c].e - cumulativeTT;
+            end = nodeVec[c].e + nodeVec[c].delta;
+        }
+        else{
+            if ((nodeVec[b].e > nodeVec[c].e) ||
+                (end + mdist[b][c]/inst->vmed + nodeVec[a].delta > nodeVec[c].e)){
+                return 2;
+            }            
+            end = nodeVec[c].e + nodeVec[c].delta;
+        }
+
+    }
+    else{
+        end = end + mdist[b][c]/inst->vmed + nodeVec[c].delta;
+        
+    }
+
+    duration = end - start;
+    if (duration > inst->maxTime){
+        result = 3;
+    }
+    else{
+        result = 1;
+    }
+
+    return result;
 
 }
+
+void generatePermutations(int a, int b, int c, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, vector<int>& stats) {
+    int permutation[3] = {a, b, c};
+    int result = 0;
+    bool infeasible = false;
+    bool feasible = false;
+    do {
+
+        result = testDurations(permutation[0], permutation[1], permutation[2], inst, mdist, nodeVec);
+        stats[result-1] += 1;
+        if (result > 2 && !infeasible){
+            infeasible  = true;
+        }
+        else if (result <= 2 && !feasible){
+            if(infeasible){
+                feasible = false;
+                continue;
+            }
+            else{
+                feasible = true;
+            }
+        }
+        //cout << "Result: " << result << endl;
+        
+    } while (std::next_permutation(permutation, permutation + 3));
+
+    if (feasible) {
+        feasSets++;
+    } else if (infeasible) {
+        infSets++;
+    }
+}
+
+void startPermutation(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec){
+
+    int size = inst->n + 2*inst->m;
+    int count = 3;
+    vector<int> stats = {0, 0, 0}; //feasible, infeasible, exceed duration
+    infSets = 0;
+    feasSets = 0;
+
+    for (int i = 0; i < size - (count - 1); ++i) {
+        for (int j = i + 1; j < size - (count - 2); ++j) {
+            for (int k = j + 1; k < size - (count - 1); ++k) {
+                setCount++;
+                generatePermutations(i, j, k, inst, mdist, nodeVec, stats);
+            }
+        }
+    }
+
+    cout << "Stats on permutations of 3" << endl;
+
+    cout << "Feasible permutations: " <<  (static_cast<double>(stats[0]) / permutationCount)*100 << "%" << endl;
+    cout << "Infeasible permutations: " <<  (static_cast<double>(stats[1]) / permutationCount)*100 << "%" << endl;
+    cout << "Exceed duration: " <<  (static_cast<double>(stats[2]) / permutationCount)*100 << "%" << endl;
+
+    cout << "\nInfeasible sets of 3: " << (static_cast<double>(infSets) / setCount)*100 << "%" << endl;
+}
+

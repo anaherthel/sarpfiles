@@ -38,5 +38,10 @@ string getInstanceType (char **argv);
 string getInstName (char **argv);
 void getInstParam (instanceStat *inst, vector<int> &instParam);
 void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat);
+int testDurations(int a, int b, int c, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec);
+void generatePermutations(int a, int b, instanceStat *inst, int c, double **mdist, vector<nodeStat> &nodeVec, vector<int>& stats);
+void startPermutation(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec);
+
+
 
 #endif

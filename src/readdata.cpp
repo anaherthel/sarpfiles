@@ -33,6 +33,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     //     problem->seq = true;
     // }
 
+    int decimalPlaces = 2;
+    double multiplier = std::pow(10, decimalPlaces);
+
     problem->scen = argv[2];
     problem->model = argv[3];
 
@@ -334,6 +337,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 if (i < n){ 
                     // manhattan = CalcMan(vxs, vys, vxf, vyf, i, i);
                     geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+                    //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                     delta[i] = (2 * (service)) + (geodist)/inst->vmed;
                     profit[i] = inst->minpas + inst->paskm*geodist - inst->costkm*geodist;
                 }
@@ -341,6 +345,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     delta[i] = service;
                     if (i < n + m){
                         geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
+                        //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                         // manhattan = CalcMan(vxs, vys, vxf, vyf, i, i+m);
                         profit[i] = inst->minpar + inst->parkm*geodist;
                     }
@@ -361,6 +366,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                             if (j < V){
                                 // manhattan = CalcMan(vxs, vys, vxf, vyf, i, j);
                                 geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
+                                //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                                 dist[i][j] = geodist;
                             }
                             else if (j >= V){
@@ -379,6 +385,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 delta[i] = service;
                 if (i < n){ 
                     geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+n);  
+                    //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                     // manhattan = CalcMan(vxs, vys, vxf, vyf, i, i+n);      
                     profit[i] = inst->minpas + inst->paskm*geodist;
                 }
@@ -388,6 +395,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     }
                     else if (i < 2*n + m){
                         geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
+                        //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                         // manhattan = CalcMan(vxs, vys, vxf, vyf, i, i+m); 
                         profit[i] =  inst->minpar + inst->parkm*geodist;
                     }
@@ -407,6 +415,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                         if (i < V){
                             if (j < V){
                                 geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
+                                //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                                 // manhattan = CalcMan(vxs, vys, vxf, vyf, i, j);                      
                                 dist[i][j] = dist[i][j] = geodist;
                             }
@@ -708,6 +717,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     if (inst->instType == "ghsarp"){
                         euclidean = euclidean/scalingfactor;
                     }
+                    //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
                     delta[i] = (2 * (service)) + (euclidean)/inst->vmed;
                     profit[i] = inst->minpas + inst->paskm*euclidean - inst->costkm*euclidean;
                 }
@@ -718,6 +728,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                         if (inst->instType == "ghsarp"){
                             euclidean = euclidean/scalingfactor;
                         }
+                        //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
+
                         profit[i] = inst->minpar + inst->parkm*euclidean;
                     }
                     else{
@@ -738,7 +750,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                                 euclidean = calcEucDist(vxs, vys, vxf, vyf, i, j);
                                 if (inst->instType == "ghsarp"){
                                     euclidean = euclidean/scalingfactor;
-                                }                           
+                                }
+                                //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
+
                                 dist[i][j] = euclidean;
 
                             }
@@ -763,6 +777,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     if (inst->instType == "ghsarp"){
                         euclidean = euclidean/scalingfactor;
                     }
+                    //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
+
                     profit[i] = inst->minpas + inst->paskm*euclidean;
                 }
                 else if (i < V - K){ 
@@ -774,6 +790,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                         if (inst->instType == "ghsarp"){
                             euclidean = euclidean/scalingfactor;
                         }
+                        //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
+
                         profit[i] = inst->minpar + inst->parkm*euclidean;
                     }
                     else{
@@ -794,7 +812,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                                 euclidean = calcEucDist(vxs, vys, vxf, vyf, i, j);
                                 if (inst->instType == "ghsarp"){
                                     euclidean = euclidean/scalingfactor;
-                                }                           
+                                }
+                                //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
+
                                 dist[i][j] = euclidean;
 
                             }
@@ -841,7 +861,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->ys = vys[i];
             node->load = vload[i];
             node->e = ve[i]/60;
+            //node->e = static_cast<int>(node->e * multiplier) / multiplier;
+
             node->l = vl[i]/60;
+
+            //node->l = static_cast<int>(node->l * multiplier) / multiplier;
+
             node->xf = vxf[i];
             node->yf = vyf[i];
             node->delta = delta[i];
@@ -923,11 +948,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // }
     // getchar();
 
-    // cout << "\nTime windows: " << endl;
+     cout << "\nTime windows: " << endl;
 
-    // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
-    // }
+     for (int i = 0; i < nodeVec.size(); i++){
+         cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
+     }
 
     // // cout << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
@@ -939,10 +964,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     // getchar();
 
-    // cout << "Profits: " << endl;
-    // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].profit << endl;
-    // }
+     cout << "Profits: " << endl;
+     for (int i = 0; i < nodeVec.size(); i++){
+         cout << i << ": " << nodeVec[i].profit << endl;
+     }
 
     // // getchar();
 

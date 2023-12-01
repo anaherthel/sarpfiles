@@ -373,16 +373,17 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
  //*******************************
 
-    // //Forcing constraints
-    // IloExpr expk(env);
-    // int a = 48;
-    // int b = 52;
-    // expk = x[a][b][3];
+    ////cout << "Before constraints" << endl;
+    ////Forcing constraints
+    //IloExpr expk(env);
+    //int a = 59;
+    //int b = 9;
+    //expk = x[a][b][3];
 
-    // sprintf (var, "Constraint10_1");
-    // IloRange cons1 = (expk == 1);
-    // cons1.setName(var);
-    // model.add(cons1); 
+    //sprintf (var, "Constraint10_1");
+    //IloRange cons1 = (expk == 1);
+    //cons1.setName(var);
+    //model.add(cons1); 
 
     //////////////////////////////////////
 

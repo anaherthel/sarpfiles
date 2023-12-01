@@ -1494,22 +1494,22 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
 	//test constraints
 
-	// IloExpr exp(env);
-	// exp = x[8][21][0];
+	//IloExpr exp(env);
+	//exp = x[22][8][0];
 
-	// sprintf (var, "Constraint14");
+	//sprintf (var, "Constraint14");
 
-	// IloRange cons = (exp == 0);
-	// cons.setName(var);
-	// model.add(cons);
+	//IloRange cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-	// exp = x[5][18][1];
+	//exp = x[8][1][0];
 
-	// sprintf (var, "Constraint15");
-	// cons = (exp == 0);
-	// cons.setName(var);
-	// model.add(cons);
+	//sprintf (var, "Constraint15");
 
+	//IloRange cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
 	int threads;
 
