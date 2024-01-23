@@ -91,7 +91,7 @@ def makeinstList(filename):
 def changeK(instlist, Klist):
     for i in range(len(instlist)):
         filename = instlist[i]+".txt"
-        with open('Instances/sf_data/'+filename, 'r') as f:
+        with open('Instances_M/sf_data/'+filename, 'r') as f:
             newf = f.readlines()
             words = newf[0].split()
             # Klist[i] = str((int(Klist[i])+1))
@@ -106,10 +106,23 @@ def changeK(instlist, Klist):
         print(newline)
         newf.pop(0)
         newf.insert(0, newline)
-        with open('Instances/sf_data/'+filename, 'w') as f:
+        with open('Instances_M/sf_data/'+filename, 'w') as f:
             for line in newf:
                 f.write(line)
-                
+
+def checkInstances(scaleList, fileList):
+    listfiles = []
+    with open(fileList, 'r') as f:
+        for line in f:
+            words = line.split('.')
+            listfiles.append(words[0])
+    missing = []
+    for i in listfiles:
+        if i not in scaleList:
+            missing.append(i)
+    return missing
+    
+            
 # Older version to select non consecutive vehicle depots from instances
 # def changeKmulti(instlist, Klist, vnumber):
 #     for i in range(len(instlist)):
@@ -186,15 +199,17 @@ def changeKmulti(instlist, Klist):
 
 
 # # instlist, Klist = makeinstList('sfsarpKlist.txt')
-# instlist, Klist = extractK('fippassnewSsfsarp.txt')
-# makeinstKlist(instlist, Klist, 'Ssfscale.txt')
+# instlist, Klist = extractK('fippassnewMsfsarp5.txt')
+# makeinstKlist(instlist, Klist, 'Msfscale.txt')
 # print(instlist)
 # print(Klist)
 
-############
-instlist, Klist = makeinstList('Ssfscale2.txt')
+# missing = checkInstances(instlist, 'file_list.txt')
 
-# changeKmulti(instlist, Klist)
+############
+instlist, Klist = makeinstList('Msfscale.txt')
+
+# # changeKmulti(instlist, Klist)
 changeK(instlist, Klist)
 ##################
 # print(instlist)

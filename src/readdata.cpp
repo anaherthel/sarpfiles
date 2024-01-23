@@ -139,25 +139,25 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // K = n - 1;
     //&&&&&&&For scaling K&&&&&&&&&&&&&&&&
-        //if (n <= 10){
-        //    K = n-1;
-        //}
-        //else{
-        //    K = ceil(0.6*n);
-        //}
+        if (n <= 10){
+            K = n-1;
+        }
+        else{
+            K = ceil(0.6*n);
+        }
 
-        //if (trialK <= K){
-        //    K = trialK;
-        //}
-        //else{
-        //    trialK = K;
-        //}
+        if (trialK <= K){
+            K = trialK;
+        }
+        else{
+            trialK = K;
+        }
 
-        //if (trialK >= n){
-        //    cout << "Exceeded K size" << endl;
+        if (trialK >= n){
+            cout << "Exceeded K size" << endl;
         
-        //    exit(1);
-        //}
+            exit(1);
+        }
     //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
         
