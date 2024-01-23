@@ -138,34 +138,27 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // K++;
 
         // K = n - 1;
+    //&&&&&&&For scaling K&&&&&&&&&&&&&&&&
+        //if (n <= 10){
+        //    K = n-1;
+        //}
+        //else{
+        //    K = ceil(0.6*n);
+        //}
 
-        // if (n <= 10){
-        //     K = n-1;
-        // }
-        // else{
-        //     K = ceil(0.6*n);
-        // }
+        //if (trialK <= K){
+        //    K = trialK;
+        //}
+        //else{
+        //    trialK = K;
+        //}
 
-        // if (problem->model == "ils"){
-        //     K = n - 1;
-        // }
-        // K = 11;
-
-        // if (trialK <= K){
-        //     K = trialK;
-        // }
-        // else{
-        //     trialK = K;
-        // }
-
-        // if (K + trialK <= n - 1){
-        //     K += trialK;
-        // }
-        // else{
-        //     cout << "\nExceeded max number of vehicles\n";            
-        //     exit(1);
-        // }
-
+        //if (trialK >= n){
+        //    cout << "Exceeded K size" << endl;
+        
+        //    exit(1);
+        //}
+    //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
         
         cout << "K: " << K << endl;
@@ -269,7 +262,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         vl.erase(vl.begin());
 
         if (problem->model != "osarp" && problem->model != "fip"){
-            cout << "this" << endl;
+            //cout << "this" << endl;
             for (int i = 0; i < n; i++){
                 vxs.erase(vxs.begin() + n + m);
                 vys.erase(vys.begin() + n + m);
@@ -285,7 +278,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
 
             for (int i = n; i < V-K; i++){
-                ve[i] = 0;
+                //ve[i] = 0;
+                ve[i] = 540;
                 //vl[i] = 1440;
                 vl[i] = 1140;
 
@@ -295,7 +289,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 vload[i] = 0;
             }
             for (int i = V-K; i < V; i++){
-                ve[i] = 0;
+                //ve[i] = 0;
+                ve[i] = 540;
                 //vl[i] = 1440;
                 vl[i] = 1140;
 
@@ -307,17 +302,20 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             //     vl[i] = ve[i] + 10;
             // }
             for (int i = n; i < n + m; i++){//parcel PU
-                ve[i] = 0;
+                //ve[i] = 0;
+                ve[i] = 540;
                 //vl[i] = 1440;
                 vl[i] = 1140;
             }
             for (int i = 2*n + m; i < 2*n + 2*m; i++){//parcel DL
-                ve[i] = 0;
+                //ve[i] = 0;
+                ve[i] = 540;
                 //vl[i] = 1440;
                 vl[i] = 1140;
             }
             for (int i =  2*n + 2*m; i <  originalV; i++){//depot
-                ve[i] = 0;
+                //ve[i] = 0;
+                ve[i] = 540;
                 //vl[i] = 1440;
                 vl[i] = 1140;
                 //vl[i] = 720;
@@ -342,7 +340,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 vl.erase(vl.begin() + n);
                 vxf.erase(vxf.begin() + n);
                 vyf.erase(vyf.begin() + n);
-            } 
+            }          
         }
 
         //cout << "size of vector currently: "  << ve.size() << endl;
@@ -490,6 +488,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 ve[i] = std::round(ve[i] * multiplier) / multiplier;
                 vl[i] = ve[i];
             }
+
         }           
 
         for (int i = 0; i < V; i++){
@@ -507,9 +506,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->index = i;
             nodeVec.push_back(*node);
         }
-
-
-
         // Adding dummy nodes
         for (int i = 0; i < inst->dummy; i++){
             node->xs = 0;
@@ -529,13 +525,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
         
 
-        // cout << "Earlier/Later: \n{";
+        //cout << "Earlier/Later: \n{";
 
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << nodeVec[i].e << " , " << nodeVec[i].l << "} {";
-        // }
-        // cout << endl;
-        // getchar();
+        //for (int i = 0; i < nodeVec.size(); i++){
+        //    cout << nodeVec[i].e << " , " << nodeVec[i].l << "} {";
+        //}
+        //cout << endl;
+        //getchar();
 
         *Mdist = dist;
         inst->K = K;
@@ -593,25 +589,25 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         //&&&&&&&&&&&&&&&& Uncomment to scale K &&&&&&&&&&&&&&&&
-        if (n <= 10){
-            K = n-1;
-        }
-        else{
-            K = ceil(0.6*n);
-        }
+        //if (n <= 10){
+        //    K = n-1;
+        //}
+        //else{
+        //    K = ceil(0.6*n);
+        //}
 
-        if (trialK <= K){
-            K = trialK;
-        }
-        else{
-            trialK = K;
-        }
+        //if (trialK <= K){
+        //    K = trialK;
+        //}
+        //else{
+        //    trialK = K;
+        //}
 
-        if (trialK >= n){
-            cout << "Exceeded K size" << endl;
+        //if (trialK >= n){
+        //    cout << "Exceeded K size" << endl;
         
-            exit(1);
-        }
+        //    exit(1);
+        //}
         //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         if (n > 40){
             if (K + trialK <= n - 1){
@@ -967,10 +963,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //cout << endl;
         //getchar();
 
-         cout << "Service times: " << endl;
-         for (int i = 0; i < nodeVec.size(); i++){
-             cout << i << ": " << nodeVec[i].delta << endl;
-         }
+        //cout << "Service times: " << endl;
+        //for (int i = 0; i < nodeVec.size(); i++){
+        //    cout << i << ": " << nodeVec[i].delta << endl;
+        //}
 
         // getchar();
 
@@ -1017,11 +1013,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // }
     // getchar();
 
-     cout << "\nTime windows: " << endl;
+    cout << "\nTime windows: " << endl;
 
-     for (int i = 0; i < nodeVec.size(); i++){
-         cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
-     }
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
+    }
 
     // // cout << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
@@ -1033,10 +1029,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     // getchar();
 
-     cout << "Profits: " << endl;
-     for (int i = 0; i < nodeVec.size(); i++){
-         cout << i << ": " << nodeVec[i].profit << endl;
-     }
+    //cout << "Profits: " << endl;
+    //for (int i = 0; i < nodeVec.size(); i++){
+    //    cout << i << ": " << nodeVec[i].profit << endl;
+    //}
 
     // // getchar();
 

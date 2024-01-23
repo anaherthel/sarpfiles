@@ -85,10 +85,14 @@ string getInstIndex (char **argv){
     return InstanceIndex;
 }
 
+int getRandomValue(int min, int max) {
+    return rand() % (max - min + 1) + min;
+}
+
 void generateInst(int argc, char** argv, Info *info){
 
     cout << "n: " << info->n << " - m: " << info->m << endl;
-    info->seed = pow(info->n, 8) + pow(info->m, 7) + pow(stod(info->index), 6);
+    info->seed = pow(info->n, 8) + pow(info->m, 3) + pow(stod(info->index), 6);
     cout << "seed: " << info->seed << endl;
     srand(info->seed);
 
@@ -213,15 +217,16 @@ void generateInst(int argc, char** argv, Info *info){
     double timePoint;
 
     for (int i = 0; i < info->n; i++){
-            timePoint = 30 + (rand() % 1400);
+            //timePoint = 30 + (rand() % 1400);
+            timePoint = getRandomValue(560, 1110);
 
-            if (timePoint < 60){
-                timePoint += (rand() % 60)*2;
-            }
+            //if (timePoint < 60){
+            //    timePoint += (rand() % 60)*2;
+            //}
 
-            else if (timePoint > 1380){
-                timePoint -= (rand() % 60)*2;
-            }
+            //else if (timePoint > 1380){
+            //    timePoint -= (rand() % 60)*2;
+            //}
 
         auxtempdata.first = timePoint;
         auxtempdata.second = timePoint;

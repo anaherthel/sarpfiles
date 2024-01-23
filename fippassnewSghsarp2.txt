@@ -1,0 +1,1405 @@
+
+NameOfInst: Instances/ghsarp/ghsarp-6-6-4.txt
+RunningScen: 1A
+Instance Name: ghsarp-6-6-4
+Instance type: ghsarp
+
+n: 6
+m: 6
+K: 1
+Service times: 
+0: 0.0833
+1: 0.0833
+2: 0.0833
+3: 0.0833
+4: 0.0833
+5: 0.0833
+6: 0.0833
+7: 0.0833
+8: 0.0833
+9: 0.0833
+10: 0.0833
+11: 0.0833
+12: 0.0833
+13: 0.0833
+14: 0.0833
+15: 0.0833
+16: 0.0833
+17: 0.0833
+18: 0.0833
+19: 0.0833
+20: 0.0833
+21: 0.0833
+22: 0.0833
+23: 0.0833
+24: 0
+25: 0
+
+Time windows: 
+0: 10.75 - 10.75
+1: 15.25 - 15.25
+2: 11.6333 - 11.6333
+3: 9.3833 - 9.3833
+4: 16.7833 - 16.7833
+5: 14.6833 - 14.6833
+6: 10.9373 - 10.9373
+7: 15.3913 - 15.3913
+8: 11.7826 - 11.7826
+9: 9.5094 - 9.5094
+10: 16.993 - 16.993
+11: 14.798 - 14.798
+12: 9 - 19
+13: 9 - 19
+14: 9 - 19
+15: 9 - 19
+16: 9 - 19
+17: 9 - 19
+18: 9 - 19
+19: 9 - 19
+20: 9 - 19
+21: 9 - 19
+22: 9 - 19
+23: 9 - 19
+24: 9 - 19
+25: 9 - 19
+Profits: 
+0: 7.6315
+1: 5.6872
+2: 6.0232
+3: 5.0465
+4: 8.5756
+5: 4.5624
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 5.8767
+13: 3.9205
+14: 10.3299
+15: 9.5782
+16: 6.2259
+17: 4.4829
+18: 0
+19: 0
+20: 0
+21: 0
+22: 0
+23: 0
+24: 0
+25: 0
+
+Threads: 1
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 470 rows and 393 columns.
+MIP Presolve modified 600 coefficients.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.33 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (0.47 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (0.47 ticks)
+
+Sol status: Optimal
+ Total Time: 0
+ LB: 6.76481
+ UB: 6.76481
+
+Obj Val: 6.764808
+
+Solve Time: 0
+x(0, 6, 0)
+x(1, 7, 0)
+x(2, 8, 0)
+x(3, 9, 0)
+x(4, 10, 0)
+x(5, 11, 0)
+x(6, 2, 0)
+x(7, 4, 0)
+x(8, 5, 0)
+x(9, 0, 0)
+x(10, 25, 0)
+x(11, 1, 0)
+x(24, 3, 0)
+b(0): 10.75
+b(1): 15.25
+b(2): 11.6333
+b(3): 9.3833
+b(4): 16.7833
+b(5): 14.6833
+b(6): 10.9373
+b(7): 15.3913
+b(8): 11.7826
+b(9): 9.5094
+b(10): 16.993
+b(11): 14.798
+b(12): 9
+b(13): 9
+b(14): 9
+b(15): 9
+b(16): 9
+b(17): 9
+b(18): 9
+b(19): 9
+b(20): 9
+b(21): 9
+b(22): 9
+b(23): 9
+b(24): 9
+b(25): 17.0763
+
+
+Customer profit: 37.5264
+Parcel profit: 0
+Costs: 30.76158
+Without fixed: 30.76158
+
+Number of Vehicles: 1
+
+Solution: 
+Vehicle 0: 24 - 3 - 9 - 0 - 6 - 2 - 8 - 5 - 11 - 1 - 7 - 4 - 10 - 25 - Total time: 7.993
+
+
+Solution structure: 
+Vehicle 0: d - P - d - P - d - P - d - P - d - P - d - P - f
+
+
+size of n: 6
+
+size of m: 6
+
+*************
+
+
+Served parcels: 6
+
+Unserved parcels: 0
+
+*************
+
+Total time: 2.63064878048781
+
+Total passenger time: 0.0833
+
+Total parcel time: 1.96455365853659
+
+Total combined transportation time: 0.4165
+
+Total idle time: 0.16629512195122
+
+*************
+
+Total distance: 46.3812
+
+Total passenger distance: -3.4153
+
+Total parcel distance: 60.0549
+
+Total combined transportation distance: -17.0765
+
+Total idle distance: 6.8181
+
+*************
+
+Waiting time passenger: 5.44533414634146
+
+Waiting time goods: 0.000317073170729792
+
+Total waiting time: 5.44565121951219
+trial K: 2
+
+NameOfInst: Instances/ghsarp/ghsarp-7-6-3.txt
+RunningScen: 1A
+Instance Name: ghsarp-7-6-3
+Instance type: ghsarp
+
+n: 7
+m: 6
+K: 1
+Service times: 
+0: 0.0833
+1: 0.0833
+2: 0.0833
+3: 0.0833
+4: 0.0833
+5: 0.0833
+6: 0.0833
+7: 0.0833
+8: 0.0833
+9: 0.0833
+10: 0.0833
+11: 0.0833
+12: 0.0833
+13: 0.0833
+14: 0.0833
+15: 0.0833
+16: 0.0833
+17: 0.0833
+18: 0.0833
+19: 0.0833
+20: 0.0833
+21: 0.0833
+22: 0.0833
+23: 0.0833
+24: 0.0833
+25: 0.0833
+26: 0
+27: 0
+
+Time windows: 
+0: 12.6833 - 12.6833
+1: 10.2167 - 10.2167
+2: 12.4333 - 12.4333
+3: 12.1333 - 12.1333
+4: 11.4167 - 11.4167
+5: 10.85 - 10.85
+6: 15.4167 - 15.4167
+7: 12.8299 - 12.8299
+8: 10.3775 - 10.3775
+9: 12.7482 - 12.7482
+10: 12.34 - 12.34
+11: 11.6031 - 11.6031
+12: 11.0323 - 11.0323
+13: 15.8181 - 15.8181
+14: 9 - 19
+15: 9 - 19
+16: 9 - 19
+17: 9 - 19
+18: 9 - 19
+19: 9 - 19
+20: 9 - 19
+21: 9 - 19
+22: 9 - 19
+23: 9 - 19
+24: 9 - 19
+25: 9 - 19
+26: 9 - 19
+27: 9 - 19
+Profits: 
+0: 5.9085
+1: 6.5125
+2: 13.0177
+3: 8.4479
+4: 7.5925
+5: 7.4214
+6: 16.6733
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 9.391
+15: 6.5466
+16: 3.8082
+17: 10.6807
+18: 8.2513
+19: 6.1037
+20: 0
+21: 0
+22: 0
+23: 0
+24: 0
+25: 0
+26: 0
+27: 0
+
+Threads: 1
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Row 'Constraint3_6_0' infeasible, all entries at implied bounds.
+Presolve time = 0.00 sec. (0.21 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.31 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.31 ticks)
+
+Sol status: Infeasible
+ Total Time: 0
+trial K: 2
+
+NameOfInst: Instances/ghsarp/ghsarp-7-6-3.txt
+RunningScen: 1A
+Instance Name: ghsarp-7-6-3
+Instance type: ghsarp
+
+n: 7
+m: 6
+K: 2
+Service times: 
+0: 0.0833
+1: 0.0833
+2: 0.0833
+3: 0.0833
+4: 0.0833
+5: 0.0833
+6: 0.0833
+7: 0.0833
+8: 0.0833
+9: 0.0833
+10: 0.0833
+11: 0.0833
+12: 0.0833
+13: 0.0833
+14: 0.0833
+15: 0.0833
+16: 0.0833
+17: 0.0833
+18: 0.0833
+19: 0.0833
+20: 0.0833
+21: 0.0833
+22: 0.0833
+23: 0.0833
+24: 0.0833
+25: 0.0833
+26: 0
+27: 0
+28: 0
+29: 0
+
+Time windows: 
+0: 12.6833 - 12.6833
+1: 10.2167 - 10.2167
+2: 12.4333 - 12.4333
+3: 12.1333 - 12.1333
+4: 11.4167 - 11.4167
+5: 10.85 - 10.85
+6: 15.4167 - 15.4167
+7: 12.8299 - 12.8299
+8: 10.3775 - 10.3775
+9: 12.7482 - 12.7482
+10: 12.34 - 12.34
+11: 11.6031 - 11.6031
+12: 11.0323 - 11.0323
+13: 15.8181 - 15.8181
+14: 9 - 19
+15: 9 - 19
+16: 9 - 19
+17: 9 - 19
+18: 9 - 19
+19: 9 - 19
+20: 9 - 19
+21: 9 - 19
+22: 9 - 19
+23: 9 - 19
+24: 9 - 19
+25: 9 - 19
+26: 9 - 19
+27: 9 - 19
+28: 9 - 19
+29: 9 - 19
+Profits: 
+0: 5.9085
+1: 6.5125
+2: 13.0177
+3: 8.4479
+4: 7.5925
+5: 7.4214
+6: 16.6733
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 9.391
+15: 6.5466
+16: 3.8082
+17: 10.6807
+18: 8.2513
+19: 6.1037
+20: 0
+21: 0
+22: 0
+23: 0
+24: 0
+25: 0
+26: 0
+27: 0
+28: 0
+29: 0
+
+Threads: 1
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 524 rows and 794 columns.
+MIP Presolve modified 469 coefficients.
+Aggregator did 11 substitutions.
+Reduced MIP has 61 rows, 99 columns, and 278 nonzeros.
+Reduced MIP has 99 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.33 ticks)
+Found incumbent of value 15.786276 after 0.01 sec. (1.79 ticks)
+Probing fixed 30 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.27 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 8 rows and 30 columns.
+Reduced MIP has 53 rows, 69 columns, and 202 nonzeros.
+Reduced MIP has 69 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Probing time = 0.00 sec. (0.14 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 53 rows, 69 columns, and 202 nonzeros.
+Reduced MIP has 69 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.14 ticks)
+Probing time = 0.00 sec. (0.14 ticks)
+Clique table members: 220.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.09 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           15.7863       40.5254           156.71%
+*     0     0      integral     0       18.4752       18.4752       16    0.00%
+Elapsed time = 0.01 sec. (3.04 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (3.07 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (3.07 ticks)
+
+Sol status: Optimal
+ Total Time: 0
+ LB: 18.4752
+ UB: 18.4752
+
+Obj Val: 18.475206
+
+Solve Time: 0
+x(2, 9, 0)
+x(6, 13, 0)
+x(9, 6, 0)
+x(13, 28, 0)
+x(26, 2, 0)
+x(0, 7, 1)
+x(1, 8, 1)
+x(3, 10, 1)
+x(4, 11, 1)
+x(5, 12, 1)
+x(7, 29, 1)
+x(8, 5, 1)
+x(10, 0, 1)
+x(11, 3, 1)
+x(12, 4, 1)
+x(27, 1, 1)
+b(0): 12.6833
+b(1): 10.2167
+b(2): 12.4333
+b(3): 12.1333
+b(4): 11.4167
+b(5): 10.85
+b(6): 15.4167
+b(7): 12.8299
+b(8): 10.3775
+b(9): 12.7482
+b(10): 12.34
+b(11): 11.6031
+b(12): 11.0323
+b(13): 15.8181
+b(14): 9
+b(15): 9
+b(16): 9
+b(17): 9
+b(18): 9
+b(19): 9
+b(20): 9
+b(21): 9
+b(22): 9
+b(23): 9
+b(24): 9
+b(25): 9
+b(26): 9
+b(27): 9
+b(28): 19
+b(29): 19
+
+
+Customer profit: 65.5738
+Parcel profit: 0
+Costs: 47.098526
+Without fixed: 47.098526
+
+Number of Vehicles: 2
+
+Solution: 
+Vehicle 0: 26 - 2 - 9 - 6 - 13 - 28 - Total time: 6.8181
+Vehicle 1: 27 - 1 - 8 - 5 - 12 - 4 - 11 - 3 - 10 - 0 - 7 - 29 - Total time: 3.8299
+
+
+Solution structure: 
+Vehicle 0: d - P - d - D - f
+Vehicle 1: d - P - d - P - d - P - d - P - d - P - f
+
+
+size of n: 7
+
+size of m: 6
+
+*************
+
+
+Served parcels: 6
+
+Unserved parcels: 0
+
+*************
+
+Total time: 3.66347073170732
+
+Total passenger time: 0.1666
+
+Total parcel time: 2.23607073170732
+
+Total combined transportation time: 0.4165
+
+Total idle time: 0.8443
+
+*************
+
+Total distance: 78.481
+
+Total passenger distance: -6.8306
+
+Total parcel distance: 67.7718
+
+Total combined transportation distance: -17.0765
+
+Total idle distance: 34.6163
+
+*************
+
+Waiting time passenger: 7.15084634146341
+
+Waiting time goods: 0.00028292682926824
+
+Total waiting time: 7.15112926829268
+trial K: 3
+
+NameOfInst: Instances/ghsarp/ghsarp-7-7-4.txt
+RunningScen: 1A
+Instance Name: ghsarp-7-7-4
+Instance type: ghsarp
+
+n: 7
+m: 7
+K: 1
+Service times: 
+0: 0.0833
+1: 0.0833
+2: 0.0833
+3: 0.0833
+4: 0.0833
+5: 0.0833
+6: 0.0833
+7: 0.0833
+8: 0.0833
+9: 0.0833
+10: 0.0833
+11: 0.0833
+12: 0.0833
+13: 0.0833
+14: 0.0833
+15: 0.0833
+16: 0.0833
+17: 0.0833
+18: 0.0833
+19: 0.0833
+20: 0.0833
+21: 0.0833
+22: 0.0833
+23: 0.0833
+24: 0.0833
+25: 0.0833
+26: 0.0833
+27: 0.0833
+28: 0
+29: 0
+
+Time windows: 
+0: 13.25 - 13.25
+1: 12.9833 - 12.9833
+2: 12.25 - 12.25
+3: 11.2167 - 11.2167
+4: 13.4167 - 13.4167
+5: 17.4833 - 17.4833
+6: 14.3667 - 14.3667
+7: 13.5546 - 13.5546
+8: 13.0872 - 13.0872
+9: 12.4227 - 12.4227
+10: 11.4297 - 11.4297
+11: 13.5624 - 13.5624
+12: 17.5706 - 17.5706
+13: 14.6811 - 14.6811
+14: 9 - 19
+15: 9 - 19
+16: 9 - 19
+17: 9 - 19
+18: 9 - 19
+19: 9 - 19
+20: 9 - 19
+21: 9 - 19
+22: 9 - 19
+23: 9 - 19
+24: 9 - 19
+25: 9 - 19
+26: 9 - 19
+27: 9 - 19
+28: 9 - 19
+29: 9 - 19
+Profits: 
+0: 12.5849
+1: 4.1064
+2: 7.0127
+3: 8.7183
+4: 5.8769
+5: 3.406
+6: 12.9997
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 5.4617
+15: 6.5901
+16: 3.3376
+17: 6.9104
+18: 5.8019
+19: 9.3794
+20: 6.4251
+21: 0
+22: 0
+23: 0
+24: 0
+25: 0
+26: 0
+27: 0
+28: 0
+29: 0
+
+Threads: 1
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Row 'Constraint3_9_0' infeasible, all entries at implied bounds.
+Presolve time = 0.00 sec. (0.23 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.38 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.38 ticks)
+
+Sol status: Infeasible
+ Total Time: 0
+trial K: 2
+
+NameOfInst: Instances/ghsarp/ghsarp-7-7-4.txt
+RunningScen: 1A
+Instance Name: ghsarp-7-7-4
+Instance type: ghsarp
+
+n: 7
+m: 7
+K: 2
+Service times: 
+0: 0.0833
+1: 0.0833
+2: 0.0833
+3: 0.0833
+4: 0.0833
+5: 0.0833
+6: 0.0833
+7: 0.0833
+8: 0.0833
+9: 0.0833
+10: 0.0833
+11: 0.0833
+12: 0.0833
+13: 0.0833
+14: 0.0833
+15: 0.0833
+16: 0.0833
+17: 0.0833
+18: 0.0833
+19: 0.0833
+20: 0.0833
+21: 0.0833
+22: 0.0833
+23: 0.0833
+24: 0.0833
+25: 0.0833
+26: 0.0833
+27: 0.0833
+28: 0
+29: 0
+30: 0
+31: 0
+
+Time windows: 
+0: 13.25 - 13.25
+1: 12.9833 - 12.9833
+2: 12.25 - 12.25
+3: 11.2167 - 11.2167
+4: 13.4167 - 13.4167
+5: 17.4833 - 17.4833
+6: 14.3667 - 14.3667
+7: 13.5546 - 13.5546
+8: 13.0872 - 13.0872
+9: 12.4227 - 12.4227
+10: 11.4297 - 11.4297
+11: 13.5624 - 13.5624
+12: 17.5706 - 17.5706
+13: 14.6811 - 14.6811
+14: 9 - 19
+15: 9 - 19
+16: 9 - 19
+17: 9 - 19
+18: 9 - 19
+19: 9 - 19
+20: 9 - 19
+21: 9 - 19
+22: 9 - 19
+23: 9 - 19
+24: 9 - 19
+25: 9 - 19
+26: 9 - 19
+27: 9 - 19
+28: 9 - 19
+29: 9 - 19
+30: 9 - 19
+31: 9 - 19
+Profits: 
+0: 12.5849
+1: 4.1064
+2: 7.0127
+3: 8.7183
+4: 5.8769
+5: 3.406
+6: 12.9997
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 5.4617
+15: 6.5901
+16: 3.3376
+17: 6.9104
+18: 5.8019
+19: 9.3794
+20: 6.4251
+21: 0
+22: 0
+23: 0
+24: 0
+25: 0
+26: 0
+27: 0
+28: 0
+29: 0
+30: 0
+31: 0
+
+Threads: 1
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 592 rows and 912 columns.
+MIP Presolve modified 474 coefficients.
+Aggregator did 11 substitutions.
+Reduced MIP has 61 rows, 99 columns, and 278 nonzeros.
+Reduced MIP has 99 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.44 ticks)
+Found incumbent of value -1.437125 after 0.00 sec. (2.00 ticks)
+Probing fixed 32 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.27 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 9 rows and 32 columns.
+Reduced MIP has 52 rows, 67 columns, and 196 nonzeros.
+Reduced MIP has 67 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Probing time = 0.00 sec. (0.12 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 52 rows, 67 columns, and 196 nonzeros.
+Reduced MIP has 67 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.13 ticks)
+Probing time = 0.00 sec. (0.12 ticks)
+Clique table members: 206.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.09 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           -1.4371       33.7837              --- 
+*     0     0      integral     0       12.9084       12.9084       16    0.00%
+Elapsed time = 0.01 sec. (3.21 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (3.25 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (3.25 ticks)
+
+Sol status: Optimal
+ Total Time: 0
+ LB: 12.9084
+ UB: 12.9084
+
+Obj Val: 12.908435
+
+Solve Time: 0
+x(2, 9, 0)
+x(3, 10, 0)
+x(4, 11, 0)
+x(5, 12, 0)
+x(9, 4, 0)
+x(10, 2, 0)
+x(11, 5, 0)
+x(12, 30, 0)
+x(28, 3, 0)
+x(0, 7, 1)
+x(1, 8, 1)
+x(6, 13, 1)
+x(7, 6, 1)
+x(8, 0, 1)
+x(13, 31, 1)
+x(29, 1, 1)
+b(0): 13.25
+b(1): 12.9833
+b(2): 12.25
+b(3): 11.2167
+b(4): 13.4167
+b(5): 17.4833
+b(6): 14.3667
+b(7): 13.5546
+b(8): 13.0872
+b(9): 12.4227
+b(10): 11.4297
+b(11): 13.5624
+b(12): 17.5706
+b(13): 14.6811
+b(14): 9
+b(15): 9
+b(16): 9
+b(17): 9
+b(18): 9
+b(19): 9
+b(20): 9
+b(21): 9
+b(22): 9
+b(23): 9
+b(24): 9
+b(25): 9
+b(26): 9
+b(27): 9
+b(28): 9
+b(29): 9
+b(30): 19
+b(31): 19
+
+
+Customer profit: 54.7049
+Parcel profit: 0
+Costs: 41.796428
+Without fixed: 41.796428
+
+Number of Vehicles: 2
+
+Solution: 
+Vehicle 0: 28 - 3 - 10 - 2 - 9 - 4 - 11 - 5 - 12 - 30 - Total time: 8.5706
+Vehicle 1: 29 - 1 - 8 - 0 - 7 - 6 - 13 - 31 - Total time: 5.6811
+
+
+Solution structure: 
+Vehicle 0: d - P - d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+
+
+size of n: 7
+
+size of m: 7
+
+*************
+
+
+Served parcels: 7
+
+Unserved parcels: 0
+
+*************
+
+Total time: 3.38234146341463
+
+Total passenger time: 0.1666
+
+Total parcel time: 2.05669268292683
+
+Total combined transportation time: 0.4165
+
+Total idle time: 0.742548780487805
+
+*************
+
+Total distance: 66.9547
+
+Total passenger distance: -6.8306
+
+Total parcel distance: 60.4173
+
+Total combined transportation distance: -17.0765
+
+Total idle distance: 30.4445
+
+*************
+
+Waiting time passenger: 11.0358024390244
+
+Waiting time goods: 0.00015609756097712
+
+Total waiting time: 11.0359585365854
+trial K: 3
+
+NameOfInst: Instances/ghsarp/ghsarp-9-6-9.txt
+RunningScen: 1A
+Instance Name: ghsarp-9-6-9
+Instance type: ghsarp
+
+n: 9
+m: 6
+K: 1
+Service times: 
+0: 0.0833
+1: 0.0833
+2: 0.0833
+3: 0.0833
+4: 0.0833
+5: 0.0833
+6: 0.0833
+7: 0.0833
+8: 0.0833
+9: 0.0833
+10: 0.0833
+11: 0.0833
+12: 0.0833
+13: 0.0833
+14: 0.0833
+15: 0.0833
+16: 0.0833
+17: 0.0833
+18: 0.0833
+19: 0.0833
+20: 0.0833
+21: 0.0833
+22: 0.0833
+23: 0.0833
+24: 0.0833
+25: 0.0833
+26: 0.0833
+27: 0.0833
+28: 0.0833
+29: 0.0833
+30: 0
+31: 0
+
+Time windows: 
+0: 14.6833 - 14.6833
+1: 11.3 - 11.3
+2: 17.2 - 17.2
+3: 10.1 - 10.1
+4: 12.6 - 12.6
+5: 14.2833 - 14.2833
+6: 12.7333 - 12.7333
+7: 16.9667 - 16.9667
+8: 13.55 - 13.55
+9: 14.922 - 14.922
+10: 11.4961 - 11.4961
+11: 17.3474 - 17.3474
+12: 10.3141 - 10.3141
+13: 12.8374 - 12.8374
+14: 14.4364 - 14.4364
+15: 12.98 - 12.98
+16: 17.1861 - 17.1861
+17: 13.7187 - 13.7187
+18: 9 - 19
+19: 9 - 19
+20: 9 - 19
+21: 9 - 19
+22: 9 - 19
+23: 9 - 19
+24: 9 - 19
+25: 9 - 19
+26: 9 - 19
+27: 9 - 19
+28: 9 - 19
+29: 9 - 19
+30: 9 - 19
+31: 9 - 19
+Profits: 
+0: 9.8003
+1: 8.0038
+2: 5.9468
+3: 8.7623
+4: 9.746
+5: 6.1847
+6: 10.1376
+7: 8.9881
+8: 6.845
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+16: 0
+17: 0
+18: 4.8986
+19: 5.8119
+20: 4.4638
+21: 7.717
+22: 6.1731
+23: 8.6554
+24: 0
+25: 0
+26: 0
+27: 0
+28: 0
+29: 0
+30: 0
+31: 0
+
+Threads: 1
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Row 'Constraint5_0' infeasible, all entries at implied bounds.
+Presolve time = 0.00 sec. (0.25 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.39 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.39 ticks)
+
+Sol status: Infeasible
+ Total Time: 0
+trial K: 2
+
+NameOfInst: Instances/ghsarp/ghsarp-9-6-9.txt
+RunningScen: 1A
+Instance Name: ghsarp-9-6-9
+Instance type: ghsarp
+
+n: 9
+m: 6
+K: 2
+Service times: 
+0: 0.0833
+1: 0.0833
+2: 0.0833
+3: 0.0833
+4: 0.0833
+5: 0.0833
+6: 0.0833
+7: 0.0833
+8: 0.0833
+9: 0.0833
+10: 0.0833
+11: 0.0833
+12: 0.0833
+13: 0.0833
+14: 0.0833
+15: 0.0833
+16: 0.0833
+17: 0.0833
+18: 0.0833
+19: 0.0833
+20: 0.0833
+21: 0.0833
+22: 0.0833
+23: 0.0833
+24: 0.0833
+25: 0.0833
+26: 0.0833
+27: 0.0833
+28: 0.0833
+29: 0.0833
+30: 0
+31: 0
+32: 0
+33: 0
+
+Time windows: 
+0: 14.6833 - 14.6833
+1: 11.3 - 11.3
+2: 17.2 - 17.2
+3: 10.1 - 10.1
+4: 12.6 - 12.6
+5: 14.2833 - 14.2833
+6: 12.7333 - 12.7333
+7: 16.9667 - 16.9667
+8: 13.55 - 13.55
+9: 14.922 - 14.922
+10: 11.4961 - 11.4961
+11: 17.3474 - 17.3474
+12: 10.3141 - 10.3141
+13: 12.8374 - 12.8374
+14: 14.4364 - 14.4364
+15: 12.98 - 12.98
+16: 17.1861 - 17.1861
+17: 13.7187 - 13.7187
+18: 9 - 19
+19: 9 - 19
+20: 9 - 19
+21: 9 - 19
+22: 9 - 19
+23: 9 - 19
+24: 9 - 19
+25: 9 - 19
+26: 9 - 19
+27: 9 - 19
+28: 9 - 19
+29: 9 - 19
+30: 9 - 19
+31: 9 - 19
+32: 9 - 19
+33: 9 - 19
+Profits: 
+0: 9.8003
+1: 8.0038
+2: 5.9468
+3: 8.7623
+4: 9.746
+5: 6.1847
+6: 10.1376
+7: 8.9881
+8: 6.845
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+16: 0
+17: 0
+18: 4.8986
+19: 5.8119
+20: 4.4638
+21: 7.717
+22: 6.1731
+23: 8.6554
+24: 0
+25: 0
+26: 0
+27: 0
+28: 0
+29: 0
+30: 0
+31: 0
+32: 0
+33: 0
+
+Threads: 1
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 680 rows and 1070 columns.
+MIP Presolve modified 782 coefficients.
+Aggregator did 15 substitutions.
+Reduced MIP has 87 rows, 147 columns, and 418 nonzeros.
+Reduced MIP has 147 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.96 ticks)
+Found incumbent of value 7.052839 after 0.01 sec. (2.63 ticks)
+Probing fixed 62 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.33 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 20 rows and 63 columns.
+Reduced MIP has 67 rows, 84 columns, and 254 nonzeros.
+Reduced MIP has 84 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.18 ticks)
+Probing time = 0.00 sec. (0.11 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 67 rows, 84 columns, and 254 nonzeros.
+Reduced MIP has 84 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.17 ticks)
+Probing time = 0.00 sec. (0.11 ticks)
+Clique table members: 252.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.11 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                            7.0528       49.1540           596.94%
+*     0     0      integral     0       26.5208       26.5208       18    0.00%
+Elapsed time = 0.01 sec. (4.09 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (4.14 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (4.14 ticks)
+
+Sol status: Optimal
+ Total Time: 0.01
+ LB: 26.5208
+ UB: 26.5208
+
+Obj Val: 26.520821
+
+Solve Time: 0.01
+x(2, 11, 0)
+x(3, 12, 0)
+x(4, 13, 0)
+x(5, 14, 0)
+x(8, 17, 0)
+x(11, 32, 0)
+x(12, 4, 0)
+x(13, 8, 0)
+x(14, 2, 0)
+x(17, 5, 0)
+x(30, 3, 0)
+x(0, 9, 1)
+x(1, 10, 1)
+x(6, 15, 1)
+x(7, 16, 1)
+x(9, 7, 1)
+x(10, 6, 1)
+x(15, 0, 1)
+x(16, 33, 1)
+x(31, 1, 1)
+b(0): 14.6833
+b(1): 11.3
+b(2): 17.2
+b(3): 10.1
+b(4): 12.6
+b(5): 14.2833
+b(6): 12.7333
+b(7): 16.9667
+b(8): 13.55
+b(9): 14.922
+b(10): 11.4961
+b(11): 17.3474
+b(12): 10.3141
+b(13): 12.8374
+b(14): 14.4364
+b(15): 12.98
+b(16): 17.1861
+b(17): 13.7187
+b(18): 9
+b(19): 9
+b(20): 9
+b(21): 9
+b(22): 9
+b(23): 9
+b(24): 9
+b(25): 9
+b(26): 9
+b(27): 9
+b(28): 9
+b(29): 9
+b(30): 9
+b(31): 9
+b(32): 19
+b(33): 19
+
+
+Customer profit: 74.4146
+Parcel profit: 0
+Costs: 47.893774
+Without fixed: 47.893774
+
+Number of Vehicles: 2
+
+Solution: 
+Vehicle 0: 30 - 3 - 12 - 4 - 13 - 8 - 17 - 5 - 14 - 2 - 11 - 32 - Total time: 8.3474
+Vehicle 1: 31 - 1 - 10 - 6 - 15 - 0 - 9 - 7 - 16 - 33 - Total time: 8.1861
+
+
+Solution structure: 
+Vehicle 0: d - P - d - P - d - D - d - P - d - P - f
+Vehicle 1: d - P - d - D - d - P - d - D - f
+
+
+size of n: 9
+
+size of m: 6
+
+*************
+
+
+Served parcels: 6
+
+Unserved parcels: 0
+
+*************
+
+Total time: 4.03883658536585
+
+Total passenger time: 0.2499
+
+Total parcel time: 2.22709512195122
+
+Total combined transportation time: 0.4998
+
+Total idle time: 1.06204146341463
+
+*************
+
+Total distance: 73.3792
+
+Total passenger distance: -10.2459
+
+Total parcel distance: 60.5732
+
+Total combined transportation distance: -20.4918
+
+Total idle distance: 43.5437
+
+*************
+
+Waiting time passenger: 12.6609853658537
+
+Waiting time goods: 0.000278048780491452
+
+Total waiting time: 12.6612634146341
+trial K: 3

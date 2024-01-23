@@ -1107,7 +1107,7 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
                 ttij = std::round(ttij * multiplier) / multiplier;
                 //if lowest time for req i + travel time from i to j is lower or equal to
                 //the latest point in time to serve request j. If latest time == T, it is always valid                        
-
+                //cout <<"i: " << i << " - j: " << j << " ttij: " << ttij << " - test: " << (nodeVec[i].e + ttij < nodeVec[j].l) << endl;
                 if (nodeVec[i].e + ttij < nodeVec[j].l){
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
@@ -1121,6 +1121,7 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
                     nas->allArcs.push_back(nas->fArc);
                     nas->arcnf.push_back(nas->fArc);
                     for (int k = 0; k < inst->K; k++){
+                        //cout << "here" << endl;
                         nas->arcV[i][j].push_back(k);
                     }                        
                 }
@@ -1159,7 +1160,7 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
         }
 
     }
-
+    //getchar();
 
     for (int i = 2*inst->n; i < 2*inst->n + 2*inst->m; i++){//i is a parcel request (PU or DL)
         for (int j = 0; j < 2*inst->n; j++){ //j is a passenger request (PU or DL)

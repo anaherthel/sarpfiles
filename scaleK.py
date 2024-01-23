@@ -90,10 +90,11 @@ def makeinstList(filename):
 
 def changeK(instlist, Klist):
     for i in range(len(instlist)):
-        filename = instlist[i]
-        with open('Instances_M/csarp/'+filename, 'r') as f:
+        filename = instlist[i]+".txt"
+        with open('Instances/sf_data/'+filename, 'r') as f:
             newf = f.readlines()
             words = newf[0].split()
+            # Klist[i] = str((int(Klist[i])+1))
             words[0] = Klist[i]
         
         newline = words[0] + "\t"
@@ -105,7 +106,7 @@ def changeK(instlist, Klist):
         print(newline)
         newf.pop(0)
         newf.insert(0, newline)
-        with open('Instances_M/csarp/'+filename, 'w') as f:
+        with open('Instances/sf_data/'+filename, 'w') as f:
             for line in newf:
                 f.write(line)
                 
@@ -184,16 +185,17 @@ def changeKmulti(instlist, Klist):
                 counter += 1
 
 
-# instlist, Klist = makeinstList('sfsarpKlist.txt')
-# instlist, Klist = extractK('fippassnewMcsarp.txt')
-# makeinstKlist(instlist, Klist, 'mscale.txt')
+# # instlist, Klist = makeinstList('sfsarpKlist.txt')
+# instlist, Klist = extractK('fippassnewSsfsarp.txt')
+# makeinstKlist(instlist, Klist, 'Ssfscale.txt')
 # print(instlist)
 # print(Klist)
 
-instlist, Klist = makeinstList('mscale.txt')
+############
+instlist, Klist = makeinstList('Ssfscale2.txt')
 
-changeKmulti(instlist, Klist)
-# changeK(instlist, Klist)
-
+# changeKmulti(instlist, Klist)
+changeK(instlist, Klist)
+##################
 # print(instlist)
 # print(Klist)

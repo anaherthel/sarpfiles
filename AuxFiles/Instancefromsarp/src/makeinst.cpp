@@ -161,7 +161,7 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                 info->n = info->dimVec[i][j].first;
                 info->m = info->dimVec[i][j].second;
 
-                info->seed = pow(info->n, 8) + pow(info->m, 7) + pow(p, 6);//changed (same as gh)
+                info->seed = pow(info->n, 8) + pow(info->m, 3) + pow(p, 6);//changed (same as gh)
                 srand(info->seed);
 
                 int newV = info->n + info->m + 1;
@@ -199,6 +199,23 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                 //     cout << "i: " << newvec[i].index << " - " << newvec[i].vload << " - " << newvec[i].ve << endl;
                 // }
                 // //getchar();
+
+
+
+                for (int i = 0; i < newvec.size(); i++){
+
+                if (newvec[i].vload == 3){
+                    newvec[i].vl = newvec[i].ve;
+                }
+
+                else if (newvec[i].vload == -3){
+                    newvec[i].ve = newvec[i - info->n - info->m].ve;
+                    newvec[i].vl = newvec[i].ve;
+                }
+                //cout << "i: " << newvec[i].index << " - " << newvec[i].vload << " - " << newvec[i].ve << endl;
+                }
+                 //getchar();
+
 
                 output(info, newvec, p);
             }
@@ -383,7 +400,8 @@ void output(Info *info, vector<OrStruct> &newvec, int p)
     strN = to_string(info->n);
     strM = to_string(info->m);
     strP = to_string(p);
-    info->K = floor(info->n/2);
+    //info->K = floor(info->n/2);
+    info->K = info->n-1;
 
     outputname = "sfsarp-" + strN + "-" + strM + "-" + strP + ".txt";
     cout << "output: " << outputname << endl;

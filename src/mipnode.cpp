@@ -10,6 +10,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	IloModel model(env, "nSARP");
 	int currSP;
 	long M = 2*inst->T;
+	//long M = 10*inst->T;
 	long M2 = 2*(inst->n + inst->m + 1);
 	long W = inst->m + 1;
 	int Q;
@@ -315,7 +316,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         IloExpr exp(env);
         exp = b[i] - M * y[i]; 
         sprintf (var, "Constraint7_%d", i);
-        IloRange cons = (exp <= 0);
+        IloRange cons = (exp <= 9);
         cons.setName(var);
         model.add(cons);
     }
@@ -431,10 +432,10 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 	}
 
-	////test constraints
+	//test constraints
 	//cout << "here" << endl;
 	//IloExpr exp(env);
-	//exp = x[15][4][0];
+	//exp = x[25][0][0];
 
 	//sprintf (var, "Constraint15");
 
@@ -443,7 +444,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//model.add(cons);
 	//cout << "A" << endl;
 
-	//exp = x[4][0][0];
+	//exp = x[0][4][0];
 
 	//sprintf (var, "Constraint16");
 
@@ -452,7 +453,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[0][1][0];
+	//exp = x[4][2][0];
 
 	//cout << "C" << endl;
 	//sprintf (var, "Constraint17");
@@ -461,8 +462,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//cout << "after" << endl;
-	//exp = x[9][14][0];
+	////cout << "after" << endl;
+	//exp = x[2][1][0];
 
 	//sprintf (var, "Constraint18");
 
@@ -753,15 +754,17 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         x[i] = IloArray <IloBoolVarArray> (env, nodeVec.size());
         for(int j = 0; j <  nodeVec.size(); ++j){
             if (nas->arcs[i][j] != true){
+				//cout<< i << "-" << j << ": invalid";
                 continue; // If arc i to j is invalid
             } 
             x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
+			//cout << "nas arc v size: " << nas->arcV[i][j].size() << endl;
             for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
                 int k = nas->arcV[i][j][k1];
                 sprintf(var, "x(%d,%d,%d)", i, j, k);
                 x[i][j][k].setName(var);
                 model.add(x[i][j][k]);
-                // cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
+                //cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
             }
         }
     }
