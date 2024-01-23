@@ -33,8 +33,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     //     problem->seq = true;
     // }
 
-    int decimalPlaces = 2;
+    int decimalPlaces = 4;
     double multiplier = std::pow(10, decimalPlaces);
+    //cout << "multiplier: " << multiplier << endl;
+    //getchar();
 
     problem->scen = argv[2];
     problem->model = argv[3];
@@ -170,13 +172,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // getchar();
 
         if (K > n - 1){
-            cout << "\nExceeded max number of vehicles\n";            
+            //cout << "\nExceeded max number of vehicles\n";            
             exit(1);
         }
 
         service = service/60;
 
-        cout << "Service: " << service << endl;
+        service = std::round(service * multiplier) / multiplier;
+
+        //cout << "Service: " << service << endl;
 
 
 
@@ -265,6 +269,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         vl.erase(vl.begin());
 
         if (problem->model != "osarp" && problem->model != "fip"){
+            cout << "this" << endl;
             for (int i = 0; i < n; i++){
                 vxs.erase(vxs.begin() + n + m);
                 vys.erase(vys.begin() + n + m);
@@ -279,31 +284,46 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 vl[i] = ve[i];
             }
 
-            for (int i = n; i < originalV; i++){
+            for (int i = n; i < V-K; i++){
                 ve[i] = 0;
-                vl[i] = 1440;
+                //vl[i] = 1440;
+                vl[i] = 1140;
+
             }
 
             for (int i = 0; i < n; i++){
                 vload[i] = 0;
+            }
+            for (int i = V-K; i < V; i++){
+                ve[i] = 0;
+                //vl[i] = 1440;
+                vl[i] = 1140;
+
+                //vl[i] = 720;
             }
         }
         else{
             // for (int i = 0; i < n; i++){
             //     vl[i] = ve[i] + 10;
             // }
-            for (int i = n; i < n + m; i++){
+            for (int i = n; i < n + m; i++){//parcel PU
                 ve[i] = 0;
-                vl[i] = 1440;
+                //vl[i] = 1440;
+                vl[i] = 1140;
             }
-            for (int i = 2*n + m; i < 2*n + 2*m; i++){
+            for (int i = 2*n + m; i < 2*n + 2*m; i++){//parcel DL
                 ve[i] = 0;
-                vl[i] = 1440;
+                //vl[i] = 1440;
+                vl[i] = 1140;
             }
-            for (int i =  2*n + 2*m; i <  originalV; i++){
+            for (int i =  2*n + 2*m; i <  originalV; i++){//depot
                 ve[i] = 0;
-                vl[i] = 1440;
+                //vl[i] = 1440;
+                vl[i] = 1140;
+                //vl[i] = 720;
             }
+
+
             //Fixing ordering of requests
             for (int i = n; i < n + m; i++){
                 vxs.insert(vxs.begin() + i + n + m, vxs[i]);
@@ -325,6 +345,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             } 
         }
 
+        //cout << "size of vector currently: "  << ve.size() << endl;
         // Calculate distance matrix (Geolocation)
 
         CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
@@ -337,17 +358,22 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 if (i < n){ 
                     // manhattan = CalcMan(vxs, vys, vxf, vyf, i, i);
                     geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
+                    geodist = std::round(geodist * multiplier) / multiplier;
                     //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                     delta[i] = (2 * (service)) + (geodist)/inst->vmed;
+                    delta[i] = std::round(delta[i] * multiplier) / multiplier;
                     profit[i] = inst->minpas + inst->paskm*geodist - inst->costkm*geodist;
+                    profit[i] = std::round(profit[i] * multiplier) / multiplier;
                 }
                 else if (i < V - K){ 
                     delta[i] = service;
                     if (i < n + m){
                         geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
+                        geodist = std::round(geodist * multiplier) / multiplier;
                         //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                         // manhattan = CalcMan(vxs, vys, vxf, vyf, i, i+m);
                         profit[i] = inst->minpar + inst->parkm*geodist;
+                        profit[i] = std::round(profit[i] * multiplier) / multiplier;
                     }
                     else{
                         profit[i] = 0;
@@ -366,6 +392,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                             if (j < V){
                                 // manhattan = CalcMan(vxs, vys, vxf, vyf, i, j);
                                 geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
+                                geodist = std::round(geodist * multiplier) / multiplier;
                                 //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                                 dist[i][j] = geodist;
                             }
@@ -379,15 +406,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     }
                 }
             }
+            //cout <<"value of original: " << V << endl;
+            //cout << "earlier and later: " << ve[V-1] << " - " << vl[V-1] << endl;
         }
         else{
             for (int i = 0; i < V + inst->dummy; i++){
                 delta[i] = service;
                 if (i < n){ 
-                    geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+n);  
+                    geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+n);
+                    geodist = std::round(geodist * multiplier) / multiplier;
                     //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                     // manhattan = CalcMan(vxs, vys, vxf, vyf, i, i+n);      
                     profit[i] = inst->minpas + inst->paskm*geodist;
+                    profit[i] = std::round(profit[i] * multiplier) / multiplier;
                 }
                 else if (i < V - K){ 
                     if (i < 2*n){
@@ -395,9 +426,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     }
                     else if (i < 2*n + m){
                         geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
+                        geodist = std::round(geodist * multiplier) / multiplier;
                         //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                         // manhattan = CalcMan(vxs, vys, vxf, vyf, i, i+m); 
                         profit[i] =  inst->minpar + inst->parkm*geodist;
+                        profit[i] = std::round(profit[i] * multiplier) / multiplier;
                     }
                     else{
                         profit[i] = 0;
@@ -415,9 +448,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                         if (i < V){
                             if (j < V){
                                 geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
+                                geodist = std::round(geodist * multiplier) / multiplier;
                                 //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                                 // manhattan = CalcMan(vxs, vys, vxf, vyf, i, j);                      
                                 dist[i][j] = dist[i][j] = geodist;
+
                             }
                             else if (j >= V){
                                 dist[i][j] = 0;
@@ -445,13 +480,14 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
             //fixing passenger pu tw (NO detours)
             for (int i = 0; i < n; i++){
-                vl[i] = ve[i];//10 minutes of tw
+                vl[i] = ve[i];
             }
 
             //fixing passenger dl tw
             for (int i = n; i < 2*n; i++){
                 double vmed2 = 0.683333;
                 ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + double(5);
+                ve[i] = std::round(ve[i] * multiplier) / multiplier;
                 vl[i] = ve[i];
             }
         }           
@@ -461,7 +497,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->ys = vys[i];
             node->load = vload[i];
             node->e = ve[i]/60;
+            node->e = std::round(node->e * multiplier) / multiplier;
             node->l = vl[i]/60;
+            node->l = std::round(node->l * multiplier) / multiplier;
             node->xf = vxf[i];
             node->yf = vyf[i];
             node->delta = delta[i];
@@ -477,9 +515,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xs = 0;
             node->ys = 0;
             node->load = 0;
-            node->e = 0;
+            //node->e = 0;
+            node->e = 9;
             // node->l = 14*60;
-            node->l = 24;
+            //node->l = 24;
+            node->l = 19;
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
@@ -489,10 +529,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
         
 
-        // cout << "Earlier: \n{";
+        // cout << "Earlier/Later: \n{";
 
         // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << nodeVec[i].e << " } {";
+        //     cout << nodeVec[i].e << " , " << nodeVec[i].l << "} {";
         // }
         // cout << endl;
         // getchar();
@@ -553,25 +593,25 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         //&&&&&&&&&&&&&&&& Uncomment to scale K &&&&&&&&&&&&&&&&
-        // if (n <= 10){
-        //     K = n-1;
-        // }
-        // else{
-        //     K = ceil(0.6*n);
-        // }
+        if (n <= 10){
+            K = n-1;
+        }
+        else{
+            K = ceil(0.6*n);
+        }
 
-        // if (trialK <= K){
-        //     K = trialK;
-        // }
-        // else{
-        //     trialK = K;
-        // }
+        if (trialK <= K){
+            K = trialK;
+        }
+        else{
+            trialK = K;
+        }
 
-        // if (trialK >= n){
-        //     cout << "Exceeded K size" << endl;
-            
-        //     exit(1);
-        // }
+        if (trialK >= n){
+            cout << "Exceeded K size" << endl;
+        
+            exit(1);
+        }
         //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         if (n > 40){
             if (K + trialK <= n - 1){
@@ -592,6 +632,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         cout << "\nK: " << K << endl;
         // getchar();
         service = service/60;
+        service = std::round(service * multiplier) / multiplier;
 
         if (problem->model != "osarp" && problem->model != "fip"){
             V = n + 2*m + K;
@@ -676,6 +717,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             // }
         }
 
+        for (int i = n + 2*m; i < vl.size(); i++){
+            //vl[i] = 1440;
+            vl[i] = 1140;
+            //vl[i] = 750;
+            //vl[i] = 480;
+        }
+
         if (inst->instType == "ghsarp"){ //multiplying depots
             for (int i = 1; i < K; i++){
                 vxs.push_back(vxs[vxs.size()-1]);
@@ -714,23 +762,30 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             for (int i = 0; i < V + inst->dummy; i++){
                 if (i < n){
                     euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i);
+                    euclidean = std::round(euclidean * multiplier) / multiplier;
                     if (inst->instType == "ghsarp"){
                         euclidean = euclidean/scalingfactor;
+                        euclidean = std::round(euclidean * multiplier) / multiplier;
                     }
                     //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
                     delta[i] = (2 * (service)) + (euclidean)/inst->vmed;
+                    delta[i] = std::round(delta[i] * multiplier) / multiplier;
                     profit[i] = inst->minpas + inst->paskm*euclidean - inst->costkm*euclidean;
+                    profit[i] = std::round(profit[i] * multiplier) / multiplier;
                 }
                 else if (i < V - K){ 
                     delta[i] = service;
                     if (i < n + m){
                         euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i+m);
+                        euclidean = std::round(euclidean * multiplier) / multiplier;
                         if (inst->instType == "ghsarp"){
                             euclidean = euclidean/scalingfactor;
+                            euclidean = std::round(euclidean * multiplier) / multiplier;
                         }
                         //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
 
                         profit[i] = inst->minpar + inst->parkm*euclidean;
+                        profit[i] = std::round(profit[i] * multiplier) / multiplier;
                     }
                     else{
                         profit[i] = 0;
@@ -748,8 +803,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                         if (i < V){
                             if (j < V){
                                 euclidean = calcEucDist(vxs, vys, vxf, vyf, i, j);
+                                euclidean = std::round(euclidean * multiplier) / multiplier;
                                 if (inst->instType == "ghsarp"){
                                     euclidean = euclidean/scalingfactor;
+                                    euclidean = std::round(euclidean * multiplier) / multiplier;
                                 }
                                 //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
 
@@ -773,13 +830,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 delta[i] = service;
                 if (i < n){
                     euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i+n);
-                    
+                    euclidean = std::round(euclidean * multiplier) / multiplier;
                     if (inst->instType == "ghsarp"){
                         euclidean = euclidean/scalingfactor;
+                        euclidean = std::round(euclidean * multiplier) / multiplier;
                     }
                     //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
 
                     profit[i] = inst->minpas + inst->paskm*euclidean;
+                    profit[i] = std::round(profit[i] * multiplier) / multiplier;
                 }
                 else if (i < V - K){ 
                     if (i < 2*n){
@@ -787,12 +846,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     }
                     else if (i < 2*n + m){
                         euclidean = calcEucDist(vxs, vys, vxf, vyf, i, i+m);
+                        euclidean = std::round(euclidean * multiplier) / multiplier;
                         if (inst->instType == "ghsarp"){
                             euclidean = euclidean/scalingfactor;
+                            euclidean = std::round(euclidean * multiplier) / multiplier;
                         }
                         //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
 
                         profit[i] = inst->minpar + inst->parkm*euclidean;
+                        profit[i] = std::round(profit[i] * multiplier) / multiplier;
                     }
                     else{
                         profit[i] = 0;
@@ -810,8 +872,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                         if (i < V){
                             if (j < V){
                                 euclidean = calcEucDist(vxs, vys, vxf, vyf, i, j);
+                                euclidean = std::round(euclidean * multiplier) / multiplier;
                                 if (inst->instType == "ghsarp"){
                                     euclidean = euclidean/scalingfactor;
+                                    euclidean = std::round(euclidean * multiplier) / multiplier;
                                 }
                                 //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
 
@@ -851,6 +915,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             for (int i = n; i < 2*n; i++){
                 double vmed2 = 0.683333;
                 ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + double(5);
+                ve[i] = std::round(ve[i] * multiplier) / multiplier;
                 vl[i] = ve[i];
             }
 
@@ -861,10 +926,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->ys = vys[i];
             node->load = vload[i];
             node->e = ve[i]/60;
+            node->e = std::round(node->e * multiplier) / multiplier;
             //node->e = static_cast<int>(node->e * multiplier) / multiplier;
 
             node->l = vl[i]/60;
-
+            node->l = std::round(node->l * multiplier) / multiplier;
             //node->l = static_cast<int>(node->l * multiplier) / multiplier;
 
             node->xf = vxf[i];
@@ -880,8 +946,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xs = 0;
             node->ys = 0;
             node->load = 0;
-            node->e = 0;
-            node->l = 24;
+            //node->e = 0;
+            //node->l = 24;
+             node->e = 9;
+            node->l = 19;           
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
@@ -889,19 +957,20 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->index = V + i;
             nodeVec.push_back(*node);
         }
+
         
-        // cout << "Earlier // Later: " << endl;
+        //cout << "Earlier // Later: " << endl;
 
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
-        // }
-        // cout << endl;
-        // getchar();
+        //for (int i = 0; i < nodeVec.size(); i++){
+        //    cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
+        //}
+        //cout << endl;
+        //getchar();
 
-        // cout << "Service times: " << endl;
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << i << ": " << nodeVec[i].delta << endl;
-        // }
+         cout << "Service times: " << endl;
+         for (int i = 0; i < nodeVec.size(); i++){
+             cout << i << ": " << nodeVec[i].delta << endl;
+         }
 
         // getchar();
 

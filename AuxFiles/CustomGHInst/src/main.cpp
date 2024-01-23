@@ -230,8 +230,10 @@ void generateInst(int argc, char** argv, Info *info){
     }
     for (int i = info->n; i < info->coordVec.size(); i++){
 
-        auxtempdata.first = 0;
-        auxtempdata.second = 1440;
+        //auxtempdata.first = 0;
+        //auxtempdata.second = 1440;
+        auxtempdata.first = 540;
+        auxtempdata.second = 1140;
 
         info->twVec.push_back(auxtempdata);
     }

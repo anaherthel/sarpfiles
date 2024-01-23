@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include <cstdlib>
 #include <stdio.h>
+#include <random>
 
 using namespace std;
 
@@ -65,6 +66,7 @@ bool compareIndex(const CandStruct &a, const CandStruct &b);
 void createTimesLoad(Info *info, vector<CandStruct> &orgNodes);
 void createDelta(Info *info, vector<CandStruct> &orgNodes);
 void getInstanceScale(int argc, char** argv, Info *info);
+int getRandomValue(int min, int max);
 
 double CalcDistEuc (double X1, double Y1, double X2, double Y2){
     return sqrt ( pow ( X1 - X2, 2 ) + pow ( Y1 - Y2, 2 ) );
@@ -105,6 +107,8 @@ void genPoints (int argc, char** argv, Info *info){
     int totalPoints, totalGenerated;
     double lb = 0;
     double ub = 25;
+    //double lb = 9;
+    //double ub = 19;
     int multiplier = 1;
 
     for (int p = 1; p < 3; p++){ // 2 of each lambda
@@ -113,8 +117,9 @@ void genPoints (int argc, char** argv, Info *info){
                 info->n = info->dimVec[i][scd].first;
                 info->m = info->dimVec[i][scd].second;
                 info->seed = pow((info->n-1), 8) + pow((info->m-1), 7) + pow(p, 6);//changed (same as gh)
-                       
-                info->K = floor(info->n/2);
+                
+                //info->K = floor(info->n/2);
+                info->K = info->n-1;
                 totalPoints = (info->n + info->m)*2 + (info->K);
                 totalGenerated = totalPoints + ceil(totalPoints/5);//generating more than needed because of bugs of missing coordinates
 
@@ -541,6 +546,17 @@ void createDelta(Info *info, vector<CandStruct> &orgNodes)
 
 }
 
+//int getRandomValue(int min, int max) {
+//    std::random_device rd;
+//    std::mt19937 gen(rd());
+//    std::uniform_int_distribution<int> distribution(min, max);
+//    return distribution(gen);
+//}
+
+int getRandomValue(int min, int max) {
+    return rand() % (max - min + 1) + min;
+}
+
 void createTimesLoad(Info *info, vector<CandStruct> &orgNodes)
 {
 
@@ -558,17 +574,22 @@ void createTimesLoad(Info *info, vector<CandStruct> &orgNodes)
 
     for (int i = 0; i < orgNodes.size(); i++){
         if (orgNodes[i].label1 == 3){//depot
-            info->tsVec[i].first = 0;
-            info->tsVec[i].second = 1440;
+            //info->tsVec[i].first = 0;
+            //info->tsVec[i].second = 1440;
+            info->tsVec[i].first = 540;
+            info->tsVec[i].second = 1140;
             continue;
         }
         else if(orgNodes[i].label1 == 1){//customer
             if (orgNodes[i].label2 == 1){//pickup
                 // tsVec[i].first = 560 + rand() % 480;
                 // tsVec[i].second = tsVec[i].first;
-                info->tsVec[i].first = 30 + rand() % 1300;
-                while (info->tsVec[i].first + info->delta[i] > 1440){
-                    info->tsVec[i].first = 30 + rand() % 1300;
+                //info->tsVec[i].first = 30 + rand() % 1300;
+                info->tsVec[i].first = getRandomValue(560, 1110);
+                //while (info->tsVec[i].first + info->delta[i] > 1440){
+                while (info->tsVec[i].first + info->delta[i] > 1140){  
+                    info->tsVec[i].first = getRandomValue(560, 1110);            
+                    //info->tsVec[i].first = 30 + rand() % 1300;
                     // cout << "Time point for node " << i << ": " << info->tsVec[i].first << endl; 
                     // //getchar();
                 }
@@ -586,8 +607,10 @@ void createTimesLoad(Info *info, vector<CandStruct> &orgNodes)
 
         }
         else if (orgNodes[i].label1 == 2){//parcel
-            info->tsVec[i].first = 0;
-            info->tsVec[i].second = 1440;
+            //info->tsVec[i].first = 0;
+            //info->tsVec[i].second = 1440;
+            info->tsVec[i].first = 540;
+            info->tsVec[i].second = 1140;
             continue;                          
         }
     }

@@ -22,6 +22,39 @@ Created on Thu Jul 28 15:52:42 2022
         
 #     return instlist, klist
 
+# will take the original test log and get instance names and K for feasible solution
+def extractK(filename):
+    instlist = []
+    klist = []
+    inst = None
+    currK = None
+    with open(filename, 'r') as f:
+        for line in f:
+                
+            words = line.split()
+            # instlist.append(words[0])
+            if len(words) >= 3:
+                if words[0] == "Instance" and words[1] == "Name:":
+                    inst = words[2]
+                
+                if words[0] == "Number" and words[2] == "Vehicles:":
+                    currK = words[3]
+            
+                    instlist.append(inst)
+        
+                    # knumber = words[1].strip('\n')
+                    klist.append(int(currK))
+    
+    
+    return instlist, klist
+
+def makeinstKlist(instlist, klist,filename):
+    
+    with open(filename, 'w') as f:
+        for i in range(len(instlist)):
+            f.write(instlist[i]+"\t"+str(klist[i])+"\n")
+        
+
 def makeinstList(filename):
     instlist = []
     klist = []
@@ -35,7 +68,8 @@ def makeinstList(filename):
     
         
     return instlist, klist
-
+    
+    
 # def makeinstListMulti(filename):
 #     instlist = []
 #     klist = []
@@ -57,7 +91,7 @@ def makeinstList(filename):
 def changeK(instlist, Klist):
     for i in range(len(instlist)):
         filename = instlist[i]
-        with open('Instances_L/sf_data/'+filename, 'r') as f:
+        with open('Instances_M/csarp/'+filename, 'r') as f:
             newf = f.readlines()
             words = newf[0].split()
             words[0] = Klist[i]
@@ -71,7 +105,7 @@ def changeK(instlist, Klist):
         print(newline)
         newf.pop(0)
         newf.insert(0, newline)
-        with open('Instances_L/sf_data/'+filename, 'w') as f:
+        with open('Instances_M/csarp/'+filename, 'w') as f:
             for line in newf:
                 f.write(line)
                 
@@ -120,8 +154,8 @@ def changeK(instlist, Klist):
 
 def changeKmulti(instlist, Klist):
     for i in range(len(instlist)):
-        filename = instlist[i]
-        with open('Instances_L/sf_data/'+filename, 'r') as f:
+        filename = instlist[i]+".txt"
+        with open('Instances_M/csarp/'+filename, 'r') as f:
             newf = f.readlines()
             words = newf[0].split()
             words[0] = Klist[i]
@@ -142,18 +176,24 @@ def changeKmulti(instlist, Klist):
         # print(nlines)
         # print(newf)
                      
-        with open('Instances_L/sf_data/'+filename, 'w') as f:
+        with open('Instances_M/csarp/'+filename, 'w') as f:
             counter = 0
             while counter < nlines:
                 line = newf[counter]
                 f.write(line)
                 counter += 1
 
-# instlist, Klist = makeinstList('sfsarpKlist.txt')
-instlist, Klist = makeinstList('Lbdlsfsarp1.txt')
 
-# changeKmulti(instlist, Klist)
-changeK(instlist, Klist)
+# instlist, Klist = makeinstList('sfsarpKlist.txt')
+# instlist, Klist = extractK('fippassnewMcsarp.txt')
+# makeinstKlist(instlist, Klist, 'mscale.txt')
+# print(instlist)
+# print(Klist)
+
+instlist, Klist = makeinstList('mscale.txt')
+
+changeKmulti(instlist, Klist)
+# changeK(instlist, Klist)
 
 # print(instlist)
 # print(Klist)

@@ -58,6 +58,9 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
     int fDepot = inst->n + 2*inst->m;
     int fDummy = inst->n + 2*inst->m + inst->K;
 
+    int decimalPlaces = 4;
+    double multiplier = std::pow(10, decimalPlaces);
+
     //independently from sarp scenario, these arcs are always true
 
     for(int i = inst->n + 2*inst->m; i < inst->V; i++){//i is a starting point
@@ -77,6 +80,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
         for (int j = 0; j < inst->n; j++){ //j is a passenger node
 
             double ttij = mdist[i][j]/inst->vmed;
+            ttij = std::round(ttij * multiplier) / multiplier;
 
             if (nodeVec[i].e + ttij < nodeVec[j].l){
                 nas->arcs[i][j] = true;
@@ -93,6 +97,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
         }
         for (int j = inst->n; j < inst->n + inst->m; j++){ //j is a parcel pu node
             double ttij = mdist[i][j]/inst->vmed;
+            ttij = std::round(ttij * multiplier) / multiplier;
             if (ttij < inst->T){
                 nas->arcs[i][j] = true;
                 nas->fArc.first = i;
@@ -113,6 +118,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
         for(int j = 0; j < inst->n; j++){// j is a passenger req
             if(i != j){
                 double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
+                ttij = std::round(ttij * multiplier) / multiplier;
                 //if lowest time for req i + travel time from i to j is lower or equal to
                 //the latest point in time to serve request j. If latest time == T, it is always valid                        
 
@@ -155,7 +161,8 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
         if (problem->p1 > 0){ //if BL2
             for (int i = 0; i < inst->n; i++){ //i is a passenger request
                 for (int j = inst->n; j < inst->n + inst->m; j++){// j is a parcel pu req
-                    double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
+                    double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j
+                    ttij = std::round(ttij * multiplier) / multiplier;
                     //if lowest time for req i + travel time from i to j is lower or equal to
                     //the latest point in time to serve request j. If latest time == T, it is always valid                        
                     if (nodeVec[i].e + ttij < nodeVec[j].l){                
@@ -272,7 +279,8 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
 
         for (int i = 0; i < inst->n; i++){//i is a passenger node
             for(int j = inst->n; j < inst->n + 2*inst->m; j++){// j is a parcel req (pu or del)
-                double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
+                double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j
+                ttij = std::round(ttij * multiplier) / multiplier;
                 //if lowest time for req i + travel time from i to j is lower or equal to
                 //the latest point in time to serve request j. If latest time == T, it is always valid                        
                 if (nodeVec[i].e + ttij < nodeVec[j].l){
@@ -614,6 +622,9 @@ void testRoute (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec){
     pair<int, int> auxPair;
     vector<int> auxSolOrder;
 
+    int decimalPlaces = 4;
+    double multiplier = std::pow(10, decimalPlaces);
+
     // int setN = bStat->bundleVec.size() - inst->K - 1;
     int currSP;
     vector<int> orderVec;
@@ -644,14 +655,16 @@ void testRoute (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec){
     int b = infroutenew[1];
 
     accTime = mdist[a][b]/inst->vmed;
-    travel_time += mdist[a][b]/inst->vmed;
+    accTime = std::round(accTime * multiplier) / multiplier;
+    travel_time += accTime;
     bool firstPass = false;
 
     for (int i = 1; i < infroutenew.size() - 2; i++){
         int a = infroutenew[i];
         int b = infroutenew[i+1];
-
-        travel_time += mdist[a][b]/inst->vmed + nodeVec[a].delta;
+        double travTime = mdist[a][b]/inst->vmed;
+        travTime = std::round(travTime * multiplier) / multiplier;
+        travel_time += travTime + nodeVec[a].delta;
 
         if (!firstPass){
             if (a < inst->n){
@@ -659,7 +672,8 @@ void testRoute (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec){
                 firstPass = true;
             }
             else{                 
-                accTime += mdist[a][b]/inst->vmed + inst->service;
+                
+                accTime += travTime + inst->service;
             }
         }
     }
@@ -685,7 +699,9 @@ void testRoute (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec){
             break;
         }
         else{
-            accTime += mdist[b][a]/inst->vmed + inst->service;
+            double reverseTT = mdist[b][a]/inst->vmed;
+            reverseTT = std::round(reverseTT * multiplier) / multiplier;
+            accTime += reverseTT + inst->service;
         }
     }
 
@@ -750,6 +766,8 @@ void viewSolVRPS (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
     // int setN = bStat->bundleVec.size() - inst->K - 1;
     int currSP;
     vector<int> orderVec;
+    int decimalPlaces = 4;
+    double multiplier = std::pow(10, decimalPlaces);
 
 	// solStatIni(sStat);
 
@@ -815,7 +833,9 @@ void viewSolVRPS (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
         int load = 0;
 
         for (int i = 1; i < sStat->solOrder[k].size() - 1; i++){
+            
             triplen = mdist[sStat->solOrder[k][i - 1]][sStat->solOrder[k][i]]/inst->vmed;
+            triplen = std::round(triplen * multiplier) / multiplier;
             btime = sStat->solBegin[sStat->solOrder[k][i]];
             double ttime = nodeVec[sStat->solOrder[k][i]].delta + triplen;
 
@@ -960,7 +980,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem, nodeVec, mdist);
     
-    // printStructures(&nas);
+    printStructures(&nas);
 
     // getchar();
 
@@ -976,7 +996,6 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// }
 	// cout << endl;
 
-    
 
     mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
     
@@ -1002,7 +1021,8 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
         }
 	}
 
-    testRoute(inst, mdist, nodeVec);
+    //cout << "before test route" << endl;
+    //testRoute(inst, mdist, nodeVec);
 
     
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
@@ -1019,6 +1039,8 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
     int fDepot = 2*inst->n + 2*inst->m;
     int fDummy = 2*inst->n + 2*inst->m + inst->K;
 
+    int decimalPlaces = 4;
+    double multiplier = std::pow(10, decimalPlaces);
     //independently from sarp scenario, these arcs are always true
     if (stage > 1){
         for (int i = 0; i < nodeVec.size(); i++){
@@ -1082,6 +1104,7 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
         for(int j = 0; j < 2*inst->n; j++){// j is a passenger req (PU or DL)
             if(i != j && j != i - inst->n){//not the same node; not a DL to its PU; not PU to PU or DL to DL
                 double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
+                ttij = std::round(ttij * multiplier) / multiplier;
                 //if lowest time for req i + travel time from i to j is lower or equal to
                 //the latest point in time to serve request j. If latest time == T, it is always valid                        
 
@@ -1224,7 +1247,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
 
     initArcs(inst, &nas);
 	fipArcs (inst, &nas, problem, nodeVec, mdist, 1);
-    // printStructures(&nas);
+    //printStructures(&nas);
     
     fipStat.fipstage = 0;
     fippass(inst, nodeVec, mdist, problem, &nas, sStat);

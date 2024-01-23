@@ -16,7 +16,9 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
     int fDepot = inst->n + 2*inst->m;
     int fDummy = inst->n + 2*inst->m + inst->K;
-
+	
+	int decimalPlaces = 4;
+    double multiplier = std::pow(10, decimalPlaces);
 
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
@@ -27,6 +29,13 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	else{
 		Q = inst->m;
 	}
+
+	//cout << "Printing node vec: " << endl;
+	//for (int i = 0; i < nodeVec.size(); i++){
+	//	cout << i << ": " << nodeVec[i].e << " - " << nodeVec[i].l << endl;
+	//}
+	//cout << endl;
+	//getchar();
 
 	//Creating variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
@@ -59,7 +68,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	}
 
 		// Variable start of service time
-	IloNumVarArray b(env, nodeVec.size(), 0, inst->T);
+	IloNumVarArray b(env, nodeVec.size(), 9, inst->T);
 	for (int i = 0; i < nodeVec.size(); i++){
 		sprintf(var, "b(%d)", i);
 		b[i].setName(var);
@@ -335,7 +344,9 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             int k = nas->arcV[i][j][k1];
             sumX += x[i][j][k];
 		}
-			exp = b[i] - b[j] + nodeVec[i].delta + (mdist[i][j]/inst->vmed) - M * (1 - sumX);
+			double cvalue = mdist[i][j]/inst->vmed;
+			cvalue = std::round(cvalue * multiplier) / multiplier;
+			exp = b[i] - b[j] + nodeVec[i].delta + (cvalue) - M * (1 - sumX);
 			sprintf (var, "Constraint9_%d_%d", i, j);
 			IloRange cons = (exp <= 0);
 			cons.setName(var);
@@ -421,7 +432,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	}
 
 	////test constraints
-
+	//cout << "here" << endl;
 	//IloExpr exp(env);
 	//exp = x[15][4][0];
 
@@ -430,23 +441,27 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//IloRange cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
+	//cout << "A" << endl;
 
-	//exp = x[4][3][0];
+	//exp = x[4][0][0];
 
 	//sprintf (var, "Constraint16");
 
+	//cout << "B" << endl;
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[3][9][0];
+	//exp = x[0][1][0];
 
+	//cout << "C" << endl;
 	//sprintf (var, "Constraint17");
 
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
+	//cout << "after" << endl;
 	//exp = x[9][14][0];
 
 	//sprintf (var, "Constraint18");
@@ -723,7 +738,8 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
     int fDepot = 2*inst->n + 2*inst->m;
     int fDummy = 2*inst->n + 2*inst->m + inst->K;
-
+    int decimalPlaces = 4;
+    double multiplier = std::pow(10, decimalPlaces);
 
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
@@ -762,7 +778,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	// 	}
 	// }
 
-	IloNumVarArray b(env, nodeVec.size(), 0, inst->T);
+	IloNumVarArray b(env, nodeVec.size(), 9, inst->T);
 	for (int i = 0; i < nodeVec.size(); i++){
 		sprintf(var, "b(%d)", i);
 		b[i].setName(var);
@@ -931,7 +947,9 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             int k = nas->arcV[i][j][k1];
             sumX += x[i][j][k];
 		}
-			exp = b[i] - b[j] + nodeVec[i].delta + (mdist[i][j]/inst->vmed) - M * (1 - sumX);
+			double cvalue = mdist[i][j]/inst->vmed;
+			cvalue = std::round(cvalue * multiplier) / multiplier;		
+			exp = b[i] - b[j] + nodeVec[i].delta + (cvalue) - M * (1 - sumX);
 			sprintf (var, "Constraint6_%d_%d", i, j);
 			IloRange cons = (exp <= 0);
 			cons.setName(var);
@@ -1124,7 +1142,8 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
     int fDepot = 2*inst->n + 2*inst->m;
     int fDummy = 2*inst->n + 2*inst->m + inst->K;
-	
+	int decimalPlaces = 4;
+    double multiplier = std::pow(10, decimalPlaces);
 	
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
@@ -1329,11 +1348,15 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 			IloExpr exp2(env);
 
 			// exp1 = b[k][v] - b[k][u] - (mdist[u][v]/inst->vmed);
-			exp1 = b[k][v] - (b[k][u]) - inst->service - (mdist[u][v]/inst->vmed);
+			double cvalue = mdist[u][v]/inst->vmed;
+			cvalue = std::round(cvalue * multiplier) / multiplier;			
+			exp1 = b[k][v] - (b[k][u]) - inst->service - (cvalue);
 
 			for(int j = 2*inst->n; j < 2*inst->n + 2*inst->m; j++){
 				double deltaij = (mdist[u][j]) + (mdist[j][v]) - (mdist[u][v]);
-				double deltatime = (deltaij/inst->vmed) + inst->service;
+				double cvalue2 = deltaij/inst->vmed;
+				cvalue2 = std::round(cvalue2 * multiplier) / multiplier;	
+				double deltatime = (cvalue2) + inst->service;
 				// double deltatime = (deltaij/inst->vmed);
 
 				exp2 += deltatime*x[u][j][k];
@@ -1360,7 +1383,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 				IloExpr exp1(env);
 				IloExpr exp2(env);
 
-				exp1 = s[j] - (b[k][u] + inst->service) - (mdist[u][j]/inst->vmed)*x[u][j][k];
+				double cvalue2 = mdist[u][j]/inst->vmed;
+				cvalue2 = std::round(cvalue2 * multiplier) / multiplier;	
+				exp1 = s[j] - (b[k][u] + inst->service) - (cvalue2)*x[u][j][k];
 				// exp1 = s[j] - b[k][u] - (mdist[u][j]/inst->vmed)*x[u][j][k];
 
 				double bigM = nodeVec[u].l;
@@ -1489,9 +1514,6 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 			model.add(cons);
 		}
 	}
-
-
-
 	//test constraints
 
 	//IloExpr exp(env);

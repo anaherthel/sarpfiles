@@ -29,7 +29,7 @@ using namespace std;
 int main (int argc, char *argv[]) {
 	double **distMatrix;
 	
-	int trialK = 0;
+	int trialK = 1;
 	double trialMulti = 1.5;
 
 	nodeStat node;
@@ -41,7 +41,7 @@ int main (int argc, char *argv[]) {
 
 	sStat.feasible = false;
 	
-	//while (!sStat.feasible){
+	while (!sStat.feasible){
 		nodeVec.clear();
 
 		readData(argc, argv, &node, &inst, nodeVec, &distMatrix, &problem, trialK, trialMulti);
@@ -50,13 +50,13 @@ int main (int argc, char *argv[]) {
 		
 		//startPermutation(&inst, distMatrix, nodeVec);
 
-		cout << "Dist Matrix: " << endl;
-		for (int i = 0; i < inst.V + inst.dummy; i++){
-		    for (int j = 0; j < inst.V + inst.dummy; j++){
-		        cout << setw(10) << distMatrix[i][j] << " ";
-		    }
-		    cout << endl;
-		}
+		//cout << "Dist Matrix: " << endl;
+		//for (int i = 0; i < inst.V + inst.dummy; i++){
+		//    for (int j = 0; j < inst.V + inst.dummy; j++){
+		//        cout << setw(10) << distMatrix[i][j] << " ";
+		//    }
+		//    cout << endl;
+		//}
 
 		solveselect(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
 
@@ -84,9 +84,9 @@ int main (int argc, char *argv[]) {
 		// 		inst.min = false;
 		// 	}
 		// }
-	//	trialK++;
-	//	cout << "trial K: " << trialK << endl;
-	//}
+		trialK++;
+		cout << "trial K: " << trialK << endl;
+	}
 
 	return 0;
 }
