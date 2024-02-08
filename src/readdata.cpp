@@ -366,7 +366,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     delta[i] = (2 * (service)) + (mandist)/inst->vmed;
                     delta[i] = valRound(delta[i]);
                     profit[i] = inst->minpas + inst->paskm*mandist - inst->costkm*mandist;
+                    //profit[i] = inst->minpas + inst->paskm*mandist;
                     profit[i] = valRound(profit[i]);
+                    //profit[i] = profit[i] - inst->costkm*mandist;
                 }
                 else if (i < V - K){ 
                     delta[i] = service;
@@ -787,8 +789,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     delta[i] = (2 * (service)) + (euclidean)/inst->vmed;
                     //delta[i] = std::round(delta[i] * multiplier) / multiplier;
                     delta[i] = valRound(delta[i]);
-                    profit[i] = inst->minpas + inst->paskm*euclidean - inst->costkm*euclidean;
+                    //profit[i] = inst->minpas + inst->paskm*euclidean - inst->costkm*euclidean;
+                    profit[i] = inst->minpas + inst->paskm*euclidean;
                     profit[i] = valRound(profit[i]);
+                    profit[i] =  profit[i]- inst->costkm*euclidean;
                     //profit[i] = std::round(profit[i] * multiplier) / multiplier;
                 }
                 else if (i < V - K){ 
@@ -987,10 +991,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // getchar();
 
-        // cout << "Profits: " << endl;
-        // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << i << ": " << nodeVec[i].profit << endl;
-        // }
+        //cout << "Profits: " << endl;
+        //for (int i = 0; i < nodeVec.size(); i++){
+        //    cout << i << ": " << nodeVec[i].profit << endl;
+        //}
 
         // getchar();
 
