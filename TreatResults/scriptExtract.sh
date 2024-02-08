@@ -12,11 +12,11 @@ mkdir -p ${dirDest}/${dist}
 mkdir -p ${dirDest}/${time}
 mkdir -p ${dirDest}/${detours}
 
-for i in $(ls ${dirTestes}/2mm*.txt)
+for i in $(ls ${dirTestes}/1Ascsarp1.txt)
 	do
 		fileid=$(echo $i | cut -d '/' -f 2 | cut -d '.' -f 1)
 
-		./exeTreatRes $i fip
+		./exeTreatRes $i node
 		mv dist${fileid}* ${dirDest}/${dist}/
 		mv stats${fileid}* ${dirDest}/${stats}/
 		mv time${fileid}* ${dirDest}/${time}/

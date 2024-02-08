@@ -58,8 +58,22 @@ double calcEucDist (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, 
     return sqrt(pow(Xf[I] - Xs[J], 2) + pow(Yf[I] - Ys[J], 2));
 }
 
+double calcEucDist2 (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
+    double a = pow(Xf[I] - Xs[J], 2);
+    double b = pow(Yf[I] - Ys[J], 2);
+    return floor(sqrt(a + b)*10)/10;
+}
+
 double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
     return abs(Xf[I] - Xs[J]) + abs(Yf[I] - Ys[J]);
+}
+
+double valRound(double value){
+    //int decimalPlaces = 4;
+    //double multiplier = std::pow(10, decimalPlaces);
+    double multiplier = 10;
+
+    return std::floor(value * multiplier) / multiplier;
 }
 
 double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit){
@@ -103,6 +117,7 @@ double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flo
     return (RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)));
     // (int) (RRR * acos( 0.5*((1.0+q1)*q2 - (1.0-q1)*q3)));
 }
+
 
 string getInstanceType (char **argv){
 

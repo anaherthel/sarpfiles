@@ -116,7 +116,7 @@ void genPoints (int argc, char** argv, Info *info){
             for (int scd = 0; scd < info->dimVec[i].size(); scd++){
                 info->n = info->dimVec[i][scd].first;
                 info->m = info->dimVec[i][scd].second;
-                info->seed = pow((info->n-1), 8) + pow((info->m-1), 7) + pow(p, 6);//changed (same as gh)
+                info->seed = pow((info->n-1), 8) + pow((info->m-1), 4) + pow(p, 6);//changed (same as gh)
                 
                 //info->K = floor(info->n/2);
                 info->K = info->n-1;

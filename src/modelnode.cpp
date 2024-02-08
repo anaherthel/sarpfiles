@@ -980,7 +980,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem, nodeVec, mdist);
     
-    printStructures(&nas);
+    //printStructures(&nas);
 
     // getchar();
 
@@ -1005,11 +1005,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
         //viewSolVRPS (inst, mdist, nodeVec, sStat);
 
 		viewSol (inst, mdist, nodeVec, sStat);
-
 		mipSolStats (inst, mdist, nodeVec, sStat);
-
-
-
 
 		printStats(inst, sStat);
 
