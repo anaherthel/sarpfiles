@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances/csarp'
-output='1Ascsarp.txt'
+dirInstancias='Instances_M4/csarp'
+output='2mmmcsarp4.txt'
 #runs=10
 
 cat /dev/null > $output
@@ -15,7 +15,7 @@ cat /dev/null > $output
 		do
 #			echo "Solving: " ${arquivo} ":" >> $output #output pra saber que instancia ta sendo rodada
 #			echo "Scenario: 1A bundle "  >> $output
-			./exeSARP ${dirInstancias}/${arquivo} 1A node >> $output
+			./exeSARP ${dirInstancias}/${arquivo} 2MM node >> $output
 		done
 #	done
 #done

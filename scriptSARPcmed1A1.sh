@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances/csarp'
-output='1Ascsarp.txt'
+dirInstancias='Instances_M/csarp'
+output='1Acsarp1.txt'
 #runs=10
 
 cat /dev/null > $output
