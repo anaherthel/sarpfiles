@@ -34,6 +34,7 @@ double calcEucDist (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, 
 double calcEucDist2 (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
 double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
 double valRound(double value);
+double timeRound(double value);
 double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit);
 double CalcDistGeo (double *slatit, double* slongit, double *flatit, double* flongit, int I, int J);
 string getInstanceType (char **argv);

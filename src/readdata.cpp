@@ -36,9 +36,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     //cout << "multiplier: " << multiplier << endl;
     //getchar();
-    double vmed = 41;
-    double vmed2 = 41/60;
-    vmed2 = valRound(vmed2);
+    //double vmed = 41;
+    double vmed2 = double(41)/double(60);
+    ////vmed2 = timeRound(vmed2);
+    cout << "\nvmed: " << std::fixed << std::setprecision(5) << vmed2;
+    //getchar();
     problem->scen = argv[2];
     problem->model = argv[3];
 
@@ -174,7 +176,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     
 
         //service = 0.1;
-        service = 0.08;
+        service = 0.083;
 
         cout << "Service: " << service << endl;
 
@@ -364,11 +366,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     mandist = valRound(mandist);
                     //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                     delta[i] = (2 * (service)) + (mandist)/inst->vmed;
-                    delta[i] = valRound(delta[i]);
-                    profit[i] = inst->minpas + inst->paskm*mandist - inst->costkm*mandist;
-                    //profit[i] = inst->minpas + inst->paskm*mandist;
+                    delta[i] = timeRound(delta[i]);
+                    //profit[i] = inst->minpas + inst->paskm*mandist - inst->costkm*mandist;
+                    profit[i] = inst->minpas + inst->paskm*mandist;
                     profit[i] = valRound(profit[i]);
-                    //profit[i] = profit[i] - inst->costkm*mandist;
+                    profit[i] = profit[i] - inst->costkm*mandist;
                 }
                 else if (i < V - K){ 
                     delta[i] = service;
@@ -504,7 +506,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             for (int i = n; i < 2*n; i++){
                 //double vmed2 = 0.683333;
                 ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + double(5);
-                ve[i] = valRound(ve[i]);
+                ve[i] = timeRound(ve[i]);
                 vl[i] = ve[i];
             }
 
@@ -514,10 +516,16 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xs = vxs[i];
             node->ys = vys[i];
             node->load = vload[i];
+            //if (){
+
+            //}
+            //else{
+
+            //}
             node->e = ve[i]/60;
-            node->e = valRound(node->e);
+            node->e = timeRound(node->e);
             node->l = vl[i]/60;
-            node->l = valRound(node->l);
+            node->l = timeRound(node->l);
             node->xf = vxf[i];
             node->yf = vyf[i];
             node->delta = delta[i];
@@ -646,10 +654,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         cout << "\nm: " << m;
         cout << "\nK: " << K << endl;
         // getchar();
-        service = service/60;
+        //service = service/60;
         //service = valRound(service);
         //service = 0.1;
-        service = 0.08;
+        service = 0.083;
 
 
 
@@ -788,7 +796,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
                     delta[i] = (2 * (service)) + (euclidean)/inst->vmed;
                     //delta[i] = std::round(delta[i] * multiplier) / multiplier;
-                    delta[i] = valRound(delta[i]);
+                    delta[i] = timeRound(delta[i]);
                     //profit[i] = inst->minpas + inst->paskm*euclidean - inst->costkm*euclidean;
                     profit[i] = inst->minpas + inst->paskm*euclidean;
                     profit[i] = valRound(profit[i]);
@@ -932,8 +940,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             for (int i = n; i < 2*n; i++){
                 //double vmed2 = 0.683333;
                 ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + double(5);
-                ve[i] = valRound(ve[i]); 
+                //ve[i] = valRound(ve[i]);
+                ve[i] = timeRound(ve[i]);
                 vl[i] = ve[i];
+                cout << "i: " << i << " - " << ve[i] << endl;
             }
 
         }        
@@ -943,11 +953,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->ys = vys[i];
             node->load = vload[i];
             node->e = ve[i]/60;
-            node->e =  valRound(node->e); 
+            node->e =  timeRound(node->e);
+
             //node->e = static_cast<int>(node->e * multiplier) / multiplier;
 
             node->l = vl[i]/60;
-            node->l = valRound(node->l); 
+            node->l = timeRound(node->l); 
             //node->l = static_cast<int>(node->l * multiplier) / multiplier;
 
             node->xf = vxf[i];
@@ -976,12 +987,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         
-        //cout << "Earlier // Later: " << endl;
+        cout << "Earlier // Later: " << endl;
 
-        //for (int i = 0; i < nodeVec.size(); i++){
-        //    cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
-        //}
-        //cout << endl;
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
+        }
+        cout << endl;
         //getchar();
 
         //cout << "Service times: " << endl;
@@ -991,10 +1002,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // getchar();
 
-        //cout << "Profits: " << endl;
-        //for (int i = 0; i < nodeVec.size(); i++){
-        //    cout << i << ": " << nodeVec[i].profit << endl;
-        //}
+        cout << "Profits: " << endl;
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << i << ": " << nodeVec[i].profit << endl;
+        }
 
         // getchar();
 

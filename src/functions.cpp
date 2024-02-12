@@ -76,6 +76,14 @@ double valRound(double value){
     return std::floor(value * multiplier) / multiplier;
 }
 
+double timeRound(double value){
+    int decimalPlaces = 3;
+    double multiplier = std::pow(10, decimalPlaces);
+    //double multiplier = 1000;
+
+    return std::floor(value * multiplier) / multiplier;
+}
+
 double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit){
     double PI = 3.141592, min;
     int deg;

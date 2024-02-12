@@ -366,9 +366,11 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                         nas->arcMinus[j].push_back(nas->fArc);
                         nas->arcPlus[i].push_back(nas->fArc);
 
-                        if (j < inst->n + inst->m){
-                            nas->arcPP.push_back(nas->fArc);
-                        }
+                        //if (j < inst->n + inst->m){
+                        //    nas->arcPP.push_back(nas->fArc);
+                        //}
+                        nas->arcPP.push_back(nas->fArc);
+
                         
                         nas->allArcs.push_back(nas->fArc);
                         nas->arcnf.push_back(nas->fArc);

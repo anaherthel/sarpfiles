@@ -23,6 +23,7 @@
 #include <ctime>
 #include <unistd.h>
 #include "modelnode.h"
+#include "functions.h"
 #include "SarpADS.h"
 
 void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat);

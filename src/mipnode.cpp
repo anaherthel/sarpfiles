@@ -346,7 +346,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             sumX += x[i][j][k];
 		}
 			double cvalue = mdist[i][j]/inst->vmed;
-			cvalue = std::round(cvalue * multiplier) / multiplier;
+			//cvalue = std::round(cvalue * multiplier) / multiplier;
+			cvalue = timeRound(cvalue);
 			exp = b[i] - b[j] + nodeVec[i].delta + (cvalue) - M * (1 - sumX);
 			sprintf (var, "Constraint9_%d_%d", i, j);
 			IloRange cons = (exp <= 0);
@@ -432,30 +433,30 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 	}
 
-	//test constraints
-	//cout << "here" << endl;
+	////test constraints
+	////cout << "here" << endl;
 	//IloExpr exp(env);
-	//exp = x[25][0][0];
+	//exp = x[19][9][0];
 
 	//sprintf (var, "Constraint15");
 
 	//IloRange cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//cout << "A" << endl;
+	////cout << "A" << endl;
 
-	//exp = x[0][4][0];
+	//exp = x[9][7][0];
 
 	//sprintf (var, "Constraint16");
 
-	//cout << "B" << endl;
+	////cout << "B" << endl;
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[4][2][0];
+	//exp = x[7][15][0];
 
-	//cout << "C" << endl;
+	////cout << "C" << endl;
 	//sprintf (var, "Constraint17");
 
 	//cons = (exp == 1);
@@ -463,7 +464,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//model.add(cons);
 
 	////cout << "after" << endl;
-	//exp = x[2][1][0];
+	//exp = x[15][13][0];
 
 	//sprintf (var, "Constraint18");
 
@@ -471,7 +472,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[14][5][0];
+	//exp = x[13][1][0];
 
 	//sprintf (var, "Constraint19");
 
@@ -479,7 +480,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[5][10][0];
+	//exp = x[20][8][1];
 
 	//sprintf (var, "Constraint20");
 
@@ -487,7 +488,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[10][1][0];
+	//exp = x[8][10][1];
 
 	//sprintf (var, "Constraint21");
 
@@ -495,7 +496,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[16][7][1];
+	//exp = x[10][14][1];
 
 	//sprintf (var, "Constraint22");
 
@@ -503,7 +504,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[7][12][1];
+	//exp = x[14][11][1];
 
 	//sprintf (var, "Constraint23");
 
@@ -511,7 +512,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[12][6][1];
+	//exp = x[11][17][1];
 
 	//sprintf (var, "Constraint24");
 
@@ -519,7 +520,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[6][11][1];
+	//exp = x[17][12][1];
 
 	//sprintf (var, "Constraint25");
 
@@ -527,7 +528,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[11][2][1];
+	//exp = x[12][2][1];
 
 	//sprintf (var, "Constraint26");
 
@@ -535,7 +536,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 		
-	//exp = x[17][0][2];
+	//exp = x[2][18][1];
 
 	//sprintf (var, "Constraint27");
 
@@ -543,7 +544,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[0][8][2];
+	//exp = x[18][0][1];
 
 	//sprintf (var, "Constraint28");
 
@@ -551,7 +552,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[8][13][2];
+	//exp = x[0][3][1];
 
 	//sprintf (var, "Constraint29");
 
@@ -559,7 +560,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[1][18][0];
+	//exp = x[3][4][1];
 
 	//sprintf (var, "Constraint30");
 
@@ -567,7 +568,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[2][19][1];
+	//exp = x[4][16][1];
 
 	//sprintf (var, "Constraint31");
 
@@ -575,7 +576,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[13][20][2];
+	//exp = x[16][5][1];
 
 	//sprintf (var, "Constraint32");
 
