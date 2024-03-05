@@ -313,30 +313,30 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
     //     }      
     // }
     //Constraints 7 - calculating uk
-        for (int k = 0; k < inst->K; k++){
-            IloExpr exp1(env);
-            IloExpr exp2(env);
-            currSP = setN + k;
-            int currDum = fcDummy + k;
+        //for (int k = 0; k < inst->K; k++){
+        //    IloExpr exp1(env);
+        //    IloExpr exp2(env);
+        //    currSP = setN + k;
+        //    int currDum = fcDummy + k;
 
-            for (int a = 0; a < bStat->vArcMinus[currDum][k].size(); a++){
-                int u = bStat->vArcMinus[currDum][k][a].first;
-                int v = bStat->vArcMinus[currDum][k][a].second;
+        //    for (int a = 0; a < bStat->vArcMinus[currDum][k].size(); a++){
+        //        int u = bStat->vArcMinus[currDum][k][a].first;
+        //        int v = bStat->vArcMinus[currDum][k][a].second;
 
-                exp1 += (bStat->bundleEnd[u])*x[u][v][k];
-            }
-            for (int a = 0; a < bStat->vArcPlus[currSP][k].size(); a++){
-                int u = bStat->vArcPlus[currSP][k][a].first;
-                int v = bStat->vArcPlus[currSP][k][a].second;
-                double trip = (mdist[bStat->firstElement[u]][bStat->firstElement[v]])/inst->vmed;
+        //        exp1 += (bStat->bundleEnd[u])*x[u][v][k];
+        //    }
+        //    for (int a = 0; a < bStat->vArcPlus[currSP][k].size(); a++){
+        //        int u = bStat->vArcPlus[currSP][k][a].first;
+        //        int v = bStat->vArcPlus[currSP][k][a].second;
+        //        double trip = (mdist[bStat->firstElement[u]][bStat->firstElement[v]])/inst->vmed;
 
-                exp2 += (bStat->bundleStart[v] - trip)*x[u][v][k];
-            }
-            sprintf (var, "Constraint7_%d", k);
-            IloRange cons = (exp1 - exp2 <= inst->maxTime);
-            cons.setName(var);
-            model.add(cons);                
-        }
+        //        exp2 += (bStat->bundleStart[v] - trip)*x[u][v][k];
+        //    }
+        //    sprintf (var, "Constraint7_%d", k);
+        //    IloRange cons = (exp1 - exp2 <= inst->maxTime);
+        //    cons.setName(var);
+        //    model.add(cons);                
+        //}
         
     //Constraints 8  - calculating ûk
         // for (int k = 0; k < inst->K; k++){
