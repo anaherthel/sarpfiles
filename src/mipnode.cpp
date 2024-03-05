@@ -347,7 +347,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		}
 			double cvalue = mdist[i][j]/inst->vmed;
 			//cvalue = std::round(cvalue * multiplier) / multiplier;
-			cvalue = timeRound(cvalue);
+			//cvalue = timeRound(cvalue);
 			exp = b[i] - b[j] + nodeVec[i].delta + (cvalue) - M * (1 - sumX);
 			sprintf (var, "Constraint9_%d_%d", i, j);
 			IloRange cons = (exp <= 0);
@@ -436,7 +436,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	////test constraints
 	////cout << "here" << endl;
 	//IloExpr exp(env);
-	//exp = x[19][9][0];
+	//exp = x[19][11][0];
 
 	//sprintf (var, "Constraint15");
 
@@ -445,7 +445,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//model.add(cons);
 	////cout << "A" << endl;
 
-	//exp = x[9][7][0];
+	//exp = x[11][4][0];
 
 	//sprintf (var, "Constraint16");
 
@@ -454,7 +454,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[7][15][0];
+	//exp = x[4][18][0];
 
 	////cout << "C" << endl;
 	//sprintf (var, "Constraint17");
@@ -464,7 +464,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//model.add(cons);
 
 	////cout << "after" << endl;
-	//exp = x[15][13][0];
+	//exp = x[18][10][0];
 
 	//sprintf (var, "Constraint18");
 
@@ -472,7 +472,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[13][1][0];
+	//exp = x[10][3][0];
 
 	//sprintf (var, "Constraint19");
 
@@ -480,7 +480,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[20][8][1];
+	//exp = x[3][17][0];
 
 	//sprintf (var, "Constraint20");
 
@@ -488,7 +488,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[8][10][1];
+	//exp = x[17][1][0];
 
 	//sprintf (var, "Constraint21");
 
@@ -496,7 +496,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[10][14][1];
+	//exp = x[1][0][0];
 
 	//sprintf (var, "Constraint22");
 
@@ -504,7 +504,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[14][11][1];
+	//exp = x[0][6][0];
 
 	//sprintf (var, "Constraint23");
 
@@ -512,7 +512,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[11][17][1];
+	//exp = x[6][2][0];
 
 	//sprintf (var, "Constraint24");
 
@@ -520,13 +520,17 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[17][12][1];
+	//exp = x[2][13][0];
 
 	//sprintf (var, "Constraint25");
 
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
+
+
+
+
 
 	//exp = x[12][2][1];
 
@@ -952,7 +956,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             sumX += x[i][j][k];
 		}
 			double cvalue = mdist[i][j]/inst->vmed;
-			cvalue = std::round(cvalue * multiplier) / multiplier;		
+			//cvalue = std::round(cvalue * multiplier) / multiplier;		
 			exp = b[i] - b[j] + nodeVec[i].delta + (cvalue) - M * (1 - sumX);
 			sprintf (var, "Constraint6_%d_%d", i, j);
 			IloRange cons = (exp <= 0);
@@ -1353,13 +1357,13 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
 			// exp1 = b[k][v] - b[k][u] - (mdist[u][v]/inst->vmed);
 			double cvalue = mdist[u][v]/inst->vmed;
-			cvalue = std::round(cvalue * multiplier) / multiplier;			
+			//cvalue = std::round(cvalue * multiplier) / multiplier;			
 			exp1 = b[k][v] - (b[k][u]) - inst->service - (cvalue);
 
 			for(int j = 2*inst->n; j < 2*inst->n + 2*inst->m; j++){
 				double deltaij = (mdist[u][j]) + (mdist[j][v]) - (mdist[u][v]);
 				double cvalue2 = deltaij/inst->vmed;
-				cvalue2 = std::round(cvalue2 * multiplier) / multiplier;	
+				//cvalue2 = std::round(cvalue2 * multiplier) / multiplier;	
 				double deltatime = (cvalue2) + inst->service;
 				// double deltatime = (deltaij/inst->vmed);
 
@@ -1388,7 +1392,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 				IloExpr exp2(env);
 
 				double cvalue2 = mdist[u][j]/inst->vmed;
-				cvalue2 = std::round(cvalue2 * multiplier) / multiplier;	
+				//cvalue2 = std::round(cvalue2 * multiplier) / multiplier;	
 				exp1 = s[j] - (b[k][u] + inst->service) - (cvalue2)*x[u][j][k];
 				// exp1 = s[j] - b[k][u] - (mdist[u][j]/inst->vmed)*x[u][j][k];
 
