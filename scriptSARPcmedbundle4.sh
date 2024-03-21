@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances_M4/csarp'
-output='bundlecsarp4.txt'
+output='bpassmcsarp4.txt'
 #runs=10
 
 cat /dev/null > $output

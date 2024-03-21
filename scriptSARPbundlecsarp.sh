@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances/csarp'
-output='bundlescsarp.txt'
+output='bpassscsarp.txt'
 #runs=10
 
 cat /dev/null > $output

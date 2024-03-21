@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='Instances/ghsarp'
-output='bundlesghsarp.txt'
+output='bpasssghsarp.txt'
 #runs=10
 
 cat /dev/null > $output

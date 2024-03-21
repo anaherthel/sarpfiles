@@ -309,10 +309,7 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
         if (bStat->bundleStart[i] < 0){
             for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
                 bStat->bArcs[j][i] = false;
-                bStat->bArcs[i][j] = false;
-                if(i == 59 && j == 9){
-                    cout << "Arc false 3" << endl;
-                }                
+                bStat->bArcs[i][j] = false;           
             }
         }
     }
@@ -1134,6 +1131,7 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
 
     feasibleBundleArcs(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
 
+    //For passenger only solutions:
     // feasibleBundleArcsPass(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
 
     // cout<< "\nFeasible arcs between bundles:" << endl;
@@ -1169,23 +1167,23 @@ void bundleMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nod
     // }
     // getchar();
 
-     for (int i = 0; i < cStat.clusterVec.size(); i++){
-         cout << "\nCluster " << i << ": [";
-         for(int k = 0; k < cStat.clusterVec[i].size(); k++){
-             cout << "(" << cStat.clusterVec[i][k] << ") " << "[";
-             for (int j = 0; j < bStat.bundleVec[cStat.clusterVec[i][k]].size(); j++){
-                 cout << setw(3) << std:: right << bStat.bundleVec[cStat.clusterVec[i][k]][j];
-                 if (j < bStat.bundleVec[cStat.clusterVec[i][k]].size() - 1){
-                     cout << ",";
-                 }
-                 else{
-                     cout << "] ";
-                 }
-             }
+    // for (int i = 0; i < cStat.clusterVec.size(); i++){
+    //     cout << "\nCluster " << i << ": [";
+    //     for(int k = 0; k < cStat.clusterVec[i].size(); k++){
+    //         cout << "(" << cStat.clusterVec[i][k] << ") " << "[";
+    //         for (int j = 0; j < bStat.bundleVec[cStat.clusterVec[i][k]].size(); j++){
+    //             cout << setw(3) << std:: right << bStat.bundleVec[cStat.clusterVec[i][k]][j];
+    //             if (j < bStat.bundleVec[cStat.clusterVec[i][k]].size() - 1){
+    //                 cout << ",";
+    //             }
+    //             else{
+    //                 cout << "] ";
+    //             }
+    //         }
             
-         }
-         cout << "]" << endl;
-     }
+    //     }
+    //     cout << "]" << endl;
+    // }
     // getchar();
     
     feasibleClusterArcs(inst, nodeVec, &bStat, &cStat, p, problem);

@@ -1145,8 +1145,8 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	// long M2 = 2*(inst->n + inst->m + 1);
 	// long W = inst->m + 1;
 	// int Q = 5;
-	// int Q = 4; //q4 fip
-	int Q = inst->m + 3; //qm fip
+	//int Q = 4; //q4 fip (only 1 parcel between passengers)
+	int Q = inst->m + 3; //qm fip (multiple parcels between passengers)
 
     int fDepot = 2*inst->n + 2*inst->m;
     int fDummy = 2*inst->n + 2*inst->m + inst->K;
@@ -1276,25 +1276,26 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	}
 
 	//Constraint 2 - At most 1 parcel between passenger nodes (or starting and passenger) (24)
+	//remove it for fip qm
 
-	for (int k = 0; k < fipStat->solPass.size(); k++){
-		if (fipStat->solPass[k].size() < 3){
-			continue;
-		}
+	//for (int k = 0; k < fipStat->solPass.size(); k++){
+	//	if (fipStat->solPass[k].size() < 3){
+	//		continue;
+	//	}
 
-		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
-			IloExpr exp(env);
-			int u = fipStat->solPass[k][i];
-			for(int j = 2*inst->n; j < 2*inst->n+2*inst->m; j++){
-				exp += x[u][j][k];
-			}
+	//	for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
+	//		IloExpr exp(env);
+	//		int u = fipStat->solPass[k][i];
+	//		for(int j = 2*inst->n; j < 2*inst->n+2*inst->m; j++){
+	//			exp += x[u][j][k];
+	//		}
 
-			sprintf (var, "Constraint2_%d_%d", k, u);
-			IloRange cons = (exp <= 1);
-			cons.setName(var);
-			model.add(cons);
-		}
-	}
+	//		sprintf (var, "Constraint2_%d_%d", k, u);
+	//		IloRange cons = (exp <= 1);
+	//		cons.setName(var);
+	//		model.add(cons);
+	//	}
+	//}
 
 	// Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle (25)
 
@@ -1516,7 +1517,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
 	
 			}
-			sprintf (var, "Constraint13_%d_%d", k, u);
+			sprintf (var, "Constraint12_%d_%d", k, u);
 			IloRange cons = ((exp1+exp2) <= Q);
 			cons.setName(var);
 			model.add(cons);
