@@ -25,6 +25,7 @@
 #include "sarpILS.h"
 #include "modelnode.h"
 #include "modelbundle.h"
+#include "modelbundle2.h"
 #include "SarpADS.h"
 
 using namespace std;

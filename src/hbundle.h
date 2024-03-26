@@ -24,6 +24,7 @@
 #include <unistd.h>
 #include "bundleData.h"
 #include "modelbundle.h"
+#include "modelbundle2.h"
 #include "mipbundle.h"
 #include "SarpADS.h"
 

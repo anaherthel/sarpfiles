@@ -1,0 +1,1914 @@
+
+NameOfInst: Instances_M3/csarp/sarp-30-10-A-1.txt
+RunningScen: 1A
+Instance Name: sarp-30-10-A-1
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 10
+K: 5
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1511 rows and 1539 columns.
+Aggregator did 5 substitutions.
+Reduced MIP has 214 rows, 2210 columns, and 8560 nonzeros.
+Reduced MIP has 2210 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.01 ticks)
+Found incumbent of value -43.037000 after 0.03 sec. (20.97 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 214 rows, 2210 columns, and 8560 nonzeros.
+Reduced MIP has 2210 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (5.44 ticks)
+Probing time = 0.00 sec. (4.03 ticks)
+Clique table members: 4399.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (6.22 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -43.0370     1544.5660              --- 
+*     0     0      integral     0       42.8910       42.8910      333    0.00%
+Elapsed time = 0.04 sec. (40.03 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.04 sec. (40.16 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.04 sec. (40.16 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.04000
+ LB: 42.89100
+ UB: 42.89100
+
+Obj Val: 42.891000000000005
+
+Solve Time: 0.040000000000000
+
+x(22, 253, 0)
+x(99, 319, 0)
+x(110, 187, 0)
+x(187, 209, 0)
+x(209, 22, 0)
+x(253, 335, 0)
+x(319, 110, 0)
+x(330, 99, 0)
+x(44, 66, 1)
+x(66, 121, 1)
+x(121, 308, 1)
+x(143, 44, 1)
+x(308, 336, 1)
+x(331, 143, 1)
+x(0, 286, 2)
+x(11, 337, 2)
+x(55, 132, 2)
+x(77, 88, 2)
+x(88, 264, 2)
+x(132, 77, 2)
+x(220, 55, 2)
+x(264, 0, 2)
+x(286, 11, 2)
+x(332, 220, 2)
+x(33, 165, 3)
+x(165, 242, 3)
+x(176, 33, 3)
+x(231, 176, 3)
+x(242, 338, 3)
+x(333, 231, 3)
+x(154, 297, 4)
+x(198, 339, 4)
+x(275, 198, 4)
+x(297, 275, 4)
+x(334, 154, 4)
+
+
+Customer profit: 128.036999999999978
+Parcel profit: 0.000000000000000
+Costs: 85.145999999999987
+
+Number of Vehicles: 5
+
+Solution by nodes: 
+Vehicle 0: 50 - 9 - 29 - 10 - 17 - 19 - 2 - 23 - 55 - Total time: 5.693902439024389
+Vehicle 1: 51 - 13 - 4 - 6 - 11 - 28 - 56 - Total time: 7.048373983739840
+Vehicle 2: 52 - 20 - 5 - 12 - 7 - 8 - 24 - 0 - 26 - 1 - 57 - Total time: 8.514227642276422
+Vehicle 3: 53 - 21 - 16 - 3 - 15 - 22 - 58 - Total time: 7.960569105691059
+Vehicle 4: 54 - 14 - 27 - 25 - 18 - 59 - Total time: 7.398780487804878
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - d - d - f
+Vehicle 1: S - d - d - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - d - d - d - d - f
+Vehicle 3: S - d - d - d - d - d - f
+Vehicle 4: S - d - d - d - d - f
+
+Used vehicles: 5
+Vehicle numbers: 0 1 2 3 4 
+
+size of n: 30
+
+size of m: 10
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 10
+
+*************
+
+Total time: 10.834146341463413
+
+Total passenger time: 6.319512195121949
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 4.514634146341463
+
+*************
+
+Total distance: 239.199999999999989
+
+Total passenger distance: 54.100000000000001
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 185.099999999999994
+
+*************
+
+Waiting time passenger: 29.165853658536584
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 29.165853658536584
+
+NameOfInst: Instances_M3/csarp/sarp-30-10-A-2.txt
+RunningScen: 1A
+Instance Name: sarp-30-10-A-2
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 10
+K: 5
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 3 times.
+MIP Presolve eliminated 1512 rows and 1765 columns.
+MIP Presolve modified 25 coefficients.
+Aggregator did 17 substitutions.
+Reduced MIP has 200 rows, 1973 columns, and 7762 nonzeros.
+Reduced MIP has 1973 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (13.79 ticks)
+Found incumbent of value -32.321000 after 0.03 sec. (25.22 ticks)
+Probing time = 0.00 sec. (4.00 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 200 rows, 1973 columns, and 7762 nonzeros.
+Reduced MIP has 1973 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (5.06 ticks)
+Probing time = 0.00 sec. (3.96 ticks)
+Clique table members: 3603.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (5.71 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -32.3210     1747.1860              --- 
+*     0     0      integral     0       43.6250       43.6250      298    0.00%
+Elapsed time = 0.05 sec. (48.77 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.05 sec. (48.90 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.05 sec. (48.90 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.05000
+ LB: 43.62500
+ UB: 43.62500
+
+Obj Val: 43.625000000000000
+
+Solve Time: 0.050000000000000
+
+x(22, 264, 0)
+x(66, 110, 0)
+x(110, 335, 0)
+x(132, 22, 0)
+x(253, 66, 0)
+x(264, 286, 0)
+x(286, 253, 0)
+x(330, 132, 0)
+x(0, 165, 1)
+x(55, 187, 1)
+x(88, 336, 1)
+x(165, 88, 1)
+x(187, 242, 1)
+x(220, 0, 1)
+x(242, 220, 1)
+x(331, 55, 1)
+x(44, 154, 2)
+x(77, 275, 2)
+x(154, 209, 2)
+x(209, 77, 2)
+x(275, 337, 2)
+x(332, 44, 2)
+x(33, 99, 3)
+x(99, 121, 3)
+x(121, 338, 3)
+x(143, 33, 3)
+x(176, 198, 3)
+x(198, 308, 3)
+x(308, 143, 3)
+x(333, 176, 3)
+x(11, 297, 4)
+x(231, 11, 4)
+x(297, 319, 4)
+x(319, 339, 4)
+x(334, 231, 4)
+
+
+Customer profit: 130.887000000000029
+Parcel profit: 0.000000000000000
+Costs: 87.262000000000029
+
+Number of Vehicles: 5
+
+Solution by nodes: 
+Vehicle 0: 50 - 12 - 2 - 24 - 26 - 23 - 6 - 10 - 55 - Total time: 8.319512195121952
+Vehicle 1: 51 - 5 - 17 - 22 - 20 - 0 - 15 - 8 - 56 - Total time: 9.137398373983739
+Vehicle 2: 52 - 4 - 14 - 19 - 7 - 25 - 57 - Total time: 9.093495934959348
+Vehicle 3: 53 - 16 - 18 - 28 - 13 - 3 - 9 - 11 - 58 - Total time: 8.602032520325201
+Vehicle 4: 54 - 21 - 1 - 27 - 29 - 59 - Total time: 7.663414634146342
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - d - d - f
+Vehicle 1: S - d - d - d - d - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - f
+Vehicle 3: S - d - d - d - d - d - d - d - f
+Vehicle 4: S - d - d - d - d - f
+
+Used vehicles: 5
+Vehicle numbers: 0 1 2 3 4 
+
+size of n: 30
+
+size of m: 10
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 10
+
+*************
+
+Total time: 11.068292682926831
+
+Total passenger time: 6.441463414634146
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 4.626829268292684
+
+*************
+
+Total distance: 248.800000000000011
+
+Total passenger distance: 59.099999999999987
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 189.700000000000017
+
+*************
+
+Waiting time passenger: 28.931707317073176
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 28.931707317073176
+
+NameOfInst: Instances_M3/csarp/sarp-30-10-B-1.txt
+RunningScen: 1A
+Instance Name: sarp-30-10-B-1
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 10
+K: 4
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1210 rows and 1208 columns.
+Aggregator did 5 substitutions.
+Reduced MIP has 183 rows, 1823 columns, and 7064 nonzeros.
+Reduced MIP has 1823 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.57 ticks)
+Found incumbent of value -5.292000 after 0.03 sec. (24.94 ticks)
+Probing time = 0.00 sec. (3.79 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 183 rows, 1823 columns, and 7064 nonzeros.
+Reduced MIP has 1823 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.52 ticks)
+Probing time = 0.00 sec. (3.77 ticks)
+Clique table members: 3732.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (5.06 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           -5.2920     1650.1840              --- 
+*     0     0      integral     0       55.3820       55.3820      303    0.00%
+Elapsed time = 0.05 sec. (46.58 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.05 sec. (46.68 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.05 sec. (46.68 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.05000
+ LB: 55.38200
+ UB: 55.38200
+
+Obj Val: 55.381999999999998
+
+Solve Time: 0.050000000000000
+
+x(121, 165, 0)
+x(132, 334, 0)
+x(165, 209, 0)
+x(209, 220, 0)
+x(220, 308, 0)
+x(297, 132, 0)
+x(308, 297, 0)
+x(330, 121, 0)
+x(66, 154, 1)
+x(99, 264, 1)
+x(110, 66, 1)
+x(154, 187, 1)
+x(187, 335, 1)
+x(264, 110, 1)
+x(331, 99, 1)
+x(0, 336, 2)
+x(55, 0, 2)
+x(77, 55, 2)
+x(88, 143, 2)
+x(143, 77, 2)
+x(231, 253, 2)
+x(253, 88, 2)
+x(332, 231, 2)
+x(11, 337, 3)
+x(22, 198, 3)
+x(33, 319, 3)
+x(44, 275, 3)
+x(176, 22, 3)
+x(198, 11, 3)
+x(242, 33, 3)
+x(275, 242, 3)
+x(286, 176, 3)
+x(319, 286, 3)
+x(333, 44, 3)
+
+
+Customer profit: 147.473999999999990
+Parcel profit: 0.000000000000000
+Costs: 92.092000000000013
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 50 - 11 - 15 - 19 - 20 - 28 - 27 - 12 - 54 - Total time: 7.463821138211379
+Vehicle 1: 51 - 9 - 24 - 10 - 6 - 14 - 17 - 55 - Total time: 8.291869918699186
+Vehicle 2: 52 - 21 - 23 - 8 - 13 - 7 - 5 - 0 - 56 - Total time: 7.801219512195124
+Vehicle 3: 53 - 4 - 25 - 22 - 3 - 29 - 26 - 16 - 2 - 18 - 1 - 57 - Total time: 7.788211382113818
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - d - d - f
+Vehicle 1: S - d - d - d - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - d - d - f
+Vehicle 3: S - d - d - d - d - d - d - d - d - d - d - f
+
+Used vehicles: 4
+Vehicle numbers: 0 1 2 3 
+
+size of n: 30
+
+size of m: 10
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 10
+
+*************
+
+Total time: 12.034146341463416
+
+Total passenger time: 7.151219512195123
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 4.882926829268293
+
+*************
+
+Total distance: 288.399999999999977
+
+Total passenger distance: 88.199999999999989
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 200.200000000000017
+
+*************
+
+Waiting time passenger: 19.965853658536584
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 19.965853658536584
+
+NameOfInst: Instances_M3/csarp/sarp-30-10-B-2.txt
+RunningScen: 1A
+Instance Name: sarp-30-10-B-2
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 10
+K: 5
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1510 rows and 1510 columns.
+Aggregator did 7 substitutions.
+Reduced MIP has 213 rows, 2208 columns, and 8557 nonzeros.
+Reduced MIP has 2208 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (7.92 ticks)
+Found incumbent of value -26.980000 after 0.02 sec. (21.28 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 213 rows, 2208 columns, and 8557 nonzeros.
+Reduced MIP has 2208 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (5.47 ticks)
+Probing time = 0.00 sec. (4.13 ticks)
+Clique table members: 4056.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (6.98 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -26.9800     1912.4860              --- 
+*     0     0      integral     0       59.0860       59.0860      354    0.00%
+Elapsed time = 0.04 sec. (41.33 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.04 sec. (41.46 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.04 sec. (41.46 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.04000
+ LB: 59.08600
+ UB: 59.08600
+
+Obj Val: 59.086000000000006
+
+Solve Time: 0.040000000000000
+
+x(0, 319, 0)
+x(44, 187, 0)
+x(187, 335, 0)
+x(275, 0, 0)
+x(319, 44, 0)
+x(330, 275, 0)
+x(66, 176, 1)
+x(99, 264, 1)
+x(110, 336, 1)
+x(132, 66, 1)
+x(176, 99, 1)
+x(264, 110, 1)
+x(331, 132, 1)
+x(22, 77, 2)
+x(55, 231, 2)
+x(77, 337, 2)
+x(121, 22, 2)
+x(231, 308, 2)
+x(308, 121, 2)
+x(332, 55, 2)
+x(11, 286, 3)
+x(33, 338, 3)
+x(242, 297, 3)
+x(286, 242, 3)
+x(297, 33, 3)
+x(333, 11, 3)
+x(88, 198, 4)
+x(143, 339, 4)
+x(154, 253, 4)
+x(165, 220, 4)
+x(198, 154, 4)
+x(209, 165, 4)
+x(220, 88, 4)
+x(253, 143, 4)
+x(334, 209, 4)
+
+
+Customer profit: 142.115999999999985
+Parcel profit: 0.000000000000000
+Costs: 83.030000000000001
+
+Number of Vehicles: 5
+
+Solution by nodes: 
+Vehicle 0: 50 - 25 - 0 - 29 - 4 - 17 - 55 - Total time: 7.406910569105689
+Vehicle 1: 51 - 12 - 6 - 16 - 9 - 24 - 10 - 56 - Total time: 9.228048780487802
+Vehicle 2: 52 - 5 - 21 - 28 - 11 - 2 - 7 - 57 - Total time: 8.117073170731707
+Vehicle 3: 53 - 1 - 26 - 22 - 27 - 3 - 58 - Total time: 9.064227642276425
+Vehicle 4: 54 - 19 - 15 - 20 - 8 - 18 - 14 - 23 - 13 - 59 - Total time: 9.102032520325203
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - f
+Vehicle 1: S - d - d - d - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - d - f
+Vehicle 3: S - d - d - d - d - d - f
+Vehicle 4: S - d - d - d - d - d - d - d - d - f
+
+Used vehicles: 5
+Vehicle numbers: 0 1 2 3 4 
+
+size of n: 30
+
+size of m: 10
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 10
+
+*************
+
+Total time: 11.324390243902439
+
+Total passenger time: 6.921951219512195
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 4.402439024390245
+
+*************
+
+Total distance: 259.300000000000068
+
+Total passenger distance: 78.800000000000011
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 180.500000000000028
+
+*************
+
+Waiting time passenger: 28.675609756097568
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 28.675609756097568
+
+NameOfInst: Instances_M3/csarp/sarp-30-10-C-1.txt
+RunningScen: 1A
+Instance Name: sarp-30-10-C-1
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 10
+K: 6
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1810 rows and 1812 columns.
+Aggregator did 8 substitutions.
+Reduced MIP has 244 rows, 2566 columns, and 9940 nonzeros.
+Reduced MIP has 2566 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.13 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 244 rows, 2566 columns, and 9940 nonzeros.
+Reduced MIP has 2566 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.34 ticks)
+Probing time = 0.01 sec. (4.52 ticks)
+Clique table members: 4762.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (10.96 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      232.5100      232.5100      467    0.00%
+Elapsed time = 0.06 sec. (61.39 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.06 sec. (61.52 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.06 sec. (61.52 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.06000
+ LB: 232.51000
+ UB: 232.51000
+
+Obj Val: 232.510000000000019
+
+Solve Time: 0.060000000000000
+
+x(66, 132, 0)
+x(88, 187, 0)
+x(132, 88, 0)
+x(187, 336, 0)
+x(330, 66, 0)
+x(55, 319, 1)
+x(110, 209, 1)
+x(143, 55, 1)
+x(209, 275, 1)
+x(275, 143, 1)
+x(319, 337, 1)
+x(331, 110, 1)
+x(44, 264, 2)
+x(121, 338, 2)
+x(264, 297, 2)
+x(297, 121, 2)
+x(308, 44, 2)
+x(332, 308, 2)
+x(33, 220, 3)
+x(99, 339, 3)
+x(154, 33, 3)
+x(165, 242, 3)
+x(220, 165, 3)
+x(242, 253, 3)
+x(253, 99, 3)
+x(333, 154, 3)
+x(11, 340, 4)
+x(77, 176, 4)
+x(176, 11, 4)
+x(231, 286, 4)
+x(286, 77, 4)
+x(334, 231, 4)
+x(0, 22, 5)
+x(22, 198, 5)
+x(198, 341, 5)
+x(335, 0, 5)
+
+
+Customer profit: 312.090000000000032
+Parcel profit: 0.000000000000000
+Costs: 79.580000000000013
+
+Number of Vehicles: 6
+
+Solution by nodes: 
+Vehicle 0: 50 - 6 - 12 - 8 - 17 - 56 - Total time: 7.280894308943090
+Vehicle 1: 51 - 10 - 19 - 25 - 13 - 5 - 29 - 57 - Total time: 8.925203252032519
+Vehicle 2: 52 - 28 - 4 - 24 - 27 - 11 - 58 - Total time: 8.454065040650406
+Vehicle 3: 53 - 14 - 3 - 20 - 15 - 22 - 23 - 9 - 59 - Total time: 8.261382113821135
+Vehicle 4: 54 - 21 - 26 - 7 - 16 - 1 - 60 - Total time: 7.608943089430892
+Vehicle 5: 55 - 0 - 2 - 18 - 61 - Total time: 8.096341463414635
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - f
+Vehicle 1: S - d - d - d - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - f
+Vehicle 3: S - d - d - d - d - d - d - d - f
+Vehicle 4: S - d - d - d - d - d - f
+Vehicle 5: S - d - d - d - f
+
+Used vehicles: 6
+Vehicle numbers: 0 1 2 3 4 5 
+
+size of n: 30
+
+size of m: 10
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 10
+
+*************
+
+Total time: 18.414634146341463
+
+Total passenger time: 14.195121951219512
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 4.219512195121952
+
+*************
+
+Total distance: 550.000000000000000
+
+Total passenger distance: 376.999999999999943
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 173.000000000000000
+
+*************
+
+Waiting time passenger: 29.585365853658530
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 29.585365853658530
+
+NameOfInst: Instances_M3/csarp/sarp-30-10-C-2.txt
+RunningScen: 1A
+Instance Name: sarp-30-10-C-2
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 10
+K: 8
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 3 times.
+MIP Presolve eliminated 2411 rows and 2628 columns.
+MIP Presolve modified 56 coefficients.
+Aggregator did 17 substitutions.
+Reduced MIP has 297 rows, 2946 columns, and 11560 nonzeros.
+Reduced MIP has 2946 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (16.95 ticks)
+Found incumbent of value 150.977000 after 0.04 sec. (34.44 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 297 rows, 2946 columns, and 11560 nonzeros.
+Reduced MIP has 2946 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (7.46 ticks)
+Probing time = 0.01 sec. (4.82 ticks)
+Clique table members: 5154.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (10.64 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          150.9770    12583.6990              --- 
+*     0     0      integral     0      245.0010      245.0010      396    0.00%
+Elapsed time = 0.06 sec. (62.14 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.06 sec. (62.33 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.06 sec. (62.33 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.05000
+ LB: 245.00100
+ UB: 245.00100
+
+Obj Val: 245.001000000000005
+
+Solve Time: 0.050000000000000
+
+x(77, 297, 0)
+x(165, 338, 0)
+x(297, 165, 0)
+x(330, 77, 0)
+x(110, 339, 1)
+x(176, 253, 1)
+x(253, 110, 1)
+x(331, 176, 1)
+x(11, 44, 2)
+x(22, 209, 2)
+x(44, 22, 2)
+x(209, 319, 2)
+x(319, 340, 2)
+x(332, 11, 2)
+x(0, 154, 3)
+x(143, 264, 3)
+x(154, 231, 3)
+x(187, 341, 3)
+x(231, 187, 3)
+x(264, 0, 3)
+x(333, 143, 3)
+x(99, 275, 4)
+x(121, 99, 4)
+x(275, 342, 4)
+x(334, 121, 4)
+x(33, 308, 5)
+x(242, 33, 5)
+x(308, 343, 5)
+x(335, 242, 5)
+x(55, 198, 6)
+x(66, 132, 6)
+x(132, 55, 6)
+x(198, 344, 6)
+x(336, 66, 6)
+x(88, 220, 7)
+x(220, 345, 7)
+x(286, 88, 7)
+x(337, 286, 7)
+
+
+Customer profit: 321.038999999999987
+Parcel profit: 0.000000000000000
+Costs: 76.038000000000011
+
+Number of Vehicles: 8
+
+Solution by nodes: 
+Vehicle 0: 50 - 7 - 27 - 15 - 58 - Total time: 8.219512195121952
+Vehicle 1: 51 - 16 - 23 - 10 - 59 - Total time: 2.664227642276424
+Vehicle 2: 52 - 1 - 4 - 2 - 19 - 29 - 60 - Total time: 7.762195121951220
+Vehicle 3: 53 - 13 - 24 - 0 - 14 - 21 - 17 - 61 - Total time: 7.919512195121951
+Vehicle 4: 54 - 11 - 9 - 25 - 62 - Total time: 3.539837398373985
+Vehicle 5: 55 - 22 - 3 - 28 - 63 - Total time: 1.600000000000001
+Vehicle 6: 56 - 6 - 12 - 5 - 18 - 64 - Total time: 5.091869918699184
+Vehicle 7: 57 - 26 - 8 - 20 - 65 - Total time: 4.835772357723577
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - f
+Vehicle 1: S - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - f
+Vehicle 3: S - d - d - d - d - d - d - f
+Vehicle 4: S - d - d - d - f
+Vehicle 5: S - d - d - d - f
+Vehicle 6: S - d - d - d - d - f
+Vehicle 7: S - d - d - d - f
+
+Used vehicles: 8
+Vehicle numbers: 0 1 2 3 4 5 6 7 
+
+size of n: 30
+
+size of m: 10
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 10
+
+*************
+
+Total time: 18.609756097560975
+
+Total passenger time: 14.578048780487803
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 4.031707317073172
+
+*************
+
+Total distance: 558.000000000000000
+
+Total passenger distance: 392.699999999999989
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 165.299999999999983
+
+*************
+
+Waiting time passenger: 45.390243902439032
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 45.390243902439032
+
+NameOfInst: Instances_M3/csarp/sarp-30-15-A-1.txt
+RunningScen: 1A
+Instance Name: sarp-30-15-A-1
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 15
+K: 4
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1816 rows and 1836 columns.
+Aggregator did 6 substitutions.
+Reduced MIP has 181 rows, 1781 columns, and 6901 nonzeros.
+Reduced MIP has 1781 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.93 ticks)
+Found incumbent of value -58.412000 after 0.02 sec. (16.14 ticks)
+Probing time = 0.00 sec. (3.77 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 181 rows, 1781 columns, and 6901 nonzeros.
+Reduced MIP has 1781 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.41 ticks)
+Probing time = 0.00 sec. (3.73 ticks)
+Clique table members: 3638.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (7.54 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -58.4120     1276.9060              --- 
+*     0     0      integral     0       34.2320       34.2320      397    0.00%
+Elapsed time = 0.04 sec. (40.25 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.04 sec. (40.37 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.04 sec. (40.37 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.04000
+ LB: 34.23200
+ UB: 34.23200
+
+Obj Val: 34.231999999999999
+
+Solve Time: 0.040000000000000
+
+x(16, 484, 0)
+x(32, 432, 0)
+x(144, 368, 0)
+x(176, 144, 0)
+x(256, 448, 0)
+x(304, 176, 0)
+x(368, 256, 0)
+x(432, 304, 0)
+x(448, 16, 0)
+x(480, 32, 0)
+x(0, 320, 1)
+x(112, 288, 1)
+x(128, 485, 1)
+x(208, 112, 1)
+x(288, 416, 1)
+x(320, 128, 1)
+x(416, 0, 1)
+x(464, 208, 1)
+x(481, 464, 1)
+x(80, 352, 2)
+x(160, 240, 2)
+x(192, 384, 2)
+x(224, 192, 2)
+x(240, 486, 2)
+x(272, 80, 2)
+x(352, 224, 2)
+x(384, 160, 2)
+x(482, 272, 2)
+x(48, 336, 3)
+x(64, 96, 3)
+x(96, 400, 3)
+x(336, 64, 3)
+x(400, 487, 3)
+x(483, 48, 3)
+
+
+Customer profit: 130.602000000000004
+Parcel profit: 0.000000000000000
+Costs: 96.370000000000019
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 60 - 2 - 27 - 19 - 11 - 9 - 23 - 16 - 28 - 1 - 64 - Total time: 9.359349593495935
+Vehicle 1: 61 - 29 - 13 - 7 - 18 - 26 - 0 - 20 - 8 - 65 - Total time: 8.990243902439026
+Vehicle 2: 62 - 17 - 5 - 22 - 14 - 12 - 24 - 10 - 15 - 66 - Total time: 9.039837398373983
+Vehicle 3: 63 - 3 - 21 - 4 - 6 - 25 - 67 - Total time: 3.881707317073170
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - d - d - d - d - f
+Vehicle 1: S - d - d - d - d - d - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - d - d - d - f
+Vehicle 3: S - d - d - d - d - d - f
+
+Used vehicles: 4
+Vehicle numbers: 0 1 2 3 
+
+size of n: 30
+
+size of m: 15
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 15
+
+*************
+
+Total time: 11.539024390243902
+
+Total passenger time: 6.429268292682927
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 5.109756097560976
+
+*************
+
+Total distance: 268.100000000000023
+
+Total passenger distance: 58.599999999999987
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 209.500000000000028
+
+*************
+
+Waiting time passenger: 20.460975609756090
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 20.460975609756090
+
+NameOfInst: Instances_M3/csarp/sarp-30-15-A-2.txt
+RunningScen: 1A
+Instance Name: sarp-30-15-A-2
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 15
+K: 4
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1815 rows and 1808 columns.
+Aggregator did 5 substitutions.
+Reduced MIP has 183 rows, 1815 columns, and 7032 nonzeros.
+Reduced MIP has 1815 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (7.06 ticks)
+Probing time = 0.00 sec. (3.78 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 183 rows, 1815 columns, and 7032 nonzeros.
+Reduced MIP has 1815 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.53 ticks)
+Probing time = 0.00 sec. (3.73 ticks)
+Clique table members: 3686.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (4.59 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       30.8170       30.8170      277    0.00%
+Elapsed time = 0.05 sec. (47.80 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.05 sec. (47.90 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.05 sec. (47.90 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.05000
+ LB: 30.81700
+ UB: 30.81700
+
+Obj Val: 30.817000000000000
+
+Solve Time: 0.050000000000000
+
+x(16, 352, 0)
+x(80, 484, 0)
+x(96, 384, 0)
+x(176, 96, 0)
+x(352, 80, 0)
+x(384, 16, 0)
+x(480, 176, 0)
+x(0, 208, 1)
+x(128, 416, 1)
+x(208, 485, 1)
+x(240, 0, 1)
+x(256, 128, 1)
+x(400, 432, 1)
+x(416, 400, 1)
+x(432, 240, 1)
+x(481, 256, 1)
+x(32, 48, 2)
+x(48, 336, 2)
+x(64, 288, 2)
+x(112, 304, 2)
+x(192, 486, 2)
+x(288, 112, 2)
+x(304, 32, 2)
+x(336, 192, 2)
+x(482, 64, 2)
+x(144, 487, 3)
+x(160, 144, 3)
+x(224, 368, 3)
+x(272, 160, 3)
+x(320, 448, 3)
+x(368, 320, 3)
+x(448, 464, 3)
+x(464, 272, 3)
+x(483, 224, 3)
+
+
+Customer profit: 127.923000000000002
+Parcel profit: 0.000000000000000
+Costs: 97.106000000000023
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 60 - 11 - 6 - 24 - 1 - 22 - 5 - 64 - Total time: 6.082926829268294
+Vehicle 1: 61 - 16 - 8 - 26 - 25 - 27 - 15 - 0 - 13 - 65 - Total time: 8.938211382113822
+Vehicle 2: 62 - 4 - 18 - 7 - 19 - 2 - 3 - 21 - 12 - 66 - Total time: 8.322357723577234
+Vehicle 3: 63 - 14 - 23 - 20 - 28 - 29 - 17 - 10 - 9 - 67 - Total time: 6.100813008130082
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - d - f
+Vehicle 1: S - d - d - d - d - d - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - d - d - d - f
+Vehicle 3: S - d - d - d - d - d - d - d - d - f
+
+Used vehicles: 4
+Vehicle numbers: 0 1 2 3 
+
+size of n: 30
+
+size of m: 15
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 15
+
+*************
+
+Total time: 11.463414634146343
+
+Total passenger time: 6.314634146341464
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 5.148780487804879
+
+*************
+
+Total distance: 264.999999999999943
+
+Total passenger distance: 53.899999999999991
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 211.099999999999966
+
+*************
+
+Waiting time passenger: 20.536585365853657
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 20.536585365853657
+
+NameOfInst: Instances_M3/csarp/sarp-30-15-B-1.txt
+RunningScen: 1A
+Instance Name: sarp-30-15-B-1
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 15
+K: 4
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1819 rows and 1914 columns.
+Aggregator did 8 substitutions.
+Reduced MIP has 176 rows, 1702 columns, and 6598 nonzeros.
+Reduced MIP has 1702 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.97 ticks)
+Found incumbent of value -26.808000 after 0.02 sec. (15.62 ticks)
+Probing time = 0.00 sec. (3.70 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 176 rows, 1702 columns, and 6598 nonzeros.
+Reduced MIP has 1702 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.25 ticks)
+Probing time = 0.00 sec. (3.66 ticks)
+Clique table members: 3455.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (4.06 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -26.8080     1850.2460              --- 
+*     0     0      integral     0       45.8720       45.8720      265    0.00%
+Elapsed time = 0.04 sec. (35.39 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.04 sec. (35.52 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.04 sec. (35.52 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.03000
+ LB: 45.87200
+ UB: 45.87200
+
+Obj Val: 45.872000000000000
+
+Solve Time: 0.030000000000000
+
+x(32, 484, 0)
+x(48, 208, 0)
+x(80, 416, 0)
+x(96, 80, 0)
+x(208, 96, 0)
+x(368, 32, 0)
+x(416, 368, 0)
+x(480, 48, 0)
+x(0, 224, 1)
+x(128, 352, 1)
+x(224, 485, 1)
+x(240, 400, 1)
+x(272, 0, 1)
+x(304, 128, 1)
+x(352, 240, 1)
+x(400, 272, 1)
+x(481, 304, 1)
+x(144, 192, 2)
+x(160, 486, 2)
+x(176, 144, 2)
+x(192, 336, 2)
+x(256, 320, 2)
+x(320, 448, 2)
+x(336, 160, 2)
+x(448, 176, 2)
+x(482, 256, 2)
+x(16, 384, 3)
+x(64, 432, 3)
+x(112, 487, 3)
+x(288, 64, 3)
+x(384, 112, 3)
+x(432, 464, 3)
+x(464, 16, 3)
+x(483, 288, 3)
+
+
+Customer profit: 153.972000000000008
+Parcel profit: 0.000000000000000
+Costs: 108.099999999999980
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 60 - 3 - 13 - 6 - 5 - 26 - 23 - 2 - 64 - Total time: 8.976422764227642
+Vehicle 1: 61 - 19 - 8 - 22 - 15 - 25 - 17 - 0 - 14 - 65 - Total time: 9.374796747967482
+Vehicle 2: 62 - 16 - 20 - 28 - 11 - 9 - 12 - 21 - 10 - 66 - Total time: 8.823170731707314
+Vehicle 3: 63 - 18 - 4 - 27 - 29 - 1 - 24 - 7 - 67 - Total time: 6.174390243902439
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - d - d - f
+Vehicle 1: S - d - d - d - d - d - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - d - d - d - f
+Vehicle 3: S - d - d - d - d - d - d - d - f
+
+Used vehicles: 4
+Vehicle numbers: 0 1 2 3 
+
+size of n: 30
+
+size of m: 15
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 15
+
+*************
+
+Total time: 13.160975609756099
+
+Total passenger time: 7.429268292682928
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 5.731707317073170
+
+*************
+
+Total distance: 334.600000000000023
+
+Total passenger distance: 99.599999999999966
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 235.000000000000028
+
+*************
+
+Waiting time passenger: 18.839024390243900
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 18.839024390243900
+
+NameOfInst: Instances_M3/csarp/sarp-30-15-B-2.txt
+RunningScen: 1A
+Instance Name: sarp-30-15-B-2
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 15
+K: 5
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 2265 rows and 2260 columns.
+Aggregator did 5 substitutions.
+Reduced MIP has 215 rows, 2235 columns, and 8655 nonzeros.
+Reduced MIP has 2235 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.58 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 215 rows, 2235 columns, and 8655 nonzeros.
+Reduced MIP has 2235 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (5.52 ticks)
+Probing time = 0.00 sec. (4.14 ticks)
+Clique table members: 4444.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (5.64 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0       65.0050       65.0050      317    0.00%
+Elapsed time = 0.05 sec. (50.15 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.05 sec. (50.27 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.05 sec. (50.27 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.05000
+ LB: 65.00500
+ UB: 65.00500
+
+Obj Val: 65.005000000000010
+
+Solve Time: 0.050000000000000
+
+x(32, 64, 0)
+x(64, 128, 0)
+x(128, 485, 0)
+x(256, 32, 0)
+x(288, 304, 0)
+x(304, 256, 0)
+x(336, 288, 0)
+x(480, 336, 0)
+x(48, 192, 1)
+x(112, 48, 1)
+x(192, 486, 1)
+x(481, 112, 1)
+x(176, 464, 2)
+x(368, 176, 2)
+x(432, 487, 2)
+x(464, 432, 2)
+x(482, 368, 2)
+x(80, 144, 3)
+x(144, 272, 3)
+x(160, 224, 3)
+x(224, 488, 3)
+x(272, 448, 3)
+x(416, 160, 3)
+x(448, 416, 3)
+x(483, 80, 3)
+x(0, 384, 4)
+x(16, 352, 4)
+x(96, 400, 4)
+x(208, 16, 4)
+x(240, 320, 4)
+x(320, 96, 4)
+x(352, 0, 4)
+x(384, 240, 4)
+x(400, 489, 4)
+x(484, 208, 4)
+
+
+Customer profit: 142.515000000000043
+Parcel profit: 0.000000000000000
+Costs: 77.509999999999991
+
+Number of Vehicles: 5
+
+Solution by nodes: 
+Vehicle 0: 60 - 21 - 18 - 19 - 16 - 2 - 4 - 8 - 65 - Total time: 8.211788617886178
+Vehicle 1: 61 - 7 - 3 - 12 - 66 - Total time: 3.827642276422765
+Vehicle 2: 62 - 23 - 11 - 29 - 27 - 67 - Total time: 6.517073170731707
+Vehicle 3: 63 - 5 - 9 - 17 - 28 - 26 - 10 - 14 - 68 - Total time: 8.417073170731708
+Vehicle 4: 64 - 13 - 1 - 22 - 0 - 24 - 15 - 20 - 6 - 25 - 69 - Total time: 9.096341463414635
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - d - d - d - f
+Vehicle 1: S - d - d - d - f
+Vehicle 2: S - d - d - d - d - f
+Vehicle 3: S - d - d - d - d - d - d - d - f
+Vehicle 4: S - d - d - d - d - d - d - d - d - d - f
+
+Used vehicles: 5
+Vehicle numbers: 0 1 2 3 4 
+
+size of n: 30
+
+size of m: 15
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 15
+
+*************
+
+Total time: 11.048780487804882
+
+Total passenger time: 6.939024390243905
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 4.109756097560977
+
+*************
+
+Total distance: 248.000000000000028
+
+Total passenger distance: 79.500000000000000
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 168.500000000000028
+
+*************
+
+Waiting time passenger: 28.951219512195117
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 28.951219512195117
+
+NameOfInst: Instances_M3/csarp/sarp-30-15-C-1.txt
+RunningScen: 1A
+Instance Name: sarp-30-15-C-1
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 15
+K: 7
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 3168 rows and 3242 columns.
+Aggregator did 8 substitutions.
+Reduced MIP has 273 rows, 2802 columns, and 10833 nonzeros.
+Reduced MIP has 2802 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (10.83 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 273 rows, 2802 columns, and 10833 nonzeros.
+Reduced MIP has 2802 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.83 ticks)
+Probing time = 0.01 sec. (4.64 ticks)
+Clique table members: 5201.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (8.28 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      219.6440      219.6440      372    0.00%
+Elapsed time = 0.07 sec. (62.80 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.07 sec. (62.97 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.07 sec. (62.97 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.07000
+ LB: 219.64400
+ UB: 219.64400
+
+Obj Val: 219.644000000000005
+
+Solve Time: 0.070000000000000
+
+x(0, 487, 0)
+x(304, 464, 0)
+x(368, 0, 0)
+x(464, 368, 0)
+x(480, 304, 0)
+x(96, 176, 1)
+x(128, 96, 1)
+x(160, 128, 1)
+x(176, 488, 1)
+x(224, 160, 1)
+x(481, 224, 1)
+x(112, 448, 2)
+x(192, 489, 2)
+x(448, 192, 2)
+x(482, 112, 2)
+x(48, 288, 3)
+x(288, 490, 3)
+x(384, 48, 3)
+x(400, 384, 3)
+x(483, 400, 3)
+x(16, 352, 4)
+x(144, 240, 4)
+x(240, 491, 4)
+x(320, 16, 4)
+x(352, 144, 4)
+x(484, 320, 4)
+x(80, 492, 5)
+x(272, 416, 5)
+x(336, 80, 5)
+x(416, 432, 5)
+x(432, 336, 5)
+x(485, 272, 5)
+x(32, 256, 6)
+x(64, 493, 6)
+x(208, 32, 6)
+x(256, 64, 6)
+x(486, 208, 6)
+
+
+Customer profit: 313.116000000000042
+Parcel profit: 0.000000000000000
+Costs: 93.472000000000023
+
+Number of Vehicles: 7
+
+Solution by nodes: 
+Vehicle 0: 60 - 19 - 29 - 23 - 0 - 67 - Total time: 8.574390243902441
+Vehicle 1: 61 - 14 - 10 - 8 - 6 - 11 - 68 - Total time: 8.017073170731708
+Vehicle 2: 62 - 7 - 28 - 12 - 69 - Total time: 2.484959349593495
+Vehicle 3: 63 - 25 - 24 - 3 - 18 - 70 - Total time: 7.802845528455285
+Vehicle 4: 64 - 20 - 1 - 22 - 9 - 15 - 71 - Total time: 8.008536585365855
+Vehicle 5: 65 - 17 - 26 - 27 - 21 - 5 - 72 - Total time: 6.903658536585366
+Vehicle 6: 66 - 13 - 2 - 16 - 4 - 73 - Total time: 7.927642276422764
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - f
+Vehicle 1: S - d - d - d - d - d - f
+Vehicle 2: S - d - d - d - f
+Vehicle 3: S - d - d - d - d - f
+Vehicle 4: S - d - d - d - d - d - f
+Vehicle 5: S - d - d - d - d - d - f
+Vehicle 6: S - d - d - d - d - f
+
+Used vehicles: 7
+Vehicle numbers: 0 1 2 3 4 5 6 
+
+size of n: 30
+
+size of m: 15
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 15
+
+*************
+
+Total time: 19.195121951219512
+
+Total passenger time: 14.239024390243902
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 4.956097560975611
+
+*************
+
+Total distance: 582.000000000000000
+
+Total passenger distance: 378.800000000000011
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 203.200000000000045
+
+*************
+
+Waiting time passenger: 36.804878048780481
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 36.804878048780481
+
+NameOfInst: Instances_M3/csarp/sarp-30-15-C-2.txt
+RunningScen: 1A
+Instance Name: sarp-30-15-C-2
+vmed: 0.68333
+Instance type: csarp
+
+n: 30
+m: 15
+K: 6
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 2715 rows and 2712 columns.
+Aggregator did 8 substitutions.
+Reduced MIP has 244 rows, 2476 columns, and 9580 nonzeros.
+Reduced MIP has 2476 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (9.57 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 244 rows, 2476 columns, and 9580 nonzeros.
+Reduced MIP has 2476 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.15 ticks)
+Probing time = 0.01 sec. (4.48 ticks)
+Clique table members: 4599.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.01 sec. (7.66 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      215.8790      215.8790      330    0.00%
+Elapsed time = 0.06 sec. (56.75 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    0.06 sec. (56.90 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.06 sec. (56.90 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 0.06000
+ LB: 215.87900
+ UB: 215.87900
+
+Obj Val: 215.879000000000019
+
+Solve Time: 0.060000000000000
+
+x(64, 486, 0)
+x(208, 448, 0)
+x(272, 208, 0)
+x(448, 64, 0)
+x(480, 272, 0)
+x(128, 240, 1)
+x(192, 224, 1)
+x(224, 487, 1)
+x(240, 192, 1)
+x(481, 128, 1)
+x(0, 48, 2)
+x(48, 352, 2)
+x(112, 432, 2)
+x(352, 488, 2)
+x(400, 0, 2)
+x(432, 400, 2)
+x(482, 112, 2)
+x(32, 320, 3)
+x(96, 384, 3)
+x(144, 32, 3)
+x(320, 96, 3)
+x(384, 489, 3)
+x(483, 144, 3)
+x(16, 464, 4)
+x(80, 490, 4)
+x(176, 256, 4)
+x(256, 16, 4)
+x(368, 80, 4)
+x(464, 368, 4)
+x(484, 176, 4)
+x(160, 491, 5)
+x(288, 160, 5)
+x(304, 288, 5)
+x(336, 304, 5)
+x(416, 336, 5)
+x(485, 416, 5)
+
+
+Customer profit: 316.250999999999976
+Parcel profit: 0.000000000000000
+Costs: 100.372000000000014
+
+Number of Vehicles: 6
+
+Solution by nodes: 
+Vehicle 0: 60 - 17 - 13 - 28 - 4 - 66 - Total time: 7.517073170731708
+Vehicle 1: 61 - 8 - 15 - 12 - 14 - 67 - Total time: 8.119512195121953
+Vehicle 2: 62 - 7 - 27 - 25 - 0 - 3 - 22 - 68 - Total time: 8.920731707317074
+Vehicle 3: 63 - 9 - 2 - 20 - 6 - 24 - 69 - Total time: 7.566666666666665
+Vehicle 4: 64 - 11 - 16 - 1 - 29 - 23 - 5 - 70 - Total time: 7.939430894308944
+Vehicle 5: 65 - 26 - 21 - 19 - 18 - 10 - 71 - Total time: 5.325609756097560
+
+
+Solution structure: 
+Vehicle 0: S - d - d - d - d - f
+Vehicle 1: S - d - d - d - d - f
+Vehicle 2: S - d - d - d - d - d - d - f
+Vehicle 3: S - d - d - d - d - d - f
+Vehicle 4: S - d - d - d - d - d - d - f
+Vehicle 5: S - d - d - d - d - d - f
+
+Used vehicles: 6
+Vehicle numbers: 0 1 2 3 4 5 
+
+size of n: 30
+
+size of m: 15
+
+*************
+
+
+Served parcels: 0
+
+Unserved parcels: 15
+
+*************
+
+Total time: 19.695121951219512
+
+Total passenger time: 14.373170731707319
+
+Total parcel time: 0.000000000000000
+
+Total combined transportation time: 0.000000000000000
+
+Total idle time: 5.321951219512195
+
+*************
+
+Total distance: 602.499999999999886
+
+Total passenger distance: 384.299999999999898
+
+Total parcel distance: 0.000000000000000
+
+Total combined transportation distance: 0.000000000000000
+
+Total idle distance: 218.199999999999989
+
+*************
+
+Waiting time passenger: 28.304878048780502
+
+Waiting time goods: 0.000000000000000
+
+Total waiting time: 28.304878048780502

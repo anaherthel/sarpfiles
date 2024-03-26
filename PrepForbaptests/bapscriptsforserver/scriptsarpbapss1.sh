@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dirInstancias='data/C1/sf_data'
+dirInstancias='data/C1/sfsarp'
 dirSol='sol/sol_sfsarps1'
 output='bap0ssfsarp.txt'
 #runs=10
@@ -16,7 +16,7 @@ cat /dev/null > $output
 		do
 #			echo "Solving: " ${arquivo} ":" >> $output #output pra saber que instancia ta sendo rodada
 #			echo "Scenario: 1A bundle "  >> $output
-			./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i ${dirInstancias}/${arquivo} --cutOffValue $(cat ${dirSol}/${arquivo}) --scenario=0 >> $output
+			./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i ${dirInstancias}/${arquivo} --cutOffValue $(cat ${dirSol}/${arquivo}) --useBundleRCSP=false >> $output
 
 			#./exeSARP ${dirInstancias}/${arquivo} 2MM node >> $output
 		done

@@ -14,6 +14,7 @@
 #include "functions.h"
 #include "modelnode.h"
 #include "modelbundle.h"
+#include "modelbundle2.h"
 #include "modeltwostage.h"
 #include "mipnode.h"
 #include "hbundle.h"

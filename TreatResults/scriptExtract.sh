@@ -12,7 +12,7 @@ mkdir -p ${dirDest}/${dist}
 mkdir -p ${dirDest}/${time}
 mkdir -p ${dirDest}/${detours}
 
-for i in $(ls ${dirTestes}/1Ams*.txt)
+for i in $(ls ${dirTestes}/bpass*.txt)
 	do
 		fileid=$(echo $i | cut -d '/' -f 2 | cut -d '.' -f 1)
 

@@ -987,12 +987,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         
-        cout << "Earlier // Later: " << endl;
+        //cout << "Earlier // Later: " << endl;
 
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
-        }
-        cout << endl;
+        //for (int i = 0; i < nodeVec.size(); i++){
+        //    cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
+        //}
+        //cout << endl;
         //getchar();
 
         //cout << "Service times: " << endl;
@@ -1002,10 +1002,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // getchar();
 
-        cout << "Profits: " << endl;
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << i << ": " << nodeVec[i].profit << endl;
-        }
+        //cout << "Profits: " << endl;
+        //for (int i = 0; i < nodeVec.size(); i++){
+        //    cout << i << ": " << nodeVec[i].profit << endl;
+        //}
 
         // getchar();
 
@@ -1045,11 +1045,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // }
     // getchar();
 
-    //cout << "\nTime windows: " << endl;
+    cout << "\nTime windows: " << endl;
 
-    //for (int i = 0; i < nodeVec.size(); i++){
-    //    cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
-    //}
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
+    }
 
     // // cout << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
