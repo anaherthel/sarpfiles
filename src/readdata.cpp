@@ -1045,11 +1045,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // }
     // getchar();
 
-    cout << "\nTime windows: " << endl;
+    //cout << "\nTime windows: " << endl;
 
-    for (int i = 0; i < nodeVec.size(); i++){
-        cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
-    }
+    //for (int i = 0; i < nodeVec.size(); i++){
+    //    cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
+    //}
 
     // // cout << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
