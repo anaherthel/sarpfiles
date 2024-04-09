@@ -23,7 +23,7 @@
 #include <ctime>
 #include <unistd.h>
 #include "readdata.h"
-#include "functions.h"
+#include "SarpADS.h"
 
 using namespace std;
 
@@ -38,7 +38,7 @@ struct bundleStat{
 
 	vector< vector< pair<int,int> > > bArcPlus; //vector of size equal to requests, containing the arcs that start with i.
 	vector< vector< pair<int,int> > > bArcMinus;//vector of size equal to requests, containing the arcs that end with i.
-	vector< vector< vector< pair<int,int> > > > vArcPlus; //arcs leaving i that can be travelled by k. (Vector of pairs contais the  arcs; then vec of size K, then vec of size of bundle)
+	vector< vector< vector< pair<int,int> > > > vArcPlus; //arcs leaving i that can be travelled by k. (For each bundle, for each available vehicle, the vector of arcs that can be served by that vehicle, that start on bundle i)
 	vector< vector< vector< pair<int,int> > > > vArcMinus;
 	vector< vector< vector<int> > > arcV; //set of vehicles that can travel arc a
 	vector< vector<int> > parcelBundleVec;
@@ -51,6 +51,8 @@ struct bundleStat{
 	vector<int> vecofPass;
 	vector< vector<int> > vecofPU;
 	vector< vector<int> > vecofDL;
+
+	
 };
 
 struct clSt{

@@ -97,8 +97,7 @@ void sarpSolution::printUnserved(){
             cout << unserved[i] << endl;
         }
     }
-
-}
+}   
 
 void sarpSolution::printCosts(){
     cout << "Cost of routes: " << endl;

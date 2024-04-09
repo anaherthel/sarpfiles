@@ -22,20 +22,24 @@
 #include <sys/time.h>
 #include <ctime>
 #include <unistd.h>
-#include "functions.h"
+#include "SarpADS.h"
 #include "mipbundle.h"
 #include "bundleData.h"
 
 using namespace std;
 
+//generate bundles and organize them into clusters
 void makeBundles (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, vector< vector<bParcelStruct> > &clsParcel, probStat* problem);
+//calculate bundles profits (for bundles of size 1 and 2, the profit is the one from the first node)
 void bundleProfit(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
 void initVecs (instanceStat *inst, vector< vector<bParcelStruct> > &clsParcel, bundleStat *bStat, probStat* problem);
 void initArcs (instanceStat *inst, bundleStat *bStat, clSt *cStat);
 void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem);
 void feasibleClusterArcs (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem);
 void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem);
+//obtain start and end times of each bundle 
 void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem);
+//obtain first and last elements of each bundle
 void makeBundleReference (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
 void makeSmallerProblem(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, int p, vector< vector<bParcelStruct> > &clsParcel, probStat* problem, int Q);
 bool compareCosts(const bParcelStruct &a, const bParcelStruct &b);

@@ -1,0 +1,3951 @@
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-50-1.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-50-1
+Instance type: sf_data
+K: 3
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 3060 coefficients.
+Reduced MIP has 3159 rows, 1204890 columns, and 5996121 nonzeros.
+Reduced MIP has 1204890 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 7.57 sec. (4643.11 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 3159 rows, 1204890 columns, and 5996121 nonzeros.
+Reduced MIP has 1204890 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 15.85 sec. (6083.76 ticks)
+Probing time = 4.52 sec. (1197.52 ticks)
+Clique table members: 2477379.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 32.14 sec. (32879.10 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      115.7277    46                    115.7277   119022         
+      0     0      115.7277    46                 ZeroHalf: 1   119038         
+      0     0      115.7277    46                     Cuts: 8   119056         
+*     0+    0                          115.7205      115.7277             0.01%
+
+Clique cuts applied:  1
+Zero-half cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =  195.32 sec. (143169.44 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  195.32 sec. (143169.44 ticks)
+
+Sol status: Optimal
+ Tree_Size: 2
+ Total Time: 178.96
+ LB: 115.72
+ UB: 115.728
+
+Obj Val: 115.720494590732
+
+Solve Time: 178.96
+
+x(384, 700, 0)
+x(454, 991, 0)
+x(573, 1023, 0)
+x(700, 454, 0)
+x(761, 573, 0)
+x(991, 761, 0)
+x(1020, 384, 0)
+x(51, 132, 1)
+x(132, 829, 1)
+x(215, 927, 1)
+x(498, 51, 1)
+x(829, 1024, 1)
+x(927, 498, 1)
+x(1021, 215, 1)
+x(26, 898, 2)
+x(182, 1025, 2)
+x(288, 511, 2)
+x(347, 813, 2)
+x(511, 182, 2)
+x(650, 347, 2)
+x(813, 26, 2)
+x(898, 288, 2)
+x(1022, 650, 2)
+
+
+Customer profit: 78.080978725098
+Parcel profit: 114.938388428513
+Costs: 77.2988725628798
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 120 - 46 - 7 - 96 - 56 - 13 - 106 - 65 - 8 - 115 - 41 - 19 - 91 - 66 - 14 - 116 - 31 - 11 - 81 - 123 - Total time: 6.17321885893472
+Vehicle 1: 121 - 30 - 4 - 80 - 28 - 18 - 78 - 58 - 9 - 108 - 1 - 49 - 2 - 99 - 32 - 16 - 82 - 124 - Total time: 6.14633722900165
+Vehicle 2: 122 - 57 - 12 - 107 - 60 - 6 - 110 - 67 - 15 - 117 - 45 - 0 - 95 - 50 - 17 - 100 - 52 - 5 - 102 - 20 - 10 - 70 - 48 - 3 - 98 - 125 - Total time: 7.86729005677289
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - P - d - D - d - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+
+Used vehicles: 3
+Vehicle numbers: 0 1 2 
+
+size of n: 20
+
+size of m: 50
+
+*************
+
+
+Served parcels: 19
+
+Unserved parcels: 31
+
+*************
+
+Total time: 11.166853414298
+
+Total passenger time: 0.193007422404471
+
+Total parcel time: 5.69119842187235
+
+Total combined transportation time: 3.70861768350473
+
+Total idle time: 1.57402988651647
+
+*************
+
+Total distance: 191.340989986219
+
+Total passenger distance: 1.07997098524998
+
+Total parcel distance: 103.505801963433
+
+Total combined transportation distance: 22.2199916903605
+
+Total idle distance: 64.5352253471753
+
+*************
+
+Waiting time passenger: 0.0251080520088305
+
+Waiting time goods: 12.8080385336931
+
+Total waiting time: 12.833146585702
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-50-2.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-50-2
+Instance type: sf_data
+K: 4
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 8 columns.
+MIP Presolve modified 4080 coefficients.
+Reduced MIP has 4182 rows, 1594176 columns, and 7934080 nonzeros.
+Reduced MIP has 1594176 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 8.61 sec. (6248.76 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 4182 rows, 1594176 columns, and 7934080 nonzeros.
+Reduced MIP has 1594176 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 16.22 sec. (8142.50 ticks)
+Probing time = 4.85 sec. (1427.16 ticks)
+Clique table members: 2841763.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 47.56 sec. (50963.11 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      130.0043    82                    130.0043   161906         
+*     0+    0                          128.7655      130.0043             0.96%
+      0     0      130.0043    82      128.7655       Cuts: 7   161962    0.96%
+      0     0      130.0043    82      128.7655       Cuts: 2   161963    0.96%
+*     0+    0                          129.9964      130.0043             0.01%
+      0     0        cutoff            129.9964      130.0043   161963    0.01%
+
+Clique cuts applied:  2
+Cover cuts applied:  1
+Zero-half cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =  123.34 sec. (98290.65 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  123.34 sec. (98290.65 ticks)
+
+Sol status: Optimal
+ Tree_Size: 2
+ Total Time: 119.42
+ LB: 129.996
+ UB: 130.004
+
+Obj Val: 129.996372692429
+
+Solve Time: 119.42
+
+x(68, 915, 0)
+x(204, 857, 0)
+x(459, 204, 0)
+x(857, 68, 0)
+x(915, 1024, 0)
+x(1020, 459, 0)
+x(102, 688, 1)
+x(255, 102, 1)
+x(458, 1025, 1)
+x(571, 780, 1)
+x(688, 571, 1)
+x(780, 458, 1)
+x(1021, 255, 1)
+x(200, 752, 2)
+x(315, 1026, 2)
+x(388, 926, 2)
+x(752, 315, 2)
+x(926, 200, 2)
+x(1022, 388, 2)
+x(45, 1027, 3)
+x(510, 45, 3)
+x(619, 510, 3)
+x(997, 619, 3)
+x(1023, 997, 3)
+
+
+Customer profit: 94.3882328362346
+Parcel profit: 89.0829894222848
+Costs: 53.4748495660908
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 120 - 9 - 4 - 60 - 16 - 110 - 36 - 1 - 86 - 67 - 17 - 117 - 124 - Total time: 7.80335637601813
+Vehicle 1: 121 - 5 - 2 - 44 - 13 - 94 - 29 - 11 - 79 - 34 - 15 - 84 - 69 - 8 - 119 - 125 - Total time: 7.55136641703618
+Vehicle 2: 122 - 50 - 7 - 100 - 27 - 18 - 77 - 66 - 3 - 116 - 57 - 14 - 107 - 28 - 6 - 78 - 126 - Total time: 7.58894951940762
+Vehicle 3: 123 - 47 - 19 - 97 - 26 - 12 - 76 - 10 - 64 - 0 - 114 - 127 - Total time: 7.55214962602788
+
+
+Solution structure: 
+Vehicle 0: S - d - d - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - d - d - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 3: S - P - d - D - P - d - D - d - P - d - D - f
+
+Used vehicles: 4
+Vehicle numbers: 0 1 2 3 
+
+size of n: 20
+
+size of m: 50
+
+*************
+
+
+Served parcels: 15
+
+Unserved parcels: 35
+
+*************
+
+Total time: 9.93476878172868
+
+Total passenger time: 1.43010599689283
+
+Total parcel time: 4.14156967356705
+
+Total combined transportation time: 3.16930490752456
+
+Total idle time: 1.19378820374424
+
+*************
+
+Total distance: 168.158853384209
+
+Total passenger distance: 24.4676792059395
+
+Total parcel distance: 67.3043566162489
+
+Total combined transportation distance: 27.441501208507
+
+Total idle distance: 48.9453163535138
+
+*************
+
+Waiting time passenger: 1.0840667346134
+
+Waiting time goods: 20.9811644836579
+
+Total waiting time: 22.0652312182713
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-50-3.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-50-3
+Instance type: sf_data
+K: 3
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 3060 coefficients.
+Reduced MIP has 3159 rows, 1188171 columns, and 5912865 nonzeros.
+Reduced MIP has 1188171 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 6.85 sec. (4568.50 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 3159 rows, 1188171 columns, and 5912865 nonzeros.
+Reduced MIP has 1188171 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 12.42 sec. (5874.27 ticks)
+Probing time = 4.51 sec. (1145.49 ticks)
+Clique table members: 2293440.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 48.31 sec. (55280.89 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      162.3617      162.3617   149209    0.00%
+Elapsed time = 88.48 sec. (76093.89 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =   88.55 sec. (76152.75 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =   88.55 sec. (76152.75 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 86.56
+ LB: 162.362
+ UB: 162.362
+
+Obj Val: 162.361724424806
+
+Solve Time: 86.56
+
+x(16, 264, 0)
+x(128, 1023, 0)
+x(264, 856, 0)
+x(578, 128, 0)
+x(856, 578, 0)
+x(1020, 16, 0)
+x(234, 335, 1)
+x(335, 983, 1)
+x(481, 556, 1)
+x(556, 711, 1)
+x(711, 1024, 1)
+x(763, 802, 1)
+x(802, 234, 1)
+x(983, 481, 1)
+x(1021, 763, 1)
+x(82, 1025, 2)
+x(156, 404, 2)
+x(404, 427, 2)
+x(427, 939, 2)
+x(617, 82, 2)
+x(902, 617, 2)
+x(939, 902, 2)
+x(1022, 156, 2)
+
+
+Customer profit: 97.9837641066153
+Parcel profit: 148.382409588498
+Costs: 84.0044492703072
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 120 - 35 - 0 - 85 - 28 - 5 - 78 - 59 - 16 - 109 - 36 - 11 - 86 - 45 - 2 - 95 - 123 - Total time: 7.23138064274209
+Vehicle 1: 121 - 68 - 14 - 118 - 56 - 15 - 106 - 49 - 4 - 99 - 48 - 6 - 98 - 33 - 19 - 83 - 41 - 9 - 91 - 65 - 10 - 115 - 67 - 13 - 117 - 124 - Total time: 7.53921875896229
+Vehicle 2: 122 - 22 - 3 - 72 - 66 - 7 - 116 - 38 - 8 - 88 - 40 - 18 - 90 - 54 - 17 - 104 - 24 - 12 - 74 - 50 - 1 - 100 - 125 - Total time: 7.45892335855139
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+
+Used vehicles: 3
+Vehicle numbers: 0 1 2 
+
+size of n: 20
+
+size of m: 50
+
+*************
+
+
+Served parcels: 20
+
+Unserved parcels: 30
+
+*************
+
+Total time: 12.5407032030212
+
+Total passenger time: 0
+
+Total parcel time: 5.6752167936767
+
+Total combined transportation time: 4.7532633336164
+
+Total idle time: 2.11222307572806
+
+*************
+
+Total distance: 240.835497990534
+
+Total passenger distance: 0
+
+Total parcel distance: 96.0172218740779
+
+Total combined transportation distance: 58.2171300116058
+
+Total idle distance: 86.6011461048506
+
+*************
+
+Waiting time passenger: 0
+
+Waiting time goods: 11.4592967969788
+
+Total waiting time: 11.4592967969788
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-50-4.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-50-4
+Instance type: sf_data
+K: 3
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 3060 coefficients.
+Reduced MIP has 3159 rows, 1211094 columns, and 6027075 nonzeros.
+Reduced MIP has 1211094 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 7.77 sec. (4619.97 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 3159 rows, 1211094 columns, and 6027075 nonzeros.
+Reduced MIP has 1211094 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 12.43 sec. (5670.59 ticks)
+Elapsed time = 29.34 sec. (10022.01 ticks) for 0% of probing (13 vars fixed)
+Elapsed time = 59.00 sec. (20040.96 ticks) for 0% of probing (39 vars fixed)
+Elapsed time = 89.86 sec. (30057.64 ticks) for 0% of probing (112 vars fixed)
+Elapsed time = 120.18 sec. (40065.34 ticks) for 0% of probing (180 vars fixed)
+Elapsed time = 149.28 sec. (50068.41 ticks) for 0% of probing (216 vars fixed)
+Elapsed time = 179.66 sec. (60100.58 ticks) for 0% of probing (329 vars fixed)
+Elapsed time = 210.36 sec. (70116.34 ticks) for 0% of probing (467 vars fixed)
+Elapsed time = 243.06 sec. (80139.91 ticks) for 0% of probing (666 vars fixed)
+Elapsed time = 276.25 sec. (90144.33 ticks) for 0% of probing (870 vars fixed)
+Elapsed time = 317.45 sec. (100150.43 ticks) for 0% of probing (1366 vars fixed)
+Elapsed time = 358.73 sec. (110154.35 ticks) for 0% of probing (1846 vars fixed)
+Elapsed time = 400.87 sec. (120167.35 ticks) for 0% of probing (2338 vars fixed)
+Elapsed time = 443.47 sec. (130182.17 ticks) for 0% of probing (2834 vars fixed)
+Elapsed time = 485.75 sec. (140191.49 ticks) for 0% of probing (3326 vars fixed)
+Elapsed time = 527.71 sec. (150194.30 ticks) for 0% of probing (3822 vars fixed)
+Elapsed time = 570.12 sec. (160207.73 ticks) for 1% of probing (4321 vars fixed)
+Elapsed time = 612.60 sec. (170219.97 ticks) for 1% of probing (4816 vars fixed)
+Elapsed time = 655.37 sec. (180239.38 ticks) for 1% of probing (5281 vars fixed)
+Elapsed time = 698.05 sec. (190253.33 ticks) for 1% of probing (5731 vars fixed)
+Elapsed time = 738.94 sec. (200259.69 ticks) for 1% of probing (6158 vars fixed)
+Elapsed time = 779.40 sec. (210274.18 ticks) for 1% of probing (6563 vars fixed)
+Elapsed time = 819.91 sec. (220298.42 ticks) for 1% of probing (6979 vars fixed)
+Elapsed time = 859.99 sec. (230316.84 ticks) for 1% of probing (7379 vars fixed)
+Elapsed time = 898.97 sec. (240357.39 ticks) for 1% of probing (7718 vars fixed)
+Elapsed time = 939.39 sec. (250359.41 ticks) for 1% of probing (8049 vars fixed)
+Elapsed time = 977.96 sec. (260378.98 ticks) for 1% of probing (8365 vars fixed)
+Elapsed time = 1014.24 sec. (270395.57 ticks) for 1% of probing (8589 vars fixed)
+Elapsed time = 1050.92 sec. (280429.03 ticks) for 1% of probing (8825 vars fixed)
+Probing fixed 8968 vars, tightened 0 bounds.
+Probing time = 1076.04 sec. (287303.86 ticks)
+Clique table members: 2218032.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 41.34 sec. (47707.22 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      143.1046    72                    143.1046   138682         
+*     0+    0                          139.2960      143.1046             2.73%
+      0     0      143.1046    72      139.2960       Cuts: 3   138713    2.73%
+      0     0      143.1046    72      139.2960   ZeroHalf: 1   138748    2.73%
+*     0+    0                          139.9665      143.1046             2.24%
+*     0+    0                          140.6815      143.1046             1.72%
+      0     0        cutoff            140.6815      143.1046   138748    1.72%
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 1103 rows and 1036095 columns.
+MIP Presolve modified 1633 coefficients.
+Aggregator did 16 substitutions.
+Reduced MIP has 2040 rows, 174983 columns, and 872357 nonzeros.
+Reduced MIP has 174983 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 2.63 sec. (1911.80 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 2040 rows, 174983 columns, and 872357 nonzeros.
+Reduced MIP has 174983 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.88 sec. (752.29 ticks)
+Represolve time = 4.74 sec. (3307.11 ticks)
+Probing fixed 1 vars, tightened 0 bounds.
+Probing time = 1.13 sec. (589.79 ticks)
+Cover probing fixed 4 vars, tightened 0 bounds.
+Clique table members: 331594.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 4.46 sec. (8350.65 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          140.6815      143.1046             1.72%
+      0     0      143.1046    76      140.6815      143.1046   143454    1.72%
+      0     0      143.0509    76      140.6815   ZeroHalf: 4   143689    1.68%
+*     0+    0                          142.1730      143.0509             0.62%
+      0     0      143.0050    76      142.1730      Cuts: 11   143946    0.59%
+*     0+    0                          143.0050      143.0050             0.00%
+      0     0        cutoff            143.0050      143.0050   143946    0.00%
+      0     0        cutoff            143.0050      143.0050   143946    0.00%
+Elapsed time = 1271.71 sec. (454242.06 ticks, tree = 0.01 MB, solutions = 5)
+
+Zero-half cuts applied:  5
+Gomory fractional cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             = 1271.80 sec. (454311.27 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 1271.80 sec. (454311.27 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 1262.47
+ LB: 143.005
+ UB: 143.005
+
+Obj Val: 143.005014284544
+
+Solve Time: 1262.47
+
+x(56, 637, 0)
+x(191, 1023, 0)
+x(253, 56, 0)
+x(296, 664, 0)
+x(318, 296, 0)
+x(579, 767, 0)
+x(637, 191, 0)
+x(664, 579, 0)
+x(767, 253, 0)
+x(1020, 318, 0)
+x(430, 887, 1)
+x(714, 1008, 1)
+x(887, 714, 1)
+x(1008, 1024, 1)
+x(1021, 430, 1)
+x(43, 951, 2)
+x(113, 465, 2)
+x(365, 113, 2)
+x(465, 1025, 2)
+x(537, 851, 2)
+x(851, 43, 2)
+x(951, 365, 2)
+x(1022, 537, 2)
+
+
+Customer profit: 98.8521527372942
+Parcel profit: 115.989989085518
+Costs: 71.8371275382678
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 120 - 31 - 6 - 81 - 60 - 5 - 110 - 20 - 13 - 70 - 37 - 11 - 87 - 21 - 15 - 71 - 68 - 4 - 118 - 24 - 1 - 74 - 44 - 12 - 94 - 57 - 3 - 107 - 123 - Total time: 7.85259185890162
+Vehicle 1: 121 - 41 - 8 - 91 - 39 - 17 - 89 - 14 - 58 - 19 - 108 - 124 - Total time: 6.74895970871617
+Vehicle 2: 122 - 46 - 10 - 96 - 54 - 16 - 104 - 62 - 0 - 112 - 52 - 18 - 102 - 27 - 7 - 77 - 30 - 2 - 80 - 25 - 9 - 75 - 125 - Total time: 6.15240274630331
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - d - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+
+Used vehicles: 3
+Vehicle numbers: 0 1 2 
+
+size of n: 20
+
+size of m: 50
+
+*************
+
+
+Served parcels: 19
+
+Unserved parcels: 31
+
+*************
+
+Total time: 11.7660557902149
+
+Total passenger time: 0.170195824016893
+
+Total parcel time: 5.43951602467463
+
+Total combined transportation time: 4.62022577364225
+
+Total idle time: 1.5361181678811
+
+*************
+
+Total distance: 215.90828739881
+
+Total passenger distance: 0.144695451359282
+
+Total parcel distance: 93.1868236783266
+
+Total combined transportation distance: 59.595923385999
+
+Total idle distance: 62.9808448831251
+
+*************
+
+Waiting time passenger: 0.0631842299330589
+
+Waiting time goods: 12.1707599798521
+
+Total waiting time: 12.2339442097851
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-50-5.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-50-5
+Instance type: sf_data
+K: 5
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 10 columns.
+MIP Presolve modified 5100 coefficients.
+Reduced MIP has 5205 rows, 1852825 columns, and 9220385 nonzeros.
+Reduced MIP has 1852825 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 12.29 sec. (7473.37 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 5205 rows, 1852825 columns, and 9220385 nonzeros.
+Reduced MIP has 1852825 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 24.36 sec. (9542.34 ticks)
+Probing time = 6.25 sec. (1561.56 ticks)
+Clique table members: 3398984.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 72.30 sec. (78513.47 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      153.0596    32                    153.0596   182388         
+*     0+    0                          153.0596      153.0596             0.00%
+      0     0        cutoff            153.0596      153.0596   182388    0.00%
+Elapsed time = 212.78 sec. (161367.02 ticks, tree = 0.01 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =  212.91 sec. (161458.81 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  212.91 sec. (161458.81 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 200.53
+ LB: 153.06
+ UB: 153.06
+
+Obj Val: 153.059557571729
+
+Solve Time: 200.53
+
+x(412, 1025, 0)
+x(798, 887, 0)
+x(859, 412, 0)
+x(887, 859, 0)
+x(1020, 798, 0)
+x(8, 577, 1)
+x(549, 8, 1)
+x(577, 647, 1)
+x(647, 1026, 1)
+x(1021, 549, 1)
+x(163, 493, 2)
+x(375, 1027, 2)
+x(493, 375, 2)
+x(1022, 163, 2)
+x(77, 318, 3)
+x(318, 993, 3)
+x(668, 77, 3)
+x(993, 1028, 3)
+x(1023, 668, 3)
+x(102, 758, 4)
+x(223, 102, 4)
+x(261, 223, 4)
+x(758, 1029, 4)
+x(935, 261, 4)
+x(1024, 935, 4)
+
+
+Customer profit: 98.2299432058479
+Parcel profit: 129.391079657395
+Costs: 74.5614652915145
+
+Number of Vehicles: 5
+
+Solution by nodes: 
+Vehicle 0: 120 - 52 - 15 - 102 - 39 - 17 - 89 - 62 - 16 - 112 - 23 - 8 - 73 - 125 - Total time: 5.22602122896825
+Vehicle 1: 121 - 58 - 10 - 108 - 27 - 0 - 77 - 35 - 11 - 85 - 54 - 12 - 104 - 126 - Total time: 3.73175212300816
+Vehicle 2: 122 - 29 - 3 - 79 - 53 - 9 - 103 - 37 - 7 - 87 - 127 - Total time: 3.5914260027624
+Vehicle 3: 123 - 24 - 13 - 74 - 45 - 1 - 95 - 31 - 6 - 81 - 43 - 19 - 93 - 128 - Total time: 4.19309135520026
+Vehicle 4: 124 - 36 - 18 - 86 - 25 - 5 - 75 - 38 - 4 - 88 - 2 - 63 - 14 - 113 - 129 - Total time: 4.76930021224786
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - f
+Vehicle 3: S - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 4: S - P - d - D - P - d - D - P - d - D - d - P - d - D - f
+
+Used vehicles: 5
+Vehicle numbers: 0 1 2 3 4 
+
+size of n: 20
+
+size of m: 50
+
+*************
+
+
+Served parcels: 19
+
+Unserved parcels: 31
+
+*************
+
+Total time: 11.8838820757617
+
+Total passenger time: 0.17438565915494
+
+Total parcel time: 5.18675729805779
+
+Total combined transportation time: 4.58941165388947
+
+Total idle time: 1.93332746465948
+
+*************
+
+Total distance: 220.739165106229
+
+Total passenger distance: 0.316478692019194
+
+Total parcel distance: 82.8237158870361
+
+Total combined transportation distance: 58.332544476135
+
+Total idle distance: 79.2664260510389
+
+*************
+
+Waiting time passenger: 0.00802655219005111
+
+Waiting time goods: 28.1080913720482
+
+Total waiting time: 28.1161179242383
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-60-1.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-60-1
+Instance type: sf_data
+K: 3
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 3660 coefficients.
+Reduced MIP has 3769 rows, 1724325 columns, and 8588055 nonzeros.
+Reduced MIP has 1724325 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 13.44 sec. (6638.68 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 3769 rows, 1724325 columns, and 8588055 nonzeros.
+Reduced MIP has 1724325 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 25.31 sec. (8608.37 ticks)
+Elapsed time = 34.86 sec. (10055.60 ticks) for 0% of probing (14 vars fixed)
+Elapsed time = 68.62 sec. (20089.88 ticks) for 0% of probing (42 vars fixed)
+Elapsed time = 102.98 sec. (30103.78 ticks) for 0% of probing (81 vars fixed)
+Elapsed time = 136.91 sec. (40147.91 ticks) for 0% of probing (112 vars fixed)
+Elapsed time = 171.12 sec. (50151.08 ticks) for 0% of probing (163 vars fixed)
+Elapsed time = 205.08 sec. (60181.28 ticks) for 0% of probing (207 vars fixed)
+Elapsed time = 239.47 sec. (70237.34 ticks) for 0% of probing (256 vars fixed)
+Elapsed time = 273.53 sec. (80238.08 ticks) for 0% of probing (280 vars fixed)
+Elapsed time = 307.14 sec. (90262.28 ticks) for 0% of probing (291 vars fixed)
+Elapsed time = 341.06 sec. (100289.93 ticks) for 0% of probing (305 vars fixed)
+Probing fixed 307 vars, tightened 0 bounds.
+Probing time = 347.09 sec. (101809.99 ticks)
+Clique table members: 3040318.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 60.55 sec. (70500.87 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      112.3708      112.3708   166888    0.00%
+Elapsed time = 475.21 sec. (200601.19 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =  475.33 sec. (200686.62 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  475.33 sec. (200686.62 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 472.48
+ LB: 112.371
+ UB: 112.371
+
+Obj Val: 112.370763445636
+
+Solve Time: 472.48
+
+x(170, 302, 0)
+x(302, 1194, 0)
+x(443, 170, 0)
+x(517, 778, 0)
+x(778, 443, 0)
+x(878, 517, 0)
+x(921, 878, 0)
+x(1194, 1223, 0)
+x(1220, 921, 0)
+x(14, 610, 1)
+x(61, 1037, 1)
+x(415, 14, 1)
+x(610, 61, 1)
+x(1037, 1151, 1)
+x(1151, 1224, 1)
+x(1221, 415, 1)
+x(239, 549, 2)
+x(357, 793, 2)
+x(549, 979, 2)
+x(671, 239, 2)
+x(793, 671, 2)
+x(979, 1225, 2)
+x(1222, 357, 2)
+
+
+Customer profit: 94.4271858602794
+Parcel profit: 62.318498346837
+Costs: 44.3749207614807
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 140 - 25 - 15 - 85 - 43 - 14 - 103 - 48 - 8 - 108 - 65 - 12 - 125 - 35 - 7 - 95 - 67 - 2 - 127 - 77 - 4 - 137 - 54 - 19 - 114 - 143 - Total time: 7.92764245480687
+Vehicle 1: 141 - 68 - 6 - 128 - 33 - 0 - 93 - 10 - 1 - 17 - 72 - 18 - 132 - 144 - Total time: 7.34386516519637
+Vehicle 2: 142 - 71 - 5 - 131 - 13 - 11 - 75 - 3 - 135 - 9 - 22 - 16 - 82 - 145 - Total time: 7.79161081853384
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - d - d - d - P - d - D - f
+Vehicle 2: S - P - d - D - d - d - P - d - D - d - P - d - D - f
+
+Used vehicles: 3
+Vehicle numbers: 0 1 2 
+
+size of n: 20
+
+size of m: 60
+
+*************
+
+
+Served parcels: 14
+
+Unserved parcels: 46
+
+*************
+
+Total time: 9.28727003495494
+
+Total passenger time: 1.51071052670454
+
+Total parcel time: 3.62434453335897
+
+Total combined transportation time: 3.0903671737781
+
+Total idle time: 1.06184780111332
+
+*************
+
+Total distance: 148.444738099819
+
+Total passenger distance: 20.9391315948863
+
+Total parcel distance: 52.9314592010512
+
+Total combined transportation distance: 31.0383874582356
+
+Total idle distance: 43.5357598456461
+
+*************
+
+Waiting time passenger: 3.73476155449209
+
+Waiting time goods: 10.977968410553
+
+Total waiting time: 14.7127299650451
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-60-2.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-60-2
+Instance type: sf_data
+K: 4
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 8 columns...
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 8 columns.
+MIP Presolve modified 4880 coefficients.
+Reduced MIP has 4992 rows, 2408972 columns, and 11998236 nonzeros.
+Reduced MIP has 2408972 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 88.08 sec. (31191.33 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 4992 rows, 2408972 columns, and 11998236 nonzeros.
+Reduced MIP has 2408972 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 103.77 sec. (33973.41 ticks)
+Elapsed time = 37.91 sec. (10001.98 ticks) for 0% of probing (288 vars fixed)
+Elapsed time = 74.32 sec. (20031.21 ticks) for 0% of probing (542 vars fixed)
+Elapsed time = 110.68 sec. (30092.37 ticks) for 0% of probing (776 vars fixed)
+Elapsed time = 146.92 sec. (40124.90 ticks) for 0% of probing (794 vars fixed)
+Elapsed time = 183.57 sec. (50130.03 ticks) for 0% of probing (940 vars fixed)
+Elapsed time = 220.19 sec. (60130.29 ticks) for 0% of probing (1118 vars fixed)
+Elapsed time = 256.82 sec. (70142.72 ticks) for 0% of probing (1303 vars fixed)
+Elapsed time = 293.62 sec. (80192.67 ticks) for 0% of probing (1484 vars fixed)
+Elapsed time = 330.44 sec. (90242.88 ticks) for 0% of probing (1656 vars fixed)
+Elapsed time = 367.67 sec. (100308.05 ticks) for 0% of probing (1882 vars fixed)
+Elapsed time = 405.01 sec. (110328.37 ticks) for 0% of probing (2141 vars fixed)
+Elapsed time = 442.60 sec. (120346.83 ticks) for 0% of probing (2424 vars fixed)
+Elapsed time = 479.30 sec. (130351.32 ticks) for 0% of probing (2675 vars fixed)
+Elapsed time = 515.13 sec. (140366.52 ticks) for 0% of probing (2920 vars fixed)
+Elapsed time = 550.80 sec. (150395.68 ticks) for 0% of probing (3185 vars fixed)
+Elapsed time = 586.16 sec. (160423.10 ticks) for 0% of probing (3414 vars fixed)
+Elapsed time = 621.36 sec. (170439.49 ticks) for 0% of probing (3616 vars fixed)
+Elapsed time = 657.37 sec. (180456.90 ticks) for 0% of probing (3839 vars fixed)
+Elapsed time = 694.01 sec. (190465.71 ticks) for 0% of probing (4028 vars fixed)
+Elapsed time = 732.13 sec. (200479.90 ticks) for 0% of probing (4301 vars fixed)
+Elapsed time = 770.87 sec. (210499.87 ticks) for 0% of probing (4649 vars fixed)
+Elapsed time = 809.38 sec. (220502.18 ticks) for 0% of probing (4984 vars fixed)
+Elapsed time = 847.59 sec. (230525.84 ticks) for 0% of probing (5305 vars fixed)
+Elapsed time = 885.79 sec. (240552.92 ticks) for 0% of probing (5615 vars fixed)
+Elapsed time = 923.81 sec. (250577.36 ticks) for 0% of probing (5902 vars fixed)
+Elapsed time = 961.99 sec. (260579.88 ticks) for 0% of probing (6202 vars fixed)
+Elapsed time = 1000.07 sec. (270603.16 ticks) for 0% of probing (6503 vars fixed)
+Elapsed time = 1037.85 sec. (280628.85 ticks) for 0% of probing (6793 vars fixed)
+Elapsed time = 1075.87 sec. (290639.94 ticks) for 0% of probing (7074 vars fixed)
+Elapsed time = 1112.67 sec. (300667.60 ticks) for 0% of probing (7322 vars fixed)
+Elapsed time = 1149.04 sec. (310685.13 ticks) for 0% of probing (7557 vars fixed)
+Elapsed time = 1185.72 sec. (320696.66 ticks) for 0% of probing (7811 vars fixed)
+Elapsed time = 1222.77 sec. (330722.43 ticks) for 0% of probing (8030 vars fixed)
+Elapsed time = 1259.77 sec. (340724.85 ticks) for 0% of probing (8267 vars fixed)
+Elapsed time = 1297.23 sec. (350744.48 ticks) for 0% of probing (8482 vars fixed)
+Elapsed time = 1334.20 sec. (360764.13 ticks) for 0% of probing (8697 vars fixed)
+Elapsed time = 1372.28 sec. (370779.09 ticks) for 0% of probing (8961 vars fixed)
+Elapsed time = 1410.74 sec. (380804.98 ticks) for 0% of probing (9212 vars fixed)
+Elapsed time = 1448.49 sec. (390810.54 ticks) for 0% of probing (9424 vars fixed)
+Elapsed time = 1486.73 sec. (400860.67 ticks) for 0% of probing (9635 vars fixed)
+Elapsed time = 1525.00 sec. (410882.30 ticks) for 0% of probing (9877 vars fixed)
+Elapsed time = 1563.71 sec. (420903.94 ticks) for 0% of probing (10136 vars fixed)
+Elapsed time = 1602.30 sec. (430949.31 ticks) for 1% of probing (10376 vars fixed)
+Elapsed time = 1640.45 sec. (440951.67 ticks) for 1% of probing (10629 vars fixed)
+Elapsed time = 1678.52 sec. (450969.75 ticks) for 1% of probing (10871 vars fixed)
+Elapsed time = 1716.39 sec. (460973.92 ticks) for 1% of probing (11090 vars fixed)
+Elapsed time = 1754.15 sec. (470985.24 ticks) for 1% of probing (11320 vars fixed)
+Elapsed time = 1792.03 sec. (481002.40 ticks) for 1% of probing (11532 vars fixed)
+Elapsed time = 1829.67 sec. (491006.69 ticks) for 1% of probing (11750 vars fixed)
+Elapsed time = 1867.93 sec. (501016.94 ticks) for 1% of probing (11969 vars fixed)
+Elapsed time = 1906.65 sec. (511030.66 ticks) for 1% of probing (12198 vars fixed)
+Elapsed time = 1945.83 sec. (521047.44 ticks) for 1% of probing (12444 vars fixed)
+Elapsed time = 1984.71 sec. (531103.59 ticks) for 1% of probing (12661 vars fixed)
+Elapsed time = 2023.93 sec. (541149.55 ticks) for 1% of probing (12910 vars fixed)
+Elapsed time = 2062.13 sec. (551164.42 ticks) for 1% of probing (13141 vars fixed)
+Elapsed time = 2100.07 sec. (561173.95 ticks) for 1% of probing (13395 vars fixed)
+Elapsed time = 2137.65 sec. (571188.80 ticks) for 1% of probing (13609 vars fixed)
+Elapsed time = 2175.81 sec. (581191.13 ticks) for 1% of probing (13851 vars fixed)
+Elapsed time = 2213.50 sec. (591199.24 ticks) for 1% of probing (14094 vars fixed)
+Elapsed time = 2250.96 sec. (601211.09 ticks) for 1% of probing (14310 vars fixed)
+Elapsed time = 2288.64 sec. (611233.99 ticks) for 1% of probing (14557 vars fixed)
+Probing fixed 14639 vars, tightened 0 bounds.
+Probing time = 2302.65 sec. (614435.97 ticks)
+Clique table members: 4528067.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 75.36 sec. (79824.57 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      124.4544    61                    124.4544   180167         
+Heuristic still looking.
+Heuristic still looking.
+      0     2      124.4544    61                    124.4544   180167         
+Elapsed time = 3170.25 sec. (1090728.53 ticks, tree = 0.01 MB, solutions = 0)
+      1     3      124.3817    47                    124.4544   180482         
+      2     4      124.4395    47                    124.4395   180631         
+      3     5      124.2755    62                    124.4395   181344         
+      4     6      124.4395    28                    124.4395   181353         
+      5     7      124.4395    22                    124.4395   181376         
+      6     8      124.1319    18                    124.4395   182834         
+      7     9      121.8600    63                    124.4395   185279         
+      9     9      124.0659    18                    124.4395   185514         
+*    10     6      integral     0      123.1291      124.4395   186361    1.06%
+     10     6      123.1291     0      123.1291      124.4395   186361    1.06%
+     11     7      123.9636    18      123.1291      124.4395   186478    1.06%
+Elapsed time = 7146.72 sec. (5447713.17 ticks, tree = 3.95 MB, solutions = 1)
+     13     7      123.8978    18      123.1291      124.4395   186566    1.06%
+     18     8      123.8481    54      123.1291      124.4395   187178    1.06%
+     20    10      123.7799    18      123.1291      124.4395   187292    1.06%
+     23    11      123.6736    18      123.1291      124.4395   188044    1.06%
+     27    13      123.5844    18      123.1291      124.4395   188622    1.06%
+     33    13      123.5360    39      123.1291      124.4395   188784    1.06%
+     38    14      123.4096    18      123.1291      124.4395   188904    1.06%
+     42    12      124.3867    28      123.1291      124.3867   189063    1.02%
+     45    13        cutoff            123.1291      124.3867   189392    1.02%
+     47    15      123.7415    22      123.1291      124.3817   190654    1.02%
+Elapsed time = 7168.40 sec. (5478143.89 ticks, tree = 10.32 MB, solutions = 1)
+     49    17      123.6982    22      123.1291      124.3817   191301    1.02%
+     50    18      123.9641    67      123.1291      124.3817   191578    1.02%
+     53    19      123.4313    16      123.1291      124.3817   192062    1.02%
+     57    19        cutoff            123.1291      124.3817   192231    1.02%
+
+Performing restart 1
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 3203 rows and 2371472 columns.
+MIP Presolve modified 1804 coefficients.
+Aggregator did 12 substitutions.
+Reduced MIP has 1777 rows, 37488 columns, and 186368 nonzeros.
+Reduced MIP has 37488 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 2.67 sec. (1823.71 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 4 columns.
+Reduced MIP has 1777 rows, 37484 columns, and 186348 nonzeros.
+Reduced MIP has 37484 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.17 sec. (159.28 ticks)
+Represolve time = 4.75 sec. (2823.80 ticks)
+     60     0      124.4395    85      123.1291      Cuts: 14   195715    1.02%
+     60     0      124.4395    85      123.1291       Cuts: 9   195744    1.02%
+     60     0      124.4395    85      123.1291       Cuts: 7   195747    1.02%
+     60     0      124.4395    85      123.1291       Cuts: 8   195763    1.02%
+     60     0      124.4395    85      123.1291       Cuts: 6   195772    1.02%
+     60     0      123.9334    85      123.1291       Cuts: 9   196887    0.65%
+Starting limited solution polishing.
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 695 rows and 23687 columns.
+MIP Presolve modified 319 coefficients.
+Aggregator did 21 substitutions.
+Reduced MIP has 1061 rows, 13776 columns, and 68406 nonzeros.
+Reduced MIP has 13776 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.11 sec. (119.90 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 10 columns.
+Reduced MIP has 1061 rows, 13766 columns, and 68350 nonzeros.
+Reduced MIP has 13766 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.05 sec. (50.80 ticks)
+Represolve time = 1.96 sec. (1481.44 ticks)
+
+Repeating presolve.
+Tried aggregator 2 times.
+MIP Presolve eliminated 112 rows and 4074 columns.
+MIP Presolve modified 32 coefficients.
+Aggregator did 26 substitutions.
+Reduced MIP has 923 rows, 9666 columns, and 48040 nonzeros.
+Reduced MIP has 9666 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.06 sec. (58.37 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 2 columns.
+MIP Presolve modified 9 coefficients.
+Reduced MIP has 923 rows, 9664 columns, and 48030 nonzeros.
+Reduced MIP has 9664 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.04 sec. (35.18 ticks)
+Represolve time = 0.59 sec. (418.42 ticks)
+     60     0      123.9334    55      123.1291       Cuts: 2   200564    0.65%
+     60     0      123.9334    55      123.1291      Cuts: 16   200576    0.65%
+     60     0      123.9334    55      123.1291      Cuts: 10   200645    0.65%
+     60     0      123.9334    55      123.1291       Cuts: 3   200646    0.65%
+     60     0      123.9334    55      123.1291     Covers: 2   200680    0.65%
+     60     0      123.9334    55      123.1291       Cuts: 3   200737    0.65%
+     60     2      123.9334    26      123.1291      123.9334   200737    0.65%
+*    70+    6                          123.4727      123.9045             0.35%
+     71     6      123.5962    99      123.4727      123.6315   202299    0.13%
+
+Zero-half cuts applied:  1
+Lift and project cuts applied:  1
+Gomory fractional cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             = 3148.72 sec. (1086683.29 ticks)
+Sequential b&c:
+  Real time             = 4049.04 sec. (4421744.87 ticks)
+                          ------------
+Total (root+branch&cut) = 7197.76 sec. (5508428.16 ticks)
+
+Sol status: Optimal
+ Tree_Size: 91
+ Total Time: 7177.79
+ LB: 123.473
+ UB: 123.473
+
+Obj Val: 123.47267431128
+
+Solve Time: 7177.79
+
+x(242, 996, 0)
+x(996, 1224, 0)
+x(1133, 242, 0)
+x(1220, 1133, 0)
+x(11, 379, 1)
+x(274, 11, 1)
+x(346, 274, 1)
+x(379, 1225, 1)
+x(559, 646, 1)
+x(646, 346, 1)
+x(1091, 559, 1)
+x(1221, 1091, 1)
+x(432, 735, 2)
+x(735, 799, 2)
+x(799, 1226, 2)
+x(1222, 432, 2)
+x(73, 930, 3)
+x(124, 914, 3)
+x(535, 1166, 3)
+x(716, 535, 3)
+x(914, 716, 3)
+x(930, 124, 3)
+x(1166, 1227, 3)
+x(1223, 73, 3)
+
+
+Customer profit: 95.2157537305023
+Parcel profit: 141.233529165404
+Costs: 112.976608584626
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 140 - 54 - 18 - 114 - 78 - 3 - 138 - 39 - 16 - 99 - 144 - Total time: 7.03064639408662
+Vehicle 1: 141 - 73 - 17 - 133 - 29 - 9 - 89 - 55 - 10 - 115 - 60 - 5 - 120 - 49 - 4 - 109 - 30 - 0 - 90 - 32 - 6 - 92 - 145 - Total time: 7.86352233666288
+Vehicle 2: 142 - 24 - 7 - 84 - 22 - 12 - 82 - 25 - 13 - 85 - 146 - Total time: 7.20722946836968
+Vehicle 3: 143 - 31 - 1 - 91 - 34 - 15 - 94 - 21 - 2 - 81 - 79 - 14 - 139 - 64 - 11 - 124 - 66 - 8 - 126 - 26 - 19 - 86 - 147 - Total time: 6.4464095205494
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - f
+Vehicle 3: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+
+Used vehicles: 4
+Vehicle numbers: 0 1 2 3 
+
+size of n: 20
+
+size of m: 60
+
+*************
+
+
+Served parcels: 20
+
+Unserved parcels: 40
+
+*************
+
+Total time: 13.9584299463515
+
+Total passenger time: 0
+
+Total parcel time: 7.04113981017189
+
+Total combined transportation time: 4.63482044204118
+
+Total idle time: 2.28246969413844
+
+*************
+
+Total distance: 298.962294467079
+
+Total passenger distance: 0
+
+Total parcel distance: 152.020065550381
+
+Total combined transportation distance: 53.3609714570215
+
+Total idle distance: 93.581257459676
+
+*************
+
+Waiting time passenger: 0
+
+Waiting time goods: 18.0415700536485
+
+Total waiting time: 18.0415700536485
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-60-3.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-60-3
+Instance type: sf_data
+K: 3
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 3660 coefficients.
+Reduced MIP has 3769 rows, 1745202 columns, and 8692431 nonzeros.
+Reduced MIP has 1745202 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 11.06 sec. (6608.30 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 3769 rows, 1745202 columns, and 8692431 nonzeros.
+Reduced MIP has 1745202 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 22.65 sec. (8630.02 ticks)
+Elapsed time = 36.60 sec. (10026.35 ticks) for 0% of probing (21 vars fixed)
+Elapsed time = 73.06 sec. (20084.65 ticks) for 0% of probing (22 vars fixed)
+Probing fixed 23 vars, tightened 0 bounds.
+Probing time = 109.12 sec. (29986.82 ticks)
+Clique table members: 3121180.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 54.19 sec. (59859.51 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      130.7645    67                    130.7645   176678         
+*     0+    0                          130.7645      130.7645             0.00%
+      0     0        cutoff            130.7645      130.7645   176678    0.00%
+Elapsed time = 321.87 sec. (183196.98 ticks, tree = 0.01 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =  321.99 sec. (183283.45 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  321.99 sec. (183283.45 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 306.53
+ LB: 130.765
+ UB: 130.765
+
+Obj Val: 130.764535771531
+
+Solve Time: 306.53
+
+x(146, 308, 0)
+x(279, 782, 0)
+x(308, 279, 0)
+x(782, 1223, 0)
+x(1220, 146, 0)
+x(20, 488, 1)
+x(488, 582, 1)
+x(582, 710, 1)
+x(662, 959, 1)
+x(710, 800, 1)
+x(800, 1224, 1)
+x(959, 1108, 1)
+x(1108, 20, 1)
+x(1212, 662, 1)
+x(1221, 1212, 1)
+x(102, 427, 2)
+x(230, 1225, 2)
+x(371, 230, 2)
+x(427, 854, 2)
+x(854, 1083, 2)
+x(1024, 102, 2)
+x(1083, 371, 2)
+x(1222, 1024, 2)
+
+
+Customer profit: 83.2650452276454
+Parcel profit: 111.547503518963
+Costs: 64.0480129750778
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 140 - 43 - 2 - 103 - 22 - 5 - 82 - 54 - 4 - 114 - 69 - 12 - 129 - 143 - Total time: 6.17322865692944
+Vehicle 1: 141 - 72 - 19 - 132 - 71 - 10 - 131 - 63 - 15 - 123 - 29 - 18 - 89 - 39 - 0 - 99 - 8 - 52 - 9 - 112 - 58 - 11 - 118 - 26 - 13 - 86 - 144 - Total time: 7.68630476817636
+Vehicle 2: 142 - 67 - 16 - 127 - 60 - 1 - 120 - 7 - 14 - 65 - 17 - 125 - 24 - 6 - 84 - 66 - 3 - 126 - 145 - Total time: 6.26276557949734
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - d - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - d - d - P - d - D - P - d - D - P - d - D - f
+
+Used vehicles: 3
+Vehicle numbers: 0 1 2 
+
+size of n: 20
+
+size of m: 60
+
+*************
+
+
+Served parcels: 17
+
+Unserved parcels: 43
+
+*************
+
+Total time: 10.3527551301847
+
+Total passenger time: 0.606294668001211
+
+Total parcel time: 4.66749954955334
+
+Total combined transportation time: 3.51715613335289
+
+Total idle time: 1.56180477927722
+
+*************
+
+Total distance: 171.629627004238
+
+Total passenger distance: 4.35808138804965
+
+Total parcel distance: 75.2008148650204
+
+Total combined transportation distance: 28.0367348008019
+
+Total idle distance: 64.0339959503662
+
+*************
+
+Waiting time passenger: 0.230074148876428
+
+Waiting time goods: 13.4171707209389
+
+Total waiting time: 13.6472448698153
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-60-4.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-60-4
+Instance type: sf_data
+K: 4
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 8 columns...
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 8 columns.
+MIP Presolve modified 4880 coefficients.
+Reduced MIP has 4992 rows, 2282712 columns, and 11368836 nonzeros.
+Reduced MIP has 2282712 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 68.44 sec. (28234.06 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 4992 rows, 2282712 columns, and 11368836 nonzeros.
+Reduced MIP has 2282712 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 85.40 sec. (30810.99 ticks)
+Probing time = 8.13 sec. (2071.92 ticks)
+Clique table members: 4078414.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 95.66 sec. (96803.50 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      126.9435      126.9435   194247    0.00%
+Elapsed time = 394.38 sec. (213599.58 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =  394.53 sec. (213712.69 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  394.53 sec. (213712.69 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 390.54
+ LB: 126.943
+ UB: 126.943
+
+Obj Val: 126.943459412523
+
+Solve Time: 390.54
+
+x(40, 1065, 0)
+x(693, 1116, 0)
+x(741, 1224, 0)
+x(1065, 693, 0)
+x(1116, 741, 0)
+x(1220, 40, 0)
+x(82, 642, 1)
+x(305, 793, 1)
+x(415, 82, 1)
+x(551, 1225, 1)
+x(642, 551, 1)
+x(793, 415, 1)
+x(1221, 305, 1)
+x(133, 533, 2)
+x(200, 1194, 2)
+x(533, 1226, 2)
+x(1194, 133, 2)
+x(1222, 200, 2)
+x(299, 892, 3)
+x(430, 1227, 3)
+x(892, 976, 3)
+x(939, 430, 3)
+x(976, 939, 3)
+x(1223, 299, 3)
+
+
+Customer profit: 78.8775526920747
+Parcel profit: 95.1288582838905
+Costs: 47.062951563442
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 140 - 59 - 0 - 119 - 47 - 17 - 107 - 41 - 11 - 101 - 37 - 18 - 97 - 28 - 12 - 88 - 144 - Total time: 7.46420557974435
+Vehicle 1: 141 - 5 - 13 - 68 - 6 - 128 - 40 - 1 - 100 - 51 - 10 - 111 - 21 - 9 - 81 - 145 - Total time: 6.94605304542814
+Vehicle 2: 142 - 36 - 3 - 96 - 54 - 19 - 114 - 30 - 2 - 90 - 64 - 8 - 124 - 146 - Total time: 7.38046365931343
+Vehicle 3: 143 - 74 - 4 - 134 - 57 - 14 - 117 - 16 - 43 - 15 - 103 - 22 - 7 - 82 - 147 - Total time: 7.24994757615632
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - d - d - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 3: S - P - d - D - P - d - D - d - P - d - D - P - d - D - f
+
+Used vehicles: 4
+Vehicle numbers: 0 1 2 3 
+
+size of n: 20
+
+size of m: 60
+
+*************
+
+
+Served parcels: 17
+
+Unserved parcels: 43
+
+*************
+
+Total time: 9.26442825524328
+
+Total passenger time: 0.668707472817293
+
+Total parcel time: 4.34145505303942
+
+Total combined transportation time: 3.2670029547426
+
+Total idle time: 0.987262774643961
+
+*************
+
+Total distance: 127.008225131641
+
+Total passenger distance: 6.91700638550903
+
+Total parcel distance: 61.8329905079497
+
+Total combined transportation distance: 17.78045447778
+
+Total idle distance: 40.4777737604024
+
+*************
+
+Waiting time passenger: 2.38267431432868
+
+Waiting time goods: 20.352897430428
+
+Total waiting time: 22.7355717447567
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-60-5.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-60-5
+Instance type: sf_data
+K: 4
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 8 columns...
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 8 columns.
+MIP Presolve modified 4880 coefficients.
+Reduced MIP has 4992 rows, 2266352 columns, and 11286584 nonzeros.
+Reduced MIP has 2266352 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 69.80 sec. (27415.98 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 4992 rows, 2266352 columns, and 11286584 nonzeros.
+Reduced MIP has 2266352 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 92.67 sec. (30788.87 ticks)
+Probing time = 8.15 sec. (2098.46 ticks)
+Clique table members: 4326139.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 86.71 sec. (92364.11 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0      109.4252      109.4252   218337    0.00%
+Elapsed time = 394.27 sec. (207124.42 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =  394.51 sec. (207236.71 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  394.51 sec. (207236.71 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 390.54
+ LB: 109.425
+ UB: 109.425
+
+Obj Val: 109.42520143002
+
+Solve Time: 390.54
+
+x(205, 329, 0)
+x(329, 1212, 0)
+x(1117, 205, 0)
+x(1212, 1224, 0)
+x(1220, 1117, 0)
+x(132, 1225, 1)
+x(488, 610, 1)
+x(608, 488, 1)
+x(610, 1004, 1)
+x(837, 932, 1)
+x(932, 132, 1)
+x(1004, 837, 1)
+x(1221, 608, 1)
+x(110, 858, 2)
+x(778, 1226, 2)
+x(858, 1050, 2)
+x(1050, 778, 2)
+x(1222, 110, 2)
+x(2, 391, 3)
+x(264, 454, 3)
+x(391, 264, 3)
+x(454, 692, 3)
+x(692, 1227, 3)
+x(1223, 2, 3)
+
+
+Customer profit: 73.8107686655738
+Parcel profit: 98.5544974414858
+Costs: 62.9400646770392
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 140 - 38 - 18 - 98 - 41 - 3 - 101 - 43 - 5 - 103 - 72 - 19 - 132 - 144 - Total time: 5.57536150848468
+Vehicle 1: 141 - 78 - 9 - 138 - 8 - 10 - 47 - 16 - 107 - 63 - 13 - 123 - 36 - 15 - 96 - 29 - 2 - 89 - 145 - Total time: 6.8297263295135
+Vehicle 2: 142 - 68 - 1 - 128 - 23 - 14 - 83 - 32 - 17 - 92 - 65 - 12 - 125 - 146 - Total time: 4.41883962112331
+Vehicle 3: 143 - 21 - 0 - 81 - 44 - 6 - 104 - 39 - 4 - 99 - 46 - 7 - 106 - 40 - 11 - 100 - 147 - Total time: 7.87515724201843
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - d - d - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 3: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+
+Used vehicles: 4
+Vehicle numbers: 0 1 2 3 
+
+size of n: 20
+
+size of m: 60
+
+*************
+
+
+Served parcels: 18
+
+Unserved parcels: 42
+
+*************
+
+Total time: 10.0561283001317
+
+Total passenger time: 0.35124006762849
+
+Total parcel time: 4.7829617935306
+
+Total combined transportation time: 3.36766317009397
+
+Total idle time: 1.55426326887868
+
+*************
+
+Total distance: 152.634593638735
+
+Total passenger distance: 0.734176106101408
+
+Total parcel distance: 73.1014335347547
+
+Total combined transportation distance: 15.0741899738527
+
+Total idle distance: 63.724794024026
+
+*************
+
+Waiting time passenger: 1.1588847963206
+
+Waiting time goods: 20.7849869035476
+
+Total waiting time: 21.9438716998683
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-70-1.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-70-1
+Instance type: sf_data
+K: 5
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 10 columns...
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 10 columns.
+MIP Presolve modified 7100 coefficients.
+Reduced MIP has 7225 rows, 3666965 columns, and 18272580 nonzeros.
+Reduced MIP has 3666965 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 111.09 sec. (47150.98 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 7225 rows, 3666965 columns, and 18272580 nonzeros.
+Reduced MIP has 3666965 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 150.20 sec. (52218.09 ticks)
+Probing time = 12.13 sec. (3189.85 ticks)
+Clique table members: 6870337.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 192.59 sec. (180692.62 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      170.3907    76                    170.3907   312905         
+*     0+    0                          170.1954      170.3907             0.11%
+      0     0      170.3830    76      170.1954       Cuts: 3   314216    0.11%
+*     0     0      integral     0      170.3706       Cuts: 2   315380    0.00%
+      0     0        cutoff            170.3706      170.3706   315380    0.00%
+Elapsed time = 836.38 sec. (475060.60 ticks, tree = 0.01 MB, solutions = 2)
+
+Clique cuts applied:  1
+Gomory fractional cuts applied:  2
+
+Root node processing (before b&c):
+  Real time             =  836.63 sec. (475266.89 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  836.63 sec. (475266.89 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 784.24
+ LB: 170.371
+ UB: 170.371
+
+Obj Val: 170.370649275429
+
+Solve Time: 784.24
+
+x(89, 636, 0)
+x(636, 720, 0)
+x(720, 1425, 0)
+x(1420, 89, 0)
+x(415, 934, 1)
+x(934, 1074, 1)
+x(1074, 1426, 1)
+x(1278, 415, 1)
+x(1421, 1278, 1)
+x(25, 838, 2)
+x(207, 1390, 2)
+x(248, 207, 2)
+x(537, 1427, 2)
+x(838, 248, 2)
+x(898, 537, 2)
+x(1390, 898, 2)
+x(1422, 25, 2)
+x(672, 1261, 3)
+x(994, 1428, 3)
+x(1261, 994, 3)
+x(1423, 672, 3)
+x(284, 1165, 4)
+x(492, 1429, 4)
+x(1165, 492, 4)
+x(1424, 284, 4)
+
+
+Customer profit: 119.714422904774
+Parcel profit: 107.361793317394
+Costs: 56.7055669467362
+
+Number of Vehicles: 5
+
+Solution by nodes: 
+Vehicle 0: 160 - 37 - 1 - 107 - 87 - 8 - 157 - 29 - 10 - 99 - 165 - Total time: 3.31662501368773
+Vehicle 1: 161 - 18 - 79 - 5 - 149 - 30 - 13 - 100 - 28 - 15 - 98 - 166 - Total time: 6.89340654720715
+Vehicle 2: 162 - 44 - 0 - 114 - 76 - 11 - 146 - 54 - 3 - 124 - 84 - 2 - 154 - 60 - 19 - 130 - 65 - 12 - 135 - 59 - 7 - 129 - 167 - Total time: 5.65835772045679
+Vehicle 3: 163 - 52 - 9 - 122 - 73 - 17 - 143 - 14 - 168 - Total time: 4.98763406066227
+Vehicle 4: 164 - 4 - 48 - 16 - 118 - 85 - 6 - 155 - 169 - Total time: 7.93333376096784
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - d - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 3: S - P - d - D - P - d - D - d - f
+Vehicle 4: S - d - P - d - D - P - d - D - f
+
+Used vehicles: 5
+Vehicle numbers: 0 1 2 3 4 
+
+size of n: 20
+
+size of m: 70
+
+*************
+
+
+Served parcels: 17
+
+Unserved parcels: 53
+
+*************
+
+Total time: 11.5231072627333
+
+Total passenger time: 1.94964945790425
+
+Total parcel time: 4.76934175173581
+
+Total combined transportation time: 3.73346662702404
+
+Total idle time: 1.07064942606922
+
+*************
+
+Total distance: 219.614064438733
+
+Total passenger distance: 59.4356277740741
+
+Total parcel distance: 79.3763451545016
+
+Total combined transportation distance: 36.905465041319
+
+Total idle distance: 43.896626468838
+
+*************
+
+Waiting time passenger: 2.64189782258313
+
+Waiting time goods: 25.8349949146835
+
+Total waiting time: 28.4768927372667
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-70-2.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-70-2
+Instance type: sf_data
+K: 3
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 6 columns...
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 6 columns.
+MIP Presolve modified 4260 coefficients.
+Reduced MIP has 4379 rows, 2395422 columns, and 11936955 nonzeros.
+Reduced MIP has 2395422 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 110.21 sec. (33854.10 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 4379 rows, 2395422 columns, and 11936955 nonzeros.
+Reduced MIP has 2395422 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 124.65 sec. (36117.82 ticks)
+Probing time = 10.20 sec. (2298.91 ticks)
+Clique table members: 4916274.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 138.25 sec. (142989.02 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      169.4333    65                    169.4333   230607         
+      0     0      169.4333    65                     Cuts: 6   230645         
+      0     0      169.4333    65                   Covers: 1   230677         
+      0     0      169.4333    65                 ZeroHalf: 3   230678         
+Heuristic still looking.
+Heuristic still looking.
+Heuristic still looking.
+      0     2      169.4333    34                    169.4333   230678         
+Elapsed time = 1400.27 sec. (809110.17 ticks, tree = 0.01 MB, solutions = 0)
+      1     3      169.3855    12                    169.4333   233659         
+      2     4      169.1672    28                    169.4333   235401         
+      3     5      169.2918    14                    169.4333   240504         
+      4     6      169.2788     6                    169.4333   242393         
+*     5     5      integral     0      168.9052      169.4333   246070    0.31%
+      6     6      168.9592    34      168.9052      169.4333   247113    0.31%
+*     7     5      integral     0      168.9508      169.4333   247289    0.29%
+      7     5      168.9508     0      168.9508      169.4333   247289    0.29%
+      8     4    infeasible            168.9508      169.4333   247398    0.29%
+      9     5      169.3556    34      168.9508      169.3556   248029    0.24%
+     10     6      169.3556    34      168.9508      169.3556   248528    0.24%
+Elapsed time = 7060.29 sec. (6405936.50 ticks, tree = 2.69 MB, solutions = 2)
+     11     7      169.2895    18      168.9508      169.3556   249956    0.24%
+     12     8      169.0206    18      168.9508      169.3556   250197    0.24%
+     13     9      169.2895    14      168.9508      169.3556   250199    0.24%
+     14    10      169.2895    12      168.9508      169.3556   250201    0.24%
+     15    11      169.0984    32      168.9508      169.3556   250360    0.24%
+     16    12      168.9874    28      168.9508      169.3556   250391    0.24%
+
+Zero-half cuts applied:  6
+
+Root node processing (before b&c):
+  Real time             = 1356.54 sec. (801679.55 ticks)
+Sequential b&c:
+  Real time             = 5843.61 sec. (5859097.64 ticks)
+                          ------------
+Total (root+branch&cut) = 7200.15 sec. (6660777.19 ticks)
+
+Sol status: Feasible
+ Tree_Size: 30
+ Total Time: 7164.46
+ LB: 168.951
+ UB: 169.356
+
+Obj Val: 168.950821169675
+
+Solve Time: 7164.46
+
+x(61, 987, 0)
+x(256, 677, 0)
+x(434, 1130, 0)
+x(677, 1423, 0)
+x(859, 1136, 0)
+x(987, 256, 0)
+x(1130, 859, 0)
+x(1136, 61, 0)
+x(1420, 434, 0)
+x(376, 1424, 1)
+x(507, 785, 1)
+x(730, 376, 1)
+x(785, 730, 1)
+x(997, 507, 1)
+x(1313, 997, 1)
+x(1421, 1313, 1)
+x(118, 1425, 2)
+x(178, 1397, 2)
+x(303, 178, 2)
+x(570, 118, 2)
+x(1224, 570, 2)
+x(1397, 1224, 2)
+x(1422, 303, 2)
+
+
+Customer profit: 106.113908359984
+Parcel profit: 117.95120736395
+Costs: 55.1142945542584
+
+Number of Vehicles: 3
+
+Solution by nodes: 
+Vehicle 0: 160 - 27 - 6 - 97 - 84 - 15 - 154 - 26 - 12 - 96 - 16 - 80 - 0 - 150 - 83 - 13 - 153 - 62 - 3 - 132 - 57 - 9 - 127 - 163 - Total time: 7.76345992975098
+Vehicle 1: 161 - 54 - 18 - 124 - 22 - 14 - 92 - 29 - 7 - 99 - 23 - 11 - 93 - 39 - 10 - 109 - 40 - 5 - 110 - 164 - Total time: 7.16907024415052
+Vehicle 2: 162 - 38 - 4 - 108 - 55 - 2 - 125 - 67 - 19 - 137 - 36 - 17 - 106 - 21 - 8 - 91 - 66 - 1 - 136 - 165 - Total time: 7.8859475309854
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - d - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+
+Used vehicles: 3
+Vehicle numbers: 0 1 2 
+
+size of n: 20
+
+size of m: 70
+
+*************
+
+
+Served parcels: 19
+
+Unserved parcels: 51
+
+*************
+
+Total time: 11.1901030438057
+
+Total passenger time: 0.510082723796881
+
+Total parcel time: 5.12764908417099
+
+Total combined transportation time: 4.5910686822786
+
+Total idle time: 0.961302553559219
+
+*************
+
+Total distance: 192.294224796033
+
+Total passenger distance: 14.0800583423388
+
+Total parcel distance: 80.4002791176771
+
+Total combined transportation distance: 58.4004826400892
+
+Total idle distance: 39.413404695928
+
+*************
+
+Waiting time passenger: 0.196708241610768
+
+Waiting time goods: 12.6131887145835
+
+Total waiting time: 12.8098969561943
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-70-3.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-70-3
+Instance type: sf_data
+K: 6
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 12 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 12 columns...
+MIP Presolve eliminated 0 rows and 12 columns.
+MIP Presolve modified 8520 coefficients.
+Reduced MIP has 8648 rows, 4270686 columns, and 21280458 nonzeros.
+Reduced MIP has 4270686 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 264.59 sec. (55385.76 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Reduced MIP has 8648 rows, 4270686 columns, and 21280458 nonzeros.
+Reduced MIP has 4270686 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 300.78 sec. (61503.97 ticks)
+Probing time = 16.07 sec. (3449.37 ticks)
+Clique table members: 7572558.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 233.33 sec. (253785.64 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      152.4346    47                    152.4346   354038         
+*     0+    0                          152.4346      152.4346             0.00%
+      0     0        cutoff            152.4346      152.4346   354038    0.00%
+Elapsed time = 1327.71 sec. (483303.27 ticks, tree = 0.01 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             = 1328.06 sec. (483514.90 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 1328.06 sec. (483514.90 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 1318.26
+ LB: 152.435
+ UB: 152.435
+
+Obj Val: 152.434564303727
+
+Solve Time: 1318.26
+
+x(390, 1426, 0)
+x(481, 390, 0)
+x(956, 481, 0)
+x(1292, 956, 0)
+x(1420, 1292, 0)
+x(685, 1427, 1)
+x(1421, 685, 1)
+x(606, 1003, 2)
+x(759, 1228, 2)
+x(1003, 1428, 2)
+x(1083, 606, 2)
+x(1228, 1083, 2)
+x(1422, 759, 2)
+x(138, 857, 3)
+x(169, 239, 3)
+x(239, 1429, 3)
+x(308, 138, 3)
+x(857, 169, 3)
+x(1423, 308, 3)
+x(10, 1372, 4)
+x(1372, 1430, 4)
+x(1424, 10, 4)
+x(540, 1142, 5)
+x(794, 1431, 5)
+x(1142, 794, 5)
+x(1425, 540, 5)
+
+
+Customer profit: 97.5265216238577
+Parcel profit: 166.164149308216
+Costs: 111.256106628346
+
+Number of Vehicles: 6
+
+Solution by nodes: 
+Vehicle 0: 160 - 33 - 18 - 103 - 52 - 13 - 122 - 74 - 6 - 144 - 54 - 5 - 124 - 166 - Total time: 6.28405154760113
+Vehicle 1: 161 - 65 - 9 - 135 - 167 - Total time: 0.561069132316101
+Vehicle 2: 162 - 68 - 10 - 138 - 40 - 17 - 110 - 37 - 15 - 107 - 57 - 8 - 127 - 28 - 14 - 98 - 168 - Total time: 6.04229086727571
+Vehicle 3: 163 - 43 - 4 - 113 - 86 - 1 - 156 - 24 - 12 - 94 - 46 - 2 - 116 - 45 - 3 - 115 - 169 - Total time: 6.23970337693313
+Vehicle 4: 164 - 29 - 0 - 99 - 42 - 19 - 112 - 170 - Total time: 3.86449021674178
+Vehicle 5: 165 - 62 - 7 - 132 - 25 - 16 - 95 - 32 - 11 - 102 - 171 - Total time: 3.53227429736778
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 3: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 4: S - P - d - D - P - d - D - f
+Vehicle 5: S - P - d - D - P - d - D - P - d - D - f
+
+Used vehicles: 6
+Vehicle numbers: 0 1 2 3 4 5 
+
+size of n: 20
+
+size of m: 70
+
+*************
+
+
+Served parcels: 20
+
+Unserved parcels: 50
+
+*************
+
+Total time: 13.9660825589414
+
+Total passenger time: 0
+
+Total parcel time: 6.80553770376571
+
+Total combined transportation time: 4.73369797277953
+
+Total idle time: 2.42684688239617
+
+*************
+
+Total distance: 299.276051583265
+
+Total passenger distance: 0
+
+Total parcel distance: 142.360379187727
+
+Total combined transportation distance: 57.4149502172942
+
+Total idle distance: 99.5007221782432
+
+*************
+
+Waiting time passenger: 0
+
+Waiting time goods: 34.0339174410585
+
+Total waiting time: 34.0339174410585
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-70-4.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-70-4
+Instance type: sf_data
+K: 4
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 8 columns...
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 8 columns.
+MIP Presolve modified 5680 coefficients.
+Reduced MIP has 5802 rows, 3082868 columns, and 15361624 nonzeros.
+Reduced MIP has 3082868 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 108.13 sec. (41238.71 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 5802 rows, 3082868 columns, and 15361624 nonzeros.
+Reduced MIP has 3082868 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 137.24 sec. (45749.17 ticks)
+Probing time = 10.50 sec. (2813.60 ticks)
+Clique table members: 5780105.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 198.67 sec. (209154.13 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      134.8129    60                    134.8129   312785         
+Elapsed time = 38.08 sec. (10023.53 ticks) for 56 of 60 candidates for Gomory cuts
+*     0     0      integral     0      134.8129      Cuts: 10   313344    0.00%
+      0     0        cutoff            134.8129      134.8129   313344    0.00%
+Elapsed time = 873.21 sec. (497724.82 ticks, tree = 0.01 MB, solutions = 1)
+
+Clique cuts applied:  2
+Zero-half cuts applied:  6
+
+Root node processing (before b&c):
+  Real time             =  873.42 sec. (497877.62 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =  873.42 sec. (497877.62 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 849.13
+ LB: 134.813
+ UB: 134.813
+
+Obj Val: 134.812861800686
+
+Solve Time: 849.13
+
+x(62, 355, 0)
+x(173, 972, 0)
+x(355, 787, 0)
+x(744, 1424, 0)
+x(787, 744, 0)
+x(972, 62, 0)
+x(1326, 173, 0)
+x(1420, 1326, 0)
+x(325, 1210, 1)
+x(569, 1124, 1)
+x(1124, 1396, 1)
+x(1210, 1425, 1)
+x(1396, 325, 1)
+x(1421, 569, 1)
+x(71, 700, 2)
+x(516, 859, 2)
+x(700, 516, 2)
+x(859, 1426, 2)
+x(1153, 71, 2)
+x(1422, 1153, 2)
+x(270, 1023, 3)
+x(486, 1427, 3)
+x(1023, 486, 3)
+x(1423, 270, 3)
+
+
+Customer profit: 86.2598999784395
+Parcel profit: 151.283568481021
+Costs: 102.730606658774
+
+Number of Vehicles: 4
+
+Solution by nodes: 
+Vehicle 0: 160 - 67 - 18 - 137 - 50 - 2 - 120 - 68 - 13 - 138 - 81 - 0 - 151 - 5 - 25 - 11 - 95 - 53 - 10 - 123 - 164 - Total time: 6.43044146696806
+Vehicle 1: 161 - 20 - 8 - 90 - 78 - 15 - 148 - 66 - 19 - 136 - 60 - 4 - 130 - 22 - 17 - 92 - 165 - Total time: 5.93648303611517
+Vehicle 2: 162 - 36 - 16 - 106 - 1 - 80 - 9 - 150 - 38 - 7 - 108 - 26 - 12 - 96 - 166 - Total time: 7.95182061432086
+Vehicle 3: 163 - 76 - 3 - 146 - 48 - 14 - 118 - 79 - 6 - 149 - 167 - Total time: 3.46661408383247
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - P - d - D - P - d - D - P - d - D - d - P - d - D - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - d - P - d - D - P - d - D - P - d - D - f
+Vehicle 3: S - P - d - D - P - d - D - P - d - D - f
+
+Used vehicles: 4
+Vehicle numbers: 0 1 2 3 
+
+size of n: 20
+
+size of m: 70
+
+*************
+
+
+Served parcels: 18
+
+Unserved parcels: 52
+
+*************
+
+Total time: 12.6986102384684
+
+Total passenger time: 0.417102937838576
+
+Total parcel time: 6.36531944223432
+
+Total combined transportation time: 3.83449740355806
+
+Total idle time: 2.08169045483747
+
+*************
+
+Total distance: 260.976353110539
+
+Total passenger distance: 3.43455378471497
+
+Total parcel distance: 137.978097131607
+
+Total combined transportation distance: 34.2143935458806
+
+Total idle distance: 85.3493086483364
+
+*************
+
+Waiting time passenger: 1.64916213797742
+
+Waiting time goods: 17.6522276235541
+
+Total waiting time: 19.3013897615315
+
+NameOfInst: Instances_L/sf_data/sfsarp-20-70-5.txt
+RunningScen: 1A
+Instance Name: sfsarp-20-70-5
+Instance type: sf_data
+K: 5
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 10 columns...
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 10 columns.
+MIP Presolve modified 7100 coefficients.
+Reduced MIP has 7225 rows, 3844185 columns, and 19157190 nonzeros.
+Reduced MIP has 3844185 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 212.06 sec. (51874.02 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 7225 rows, 3844185 columns, and 19157190 nonzeros.
+Reduced MIP has 3844185 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 245.86 sec. (58079.04 ticks)
+Probing time = 14.08 sec. (3177.29 ticks)
+Clique table members: 7024704.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 249.33 sec. (295765.68 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      187.4717    24                    187.4717   347648         
+*     0+    0                          187.4717      187.4717             0.00%
+      0     0        cutoff            187.4717      187.4717   347648    0.00%
+Elapsed time = 1132.47 sec. (511628.02 ticks, tree = 0.01 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             = 1132.73 sec. (511818.51 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 1132.73 sec. (511818.51 ticks)
+
+Sol status: Optimal
+ Tree_Size: 1
+ Total Time: 1125.68
+ LB: 187.472
+ UB: 187.472
+
+Obj Val: 187.471666893902
+
+Solve Time: 1125.68
+
+x(329, 1425, 0)
+x(1420, 329, 0)
+x(83, 1426, 1)
+x(491, 938, 1)
+x(544, 83, 1)
+x(699, 491, 1)
+x(811, 699, 1)
+x(938, 544, 1)
+x(1421, 811, 1)
+x(387, 1369, 2)
+x(571, 387, 2)
+x(779, 1427, 2)
+x(1057, 779, 2)
+x(1144, 1057, 2)
+x(1369, 1144, 2)
+x(1422, 571, 2)
+x(64, 886, 3)
+x(886, 1220, 3)
+x(1220, 1428, 3)
+x(1423, 64, 3)
+x(142, 255, 4)
+x(255, 1429, 4)
+x(1135, 1292, 4)
+x(1292, 142, 4)
+x(1424, 1135, 4)
+
+
+Customer profit: 116.907345722804
+Parcel profit: 138.576970154131
+Costs: 68.0126489830335
+
+Number of Vehicles: 5
+
+Solution by nodes: 
+Vehicle 0: 160 - 64 - 4 - 134 - 165 - Total time: 1.87544692083604
+Vehicle 1: 161 - 49 - 11 - 119 - 79 - 9 - 149 - 84 - 6 - 154 - 34 - 13 - 104 - 66 - 7 - 136 - 31 - 1 - 101 - 166 - Total time: 6.52437565431725
+Vehicle 2: 162 - 22 - 8 - 92 - 51 - 5 - 121 - 39 - 19 - 109 - 27 - 16 - 97 - 82 - 14 - 152 - 88 - 10 - 158 - 167 - Total time: 5.90188660594861
+Vehicle 3: 163 - 83 - 0 - 153 - 53 - 12 - 123 - 32 - 17 - 102 - 168 - Total time: 5.5851307186252
+Vehicle 4: 164 - 89 - 15 - 159 - 33 - 18 - 103 - 2 - 61 - 3 - 131 - 169 - Total time: 5.24836315474875
+
+
+Solution structure: 
+Vehicle 0: S - P - d - D - f
+Vehicle 1: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 2: S - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - P - d - D - f
+Vehicle 3: S - P - d - D - P - d - D - P - d - D - f
+Vehicle 4: S - P - d - D - P - d - D - d - P - d - D - f
+
+Used vehicles: 5
+Vehicle numbers: 0 1 2 3 4 
+
+size of n: 20
+
+size of m: 70
+
+*************
+
+
+Served parcels: 19
+
+Unserved parcels: 51
+
+*************
+
+Total time: 12.3358531890401
+
+Total passenger time: 0.604222561297689
+
+Total parcel time: 5.03485870148942
+
+Total combined transportation time: 4.95877896727759
+
+Total idle time: 1.73799295897541
+
+*************
+
+Total distance: 239.269980750645
+
+Total passenger distance: 17.9397916798719
+
+Total parcel distance: 76.595873427733
+
+Total combined transportation distance: 73.476604325048
+
+Total idle distance: 71.257711317992
+
+*************
+
+Waiting time passenger: 2.15408946533309
+
+Waiting time goods: 25.5100573456268
+
+Total waiting time: 27.6641468109599
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-40-1.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-40-1
+Instance type: sf_data
+K: 8
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 16 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 16 columns...
+MIP Presolve eliminated 0 rows and 16 columns.
+MIP Presolve modified 16400 coefficients.
+Reduced MIP has 16564 rows, 13195768 columns, and 65619064 nonzeros.
+Reduced MIP has 13195768 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 115.16 sec. (52053.99 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 88.35 sec. (10102.61 ticks)
+Found 1.981809e+9 symmetric permutations.
+Reduced MIP has 16564 rows, 13195768 columns, and 65619064 nonzeros.
+Reduced MIP has 13195768 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 283.16 sec. (71824.13 ticks)
+Elapsed time = 58.09 sec. (10070.60 ticks) for 0% of probing (1 vars fixed)
+Elapsed time = 105.46 sec. (20269.41 ticks) for 0% of probing (1 vars fixed)
+Elapsed time = 152.53 sec. (30321.75 ticks) for 0% of probing (2 vars fixed)
+Elapsed time = 199.47 sec. (40482.97 ticks) for 0% of probing (4 vars fixed)
+Elapsed time = 247.73 sec. (50716.67 ticks) for 0% of probing (7 vars fixed)
+Elapsed time = 295.59 sec. (60764.70 ticks) for 0% of probing (10 vars fixed)
+Elapsed time = 343.06 sec. (70832.71 ticks) for 0% of probing (13 vars fixed)
+Elapsed time = 391.33 sec. (80977.29 ticks) for 0% of probing (14 vars fixed)
+Elapsed time = 439.54 sec. (91172.85 ticks) for 0% of probing (18 vars fixed)
+Elapsed time = 488.53 sec. (101350.87 ticks) for 0% of probing (19 vars fixed)
+Elapsed time = 536.93 sec. (111572.12 ticks) for 0% of probing (23 vars fixed)
+Elapsed time = 584.43 sec. (121588.66 ticks) for 0% of probing (25 vars fixed)
+Elapsed time = 632.66 sec. (131761.54 ticks) for 0% of probing (29 vars fixed)
+Elapsed time = 680.57 sec. (141832.69 ticks) for 0% of probing (34 vars fixed)
+Elapsed time = 728.58 sec. (151879.05 ticks) for 0% of probing (36 vars fixed)
+Elapsed time = 777.24 sec. (162058.06 ticks) for 0% of probing (47 vars fixed)
+Elapsed time = 825.39 sec. (172132.84 ticks) for 0% of probing (52 vars fixed)
+Elapsed time = 873.78 sec. (182307.29 ticks) for 0% of probing (61 vars fixed)
+Elapsed time = 922.58 sec. (192467.09 ticks) for 0% of probing (72 vars fixed)
+Elapsed time = 971.26 sec. (202626.86 ticks) for 0% of probing (78 vars fixed)
+Elapsed time = 1018.85 sec. (212650.03 ticks) for 0% of probing (83 vars fixed)
+Elapsed time = 1066.44 sec. (222681.83 ticks) for 0% of probing (88 vars fixed)
+Elapsed time = 1114.49 sec. (232818.64 ticks) for 0% of probing (96 vars fixed)
+Elapsed time = 1162.56 sec. (242879.19 ticks) for 0% of probing (101 vars fixed)
+Elapsed time = 1210.56 sec. (253018.14 ticks) for 0% of probing (104 vars fixed)
+Elapsed time = 1259.17 sec. (263220.92 ticks) for 0% of probing (108 vars fixed)
+Elapsed time = 1308.04 sec. (273414.95 ticks) for 0% of probing (114 vars fixed)
+Elapsed time = 1355.64 sec. (283491.74 ticks) for 0% of probing (119 vars fixed)
+Elapsed time = 1404.13 sec. (293704.70 ticks) for 0% of probing (126 vars fixed)
+Elapsed time = 1451.75 sec. (303757.42 ticks) for 0% of probing (131 vars fixed)
+Elapsed time = 1499.32 sec. (313844.84 ticks) for 0% of probing (136 vars fixed)
+Elapsed time = 1546.20 sec. (323892.29 ticks) for 0% of probing (138 vars fixed)
+Elapsed time = 1594.28 sec. (333970.24 ticks) for 0% of probing (143 vars fixed)
+Elapsed time = 1642.11 sec. (344073.52 ticks) for 0% of probing (151 vars fixed)
+Elapsed time = 1690.78 sec. (354275.06 ticks) for 0% of probing (155 vars fixed)
+Elapsed time = 1738.78 sec. (364400.34 ticks) for 0% of probing (163 vars fixed)
+Elapsed time = 1786.69 sec. (374462.52 ticks) for 0% of probing (173 vars fixed)
+Elapsed time = 1835.52 sec. (384701.48 ticks) for 0% of probing (177 vars fixed)
+Elapsed time = 1883.33 sec. (394805.11 ticks) for 0% of probing (180 vars fixed)
+Elapsed time = 1931.99 sec. (404922.62 ticks) for 0% of probing (188 vars fixed)
+Elapsed time = 1980.14 sec. (415097.04 ticks) for 0% of probing (192 vars fixed)
+Elapsed time = 2027.46 sec. (425099.82 ticks) for 0% of probing (199 vars fixed)
+Elapsed time = 2075.37 sec. (435220.54 ticks) for 0% of probing (210 vars fixed)
+Elapsed time = 2123.19 sec. (445443.93 ticks) for 0% of probing (214 vars fixed)
+Elapsed time = 2169.87 sec. (455444.38 ticks) for 0% of probing (221 vars fixed)
+Elapsed time = 2218.08 sec. (465628.88 ticks) for 0% of probing (227 vars fixed)
+Elapsed time = 2266.27 sec. (475681.36 ticks) for 0% of probing (234 vars fixed)
+Elapsed time = 2314.92 sec. (485849.02 ticks) for 0% of probing (245 vars fixed)
+Elapsed time = 2363.14 sec. (495863.77 ticks) for 0% of probing (249 vars fixed)
+Elapsed time = 2410.57 sec. (505899.40 ticks) for 0% of probing (259 vars fixed)
+Elapsed time = 2458.73 sec. (516055.27 ticks) for 0% of probing (273 vars fixed)
+Elapsed time = 2507.56 sec. (526245.45 ticks) for 0% of probing (279 vars fixed)
+Elapsed time = 2554.70 sec. (536270.06 ticks) for 0% of probing (289 vars fixed)
+Elapsed time = 2602.21 sec. (546271.05 ticks) for 0% of probing (298 vars fixed)
+Elapsed time = 2650.35 sec. (556437.33 ticks) for 0% of probing (312 vars fixed)
+Elapsed time = 2698.49 sec. (566513.49 ticks) for 0% of probing (317 vars fixed)
+Elapsed time = 2746.67 sec. (576620.53 ticks) for 0% of probing (322 vars fixed)
+Elapsed time = 2794.81 sec. (586729.09 ticks) for 0% of probing (330 vars fixed)
+Elapsed time = 2843.11 sec. (596932.22 ticks) for 0% of probing (342 vars fixed)
+Elapsed time = 2890.68 sec. (606968.01 ticks) for 0% of probing (349 vars fixed)
+Elapsed time = 2939.08 sec. (617096.73 ticks) for 0% of probing (357 vars fixed)
+Elapsed time = 2987.36 sec. (627253.47 ticks) for 0% of probing (368 vars fixed)
+Elapsed time = 3035.83 sec. (637414.97 ticks) for 0% of probing (376 vars fixed)
+Elapsed time = 3084.80 sec. (647650.15 ticks) for 0% of probing (380 vars fixed)
+Probing fixed 384 vars, tightened 0 bounds.
+Probing time = 3118.88 sec. (653169.21 ticks)
+Clique table members: 24359230.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 2820.59 sec. (2364390.61 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      317.9743   376                    317.9743  1194355         
+Elapsed time = 35.60 sec. (10744.11 ticks) for 12 of 200 candidates for Gomory cuts
+Elapsed time = 70.87 sec. (21451.27 ticks) for 24 of 200 candidates for Gomory cuts
+Elapsed time = 105.68 sec. (32324.76 ticks) for 36 of 200 candidates for Gomory cuts
+Elapsed time = 137.85 sec. (42446.54 ticks) for 47 of 200 candidates for Gomory cuts
+
+Root node processing (before b&c):
+  Real time             = 7203.29 sec. (3500559.21 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7203.29 sec. (3500559.21 ticks)
+
+Sol status: Unknown
+ Tree_Size: 2
+ Total Time: 7169.59
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-40-2.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-40-2
+Instance type: sf_data
+K: 7
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 14 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 14 columns...
+MIP Presolve eliminated 0 rows and 14 columns.
+MIP Presolve modified 14350 coefficients.
+Reduced MIP has 14511 rows, 11453267 columns, and 56946316 nonzeros.
+Reduced MIP has 11453267 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 991.20 sec. (209942.71 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 95.32 sec. (10246.96 ticks)
+Found 1.651507e+8 symmetric permutations.
+Reduced MIP has 14511 rows, 11453267 columns, and 56946316 nonzeros.
+Reduced MIP has 11453267 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 1122.56 sec. (226344.09 ticks)
+Probing time = 56.05 sec. (8731.84 ticks)
+Clique table members: 22603812.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 2129.54 sec. (1797416.40 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      293.9190   418                    293.9190  1000640         
+Elapsed time = 30.23 sec. (10349.64 ticks) for 13 of 200 candidates for Gomory cuts
+Elapsed time = 59.94 sec. (20688.90 ticks) for 26 of 200 candidates for Gomory cuts
+Elapsed time = 90.42 sec. (31113.26 ticks) for 39 of 200 candidates for Gomory cuts
+Elapsed time = 121.30 sec. (41594.65 ticks) for 53 of 200 candidates for Gomory cuts
+Elapsed time = 152.18 sec. (52088.38 ticks) for 66 of 200 candidates for Gomory cuts
+Elapsed time = 183.33 sec. (62602.30 ticks) for 79 of 200 candidates for Gomory cuts
+Elapsed time = 214.43 sec. (73113.98 ticks) for 92 of 200 candidates for Gomory cuts
+Elapsed time = 245.55 sec. (83619.13 ticks) for 105 of 200 candidates for Gomory cuts
+Elapsed time = 277.20 sec. (94166.98 ticks) for 118 of 200 candidates for Gomory cuts
+Elapsed time = 308.32 sec. (104677.02 ticks) for 131 of 200 candidates for Gomory cuts
+Elapsed time = 339.97 sec. (115214.29 ticks) for 144 of 200 candidates for Gomory cuts
+Elapsed time = 371.15 sec. (125690.81 ticks) for 157 of 200 candidates for Gomory cuts
+Elapsed time = 402.87 sec. (136230.71 ticks) for 170 of 200 candidates for Gomory cuts
+Elapsed time = 434.26 sec. (146708.11 ticks) for 183 of 200 candidates for Gomory cuts
+Elapsed time = 465.42 sec. (156997.31 ticks) for 196 of 200 candidates for Gomory cuts
+
+Root node processing (before b&c):
+  Real time             = 7207.50 sec. (3032227.50 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7207.50 sec. (3032227.50 ticks)
+
+Sol status: Unknown
+ Tree_Size: 2
+ Total Time: 7173.49
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-40-3.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-40-3
+Instance type: sf_data
+K: 6
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 12 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 12 columns...
+MIP Presolve eliminated 0 rows and 12 columns.
+MIP Presolve modified 12300 coefficients.
+Reduced MIP has 12458 rows, 9875184 columns, and 49104270 nonzeros.
+Reduced MIP has 9875184 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 103.56 sec. (37137.74 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Reduced MIP has 12458 rows, 9875184 columns, and 49104270 nonzeros.
+Reduced MIP has 9875184 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 186.91 sec. (50133.39 ticks)
+Probing time = 43.22 sec. (7650.11 ticks)
+Clique table members: 19261599.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 1623.10 sec. (1524540.63 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      288.8320   340                    288.8320  1009944         
+Elapsed time = 31.08 sec. (10288.03 ticks) for 15 of 200 candidates for Gomory cuts
+Elapsed time = 62.27 sec. (20681.11 ticks) for 30 of 200 candidates for Gomory cuts
+Elapsed time = 93.24 sec. (31041.79 ticks) for 45 of 200 candidates for Gomory cuts
+Elapsed time = 124.52 sec. (41485.41 ticks) for 60 of 200 candidates for Gomory cuts
+Elapsed time = 156.26 sec. (51904.75 ticks) for 75 of 200 candidates for Gomory cuts
+Elapsed time = 187.67 sec. (62306.69 ticks) for 90 of 200 candidates for Gomory cuts
+Elapsed time = 219.59 sec. (72685.18 ticks) for 105 of 200 candidates for Gomory cuts
+Elapsed time = 251.13 sec. (83144.18 ticks) for 120 of 200 candidates for Gomory cuts
+Elapsed time = 282.96 sec. (93616.85 ticks) for 135 of 200 candidates for Gomory cuts
+Elapsed time = 314.75 sec. (104075.72 ticks) for 150 of 200 candidates for Gomory cuts
+Elapsed time = 346.28 sec. (114517.01 ticks) for 165 of 200 candidates for Gomory cuts
+Elapsed time = 377.97 sec. (124989.46 ticks) for 180 of 200 candidates for Gomory cuts
+Elapsed time = 409.49 sec. (135401.95 ticks) for 195 of 200 candidates for Gomory cuts
+Heuristic still looking.
+Heuristic still looking.
+Heuristic still looking.
+Heuristic still looking.
+
+Root node processing (before b&c):
+  Real time             = 7207.74 sec. (4489972.86 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7207.74 sec. (4489972.86 ticks)
+
+Sol status: Unknown
+ Tree_Size: 2
+ Total Time: 7168.43
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-40-4.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-40-4
+Instance type: sf_data
+K: 9
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 18 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 18 columns...
+MIP Presolve eliminated 0 rows and 18 columns.
+MIP Presolve modified 18450 coefficients.
+Reduced MIP has 18617 rows, 14317425 columns, and 71194455 nonzeros.
+Reduced MIP has 14317425 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 170.64 sec. (56980.51 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 129.71 sec. (10035.48 ticks)
+Found 2.508227e+9 symmetric permutations.
+Reduced MIP has 18617 rows, 14317425 columns, and 71194455 nonzeros.
+Reduced MIP has 14317425 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 376.96 sec. (75397.68 ticks)
+Elapsed time = 80.78 sec. (10213.48 ticks) for 0% of probing (10 vars fixed)
+Elapsed time = 145.43 sec. (20246.99 ticks) for 0% of probing (21 vars fixed)
+Elapsed time = 210.83 sec. (30389.61 ticks) for 0% of probing (26 vars fixed)
+Elapsed time = 274.73 sec. (40441.04 ticks) for 0% of probing (37 vars fixed)
+Elapsed time = 338.84 sec. (50531.88 ticks) for 0% of probing (46 vars fixed)
+Elapsed time = 403.75 sec. (60648.93 ticks) for 0% of probing (53 vars fixed)
+Elapsed time = 469.11 sec. (70815.45 ticks) for 0% of probing (58 vars fixed)
+Elapsed time = 533.52 sec. (80914.79 ticks) for 0% of probing (60 vars fixed)
+Elapsed time = 598.86 sec. (91090.82 ticks) for 0% of probing (65 vars fixed)
+Elapsed time = 664.16 sec. (101319.14 ticks) for 0% of probing (73 vars fixed)
+Elapsed time = 729.48 sec. (111398.15 ticks) for 0% of probing (75 vars fixed)
+Elapsed time = 795.40 sec. (121612.46 ticks) for 0% of probing (78 vars fixed)
+Elapsed time = 861.26 sec. (131812.20 ticks) for 0% of probing (81 vars fixed)
+Elapsed time = 925.94 sec. (141848.95 ticks) for 0% of probing (87 vars fixed)
+Elapsed time = 990.97 sec. (151928.63 ticks) for 0% of probing (91 vars fixed)
+Elapsed time = 1056.44 sec. (162151.90 ticks) for 0% of probing (94 vars fixed)
+Elapsed time = 1122.30 sec. (172340.55 ticks) for 0% of probing (99 vars fixed)
+Elapsed time = 1187.57 sec. (182427.67 ticks) for 0% of probing (103 vars fixed)
+Elapsed time = 1252.71 sec. (192576.37 ticks) for 0% of probing (110 vars fixed)
+Elapsed time = 1318.26 sec. (202658.64 ticks) for 0% of probing (112 vars fixed)
+Elapsed time = 1383.46 sec. (212720.41 ticks) for 0% of probing (116 vars fixed)
+Elapsed time = 1448.74 sec. (222871.42 ticks) for 0% of probing (123 vars fixed)
+Elapsed time = 1513.48 sec. (232918.47 ticks) for 0% of probing (129 vars fixed)
+Elapsed time = 1579.25 sec. (243142.28 ticks) for 0% of probing (134 vars fixed)
+Elapsed time = 1644.74 sec. (253302.32 ticks) for 0% of probing (139 vars fixed)
+Elapsed time = 1710.65 sec. (263523.33 ticks) for 0% of probing (144 vars fixed)
+Elapsed time = 1775.10 sec. (273533.76 ticks) for 0% of probing (152 vars fixed)
+Elapsed time = 1839.51 sec. (283687.89 ticks) for 0% of probing (165 vars fixed)
+Elapsed time = 1904.90 sec. (293800.04 ticks) for 0% of probing (169 vars fixed)
+Elapsed time = 1968.91 sec. (303853.16 ticks) for 0% of probing (183 vars fixed)
+Elapsed time = 2034.13 sec. (314030.42 ticks) for 0% of probing (196 vars fixed)
+Elapsed time = 2099.86 sec. (324259.23 ticks) for 0% of probing (203 vars fixed)
+Elapsed time = 2165.50 sec. (334487.08 ticks) for 0% of probing (212 vars fixed)
+Elapsed time = 2229.65 sec. (344525.32 ticks) for 0% of probing (228 vars fixed)
+Elapsed time = 2294.48 sec. (354627.64 ticks) for 0% of probing (238 vars fixed)
+Elapsed time = 2360.40 sec. (364850.37 ticks) for 0% of probing (243 vars fixed)
+Elapsed time = 2425.60 sec. (375042.54 ticks) for 0% of probing (256 vars fixed)
+Elapsed time = 2490.23 sec. (385127.80 ticks) for 0% of probing (268 vars fixed)
+Elapsed time = 2554.73 sec. (395157.38 ticks) for 0% of probing (273 vars fixed)
+Elapsed time = 2619.47 sec. (405291.04 ticks) for 0% of probing (283 vars fixed)
+Elapsed time = 2684.23 sec. (415417.17 ticks) for 0% of probing (291 vars fixed)
+Elapsed time = 2748.51 sec. (425479.62 ticks) for 0% of probing (305 vars fixed)
+Elapsed time = 2812.41 sec. (435530.51 ticks) for 0% of probing (319 vars fixed)
+Elapsed time = 2877.30 sec. (445647.77 ticks) for 0% of probing (327 vars fixed)
+Elapsed time = 2941.48 sec. (455721.85 ticks) for 0% of probing (337 vars fixed)
+Elapsed time = 3005.25 sec. (465771.84 ticks) for 0% of probing (355 vars fixed)
+Elapsed time = 3070.72 sec. (475926.70 ticks) for 0% of probing (361 vars fixed)
+Elapsed time = 3135.54 sec. (486065.34 ticks) for 0% of probing (375 vars fixed)
+Elapsed time = 3198.69 sec. (496181.89 ticks) for 0% of probing (397 vars fixed)
+Elapsed time = 3264.40 sec. (506355.35 ticks) for 0% of probing (405 vars fixed)
+Elapsed time = 3329.98 sec. (516544.08 ticks) for 0% of probing (413 vars fixed)
+Elapsed time = 3394.49 sec. (526727.26 ticks) for 0% of probing (423 vars fixed)
+Elapsed time = 3459.38 sec. (536910.74 ticks) for 0% of probing (431 vars fixed)
+Elapsed time = 3522.84 sec. (546931.09 ticks) for 0% of probing (444 vars fixed)
+Elapsed time = 3587.71 sec. (557103.08 ticks) for 0% of probing (452 vars fixed)
+Elapsed time = 3652.27 sec. (567310.21 ticks) for 0% of probing (469 vars fixed)
+Elapsed time = 3715.58 sec. (577386.48 ticks) for 0% of probing (489 vars fixed)
+Elapsed time = 3779.38 sec. (587408.84 ticks) for 0% of probing (502 vars fixed)
+Elapsed time = 3842.91 sec. (597482.78 ticks) for 0% of probing (516 vars fixed)
+Elapsed time = 3906.66 sec. (607542.80 ticks) for 0% of probing (536 vars fixed)
+Elapsed time = 3970.38 sec. (617625.41 ticks) for 0% of probing (550 vars fixed)
+Elapsed time = 4033.30 sec. (627672.14 ticks) for 0% of probing (570 vars fixed)
+Elapsed time = 4097.92 sec. (637900.99 ticks) for 0% of probing (583 vars fixed)
+Elapsed time = 4161.23 sec. (647940.96 ticks) for 0% of probing (592 vars fixed)
+Elapsed time = 4226.47 sec. (658158.00 ticks) for 0% of probing (607 vars fixed)
+Elapsed time = 4289.78 sec. (668174.22 ticks) for 0% of probing (618 vars fixed)
+Elapsed time = 4353.68 sec. (678310.84 ticks) for 0% of probing (632 vars fixed)
+Elapsed time = 4417.61 sec. (688406.34 ticks) for 0% of probing (640 vars fixed)
+Elapsed time = 4481.55 sec. (698504.38 ticks) for 0% of probing (645 vars fixed)
+Elapsed time = 4544.54 sec. (708526.60 ticks) for 0% of probing (661 vars fixed)
+Elapsed time = 4609.67 sec. (718772.32 ticks) for 0% of probing (674 vars fixed)
+Elapsed time = 4672.44 sec. (728804.40 ticks) for 0% of probing (694 vars fixed)
+Elapsed time = 4735.81 sec. (738883.20 ticks) for 0% of probing (704 vars fixed)
+Elapsed time = 4799.36 sec. (748932.53 ticks) for 0% of probing (715 vars fixed)
+Elapsed time = 4862.83 sec. (758987.17 ticks) for 0% of probing (722 vars fixed)
+Elapsed time = 4926.28 sec. (769021.81 ticks) for 0% of probing (735 vars fixed)
+Elapsed time = 4988.86 sec. (779112.23 ticks) for 0% of probing (753 vars fixed)
+Elapsed time = 5052.16 sec. (789223.99 ticks) for 0% of probing (763 vars fixed)
+Elapsed time = 5115.08 sec. (799281.62 ticks) for 0% of probing (777 vars fixed)
+Elapsed time = 5178.72 sec. (809411.51 ticks) for 0% of probing (789 vars fixed)
+Elapsed time = 5241.94 sec. (819424.53 ticks) for 0% of probing (800 vars fixed)
+Elapsed time = 5306.25 sec. (829544.35 ticks) for 0% of probing (816 vars fixed)
+Elapsed time = 5370.00 sec. (839664.59 ticks) for 0% of probing (826 vars fixed)
+Elapsed time = 5433.99 sec. (849863.82 ticks) for 0% of probing (834 vars fixed)
+Elapsed time = 5495.75 sec. (860108.16 ticks) for 0% of probing (847 vars fixed)
+Elapsed time = 5542.51 sec. (870193.57 ticks) for 0% of probing (861 vars fixed)
+Elapsed time = 5590.09 sec. (880411.46 ticks) for 0% of probing (874 vars fixed)
+Elapsed time = 5636.64 sec. (890508.21 ticks) for 0% of probing (888 vars fixed)
+Elapsed time = 5683.13 sec. (900590.63 ticks) for 0% of probing (904 vars fixed)
+Elapsed time = 5730.12 sec. (910783.97 ticks) for 0% of probing (912 vars fixed)
+Elapsed time = 5776.32 sec. (920852.62 ticks) for 0% of probing (928 vars fixed)
+Elapsed time = 5823.69 sec. (930976.24 ticks) for 0% of probing (942 vars fixed)
+Elapsed time = 5871.05 sec. (941017.66 ticks) for 0% of probing (949 vars fixed)
+Elapsed time = 5918.76 sec. (951194.78 ticks) for 0% of probing (957 vars fixed)
+Elapsed time = 5966.66 sec. (961426.98 ticks) for 0% of probing (974 vars fixed)
+Elapsed time = 6015.07 sec. (971673.70 ticks) for 0% of probing (991 vars fixed)
+Elapsed time = 6063.41 sec. (981860.27 ticks) for 0% of probing (997 vars fixed)
+Elapsed time = 6110.99 sec. (992006.17 ticks) for 0% of probing (1003 vars fixed)
+Elapsed time = 6157.99 sec. (1002069.82 ticks) for 0% of probing (1016 vars fixed)
+Elapsed time = 6205.50 sec. (1012258.29 ticks) for 0% of probing (1029 vars fixed)
+Elapsed time = 6253.52 sec. (1022411.37 ticks) for 0% of probing (1041 vars fixed)
+Elapsed time = 6301.05 sec. (1032437.74 ticks) for 0% of probing (1050 vars fixed)
+Elapsed time = 6349.35 sec. (1042629.38 ticks) for 0% of probing (1058 vars fixed)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     1   1.00000e+37     0                 6.56774e+07        0         
+
+Root node processing (before b&c):
+  Real time             = 7200.55 sec. (1264485.44 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7200.55 sec. (1264485.44 ticks)
+
+Sol status: Unknown
+ Tree_Size: 2
+ Total Time: 7168.83
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-40-5.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-40-5
+Instance type: sf_data
+K: 7
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 14 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 14 columns...
+MIP Presolve eliminated 0 rows and 14 columns.
+MIP Presolve modified 14350 coefficients.
+Reduced MIP has 14511 rows, 11561025 columns, and 57489376 nonzeros.
+Reduced MIP has 11561025 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 906.75 sec. (214963.09 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Reduced MIP has 14511 rows, 11561025 columns, and 57489376 nonzeros.
+Reduced MIP has 11561025 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 1010.57 sec. (228320.64 ticks)
+Probing time = 49.61 sec. (8713.04 ticks)
+Clique table members: 22020930.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 3470.50 sec. (2934634.06 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   1.00000e+37     0                 4.61897e+07  1272491         
+
+Root node processing (before b&c):
+  Real time             = 7204.38 sec. (3805196.64 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7204.38 sec. (3805196.64 ticks)
+
+Sol status: Unknown
+ Tree_Size: 1
+ Total Time: 7178.46
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-50-1.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-50-1
+Instance type: sf_data
+K: 7
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 14 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 14 columns...
+MIP Presolve eliminated 0 rows and 14 columns.
+MIP Presolve modified 17850 coefficients.
+Reduced MIP has 18021 rows, 18232151 columns, and 90761685 nonzeros.
+Reduced MIP has 18232151 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 253.23 sec. (76731.60 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 87.56 sec. (10113.90 ticks)
+Elapsed time for symmetry detection = 228.09 sec. (20203.98 ticks)
+Found 1.605265e+11 symmetric permutations.
+Reduced MIP has 18021 rows, 18232151 columns, and 90761685 nonzeros.
+Reduced MIP has 18232151 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 538.75 sec. (106418.94 ticks)
+Elapsed time = 72.62 sec. (10164.49 ticks) for 0% of probing (17 vars fixed)
+Elapsed time = 129.14 sec. (20349.77 ticks) for 0% of probing (32 vars fixed)
+Elapsed time = 185.52 sec. (30571.89 ticks) for 0% of probing (43 vars fixed)
+Elapsed time = 247.43 sec. (40686.80 ticks) for 0% of probing (96 vars fixed)
+Elapsed time = 310.92 sec. (50740.22 ticks) for 0% of probing (158 vars fixed)
+Elapsed time = 372.71 sec. (60817.24 ticks) for 0% of probing (199 vars fixed)
+Elapsed time = 433.84 sec. (70834.53 ticks) for 0% of probing (251 vars fixed)
+Elapsed time = 495.63 sec. (80944.43 ticks) for 0% of probing (299 vars fixed)
+Elapsed time = 556.82 sec. (91084.48 ticks) for 0% of probing (348 vars fixed)
+Elapsed time = 616.49 sec. (101096.75 ticks) for 0% of probing (384 vars fixed)
+Elapsed time = 677.03 sec. (111372.07 ticks) for 0% of probing (417 vars fixed)
+Elapsed time = 737.66 sec. (121481.12 ticks) for 0% of probing (458 vars fixed)
+Elapsed time = 798.75 sec. (131624.23 ticks) for 0% of probing (497 vars fixed)
+Elapsed time = 857.94 sec. (141662.95 ticks) for 0% of probing (536 vars fixed)
+Elapsed time = 919.29 sec. (151808.71 ticks) for 0% of probing (580 vars fixed)
+Elapsed time = 980.47 sec. (161857.20 ticks) for 0% of probing (623 vars fixed)
+Elapsed time = 1041.78 sec. (171864.12 ticks) for 0% of probing (673 vars fixed)
+Elapsed time = 1104.05 sec. (181961.71 ticks) for 0% of probing (726 vars fixed)
+Elapsed time = 1164.90 sec. (192074.00 ticks) for 0% of probing (763 vars fixed)
+Elapsed time = 1228.41 sec. (202223.61 ticks) for 0% of probing (816 vars fixed)
+Elapsed time = 1291.05 sec. (212442.07 ticks) for 0% of probing (861 vars fixed)
+Elapsed time = 1352.86 sec. (222552.28 ticks) for 0% of probing (907 vars fixed)
+Elapsed time = 1414.07 sec. (232635.98 ticks) for 0% of probing (948 vars fixed)
+Elapsed time = 1476.83 sec. (242786.76 ticks) for 0% of probing (1004 vars fixed)
+Elapsed time = 1537.78 sec. (252800.05 ticks) for 0% of probing (1047 vars fixed)
+Elapsed time = 1600.04 sec. (262862.63 ticks) for 0% of probing (1095 vars fixed)
+Elapsed time = 1663.32 sec. (273101.91 ticks) for 0% of probing (1147 vars fixed)
+Elapsed time = 1724.08 sec. (283125.35 ticks) for 0% of probing (1190 vars fixed)
+Elapsed time = 1787.46 sec. (293155.25 ticks) for 0% of probing (1254 vars fixed)
+Elapsed time = 1849.35 sec. (303170.13 ticks) for 0% of probing (1304 vars fixed)
+Elapsed time = 1912.40 sec. (313294.83 ticks) for 0% of probing (1355 vars fixed)
+Elapsed time = 1973.53 sec. (323337.69 ticks) for 0% of probing (1403 vars fixed)
+Elapsed time = 2036.39 sec. (333339.75 ticks) for 0% of probing (1460 vars fixed)
+Elapsed time = 2099.62 sec. (343485.73 ticks) for 0% of probing (1511 vars fixed)
+Elapsed time = 2161.34 sec. (353568.55 ticks) for 0% of probing (1557 vars fixed)
+Elapsed time = 2224.25 sec. (363623.21 ticks) for 0% of probing (1612 vars fixed)
+Elapsed time = 2285.14 sec. (373670.43 ticks) for 0% of probing (1655 vars fixed)
+Elapsed time = 2347.73 sec. (383736.28 ticks) for 0% of probing (1713 vars fixed)
+Elapsed time = 2409.29 sec. (393890.39 ticks) for 0% of probing (1755 vars fixed)
+Elapsed time = 2471.67 sec. (403897.32 ticks) for 0% of probing (1805 vars fixed)
+Elapsed time = 2534.73 sec. (414036.30 ticks) for 0% of probing (1861 vars fixed)
+Elapsed time = 2596.39 sec. (424095.01 ticks) for 0% of probing (1912 vars fixed)
+Elapsed time = 2658.65 sec. (434167.76 ticks) for 0% of probing (1968 vars fixed)
+Elapsed time = 2719.92 sec. (444225.93 ticks) for 0% of probing (2014 vars fixed)
+Elapsed time = 2781.64 sec. (454302.29 ticks) for 0% of probing (2060 vars fixed)
+Elapsed time = 2844.17 sec. (464346.70 ticks) for 0% of probing (2115 vars fixed)
+Elapsed time = 2905.94 sec. (474365.67 ticks) for 0% of probing (2165 vars fixed)
+Elapsed time = 2968.73 sec. (484484.33 ticks) for 0% of probing (2216 vars fixed)
+Elapsed time = 3029.95 sec. (494598.64 ticks) for 0% of probing (2260 vars fixed)
+Elapsed time = 3091.97 sec. (504682.16 ticks) for 0% of probing (2311 vars fixed)
+Elapsed time = 3154.17 sec. (514691.91 ticks) for 0% of probing (2361 vars fixed)
+Elapsed time = 3218.20 sec. (524868.40 ticks) for 0% of probing (2417 vars fixed)
+Elapsed time = 3281.37 sec. (534993.13 ticks) for 0% of probing (2468 vars fixed)
+Elapsed time = 3344.78 sec. (544997.64 ticks) for 0% of probing (2525 vars fixed)
+Elapsed time = 3407.67 sec. (555113.34 ticks) for 0% of probing (2583 vars fixed)
+Elapsed time = 3470.18 sec. (565206.31 ticks) for 0% of probing (2636 vars fixed)
+Elapsed time = 3533.79 sec. (575466.72 ticks) for 0% of probing (2693 vars fixed)
+Elapsed time = 3596.39 sec. (585491.34 ticks) for 0% of probing (2753 vars fixed)
+Elapsed time = 3657.63 sec. (595509.95 ticks) for 0% of probing (2801 vars fixed)
+Elapsed time = 3718.96 sec. (605554.04 ticks) for 0% of probing (2847 vars fixed)
+Elapsed time = 3782.85 sec. (615651.34 ticks) for 0% of probing (2907 vars fixed)
+Elapsed time = 3846.03 sec. (625783.21 ticks) for 0% of probing (2958 vars fixed)
+Elapsed time = 3908.30 sec. (635869.16 ticks) for 0% of probing (3009 vars fixed)
+Elapsed time = 3971.23 sec. (645995.81 ticks) for 0% of probing (3065 vars fixed)
+Elapsed time = 4034.10 sec. (656029.63 ticks) for 0% of probing (3120 vars fixed)
+Elapsed time = 4096.24 sec. (666114.08 ticks) for 0% of probing (3173 vars fixed)
+Elapsed time = 4160.51 sec. (676231.73 ticks) for 0% of probing (3236 vars fixed)
+Elapsed time = 4224.42 sec. (686447.49 ticks) for 0% of probing (3290 vars fixed)
+Elapsed time = 4288.20 sec. (696492.35 ticks) for 0% of probing (3347 vars fixed)
+Elapsed time = 4351.49 sec. (706509.88 ticks) for 0% of probing (3409 vars fixed)
+Elapsed time = 4414.35 sec. (716702.76 ticks) for 0% of probing (3461 vars fixed)
+Elapsed time = 4477.05 sec. (726717.41 ticks) for 0% of probing (3521 vars fixed)
+Elapsed time = 4539.64 sec. (736847.79 ticks) for 0% of probing (3570 vars fixed)
+Elapsed time = 4600.97 sec. (746891.29 ticks) for 0% of probing (3616 vars fixed)
+Elapsed time = 4663.26 sec. (756916.99 ticks) for 0% of probing (3669 vars fixed)
+Elapsed time = 4724.39 sec. (767032.68 ticks) for 0% of probing (3708 vars fixed)
+Elapsed time = 4786.54 sec. (777151.44 ticks) for 0% of probing (3754 vars fixed)
+Elapsed time = 4849.56 sec. (787202.90 ticks) for 0% of probing (3807 vars fixed)
+Elapsed time = 4909.29 sec. (797288.07 ticks) for 0% of probing (3844 vars fixed)
+Elapsed time = 4971.11 sec. (807590.57 ticks) for 0% of probing (3887 vars fixed)
+Elapsed time = 5032.64 sec. (817691.04 ticks) for 0% of probing (3938 vars fixed)
+Elapsed time = 5095.46 sec. (827997.99 ticks) for 0% of probing (3988 vars fixed)
+Elapsed time = 5155.01 sec. (838042.37 ticks) for 0% of probing (4022 vars fixed)
+Elapsed time = 5216.72 sec. (848107.90 ticks) for 0% of probing (4073 vars fixed)
+Elapsed time = 5277.76 sec. (858193.14 ticks) for 0% of probing (4117 vars fixed)
+Elapsed time = 5338.57 sec. (868237.52 ticks) for 0% of probing (4158 vars fixed)
+Elapsed time = 5398.97 sec. (878305.10 ticks) for 0% of probing (4199 vars fixed)
+Elapsed time = 5458.85 sec. (888398.13 ticks) for 0% of probing (4234 vars fixed)
+Elapsed time = 5520.22 sec. (898490.10 ticks) for 0% of probing (4278 vars fixed)
+Elapsed time = 5579.55 sec. (908589.34 ticks) for 0% of probing (4306 vars fixed)
+Elapsed time = 5637.98 sec. (918819.61 ticks) for 0% of probing (4323 vars fixed)
+Elapsed time = 5696.56 sec. (928893.67 ticks) for 0% of probing (4348 vars fixed)
+Elapsed time = 5754.95 sec. (939204.83 ticks) for 0% of probing (4363 vars fixed)
+Elapsed time = 5814.63 sec. (949497.18 ticks) for 0% of probing (4392 vars fixed)
+Elapsed time = 5873.22 sec. (959727.18 ticks) for 0% of probing (4409 vars fixed)
+Elapsed time = 5930.70 sec. (969792.45 ticks) for 0% of probing (4427 vars fixed)
+Elapsed time = 5990.36 sec. (979809.25 ticks) for 0% of probing (4461 vars fixed)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     1   1.00000e+37     0                 6.71908e+07        0         
+
+Root node processing (before b&c):
+  Real time             = 7200.21 sec. (1285858.49 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7200.21 sec. (1285858.49 ticks)
+
+Sol status: Unknown
+ Tree_Size: 2
+ Total Time: 7168.09
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-50-2.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-50-2
+Instance type: sf_data
+K: 9
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 18 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 18 columns...
+MIP Presolve eliminated 0 rows and 18 columns.
+MIP Presolve modified 22950 coefficients.
+Reduced MIP has 23127 rows, 21606903 columns, and 107555409 nonzeros.
+Reduced MIP has 21606903 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 250.84 sec. (87341.14 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 70.49 sec. (10140.00 ticks)
+Elapsed time for symmetry detection = 196.69 sec. (20210.67 ticks)
+Found 4.566087e+12 symmetric permutations.
+Reduced MIP has 23127 rows, 21606903 columns, and 107555409 nonzeros.
+Reduced MIP has 21606903 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 617.89 sec. (126315.13 ticks)
+Elapsed time = 68.85 sec. (10100.04 ticks) for 0% of probing
+Probing time = 94.36 sec. (15478.80 ticks)
+Clique table members: 41045542.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 5783.52 sec. (4577433.36 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   1.00000e+37     0                 7.92922e+07  1546780         
+
+Root node processing (before b&c):
+  Real time             = 7207.97 sec. (4961725.30 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7207.97 sec. (4961725.30 ticks)
+
+Sol status: Unknown
+ Tree_Size: 1
+ Total Time: 7157.39
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-50-3.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-50-3
+Instance type: sf_data
+K: 6
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 12 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 12 columns...
+MIP Presolve eliminated 0 rows and 12 columns.
+MIP Presolve modified 15300 coefficients.
+Reduced MIP has 15468 rows, 15216390 columns, and 75744492 nonzeros.
+Reduced MIP has 15216390 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 1228.16 sec. (260848.71 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 98.92 sec. (10123.31 ticks)
+Found 0 symmetric permutations.
+Reduced MIP has 15468 rows, 15216390 columns, and 75744492 nonzeros.
+Reduced MIP has 15216390 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 1416.30 sec. (278319.44 ticks)
+Elapsed time = 83.37 sec. (10278.53 ticks) for 0% of probing
+Probing time = 91.22 sec. (11498.22 ticks)
+Clique table members: 29735176.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 2030.19 sec. (1950763.38 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   1.00000e+37     0                 5.38280e+07  1114125         
+
+Root node processing (before b&c):
+  Real time             = 7207.05 sec. (3007934.70 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7207.05 sec. (3007934.70 ticks)
+
+Sol status: Unknown
+ Tree_Size: 1
+ Total Time: 7166.89
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-50-4.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-50-4
+Instance type: sf_data
+K: 6
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 12 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 12 columns...
+MIP Presolve eliminated 0 rows and 12 columns.
+MIP Presolve modified 15300 coefficients.
+Reduced MIP has 15468 rows, 15546582 columns, and 77391270 nonzeros.
+Reduced MIP has 15546582 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 1029.70 sec. (248690.38 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 120.11 sec. (10275.68 ticks)
+Found 6.115295e+10 symmetric permutations.
+Reduced MIP has 15468 rows, 15546582 columns, and 77391270 nonzeros.
+Reduced MIP has 15546582 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 1422.68 sec. (274480.42 ticks)
+Elapsed time = 76.86 sec. (10210.84 ticks) for 0% of probing
+Probing time = 86.12 sec. (11761.06 ticks)
+Clique table members: 29479212.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 2593.14 sec. (2221486.05 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   1.00000e+37     0                 6.54836e+07  1358757         
+
+Root node processing (before b&c):
+  Real time             = 7206.05 sec. (3238301.16 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7206.05 sec. (3238301.16 ticks)
+
+Sol status: Unknown
+ Tree_Size: 1
+ Total Time: 7163.6
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-50-5.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-50-5
+Instance type: sf_data
+K: 6
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 12 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 12 columns...
+MIP Presolve eliminated 0 rows and 12 columns.
+MIP Presolve modified 15300 coefficients.
+Reduced MIP has 15468 rows, 16029702 columns, and 79802526 nonzeros.
+Reduced MIP has 16029702 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 505.39 sec. (127217.39 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 85.85 sec. (10175.32 ticks)
+Found 4.777574e+8 symmetric permutations.
+Reduced MIP has 15468 rows, 16029702 columns, and 79802526 nonzeros.
+Reduced MIP has 16029702 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 679.80 sec. (149201.00 ticks)
+Elapsed time = 61.43 sec. (10286.08 ticks) for 0% of probing (1 vars fixed)
+Elapsed time = 108.91 sec. (20370.97 ticks) for 0% of probing (6 vars fixed)
+Elapsed time = 155.89 sec. (30470.05 ticks) for 0% of probing (8 vars fixed)
+Elapsed time = 204.80 sec. (40762.33 ticks) for 0% of probing (15 vars fixed)
+Elapsed time = 252.69 sec. (50855.70 ticks) for 0% of probing (20 vars fixed)
+Elapsed time = 301.31 sec. (61110.99 ticks) for 0% of probing (24 vars fixed)
+Elapsed time = 349.34 sec. (71325.68 ticks) for 0% of probing (33 vars fixed)
+Elapsed time = 396.72 sec. (81643.05 ticks) for 0% of probing (40 vars fixed)
+Elapsed time = 444.04 sec. (91714.21 ticks) for 0% of probing (48 vars fixed)
+Elapsed time = 491.20 sec. (101786.54 ticks) for 0% of probing (53 vars fixed)
+Elapsed time = 538.65 sec. (111829.11 ticks) for 0% of probing (66 vars fixed)
+Elapsed time = 586.58 sec. (121947.66 ticks) for 0% of probing (80 vars fixed)
+Elapsed time = 633.57 sec. (131979.62 ticks) for 0% of probing (82 vars fixed)
+Elapsed time = 681.86 sec. (142141.41 ticks) for 0% of probing (88 vars fixed)
+Elapsed time = 730.19 sec. (152195.55 ticks) for 0% of probing (96 vars fixed)
+Elapsed time = 779.04 sec. (162486.30 ticks) for 0% of probing (103 vars fixed)
+Elapsed time = 828.08 sec. (172801.48 ticks) for 0% of probing (116 vars fixed)
+Elapsed time = 876.50 sec. (182916.34 ticks) for 0% of probing (130 vars fixed)
+Elapsed time = 925.09 sec. (193036.30 ticks) for 0% of probing (144 vars fixed)
+Elapsed time = 972.97 sec. (203134.99 ticks) for 0% of probing (152 vars fixed)
+Elapsed time = 1021.18 sec. (213159.22 ticks) for 0% of probing (165 vars fixed)
+Elapsed time = 1069.66 sec. (223228.41 ticks) for 0% of probing (173 vars fixed)
+Elapsed time = 1118.18 sec. (233306.88 ticks) for 0% of probing (184 vars fixed)
+Elapsed time = 1167.40 sec. (243543.76 ticks) for 0% of probing (202 vars fixed)
+Elapsed time = 1216.29 sec. (253742.10 ticks) for 0% of probing (214 vars fixed)
+Elapsed time = 1264.53 sec. (263763.21 ticks) for 0% of probing (230 vars fixed)
+Elapsed time = 1313.24 sec. (273838.75 ticks) for 0% of probing (255 vars fixed)
+Elapsed time = 1361.83 sec. (283951.37 ticks) for 0% of probing (272 vars fixed)
+Elapsed time = 1411.54 sec. (294253.13 ticks) for 0% of probing (282 vars fixed)
+Elapsed time = 1461.39 sec. (304567.23 ticks) for 0% of probing (298 vars fixed)
+Elapsed time = 1510.40 sec. (314652.35 ticks) for 0% of probing (312 vars fixed)
+Elapsed time = 1560.21 sec. (324899.83 ticks) for 0% of probing (330 vars fixed)
+Elapsed time = 1608.78 sec. (334995.53 ticks) for 0% of probing (344 vars fixed)
+Elapsed time = 1657.45 sec. (345009.51 ticks) for 0% of probing (360 vars fixed)
+Elapsed time = 1705.82 sec. (355020.24 ticks) for 0% of probing (376 vars fixed)
+Elapsed time = 1755.22 sec. (365227.92 ticks) for 0% of probing (388 vars fixed)
+Elapsed time = 1804.07 sec. (375337.63 ticks) for 0% of probing (405 vars fixed)
+Elapsed time = 1854.06 sec. (385565.43 ticks) for 0% of probing (417 vars fixed)
+Elapsed time = 1904.12 sec. (395773.87 ticks) for 0% of probing (432 vars fixed)
+Elapsed time = 1953.93 sec. (406014.23 ticks) for 0% of probing (450 vars fixed)
+Elapsed time = 2003.23 sec. (416183.93 ticks) for 0% of probing (456 vars fixed)
+Elapsed time = 2053.13 sec. (426420.57 ticks) for 0% of probing (474 vars fixed)
+Elapsed time = 2102.82 sec. (436612.63 ticks) for 0% of probing (494 vars fixed)
+Elapsed time = 2151.43 sec. (446632.35 ticks) for 0% of probing (507 vars fixed)
+Elapsed time = 2201.01 sec. (456811.96 ticks) for 0% of probing (519 vars fixed)
+Elapsed time = 2250.66 sec. (467039.45 ticks) for 0% of probing (534 vars fixed)
+Elapsed time = 2300.24 sec. (477184.21 ticks) for 0% of probing (548 vars fixed)
+Elapsed time = 2349.41 sec. (487199.07 ticks) for 0% of probing (564 vars fixed)
+Elapsed time = 2399.05 sec. (497404.85 ticks) for 0% of probing (576 vars fixed)
+Elapsed time = 2448.05 sec. (507502.25 ticks) for 0% of probing (584 vars fixed)
+Elapsed time = 2498.10 sec. (517680.29 ticks) for 0% of probing (604 vars fixed)
+Elapsed time = 2547.81 sec. (527796.34 ticks) for 0% of probing (621 vars fixed)
+Elapsed time = 2596.79 sec. (537808.66 ticks) for 0% of probing (634 vars fixed)
+Elapsed time = 2645.67 sec. (547848.28 ticks) for 0% of probing (653 vars fixed)
+Elapsed time = 2695.25 sec. (557888.08 ticks) for 0% of probing (672 vars fixed)
+Elapsed time = 2745.43 sec. (568158.90 ticks) for 0% of probing (679 vars fixed)
+Elapsed time = 2794.56 sec. (578181.39 ticks) for 0% of probing (695 vars fixed)
+Elapsed time = 2844.12 sec. (588281.17 ticks) for 0% of probing (706 vars fixed)
+Elapsed time = 2893.59 sec. (598425.13 ticks) for 0% of probing (723 vars fixed)
+Elapsed time = 2942.89 sec. (608468.30 ticks) for 0% of probing (742 vars fixed)
+Elapsed time = 2992.33 sec. (618482.20 ticks) for 0% of probing (758 vars fixed)
+Elapsed time = 3042.04 sec. (628607.41 ticks) for 0% of probing (772 vars fixed)
+Elapsed time = 3092.47 sec. (638865.92 ticks) for 0% of probing (787 vars fixed)
+Elapsed time = 3141.17 sec. (648972.20 ticks) for 0% of probing (798 vars fixed)
+Elapsed time = 3190.89 sec. (659206.49 ticks) for 0% of probing (810 vars fixed)
+Elapsed time = 3239.55 sec. (669304.14 ticks) for 0% of probing (821 vars fixed)
+Elapsed time = 3288.65 sec. (679434.68 ticks) for 0% of probing (832 vars fixed)
+Elapsed time = 3338.46 sec. (689655.31 ticks) for 0% of probing (846 vars fixed)
+Elapsed time = 3387.27 sec. (699799.07 ticks) for 0% of probing (857 vars fixed)
+Elapsed time = 3436.19 sec. (709870.31 ticks) for 0% of probing (873 vars fixed)
+Elapsed time = 3486.35 sec. (720111.78 ticks) for 0% of probing (885 vars fixed)
+Elapsed time = 3535.83 sec. (730272.41 ticks) for 0% of probing (904 vars fixed)
+Elapsed time = 3584.97 sec. (740334.59 ticks) for 0% of probing (922 vars fixed)
+Elapsed time = 3634.40 sec. (750393.09 ticks) for 0% of probing (935 vars fixed)
+Elapsed time = 3684.91 sec. (760687.73 ticks) for 0% of probing (955 vars fixed)
+Elapsed time = 3734.97 sec. (770914.34 ticks) for 0% of probing (972 vars fixed)
+Elapsed time = 3783.62 sec. (780929.57 ticks) for 0% of probing (982 vars fixed)
+Elapsed time = 3832.97 sec. (790993.69 ticks) for 0% of probing (992 vars fixed)
+Elapsed time = 3882.95 sec. (801170.61 ticks) for 0% of probing (1006 vars fixed)
+Elapsed time = 3931.89 sec. (811189.72 ticks) for 0% of probing (1021 vars fixed)
+Elapsed time = 3981.18 sec. (821335.83 ticks) for 0% of probing (1037 vars fixed)
+Elapsed time = 4031.17 sec. (831569.90 ticks) for 0% of probing (1054 vars fixed)
+Elapsed time = 4080.76 sec. (841677.89 ticks) for 0% of probing (1073 vars fixed)
+Elapsed time = 4130.03 sec. (851734.16 ticks) for 0% of probing (1083 vars fixed)
+Elapsed time = 4180.10 sec. (861883.50 ticks) for 0% of probing (1102 vars fixed)
+Elapsed time = 4230.26 sec. (871965.86 ticks) for 0% of probing (1115 vars fixed)
+Elapsed time = 4280.98 sec. (882105.24 ticks) for 0% of probing (1139 vars fixed)
+Elapsed time = 4332.25 sec. (892306.52 ticks) for 0% of probing (1156 vars fixed)
+Elapsed time = 4382.75 sec. (902415.70 ticks) for 0% of probing (1180 vars fixed)
+Elapsed time = 4433.38 sec. (912563.58 ticks) for 0% of probing (1188 vars fixed)
+Elapsed time = 4484.68 sec. (922813.79 ticks) for 0% of probing (1202 vars fixed)
+Elapsed time = 4533.74 sec. (932937.18 ticks) for 0% of probing (1217 vars fixed)
+Elapsed time = 4582.51 sec. (942942.25 ticks) for 0% of probing (1231 vars fixed)
+Elapsed time = 4631.94 sec. (953251.00 ticks) for 0% of probing (1242 vars fixed)
+Elapsed time = 4679.53 sec. (963286.10 ticks) for 0% of probing (1251 vars fixed)
+Elapsed time = 4729.53 sec. (973580.33 ticks) for 0% of probing (1272 vars fixed)
+Elapsed time = 4777.09 sec. (983604.55 ticks) for 0% of probing (1281 vars fixed)
+Elapsed time = 4824.56 sec. (993634.83 ticks) for 0% of probing (1295 vars fixed)
+Elapsed time = 4872.63 sec. (1003660.07 ticks) for 0% of probing (1320 vars fixed)
+Elapsed time = 4921.20 sec. (1013928.87 ticks) for 0% of probing (1328 vars fixed)
+Elapsed time = 4968.75 sec. (1023955.06 ticks) for 0% of probing (1342 vars fixed)
+Elapsed time = 5017.03 sec. (1034069.70 ticks) for 0% of probing (1354 vars fixed)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     1   1.00000e+37     0                 7.03810e+07        0         
+
+Root node processing (before b&c):
+  Real time             = 7200.35 sec. (1545009.56 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7200.35 sec. (1545009.56 ticks)
+
+Sol status: Unknown
+ Tree_Size: 2
+ Total Time: 7172.15
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-60-1.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-60-1
+Instance type: sf_data
+K: 9
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 18 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 18 columns...
+MIP Presolve eliminated 0 rows and 18 columns.
+MIP Presolve modified 27450 coefficients.
+Reduced MIP has 27637 rows, 32880132 columns, and 163804104 nonzeros.
+Reduced MIP has 32880132 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 490.89 sec. (223333.07 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 63.85 sec. (10205.45 ticks)
+Elapsed time for symmetry detection = 188.99 sec. (20218.17 ticks)
+Elapsed time for symmetry detection = 334.79 sec. (30915.70 ticks)
+Found 1.541054e+13 symmetric permutations.
+Reduced MIP has 27637 rows, 32880132 columns, and 163804104 nonzeros.
+Reduced MIP has 32880132 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 1011.28 sec. (277404.14 ticks)
+Elapsed time = 78.79 sec. (10361.06 ticks) for 0% of probing
+Elapsed time = 126.17 sec. (20520.45 ticks) for 0% of probing
+Probing time = 135.99 sec. (22582.61 ticks)
+Clique table members: 63978240.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 4644.37 sec. (3868464.16 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   1.00000e+37     0                 1.38670e+08  1532705         
+
+Root node processing (before b&c):
+  Real time             = 7210.16 sec. (4808883.84 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7210.16 sec. (4808883.84 ticks)
+
+Sol status: Unknown
+ Tree_Size: 1
+ Total Time: 7134.5
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-60-2.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-60-2
+Instance type: sf_data
+K: 6
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 12 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 12 columns...
+MIP Presolve eliminated 0 rows and 12 columns.
+MIP Presolve modified 18300 coefficients.
+Reduced MIP has 18478 rows, 22587258 columns, and 112522068 nonzeros.
+Reduced MIP has 22587258 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 312.36 sec. (87406.82 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 73.75 sec. (10488.60 ticks)
+Elapsed time for symmetry detection = 198.21 sec. (20592.03 ticks)
+Found 2.063912e+11 symmetric permutations.
+Reduced MIP has 18478 rows, 22587258 columns, and 112522068 nonzeros.
+Reduced MIP has 22587258 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 602.33 sec. (122563.59 ticks)
+Elapsed time = 67.89 sec. (10350.85 ticks) for 0% of probing
+Probing time = 98.12 sec. (16850.97 ticks)
+Clique table members: 42887496.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 5681.02 sec. (4713786.08 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   1.00000e+37     0                 8.19173e+07  1899361         
+
+Root node processing (before b&c):
+  Real time             = 7210.35 sec. (5095566.83 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7210.35 sec. (5095566.83 ticks)
+
+Sol status: Unknown
+ Tree_Size: 1
+ Total Time: 7159.25
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-60-3.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-60-3
+Instance type: sf_data
+K: 6
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 12 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 12 columns...
+MIP Presolve eliminated 0 rows and 12 columns.
+MIP Presolve modified 18300 coefficients.
+Reduced MIP has 18478 rows, 22987548 columns, and 114521292 nonzeros.
+Reduced MIP has 22987548 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 301.80 sec. (89842.91 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 113.75 sec. (11180.24 ticks)
+Found 3.981312e+7 symmetric permutations.
+Reduced MIP has 18478 rows, 22987548 columns, and 114521292 nonzeros.
+Reduced MIP has 22987548 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 537.62 sec. (116818.69 ticks)
+Elapsed time = 90.10 sec. (10274.40 ticks) for 0% of probing
+Probing time = 134.22 sec. (17454.12 ticks)
+Clique table members: 43680893.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 4245.92 sec. (3320804.80 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      333.4935   431                    333.4935  1691838         
+Elapsed time = 42.88 sec. (11060.15 ticks) for 7 of 200 candidates for Gomory cuts
+Elapsed time = 85.67 sec. (21934.86 ticks) for 14 of 200 candidates for Gomory cuts
+Elapsed time = 127.73 sec. (33155.97 ticks) for 21 of 200 candidates for Gomory cuts
+Elapsed time = 169.87 sec. (44377.73 ticks) for 28 of 200 candidates for Gomory cuts
+Elapsed time = 212.36 sec. (55481.54 ticks) for 35 of 200 candidates for Gomory cuts
+Elapsed time = 254.38 sec. (66702.86 ticks) for 42 of 200 candidates for Gomory cuts
+Elapsed time = 296.36 sec. (77867.12 ticks) for 49 of 200 candidates for Gomory cuts
+Elapsed time = 339.38 sec. (88742.21 ticks) for 56 of 200 candidates for Gomory cuts
+Elapsed time = 382.11 sec. (99799.15 ticks) for 63 of 200 candidates for Gomory cuts
+Elapsed time = 424.63 sec. (110841.18 ticks) for 70 of 200 candidates for Gomory cuts
+Elapsed time = 468.06 sec. (121713.75 ticks) for 77 of 200 candidates for Gomory cuts
+Elapsed time = 510.18 sec. (132876.85 ticks) for 84 of 200 candidates for Gomory cuts
+Elapsed time = 552.28 sec. (143981.76 ticks) for 91 of 200 candidates for Gomory cuts
+Elapsed time = 594.62 sec. (155029.47 ticks) for 98 of 200 candidates for Gomory cuts
+
+Root node processing (before b&c):
+  Real time             = 7205.40 sec. (4208316.11 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7205.40 sec. (4208316.11 ticks)
+
+Sol status: Unknown
+ Tree_Size: 2
+ Total Time: 7133.07
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-60-4.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-60-4
+Instance type: sf_data
+K: 5
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 10 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 10 columns...
+MIP Presolve eliminated 0 rows and 10 columns.
+MIP Presolve modified 15250 coefficients.
+Reduced MIP has 15425 rows, 18865030 columns, and 93980965 nonzeros.
+Reduced MIP has 18865030 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 188.33 sec. (72500.77 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 87.18 sec. (10045.35 ticks)
+Found 6.370099e+8 symmetric permutations.
+Reduced MIP has 15425 rows, 18865030 columns, and 93980965 nonzeros.
+Reduced MIP has 18865030 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 394.70 sec. (97691.17 ticks)
+Elapsed time = 62.39 sec. (10161.30 ticks) for 0% of probing
+Probing time = 82.60 sec. (14696.06 ticks)
+Clique table members: 36750493.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 4039.92 sec. (3333320.01 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0      309.4297   391                    309.4297  1334185         
+Elapsed time = 47.67 sec. (10128.29 ticks) for 12 of 200 candidates for Gomory cuts
+Elapsed time = 93.46 sec. (20875.47 ticks) for 22 of 200 candidates for Gomory cuts
+Elapsed time = 138.54 sec. (31478.45 ticks) for 31 of 200 candidates for Gomory cuts
+Elapsed time = 182.97 sec. (42251.53 ticks) for 40 of 200 candidates for Gomory cuts
+Elapsed time = 227.49 sec. (52935.68 ticks) for 51 of 200 candidates for Gomory cuts
+Elapsed time = 271.90 sec. (63992.15 ticks) for 60 of 200 candidates for Gomory cuts
+Elapsed time = 315.43 sec. (74267.18 ticks) for 71 of 200 candidates for Gomory cuts
+Elapsed time = 359.55 sec. (85399.86 ticks) for 80 of 200 candidates for Gomory cuts
+Elapsed time = 405.28 sec. (96218.12 ticks) for 89 of 200 candidates for Gomory cuts
+Elapsed time = 453.12 sec. (107090.91 ticks) for 99 of 200 candidates for Gomory cuts
+Elapsed time = 494.38 sec. (117127.11 ticks) for 108 of 200 candidates for Gomory cuts
+Elapsed time = 534.40 sec. (127131.56 ticks) for 116 of 200 candidates for Gomory cuts
+Elapsed time = 579.75 sec. (138110.45 ticks) for 125 of 200 candidates for Gomory cuts
+Elapsed time = 622.93 sec. (148495.69 ticks) for 135 of 200 candidates for Gomory cuts
+Elapsed time = 663.24 sec. (158772.64 ticks) for 143 of 200 candidates for Gomory cuts
+Elapsed time = 703.08 sec. (169103.47 ticks) for 151 of 200 candidates for Gomory cuts
+Elapsed time = 742.48 sec. (179111.70 ticks) for 159 of 200 candidates for Gomory cuts
+Elapsed time = 786.77 sec. (190263.57 ticks) for 168 of 200 candidates for Gomory cuts
+Elapsed time = 826.32 sec. (200325.51 ticks) for 176 of 200 candidates for Gomory cuts
+Elapsed time = 866.55 sec. (210656.60 ticks) for 184 of 200 candidates for Gomory cuts
+Elapsed time = 906.61 sec. (220732.17 ticks) for 192 of 200 candidates for Gomory cuts
+
+Root node processing (before b&c):
+  Real time             = 7209.67 sec. (4442456.30 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7209.67 sec. (4442456.30 ticks)
+
+Sol status: Unknown
+ Tree_Size: 2
+ Total Time: 7137.46
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-60-5.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-60-5
+Instance type: sf_data
+K: 8
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 16 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 16 columns...
+MIP Presolve eliminated 0 rows and 16 columns.
+MIP Presolve modified 24400 coefficients.
+Reduced MIP has 24584 rows, 29395128 columns, and 146439720 nonzeros.
+Reduced MIP has 29395128 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 431.19 sec. (134216.20 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 67.73 sec. (10489.91 ticks)
+Elapsed time for symmetry detection = 205.32 sec. (20595.78 ticks)
+Elapsed time for symmetry detection = 346.83 sec. (30889.88 ticks)
+Found 5.073430e+12 symmetric permutations.
+Reduced MIP has 24584 rows, 29395128 columns, and 146439720 nonzeros.
+Reduced MIP has 29395128 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 920.09 sec. (184142.52 ticks)
+Elapsed time = 78.97 sec. (10156.58 ticks) for 0% of probing
+Elapsed time = 129.46 sec. (20214.49 ticks) for 0% of probing
+Probing time = 134.45 sec. (21227.83 ticks)
+Clique table members: 56951408.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 4956.39 sec. (3797417.90 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   1.00000e+37     0                 1.13919e+08  1714825         
+
+Root node processing (before b&c):
+  Real time             = 7213.08 sec. (4376937.82 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7213.08 sec. (4376937.82 ticks)
+
+Sol status: Unknown
+ Tree_Size: 1
+ Total Time: 7146
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-70-1.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-70-1
+Instance type: sf_data
+K: 6
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 12 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 12 columns...
+MIP Presolve eliminated 0 rows and 12 columns.
+MIP Presolve modified 21300 coefficients.
+Reduced MIP has 21488 rows, 29631348 columns, and 147684948 nonzeros.
+Reduced MIP has 29631348 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 306.82 sec. (117462.19 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 74.45 sec. (10177.94 ticks)
+Elapsed time for symmetry detection = 201.90 sec. (20709.62 ticks)
+Found 1.698693e+9 symmetric permutations.
+Reduced MIP has 21488 rows, 29631348 columns, and 147684948 nonzeros.
+Reduced MIP has 29631348 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 652.36 sec. (157211.67 ticks)
+Elapsed time = 69.64 sec. (10032.64 ticks) for 0% of probing
+Elapsed time = 114.42 sec. (20062.90 ticks) for 0% of probing
+Probing time = 124.28 sec. (22292.32 ticks)
+Clique table members: 54639916.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 5555.83 sec. (5069946.30 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   1.00000e+37     0                 1.10877e+08  1808145         
+
+Root node processing (before b&c):
+  Real time             = 7210.96 sec. (5573004.37 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7210.96 sec. (5573004.37 ticks)
+
+Sol status: Unknown
+ Tree_Size: 1
+ Total Time: 7144.28
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-70-2.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-70-2
+Instance type: sf_data
+K: 7
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 14 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 14 columns...
+MIP Presolve eliminated 0 rows and 14 columns.
+MIP Presolve modified 24850 coefficients.
+Reduced MIP has 25041 rows, 33096721 columns, and 164958997 nonzeros.
+Reduced MIP has 33096721 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 506.86 sec. (147418.17 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 61.91 sec. (10136.86 ticks)
+Elapsed time for symmetry detection = 176.71 sec. (20258.78 ticks)
+Elapsed time for symmetry detection = 306.30 sec. (30356.77 ticks)
+Found 7.705272e+12 symmetric permutations.
+Reduced MIP has 25041 rows, 33096721 columns, and 164958997 nonzeros.
+Reduced MIP has 33096721 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 994.46 sec. (201105.28 ticks)
+Elapsed time = 77.96 sec. (10520.50 ticks) for 0% of probing
+Elapsed time = 126.77 sec. (21000.81 ticks) for 0% of probing
+Probing time = 141.15 sec. (24099.70 ticks)
+Clique table members: 64012824.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 4689.91 sec. (3832485.19 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   1.00000e+37     0                 1.42927e+08  1601882         
+
+Root node processing (before b&c):
+  Real time             = 7214.85 sec. (4466175.31 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7214.85 sec. (4466175.31 ticks)
+
+Sol status: Unknown
+ Tree_Size: 1
+ Total Time: 7140.58
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-70-3.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-70-3
+Instance type: sf_data
+K: 8
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 16 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 16 columns...
+MIP Presolve eliminated 0 rows and 16 columns.
+MIP Presolve modified 28400 coefficients.
+Reduced MIP has 28594 rows, 40540712 columns, and 202073096 nonzeros.
+Reduced MIP has 40540712 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 420.66 sec. (163440.34 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 65.02 sec. (10107.23 ticks)
+Elapsed time for symmetry detection = 185.89 sec. (20224.93 ticks)
+Elapsed time for symmetry detection = 329.82 sec. (30893.08 ticks)
+Found 2.853804e+11 symmetric permutations.
+Reduced MIP has 28594 rows, 40540712 columns, and 202073096 nonzeros.
+Reduced MIP has 40540712 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 980.42 sec. (222245.90 ticks)
+Elapsed time = 82.50 sec. (10018.87 ticks) for 0% of probing
+Elapsed time = 130.90 sec. (20373.60 ticks) for 0% of probing
+Elapsed time = 179.93 sec. (30952.99 ticks) for 0% of probing (1 vars fixed)
+Elapsed time = 228.02 sec. (41210.99 ticks) for 0% of probing (1 vars fixed)
+Elapsed time = 277.54 sec. (51746.53 ticks) for 0% of probing (2 vars fixed)
+Elapsed time = 327.49 sec. (62323.56 ticks) for 0% of probing (3 vars fixed)
+Elapsed time = 377.41 sec. (72878.46 ticks) for 0% of probing (4 vars fixed)
+Elapsed time = 426.02 sec. (83166.97 ticks) for 0% of probing (4 vars fixed)
+Elapsed time = 474.35 sec. (93496.31 ticks) for 0% of probing (4 vars fixed)
+Elapsed time = 522.74 sec. (103775.28 ticks) for 0% of probing (4 vars fixed)
+Elapsed time = 570.91 sec. (114066.66 ticks) for 0% of probing (4 vars fixed)
+Elapsed time = 620.17 sec. (124658.99 ticks) for 0% of probing (5 vars fixed)
+Elapsed time = 667.65 sec. (134861.44 ticks) for 0% of probing (7 vars fixed)
+Elapsed time = 716.31 sec. (145160.11 ticks) for 0% of probing (7 vars fixed)
+Elapsed time = 764.94 sec. (155477.20 ticks) for 0% of probing (7 vars fixed)
+Elapsed time = 811.85 sec. (165648.20 ticks) for 0% of probing (9 vars fixed)
+Elapsed time = 860.46 sec. (175972.30 ticks) for 0% of probing (9 vars fixed)
+Elapsed time = 909.11 sec. (186276.58 ticks) for 0% of probing (9 vars fixed)
+Elapsed time = 959.16 sec. (196819.07 ticks) for 0% of probing (10 vars fixed)
+Elapsed time = 1009.92 sec. (207138.98 ticks) for 0% of probing (10 vars fixed)
+Elapsed time = 1061.53 sec. (217744.61 ticks) for 0% of probing (11 vars fixed)
+Elapsed time = 1111.88 sec. (228090.52 ticks) for 0% of probing (11 vars fixed)
+Elapsed time = 1161.47 sec. (238369.84 ticks) for 0% of probing (11 vars fixed)
+Elapsed time = 1209.87 sec. (248533.93 ticks) for 0% of probing (13 vars fixed)
+Elapsed time = 1258.61 sec. (259009.17 ticks) for 0% of probing (16 vars fixed)
+Elapsed time = 1306.74 sec. (269342.83 ticks) for 0% of probing (21 vars fixed)
+Elapsed time = 1356.56 sec. (279907.68 ticks) for 0% of probing (22 vars fixed)
+Elapsed time = 1404.67 sec. (290103.40 ticks) for 0% of probing (24 vars fixed)
+Elapsed time = 1452.91 sec. (300304.61 ticks) for 0% of probing (26 vars fixed)
+Elapsed time = 1499.15 sec. (310339.24 ticks) for 0% of probing (30 vars fixed)
+Elapsed time = 1546.46 sec. (320571.57 ticks) for 0% of probing (32 vars fixed)
+Elapsed time = 1595.66 sec. (331103.59 ticks) for 0% of probing (33 vars fixed)
+Elapsed time = 1644.80 sec. (341554.51 ticks) for 0% of probing (36 vars fixed)
+Elapsed time = 1694.52 sec. (351986.73 ticks) for 0% of probing (39 vars fixed)
+Elapsed time = 1744.06 sec. (362543.64 ticks) for 0% of probing (40 vars fixed)
+Elapsed time = 1790.77 sec. (372580.96 ticks) for 0% of probing (44 vars fixed)
+Elapsed time = 1840.03 sec. (383061.77 ticks) for 0% of probing (47 vars fixed)
+Elapsed time = 1888.41 sec. (393452.44 ticks) for 0% of probing (50 vars fixed)
+Elapsed time = 1936.42 sec. (403640.53 ticks) for 0% of probing (52 vars fixed)
+Elapsed time = 1983.62 sec. (413830.82 ticks) for 0% of probing (54 vars fixed)
+Elapsed time = 2030.42 sec. (423903.25 ticks) for 0% of probing (58 vars fixed)
+Elapsed time = 2079.05 sec. (434376.60 ticks) for 0% of probing (61 vars fixed)
+Elapsed time = 2125.35 sec. (444421.42 ticks) for 0% of probing (65 vars fixed)
+Elapsed time = 2174.15 sec. (454840.74 ticks) for 0% of probing (68 vars fixed)
+Elapsed time = 2223.27 sec. (465402.21 ticks) for 0% of probing (69 vars fixed)
+Elapsed time = 2272.96 sec. (475998.99 ticks) for 0% of probing (70 vars fixed)
+Elapsed time = 2319.69 sec. (485999.87 ticks) for 0% of probing (74 vars fixed)
+Elapsed time = 2369.88 sec. (496568.37 ticks) for 0% of probing (75 vars fixed)
+Elapsed time = 2419.62 sec. (507085.27 ticks) for 0% of probing (76 vars fixed)
+Elapsed time = 2468.99 sec. (517366.25 ticks) for 0% of probing (76 vars fixed)
+Elapsed time = 2518.55 sec. (527976.75 ticks) for 0% of probing (77 vars fixed)
+Elapsed time = 2567.01 sec. (538459.21 ticks) for 0% of probing (80 vars fixed)
+Elapsed time = 2613.63 sec. (548503.37 ticks) for 0% of probing (84 vars fixed)
+Elapsed time = 2661.74 sec. (558651.67 ticks) for 0% of probing (86 vars fixed)
+Elapsed time = 2711.06 sec. (569266.00 ticks) for 0% of probing (87 vars fixed)
+Elapsed time = 2758.87 sec. (579431.20 ticks) for 0% of probing (89 vars fixed)
+Elapsed time = 2806.99 sec. (589725.47 ticks) for 0% of probing (89 vars fixed)
+Elapsed time = 2855.29 sec. (600124.45 ticks) for 0% of probing (92 vars fixed)
+Elapsed time = 2904.69 sec. (610586.17 ticks) for 0% of probing (95 vars fixed)
+Elapsed time = 2952.49 sec. (620745.23 ticks) for 0% of probing (97 vars fixed)
+Elapsed time = 3002.68 sec. (631220.86 ticks) for 0% of probing (100 vars fixed)
+Elapsed time = 3052.45 sec. (641834.70 ticks) for 0% of probing (106 vars fixed)
+Elapsed time = 3100.41 sec. (651981.34 ticks) for 0% of probing (108 vars fixed)
+Elapsed time = 3146.47 sec. (662029.08 ticks) for 0% of probing (112 vars fixed)
+Elapsed time = 3195.53 sec. (672416.48 ticks) for 0% of probing (117 vars fixed)
+Elapsed time = 3243.63 sec. (682621.42 ticks) for 0% of probing (119 vars fixed)
+Elapsed time = 3291.35 sec. (692779.80 ticks) for 0% of probing (121 vars fixed)
+Elapsed time = 3338.48 sec. (702931.53 ticks) for 0% of probing (128 vars fixed)
+Elapsed time = 3387.87 sec. (713451.02 ticks) for 0% of probing (134 vars fixed)
+Elapsed time = 3437.46 sec. (724018.63 ticks) for 0% of probing (135 vars fixed)
+Elapsed time = 3487.70 sec. (734478.00 ticks) for 0% of probing (138 vars fixed)
+Elapsed time = 3534.15 sec. (744485.54 ticks) for 0% of probing (142 vars fixed)
+Elapsed time = 3581.52 sec. (754677.93 ticks) for 0% of probing (144 vars fixed)
+Elapsed time = 3628.82 sec. (764853.70 ticks) for 0% of probing (146 vars fixed)
+Elapsed time = 3677.31 sec. (775138.12 ticks) for 0% of probing (151 vars fixed)
+Elapsed time = 3724.59 sec. (785185.47 ticks) for 0% of probing (155 vars fixed)
+Elapsed time = 3772.12 sec. (795216.14 ticks) for 0% of probing (159 vars fixed)
+Elapsed time = 3822.00 sec. (805867.06 ticks) for 0% of probing (163 vars fixed)
+Elapsed time = 3871.10 sec. (816045.73 ticks) for 0% of probing (165 vars fixed)
+Elapsed time = 3919.24 sec. (826126.65 ticks) for 0% of probing (169 vars fixed)
+Elapsed time = 3968.47 sec. (836435.68 ticks) for 0% of probing (169 vars fixed)
+Elapsed time = 4016.11 sec. (846591.21 ticks) for 0% of probing (176 vars fixed)
+Elapsed time = 4066.22 sec. (857042.39 ticks) for 0% of probing (179 vars fixed)
+Elapsed time = 4115.89 sec. (867527.40 ticks) for 0% of probing (182 vars fixed)
+Elapsed time = 4163.22 sec. (877744.04 ticks) for 0% of probing (184 vars fixed)
+Elapsed time = 4213.20 sec. (888367.82 ticks) for 0% of probing (190 vars fixed)
+Elapsed time = 4261.29 sec. (898514.34 ticks) for 0% of probing (197 vars fixed)
+Elapsed time = 4310.69 sec. (908986.12 ticks) for 0% of probing (200 vars fixed)
+Elapsed time = 4358.78 sec. (919045.40 ticks) for 0% of probing (204 vars fixed)
+Elapsed time = 4406.94 sec. (929282.54 ticks) for 0% of probing (206 vars fixed)
+Elapsed time = 4455.16 sec. (939356.81 ticks) for 0% of probing (210 vars fixed)
+Elapsed time = 4502.66 sec. (949456.53 ticks) for 0% of probing (214 vars fixed)
+Elapsed time = 4549.80 sec. (959543.27 ticks) for 0% of probing (218 vars fixed)
+Elapsed time = 4600.16 sec. (970175.37 ticks) for 0% of probing (222 vars fixed)
+Elapsed time = 4647.66 sec. (980211.23 ticks) for 0% of probing (226 vars fixed)
+Elapsed time = 4695.45 sec. (990299.71 ticks) for 0% of probing (230 vars fixed)
+Elapsed time = 4745.47 sec. (1000795.25 ticks) for 0% of probing (233 vars fixed)
+Elapsed time = 4792.98 sec. (1010829.23 ticks) for 0% of probing (234 vars fixed)
+Elapsed time = 4841.05 sec. (1020953.58 ticks) for 0% of probing (236 vars fixed)
+Elapsed time = 4891.69 sec. (1031584.43 ticks) for 0% of probing (237 vars fixed)
+Elapsed time = 4939.13 sec. (1041657.09 ticks) for 0% of probing (241 vars fixed)
+Elapsed time = 4985.98 sec. (1051742.25 ticks) for 0% of probing (245 vars fixed)
+Elapsed time = 5034.33 sec. (1061862.67 ticks) for 0% of probing (249 vars fixed)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     1   1.00000e+37     0                 1.89946e+08        0         
+
+Root node processing (before b&c):
+  Real time             = 7200.89 sec. (1715020.59 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7200.89 sec. (1715020.59 ticks)
+
+Sol status: Unknown
+ Tree_Size: 2
+ Total Time: 7130.7
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-70-4.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-70-4
+Instance type: sf_data
+K: 7
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 14 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 14 columns...
+MIP Presolve eliminated 0 rows and 14 columns.
+MIP Presolve modified 24850 coefficients.
+Reduced MIP has 25041 rows, 35217497 columns, and 175537495 nonzeros.
+Reduced MIP has 35217497 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 415.51 sec. (139102.97 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 58.72 sec. (10428.71 ticks)
+Elapsed time for symmetry detection = 165.78 sec. (20837.82 ticks)
+Elapsed time for symmetry detection = 292.39 sec. (31250.86 ticks)
+Elapsed time for symmetry detection = 420.10 sec. (42093.98 ticks)
+Found 5.136848e+12 symmetric permutations.
+Reduced MIP has 25041 rows, 35217497 columns, and 175537495 nonzeros.
+Reduced MIP has 35217497 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 942.96 sec. (199251.39 ticks)
+Elapsed time = 84.61 sec. (10111.85 ticks) for 0% of probing
+Elapsed time = 134.71 sec. (20157.51 ticks) for 0% of probing
+Probing time = 162.88 sec. (25800.97 ticks)
+Clique table members: 68309845.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 4969.04 sec. (4541950.00 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   1.00000e+37     0                 1.47273e+08  1758688         
+
+Root node processing (before b&c):
+  Real time             = 7212.85 sec. (5149016.98 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) = 7212.85 sec. (5149016.98 ticks)
+
+Sol status: Unknown
+ Tree_Size: 1
+ Total Time: 7133.74
+
+NameOfInst: Instances_L/sf_data/sfsarp-50-70-5.txt
+RunningScen: 1A
+Instance Name: sfsarp-50-70-5
+Instance type: sf_data
+K: 7
+Service: 0.0833333
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Presolve has eliminated 0 rows and 14 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 14 columns...
+MIP Presolve eliminated 0 rows and 14 columns.
+MIP Presolve modified 24850 coefficients.
+Reduced MIP has 25041 rows, 34727770 columns, and 173096000 nonzeros.
+Reduced MIP has 34727770 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 427.42 sec. (142337.92 ticks)
+Presolve has eliminated 0 rows and 0 columns...
+Tried aggregator 1 time.
+Presolve has eliminated 0 rows and 0 columns...
+Detecting symmetries...
+Elapsed time for symmetry detection = 60.86 sec. (10491.20 ticks)
+Elapsed time for symmetry detection = 191.28 sec. (20808.83 ticks)
+Elapsed time for symmetry detection = 340.03 sec. (30996.74 ticks)
+Elapsed time for symmetry detection = 478.64 sec. (41403.01 ticks)
+Found 2.311582e+13 symmetric permutations.
+Reduced MIP has 25041 rows, 34727770 columns, and 173096000 nonzeros.
+Reduced MIP has 34727770 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 1039.85 sec. (203386.44 ticks)
+Elapsed time = 79.66 sec. (10555.67 ticks) for 0% of probing
+Elapsed time = 126.21 sec. (20608.99 ticks) for 0% of probing (3 vars fixed)
+Elapsed time = 175.40 sec. (30866.75 ticks) for 0% of probing (14 vars fixed)
+Elapsed time = 223.26 sec. (40883.96 ticks) for 0% of probing (24 vars fixed)
+Elapsed time = 275.20 sec. (51468.00 ticks) for 0% of probing (39 vars fixed)
+Elapsed time = 325.60 sec. (61719.46 ticks) for 0% of probing (55 vars fixed)
+Elapsed time = 376.64 sec. (72304.54 ticks) for 0% of probing (70 vars fixed)
+                                                                              

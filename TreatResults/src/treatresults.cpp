@@ -41,6 +41,7 @@ struct instInfoN
     double ub; //uppper bound
     double gap; //gap btw ub lb
     long int tree; //size of tree
+    vector <double> detours; //passenger detours
 };
 
 struct distInfo
@@ -68,6 +69,8 @@ bool substrPosition(string str, string sub_str);
 void createOutputInst(vector<instInfoN>& vecInst, string instName);
 void createOutputDist(vector<instInfoN>& vecInst, vector<distInfo>& vecDist, string instName);
 void createOutputTime(vector<instInfoN>& vecInst, vector<timeInfo>& vecTime, string instName);
+void createOutputDetours(vector<instInfoN>& vecInst, string instName);
+void makeDetourVec(string detstr, instInfoN& inst);
 string getInstName (char **argv);
 
 //************************end of headers
@@ -124,6 +127,57 @@ void createOutputDist(vector<instInfoN>& vecInst, vector<distInfo>& vecDist, str
     } 
 }
 
+void makeDetourVec(string detstr, instInfoN& inst){
+    inst.detours.clear();
+
+    for (int i = 0; i < inst.n; i++){
+        inst.detours.push_back(-1);
+    }
+
+    vector <string> vecofstr;
+    string temp = "";
+    double det = 0;
+
+	for(int i=0;i<detstr.length();++i){
+		
+		if(detstr[i]==':' && detstr[i+1]==' '){
+            vecofstr.push_back(temp);
+            temp = "";
+		}
+        else if(detstr[i]==' ' && detstr[i-1]!=':'){
+            vecofstr.push_back(temp);
+            temp = "";
+        }
+		else{
+            temp.push_back(detstr[i]);          
+		}
+		
+	}
+	vecofstr.push_back(temp);
+
+    // for (int i = 0; i < vecofstr.size() - 1; i++){
+    //     // if (i % 2 == 0){
+    //     //     continue;
+    //     // }
+    //     cout << "i: " << i << "- " << vecofstr[i] << endl;
+
+    // }
+    // // getchar();
+    // cout << vecofstr[0] << endl;
+    // getchar();
+    int counter = 0;
+    for (int i = 1; i < vecofstr.size(); i++){
+        if (i % 2 == 0){
+            continue;
+        }
+        det = stod(vecofstr[i]);
+        inst.detours[counter] = det;
+        counter++;
+    }
+
+
+}
+
 void createOutputTime(vector<instInfoN>& vecInst, vector<timeInfo>& vecTime, string instName)
 {
 
@@ -143,10 +197,43 @@ void createOutputTime(vector<instInfoN>& vecInst, vector<timeInfo>& vecTime, str
         if(vecInst[i].name == firstInst){
             // ofile << vecInst[i].pperc << endl;
             ofile << vecInst[i].scen << endl;
-            ofile << "Instance,c(h),p(h),b(h),e(h),waitc(h),waitp(h),Total,c(%),p(%),b(%),e(%),waitc(%),waitp(%)" << endl;
+            // ofile << "Instance,c(h),p(h),b(h),e(h),waitc(h),waitp(h),Total,c(%),p(%),b(%),e(%),waitc(%),waitp(%)" << endl;
+
+            ofile << "Instance,c(h),p(h),b(h),e(h),Total,c(%),p(%),b(%),e(%)" << endl;
         }
-        totalTime = vecTime[i].cTime + vecTime[i].pTime + vecTime[i].bTime + vecTime[i].eTime + vecTime[i].cWait + vecTime[i].pWait;
-        ofile << vecInst[i].name << "," << vecTime[i].cTime << "," << vecTime[i].pTime << "," << vecTime[i].bTime << "," << vecTime[i].eTime << "," << vecTime[i].cWait << "," << vecTime[i].pWait << "," << totalTime << "," << (vecTime[i].cTime/totalTime)*100 << "," << (vecTime[i].pTime/totalTime)*100 << "," << (vecTime[i].bTime/totalTime)*100 << "," << (vecTime[i].eTime/totalTime)*100 << "," << (vecTime[i].cWait/totalTime)*100 << "," << (vecTime[i].pWait/totalTime)*100 << endl;
+        // totalTime = vecTime[i].cTime + vecTime[i].pTime + vecTime[i].bTime + vecTime[i].eTime + vecTime[i].cWait + vecTime[i].pWait;
+        totalTime = vecTime[i].cTime + vecTime[i].pTime + vecTime[i].bTime + vecTime[i].eTime;
+        // ofile << vecInst[i].name << "," << vecTime[i].cTime << "," << vecTime[i].pTime << "," << vecTime[i].bTime << "," << vecTime[i].eTime << "," << vecTime[i].cWait << "," << vecTime[i].pWait << "," << totalTime << "," << (vecTime[i].cTime/totalTime)*100 << "," << (vecTime[i].pTime/totalTime)*100 << "," << (vecTime[i].bTime/totalTime)*100 << "," << (vecTime[i].eTime/totalTime)*100 << "," << (vecTime[i].cWait/totalTime)*100 << "," << (vecTime[i].pWait/totalTime)*100 << endl;
+        ofile << vecInst[i].name << "," << vecTime[i].cTime << "," << vecTime[i].pTime << "," << vecTime[i].bTime << "," << vecTime[i].eTime << "," << totalTime << "," << (vecTime[i].cTime/totalTime)*100 << "," << (vecTime[i].pTime/totalTime)*100 << "," << (vecTime[i].bTime/totalTime)*100 << "," << (vecTime[i].eTime/totalTime)*100 << endl;
+
+    } 
+}
+
+void createOutputDetours(vector<instInfoN>& vecInst, string instName)
+{
+
+    string outputname;
+
+    outputname = "detours" + instName + ".csv";
+    
+    ofstream ofile;
+    
+    ofile.open(outputname);
+
+    string firstInst = vecInst[0].name;
+
+
+    for(int i = 0; i < vecInst.size(); i++){
+        if(vecInst[i].name == firstInst){
+            // ofile << vecInst[i].scen << ", " << vecInst[i].pperc << endl;
+            ofile << vecInst[i].scen << endl;
+            ofile << "Instance,Detours(%)" << endl;
+        }
+        ofile << vecInst[i].name << ",";
+        for (int j = 0; j < vecInst[i].detours.size()-1; j++){
+            ofile <<  vecInst[i].detours[j] << ",";
+        }
+        ofile << vecInst[i].detours.back() << endl;
     } 
 }
 
@@ -215,7 +302,7 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
 
 	string file;
     string line;
-
+    
     instInfoN inst;
     distInfo dist;
     timeInfo time;
@@ -224,6 +311,7 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
 
     char *instance; 
     instance = argv[1];
+
 
     ifstream in(instance, ios::in);
 
@@ -243,25 +331,25 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
 
 	    while(getline(in, line)) {
 
-            flag = substrPosition(line, "Solving");
-
-	        if (flag) {
-                loc = line.find_first_of(":");
-                loc2 = line.find_last_of(":", line.size());
-                inst.name = line.substr(loc + 3, loc2 - loc - 3);
-
-                // cout << "Name of instance:" << inst.name << endl;
-                // getchar();
-            }
-            flag = false;
-
-            flag = substrPosition(line, "Scenario ");
+            flag = substrPosition(line, "RunningScen ");
 
             if (flag) {
                 loc = line.find_first_of(":");
                 inst.scen = line.substr(loc + 3, line.size() - loc - 3);
 
                 // cout << "Name of scenario:" << inst.scen << endl;
+                // getchar();
+            }
+            flag = false;
+
+            flag = substrPosition(line, "Instance Name");
+
+	        if (flag) {
+                loc = line.find_first_of(":");
+                loc2 = line.find_last_of(":", line.size());
+                inst.name = line.substr(loc + 1, loc2 - loc - 1);
+
+                // cout << "Name of instance:" << inst.name << endl;
                 // getchar();
             }
             flag = false;
@@ -524,9 +612,390 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
                     time.pWait = stod(line.substr(loc + 1, line.size() - loc - 1));
                     // cout << "Wait Time Parcel:" << time.pWait << endl;
                     // getchar();
+
                     okall = true;                    
                 }
                 flag = false;
+
+            }
+
+            if(okall){
+                vecInst.push_back(inst); //inst done
+                vecTime.push_back(time); //time done
+                vecDist.push_back(dist); //dist done
+                okall = false;
+            }
+
+        }
+
+
+
+        in.close();
+	}
+    
+    // cout << "Size of vector inst: " << vecInst.size() << endl;
+    // cout << "Size of vector dist: " << vecDist.size() << endl;
+    // cout << "Size of vector time: " << vecTime.size() << endl;
+    
+    // getchar();
+
+
+    // cout << "Vec of instance: " << endl;
+
+    // for (int i = 0; i < vecInst.size(); i++){
+    //     cout << vecInst[i]->name << " " << vecInst[i]->scen << " " << vecInst[i]->pperc << endl;
+    //     getchar();
+
+    // }
+    // cout << endl;
+
+
+
+    // while ( file.compare("Solving:") != 0){
+    //     in >> file;
+    // }
+}
+
+void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInfo>& vecDist, vector<timeInfo>& vecTime)
+{
+   if (argc < 3) {
+        cout << "\nMissing parameters\n";
+        cout << " ./exeTreatRes [TestRaw] [Model]"<< endl;
+        exit(1);
+    }
+    
+    if (argc > 3) {
+        cout << "\nToo many parameters\n";
+        cout << " ./exeTreatRes [TestRaw] [Model]" << endl;
+        exit(1);
+    }
+
+	string file;
+    string line;
+    string detstr;
+
+    instInfoN inst;
+    distInfo dist;
+    timeInfo time;
+
+    string::size_type loc, loc2;
+
+    char *instance; 
+    instance = argv[1];
+
+    ifstream in(instance, ios::in);
+
+    string testStr;
+    bool optflag = false;
+
+    bool okall = false;
+
+    if( !in ) {
+        cout << "the file could not be opened\n";
+        exit (1);
+    }
+
+    bool flag = false;
+    bool part2 = false;
+
+	if(in.is_open()) {
+
+	    while(getline(in, line)) {
+
+            flag = substrPosition(line, "RunningScen");
+
+            if (flag) {
+                loc = line.find_first_of(":");
+                inst.scen = line.substr(loc + 1, line.size() - loc - 1);
+
+                // cout << "Name of scenario:" << inst.scen << endl;
+                // getchar();
+            }
+            
+            flag = false;
+
+            flag = substrPosition(line, "Instance Name");
+
+            if (flag) {
+                loc = line.find_first_of(":");
+                inst.name = line.substr(loc + 1, line.size() - loc - 1);
+                // cout << "name of inst:" << inst.name << endl;
+                // getchar();
+            }
+            flag = false;
+
+            flag = substrPosition(line, "Obj Val");
+
+            if (flag) {
+                loc = line.find_first_of(":");
+                inst.objval = stod(line.substr(loc + 1, line.size() - loc - 1));
+                // cout << "objval:" << inst.objval << endl;
+                // getchar();
+            }
+            flag = false;
+
+            flag = substrPosition(line, "Number of Vehicles");
+
+            if (flag) {
+                loc = line.find_first_of(":");
+                inst.K = stoi(line.substr(loc + 1, line.size() - loc - 1));
+                // cout << "num of K:" << inst.K << endl;
+                // getchar();
+            }
+            flag = false;
+
+            flag = substrPosition(line, "size of n");
+
+            if (flag) {
+                loc = line.find_first_of(":");
+                inst.n = stoi(line.substr(loc + 1, line.size() - loc - 1));
+                // cout << "num of n:" << inst.n << endl;
+                // getchar();
+            }
+            flag = false;
+
+            flag = substrPosition(line, "size of m");
+
+            if (flag) {
+                loc = line.find_first_of(":");
+                inst.m = stoi(line.substr(loc + 1, line.size() - loc - 1));
+                // cout << "num of m:" << inst.m << endl;
+                // getchar();
+            }
+            flag = false;
+
+            flag = substrPosition(line, "______");
+
+            if (flag){
+                loc = line.find_first_of("P");
+                testStr = line.substr(loc, line.size() - loc - 5);
+
+                if(testStr == "PART II"){
+                    part2 = true;
+                }
+                else{
+                    part2 = false;
+                }
+            }
+
+            flag = false;
+
+            if (part2){
+
+                flag = substrPosition(line, "Sol status");
+
+                if (flag) {
+
+                    loc = line.find_first_of(":");
+                    testStr = line.substr(loc + 2, line.size() - loc - 2);
+
+                    if (testStr == "Optimal" || testStr == "Feasible"){
+                        optflag = true;
+                        inst.stats = testStr;
+                        // cout << "Status:" << inst.stats << endl;
+                        // getchar();
+                    }
+                    else{
+                        optflag = false;
+                    }
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Total Time");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.soltime = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "time:" << inst.soltime << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                if (optflag){
+                    
+                    flag = substrPosition(line, "LB");
+
+                    if (flag) {
+                        loc = line.find_first_of(":");
+                        inst.lb = stod(line.substr(loc + 1, line.size() - loc - 1));
+                        // cout << "LB:" << inst.lb << endl;
+                        // getchar();
+                    }
+                    flag = false;
+
+                    flag = substrPosition(line, "UB");
+
+                    if (flag) {
+                        loc = line.find_first_of(":");
+                        inst.ub = stod(line.substr(loc + 1, line.size() - loc - 1));
+                        // cout << "UB:" << inst.ub << endl;
+                        // getchar();
+                        inst.gap = (double)((inst.ub - inst.lb)/inst.ub) * 100;
+                        // cout << "gap:" << inst.gap << endl;
+                        // getchar();
+                    }
+                    flag = false;
+
+                    flag = substrPosition(line, "Full solution value");
+
+                    if (flag) {
+                        loc = line.find_first_of(":");
+                        inst.objval = stod(line.substr(loc + 1, line.size() - loc - 1));
+                        // cout << "objval:" << inst.objval << endl;
+                        // getchar();
+                    }
+                    flag = false;
+                }
+
+                flag = substrPosition(line, "Served parcels");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.servP = stoi(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Served parcels:" << inst.servP << endl;
+                    // getchar();
+                }
+                flag = false;
+
+
+                flag = substrPosition(line, "Profit of customers");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.pCust = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "pCust:" << inst.pCust << endl;
+                    // getchar();
+                }
+                flag = false;
+                
+                flag = substrPosition(line, "Profit of parcels");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.pParc = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "pParc:" << inst.pParc << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Costs");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    inst.costs = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "costs:" << inst.costs << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                //*******************************
+
+                flag = substrPosition(line, "Total passenger time");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    time.cTime = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Customer Time:" << time.cTime << endl;
+                    // getchar();
+                }
+                flag = false;
+            
+                flag = substrPosition(line, "Total parcel time");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    time.pTime = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Parcel Time:" << time.pTime << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Total combined transportation time");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    time.bTime = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Both Time:" << time.bTime << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Total idle time");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    time.eTime = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Empty Time:" << time.eTime << endl;
+                    // getchar();
+                }
+                flag = false;
+                
+            
+                //******************************************
+
+                flag = substrPosition(line, "Total passenger distance");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    dist.cDist = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Client dist:" << dist.cDist << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Total parcel distance");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    dist.pDist = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Parcel dist:" << dist.pDist << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Total combined transportation distance");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    dist.bDist = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Both dist:" << dist.bDist << endl;
+                    // getchar();
+                }
+                flag = false;
+
+                flag = substrPosition(line, "Total idle distance");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    dist.eDist = stod(line.substr(loc + 1, line.size() - loc - 1));
+                    // cout << "Empty dist:" << dist.eDist << endl;
+                    // getchar();
+
+                }
+
+                flag = false;
+
+                flag = substrPosition(line, "Passenger detour (%)");
+
+                if (flag) {
+                    loc = line.find_first_of(":");
+                    detstr = line.substr(loc + 2, line.size() - loc - 1);
+                    // cout << "detstr:" << detstr << endl;
+                    makeDetourVec(detstr, inst);
+                    // cout << "Vec of detours (after function): " << endl;
+
+                    // for (int i = 0; i < inst.detours.size();i++){
+                    //     cout << inst.detours[i] << " ";
+                    // }
+
+                    // getchar();
+
+                    okall = true; 
+                }
+                flag = false;
+                    
+                
+
 
             }
 
@@ -565,6 +1034,8 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
     // }
 }
 
+
+
 int main (int argc, char *argv[])
 {
     vector<instInfoN> vecInst;
@@ -573,7 +1044,17 @@ int main (int argc, char *argv[])
         
     string instName;
 
-    readData (argc, argv, vecInst, vecDist, vecTime);
+    string model;
+
+    model = argv[2];
+
+    if (model == "fip"){
+        readDataFIP (argc, argv, vecInst, vecDist, vecTime);
+    }
+
+    else{
+        readData (argc, argv, vecInst, vecDist, vecTime);
+    }
 
     instName = getInstName(argv);
 
@@ -583,6 +1064,11 @@ int main (int argc, char *argv[])
 
     createOutputTime(vecInst, vecTime, instName);
 
+    if (model == "fip"){
+        
+        createOutputDetours(vecInst, instName);
+
+    }
 
     return 0;
 

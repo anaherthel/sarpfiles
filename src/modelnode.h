@@ -22,17 +22,18 @@
 #include <sys/time.h>
 #include <ctime>
 #include <unistd.h>
-#include "readdata.h"
-#include "functions.h"
 #include "mipnode.h"
+#include "SarpADS.h"
 
 using namespace std;
 
 void initArcs (instanceStat *inst, nodeArcsStruct *nas);
-void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem);
+void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<nodeStat> &nodeVec, double **mdist);
 void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat);
 void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat);
 // void mtznode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat);
 void output(instanceStat *inst, vector<nodeStat> &nodeVec, solStats *sStat, probStat* problem);
+void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<nodeStat> &nodeVec, double **mdist, int stage);
+void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat*problem, solStats *sStat);
 
 #endif
