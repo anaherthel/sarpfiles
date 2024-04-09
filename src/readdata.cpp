@@ -164,7 +164,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
         
-        cout << "K: " << K << endl;
+        //cout << "K: " << K << endl;
         // getchar();
 
         if (K > n - 1){
@@ -178,7 +178,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //service = 0.1;
         //service = 0.083;
 
-        cout << "Service: " << service << endl;
+        //cout << "Service: " << service << endl;
 
 
 

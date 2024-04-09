@@ -25,8 +25,8 @@ def read_csv_lists(file_path):
     return list_of_files, list_of_values
 
 def make_cutoff_file(l_f, l_v):
-    folder_name = 'sol_sfsarps2'
-    folder_path = './sol_sfsarps2'
+    folder_name = 'sol_sfsarpm2'
+    folder_path = './sol_sfsarpm2'
     os.mkdir(folder_name)
 
     for i in range(len(l_f)):
@@ -36,7 +36,7 @@ def make_cutoff_file(l_f, l_v):
             f.write(str(l_v[i]))
         
     
-file = "cutvaluessfsarpSmcmp.csv"
+file = "cutvaluessfsarpMmcmp.csv"
 
 l_f, l_v = read_csv_lists(file)
 
