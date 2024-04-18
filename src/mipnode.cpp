@@ -87,6 +87,25 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		
 	}
 
+	IloNumVarArray u(env, nodeVec.size(), 0, 1);
+
+	for (int i = 0; i < nodeVec.size(); i++){
+		sprintf(var, "u(%d)", i);
+		u[i].setName(var);
+		model.add(u[i]);
+	}
+
+	////if (problem->p1 < 1 && problem->dParcel > 0){
+	//IloNumVarArray P(env, nodeVec.size(), 1, (2*inst->m + inst->n));
+
+	//for (int i = 0; i < nodeVec.size() - 2*inst->K; i++){
+	//	sprintf(var, "P(%d)", i);
+	//	P[i].setName(var);
+	//	model.add(P[i]);
+		
+	//}			
+	////}
+
 	IloExpr objFunction(env);
 
     objFunction += inst->totalCustomProfit;
@@ -110,6 +129,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 				objFunction += nodeVec[i].profit * x[i][j][k];
 			}
     	}
+
 	}
 	if (problem->p2 > 0){
 		for (int a = 0; a < nas->arcPP.size(); a++){
@@ -121,6 +141,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 			}
     	}
 	}
+
+	
 
 
     for (int a = 0; a < nas->allArcs.size(); a++){
@@ -432,6 +454,93 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 		}
 	}
+	//make new constraints for route sequence
+
+
+	if (problem->p1 < 1 && problem->dParcel > 0){
+		
+		//for (int i = inst->n + 2*inst->m; i < nodeVec.size(); i++){
+		//	IloExpr exp(env);
+		//	exp = u[i];
+
+		//	sprintf (var, "Constraint15_%d", i);
+			
+		//	IloRange cons1 = (exp == 0);
+		//	cons1.setName(var);
+		//	model.add(cons1);
+
+		//}
+
+		for (int a = 0; a < nas->allArcs.size(); a++){
+			
+			IloExpr exp(env);
+			IloExpr exp2(env);
+			IloExpr sumX(env);
+			int i = nas->allArcs[a].first;
+			int j = nas->allArcs[a].second;
+
+			for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+				int k = nas->arcV[i][j][k1];
+				sumX += x[i][j][k];
+			}
+
+			exp = u[i] + nodeVec[j].load2 - W*(1 - sumX);
+			exp2 = u[j];
+			
+			sprintf (var, "Constraint15_%d_%d", i, j);
+			
+			IloRange cons1 = (exp2 - exp >= 0);
+			cons1.setName(var);
+			model.add(cons1);
+		}		
+
+		// cout << "Constraint 15" << endl;
+		// getchar();
+		//for (int a = 0; a < nas->allArcs.size(); a++){
+			
+		//	IloExpr exp(env);
+		//	IloExpr exp2(env);
+		//	IloExpr exp3(env);
+		//	IloExpr sumX(env);
+			
+		//	int i = nas->allArcs[a].first;
+		//	int j = nas->allArcs[a].second;
+
+		//	if (i >= inst->n + 2*inst->m || j >= inst->n + 2*inst->m){
+		//		continue;
+		//	}
+
+		//	for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+		//		int k = nas->arcV[i][j][k1];
+		//		sumX += x[i][j][k];
+		//	}
+
+		//	exp = M2*(sumX - 1) + P[j] - 1;
+		//	exp2 = P[i];
+		//	exp3 = M2*(1 - sumX) + P[j] - 1;
+			
+		//	sprintf (var, "Constraint15_%d_%d", i, j);
+			
+		//	IloRange cons1 = (exp - exp2 <= 0);
+		//	cons1.setName(var);
+		//	model.add(cons1);
+
+		//	sprintf (var, "Constraint16_%d_%d", i, j);
+			
+		//	IloRange cons2 = (exp3 - exp2 >= 0);
+		//	cons2.setName(var);
+		//	model.add(cons2);			
+		//}
+
+
+		//for every pair of depot-customer
+
+
+	}
+
+
+
+	//end of new constraints
 
 	////test constraints
 	////cout << "here" << endl;
@@ -678,6 +787,16 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             }
         }
 
+
+        for (int i = 0; i < nodeVec.size(); i++){
+            //if (nSARP.getValue(u[i])){
+                sStat->solLoad2.push_back(nSARP.getValue(u[i]));
+            //}
+            //else {
+            //    sStat->solLoad2.push_back(0);
+            //}
+        }		
+
         printResults(inst, mdist, sStat, nodeVec);
 
 	}
@@ -713,6 +832,10 @@ void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<no
         for (int i = 0; i < nodeVec.size(); i++){
             cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
         }
+
+        for (int i = 0; i < nodeVec.size(); i++){
+            cout << "u(" << i << "): " << sStat->solLoad2[i] << endl;
+        }		
 
         // for (int i = 0; i < nodeVec.size(); i++){
         //     cout << "w(" << i << "): " << sStat->solLoad[i] << endl;

@@ -31,6 +31,7 @@ struct nodeStat{
 	double ys;
 	char label;
 	double load;
+	double load2;
 	double e;
 	double l;
 	double xf;
@@ -124,6 +125,7 @@ struct solStats{
 
 	vector<double> solBegin;
 	vector<double> solLoad;
+	vector<double> solLoad2;
 
 	bool feasible;
 

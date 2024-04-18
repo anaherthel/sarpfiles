@@ -20,7 +20,9 @@ def read_csv_lists(file_path):
             list_of_files.append(line[0])
             # if float(line[1]) < 0:
             #     line[1] = 0
-            list_of_values.append(m.ceil(float(line[1])))
+            # list_of_values.append(m.ceil(float(line[1])))
+            new_val = float(line[1])
+            list_of_values.append(m.ceil(new_val * 10) / 10)
 
     return list_of_files, list_of_values
 

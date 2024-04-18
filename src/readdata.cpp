@@ -516,12 +516,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xs = vxs[i];
             node->ys = vys[i];
             node->load = vload[i];
-            //if (){
 
-            //}
-            //else{
+            if (i < n){
+                node->load2 = -1;
+            }
+            else if (i < n + m){
+                node->load2 = 1;
+            }
+            else{
+                node->load2 = 0;
+            }
 
-            //}
             node->e = ve[i]/60;
             //node->e = timeRound(node->e);
             node->l = vl[i]/60;
@@ -538,6 +543,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xs = 0;
             node->ys = 0;
             node->load = 0;
+            node->load2 = 0;
             //node->e = 0;
             node->e = 9;
             // node->l = 14*60;
@@ -952,6 +958,17 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xs = vxs[i];
             node->ys = vys[i];
             node->load = vload[i];
+
+            if (i < n){
+                node->load2 = -1;
+            }
+            else if (i < n + m){
+                node->load2 = 1;
+            }
+            else{
+                node->load2 = 0;
+            }    
+                        
             node->e = ve[i]/60;
             //node->e =  timeRound(node->e);
 
@@ -973,10 +990,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < inst->dummy; i++){
             node->xs = 0;
             node->ys = 0;
-            node->load = 0;
+            node->load = 0;        
             //node->e = 0;
             //node->l = 24;
-             node->e = 9;
+            node->e = 9;
             node->l = 19;           
             node->xf = 0;
             node->yf = 0;
