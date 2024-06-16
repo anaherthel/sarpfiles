@@ -168,6 +168,46 @@ struct fipStats{
 
 };
 
+struct fipBundleStats{
+	
+	vector< vector<int> > solPass; //for each k in K, the bundle routes 
+	vector< vector< pair<int,int> > > solPassOrigins; //for each k in K, the passenger PU locations and its position in the solution.
+
+	bool fipstage;
+	vector< vector< pair<int, int> > > solvec; //solution vector with parcel additions
+	vector<double> solBegin; //stores values of b[i][k] for each bundle
+	vector<double> solBeginParcel;//stores values of s[j]
+	vector<int> vehicleVec;
+	vector<int> selectedBundles;
+
+	vector<double> beginPass;//stores values of starting times for passengers after the solutions merging
+
+	vector< vector<int> > fullSol; //merged solution with passengers and parcels.
+	vector< vector<double> > fullBegin; // beginning of service for all passengers and served parcels.
+	double solprofit;
+
+	vector<int> bundlesPD;
+	vector<int> bundlesPonly;
+	vector<int> bundlesDonly;
+
+	vector <double> passDetour;//increase in percentage to the trip with no detours
+	
+	double tParcel;
+	double tPass;
+	double tBoth;
+	double tNone;
+
+	double tStillP;
+	double tStillG;
+	double tStill;
+
+	double dParcel;
+	double dPass;
+	double dBoth;
+	double dNone;
+
+};
+
 struct nodeArcsStruct{//for model node
 	vector< vector<bool> > arcs; //all arcs, either true or false. For each request to each request.
 	vector< pair<int,int> > allArcs; // the actual pairs of requests that form an arc
@@ -202,4 +242,7 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat);
 void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat, fipStats *fipStat, bool feasFlag);
 void calcPassDetour(instanceStat *inst, vector<nodeStat> &nodeVec, fipStats *fipStat);
 void clearStats(solStats *sStat, fipStats *fipStat);
+
+void fipStatIniBundle(fipBundleStats *fipStat);
+
 #endif

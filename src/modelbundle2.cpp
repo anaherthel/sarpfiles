@@ -66,6 +66,7 @@ void makeBundles2 (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bS
     // }
 
 
+
 }
 
 void bundleProfit2(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
@@ -140,6 +141,21 @@ void initVecs2 (instanceStat *inst, vector< vector<bParcelStruct> > &clsParcel, 
     }
 
 }
+
+void clearArcs(bundleStat *bStat){
+    bStat->bArcPlus.clear();
+    bStat->vArcPlus.clear();
+    bStat->vArcMinus.clear();
+
+    bStat->bArcs.clear();
+    bStat->bArcMinus.clear(); 
+    bStat->bArcPlus.clear();
+
+    bStat->arcV.clear();
+
+    bStat->bArcVec.clear();
+}
+
 void initArcs2 (instanceStat *inst, bundleStat *bStat, clSt *cStat){
 
     vector< vector<int> > vec2d;
@@ -414,6 +430,225 @@ void feasibleBundleArcs2 (instanceStat *inst, double **mdist, vector<nodeStat> &
             bStat->vArcMinus[j][k].push_back(bStat->bArcVec[a]);
         }
     }  
+}
+
+void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem){
+    int setN; //last index of bundles before starting points
+    int setP; //last index of bundles with only passengers
+    int setPD; //last index of bundles before parcel only
+    int ref;
+    // setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
+    
+    int fDummy;
+
+    setPD = bStat->bundleVec.size() - 3*inst->m;
+    setN = setPD - (2*inst->K);
+    fDummy = setPD - inst->K;
+
+    ref = 3*inst->m;
+    setP = setN;
+
+    int currentCluster = 0;
+
+    pair<int, int> bFArc;
+    int auxK;
+
+    for(int i = 0; i < bStat->bundleVec.size(); i++){
+        if (i < fDummy){
+            if(i < setP){//i is not depot or dummy or parcel only
+                if (i > currentCluster*(ref + 1) + ref){
+                    currentCluster++;
+                }
+                bStat->clofbundle.push_back(currentCluster);
+                for (int j = 0; j < setN; j++){//j is not depot or dummy
+                    if (i != j){
+                        if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){\
+                            //if (bStat->bundleEnd[j] <= inst->T){
+                                if (bStat->bundleStart[j] > 0){
+                                    //cout << "i: " << i << " - j: " << j << " - bundleStart[i]: " << bStat->bundleStart[i] << " - bundleServVec[i]: " << bStat->bundleServVec[i] << " - mdist: " << mdist[bStat->lastElement[i]][bStat->firstElement[j]] << " - bundleStart[j]: " << bStat->bundleStart[j] << endl;
+                                    //cout << "test: " << (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]) << endl;
+                                    if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+                                        bStat->bArcs[i][j] = true;
+                                    } 
+                                }
+                                else{
+                                    bStat->bArcs[i][j] = true;
+                                }
+                            //}
+                        }
+                    } 
+                }
+                for (int j = fDummy; j < setPD; j++){//j is dummy node
+                    bStat->bArcs[i][j] = true;                                     
+                }                    
+                for (int j = setPD; j < bStat->bundleVec.size(); j++){//j is a parcel only bundle
+                    bStat->bArcs[i][j] = true; 
+                }
+
+            }
+
+            else if (i >= setN && i < setPD){//i is a starting point bundle
+                currentCluster++;
+                bStat->clofbundle.push_back(currentCluster);
+                for (int j = 0; j < setN; j++){//j is a request bundle
+                    //if (bStat->bundleEnd[j] <= inst->T){
+                        if (bStat->bundleStart[j] > 0){
+                            if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+                                bStat->bArcs[i][j] = true;                        
+                            }
+                        }
+                        else{
+                            bStat->bArcs[i][j] = true;
+                        }
+                    //}
+                }
+                bStat->bArcs[i][i + inst->K] = true;//direct trip to depot (empty vehicle)
+
+                for (int j = setPD; j < bStat->bundleVec.size(); j++){//j is a parcel only bundle
+                    if (bStat->firstElement[j] < inst->n+inst->m){ // arc only if bundle starts with Parcel request pickup
+                        bStat->bArcs[i][j] = true; 
+                    }
+                    else{
+                        //cout << "i: " << i << " - j: " << j << " - firstElement: " << bStat->firstElement[j] << endl;
+                        bStat->bArcs[i][j] = false; 
+                    }
+                }
+
+
+            }
+            //currentCluster++;
+            //bStat->clofbundle.push_back(currentCluster);
+
+        }
+        else{
+            currentCluster++;
+            bStat->clofbundle.push_back(currentCluster);
+        }
+        if (i >= setPD){
+            for (int j = 0; j < setN; j++){//j is a request bundle
+                if (bStat->bundleStart[j] > 0){
+                    bStat->bArcs[i][j] = true;                        
+                }
+            }
+            for (int j = fDummy; j < setPD; j++){//j is a dummy bundle
+                if (bStat->lastElement[i] >= inst->n+inst->m){ // arc only if bundle ends with Parcel request dropoff
+                    bStat->bArcs[i][j] = true; 
+                }
+                else{
+                    //cout << "i: " << i << " - j: " << j << " - lastElement: " << bStat->lastElement[i] << endl;
+                    bStat->bArcs[i][j] = false; 
+                }
+            }
+            for (int j = setPD; j < bStat->bundleVec.size(); j++){//j is a parcel only bundle
+                if (i != j){
+                    bStat->bArcs[i][j] = true; 
+                }
+            }   
+        }
+     
+    }
+
+    // cout << "list of cluster allocations: " <<endl;
+
+    // for (int i = 0; i < bStat->clofbundle.size(); i++){
+    //     cout << "Bundle: (" << i << ") - " << "cluster: " << bStat->clofbundle[i] << endl;
+    // }
+    // getchar();
+    
+    //remove arcs to bundles with same parcel requests
+    for (int i = 0; i < bStat->parcelBundleVec.size(); i++){
+        for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
+            for (int k = 0; k < bStat->parcelBundleVec[i].size(); k++){
+                if (bStat->parcelBundleVec[i][j] != bStat->parcelBundleVec[i][k]){
+                    bStat->bArcs[bStat->parcelBundleVec[i][j]][bStat->parcelBundleVec[i][k]] = false;
+                }
+            }
+        }
+    }
+
+    //remove arcs from/to bundles with negative start times
+    for (int i = 0; i < bStat->bundleStart.size() - 1; i++){
+        if (bStat->bundleStart[i] < 0){
+            for (int j = 0; j < bStat->bundleVec.size() - 1; j++){
+                bStat->bArcs[j][i] = false;
+                bStat->bArcs[i][j] = false;           
+            }
+        }
+    }
+
+    for(int i = 0; i < bStat->bundleVec.size(); i++){
+        for(int j = 0; j < bStat->bundleVec.size(); j++){
+            if (bStat->bArcs[i][j]){
+                bFArc.first = i;
+                bFArc.second = j;                
+                
+                bStat->bArcMinus[j].push_back(bFArc);
+                bStat->bArcPlus[i].push_back(bFArc);
+                
+                bStat->bArcVec.push_back(bFArc);
+
+                if (i < setN){//i is a bundle of request
+                    if (j < setN){ // j is a bundle of request
+                        for (int k = 0; k < inst->K; k++){ // in this case, all vehicles are available
+                            bStat->arcV[i][j].push_back(k);
+                        }                        
+                    }
+                    else if (j >= fDummy && j < setPD){ //j is a dummy bundle
+                        auxK = j - fDummy; //k is the vehicle associated with dummy bundle j
+                        bStat->arcV[i][j].push_back(auxK);                         
+                    }
+                    else if (j >= setPD){ //j is a parcel only bundle
+                        for (int k = 0; k < inst->K; k++){ // in this case, all vehicles are available
+                            bStat->arcV[i][j].push_back(k);
+                        }
+                    }                        
+
+                }
+                else if (i < fDummy){//i is a starting location bundle
+                    if (j < setN){ //j is a request bundle
+                        auxK = i - setN;
+                        bStat->arcV[i][j].push_back(auxK);                         
+                    }
+                    if (j >= setPD){ //j is a parcel only bundle
+                        auxK = i - setN;
+                        bStat->arcV[i][j].push_back(auxK); 
+                    }
+                    
+                }
+                else if (i >= setPD){ //i is a parcel only bundle
+                    if (j < setN || j >= setPD){ //j is a request bundle or a parcel only bundle
+                        for (int k = 0; k < inst->K; k++){ // in this case, all vehicles are available
+                            bStat->arcV[i][j].push_back(k);
+                        } 
+                    }
+                    else if (j >= fDummy && j < setPD){ //j is a dummy bundle
+                        auxK = j - fDummy; //k is the vehicle associated with dummy bundle j
+                        bStat->arcV[i][j].push_back(auxK);                         
+                    }                                     
+                }                  
+                
+            }
+        }
+        if (i >= setN && i < fDummy){//i is a starting bundle
+            auxK = i - setN; //arc from starting node to end depot
+            bStat->arcV[i][i + inst->K].push_back(auxK);
+        }
+    }
+
+    //creating the vectors for leaving incoming arcs with available vehicles
+    for (int a = 0; a < bStat->bArcVec.size(); a++){
+        int i = bStat->bArcVec[a].first;
+        int j = bStat->bArcVec[a].second;
+        //cout << "varc plus size: " << bStat->vArcPlus.size() << endl;
+        for (int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
+            //cout <<"1" << endl;
+            int k = bStat->arcV[i][j][k1];
+            //cout <<"2" << endl;
+            bStat->vArcPlus[i][k].push_back(bStat->bArcVec[a]);
+            bStat->vArcMinus[j][k].push_back(bStat->bArcVec[a]);
+        }
+
+    }
 }
 
 void feasibleClusterArcs2 (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem){
@@ -880,6 +1115,167 @@ void stillTimeBundle2(instanceStat *inst, double **mdist, bundleStat *bStat, vec
 
 }
 
+void setUpFipBundle(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem, fipBundleStats *fipStat){
+
+    //create parcel only bundles
+    //if (problem->model == "bundle3"){
+        //Parcel only bundles (direct delivery):
+        for (int i = inst->n; i < inst->n + inst->m; i++){
+            double bundledelta = nodeVec[i].delta + nodeVec[i + inst->m].delta;
+
+            bStat->bundle.push_back(i);
+            bStat->bundle.push_back(i + inst->m);
+
+            bStat->bundleTimes.push_back(bundledelta);            
+            bStat->bundleVec.push_back(bStat->bundle);
+            //cStat->clusters.push_back(bStat->bundleVec.size()-1);
+            double cost = nodeVec[bStat->bundle[0]].profit - (inst->costkm*mdist[bStat->bundle[0]][bStat->bundle[1]]);
+            double service = nodeVec[bStat->bundle[0]].delta + nodeVec[bStat->bundle[1]].delta
+                           + ((mdist[bStat->bundle[0]][bStat->bundle[1]])/inst->vmed);
+            bStat->bundleProfVec.push_back(cost);
+            bStat->bundleServVec.push_back(service);    
+            double bundleTime = nodeVec[bStat->bundle[0]].e;
+            bStat->bundleStart.push_back(bundleTime);
+            bundleTime = nodeVec[bStat->bundle[0]].l;
+            bStat->bundleEnd.push_back(bundleTime);
+            bStat->firstElement.push_back(bStat->bundle[0]);
+            bStat->lastElement.push_back(bStat->bundle[1]);
+            fipStat->bundlesPD.push_back(bStat->bundleVec.size()-1);
+        
+
+            bStat->parcelBundleVec[i - inst->n].push_back(bStat->bundleVec.size()-1);
+
+
+            bStat->bundle.clear();
+
+            //parcel only bundles single parcel single delivery bundles
+
+            bStat->bundle.push_back(i);
+
+            bStat->bundleTimes.push_back(nodeVec[i].delta);            
+            bStat->bundleVec.push_back(bStat->bundle);
+            cost = nodeVec[bStat->bundle[0]].profit;
+            service = nodeVec[bStat->bundle[0]].delta;
+            bStat->bundleProfVec.push_back(cost);
+            bStat->bundleServVec.push_back(service);  
+            bundleTime = nodeVec[bStat->bundle[0]].e;
+            bStat->bundleStart.push_back(bundleTime);
+            bundleTime = nodeVec[bStat->bundle[0]].l;
+            bStat->bundleEnd.push_back(bundleTime);
+            bStat->firstElement.push_back(bStat->bundle[0]);
+            bStat->lastElement.push_back(bStat->bundle[0]);            
+            bStat->parcelBundleVec[i - inst->n].push_back(bStat->bundleVec.size()-1);
+            fipStat->bundlesPonly.push_back(bStat->bundleVec.size()-1);
+
+            bStat->bundle.clear();
+
+            bStat->bundle.push_back(i + inst->m);
+
+            bStat->bundleTimes.push_back(nodeVec[i + inst->m].delta);            
+            bStat->bundleVec.push_back(bStat->bundle);
+            cost = nodeVec[bStat->bundle[0]].profit;
+            service = nodeVec[bStat->bundle[0]].delta;
+            bStat->bundleProfVec.push_back(cost);
+            bStat->bundleServVec.push_back(service);    
+            bundleTime = nodeVec[bStat->bundle[0]].e;
+            bStat->bundleStart.push_back(bundleTime);
+            bundleTime = nodeVec[bStat->bundle[0]].l;
+            bStat->bundleEnd.push_back(bundleTime);
+            bStat->firstElement.push_back(bStat->bundle[0]);
+            bStat->lastElement.push_back(bStat->bundle[0]);              
+            bStat->parcelBundleVec[i - inst->n].push_back(bStat->bundleVec.size()-1);
+            fipStat->bundlesDonly.push_back(bStat->bundleVec.size()-1);
+
+            bStat->bundle.clear();
+
+
+        } 
+
+
+     
+
+    //}
+    cout << "\nBundle Vector: [";
+
+    for (int i = 0; i < bStat->bundleVec.size(); i++){
+        cout << "(" << i << "): [";
+        for (int j = 0; j < bStat->bundleVec[i].size(); j++){
+            cout << bStat->bundleVec[i][j];
+            if (j < bStat->bundleVec[i].size() - 1){
+                cout << ",";
+            }
+            else{
+                cout << "] ";
+            }
+        }
+        cout << endl;
+    }
+    //getchar();
+
+
+
+}
+
+void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat){
+
+    vector<int> pulocations;
+    pair <int, int> pairpuloc;
+    vector< pair<int, int> > pupairs;
+    int fdepot;
+
+    int setN; //last index of bundles before starting points
+    int setP; //last index of bundles with only passengers
+    int setPD; //last index of bundles before parcel only
+    // setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
+    
+    int fdummy;  
+
+    setPD = bStat->bundleVec.size() - 3*inst->m;
+    setN = setPD - (2*inst->K);
+    fdummy = setPD - inst->K;
+    fdepot = setN;
+
+    for (int i = 0; i < setPD; i++){
+        fipStat->solBegin.push_back(0);
+    }
+
+    for (int i = 0; i < inst->n; i++){
+        fipStat->vehicleVec.push_back(-1);
+    }
+    for (int i = 0; i < sStat->solOrder.size(); i++){
+        int depot = fdepot + i;
+        int dummy = fdummy + i;
+        pulocations.push_back(depot);
+
+
+        for (int j = 0; j < sStat->solOrder[i].size(); j++){
+            if (sStat->solOrder[i][j] < setN){
+                pulocations.push_back(sStat->solOrder[i][j]);
+                fipStat->solBegin[sStat->solOrder[i][j]] = bStat->bundleStart[sStat->solOrder[i][j]];
+            }
+        }
+        pulocations.push_back(dummy);
+        fipStat->solPass.push_back(pulocations);
+        pulocations.clear();
+    }
+    pulocations.clear();
+
+
+    //for (int k = 0; k < inst->K; k++){
+    //    for (int i = 0; i < fipStat->solPass[k].size(); i++){
+            //if(fipStat->solPass[k][i] < inst->n){
+            //pairpuloc.first = fipStat->solPass[k][i];
+            //pairpuloc.second = i;
+            //pupairs.push_back(pairpuloc);
+            //fipStat->vehicleVec[fipStat->solPass[k][i]] = k;
+            //}
+        //}
+        //fipStat->solPassOrigins.push_back(pupairs);
+        //pupairs.clear();
+    //}
+}
+
+
 void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
     bundleStat bStat;
     clSt cStat;
@@ -975,6 +1371,32 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
     //    }
     //    cout << endl;
     //}
+
+    //file with bundle arcs
+    //std::ofstream file("bundleArcs.csv");
+
+    //if (!file.is_open()) {
+    //    std::cerr << "Failed to open file for writing.\n";
+    //    return;
+    //}
+    //for (int i = 0; i < bStat.bundleVec.size(); i++) {
+    //    file << i;
+    //    if (i < bStat.bundleVec.size() - 1) file << ",";
+
+    //}
+    //file << "\n";    
+    //for (int i = 0; i < bStat.bundleVec.size(); i++) {
+    //    file << i << ",";
+    //    for (int j = 0; j < bStat.bundleVec.size(); j++){
+    //        file << bStat.bArcs[i][j];
+    //        if (j < bStat.bundleVec.size() - 1) file << ",";
+    //    }
+    //    file << "\n";
+    //}
+
+    //file.close();
+
+
     // getchar();
 
     // cout << "Bundle beginning times: " << endl;
@@ -1048,6 +1470,58 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
 
         printStats(inst, sStat);
         
+    }
+    
+    if(problem->model == "bundle3"){
+        fipBundleStats fipStat;
+
+        setUpFipBundle(inst, mdist, nodeVec, &bStat, problem, &fipStat);
+
+        clearArcs(&bStat);
+        initArcs2(inst, &bStat, &cStat);
+        feasibleBundleArcs2next(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
+        std::ofstream file("bundleArcs.csv");
+
+        if (!file.is_open()) {
+            std::cerr << "Failed to open file for writing.\n";
+            return;
+        }
+        file << -1 << ",";
+        for (int i = 0; i < bStat.bundleVec.size(); i++) {
+            file << i;
+            if (i < bStat.bundleVec.size() - 1) file << ",";
+
+        }
+        file << "\n";    
+        for (int i = 0; i < bStat.bundleVec.size(); i++) {
+            file << i << ",";
+            for (int j = 0; j < bStat.bundleVec.size(); j++){
+                file << bStat.bArcs[i][j];
+                if (j < bStat.bundleVec.size() - 1) file << ",";
+            }
+            file << "\n";
+        }
+
+        file.close();
+       
+       
+        cout << "\nParcel Bundles: " << endl;
+
+        for (int i = 0 ; i < bStat.parcelBundleVec.size(); i++){
+        cout << i + inst->n << ": ";
+        for(int j = 0; j < bStat.parcelBundleVec[i].size(); j++){
+            cout << bStat.parcelBundleVec[i][j] << " ";
+        }
+        cout << endl;
+        }
+        cout << endl;        
+
+        fipStructBundle(inst, sStat, &bStat, &fipStat);
+
+        fipbundle(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat, &fipStat);
+        cout << "after fip" << endl;
+
+
     }
 
     for ( int i = 0; i < inst->V + inst->dummy; i++) {

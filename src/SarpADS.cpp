@@ -43,6 +43,21 @@ void fipStatIni(fipStats *fipStat){
     fipStat->dNone = 0;
 }
 
+void fipStatIniBundle(fipBundleStats *fipStat){
+
+    fipStat->solprofit = 0;
+
+    fipStat->tParcel = 0;
+    fipStat->tPass = 0;
+    fipStat->tBoth = 0;
+    fipStat->tNone = 0;
+
+    fipStat->dParcel = 0;
+    fipStat->dPass = 0;
+    fipStat->dBoth = 0;
+    fipStat->dNone = 0;
+}
+
 void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat){
 
     int load;
@@ -537,6 +552,8 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat){
     // pairpuloc.second = 2;
     // fipStat->solPassOrigins[1].push_back(pairpuloc);
 }
+
+
 
 void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat, fipStats *fipStat, bool feasFlag){
     

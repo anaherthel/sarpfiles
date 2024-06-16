@@ -1,0 +1,214 @@
+Obj Val: 120.147031000000027
+
+Solve Time: 636.420000000000073
+
+x(447, 1826, 0)
+x(1583, 447, 0)
+x(1820, 1583, 0)
+x(45, 1515, 1)
+x(1418, 1827, 1)
+x(1515, 1418, 1)
+x(1821, 45, 1)
+x(256, 468, 2)
+x(468, 1717, 2)
+x(704, 1204, 2)
+x(818, 256, 2)
+x(1204, 1828, 2)
+x(1717, 704, 2)
+x(1822, 818, 2)
+x(1064, 1360, 3)
+x(1360, 1829, 3)
+x(1823, 1064, 3)
+x(848, 1830, 4)
+x(1762, 848, 4)
+x(1824, 1762, 4)
+x(92, 1142, 5)
+x(350, 587, 5)
+x(587, 1831, 5)
+x(982, 350, 5)
+x(1142, 982, 5)
+x(1825, 92, 5)
+
+
+Customer profit: 65.506286999999986
+Parcel profit: 55.119052000000053
+Costs: 0.478308000000006
+
+Number of Vehicles: 6
+
+Solution by nodes: 
+Vehicle 0: 80 - 31 - 61 - 17 - 4 - 47 - 77 - 86 - Total time: 2.938591869918697
+Vehicle 1: 81 - 34 - 64 - 0 - 16 - 39 - 69 - 15 - 37 - 67 - 87 - Total time: 1.635589430894311
+Vehicle 2: 82 - 49 - 79 - 8 - 2 - 44 - 74 - 24 - 5 - 54 - 46 - 18 - 76 - 42 - 7 - 72 - 26 - 56 - 13 - 88 - Total time: 7.118105691056913
+Vehicle 3: 83 - 40 - 70 - 11 - 14 - 48 - 78 - 89 - Total time: 1.892096747967480
+Vehicle 4: 84 - 30 - 60 - 19 - 9 - 29 - 59 - 90 - Total time: 5.341267479674799
+Vehicle 5: 85 - 20 - 1 - 50 - 12 - 36 - 66 - 43 - 73 - 10 - 3 - 45 - 75 - 6 - 33 - 63 - 91 - Total time: 2.536143089430898
+
+
+Solution structure: 
+Vehicle 0: S - P - D - d - d - P - D - f
+Vehicle 1: S - P - D - d - d - P - D - d - P - D - f
+Vehicle 2: S - P - D - d - d - P - D - P - d - D - P - d - D - P - d - D - P - D - d - f
+Vehicle 3: S - P - D - d - d - P - D - f
+Vehicle 4: S - P - D - d - d - P - D - f
+Vehicle 5: S - P - d - D - d - P - D - P - D - d - d - P - D - d - P - D - f
+*******************************************************
+
+BAP solution
+
+************************************************************************************************
+Search is finished, global bounds : [ -54.6462 , -54.6462 ], TIME = 0h0m2s82t = 282
+************************************************************************************************
+Solution: ref = 4   solCost = -54.6462
+   multiplicity = 1
+   nbVar = 0
+-------------------------
+Solution: ref = 6735   solCost = -5.4005
+   multiplicity = 1
+   nbVar = 7
+   Ordered solution  (not. enum.) : 0(0,0,0,0) -> 32(0.00103659,1,0,0) -> 62(0.0850626,1,0,1) -> 15(14.25,0,1,0) -> 14(16.6833,-1,2,-1) -> 48(16.8503,0,0,-1) -> 78(16.9338,0,0,0) -> 81(17.0171,0,0,0)
+Solution includes var[Xk0i0j32_0_OspV(0.01955)] = 1
+Solution includes var[Xk0i14j48_0_OspV(0.003588)] = 1
+Solution includes var[Xk0i15j14_0_OspV(0.01035)] = 1
+Solution includes var[Xk0i32j62_0_OspV(-2.75051)] = 1
+Solution includes var[Xk0i48j78_0_OspV(-2.74204)] = 1
+Solution includes var[Xk0i62j15_0_OspV(0.058558)] = 1
+Solution includes var[Xk0i78j0_0_OspV(0)] = 1
+-------------------------
+Solution: ref = 6736   solCost = -5.46565
+   multiplicity = 1
+   nbVar = 7
+   Ordered solution  (not. enum.) : 0(0,0,0,0) -> 41(0.000804878,1,0,0) -> 71(0.0848967,1,0,1) -> 12(12.8667,0,1,0) -> 18(14.25,-1,2,-1) -> 49(14.4228,0,0,-1) -> 79(14.5066,0,0,0) -> 81(14.5899,0,0,0)
+Solution includes var[Xk0i0j41_0_OspV(0.01518)] = 1
+Solution includes var[Xk0i12j18_0_OspV(0.001242)] = 1
+Solution includes var[Xk0i18j49_0_OspV(0.005566)] = 1
+Solution includes var[Xk0i41j71_0_OspV(-2.75151)] = 1
+Solution includes var[Xk0i49j79_0_OspV(-2.74722)] = 1
+Solution includes var[Xk0i71j12_0_OspV(0.011086)] = 1
+Solution includes var[Xk0i79j0_0_OspV(0)] = 1
+-------------------------
+Solution: ref = 6737   solCost = -8.1972
+   multiplicity = 1
+   nbVar = 10
+   Ordered solution  (not. enum.) : 0(0,0,0,0) -> 35(0.000804878,1,0,0) -> 65(0.0848967,1,0,1) -> 1(14.1833,0,1,0) -> 17(14.4167,-1,2,-1) -> 40(14.5847,0,0,-1) -> 70(14.6687,0,0,0) -> 16(15.3167,-1,1,-1) -> 38(15.4837,0,0,-1) -> 68(15.5672,0,0,0) -> 81(15.6505,0,0,0)
+Solution includes var[Xk0i0j35_0_OspV(0.01518)] = 1
+Solution includes var[Xk0i1j17_0_OspV(0.009292)] = 1
+Solution includes var[Xk0i16j38_0_OspV(0.006118)] = 1
+Solution includes var[Xk0i17j40_0_OspV(0.009798)] = 1
+Solution includes var[Xk0i35j65_0_OspV(-2.75151)] = 1
+Solution includes var[Xk0i38j68_0_OspV(-2.74215)] = 1
+Solution includes var[Xk0i40j70_0_OspV(-2.7501)] = 1
+Solution includes var[Xk0i65j1_0_OspV(0.003634)] = 1
+Solution includes var[Xk0i68j0_0_OspV(0)] = 1
+Solution includes var[Xk0i70j16_0_OspV(0.00253)] = 1
+-------------------------
+Solution: ref = 6738   solCost = -5.47085
+   multiplicity = 1
+   nbVar = 7
+   Ordered solution  (not. enum.) : 0(0,0,0,0) -> 31(0.000704878,1,0,0) -> 61(0.0844797,1,0,1) -> 20(9.41667,0,1,0) -> 10(14.25,-1,2,-1) -> 30(14.4226,0,0,-1) -> 60(14.5066,0,0,0) -> 81(14.59,0,0,0)
+Solution includes var[Xk0i0j31_0_OspV(0.013294)] = 1
+Solution includes var[Xk0i10j30_0_OspV(0.001518)] = 1
+Solution includes var[Xk0i20j10_0_OspV(0.009108)] = 1
+Solution includes var[Xk0i30j60_0_OspV(-2.75088)] = 1
+Solution includes var[Xk0i31j61_0_OspV(-2.7467)] = 1
+Solution includes var[Xk0i60j0_0_OspV(0)] = 1
+Solution includes var[Xk0i61j20_0_OspV(0.002806)] = 1
+-------------------------
+Solution: ref = 6739   solCost = -16.4291
+   multiplicity = 1
+   nbVar = 19
+   Ordered solution  (not. enum.) : 0(0,0,0,0) -> 50(0.000617073,1,0,0) -> 80(0.0844407,1,0,1) -> 9(9.9,0,1,0) -> 3(12.4333,-1,2,-1) -> 45(12.6008,0,0,-1) -> 75(12.6847,0,0,0) -> 25(12.7681,1,0,0) -> 6(14.3167,0,20,-1) -> 55(14.4838,0,0,0) -> 39(14.5673,1,0,0) -> 69(14.651,1,0,1) -> 19(14.7667,0,1,0) -> 43(14.9338,1,0,0) -> 8(16.0333,0,20,-1) -> 73(16.2004,0,0,0) -> 44(16.2838,1,0,0) -> 74(16.3672,1,0,1) -> 5(16.6833,0,1,0) -> 81(16.8501,0,1,0)
+Solution includes var[Xk0i0j50_0_OspV(0.011638)] = 1
+Solution includes var[Xk0i3j45_0_OspV(0.007636)] = 1
+Solution includes var[Xk0i5j0_0_OspV(0)] = 1
+Solution includes var[Xk0i6j55_0_OspV(0.003542)] = 1
+Solution includes var[Xk0i8j73_0_OspV(0.006394)] = 1
+Solution includes var[Xk0i9j3_0_OspV(0.004048)] = 1
+Solution includes var[Xk0i19j43_0_OspV(0.00437)] = 1
+Solution includes var[Xk0i25j6_0_OspV(-2.75074)] = 1
+Solution includes var[Xk0i39j69_0_OspV(-2.74511)] = 1
+Solution includes var[Xk0i43j8_0_OspV(-2.75588)] = 1
+Solution includes var[Xk0i44j74_0_OspV(-2.74244)] = 1
+Solution includes var[Xk0i45j75_0_OspV(-2.74907)] = 1
+Solution includes var[Xk0i50j80_0_OspV(-2.74744)] = 1
+Solution includes var[Xk0i55j39_0_OspV(0.002024)] = 1
+Solution includes var[Xk0i69j19_0_OspV(0.000552)] = 1
+Solution includes var[Xk0i73j44_0_OspV(0.001196)] = 1
+Solution includes var[Xk0i74j5_0_OspV(0.013846)] = 1
+Solution includes var[Xk0i75j25_0_OspV(0.001932)] = 1
+Solution includes var[Xk0i80j9_0_OspV(0.00437)] = 1
+-------------------------
+Solution: ref = 6740   solCost = -13.6829
+   multiplicity = 1
+   nbVar = 16
+   Ordered solution  (not. enum.) : 0(0,0,0,0) -> 21(0.000590244,1,0,0) -> 2(12.4667,0,20,-1) -> 51(12.6337,0,0,0) -> 13(12.8667,-1,1,-1) -> 37(13.0337,0,0,-1) -> 67(13.1172,0,0,0) -> 11(13.4667,-1,1,-1) -> 47(13.6338,0,0,-1) -> 77(13.7174,0,0,0) -> 29(13.8008,1,0,0) -> 59(13.8842,1,0,1) -> 4(14.2,0,1,0) -> 46(14.3675,1,0,0) -> 76(14.4509,1,0,1) -> 7(14.5833,0,1,0) -> 81(14.7508,0,1,0)
+Solution includes var[Xk0i0j21_0_OspV(0.011132)] = 1
+Solution includes var[Xk0i2j51_0_OspV(0.005198)] = 1
+Solution includes var[Xk0i4j46_0_OspV(0.004324)] = 1
+Solution includes var[Xk0i7j0_0_OspV(0)] = 1
+Solution includes var[Xk0i11j47_0_OspV(0.004646)] = 1
+Solution includes var[Xk0i13j37_0_OspV(0.007314)] = 1
+Solution includes var[Xk0i21j2_0_OspV(-2.76988)] = 1
+Solution includes var[Xk0i29j59_0_OspV(-2.74152)] = 1
+Solution includes var[Xk0i37j67_0_OspV(-2.74244)] = 1
+Solution includes var[Xk0i46j76_0_OspV(-2.74063)] = 1
+Solution includes var[Xk0i47j77_0_OspV(-2.74422)] = 1
+Solution includes var[Xk0i51j13_0_OspV(0.005244)] = 1
+Solution includes var[Xk0i59j4_0_OspV(0.005244)] = 1
+Solution includes var[Xk0i67j11_0_OspV(0.003726)] = 1
+Solution includes var[Xk0i76j7_0_OspV(0.007452)] = 1
+Solution includes var[Xk0i77j29_0_OspV(0.001518)] = 1
+-------------------------
+
+data/C3/sfsarp/sfsarp-20-30-1.txt
+bcAverageDualSolSize 123 4324 
+bcAveragePrimalSolSize 123 2982 
+bcCountCg 135 
+bcCountCgSpSolverCall 135 
+bcCountCgT1 7 
+bcCountCol 2009 
+bcCountCut1rowPackR1C 6 
+bcCountCut3rowPackR1C 300 
+bcCountCutInMaster 306 
+bcCountCutR1C 306 
+bcCountMastSol 123 
+bcCountNodeGen 1 
+bcCountNodeProc 1 
+bcCountNodeTreat 1 
+bcCountPrimalSolSize 6 
+bcCountRootActive3rowPackR1C 5 
+bcCountRootActiveCutR1C 5 
+bcCountSpSol 135 
+bcEstimTreeSize 0 
+bcMaxDualSpaceSize 52 
+bcMaxIterCg 104 
+bcMaxNbColInMastLp 1999 
+bcMaxNbRowInMastLp 212 
+bcMaxPUpd 1 
+bcMaxPrimalSpaceSize 52 
+bcRecBestDb -54.646206 
+bcRecBestInc -54.646206 
+bcRecRootContribCutR1C 0.00438200000051 
+bcRecRootDb -54.646206 
+bcRecRootInc -54.646206 
+bcRecRootLpVal -54.646206 
+bcTimeAddCutToMaster 20.6559 & 0h0m0s20t 
+bcTimeBaP 264.347 & 0h0m2s64t 
+bcTimeCgSpOracle 160.419 & 0h0m1s60t 
+bcTimeColGen 174.898 & 0h0m1s74t 
+bcTimeCutSepR1C 0.303465 & 0h0m0s0t 
+bcTimeCutSeparation 0.9965 & 0h0m0s0t 
+bcTimeHeurSpOracle 106.838 & 0h0m1s6t 
+bcTimeMain 282.931 & 0h0m2s82t 
+bcTimeMastMPsol 13.218 & 0h0m0s13t 
+bcTimeMastPrepareProbConfig 13.6683 & 0h0m0s13t 
+bcTimeRedCostFixAndEnum 62.7324 & 0h0m0s62t 
+bcTimeRoot 282.795 & 0h0m2s82t 
+bcTimeRootEval 282.795 & 0h0m2s82t 
+bcTimeSetMast 3.99861 & 0h0m0s3t 
+bcTimeSpMPsol 142.687 & 0h0m1s42t 
+bcTimeSpSol 150.399 & 0h0m1s50t 
+bcTimeSpUpdateProb 8.518 & 0h0m0s8t 
+BaPStat: data/C3/sfsarp/sfsarp-20-30-1.txt & 282.931 & 0h0m2s82t  \\ 
+TIME = 0h0m2s82t = 282
+

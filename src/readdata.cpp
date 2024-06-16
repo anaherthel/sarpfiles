@@ -1062,44 +1062,44 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // }
     // getchar();
 
-    //cout << "\nTime windows: " << endl;
+    cout << "\nTime windows: " << endl;
 
-    //for (int i = 0; i < nodeVec.size(); i++){
-    //    cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
-    //}
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
+    }
 
     // // cout << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
 
-    // cout << "Service times: " << endl;
-    // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].delta << endl;
-    // }
-
-    // getchar();
-
-    //cout << "Profits: " << endl;
+    //cout << "Service times: " << endl;
     //for (int i = 0; i < nodeVec.size(); i++){
-    //    cout << i << ": " << nodeVec[i].profit << endl;
+    //    cout << i << ": " << nodeVec[i].delta << endl;
     //}
 
-    // // getchar();
+    //// getchar();
 
-    // // cout << "\nEarlier times: " << endl;
+    ////cout << "Profits: " << endl;
+    ////for (int i = 0; i < nodeVec.size(); i++){
+    ////    cout << i << ": " << nodeVec[i].profit << endl;
+    ////}
 
-    // // for (int i = 0; i < inst->n; i++){
-    // //     cout << i << ": " << nodeVec[i].e << endl;
-    // // }
+    //// // getchar();
 
-    // cout << "\nLoads: " << endl;
+    //cout << "\nEarlier times: " << endl;
 
-    // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].load << endl;
-    // }
+    //for (int i = 0; i < inst->n; i++){
+    //    cout << i << ": " << nodeVec[i].e << endl;
+    //}
 
-    // cout << "\nDeltas: " << endl;
+    //// cout << "\nLoads: " << endl;
 
-    // for (int i = 0; i < inst->n; i++){
-    //     cout << i << ": " << nodeVec[i].delta << endl;
-    // }
+    //// for (int i = 0; i < nodeVec.size(); i++){
+    ////     cout << i << ": " << nodeVec[i].load << endl;
+    //// }
+
+    //cout << "\nDeltas: " << endl;
+
+    //for (int i = 0; i < inst->n; i++){
+    //    cout << i << ": " << nodeVec[i].delta << endl;
+    //}
 }

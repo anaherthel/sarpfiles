@@ -20,7 +20,8 @@ def add_row_to_csv(file_path, row_data):
 def get_instance(filename):
     total_time = None
     instance = None
-    output = 'ResbapscspScsarpimp.csv'
+    name = filename.rstrip('.txt')
+    output = 'Res'+name+'.csv'
     row_data = ('Instance', 'LB', 'UB', 'Time')
     csv_header(output, row_data)
     new_inst = False
@@ -39,7 +40,7 @@ def get_instance(filename):
                     add_row_to_csv(output, row_data)                
                 arguments = line.split()
                 path = arguments[7].split('/')
-                instance = path[2]
+                instance = path[3]
                 row_data = [instance, LB, UB, total_time]
                 new_inst = True
                 print(instance)
@@ -67,5 +68,5 @@ def get_instance(filename):
                 
                 
 # LB, UB, instance, total_time = get_instance('output.txt') 
-get_instance('bapscspcsarpimp.txt') 
+get_instance('bap31ssfsarp.txt') 
 

@@ -1263,27 +1263,27 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
         }
 	}
 
-     fipStat.fipstage = 1;
-     fipStruct(inst, sStat, &fipStat); 
+    fipStat.fipstage = 1;
+    fipStruct(inst, sStat, &fipStat); 
 
-     initArcs(inst, &nas);
-	 fipArcs (inst, &nas, problem, nodeVec, mdist, 2);
-     // printStructures(&nas);
-     cout << endl << endl << "______PART II_____" << endl << endl;
+    initArcs(inst, &nas);
+    fipArcs (inst, &nas, problem, nodeVec, mdist, 2);
+    // printStructures(&nas);
+    cout << endl << endl << "______PART II_____" << endl << endl;
 
-     fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
-	
-     bool feasFlag = false;
-    
-     if(sStat->feasible){
-         feasFlag = true;
-     }
+    fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
 
-	 // if(sStat->feasible){
-         mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat, feasFlag);
+    bool feasFlag = false;
 
-         calcPassDetour(inst, nodeVec, &fipStat);
-	 // }
+    if(sStat->feasible){
+        feasFlag = true;
+    }
+
+    // if(sStat->feasible){
+        mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat, feasFlag);
+
+        calcPassDetour(inst, nodeVec, &fipStat);
+    // }
 
 
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
