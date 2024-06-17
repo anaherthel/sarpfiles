@@ -871,6 +871,7 @@ void makeStartTimes2 (instanceStat *inst, double **mdist, vector<nodeStat> &node
         }
     }
 
+
     // cout << "Start and end times: " << endl;
     // for (int i = 0; i < bStat->bundleStart.size(); i++){
     //     cout << "Bundle " << i << ": " << bStat->bundleStart[i] << " - " << bStat->bundleEnd[i] << endl;
@@ -1120,76 +1121,82 @@ void setUpFipBundle(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVe
     //create parcel only bundles
     //if (problem->model == "bundle3"){
         //Parcel only bundles (direct delivery):
-        for (int i = inst->n; i < inst->n + inst->m; i++){
-            double bundledelta = nodeVec[i].delta + nodeVec[i + inst->m].delta;
+    int setN = bStat->bundleVec.size() - 2*inst->K;
 
-            bStat->bundle.push_back(i);
-            bStat->bundle.push_back(i + inst->m);
+    for (int i = setN; i < bStat->bundleVec.size(); i++){
+        bStat->bundleEnd[i] = inst->T;
+    }
 
-            bStat->bundleTimes.push_back(bundledelta);            
-            bStat->bundleVec.push_back(bStat->bundle);
-            //cStat->clusters.push_back(bStat->bundleVec.size()-1);
-            double cost = nodeVec[bStat->bundle[0]].profit - (inst->costkm*mdist[bStat->bundle[0]][bStat->bundle[1]]);
-            double service = nodeVec[bStat->bundle[0]].delta + nodeVec[bStat->bundle[1]].delta
-                           + ((mdist[bStat->bundle[0]][bStat->bundle[1]])/inst->vmed);
-            bStat->bundleProfVec.push_back(cost);
-            bStat->bundleServVec.push_back(service);    
-            double bundleTime = nodeVec[bStat->bundle[0]].e;
-            bStat->bundleStart.push_back(bundleTime);
-            bundleTime = nodeVec[bStat->bundle[0]].l;
-            bStat->bundleEnd.push_back(bundleTime);
-            bStat->firstElement.push_back(bStat->bundle[0]);
-            bStat->lastElement.push_back(bStat->bundle[1]);
-            fipStat->bundlesPD.push_back(bStat->bundleVec.size()-1);
-        
+    for (int i = inst->n; i < inst->n + inst->m; i++){
+        double bundledelta = nodeVec[i].delta + nodeVec[i + inst->m].delta;
 
-            bStat->parcelBundleVec[i - inst->n].push_back(bStat->bundleVec.size()-1);
+        bStat->bundle.push_back(i);
+        bStat->bundle.push_back(i + inst->m);
 
+        bStat->bundleTimes.push_back(bundledelta);            
+        bStat->bundleVec.push_back(bStat->bundle);
+        //cStat->clusters.push_back(bStat->bundleVec.size()-1);
+        double cost = nodeVec[bStat->bundle[0]].profit - (inst->costkm*mdist[bStat->bundle[0]][bStat->bundle[1]]);
+        double service = nodeVec[bStat->bundle[0]].delta + nodeVec[bStat->bundle[1]].delta
+                        + ((mdist[bStat->bundle[0]][bStat->bundle[1]])/inst->vmed);
+        bStat->bundleProfVec.push_back(cost);
+        bStat->bundleServVec.push_back(service);    
+        double bundleTime = nodeVec[bStat->bundle[0]].e;
+        bStat->bundleStart.push_back(bundleTime);
+        bundleTime = nodeVec[bStat->bundle[0]].l;
+        bStat->bundleEnd.push_back(bundleTime);
+        bStat->firstElement.push_back(bStat->bundle[0]);
+        bStat->lastElement.push_back(bStat->bundle[1]);
+        fipStat->bundlesPD.push_back(bStat->bundleVec.size()-1);
+    
 
-            bStat->bundle.clear();
-
-            //parcel only bundles single parcel single delivery bundles
-
-            bStat->bundle.push_back(i);
-
-            bStat->bundleTimes.push_back(nodeVec[i].delta);            
-            bStat->bundleVec.push_back(bStat->bundle);
-            cost = nodeVec[bStat->bundle[0]].profit;
-            service = nodeVec[bStat->bundle[0]].delta;
-            bStat->bundleProfVec.push_back(cost);
-            bStat->bundleServVec.push_back(service);  
-            bundleTime = nodeVec[bStat->bundle[0]].e;
-            bStat->bundleStart.push_back(bundleTime);
-            bundleTime = nodeVec[bStat->bundle[0]].l;
-            bStat->bundleEnd.push_back(bundleTime);
-            bStat->firstElement.push_back(bStat->bundle[0]);
-            bStat->lastElement.push_back(bStat->bundle[0]);            
-            bStat->parcelBundleVec[i - inst->n].push_back(bStat->bundleVec.size()-1);
-            fipStat->bundlesPonly.push_back(bStat->bundleVec.size()-1);
-
-            bStat->bundle.clear();
-
-            bStat->bundle.push_back(i + inst->m);
-
-            bStat->bundleTimes.push_back(nodeVec[i + inst->m].delta);            
-            bStat->bundleVec.push_back(bStat->bundle);
-            cost = nodeVec[bStat->bundle[0]].profit;
-            service = nodeVec[bStat->bundle[0]].delta;
-            bStat->bundleProfVec.push_back(cost);
-            bStat->bundleServVec.push_back(service);    
-            bundleTime = nodeVec[bStat->bundle[0]].e;
-            bStat->bundleStart.push_back(bundleTime);
-            bundleTime = nodeVec[bStat->bundle[0]].l;
-            bStat->bundleEnd.push_back(bundleTime);
-            bStat->firstElement.push_back(bStat->bundle[0]);
-            bStat->lastElement.push_back(bStat->bundle[0]);              
-            bStat->parcelBundleVec[i - inst->n].push_back(bStat->bundleVec.size()-1);
-            fipStat->bundlesDonly.push_back(bStat->bundleVec.size()-1);
-
-            bStat->bundle.clear();
+        bStat->parcelBundleVec[i - inst->n].push_back(bStat->bundleVec.size()-1);
 
 
-        } 
+        bStat->bundle.clear();
+
+        //parcel only bundles single parcel single delivery bundles
+
+        bStat->bundle.push_back(i);
+
+        bStat->bundleTimes.push_back(nodeVec[i].delta);            
+        bStat->bundleVec.push_back(bStat->bundle);
+        cost = nodeVec[bStat->bundle[0]].profit;
+        service = nodeVec[bStat->bundle[0]].delta;
+        bStat->bundleProfVec.push_back(cost);
+        bStat->bundleServVec.push_back(service);  
+        bundleTime = nodeVec[bStat->bundle[0]].e;
+        bStat->bundleStart.push_back(bundleTime);
+        bundleTime = nodeVec[bStat->bundle[0]].l;
+        bStat->bundleEnd.push_back(bundleTime);
+        bStat->firstElement.push_back(bStat->bundle[0]);
+        bStat->lastElement.push_back(bStat->bundle[0]);            
+        bStat->parcelBundleVec[i - inst->n].push_back(bStat->bundleVec.size()-1);
+        fipStat->bundlesPonly.push_back(bStat->bundleVec.size()-1);
+
+        bStat->bundle.clear();
+
+        bStat->bundle.push_back(i + inst->m);
+
+        bStat->bundleTimes.push_back(nodeVec[i + inst->m].delta);            
+        bStat->bundleVec.push_back(bStat->bundle);
+        cost = nodeVec[bStat->bundle[0]].profit;
+        service = nodeVec[bStat->bundle[0]].delta;
+        bStat->bundleProfVec.push_back(cost);
+        bStat->bundleServVec.push_back(service);    
+        bundleTime = nodeVec[bStat->bundle[0]].e;
+        bStat->bundleStart.push_back(bundleTime);
+        bundleTime = nodeVec[bStat->bundle[0]].l;
+        bStat->bundleEnd.push_back(bundleTime);
+        bStat->firstElement.push_back(bStat->bundle[0]);
+        bStat->lastElement.push_back(bStat->bundle[0]);              
+        bStat->parcelBundleVec[i - inst->n].push_back(bStat->bundleVec.size()-1);
+        fipStat->bundlesDonly.push_back(bStat->bundleVec.size()-1);
+
+        bStat->bundle.clear();
+
+
+    } 
 
 
      
