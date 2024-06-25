@@ -1250,7 +1250,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     
     fipStat.fipstage = 0;
     fippass(inst, nodeVec, mdist, problem, &nas, sStat);
-    
+    cout << "After fip pass" << endl;
 	if(sStat->feasible){
 		viewSol (inst, mdist, nodeVec, sStat);
 
@@ -1268,6 +1268,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
 
     initArcs(inst, &nas);
     fipArcs (inst, &nas, problem, nodeVec, mdist, 2);
+
     // printStructures(&nas);
     cout << endl << endl << "______PART II_____" << endl << endl;
 
@@ -1282,7 +1283,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     // if(sStat->feasible){
         mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat, feasFlag);
 
-        calcPassDetour(inst, nodeVec, &fipStat);
+        //calcPassDetour(inst, nodeVec, &fipStat);
     // }
 
 

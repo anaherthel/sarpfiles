@@ -833,9 +833,9 @@ void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<no
             cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
         }
 
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout << "u(" << i << "): " << sStat->solLoad2[i] << endl;
-        }		
+        //for (int i = 0; i < nodeVec.size(); i++){
+        //    cout << "u(" << i << "): " << sStat->solLoad2[i] << endl;
+        //}		
 
         // for (int i = 0; i < nodeVec.size(); i++){
         //     cout << "w(" << i << "): " << sStat->solLoad[i] << endl;
@@ -1251,7 +1251,9 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
                 sStat->solBegin.push_back(0);
             }
         }
+		cout << "Before print: " << endl;
         printResults(inst, mdist, sStat, nodeVec);
+		cout << "After print: " << endl;
 
 	}
 	env.end();
@@ -1268,8 +1270,8 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	// long M2 = 2*(inst->n + inst->m + 1);
 	// long W = inst->m + 1;
 	// int Q = 5;
-	int Q = 4; //q4 fip (only 1 parcel between passengers)
-	//int Q = inst->m + 3; //qm fip (multiple parcels between passengers)
+	//int Q = 4; //q4 fip (only 1 parcel between passengers)
+	int Q = inst->m + 3; //qm fip (multiple parcels between passengers)
 
     int fDepot = 2*inst->n + 2*inst->m;
     int fDummy = 2*inst->n + 2*inst->m + inst->K;
@@ -1783,7 +1785,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 							fipStat->solBegin[i] = nSARP.getValue(b[k][i]);
 							cout << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
 							// getchar();
-                            cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            cout << " - " << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }

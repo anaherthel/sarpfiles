@@ -1822,29 +1822,42 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
     }
 
 	model.add(IloMaximize(env, objFunction));
-
+  
 
 	//Constraint 1 - Max of one arc coming out of any of the bundles related to a certain parcel (23)
-
 	for(int i = 0; i < bStat->parcelBundleVec.size(); i++){
 		IloExpr exp(env);
         for (int a = 0; a < bStat->parcelBundleVec[i].size(); a++){
-            for (int b = 0; b < bStat->bundleVec.size(); b++){
-                if (a == b){
-                    continue;
-                }
-                if (bStat->bArcs[b][bStat->parcelBundleVec[i][a]] != true || 
-                bStat->bArcs[bStat->parcelBundleVec[i][a]][b] != true){
-                    continue;
-                }
-                int u = bStat->parcelBundleVec[i][a];
-                for (int k = 0; k < inst->K; k++){
-                    exp += x[u][b][k];
-                }
+            //for (int b = 0; b < bStat->bundleVec.size(); b++){
+            for (int k = 0; k < fipStat->solPass.size(); k++){
+                for (int b = 0; b < fipStat->solPass[k].size(); b++){
+                    int u = bStat->parcelBundleVec[i][a];
+                    int v = fipStat->solPass[k][b];
+
+                    if (u == v){
+                        continue;
+                    }
+                    if (bStat->bArcs[v][u] == true){
+                        for (int k = 0; k < inst->K; k++){
+                            exp += x[v][u][k];
+                        }                    
+                    }
+
+                    if (bStat->bArcs[u][v] == true){
+                        for (int k = 0; k < inst->K; k++){
+                            exp += x[u][v][k];
+                        } 
+                    }
+                }               
             }
         }
 		sprintf (var, "Constraint1_%d", i + inst->n);
-		IloRange cons = (exp <= 1);
+        IloRange cons = (exp <= 1);
+
+        if (fipStat->servedParcelsInit[i] > 0){
+            cons = (exp <= 0);
+        }
+		
 		cons.setName(var);
 		model.add(cons);
 	}
@@ -1975,7 +1988,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 				double deltaij = (mdist[u][fj]) + (mdist[lj][v]) - (mdist[u][v]);
 				double cvalue2 = deltaij/inst->vmed;
 				//cvalue2 = std::round(cvalue2 * multiplier) / multiplier;	
-				double deltatime = (cvalue2) + inst->service;
+				double deltatime = (cvalue2) + bStat->bundleServVec[b1];
 				// double deltatime = (deltaij/inst->vmed);
                 if (bStat->bArcs[b1][j] != true || bStat->bArcs[j][b2] != true){
                     continue;
@@ -2011,7 +2024,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
                 if (bStat->bArcs[b1][j] != true){
                     continue;
                 }
-				exp1 = s[j-setPD] - (b[k][b1] + inst->service) - (cvalue2)*x[b1][j][k];
+				exp1 = s[j-setPD] - (b[k][b1] + bStat->bundleServVec[b1]) - (cvalue2)*x[b1][j][k];
 
 				// exp1 = s[j] - b[k][u] - (mdist[u][j]/inst->vmed)*x[u][j][k];
 				double bigM = nodeVec[u].l;
@@ -2063,13 +2076,11 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
 			sprintf (var, "Constraint8_%d_%d", b1, k);
 			IloRange cons1 = (exp <= bStat->bundleEnd[b1]);
-            cout << "Bundle: " << b1 << " End: " << bStat->bundleEnd[b1] << endl;
 			cons1.setName(var);
 			model.add(cons1);
 			
 			sprintf (var, "Constraint9_%d_%d", b1, k);
 			IloRange cons2 = (bStat->bundleStart[b1] <= exp);
-            cout << "Bundle: " << b1 << " Start: " << bStat->bundleStart[b1] << endl;
 			cons2.setName(var);
 			model.add(cons2);
 		}
@@ -2215,94 +2226,100 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
     // cout << " Tree_Size: " <<  b2SARP.getNnodes() + b2SARP.getNnodesLeft() + 1 << endl;
     cout << " Total Time: " << time << endl;
 
+	vector< pair<int, int> > auxPairVec;
+    pair<int, int> auxPair;
 
-	//if (sStat->feasible){
+	if (sStat->feasible){
+        cout << " LB: " << b2SARP.getObjValue() << endl;
+        cout << " UB: " << b2SARP.getBestObjValue() << endl;
+        fipStat->solprofit = b2SARP.getObjValue();
+        sStat->time = time;
 
-    //    cout << " LB: " << b2SARP.getObjValue() << endl;
-    //    cout << " UB: " << b2SARP.getBestObjValue() << endl;
-    //    fipStat->solprofit = b2SARP.getObjValue();
-	//	// cout << "Solution value pii: " << fipStat->solprofit << end
-    //    sStat->time = time;
+		//new addition
+		fipStat->solBegin.clear();
 
-	//	//new addition
-	//	fipStat->solBegin.clear();
+		for (int i = 0; i < bStat->bundleVec.size(); i++){
+			fipStat->solBegin.push_back(-1);
+		}
+		//end
 
-	//	for (int i = 0; i < 2*inst->n+2*inst->m+inst->K; i++){
-	//		fipStat->solBegin.push_back(-1);
-	//	}
-	//	//end
-
-    //    for (int k = 0; k < inst->K; k++){
-	//		fipStat->solvec.push_back(auxPairVec);
-    //        // sStat->solvec.push_back(auxPairVec);
-    //    }
+        for (int k = 0; k < inst->K; k++){
+			fipStat->solvec.push_back(auxPairVec);
+            // sStat->solvec.push_back(auxPairVec);
+        }
 		
-    //    for (int i = 0; i < 2*inst->n+2*inst->m; i++){
-    //        for(int j = 0; j < 2*inst->n+2*inst->m; j++){                
-    //            if (nas->arcs[i][j] == true){
-    //                for (int k = 0; k < inst->K; k++){
-    //                    if (nSARP.getValue(x[i][j][k]) > 0.5){
-    //                        auxPair.first = i;
-    //                        auxPair.second = j;
-    //                        fipStat->solvec[k].push_back(auxPair);
-    //                        cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
-    //                        // getchar();
-    //                    }
-    //                }
-    //            }
-    //        }   
-    //    }
+        for (int i = 0; i < bStat->bundleVec.size(); i++){
+            if (i >= setN && i < setPD){
+                continue;
+            }
+            for(int j = 0; j < bStat->bundleVec.size(); j++){     
+                if (j >= setN && j < setPD){
+                    continue;
+                }                           
+                if (bStat->bArcs[i][j] == true){
+                    for (int k = 0; k < inst->K; k++){
+                        if (b2SARP.getValue(x[i][j][k]) > 0.5){
+                            auxPair.first = i;
+                            auxPair.second = j;
+                            fipStat->solvec[k].push_back(auxPair);
+                            cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
+                            // getchar();
+                        }
+                    }
+                }
+            }   
+        }
 
-	//	for (int k = 0; k < inst->K; k++){
-	//		int i = fDepot+k;
-    //        for(int j = 0; j < 2*inst->n+2*inst->m; j++){                
-    //            if (nas->arcs[i][j] == true){
-	//				if (nSARP.getValue(x[i][j][k]) > 0.5){
-	//					auxPair.first = i;
-	//					auxPair.second = j;
-	//					fipStat->solvec[k].push_back(auxPair);
-	//					cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
-	//					// getchar();
-	//				}
-    //            }
-    //        }   
-    //    }
+		for (int k = 0; k < inst->K; k++){
+			int i = fDepot+k;
+            for(int j = 0; j < bStat->bundleVec.size(); j++){                
+                if (bStat->bArcs[i][j] == true){
+					if (b2SARP.getValue(x[i][j][k]) > 0.5){
+						auxPair.first = i;
+						auxPair.second = j;
+						fipStat->solvec[k].push_back(auxPair);
+						cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
+						// getchar();
+					}
+                }
+            }   
+        }
 
-    //    for (int i = 0; i < 2*inst->n; i++){
-	//		// cout << "i: " << endl;
-    //        for(int j = 0; j < 2*inst->n+2*inst->m; j++){
-	//			// cout << "j: " << j << endl;             
-    //            if (nas->arcs[i][j] == true){
-    //                for (int k = 0; k < inst->K; k++){
-	//					// cout << "k: " << k << endl;
-    //                    if (nSARP.getValue(x[i][j][k]) > 0.5){
-	//						// fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
-	//						fipStat->solBegin[i] = nSARP.getValue(b[k][i]);
-	//						cout << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
-	//						// getchar();
-    //                        cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
-    //                        // getchar();
-    //                    }
-    //                }
-    //            }
-    //        }   
-    //    }
+        for (int i = 0; i < setPD; i++){
+			// cout << "i: " << endl;
+            for(int j = 0; j < bStat->bundleVec.size(); j++){
+				// cout << "j: " << j << endl;             
+                if (bStat->bArcs[i][j] == true){
+                    for (int k = 0; k < inst->K; k++){
+						// cout << "k: " << k << endl;
+                        if (b2SARP.getValue(x[i][j][k]) > 0.5){
+							// fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
+							fipStat->solBegin[i] = b2SARP.getValue(b[k][i]);
+							cout << "\nb(" << k << ", " << i << "): " << b2SARP.getValue(b[k][i]);
+							// getchar();
+                            cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
+                            // getchar();
+                        }
+                    }
+                }
+            }   
+        }
 
-	//	for (int k = 0; k < inst->K; k++){
-	//		int i = fDepot+k;
-    //        for(int j = 0; j < 2*inst->n+2*inst->m; j++){                
-    //            if (nas->arcs[i][j] == true){
-	//				if (nSARP.getValue(x[i][j][k]) > 0.5){
-	//					// fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
-	//					fipStat->solBegin[i] = nSARP.getValue(b[k][i]);
-	//					cout << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
-	//					// getchar();
-	//					cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
-	//					// getchar();
-	//				}
-    //            }
-    //        }   
-    //    }
+		//for (int k = 0; k < inst->K; k++){
+		//	int i = fDepot+k;
+        //    for(int j = setPD; j < bStat->bundleVec.size(); j++){                
+        //        if (bStat->bArcs[i][j] == true){
+		//			if (b2SARP.getValue(x[i][j][k]) > 0.5){
+		//				// fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
+		//				fipStat->solBegin[i] = b2SARP.getValue(b[k][i]);
+		//				cout << "\nb(" << k << ", " << i << "): " << b2SARP.getValue(b[k][i]);
+		//				// getchar();
+		//				cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
+		//				// getchar();
+		//			}
+        //        }
+        //    }   
+        //}
 
 	//	// for (int k = 0; k < inst->K; k++){
 	//	// 	for (int i = 0; i < 2*inst->n; i++){
@@ -2315,34 +2332,34 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	//	// }
 
 
-	//	for (int j = 2*inst->n; j < 2*inst->n+2*inst->m; j++){
-	//		// cout << "i: " << endl;
-    //        for(int i = 0; i < 2*inst->n; i++){
-	//			// cout << "j: " << j << endl;             
-    //            if (nas->arcs[i][j] == true){
-    //                for (int k = 0; k < inst->K; k++){
-	//					// cout << "k: " << k << endl;
-    //                    if (nSARP.getValue(x[i][j][k]) > 0.5){
-	//						fipStat->solBeginParcel.push_back(nSARP.getValue(s[j]));
-	//						cout << "\ns(" << j << "): " << nSARP.getValue(s[j]) << " - ";
-	//						// getchar();
-    //                        cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
-    //                        // getchar();
-    //                    }
-    //                }
-    //            }
-    //        }   
-    //    }
-	//	cout << endl;
-    //    // printResults(inst, mdist, sStat, nodeVec);
+		//for (int j = setPD; j < bStat->bundleVec.size(); j++){
+		//	// cout << "i: " << endl;
+        //    for(int i = 0; i < setPD; i++){
+		//		// cout << "j: " << j << endl;             
+        //        if (bStat->bArcs[i][j] == true){
+        //            for (int k = 0; k < inst->K; k++){
+		//				// cout << "k: " << k << endl;
+        //                if (b2SARP.getValue(x[i][j][k]) > 0.5){
+		//					fipStat->solBeginParcel.push_back(b2SARP.getValue(s[j]));
+		//					cout << "\ns(" << j << "): " << b2SARP.getValue(s[j]) << " - ";
+		//					// getchar();
+        //                    cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
+        //                    // getchar();
+        //                }
+        //            }
+        //        }
+        //    }   
+        //}
+		//cout << endl;
+        // printResults(inst, mdist, sStat, nodeVec);
 
-	//}
-	//else{
-	//	cout << "\n\nServed parcels: " << 0 << endl;
-	//}
-	//env.end();
-    //// startVal.end();
-    //// startVar.end();
-	//// startVal2.end();
-    //// startVar2.end();
+	}
+	else{
+		cout << "\n\nServed parcels: " << 0 << endl;
+	}
+	env.end();
+    // startVal.end();
+    // startVar.end();
+	// startVal2.end();
+    // startVar2.end();
 }

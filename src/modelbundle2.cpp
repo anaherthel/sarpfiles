@@ -1267,6 +1267,41 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
     }
     pulocations.clear();
 
+    pair<int, int> clint;
+
+    int last_start = 0;
+    for (int i = 0; i < inst->n; i++){
+        clint.first = last_start;
+        clint.second = inst->m*3 + clint.first;
+        last_start = clint.second + 1;
+        fipStat->clusterIntervals.push_back(clint);
+    }
+
+    for (int i = 0; i < inst->m; i++){
+        fipStat->servedParcelsInit.push_back(0);
+    }
+
+    for (int k = 0; k < fipStat->solPass.size(); k++){
+        for (int i = 0; i < fipStat->solPass[k].size(); i++){
+            int u = fipStat->solPass[k][i];
+            if(u < setN){
+                if(bStat->bundleVec[u].size() > 1){
+                    for (int j = 0; j < bStat->bundleVec[u].size(); j++){
+                        if(bStat->bundleVec[u][j] >= inst->n && bStat->bundleVec[u][j] < inst->m + inst->n){
+                            int parcelID = bStat->bundleVec[u][j] - inst->n;
+                            fipStat->servedParcelsInit[parcelID] = 1;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //cout << "\nInitial served parcels: " << endl;
+    //for (int i = 0; i < fipStat->servedParcelsInit.size(); i++){
+    //    cout << inst->n + i << ": " << fipStat->servedParcelsInit[i] << endl;
+    //}
 
     //for (int k = 0; k < inst->K; k++){
     //    for (int i = 0; i < fipStat->solPass[k].size(); i++){
@@ -1479,7 +1514,7 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         
     }
     
-    if(problem->model == "bundle3"){
+    if(problem->model == "bundle3" && sStat->servedParcels < inst->m){
         fipBundleStats fipStat;
 
         setUpFipBundle(inst, mdist, nodeVec, &bStat, problem, &fipStat);
@@ -1487,29 +1522,29 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         clearArcs(&bStat);
         initArcs2(inst, &bStat, &cStat);
         feasibleBundleArcs2next(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
-        std::ofstream file("bundleArcs.csv");
+        //std::ofstream file("bundleArcs.csv");
 
-        if (!file.is_open()) {
-            std::cerr << "Failed to open file for writing.\n";
-            return;
-        }
-        file << -1 << ",";
-        for (int i = 0; i < bStat.bundleVec.size(); i++) {
-            file << i;
-            if (i < bStat.bundleVec.size() - 1) file << ",";
+        //if (!file.is_open()) {
+        //    std::cerr << "Failed to open file for writing.\n";
+        //    return;
+        //}
+        //file << -1 << ",";
+        //for (int i = 0; i < bStat.bundleVec.size(); i++) {
+        //    file << i;
+        //    if (i < bStat.bundleVec.size() - 1) file << ",";
 
-        }
-        file << "\n";    
-        for (int i = 0; i < bStat.bundleVec.size(); i++) {
-            file << i << ",";
-            for (int j = 0; j < bStat.bundleVec.size(); j++){
-                file << bStat.bArcs[i][j];
-                if (j < bStat.bundleVec.size() - 1) file << ",";
-            }
-            file << "\n";
-        }
+        //}
+        //file << "\n";    
+        //for (int i = 0; i < bStat.bundleVec.size(); i++) {
+        //    file << i << ",";
+        //    for (int j = 0; j < bStat.bundleVec.size(); j++){
+        //        file << bStat.bArcs[i][j];
+        //        if (j < bStat.bundleVec.size() - 1) file << ",";
+        //    }
+        //    file << "\n";
+        //}
 
-        file.close();
+        //file.close();
        
        
         cout << "\nParcel Bundles: " << endl;

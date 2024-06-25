@@ -190,6 +190,10 @@ struct fipBundleStats{
 	vector<int> bundlesPonly;
 	vector<int> bundlesDonly;
 
+	vector < pair<int, int> > clusterIntervals;
+	vector <int> servedParcelsInit; //vector of size m, 1 if parcel is served in the initial solution, 0 otherwise
+
+
 	vector <double> passDetour;//increase in percentage to the trip with no detours
 	
 	double tParcel;

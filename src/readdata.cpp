@@ -1067,7 +1067,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     for (int i = 0; i < nodeVec.size(); i++){
         cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
     }
-
+    //getchar();
     // // cout << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
 

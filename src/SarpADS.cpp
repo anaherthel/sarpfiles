@@ -637,6 +637,48 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
             }
         }        
     }
+    for (int k = 0; k < fipStat->fullSol.size(); k++){
+        currDepot = 2*inst->n + 2*inst->m + k;
+        cout << "Vehicle: " << currDepot << ": ";
+        if(fipStat->fullSol[k].size() < 1){
+            cout << endl;
+        }
+        else{
+            for (int j = 0; j < fipStat->fullSol[k].size(); j++){
+                int node = fipStat->fullSol[k][j];
+                char label = 'W';
+                if(node < inst->n){
+                    label = 'C';
+
+                }
+                else if(node < 2*inst->n){
+                    label = 'c';
+                }                
+                
+                else if(node < 2*inst->n + inst->m){
+                    label = 'P';
+                }
+                
+                else if(node < 2*inst->n + 2*inst->m){
+                    label = 'D';
+                }
+                else if(node < 2*inst->n + 2*inst->m + inst->K){
+                    label = 'S';
+
+                }                
+                else if(node < 2*inst->n + 2*inst->m + 2*inst->K){
+                    label = 'f';
+
+                }      
+                if (j == fipStat->fullSol[k].size() - 1){
+                    cout << label << endl;
+                }
+                else{
+                    cout << label << " - ";
+                }
+            }
+        }        
+    }
 
 
     for (int i = 0; i < 2*inst->n; i++){
@@ -741,6 +783,23 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         }
         cout << " --> Total travel time: " << fipStat->fullBegin[k][fipStat->fullSol[k].size()-1] - fipStat->fullBegin[k][0] << endl;
     }
+
+
+
+    cout << "_______________________________________________________" << endl;
+    for (int k = 0; k < fipStat->fullSol.size(); k++){
+        for (int j = 0; j < fipStat->fullSol[k].size(); j++){
+            int node = fipStat->fullSol[k][j];
+            if(node < inst->n){
+                if(fipStat->fullBegin[k][j] > nodeVec[node].l){
+                    cout << "Error: Vehicle " << k << " arrives at node " << node << " after closing time" << endl;
+                    
+                }
+            }
+
+        }
+    }
+    cout << "_______________________________________________________" << endl;
 
     // cout << "\n\nbegin pass vector: "<< endl;
     // for(int i = 0; i < fipStat->beginPass.size(); i++){
