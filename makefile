@@ -1,108 +1,84 @@
-#detecta se o sistema é de 32 ou 64 bits
 N_BITS = $(shell getconf LONG_BIT)
 ifeq ($(N_BITS),32)
-   SYSTEM  = x86_sles10_4.1
    BITS_OPTION = -m32
 else
-   #SYSTEM  = x86-64_sles10_4.1
-   SYSTEM = x86-64_linux
-   
    BITS_OPTION = -m64
 endif
 
+SRCDIR := src
+OBJDIR := obj
+BINDIR := bin
 
-LIBFORMAT = static_pic
+#Compilation flags
+CPPC := g++
+CPPCFLAGS := $(BITS_OPTION) -fPIC -fexceptions -DIL_STD -std=c++0x -MMD
+CPPCLNFLAGS := -lm -lpthread
 
-####diretorios com as libs do cplex
-#CPLEXDIR      = /usr/ilog/cplex
+SRCS := $(shell find -L $(SRCDIR) -name '*.cpp')
+OBJS := $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRCS))
 
-#CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio127/cplex
+#Cplex version without dot notation
+CPLEX_VERSION := 2211
 
+#Cplex Folders
+CPLEXFOLDER := /opt/ibm/ILOG/CPLEX_Studio$(CPLEX_VERSION)
+CPLEXDIR  := $(CPLEXFOLDER)/cplex
+CONCERTDIR := $(CPLEXFOLDER)/concert
 
-#Use this on office pc
-#CPLEXDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/cplex
-#HPLaptop
-CPLEXDIR = /opt/ibm/ILOG/CPLEX_Studio201/cplex
-#vsc
-#CPLEXDIR = /home/lv70752/kiefera8/cplex
+CPLEXLIBDIR := $(CPLEXDIR)/lib/x86-64_linux/static_pic
+CONCERTLIBDIR := $(CONCERTDIR)/lib/x86-64_linux/static_pic
 
-#CONCERTDIR    = /usr/ilog/concert
+CONCERTINCDIR := $(CONCERTDIR)/include
+CPLEXINCDIR := $(CPLEXDIR)/include
 
-#CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio127/concert
+CPPCFLAGS += -I$(CPLEXINCDIR) -I$(CONCERTINCDIR)
+CPPCLNFLAGS += -L$(CPLEXLIBDIR) -lilocplex -lconcert -lcplex -L$(CONCERTLIBDIR)
 
-#Use this on office pc
-#
-#CONCERTDIR = /home/herthel/opt/ibm/ILOG/CPLEX_Studio127/concert
+ifeq ($(DEBUG), 1)
+	CPPCFLAGS += -DDEBUG -g3
+else
+	CPPCFLAGS += -O3 -DNDEBUG
+endif
 
+ifdef NAME
+	TARGET := $(BINDIR)/$(NAME)
+else
+	TARGET := $(BINDIR)/bin.out
+endif
 
-#HPLaptop
-CONCERTDIR = /opt/ibm/ILOG/CPLEX_Studio201/concert
-#vsc
-#CONCERTDIR = /home/lv70752/kiefera8/concert
+.PHONY: all clean rebuild run mkdirs
 
-CPLEXLIBDIR   = $(CPLEXDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
-CONCERTLIBDIR = $(CONCERTDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
+all: mkdirs $(TARGET)
+	@printf "\nBuild complete: $(TARGET)\n"
 
-####diretorios com as libs do gurobi
-#GUROBIDIR =/opt/gurobi550/linux64
-#GUROBIINC =$(GUROBIDIR)/include/
-#GUROBILIB =$(GUROBIDIR)/lib/
+$(TARGET): $(OBJS)
+	@printf "\nLinking objects to create executable: $@\n"
+	$(CPPC) $^ -o $@ $(CPPCLNFLAGS)
 
-#### define o compilador
-#office
-#CPPC = g++-4.8
-#home/laser
-CPPC = g++
-
-#############################
-
-#### opcoes de compilacao e includes
-CCOPT = $(BITS_OPTION) -O3 -g -fPIC -fexceptions -DNDEBUG -DIL_STD -std=c++0x -Wno-ignored-attributes -Wno-deprecated-declarations
-CONCERTINCDIR = $(CONCERTDIR)/include
-CPLEXINCDIR   = $(CPLEXDIR)/include
-CCFLAGS = $(CCOPT) -I$(CPLEXINCDIR) -I$(CONCERTINCDIR) #-I$(GUROBIINC)
-#############################
-
-#### flags do linker
-#CCLNFLAGS = -L$(CPLEXLIBDIR) -lilocplex -lcplex -L$(CONCERTLIBDIR) -lconcert -L$(GUROBILIB) -lgurobi_c++ -lgurobi55 -lgmpxx -lgmp -lm -lpthread        #Without lgmpxx  
-#CCLNFLAGS = -L$(CPLEXLIBDIR) -lilocplex -lcplex -L$(CONCERTLIBDIR) -lconcert -L$(GUROBILIB) -lgurobi_c++ -lgurobi55 -lm -lpthread        #Without lgmpxx        
-CCLNFLAGS = -L$(CPLEXLIBDIR) -lilocplex -lcplex -L$(CONCERTLIBDIR) -lconcert -lm -lpthread -ldl                                                         #Without Gurobi and lgmpxx
-#############################
-
-#### diretorios com os source files e com os objs files
-SRCDIR = src
-OBJDIR = obj
-#############################
-
-#### lista de todos os srcs e todos os objs
-SRCS = $(wildcard $(SRCDIR)/*.cpp)
-OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
-#############################
-
-#### regra principal, gera o executavel
-exeSARP: $(OBJS)
-	@echo  "\033[31m \nLinking all objects files: \033[0m"
-	$(CPPC) $(BITS_OPTION) $(OBJS) -o $@ $(CCLNFLAGS)
-############################
-
-#inclui os arquivos de dependencias
--include $(OBJS:.o=.d)
-
-#regra para cada arquivo objeto: compila e gera o arquivo de dependencias do arquivo objeto
-#cada arquivo objeto depende do .c e dos headers (informacao dos header esta no arquivo de dependencias gerado pelo compiler)
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-	@echo  "\033[31m \nCompiling $<: \033[0m"
-	$(CPPC) $(CCFLAGS) -c $< -o $@
-	@echo  "\033[32m \ncreating $< dependency file: \033[0m"
-	$(CPPC)  -MM $< > $(basename $@).d
-	@mv -f $(basename $@).d $(basename $@).d.tmp #proximas tres linhas colocam o diretorio no arquivo de dependencias (g++ nao coloca, surprisingly!)
-	@sed -e 's|.*:|$(basename $@).o:|' < $(basename $@).d.tmp > $(basename $@).d
-	@rm -f $(basename $@).d.tmp
+	@printf "\nCompiling: $<\n"
+	$(CPPC) $(CPPCFLAGS) -c $< -o $@ 
 
-#delete objetos e arquivos de dependencia
 clean:
-	@echo "\033[31mcleaning obj directory \033[0m"
-	@rm -f $(OBJDIR)/*.o $(OBJDIR)/*.d
+	@printf "\nCleaning object files...\n"
+	rm -f $(TARGET)
+	find $(OBJDIR) -type f -name '*.o' -exec rm -f {} +
+	find $(OBJDIR) -type f -name '*.d' -exec rm -f {} +
+	@printf "\nClean complete.\n"
 
-rebuild: clean exeSARP
+rebuild: clean all
+
+run: all
+	@printf "\nRunning: $(TARGET)\n"
+	./$(TARGET)
+
+mkdirs:
+	@printf "Making directories\n"
+	@mkdir -p $(OBJDIR) $(SRCDIR) $(BINDIR)
+
+#this recreates the src folder structure into the obj folder
+#can be replaced with a rule that also creates the src structure and repeat on obj
+# @mkdir -p $(patsubst $(SRCDIR)%,$(OBJDIR)%,$(shell find $(SRCDIR) -type d)) #old command dont support symlinks
+#new command supports symlinks
+	@find -L $(SRCDIR) -type d -not -path "$(SRCDIR)" | sed -e "s|$(SRCDIR)/|$(OBJDIR)/|" | xargs -I {} mkdir -p {}
 
