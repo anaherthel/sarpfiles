@@ -2226,6 +2226,22 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 
 	}
 
+	// Constraint 10 - ensure solution sequence
+	for (int k = 0; k < fipStat->solPass.size(); k++) {
+		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++) {
+			int u = fipStat->solPass[k][i];
+			int v = fipStat->solPass[k][i + 1];
+			IloExpr exp(env);
+
+			exp += b[v] - b[u] - nodeVec[u].delta - mdist[u][v]/inst->vmed;
+
+			sprintf (var, "Constraint10_%d", i);
+			IloRange cons = (exp >= 0);
+			cons.setName(var);
+			model.add(cons);
+		}
+	}
+
 	// // //Constraints 10 - load constraints
 
 	// for (int a = 0; a < nas->allArcs.size(); a++){
