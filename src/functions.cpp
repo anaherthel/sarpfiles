@@ -8,19 +8,19 @@ void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempDa
     vector<double> avgVec;
 
     distSum = 0;
-    // cout << "\nNumber of nodes: " << tempData.size() << " and " << tempData[0].size() << endl;
+    // // TODO UNCOMMENT //  << "\nNumber of nodes: " << tempData.size() << " and " << tempData[0].size() << endl;
 
-    // cout << "\ncurrent scale: " << *scale << endl;
-    // cout << "\ncurrent average: " << *curAvg << endl;
+    // // TODO UNCOMMENT //  << "\ncurrent scale: " << *scale << endl;
+    // // TODO UNCOMMENT //  << "\ncurrent average: " << *curAvg << endl;
     // getchar();
 
-    // cout << "\nDistance Matrix (Pre-adapting): " << endl;
+    // // TODO UNCOMMENT //  << "\nDistance Matrix (Pre-adapting): " << endl;
 
     // for (int i = 0; i < tempData.size() - 1; i++){
     //     for (int j = 0; j < tempData[i].size() - 1; j++){
-    //         cout << setw(5) << setprecision(5) << tempData[i][j] << " ";
+    //         // TODO UNCOMMENT //  << setw(5) << setprecision(5) << tempData[i][j] << " ";
     //     }
-    //     cout << endl;
+    //     // TODO UNCOMMENT //  << endl;
     // }
     // getchar();
 
@@ -33,9 +33,9 @@ void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempDa
         avgVec.push_back(avgDist);
     }
 
-    // cout << "\nVector of average distances: " << endl; 
+    // // TODO UNCOMMENT //  << "\nVector of average distances: " << endl; 
     // for(int i = 0; i < avgVec.size(); i++){
-    //     cout << i << ": " << avgVec[i] << endl;
+    //     // TODO UNCOMMENT //  << i << ": " << avgVec[i] << endl;
     // }
     // getchar();
 
@@ -45,11 +45,11 @@ void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempDa
         distSum += avgVec[i];
     }
 
-    // cout << "\nDistSum: " << distSum << endl;
+    // // TODO UNCOMMENT //  << "\nDistSum: " << distSum << endl;
     totalAvg = distSum/avgVec.size();
 
 
-    // cout << "\nTotal average: " << totalAvg << endl;
+    // // TODO UNCOMMENT //  << "\nTotal average: " << totalAvg << endl;
     // getchar();
     *curAvg = totalAvg;
 }
@@ -164,7 +164,7 @@ void getInstParam (instanceStat *inst, vector<int> &instParam){
     // param2.append(inst->InstName.c_str(), loc2+1);
     param2.append(inst->InstName, loc2+1, inst->InstName.back());
 
-    // cout << "\nParam2: " << param2 << endl;
+    // // TODO UNCOMMENT //  << "\nParam2: " << param2 << endl;
     // getchar();
  
     instParam.push_back(stoi(param1));
@@ -226,7 +226,7 @@ void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<node
         srand(seed);
 
 
-        cout << "\n\nSeed: " << std::setprecision(5) << seed << endl << endl;
+        // TODO UNCOMMENT //  << "\n\nSeed: " << std::setprecision(5) << seed << endl << endl;
         // getchar();
         // t1 = sILS.get_wall_time();
         sILS.stats.setStart();
@@ -238,9 +238,9 @@ void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<node
 
         sILS.stats.setEnd();
 
-        cout << "\nTotal Run Time: " << std::setprecision(8) <<  sILS.stats.printTime() << endl;
+        // TODO UNCOMMENT //  << "\nTotal Run Time: " << std::setprecision(8) <<  sILS.stats.printTime() << endl;
 
-        cout << "END OF METHOD" << endl;
+        // TODO UNCOMMENT //  << "END OF METHOD" << endl;
         // sILS.function();
     }
     // else if (problem.model == "twostage"){
@@ -287,7 +287,7 @@ int infSets, feasSets;
 
 int testDurations(int a, int b, int c, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec) {
     // Process the current permutation here.
-    //std::cout << a << " " << b << " " << c << std::endl;
+    //std::// TODO UNCOMMENT //  << a << " " << b << " " << c << std::endl;
     permutationCount++;
     int counter = 0;
     double avgOK, avgInfeasible, avgExceeded;
@@ -382,7 +382,7 @@ void generatePermutations(int a, int b, int c, instanceStat *inst, double **mdis
                 feasible = true;
             }
         }
-        //cout << "Result: " << result << endl;
+        //// TODO UNCOMMENT //  << "Result: " << result << endl;
         
     } while (std::next_permutation(permutation, permutation + 3));
 
@@ -410,12 +410,12 @@ void startPermutation(instanceStat *inst, double **mdist, vector<nodeStat> &node
         }
     }
 
-    cout << "Stats on permutations of 3" << endl;
+    // TODO UNCOMMENT //  << "Stats on permutations of 3" << endl;
 
-    cout << "Feasible permutations: " <<  (static_cast<double>(stats[0]) / permutationCount)*100 << "%" << endl;
-    cout << "Infeasible permutations: " <<  (static_cast<double>(stats[1]) / permutationCount)*100 << "%" << endl;
-    cout << "Exceed duration: " <<  (static_cast<double>(stats[2]) / permutationCount)*100 << "%" << endl;
+    // TODO UNCOMMENT //  << "Feasible permutations: " <<  (static_cast<double>(stats[0]) / permutationCount)*100 << "%" << endl;
+    // TODO UNCOMMENT //  << "Infeasible permutations: " <<  (static_cast<double>(stats[1]) / permutationCount)*100 << "%" << endl;
+    // TODO UNCOMMENT //  << "Exceed duration: " <<  (static_cast<double>(stats[2]) / permutationCount)*100 << "%" << endl;
 
-    cout << "\nInfeasible sets of 3: " << (static_cast<double>(infSets) / setCount)*100 << "%" << endl;
+    // TODO UNCOMMENT //  << "\nInfeasible sets of 3: " << (static_cast<double>(infSets) / setCount)*100 << "%" << endl;
 }
 

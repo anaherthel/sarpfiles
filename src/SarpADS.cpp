@@ -83,13 +83,13 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
 
             // stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
             
-            // // cout << "b - " << currNode << ": " << sStat->solBegin[currNode] << "; b - " << nextNode << ": " << sStat->solBegin[nextNode] << "; delta: " << nodeVec[currNode].delta << endl;
+            // // // TODO UNCOMMENT //  << "b - " << currNode << ": " << sStat->solBegin[currNode] << "; b - " << nextNode << ": " << sStat->solBegin[nextNode] << "; delta: " << nodeVec[currNode].delta << endl;
             // // getchar();
 
             // sStat->tStillP += stop;
 
-            // cout << "\nTesting idle still time: " << endl;
-            // cout << "tij: " << tij << " || stop: " << stop << " || sStat->tStill: " << sStat->tStill << endl;
+            // // TODO UNCOMMENT //  << "\nTesting idle still time: " << endl;
+            // // TODO UNCOMMENT //  << "tij: " << tij << " || stop: " << stop << " || sStat->tStill: " << sStat->tStill << endl;
             // getchar();
 
             if(currNode < inst->n){//from passenger
@@ -275,15 +275,15 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
             }
 
 
-            // cout << "\nTotal passenger time: " << sStat->tPass << endl;
-            // cout << "\nTotal parcel time: " << sStat->tParcel << endl;
-            // cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
-            // cout << "\nTotal idle time: " << sStat->tNone << endl;
+            // // TODO UNCOMMENT //  << "\nTotal passenger time: " << sStat->tPass << endl;
+            // // TODO UNCOMMENT //  << "\nTotal parcel time: " << sStat->tParcel << endl;
+            // // TODO UNCOMMENT //  << "\nTotal combined transportation time: " << sStat->tBoth << endl;
+            // // TODO UNCOMMENT //  << "\nTotal idle time: " << sStat->tNone << endl;
 
-            // cout << "\nTotal passenger distance: " << sStat->dPass << endl;
-            // cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
-            // cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
-            // cout << "\nTotal idle distance: " << sStat->dNone << endl;
+            // // TODO UNCOMMENT //  << "\nTotal passenger distance: " << sStat->dPass << endl;
+            // // TODO UNCOMMENT //  << "\nTotal parcel distance: " << sStat->dParcel << endl;
+            // // TODO UNCOMMENT //  << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
+            // // TODO UNCOMMENT //  << "\nTotal idle distance: " << sStat->dNone << endl;
             // getchar();
 
         }
@@ -293,133 +293,133 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
 void printStats(instanceStat *inst, solStats *sStat){
     // for (int i = 0; i < inst->K; i++){
 
-        cout << "\nsize of n: " << inst->n << endl;
-        cout << "\nsize of m: " << inst->m << endl;
+        // TODO UNCOMMENT //  << "\nsize of n: " << inst->n << endl;
+        // TODO UNCOMMENT //  << "\nsize of m: " << inst->m << endl;
         
-        cout << "\n*************" << endl;
+        // TODO UNCOMMENT //  << "\n*************" << endl;
 
-        cout << "\n\nServed parcels: " << sStat->servedParcels << endl;
-        cout << "\nUnserved parcels: " << inst->m - sStat->servedParcels << endl;
+        // TODO UNCOMMENT //  << "\n\nServed parcels: " << sStat->servedParcels << endl;
+        // TODO UNCOMMENT //  << "\nUnserved parcels: " << inst->m - sStat->servedParcels << endl;
 
 
-        cout << "\n*************" << endl;
+        // TODO UNCOMMENT //  << "\n*************" << endl;
 
-        cout << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone << endl;
-        cout << "\nTotal passenger time: " << sStat->tPass << endl;
-        cout << "\nTotal parcel time: " << sStat->tParcel << endl;
-        cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
-        cout << "\nTotal idle time: " << sStat->tNone << endl;
+        // TODO UNCOMMENT //  << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone << endl;
+        // TODO UNCOMMENT //  << "\nTotal passenger time: " << sStat->tPass << endl;
+        // TODO UNCOMMENT //  << "\nTotal parcel time: " << sStat->tParcel << endl;
+        // TODO UNCOMMENT //  << "\nTotal combined transportation time: " << sStat->tBoth << endl;
+        // TODO UNCOMMENT //  << "\nTotal idle time: " << sStat->tNone << endl;
 
-        cout << "\n*************" << endl;
+        // TODO UNCOMMENT //  << "\n*************" << endl;
 
-        cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
-        cout << "\nTotal passenger distance: " << sStat->dPass << endl;
-        cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
-        cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
-        cout << "\nTotal idle distance: " << sStat->dNone << endl;
+        // TODO UNCOMMENT //  << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
+        // TODO UNCOMMENT //  << "\nTotal passenger distance: " << sStat->dPass << endl;
+        // TODO UNCOMMENT //  << "\nTotal parcel distance: " << sStat->dParcel << endl;
+        // TODO UNCOMMENT //  << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
+        // TODO UNCOMMENT //  << "\nTotal idle distance: " << sStat->dNone << endl;
 
-        cout << "\n*************" << endl;
+        // TODO UNCOMMENT //  << "\n*************" << endl;
 
-        cout << "\nWaiting time passenger: " << sStat->tStillP << endl;
-        cout << "\nWaiting time goods: " << sStat->tStillG << endl;
-        cout << "\nTotal waiting time: " << sStat->tStillG + sStat->tStillP << endl;
+        // TODO UNCOMMENT //  << "\nWaiting time passenger: " << sStat->tStillP << endl;
+        // TODO UNCOMMENT //  << "\nWaiting time goods: " << sStat->tStillG << endl;
+        // TODO UNCOMMENT //  << "\nTotal waiting time: " << sStat->tStillG + sStat->tStillP << endl;
     // }
 
 }
 
 void printStructures(nodeArcsStruct *nas){
 
-	cout<< "\nArcs:" << endl;
+	// TODO UNCOMMENT // << "\nArcs:" << endl;
     for (int i = 0; i < nas->arcs.size(); i++){
         if (i == 0){
-            cout << setw(3) << " ";
+            // TODO UNCOMMENT //  << setw(3) << " ";
         }
-        cout << setw(3) << std::right << i << " ";
+        // TODO UNCOMMENT //  << setw(3) << std::right << i << " ";
     }
-    cout << endl;
+    // TODO UNCOMMENT //  << endl;
     for(int i = 0; i < nas->arcs.size(); i++){
-        cout << setw(3) << std::right << i;
+        // TODO UNCOMMENT //  << setw(3) << std::right << i;
         for(int j = 0; j <  nas->arcs[i].size(); j++){
-            cout << setw(3) <<   nas->arcs[i][j] << " ";
+            // TODO UNCOMMENT //  << setw(3) <<   nas->arcs[i][j] << " ";
         }
-        cout << endl;
+        // TODO UNCOMMENT //  << endl;
     }
-    cout << endl;
+    // TODO UNCOMMENT //  << endl;
     // getchar();
 
-    // cout << "\n\nAll Arcs: " << endl;
+    // // TODO UNCOMMENT //  << "\n\nAll Arcs: " << endl;
     // for (int i = 0; i < nas->allArcs.size(); i++){
-    //     cout << nas->allArcs[i].first << "-" << nas->allArcs[i].second << " ==== ";
+    //     // TODO UNCOMMENT //  << nas->allArcs[i].first << "-" << nas->allArcs[i].second << " ==== ";
     // }
     
-    // cout << "\n\nArcs Plus: " << endl;
+    // // TODO UNCOMMENT //  << "\n\nArcs Plus: " << endl;
     // for (int i = 0; i < nas->arcPlus.size(); i++){
     //     for (int j = 0; j < nas->arcPlus[i].size(); j++){
-    //         cout << nas->arcPlus[i][j].first << "-" << nas->arcPlus[i][j].second << " ==== ";
+    //         // TODO UNCOMMENT //  << nas->arcPlus[i][j].first << "-" << nas->arcPlus[i][j].second << " ==== ";
     //     }
     // }
 
-    // cout << "\n\nArcs Minus: " << endl;
+    // // TODO UNCOMMENT //  << "\n\nArcs Minus: " << endl;
     // for (int i = 0; i < nas->arcMinus.size(); i++){
     //     for (int j = 0; j < nas->arcMinus[i].size(); j++){
-    //         cout << nas->arcMinus[i][j].first << "-" << nas->arcMinus[i][j].second << " ==== ";
+    //         // TODO UNCOMMENT //  << nas->arcMinus[i][j].first << "-" << nas->arcMinus[i][j].second << " ==== ";
     //     }
     // }
 
-    // cout << "\n\nArc NN: " << endl;
+    // // TODO UNCOMMENT //  << "\n\nArc NN: " << endl;
     // for (int i = 0; i < nas->arcNN.size(); i++){
-    //     cout << nas->arcNN[i].first << "-" << nas->arcNN[i].second << " ==== ";
+    //     // TODO UNCOMMENT //  << nas->arcNN[i].first << "-" << nas->arcNN[i].second << " ==== ";
     // }
 
-    // cout << "\n\nArc Nplus: " << endl;
+    // // TODO UNCOMMENT //  << "\n\nArc Nplus: " << endl;
     // for (int i = 0; i < nas->arcNplus.size(); i++){
-    //     cout << nas->arcNplus[i].first << "-" << nas->arcNplus[i].second << " ==== ";
+    //     // TODO UNCOMMENT //  << nas->arcNplus[i].first << "-" << nas->arcNplus[i].second << " ==== ";
     // }
     
-    // cout << "\n\nArc PN: " << endl;
+    // // TODO UNCOMMENT //  << "\n\nArc PN: " << endl;
     // for (int i = 0; i < nas->arcPN.size(); i++){
-    // cout << nas->arcPN[i].first << "-" << nas->arcPN[i].second << " ==== ";
+    // // TODO UNCOMMENT //  << nas->arcPN[i].first << "-" << nas->arcPN[i].second << " ==== ";
     // }
 
-    // cout << "\n\nArc nf: " << endl;
+    // // TODO UNCOMMENT //  << "\n\nArc nf: " << endl;
     // for (int i = 0; i < nas->arcnf.size(); i++){
-    //     cout << nas->arcnf[i].first << "-" << nas->arcnf[i].second << " ==== ";
+    //     // TODO UNCOMMENT //  << nas->arcnf[i].first << "-" << nas->arcnf[i].second << " ==== ";
     // }
 
-    // cout << "\n\nArc V Plus: " << endl;
+    // // TODO UNCOMMENT //  << "\n\nArc V Plus: " << endl;
     // for (int i = 0; i < nas->vArcPlus.size(); i++){
-    //     cout << "i: " << i << endl;
+    //     // TODO UNCOMMENT //  << "i: " << i << endl;
     //     for (int j = 0; j < nas->vArcPlus[i].size(); j++){
-    //         cout << "j(k): " << j << endl;
+    //         // TODO UNCOMMENT //  << "j(k): " << j << endl;
     //         for(int k = 0; k < nas->vArcPlus[i][j].size(); k++){
-    //             cout << nas->vArcPlus[i][j][k].first << "-" << nas->vArcPlus[i][j][k].second << " ==== ";
+    //             // TODO UNCOMMENT //  << nas->vArcPlus[i][j][k].first << "-" << nas->vArcPlus[i][j][k].second << " ==== ";
     //         }
     //     }
-    //     cout << endl;
+    //     // TODO UNCOMMENT //  << endl;
     // } 
 
-    // cout << "\n\nArc V Minus: " << endl;
+    // // TODO UNCOMMENT //  << "\n\nArc V Minus: " << endl;
     // for (int i = 0; i < nas->vArcMinus.size(); i++){
-    //     cout << "i: " << i << endl;
+    //     // TODO UNCOMMENT //  << "i: " << i << endl;
     //     for (int j = 0; j < nas->vArcMinus[i].size(); j++){
-    //         cout << "j(k): " << j << endl;
+    //         // TODO UNCOMMENT //  << "j(k): " << j << endl;
     //         for(int k = 0; k < nas->vArcMinus[i][j].size(); k++){
-    //             cout << nas->vArcMinus[i][j][k].first << "-" << nas->vArcMinus[i][j][k].second << " ==== ";
+    //             // TODO UNCOMMENT //  << nas->vArcMinus[i][j][k].first << "-" << nas->vArcMinus[i][j][k].second << " ==== ";
     //         }
     //     }
-    //     cout << endl;
+    //     // TODO UNCOMMENT //  << endl;
     // }
 
-    // cout << "\n\narc V:" << endl;
+    // // TODO UNCOMMENT //  << "\n\narc V:" << endl;
     // for (int i = 0; i < nas->arcV.size(); i++){
-    //     cout << "i: " << i << endl;
+    //     // TODO UNCOMMENT //  << "i: " << i << endl;
     //     for (int j = 0; j < nas->arcV[i].size(); j++){
-    //         cout << "j: " << j << endl;
+    //         // TODO UNCOMMENT //  << "j: " << j << endl;
     //         for(int k = 0; k < nas->arcV[i][j].size(); k++){
-    //             cout << nas->arcV[i][j][k] << " ==== ";
+    //             // TODO UNCOMMENT //  << nas->arcV[i][j][k] << " ==== ";
     //         }
     //     }
-    //     cout << endl;
+    //     // TODO UNCOMMENT //  << endl;
     // }
 
 }
@@ -477,41 +477,41 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat){
     //     fipStat->fullBegin.push_back(0);
     // }
 
-    // cout << "Beginning of service: " << endl;
+    // // TODO UNCOMMENT //  << "Beginning of service: " << endl;
 
     // for (int a = 0; a < fipStat->solBegin.size(); a++){
-    //     cout << "b(" << a << "): " << fipStat->solBegin[a] << endl;
+    //     // TODO UNCOMMENT //  << "b(" << a << "): " << fipStat->solBegin[a] << endl;
     // }
 
-    // cout << "\nSolution part II: " << endl;
+    // // TODO UNCOMMENT //  << "\nSolution part II: " << endl;
     // for (int k = 0; k < inst->K; k++){
-    //     cout << "Vehicle " << k << ": ";
+    //     // TODO UNCOMMENT //  << "Vehicle " << k << ": ";
     //     for (int i = 0; i < fipStat->solPass[k].size(); i++){
     //         if (i < fipStat->solPass[k].size() - 1){
-    //             cout << fipStat->solPass[k][i] << " - ";
+    //             // TODO UNCOMMENT //  << fipStat->solPass[k][i] << " - ";
     //         }
     //         else{
-    //             cout << fipStat->solPass[k][i];
+    //             // TODO UNCOMMENT //  << fipStat->solPass[k][i];
     //         }
     //     }
-    //     cout << endl;
+    //     // TODO UNCOMMENT //  << endl;
     // }
-    // cout << endl;
+    // // TODO UNCOMMENT //  << endl;
 
-    // cout << "\nSolution part III - pickup locations: " << endl;
+    // // TODO UNCOMMENT //  << "\nSolution part III - pickup locations: " << endl;
     // for (int k = 0; k < inst->K; k++){
-    //     cout << "Vehicle " << k << ": ";
+    //     // TODO UNCOMMENT //  << "Vehicle " << k << ": ";
     //     for (int i = 0; i < fipStat->solPassOrigins[k].size(); i++){
     //         if (i < fipStat->solPassOrigins[k].size() - 1){
-    //             cout << fipStat->solPassOrigins[k][i].first << " : " << fipStat->solPassOrigins[k][i].second <<  " - ";
+    //             // TODO UNCOMMENT //  << fipStat->solPassOrigins[k][i].first << " : " << fipStat->solPassOrigins[k][i].second <<  " - ";
     //         }
     //         else{
-    //             cout << fipStat->solPassOrigins[k][i].first << " : " << fipStat->solPassOrigins[k][i].second;
+    //             // TODO UNCOMMENT //  << fipStat->solPassOrigins[k][i].first << " : " << fipStat->solPassOrigins[k][i].second;
     //         }
     //     }
-    //     cout << endl;
+    //     // TODO UNCOMMENT //  << endl;
     // }
-    // cout << endl;
+    // // TODO UNCOMMENT //  << endl;
 
     // sStat->solvec.clear();
 
@@ -586,10 +586,10 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
                 for (int i = 0; i < fipStat->solPass[k].size(); i++){
                     // fipStat->solBeginParcel.
                     auxVec.push_back(fipStat->solPass[k][i]);
-                    // cout << "k, i: " << fipStat->solPass[k][i] << endl;
+                    // // TODO UNCOMMENT //  << "k, i: " << fipStat->solPass[k][i] << endl;
                     for (int j = 0; j < fipStat->solvec[k].size(); j++){
                         if (fipStat->solPass[k][i] == fipStat->solvec[k][j].first){
-                            // cout << "k, j: " << fipStat->solPass[k][i] << endl;
+                            // // TODO UNCOMMENT //  << "k, j: " << fipStat->solPass[k][i] << endl;
                             auxVec.push_back(fipStat->solvec[k][j].second);
                             fipStat->solprofit += nodeVec[fipStat->solvec[k][j].second].profit;
                         }
@@ -615,21 +615,21 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         }
     }
 
-    cout<< "\n\nFull solution: " << endl;
+    // TODO UNCOMMENT // << "\n\nFull solution: " << endl;
 
     for (int k = 0; k < fipStat->fullSol.size(); k++){
         currDepot = 2*inst->n + 2*inst->m + k;
-        cout << "Vehicle: " << currDepot << ": ";
+        // TODO UNCOMMENT //  << "Vehicle: " << currDepot << ": ";
         if(fipStat->fullSol[k].size() < 1){
-            cout << endl;
+            // TODO UNCOMMENT //  << endl;
         }
         else{
             for (int j = 0; j < fipStat->fullSol[k].size(); j++){
                 if (j == fipStat->fullSol[k].size() - 1){
-                    cout << fipStat->fullSol[k][j] << endl;
+                    // TODO UNCOMMENT //  << fipStat->fullSol[k][j] << endl;
                 }
                 else{
-                    cout << fipStat->fullSol[k][j] << " - ";
+                    // TODO UNCOMMENT //  << fipStat->fullSol[k][j] << " - ";
                 }
                 if (fipStat->fullSol[k][j] >= 2*inst->n && fipStat->fullSol[k][j] < 2*inst->n+inst->m){
                     parcelCount++;
@@ -639,9 +639,9 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     }
     for (int k = 0; k < fipStat->fullSol.size(); k++){
         currDepot = 2*inst->n + 2*inst->m + k;
-        cout << "Vehicle: " << currDepot << ": ";
+        // TODO UNCOMMENT //  << "Vehicle: " << currDepot << ": ";
         if(fipStat->fullSol[k].size() < 1){
-            cout << endl;
+            // TODO UNCOMMENT //  << endl;
         }
         else{
             for (int j = 0; j < fipStat->fullSol[k].size(); j++){
@@ -671,10 +671,10 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
 
                 }      
                 if (j == fipStat->fullSol[k].size() - 1){
-                    cout << label << endl;
+                    // TODO UNCOMMENT //  << label << endl;
                 }
                 else{
-                    cout << label << " - ";
+                    // TODO UNCOMMENT //  << label << " - ";
                 }
             }
         }        
@@ -762,59 +762,59 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
     }
 
 
-    cout<< "\n\nFull solution with times: " << endl;
+    // TODO UNCOMMENT // << "\n\nFull solution with times: " << endl;
 
     for (int k = 0; k < fipStat->fullSol.size(); k++){
         currDepot = 2*inst->n + 2*inst->m + k;
-        cout << "Vehicle: " << currDepot << ": ";
+        // TODO UNCOMMENT //  << "Vehicle: " << currDepot << ": ";
 
         if ( fipStat->fullSol[k].size() < 3){
-            cout << " --> Total travel time: " << 0 << endl;
+            // TODO UNCOMMENT //  << " --> Total travel time: " << 0 << endl;
             continue;
 
         }
         for (int j = 0; j < fipStat->fullSol[k].size(); j++){
             if (j == fipStat->fullSol[k].size() - 1){
-                cout << fipStat->fullSol[k][j] << "(" << fipStat->fullBegin[k][j] << ")"<< endl;
+                // TODO UNCOMMENT //  << fipStat->fullSol[k][j] << "(" << fipStat->fullBegin[k][j] << ")"<< endl;
             }
             else{
-                cout << fipStat->fullSol[k][j] << "(" << fipStat->fullBegin[k][j] << ")"<< " - ";
+                // TODO UNCOMMENT //  << fipStat->fullSol[k][j] << "(" << fipStat->fullBegin[k][j] << ")"<< " - ";
             }
         }
-        cout << " --> Total travel time: " << fipStat->fullBegin[k][fipStat->fullSol[k].size()-1] - fipStat->fullBegin[k][0] << endl;
+        // TODO UNCOMMENT //  << " --> Total travel time: " << fipStat->fullBegin[k][fipStat->fullSol[k].size()-1] - fipStat->fullBegin[k][0] << endl;
     }
 
 
 
-    cout << "_______________________________________________________" << endl;
+    // TODO UNCOMMENT //  << "_______________________________________________________" << endl;
     for (int k = 0; k < fipStat->fullSol.size(); k++){
         for (int j = 0; j < fipStat->fullSol[k].size(); j++){
             int node = fipStat->fullSol[k][j];
             if(node < inst->n){
                 if(fipStat->fullBegin[k][j] > nodeVec[node].l){
-                    cout << "Error: Vehicle " << k << " arrives at node " << node << " after closing time" << endl;
+                    // TODO UNCOMMENT //  << "Error: Vehicle " << k << " arrives at node " << node << " after closing time" << endl;
                     
                 }
             }
 
         }
     }
-    cout << "_______________________________________________________" << endl;
+    // TODO UNCOMMENT //  << "_______________________________________________________" << endl;
 
-    // cout << "\n\nbegin pass vector: "<< endl;
+    // // TODO UNCOMMENT //  << "\n\nbegin pass vector: "<< endl;
     // for(int i = 0; i < fipStat->beginPass.size(); i++){
-    //     cout << i << ": " << fipStat->beginPass[i] << " - ";
+    //     // TODO UNCOMMENT //  << i << ": " << fipStat->beginPass[i] << " - ";
     // }
     
-    cout << "\n\nFull solution value: " << fipStat->solprofit << endl;
+    // TODO UNCOMMENT //  << "\n\nFull solution value: " << fipStat->solprofit << endl;
 
-    cout << "\n\nServed parcels: " << parcelCount << endl;
+    // TODO UNCOMMENT //  << "\n\nServed parcels: " << parcelCount << endl;
 
-    cout << "\n\nProfit of customers: " << profCustomer << endl;
+    // TODO UNCOMMENT //  << "\n\nProfit of customers: " << profCustomer << endl;
 
-    cout << "\n\nProfit of parcels: " << profParcel << endl;
+    // TODO UNCOMMENT //  << "\n\nProfit of parcels: " << profParcel << endl;
     
-    cout << "\n\nCosts: " << costs << endl;
+    // TODO UNCOMMENT //  << "\n\nCosts: " << costs << endl;
 
     fipStatIni(fipStat);
 
@@ -1094,21 +1094,21 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         }
     }
 
-    cout << "\n*************" << endl;
+    // TODO UNCOMMENT //  << "\n*************" << endl;
 
-    cout << "\nTotal time: " << fipStat->tPass + fipStat->tParcel + fipStat->tBoth + fipStat->tNone << endl;
-    cout << "\nTotal passenger time: " << fipStat->tPass << endl;
-    cout << "\nTotal parcel time: " << fipStat->tParcel << endl;
-    cout << "\nTotal combined transportation time: " << fipStat->tBoth << endl;
-    cout << "\nTotal idle time: " << fipStat->tNone << endl;
+    // TODO UNCOMMENT //  << "\nTotal time: " << fipStat->tPass + fipStat->tParcel + fipStat->tBoth + fipStat->tNone << endl;
+    // TODO UNCOMMENT //  << "\nTotal passenger time: " << fipStat->tPass << endl;
+    // TODO UNCOMMENT //  << "\nTotal parcel time: " << fipStat->tParcel << endl;
+    // TODO UNCOMMENT //  << "\nTotal combined transportation time: " << fipStat->tBoth << endl;
+    // TODO UNCOMMENT //  << "\nTotal idle time: " << fipStat->tNone << endl;
 
-    cout << "\n*************" << endl;
+    // TODO UNCOMMENT //  << "\n*************" << endl;
 
-    cout << "\nTotal distance: " << fipStat->dPass + fipStat->dParcel + fipStat->dBoth + fipStat->dNone << endl;
-    cout << "\nTotal passenger distance: " << fipStat->dPass << endl;
-    cout << "\nTotal parcel distance: " << fipStat->dParcel << endl;
-    cout << "\nTotal combined transportation distance: " << fipStat->dBoth << endl;
-    cout << "\nTotal idle distance: " << fipStat->dNone << endl;
+    // TODO UNCOMMENT //  << "\nTotal distance: " << fipStat->dPass + fipStat->dParcel + fipStat->dBoth + fipStat->dNone << endl;
+    // TODO UNCOMMENT //  << "\nTotal passenger distance: " << fipStat->dPass << endl;
+    // TODO UNCOMMENT //  << "\nTotal parcel distance: " << fipStat->dParcel << endl;
+    // TODO UNCOMMENT //  << "\nTotal combined transportation distance: " << fipStat->dBoth << endl;
+    // TODO UNCOMMENT //  << "\nTotal idle distance: " << fipStat->dNone << endl;
 
 
 }
@@ -1121,18 +1121,18 @@ void calcPassDetour(instanceStat *inst, vector<nodeStat> &nodeVec, fipStats *fip
     for (int i = inst->n; i < 2*inst->n; i++){
         ntrip = nodeVec[i].e - nodeVec[i - inst->n].e;
         dtrip = fipStat->beginPass[i] - fipStat->beginPass[i - inst->n];
-        // cout << "dtrip: " << dtrip << " - ntrip" << ntrip << endl;
+        // // TODO UNCOMMENT //  << "dtrip: " << dtrip << " - ntrip" << ntrip << endl;
         // getchar();
         detour = (double)((dtrip - ntrip)/(ntrip))*(double)(100);
         fipStat->passDetour.push_back(detour);
     }
 
-    cout << "\n\nPassenger detour (%): ";
+    // TODO UNCOMMENT //  << "\n\nPassenger detour (%): ";
     
     for (int i = 0; i < inst->n; i++){
-        cout << i << ": " << fipStat->passDetour[i] << " ";
+        // TODO UNCOMMENT //  << i << ": " << fipStat->passDetour[i] << " ";
     }
-    cout << endl << endl;
+    // TODO UNCOMMENT //  << endl << endl;
 
 
 }

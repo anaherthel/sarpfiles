@@ -448,6 +448,10 @@ void fipPassSol(instanceStat *inst, fipStats *fipStat) {
 
 	ifstream iFile(filename);
 
+    double trash;
+    iFile >> trash;
+    iFile >> trash;
+
 	int nMandatory;
 	iFile >> nMandatory;
     std::set<int> emptyRoutes;
@@ -462,7 +466,7 @@ void fipPassSol(instanceStat *inst, fipStats *fipStat) {
 
     int nSolNodes;
 	iFile >> nSolNodes;
-
+    
 	for (int i = 0; i < nSolNodes; i++) {
 		int u;
 		int k;
@@ -503,7 +507,6 @@ void fipPassSol(instanceStat *inst, fipStats *fipStat) {
 
 		sequencePairs[u] = v;
 	}
-
 	iFile.close();
 }
 
@@ -1025,7 +1028,7 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
     //     for (int k = 0; k < inst->K; k++){
     //         currSP = 2*inst->n + 2*inst->m + k;
 
-    //         cout << "currentsp: " << currSP << " - first pass: " << sStat->solPass[k][0] << endl;
+    //         // TODO UNCOMMENT //  << "currentsp: " << currSP << " - first pass: " << sStat->solPass[k][0] << endl;
 
     //         sStat->solOrder[k].push_back(currSP);
     //         sStat->solOrder[k].push_back(sStat->solPass[k][0]);
@@ -1038,11 +1041,11 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
     //             auxPair.second = sStat->solvec[k][i].second;            
     //             auxVec.push_back(auxPair);
     //         }
-    //         cout<< "here1";
+    //         // TODO UNCOMMENT // << "here1";
     //         getchar();
-    //         cout << "auxVec: " << endl;
+    //         // TODO UNCOMMENT //  << "auxVec: " << endl;
     //         for (int i = 0; i < auxVec.size(); i++){
-    //             cout << auxVec[i].first << " " << auxVec[i].second << endl;
+    //             // TODO UNCOMMENT //  << auxVec[i].first << " " << auxVec[i].second << endl;
     //         }
 
     //         while(!auxVec.empty()){
@@ -1070,22 +1073,22 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
     //         sStat->solOrder[k].push_back(currSP + inst->K + k);
     //     }
 
-    //     cout << "\nNumber of Vehicles: " << inst->K << endl;
+    //     // TODO UNCOMMENT //  << "\nNumber of Vehicles: " << inst->K << endl;
 
-    //     cout << "\nSolution: " << endl;
+    //     // TODO UNCOMMENT //  << "\nSolution: " << endl;
     //     for (int k = 0; k < inst->K; k++){
-    //         cout << "Vehicle " << k << ": ";
+    //         // TODO UNCOMMENT //  << "Vehicle " << k << ": ";
     //         for (int i = 0; i < sStat->solOrder[k].size(); i++){
     //             if (i < sStat->solOrder[k].size() - 1){
-    //                 cout << sStat->solOrder[k][i] << " - ";
+    //                 // TODO UNCOMMENT //  << sStat->solOrder[k][i] << " - ";
     //             }
     //             else{
-    //                 cout << sStat->solOrder[k][i];
+    //                 // TODO UNCOMMENT //  << sStat->solOrder[k][i];
     //             }
     //         }
-    //         cout << endl;
+    //         // TODO UNCOMMENT //  << endl;
     //     }
-    //     cout << endl;
+    //     // TODO UNCOMMENT //  << endl;
 
     // }
     // else{
@@ -1097,11 +1100,11 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
                 auxPair.second = sStat->solvec[k][i].second;            
                 auxVec.push_back(auxPair);
             }
-            // cout<< "here1";
+            // // TODO UNCOMMENT // << "here1";
             // getchar();
-            // cout << "auxVec: " << endl;
+            // // TODO UNCOMMENT //  << "auxVec: " << endl;
             // for (int i = 0; i < auxVec.size(); i++){
-            //     cout << auxVec[i].first << " " << auxVec[i].second << endl;
+            //     // TODO UNCOMMENT //  << auxVec[i].first << " " << auxVec[i].second << endl;
             // }
 
             while(!auxVec.empty()){
@@ -1127,177 +1130,215 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
                         }
                     }
                 }       
-            // cout<< "auxvec size: " << auxVec.size();
+            // // TODO UNCOMMENT // << "auxvec size: " << auxVec.size();
             // getchar();
             }
-            // cout<< "here3";
+            // // TODO UNCOMMENT // << "here3";
             // getchar();
         }
 
-        cout << "\nNumber of Vehicles: " << inst->K << endl;
+        // TODO UNCOMMENT //  << "\nNumber of Vehicles: " << inst->K << endl;
 
-        cout << "\nSolution: " << endl;
+        // TODO UNCOMMENT //  << "\nSolution: " << endl;
         for (int k = 0; k < inst->K; k++){
-            cout << "Vehicle " << k << ": ";
+            // TODO UNCOMMENT //  << "Vehicle " << k << ": ";
             for (int i = 0; i < sStat->solOrder[k].size(); i++){
                 if (i < sStat->solOrder[k].size() - 1){
-                    cout << sStat->solOrder[k][i] << " - ";
+                    // TODO UNCOMMENT //  << sStat->solOrder[k][i] << " - ";
                 }
                 else{
-                    cout << sStat->solOrder[k][i];
+                    // TODO UNCOMMENT //  << sStat->solOrder[k][i];
                 }
             }
-            cout << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
+            // TODO UNCOMMENT //  << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
         }
-        cout << endl;
+        // TODO UNCOMMENT //  << endl;
 
         // disregard if fip
-        cout << "\nSolution structure: " << endl;
+        // TODO UNCOMMENT //  << "\nSolution structure: " << endl;
         for (int k = 0; k < inst->K; k++){
-            cout << "Vehicle " << k << ": ";
+            // TODO UNCOMMENT //  << "Vehicle " << k << ": ";
             for (int i = 0; i < sStat->solOrder[k].size(); i++){
                 if (i < sStat->solOrder[k].size() - 1){
                     if (sStat->solOrder[k][i] < inst->n){
-                        cout << "d" << " - ";
+                        // TODO UNCOMMENT //  << "d" << " - ";
                     }
                     else if (sStat->solOrder[k][i] < inst->n + inst->m){
-                        cout << "P" << " - ";
+                        // TODO UNCOMMENT //  << "P" << " - ";
                         sStat->servedParcels++;
                     }
                     else if (sStat->solOrder[k][i] < inst->n + 2*inst->m){
-                        cout << "D" << " - ";
+                        // TODO UNCOMMENT //  << "D" << " - ";
                     }
                     else if (sStat->solOrder[k][i] < inst->n + 2*inst->m + inst->K){
-                        cout << "S" << " - ";
+                        // TODO UNCOMMENT //  << "S" << " - ";
                     }                                      
                 }
                 else{
 
-                    cout << "f";
+                    // TODO UNCOMMENT //  << "f";
                 }
             }
-            cout << endl;
+            // TODO UNCOMMENT //  << endl;
         }
-        cout << endl;   
+        // TODO UNCOMMENT //  << endl;   
         // getchar(); 
     // }
 }
 
-void printSolFile (instanceStat *inst, solStats *sStat){
+void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem){
 
-    string filename = "src/fippassSol/" + inst->InstName + ".txt";
+    if (problem->model == "fip") {
+        string filename = "src/fippassSol/" + inst->InstName + ".txt";
 
-    cout << filename << endl;
+        // TODO UNCOMMENT //  << filename << endl;
 
-    ofstream oFile(filename);
+        ofstream oFile(filename);
 
-    vector<pair<int, int>> emptyRoutes;
-    vector<pair<int, int>> nodeInRoute;
-    vector<pair<int, int>> sequencePairs;
+        vector<pair<int, int>> emptyRoutes;
+        vector<pair<int, int>> nodeInRoute;
+        vector<pair<int, int>> sequencePairs;
 
-    for (int k = 0; k < sStat->solOrder.size(); k++) {
-        if (sStat->solOrder[k].size() < 3) {
-            int u = sStat->solOrder[k][0] - inst->n;
-            int v = sStat->solOrder[k][1] - inst->n;
+        for (int k = 0; k < sStat->solOrder.size(); k++) {
+            if (sStat->solOrder[k].size() < 3) {
+                int u = sStat->solOrder[k][0] - inst->n;
+                int v = sStat->solOrder[k][1] - inst->n;
 
-            emptyRoutes.push_back(make_pair(u, v));
-        }
-    }
-
-    for (int k = 0; k < sStat->solOrder.size(); k++) {
-        for (int i = 0; i < sStat->solOrder[k].size(); i++) {
-            int u = sStat->solOrder[k][i];
-
-            if (u < inst->n) { 
-                nodeInRoute.push_back(make_pair(u, k));
-            }
-
-            if (u >= 2*inst->n + 2*inst->m) {
-                nodeInRoute.push_back(make_pair(u - inst->n, k));
+                emptyRoutes.push_back(make_pair(u, v));
             }
         }
-    }
 
-    for (int k = 0; k < sStat->solOrder.size(); k++) {
-        for (int i = 0; i < sStat->solOrder[k].size() - 1; i++) {
-            int u = sStat->solOrder[k][i];
-            int v = sStat->solOrder[k][i + 1];
+        for (int k = 0; k < sStat->solOrder.size(); k++) {
+            for (int i = 0; i < sStat->solOrder[k].size(); i++) {
+                int u = sStat->solOrder[k][i];
 
-            if (u < inst->n) continue;
-            if (u >= inst->n) {
-                u -= inst->n;
+                if (u < inst->n) { 
+                    nodeInRoute.push_back(make_pair(u, k));
+                }
+
+                if (u >= 2*inst->n + 2*inst->m) {
+                    nodeInRoute.push_back(make_pair(u - inst->n, k));
+                }
             }
-
-            if (v >= inst->n) {
-                v -= inst->n;
-            }
-
-            sequencePairs.push_back(make_pair(u, v));
         }
+
+        for (int k = 0; k < sStat->solOrder.size(); k++) {
+            for (int i = 0; i < sStat->solOrder[k].size() - 1; i++) {
+                int u = sStat->solOrder[k][i];
+                int v = sStat->solOrder[k][i + 1];
+
+                if (u < inst->n) continue;
+                if (u >= inst->n) {
+                    u -= inst->n;
+                }
+
+                if (v >= inst->n) {
+                    v -= inst->n;
+                }
+
+                sequencePairs.push_back(make_pair(u, v));
+            }
+        }
+
+        oFile << sStat->time << endl;
+        oFile << sStat->solprofit << endl;
+
+        oFile << emptyRoutes.size() << endl;
+        for (auto arcPair : emptyRoutes) {
+            oFile << arcPair.first << " " << arcPair.second << endl;
+        }
+
+        oFile << nodeInRoute.size() << endl;
+        for (auto arcPair : nodeInRoute) {
+            oFile << arcPair.first << " " << arcPair.second << endl;
+        }
+
+        oFile << sequencePairs.size() << endl;
+        for (auto arcPair : sequencePairs) {
+            oFile << arcPair.first << " " << arcPair.second << endl;
+        }
+
+        oFile.close();
     }
 
-    oFile << emptyRoutes.size() << endl;
-    for (auto arcPair : emptyRoutes) {
-        oFile << arcPair.first << " " << arcPair.second << endl;
-    }
 
-    oFile << nodeInRoute.size() << endl;
-    for (auto arcPair : nodeInRoute) {
-        oFile << arcPair.first << " " << arcPair.second << endl;
-    }
+    // // TODO UNCOMMENT //  << "\nNumber of Vehicles: " << inst->K << endl;
 
-    oFile << sequencePairs.size() << endl;
-    for (auto arcPair : sequencePairs) {
-        oFile << arcPair.first << " " << arcPair.second << endl;
-    }
-
-    oFile.close();
-
-    // cout << "\nNumber of Vehicles: " << inst->K << endl;
-
-    // cout << "\nSolution: " << endl;
+    // // TODO UNCOMMENT //  << "\nSolution: " << endl;
     // for (int k = 0; k < inst->K; k++){
-    //     cout << "Vehicle " << k << ": ";
+    //     // TODO UNCOMMENT //  << "Vehicle " << k << ": ";
     //     for (int i = 0; i < sStat->solOrder[k].size(); i++){
     //         if (i < sStat->solOrder[k].size() - 1){
-    //             cout << sStat->solOrder[k][i] << " - ";
+    //             // TODO UNCOMMENT //  << sStat->solOrder[k][i] << " - ";
     //         }
     //         else{
-    //             cout << sStat->solOrder[k][i];
+    //             // TODO UNCOMMENT //  << sStat->solOrder[k][i];
     //         }
     //     }
-    //     cout << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
+    //     // TODO UNCOMMENT //  << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
     // }
-    // cout << endl;
+    // // TODO UNCOMMENT //  << endl;
 
     // // disregard if fip
-    // cout << "\nSolution structure: " << endl;
+    // // TODO UNCOMMENT //  << "\nSolution structure: " << endl;
     // for (int k = 0; k < inst->K; k++){
-    //     cout << "Vehicle " << k << ": ";
+    //     // TODO UNCOMMENT //  << "Vehicle " << k << ": ";
     //     for (int i = 0; i < sStat->solOrder[k].size(); i++){
     //         if (i < sStat->solOrder[k].size() - 1){
     //             if (sStat->solOrder[k][i] < inst->n){
-    //                 cout << "d" << " - ";
+    //                 // TODO UNCOMMENT //  << "d" << " - ";
     //             }
     //             else if (sStat->solOrder[k][i] < inst->n + inst->m){
-    //                 cout << "P" << " - ";
+    //                 // TODO UNCOMMENT //  << "P" << " - ";
     //                 sStat->servedParcels++;
     //             }
     //             else if (sStat->solOrder[k][i] < inst->n + 2*inst->m){
-    //                 cout << "D" << " - ";
+    //                 // TODO UNCOMMENT //  << "D" << " - ";
     //             }
     //             else if (sStat->solOrder[k][i] < inst->n + 2*inst->m + inst->K){
-    //                 cout << "S" << " - ";
+    //                 // TODO UNCOMMENT //  << "S" << " - ";
     //             }                                      
     //         }
     //         else{
 
-    //             cout << "f";
+    //             // TODO UNCOMMENT //  << "f";
     //         }
     //     }
-    //     cout << endl;
+    //     // TODO UNCOMMENT //  << endl;
     // }
-    // cout << endl;   
+    // // TODO UNCOMMENT //  << endl; 
+    
+    string filename2;
+    
+    if (problem->model == "fip") {
+        filename2 = "src/fippassResults/" + inst->InstName + ".csv"; 
+    } else if (problem->model == "nodefip"){
+        filename2 = "src/nodefipResults/" + inst->InstName + ".csv"; 
+    }
+
+    ofstream oFile2(filename2);
+
+    oFile2 << inst->InstName + ",";
+    oFile2 << sStat->time;
+    oFile2 << ",";
+    oFile2 << sStat->solprofit;
+    oFile2 << ",";
+    if (problem->model == "fip") {
+        oFile2 << 0;
+    } else if (problem->model == "nodefip"){
+        oFile2 << sStat->servedParcels;
+    }
+    oFile2 << ",";
+    oFile2 << sStat->tNone;
+    oFile2 << ",";
+    oFile2 << sStat->dNone;
+    oFile2 << ",";
+    oFile2 << sStat->status;
+
+    oFile2.close();
+
+    // oFile2 << inst->InstName + ", ";
+    // oFile2 << sStat->
 }
 
 void testRoute (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec){
@@ -1396,24 +1437,24 @@ void testRoute (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec){
     for (int i = 0; i < infroutenew.size(); i++){
         if (i < infroutenew.size() - 1){
 
-            cout << infroutenew[i] << " - ";
+            // TODO UNCOMMENT //  << infroutenew[i] << " - ";
         }
         else{
 
-            cout << infroutenew[i];
+            // TODO UNCOMMENT //  << infroutenew[i];
         }
     }
-    cout << " duration:" << endPoint - startPoint << " sum_travel_times:" << travel_time << endl;
+    // TODO UNCOMMENT //  << " duration:" << endPoint - startPoint << " sum_travel_times:" << travel_time << endl;
 
     for (int i = 0; i < infroute.size() - 1; i++){
         int a = infroute[i];
         int b = infroute[i+1];
         if (i < infroute.size() - 2){
-            cout << "Xi" << a << "_" << b << "_" << infroute[0] << "_OspV +";
+            // TODO UNCOMMENT //  << "Xi" << a << "_" << b << "_" << infroute[0] << "_OspV +";
 
         }
         else{
-            cout << "Xi" << a << "_" << b << "_" << infroute[0] << "_OspV <=" << infroute.size() - 2 << endl;
+            // TODO UNCOMMENT //  << "Xi" << a << "_" << b << "_" << infroute[0] << "_OspV <=" << infroute.size() - 2 << endl;
 
         }
     }
@@ -1421,25 +1462,25 @@ void testRoute (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec){
     for (int i = 0; i < infroutenew.size(); i++){
         if (i < infroutenew.size() - 1){
             if (infroutenew[i] < inst->n){
-                cout << "d" << " - ";
+                // TODO UNCOMMENT //  << "d" << " - ";
             }
             else if (infroutenew[i] < inst->n + inst->m){
-                cout << "P" << " - ";
+                // TODO UNCOMMENT //  << "P" << " - ";
                 //sStat->servedParcels++;
             }
             else if (infroutenew[i] < inst->n + 2*inst->m){
-                cout << "D" << " - ";
+                // TODO UNCOMMENT //  << "D" << " - ";
             }
             else if (infroutenew[i] < inst->n + 2*inst->m + inst->K){
-                cout << "S" << " - ";
+                // TODO UNCOMMENT //  << "S" << " - ";
             }                                      
         }
         else{
 
-            cout << "f";
+            // TODO UNCOMMENT //  << "f";
         }
     }
-    cout << endl;
+    // TODO UNCOMMENT //  << endl;
 }
 
 void viewSolVRPS (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat){
@@ -1468,11 +1509,11 @@ void viewSolVRPS (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
             auxPair.second = sStat->solvec[k][i].second;            
             auxVec.push_back(auxPair);
         }
-        // cout<< "here1";
+        // // TODO UNCOMMENT // << "here1";
         // getchar();
-        // cout << "auxVec: " << endl;
+        // // TODO UNCOMMENT //  << "auxVec: " << endl;
         // for (int i = 0; i < auxVec.size(); i++){
-        //     cout << auxVec[i].first << " " << auxVec[i].second << endl;
+        //     // TODO UNCOMMENT //  << auxVec[i].first << " " << auxVec[i].second << endl;
         // }
 
         while(!auxVec.empty()){
@@ -1498,20 +1539,20 @@ void viewSolVRPS (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                     }
                 }
             }       
-        // cout<< "auxvec size: " << auxVec.size();
+        // // TODO UNCOMMENT // << "auxvec size: " << auxVec.size();
         // getchar();
         }
-        // cout<< "here3";
+        // // TODO UNCOMMENT // << "here3";
         // getchar();
     }
 
-    //cout << "\nNumber of Vehicles: " << inst->K << endl;
+    //// TODO UNCOMMENT //  << "\nNumber of Vehicles: " << inst->K << endl;
 
     for (int k = 0; k < inst->K; k++){
-        cout << "-------------------------" << endl;
+        // TODO UNCOMMENT //  << "-------------------------" << endl;
         
-        cout << "nbVar = " << sStat->solOrder[k].size() - 1 << endl;
-        cout << "Ordered solution : 0(0,0,0) -> ";
+        // TODO UNCOMMENT //  << "nbVar = " << sStat->solOrder[k].size() - 1 << endl;
+        // TODO UNCOMMENT //  << "Ordered solution : 0(0,0,0) -> ";
         double btime = 0;
         double partialSol = 0;
         double triplen = 0;
@@ -1536,13 +1577,13 @@ void viewSolVRPS (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
                 load = 0;
             }
             if (i < sStat->solOrder[k].size() - 1){
-                cout << sStat->solOrder[k][i] + 1 << "(" << btime << ","<< load << "," << ttime << ") -> ";
+                // TODO UNCOMMENT //  << sStat->solOrder[k][i] + 1 << "(" << btime << ","<< load << "," << ttime << ") -> ";
             }
             else{
-                cout << sStat->solOrder[k][i] + 1 << "(" << btime << ","<< load << "," << ttime << ")";
+                // TODO UNCOMMENT //  << sStat->solOrder[k][i] + 1 << "(" << btime << ","<< load << "," << ttime << ")";
             }
         }
-        cout << endl;
+        // TODO UNCOMMENT //  << endl;
         for (int i = 0; i < sStat->solOrder[k].size() - 2; i++){
             double arcCost = 0;
             if (sStat->solOrder[k][i] < inst->n){
@@ -1554,50 +1595,50 @@ void viewSolVRPS (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
             }
             partialSol += arcCost;
             if (i < 1){
-                cout << "Solution includes var[Xi" << k << "_" << sStat->solOrder[k][i+1] + inst->K << "_" << k << "_OspV(" << arcCost << ")] = 1" << endl;
+                // TODO UNCOMMENT //  << "Solution includes var[Xi" << k << "_" << sStat->solOrder[k][i+1] + inst->K << "_" << k << "_OspV(" << arcCost << ")] = 1" << endl;
             }
             else if (i + 1 < sStat->solOrder[k].size() - 1){
-                cout << "Solution includes var[Xi" << sStat->solOrder[k][i] + inst->K << "_" << sStat->solOrder[k][i+1] + inst->K << "_" << k << "_OspV(" << arcCost << ")] = 1" << endl;
+                // TODO UNCOMMENT //  << "Solution includes var[Xi" << sStat->solOrder[k][i] + inst->K << "_" << sStat->solOrder[k][i+1] + inst->K << "_" << k << "_OspV(" << arcCost << ")] = 1" << endl;
             }
             else{
 
             }
         }
 
-        cout << "Solution: solCost = " << partialSol << endl;
+        // TODO UNCOMMENT //  << "Solution: solCost = " << partialSol << endl;
 
-        //cout << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
+        //// TODO UNCOMMENT //  << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
     }
-    cout << endl;
+    // TODO UNCOMMENT //  << endl;
 
     // disregard if fip
-    cout << "\nSolution structure: " << endl;
+    // TODO UNCOMMENT //  << "\nSolution structure: " << endl;
     for (int k = 0; k < inst->K; k++){
-        cout << "Vehicle " << k << ": ";
+        // TODO UNCOMMENT //  << "Vehicle " << k << ": ";
         for (int i = 0; i < sStat->solOrder[k].size(); i++){
             if (i < sStat->solOrder[k].size() - 1){
                 if (sStat->solOrder[k][i] < inst->n){
-                    cout << "d" << " - ";
+                    // TODO UNCOMMENT //  << "d" << " - ";
                 }
                 else if (sStat->solOrder[k][i] < inst->n + inst->m){
-                    cout << "P" << " - ";
+                    // TODO UNCOMMENT //  << "P" << " - ";
                     sStat->servedParcels++;
                 }
                 else if (sStat->solOrder[k][i] < inst->n + 2*inst->m){
-                    cout << "D" << " - ";
+                    // TODO UNCOMMENT //  << "D" << " - ";
                 }
                 else if (sStat->solOrder[k][i] < inst->n + 2*inst->m + inst->K){
-                    cout << "S" << " - ";
+                    // TODO UNCOMMENT //  << "S" << " - ";
                 }                                      
             }
             else{
 
-                cout << "f";
+                // TODO UNCOMMENT //  << "f";
             }
         }
-        cout << endl;
+        // TODO UNCOMMENT //  << endl;
     }
-    cout << endl;   
+    // TODO UNCOMMENT //  << endl;   
 
 }
 
@@ -1607,7 +1648,7 @@ void output(instanceStat *inst, vector<nodeStat> &nodeVec,  solStats *sStat, pro
     string btoutputname;
 
     btoutputname = "bt-" + inst->InstName + "-" + problem->scen + ".txt";
-    // cout << "output bt: " << btoutputname << endl;
+    // // TODO UNCOMMENT //  << "output bt: " << btoutputname << endl;
 
     ofstream ofile;
 
@@ -1629,37 +1670,37 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	nodeArcsStruct nas;
 	
 	// for (int i = 0; i < inst->V; i++){
-	// 	cout << "load " << i << ": " << nodeVec[i].load << endl;
+	// 	// TODO UNCOMMENT //  << "load " << i << ": " << nodeVec[i].load << endl;
 	// }
 	
 	// for (int i = 0; i < inst->n; i++){
-	// 	cout << "delta " << i << ": " << nodeVec[i].delta << endl;
+	// 	// TODO UNCOMMENT //  << "delta " << i << ": " << nodeVec[i].delta << endl;
 	// }
 
-    // cout << "\nDistance Matrix: " << endl;
+    // // TODO UNCOMMENT //  << "\nDistance Matrix: " << endl;
 
     // for (int i = 0; i < inst->V + inst->dummy; i++){
     // 	for (int j = 0; j < inst->V + inst->dummy; j++){
-    // 		cout << setw(8) << setprecision(5) << mdist[i][j] << " ";
+    // 		// TODO UNCOMMENT //  << setw(8) << setprecision(5) << mdist[i][j] << " ";
     // 	}
-    // 	cout << endl;
+    // 	// TODO UNCOMMENT //  << endl;
     // }
     // getchar();
 
-    // cout << "\nDelta vector: " << endl;
+    // // TODO UNCOMMENT //  << "\nDelta vector: " << endl;
 
     // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].delta << endl;
+    //     // TODO UNCOMMENT //  << i << ": " << nodeVec[i].delta << endl;
     // }
-    // cout << endl;
+    // // TODO UNCOMMENT //  << endl;
     // getchar();
 
-    //cout << "\nProfit vector: " << endl;
+    //// TODO UNCOMMENT //  << "\nProfit vector: " << endl;
 
     //for (int i = 0; i < nodeVec.size(); i++){
-    //    cout << i << ": " << nodeVec[i].profit << endl;
+    //    // TODO UNCOMMENT //  << i << ": " << nodeVec[i].profit << endl;
     //}
-    //cout << endl;
+    //// TODO UNCOMMENT //  << endl;
     // getchar();
 
 	initArcs(inst, &nas);
@@ -1669,17 +1710,17 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 
     // getchar();
 
- //    cout << "arcs NN: " << endl;
+ //    // TODO UNCOMMENT //  << "arcs NN: " << endl;
 	// for (int i = 0; i < nas.arcNN.size(); i++){
-	// 	cout << nas.arcNN[i].first << " - " << nas.arcNN[i].second << " | | ";
+	// 	// TODO UNCOMMENT //  << nas.arcNN[i].first << " - " << nas.arcNN[i].second << " | | ";
 	// }
 	// getchar();
-	// cout << "Arcs that leave a pickup: " << endl;
+	// // TODO UNCOMMENT //  << "Arcs that leave a pickup: " << endl;
 
 	// for (int i = 0; i < nas.arcPN.size(); i++){
-	// 	cout<< nas.arcPN[i].first << "-" << nas.arcPN[i].second << "  |  ";
+	// 	// TODO UNCOMMENT // << nas.arcPN[i].first << "-" << nas.arcPN[i].second << "  |  ";
 	// }
-	// cout << endl;
+	// // TODO UNCOMMENT //  << endl;
 
 
     mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
@@ -1702,7 +1743,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
         }
 	}
 
-    //cout << "before test route" << endl;
+    //// TODO UNCOMMENT //  << "before test route" << endl;
     //testRoute(inst, mdist, nodeVec);
 
     
@@ -1788,7 +1829,7 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
                 ttij = std::round(ttij * multiplier) / multiplier;
                 //if lowest time for req i + travel time from i to j is lower or equal to
                 //the latest point in time to serve request j. If latest time == T, it is always valid                        
-                //cout <<"i: " << i << " - j: " << j << " ttij: " << ttij << " - test: " << (nodeVec[i].e + ttij < nodeVec[j].l) << endl;
+                //// TODO UNCOMMENT //  <<"i: " << i << " - j: " << j << " ttij: " << ttij << " - test: " << (nodeVec[i].e + ttij < nodeVec[j].l) << endl;
                 if (nodeVec[i].e + ttij < nodeVec[j].l){
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
@@ -1802,7 +1843,7 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
                     nas->allArcs.push_back(nas->fArc);
                     nas->arcnf.push_back(nas->fArc);
                     for (int k = 0; k < inst->K; k++){
-                        //cout << "here" << endl;
+                        //// TODO UNCOMMENT //  << "here" << endl;
                         nas->arcV[i][j].push_back(k);
                     }                        
                 }
@@ -1933,14 +1974,15 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     
     fipStat.fipstage = 0;
     fippass(inst, nodeVec, mdist, problem, &nas, sStat);
-    cout << "After fip pass" << endl;
+    // TODO UNCOMMENT //  << "After fip pass" << endl;
 	if(sStat->feasible){
 		viewSol (inst, mdist, nodeVec, sStat);
-        printSolFile (inst, sStat);
 
 		mipSolStats (inst, mdist, nodeVec, sStat);
 
 		printStats(inst, sStat);
+
+        printSolFile (inst, sStat, problem);
 
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
@@ -1954,7 +1996,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     fipArcs (inst, &nas, problem, nodeVec, mdist, 2);
 
     // printStructures(&nas);
-    cout << endl << endl << "______PART II_____" << endl << endl;
+    // TODO UNCOMMENT //  << endl << endl << "______PART II_____" << endl << endl;
 
     fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
 
@@ -1988,7 +2030,9 @@ void fipnodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<n
 	initArcs(inst, &nas);
 	feasibleArcs(inst, &nas, problem, nodeVec, mdist);
 
+    // TODO UNCOMMENT //  << "aqui 1" << endl;
     fipPassSol(inst, &fipStat);
+    // TODO UNCOMMENT //  << "aqui 2" << endl;
 
     mipnodefip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
     
@@ -2002,15 +2046,16 @@ void fipnodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<n
 
 		printStats(inst, sStat);
 
+        printSolFile (inst, sStat, problem);
+
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
         }
 	}
 
-    //cout << "before test route" << endl;
+    //// TODO UNCOMMENT //  << "before test route" << endl;
     //testRoute(inst, mdist, nodeVec);
 
-    
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
 		delete[] mdist[i];
 	}

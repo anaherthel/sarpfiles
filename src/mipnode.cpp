@@ -31,11 +31,11 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		Q = inst->m;
 	}
 
-	//cout << "Printing node vec: " << endl;
+	//// TODO UNCOMMENT //  << "Printing node vec: " << endl;
 	//for (int i = 0; i < nodeVec.size(); i++){
-	//	cout << i << ": " << nodeVec[i].e << " - " << nodeVec[i].l << endl;
+	//	// TODO UNCOMMENT //  << i << ": " << nodeVec[i].e << " - " << nodeVec[i].l << endl;
 	//}
-	//cout << endl;
+	//// TODO UNCOMMENT //  << endl;
 	//getchar();
 
 	//Creating variables
@@ -54,7 +54,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
                 sprintf(var, "x(%d,%d,%d)", i, j, k);
                 x[i][j][k].setName(var);
                 model.add(x[i][j][k]);
-                // cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
+                // // TODO UNCOMMENT //  << "x: [" << i << "][" << j << "][" << k << "]" << endl;
             }
         }
     }
@@ -434,7 +434,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	
 	//Constraint 14  - bound number of passenger visits transporting parcel
 	if (problem->p1 < 1){
-		// cout << "Constraint 14" << endl;
+		// // TODO UNCOMMENT //  << "Constraint 14" << endl;
 		// getchar();
 		for (int i = 0; i < nas->arcNN.size(); i++){
 			IloExpr exp(env);
@@ -494,7 +494,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 			model.add(cons1);
 		}		
 
-		// cout << "Constraint 15" << endl;
+		// // TODO UNCOMMENT //  << "Constraint 15" << endl;
 		// getchar();
 		//for (int a = 0; a < nas->allArcs.size(); a++){
 			
@@ -543,7 +543,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//end of new constraints
 
 	////test constraints
-	////cout << "here" << endl;
+	////// TODO UNCOMMENT //  << "here" << endl;
 	//IloExpr exp(env);
 	//exp = x[19][11][0];
 
@@ -552,27 +552,27 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//IloRange cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	////cout << "A" << endl;
+	////// TODO UNCOMMENT //  << "A" << endl;
 
 	//exp = x[11][4][0];
 
 	//sprintf (var, "Constraint16");
 
-	////cout << "B" << endl;
+	////// TODO UNCOMMENT //  << "B" << endl;
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
 	//exp = x[4][18][0];
 
-	////cout << "C" << endl;
+	////// TODO UNCOMMENT //  << "C" << endl;
 	//sprintf (var, "Constraint17");
 
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
-	////cout << "after" << endl;
+	////// TODO UNCOMMENT //  << "after" << endl;
 	//exp = x[18][10][0];
 
 	//sprintf (var, "Constraint18");
@@ -723,7 +723,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
     //         threads = 1;
     //     }
     // }
-    cout << "\nThreads: " << threads << endl;
+    // TODO UNCOMMENT //  << "\nThreads: " << threads << endl;
 
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
@@ -735,16 +735,16 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
     start = nSARP.getTime();
 	nSARP.solve();
     time = (nSARP.getTime() - start)/threads;
-	cout << "\nSol status: " << nSARP.getStatus() << endl;
+	// TODO UNCOMMENT //  << "\nSol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
 
-    cout << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
-    cout << " Total Time: " << time << endl;
+    // TODO UNCOMMENT //  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
+    // TODO UNCOMMENT //  << " Total Time: " << time << endl;
 
 	if (sStat->feasible){
 
-        cout << " LB: " << nSARP.getObjValue() << endl;
-        cout << " UB: " << nSARP.getBestObjValue() << endl;
+        // TODO UNCOMMENT //  << " LB: " << nSARP.getObjValue() << endl;
+        // TODO UNCOMMENT //  << " UB: " << nSARP.getBestObjValue() << endl;
         sStat->solprofit = nSARP.getObjValue();
         sStat->time = time;
 
@@ -761,7 +761,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
                             auxPair.first = i;
                             auxPair.second = j;
                             sStat->solvec[k].push_back(auxPair);
-                            // cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
+                            // // TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }
@@ -811,9 +811,9 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<nodeStat> &nodeVec){ //model node
         solStatIni(sStat);
-        cout << "\nObj Val: " << setprecision(15) << sStat->solprofit << endl;
+        // TODO UNCOMMENT //  << "\nObj Val: " << setprecision(15) << sStat->solprofit << endl;
 
-        cout << "\nSolve Time: " << setprecision(15) << sStat->time << endl;
+        // TODO UNCOMMENT //  << "\nSolve Time: " << setprecision(15) << sStat->time << endl;
 
         for (int k = 0; k < inst->K; k++){
             for (int a = 0; a < sStat->solvec[k].size(); a++){
@@ -824,27 +824,27 @@ void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<no
                 }
 
                 sStat->costs += (double)inst->costkm*mdist[i][j];
-                cout << "x(" << i << ", " << j << ", " << k << ")" << endl;
+                // TODO UNCOMMENT //  << "x(" << i << ", " << j << ", " << k << ")" << endl;
 
             }
         }
 
         for (int i = 0; i < nodeVec.size(); i++){
-            cout << "b(" << i << "): " << sStat->solBegin[i] << endl;
+            // TODO UNCOMMENT //  << "b(" << i << "): " << sStat->solBegin[i] << endl;
         }
 
         //for (int i = 0; i < nodeVec.size(); i++){
-        //    cout << "u(" << i << "): " << sStat->solLoad2[i] << endl;
+        //    // TODO UNCOMMENT //  << "u(" << i << "): " << sStat->solLoad2[i] << endl;
         //}		
 
         // for (int i = 0; i < nodeVec.size(); i++){
-        //     cout << "w(" << i << "): " << sStat->solLoad[i] << endl;
+        //     // TODO UNCOMMENT //  << "w(" << i << "): " << sStat->solLoad[i] << endl;
         // }
 
-        cout << "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
-        cout << "Parcel profit: " << sStat->pProfit << endl;
-        cout << "Costs: " << sStat->costs << endl;
-		cout << "Without fixed: " << sStat->costs - sStat->pProfit << endl;
+        // TODO UNCOMMENT //  << "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
+        // TODO UNCOMMENT //  << "Parcel profit: " << sStat->pProfit << endl;
+        // TODO UNCOMMENT //  << "Costs: " << sStat->costs << endl;
+		// TODO UNCOMMENT //  << "Without fixed: " << sStat->costs - sStat->pProfit << endl;
         
         if (sStat->pProfit == 0){
         	inst->min = true;
@@ -873,7 +873,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
 
-	// cout << "service: " << inst->service << endl;
+	// // TODO UNCOMMENT //  << "service: " << inst->service << endl;
 
 	//Creating variables only for pass PU and DL
 	IloArray <IloArray <IloBoolVarArray> > x(env, nodeVec.size());
@@ -882,17 +882,17 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         x[i] = IloArray <IloBoolVarArray> (env, nodeVec.size());
         for(int j = 0; j <  nodeVec.size(); ++j){
             if (nas->arcs[i][j] != true){
-				//cout<< i << "-" << j << ": invalid";
+				//// TODO UNCOMMENT // << i << "-" << j << ": invalid";
                 continue; // If arc i to j is invalid
             } 
             x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
-			//cout << "nas arc v size: " << nas->arcV[i][j].size() << endl;
+			//// TODO UNCOMMENT //  << "nas arc v size: " << nas->arcV[i][j].size() << endl;
             for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
                 int k = nas->arcV[i][j][k1];
                 sprintf(var, "x(%d,%d,%d)", i, j, k);
                 x[i][j][k].setName(var);
                 model.add(x[i][j][k]);
-                //cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
+                //// TODO UNCOMMENT //  << "x: [" << i << "][" << j << "][" << k << "]" << endl;
             }
         }
     }
@@ -905,7 +905,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	// 		sprintf(var, "b(%d,%d)", i, k);
 	// 		b[i][k].setName(var);
 	// 		model.add(b[i][k]);
-	// 		// cout << "b: [" << i << "][" << k << "]" << endl;
+	// 		// // TODO UNCOMMENT //  << "b: [" << i << "][" << k << "]" << endl;
 	// 	}
 	// }
 
@@ -1180,9 +1180,10 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
     threads = 1;
 
-    cout << "\nThreads: " << threads << endl;
+    // TODO UNCOMMENT //  << "\nThreads: " << threads << endl;
 
 	IloCplex nSARP1(model);
+	nSARP1.setOut(env.getNullStream());
 	nSARP1.exportModel("fipSARP1.lp");
 	nSARP1.setParam(IloCplex::Threads, threads);
 	nSARP1.setParam(IloCplex::Param::TimeLimit, 7200);
@@ -1192,16 +1193,16 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
     start = nSARP1.getTime();
 	nSARP1.solve();
     time = (nSARP1.getTime() - start)/threads;
-	cout << "\nSol status: " << nSARP1.getStatus() << endl;
+	// TODO UNCOMMENT //  << "\nSol status: " << nSARP1.getStatus() << endl;
 	sStat->feasible = nSARP1.isPrimalFeasible();
 
-    // cout << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
-    cout << " Total Time: " << time << endl;
+    // // TODO UNCOMMENT //  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
+    // TODO UNCOMMENT //  << " Total Time: " << time << endl;
 
 	if (sStat->feasible){
 
-        cout << " LB: " << nSARP1.getObjValue() << endl;
-        cout << " UB: " << nSARP1.getBestObjValue() << endl;
+        // TODO UNCOMMENT //  << " LB: " << nSARP1.getObjValue() << endl;
+        // TODO UNCOMMENT //  << " UB: " << nSARP1.getBestObjValue() << endl;
         sStat->solprofit = nSARP1.getObjValue();
         sStat->time = time;
 
@@ -1218,7 +1219,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
                             auxPair.first = i;
                             auxPair.second = j;
                             sStat->solvec[k].push_back(auxPair);
-                            // cout << i << " " << j << " " << k << ": " << nSARP1.getValue(x[i][j][k]) << endl;
+                            // // TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << nSARP1.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }
@@ -1233,9 +1234,9 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         //                 int k = nas->arcV[i][j][k1];
         //                 if (nSARP1.getValue(x[i][j][k]) > 0.5){
 		// 					sStat->solBegin.push_back(nSARP1.getValue(b[i]));
-		// 					// cout << "b(" << i << ", " << k << "): " << nSARP1.getValue(b[i][k]);
+		// 					// // TODO UNCOMMENT //  << "b(" << i << ", " << k << "): " << nSARP1.getValue(b[i][k]);
 		// 					// getchar();
-        //                     // cout << i << " " << j << " " << k << ": " << nSARP1.getValue(x[i][j][k]) << endl;
+        //                     // // TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << nSARP1.getValue(x[i][j][k]) << endl;
         //                     // getchar();
         //                 }
         //             }
@@ -1251,9 +1252,9 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
                 sStat->solBegin.push_back(0);
             }
         }
-		cout << "Before print: " << endl;
+		// TODO UNCOMMENT //  << "Before print: " << endl;
         printResults(inst, mdist, sStat, nodeVec);
-		cout << "After print: " << endl;
+		// TODO UNCOMMENT //  << "After print: " << endl;
 
 	}
 	env.end();
@@ -1298,7 +1299,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 					sprintf(var, "x(%d,%d,%d)", i, j, k);
 					x[i][j][k].setName(var);
 					model.add(x[i][j][k]);
-					// cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
+					// // TODO UNCOMMENT //  << "x: [" << i << "][" << j << "][" << k << "]" << endl;
 				}
 			}
 			else{
@@ -1312,9 +1313,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
     }
 
 	IloArray <IloNumVarArray> b(env, inst->K);
-	// cout << "Size of solpass: " << fipStat->solPass.size() << endl;
+	// // TODO UNCOMMENT //  << "Size of solpass: " << fipStat->solPass.size() << endl;
 	for (int k = 0; k < fipStat->solPass.size(); k++){
-		// cout << "Size of solpass K: " << fipStat->solPass[k].size() << endl;
+		// // TODO UNCOMMENT //  << "Size of solpass K: " << fipStat->solPass[k].size() << endl;
 		b[k] = IloNumVarArray (env, 2*inst->n + 2*inst->m + 2*inst->K, 0, inst->T);
 		for (int i = 0; i < fipStat->solPass[k].size(); i++){
 			int u = fipStat->solPass[k][i];
@@ -1670,9 +1671,10 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
     threads = 1;
 
-    cout << "\nThreads: " << threads << endl;
+    // TODO UNCOMMENT //  << "\nThreads: " << threads << endl;
 
 	IloCplex nSARP(model);
+	nSARP.setOut(env.getNullStream());
 	nSARP.exportModel("fipSARP.lp");
 	nSARP.setParam(IloCplex::Threads, threads);
 	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
@@ -1713,20 +1715,26 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
     start = nSARP.getTime();
 	nSARP.solve();
     time = (nSARP.getTime() - start)/threads;
-	cout << "\nSol status: " << nSARP.getStatus() << endl;
+	// TODO UNCOMMENT //  << "\nSol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
 
-    // cout << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
-    cout << " Total Time: " << time << endl;
+    // // TODO UNCOMMENT //  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
+    // TODO UNCOMMENT //  << " Total Time: " << time << endl;
 
 
 	if (sStat->feasible){
 
-        cout << " LB: " << nSARP.getObjValue() << endl;
-        cout << " UB: " << nSARP.getBestObjValue() << endl;
+        // TODO UNCOMMENT //  << " LB: " << nSARP.getObjValue() << endl;
+        // TODO UNCOMMENT //  << " UB: " << nSARP.getBestObjValue() << endl;
         fipStat->solprofit = nSARP.getObjValue();
-		// cout << "Solution value pii: " << fipStat->solprofit << end
+		// // TODO UNCOMMENT //  << "Solution value pii: " << fipStat->solprofit << end
         sStat->time = time;
+
+		if (((nSARP.getBestObjValue() - nSARP.getObjValue())/nSARP.getBestObjValue()) * 100 < 0.01) {
+			sStat->status = "Optimal";
+		} else {
+			sStat->status = "Feasible";
+		}
 
 		//new addition
 		fipStat->solBegin.clear();
@@ -1749,7 +1757,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
                             auxPair.first = i;
                             auxPair.second = j;
                             fipStat->solvec[k].push_back(auxPair);
-                            cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            // TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }
@@ -1765,7 +1773,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 						auxPair.first = i;
 						auxPair.second = j;
 						fipStat->solvec[k].push_back(auxPair);
-						cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+						// TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
 						// getchar();
 					}
                 }
@@ -1773,18 +1781,18 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
         }
 
         for (int i = 0; i < 2*inst->n; i++){
-			// cout << "i: " << endl;
+			// // TODO UNCOMMENT //  << "i: " << endl;
             for(int j = 0; j < 2*inst->n+2*inst->m; j++){
-				// cout << "j: " << j << endl;             
+				// // TODO UNCOMMENT //  << "j: " << j << endl;             
                 if (nas->arcs[i][j] == true){
                     for (int k = 0; k < inst->K; k++){
-						// cout << "k: " << k << endl;
+						// // TODO UNCOMMENT //  << "k: " << k << endl;
                         if (nSARP.getValue(x[i][j][k]) > 0.5){
 							// fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
 							fipStat->solBegin[i] = nSARP.getValue(b[k][i]);
-							cout << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
+							// TODO UNCOMMENT //  << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
 							// getchar();
-                            cout << " - " << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            // TODO UNCOMMENT //  << " - " << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }
@@ -1799,9 +1807,9 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 					if (nSARP.getValue(x[i][j][k]) > 0.5){
 						// fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
 						fipStat->solBegin[i] = nSARP.getValue(b[k][i]);
-						cout << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
+						// TODO UNCOMMENT //  << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
 						// getchar();
-						cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+						// TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
 						// getchar();
 					}
                 }
@@ -1811,38 +1819,38 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 		// for (int k = 0; k < inst->K; k++){
 		// 	for (int i = 0; i < 2*inst->n; i++){
 		// 		// fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
-		// 		cout << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
+		// 		// TODO UNCOMMENT //  << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
 		// 		// getchar();
-		// 		// cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+		// 		// // TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
 		// 		// getchar();
 		// 	}
 		// }
 
 
 		for (int j = 2*inst->n; j < 2*inst->n+2*inst->m; j++){
-			// cout << "i: " << endl;
+			// // TODO UNCOMMENT //  << "i: " << endl;
             for(int i = 0; i < 2*inst->n; i++){
-				// cout << "j: " << j << endl;
+				// // TODO UNCOMMENT //  << "j: " << j << endl;
                 if (nas->arcs[i][j] == true){
                     for (int k = 0; k < inst->K; k++){
-						// cout << "k: " << k << endl;
+						// // TODO UNCOMMENT //  << "k: " << k << endl;
                         if (nSARP.getValue(x[i][j][k]) > 0.5){
 							fipStat->solBeginParcel.push_back(nSARP.getValue(s[j]));
-							cout << "\ns(" << j << "): " << nSARP.getValue(s[j]) << " - ";
+							// TODO UNCOMMENT //  << "\ns(" << j << "): " << nSARP.getValue(s[j]) << " - ";
 							// getchar();
-                            cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            // TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }
                 }
             }   
         }
-		cout << endl;
+		// TODO UNCOMMENT //  << endl;
         // printResults(inst, mdist, sStat, nodeVec);
 
 	}
 	else{
-		cout << "\n\nServed parcels: " << 0 << endl;
+		// TODO UNCOMMENT //  << "\n\nServed parcels: " << 0 << endl;
 	}
 	env.end();
     // startVal.end();
@@ -1873,12 +1881,14 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
 
-	if (problem->p2 < 1){ //single parcel setting
-		Q = 1;
-	}
-	else{
-		Q = inst->m;
-	}
+	// if (problem->p2 < 1){ //single parcel setting
+	// 	Q = 1;
+	// }
+	// else{
+	// 	Q = inst->m;
+	// }
+
+	Q = 1;
 
 	int P = 2*inst->m;
 	// int P = 1;
@@ -1893,11 +1903,11 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 		}
 	}
 
-	//cout << "Printing node vec: " << endl;
+	//// TODO UNCOMMENT //  << "Printing node vec: " << endl;
 	//for (int i = 0; i < nodeVec.size(); i++){
-	//	cout << i << ": " << nodeVec[i].e << " - " << nodeVec[i].l << endl;
+	//	// TODO UNCOMMENT //  << i << ": " << nodeVec[i].e << " - " << nodeVec[i].l << endl;
 	//}
-	//cout << endl;
+	//// TODO UNCOMMENT //  << endl;
 	//getchar();
 
 	//Creating variables
@@ -1916,7 +1926,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
                 sprintf(var, "x(%d,%d,%d)", i, j, k);
                 x[i][j][k].setName(var);
                 model.add(x[i][j][k]);
-                // cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
+                // // TODO UNCOMMENT //  << "x: [" << i << "][" << j << "][" << k << "]" << endl;
             }
         }
     }
@@ -2242,30 +2252,30 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 		}
 	}
 
-	// // //Constraints 10 - load constraints
+	// //Constraints 10 - load constraints
 
-	// for (int a = 0; a < nas->allArcs.size(); a++){
+	for (int a = 0; a < nas->allArcs.size(); a++){
 		
-	// 	IloExpr exp(env);
-	// 	IloExpr exp2(env);
-	// 	IloExpr sumX(env);
-    //     int i = nas->allArcs[a].first;
-    //     int j = nas->allArcs[a].second;
+		IloExpr exp(env);
+		IloExpr exp2(env);
+		IloExpr sumX(env);
+        int i = nas->allArcs[a].first;
+        int j = nas->allArcs[a].second;
 
-    //     for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
-    //         int k = nas->arcV[i][j][k1];
-	// 		sumX += x[i][j][k];
-	// 	}
+        for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+            int k = nas->arcV[i][j][k1];
+			sumX += x[i][j][k];
+		}
 
-	// 	exp = w[i] + nodeVec[j].load - W*(1 - sumX);
-	// 	exp2 = w[j];
+		exp = w[i] + nodeVec[j].load - W*(1 - sumX);
+		exp2 = w[j];
 		
-    //     sprintf (var, "Constraint10_%d_%d", i, j);
+        sprintf (var, "Constraint10_%d_%d", i, j);
 		
-    //     IloRange cons1 = (exp2 - exp >= 0);
-	// 	cons1.setName(var);
-	// 	model.add(cons1);
-	// }
+        IloRange cons1 = (exp2 - exp >= 0);
+		cons1.setName(var);
+		model.add(cons1);
+	}
 
 	//Constraints 11 and 12 - bound the service beginning time by the earlier and later service times for each node
 
@@ -2298,7 +2308,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	
 	// //Constraint 14  - bound number of passenger visits transporting parcel
 	// if (problem->p1 < 1){
-	// 	// cout << "Constraint 14" << endl;
+	// 	// // TODO UNCOMMENT //  << "Constraint 14" << endl;
 	// 	// getchar();
 	// 	for (int i = 0; i < nas->arcNN.size(); i++){
 	// 		IloExpr exp(env);
@@ -2375,7 +2385,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	//end of new constraints
 
 	////test constraints
-	////cout << "here" << endl;
+	////// TODO UNCOMMENT //  << "here" << endl;
 	//IloExpr exp(env);
 	//exp = x[19][11][0];
 
@@ -2384,27 +2394,27 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	//IloRange cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	////cout << "A" << endl;
+	////// TODO UNCOMMENT //  << "A" << endl;
 
 	//exp = x[11][4][0];
 
 	//sprintf (var, "Constraint16");
 
-	////cout << "B" << endl;
+	////// TODO UNCOMMENT //  << "B" << endl;
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
 	//exp = x[4][18][0];
 
-	////cout << "C" << endl;
+	////// TODO UNCOMMENT //  << "C" << endl;
 	//sprintf (var, "Constraint17");
 
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
-	////cout << "after" << endl;
+	////// TODO UNCOMMENT //  << "after" << endl;
 	//exp = x[18][10][0];
 
 	//sprintf (var, "Constraint18");
@@ -2555,10 +2565,11 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
     //         threads = 1;
     //     }
     // }
-    cout << "\nThreads: " << threads << endl;
+    // TODO UNCOMMENT //  << "\nThreads: " << threads << endl;
 
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
+	nSARP.setOut(env.getNullStream());
 	nSARP.setParam(IloCplex::Threads, threads);
 	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
 
@@ -2567,18 +2578,24 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
     start = nSARP.getTime();
 	nSARP.solve();
     time = (nSARP.getTime() - start)/threads;
-	cout << "\nSol status: " << nSARP.getStatus() << endl;
+	// TODO UNCOMMENT //  << "\nSol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
 
-    cout << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
-    cout << " Total Time: " << time << endl;
+    // TODO UNCOMMENT //  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
+    // TODO UNCOMMENT //  << " Total Time: " << time << endl;
 
 	if (sStat->feasible){
 
-        cout << " LB: " << nSARP.getObjValue() << endl;
-        cout << " UB: " << nSARP.getBestObjValue() << endl;
+        // TODO UNCOMMENT //  << " LB: " << nSARP.getObjValue() << endl;
+        // TODO UNCOMMENT //  << " UB: " << nSARP.getBestObjValue() << endl;
         sStat->solprofit = nSARP.getObjValue();
         sStat->time = time;
+
+		if (((nSARP.getBestObjValue() - nSARP.getObjValue())/nSARP.getBestObjValue()) * 100 < 0.01) {
+			sStat->status = "Optimal";
+		} else {
+			sStat->status = "Feasible";
+		}
 
         for (int k = 0; k < inst->K; k++){
             sStat->solvec.push_back(auxPairVec);
@@ -2593,7 +2610,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
                             auxPair.first = i;
                             auxPair.second = j;
                             sStat->solvec[k].push_back(auxPair);
-                            // cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
+                            // // TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }
@@ -2673,11 +2690,11 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 // 	int P = 1;
 // 	// int P = 1;
 
-// 	//cout << "Printing node vec: " << endl;
+// 	//// TODO UNCOMMENT //  << "Printing node vec: " << endl;
 // 	//for (int i = 0; i < nodeVec.size(); i++){
-// 	//	cout << i << ": " << nodeVec[i].e << " - " << nodeVec[i].l << endl;
+// 	//	// TODO UNCOMMENT //  << i << ": " << nodeVec[i].e << " - " << nodeVec[i].l << endl;
 // 	//}
-// 	//cout << endl;
+// 	//// TODO UNCOMMENT //  << endl;
 // 	//getchar();
 
 // 	//Creating variables
@@ -2696,7 +2713,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 //                 sprintf(var, "x(%d,%d,%d)", i, j, k);
 //                 x[i][j][k].setName(var);
 //                 model.add(x[i][j][k]);
-//                 // cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
+//                 // // TODO UNCOMMENT //  << "x: [" << i << "][" << j << "][" << k << "]" << endl;
 //             }
 //         }
 //     }
@@ -3010,7 +3027,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 // 		model.add(cons);
 // 	}
 
-// 	std::cout << "AQUI 1" << endl;
+// 	std::// TODO UNCOMMENT //  << "AQUI 1" << endl;
 // 	// Constraint 9 - TW constraint
 
 //     for (int k = 0; k < fipStat->solPass.size(); k++){
@@ -3033,7 +3050,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 //         }
 //     }
 
-// 	std::cout << "AQUI 2" << endl;
+// 	std::// TODO UNCOMMENT //  << "AQUI 2" << endl;
 
 // 	// Constraint 10 - TW constraint
 
@@ -3063,7 +3080,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 // 		}
 // 	}
 
-// 	std::cout << "AQUI 3" << endl;
+// 	std::// TODO UNCOMMENT //  << "AQUI 3" << endl;
 
 // 	// Constraint 11 - TW constraint
 
@@ -3091,7 +3108,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 // 		}
 // 	}
 
-// 	std::cout << "AQUI 4" << endl;
+// 	std::// TODO UNCOMMENT //  << "AQUI 4" << endl;
 
 // 	// Constraint 12 - TW constraint
 
@@ -3121,7 +3138,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 // 		}
 // 	}
 
-// 	std::cout << "AQUI 5" << endl;
+// 	std::// TODO UNCOMMENT //  << "AQUI 5" << endl;
 
 // 	// Constraint 7 - Maximum driving time (29)
 
@@ -3139,7 +3156,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 // 		model.add(cons);
 // 	}
 
-// 	std::cout << "AQUI 6" << endl;
+// 	std::// TODO UNCOMMENT //  << "AQUI 6" << endl;
 
 // 	// Constraint 8 - Time windows (30)
 
@@ -3165,7 +3182,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 			
 // 	}
 
-// 	std::cout << "AQUI 7" << endl;
+// 	std::// TODO UNCOMMENT //  << "AQUI 7" << endl;
 
 // 	//parcels TW (31)
 // 	for (int j = inst->n; j < inst->n + 2*inst->m; j++){
@@ -3262,7 +3279,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	
 // 	// //Constraint 14  - bound number of passenger visits transporting parcel
 // 	// if (problem->p1 < 1){
-// 	// 	// cout << "Constraint 14" << endl;
+// 	// 	// // TODO UNCOMMENT //  << "Constraint 14" << endl;
 // 	// 	// getchar();
 // 	// 	for (int i = 0; i < nas->arcNN.size(); i++){
 // 	// 		IloExpr exp(env);
@@ -3339,7 +3356,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 // 	//end of new constraints
 
 // 	////test constraints
-// 	////cout << "here" << endl;
+// 	////// TODO UNCOMMENT //  << "here" << endl;
 // 	//IloExpr exp(env);
 // 	//exp = x[19][11][0];
 
@@ -3348,27 +3365,27 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 // 	//IloRange cons = (exp == 1);
 // 	//cons.setName(var);
 // 	//model.add(cons);
-// 	////cout << "A" << endl;
+// 	////// TODO UNCOMMENT //  << "A" << endl;
 
 // 	//exp = x[11][4][0];
 
 // 	//sprintf (var, "Constraint16");
 
-// 	////cout << "B" << endl;
+// 	////// TODO UNCOMMENT //  << "B" << endl;
 // 	//cons = (exp == 1);
 // 	//cons.setName(var);
 // 	//model.add(cons);
 
 // 	//exp = x[4][18][0];
 
-// 	////cout << "C" << endl;
+// 	////// TODO UNCOMMENT //  << "C" << endl;
 // 	//sprintf (var, "Constraint17");
 
 // 	//cons = (exp == 1);
 // 	//cons.setName(var);
 // 	//model.add(cons);
 
-// 	////cout << "after" << endl;
+// 	////// TODO UNCOMMENT //  << "after" << endl;
 // 	//exp = x[18][10][0];
 
 // 	//sprintf (var, "Constraint18");
@@ -3519,7 +3536,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 //     //         threads = 1;
 //     //     }
 //     // }
-//     cout << "\nThreads: " << threads << endl;
+//     // TODO UNCOMMENT //  << "\nThreads: " << threads << endl;
 
 // 	IloCplex nSARP(model);
 // 	nSARP.exportModel("nSARP.lp");
@@ -3531,16 +3548,16 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 //     start = nSARP.getTime();
 // 	nSARP.solve();
 //     time = (nSARP.getTime() - start)/threads;
-// 	cout << "\nSol status: " << nSARP.getStatus() << endl;
+// 	// TODO UNCOMMENT //  << "\nSol status: " << nSARP.getStatus() << endl;
 // 	sStat->feasible = nSARP.isPrimalFeasible();
 
-//     cout << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
-//     cout << " Total Time: " << time << endl;
+//     // TODO UNCOMMENT //  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
+//     // TODO UNCOMMENT //  << " Total Time: " << time << endl;
 
 // 	if (sStat->feasible){
 
-//         cout << " LB: " << nSARP.getObjValue() << endl;
-//         cout << " UB: " << nSARP.getBestObjValue() << endl;
+//         // TODO UNCOMMENT //  << " LB: " << nSARP.getObjValue() << endl;
+//         // TODO UNCOMMENT //  << " UB: " << nSARP.getBestObjValue() << endl;
 //         sStat->solprofit = nSARP.getObjValue();
 //         sStat->time = time;
 
@@ -3557,7 +3574,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 //                             auxPair.first = i;
 //                             auxPair.second = j;
 //                             sStat->solvec[k].push_back(auxPair);
-//                             // cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
+//                             // // TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
 //                             // getchar();
 //                         }
 //                     }

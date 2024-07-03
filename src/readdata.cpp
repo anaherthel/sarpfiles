@@ -8,23 +8,23 @@
 void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector<nodeStat> &nodeVec, double ***Mdist, probStat* problem, int trialK, double trialMulti){
     
     if (argc < 4) {
-        cout << "\nMissing parameters\n";
-        cout << " ./exeSARP [Instance] [Scenario] [model type]"<< endl;
+        // TODO UNCOMMENT //  << "\nMissing parameters\n";
+        // TODO UNCOMMENT //  << " ./exeSARP [Instance] [Scenario] [model type]"<< endl;
         exit(1);
     }
     
     if (argc > 4) {
-        cout << "\nToo many parameters\n";
-        cout << " ./exeSARP [Instance] [Scenario] [model type]" << endl;
+        // TODO UNCOMMENT //  << "\nToo many parameters\n";
+        // TODO UNCOMMENT //  << " ./exeSARP [Instance] [Scenario] [model type]" << endl;
         exit(1);
     }  
 
-    cout << "\nNameOfInst: " << argv[1] << endl;
-    cout << "RunningScen: " << argv[2] << endl;
+    // TODO UNCOMMENT //  << "\nNameOfInst: " << argv[1] << endl;
+    // TODO UNCOMMENT //  << "RunningScen: " << argv[2] << endl;
     inst->preInst = 0;
     inst->InstName = getInstName(argv);
 
-    cout << "Instance Name: " << inst->InstName;
+    // TODO UNCOMMENT //  << "Instance Name: " << inst->InstName;
     // getchar();
     // if (argv[2] == "sim"){
     //     problem->sim = true;
@@ -34,20 +34,20 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // }
 
 
-    //cout << "multiplier: " << multiplier << endl;
+    //// TODO UNCOMMENT //  << "multiplier: " << multiplier << endl;
     //getchar();
     //double vmed = 41;
     double vmed2 = double(41)/double(60);
     ////vmed2 = timeRound(vmed2);
-    cout << "\nvmed: " << std::fixed << std::setprecision(5) << vmed2;
+    // TODO UNCOMMENT //  << "\nvmed: " << std::fixed << std::setprecision(5) << vmed2;
     //getchar();
     problem->scen = argv[2];
     problem->model = argv[3];
 
     if (problem->scen == "1A"){
         if (problem->model == "math"){
-            cout << "\n\nRun this scenario with 'bundle' model.\n";
-            cout << " ./exeSARP [Instance] [Scenario] bundle"<< endl;
+            // TODO UNCOMMENT //  << "\n\nRun this scenario with 'bundle' model.\n";
+            // TODO UNCOMMENT //  << " ./exeSARP [Instance] [Scenario] bundle"<< endl;
             exit(1);
         }
         else{
@@ -123,12 +123,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     ifstream in(instance, ios::in);
     
     if( !in ) {
-        cout << "the file could not be opened\n";
+        // TODO UNCOMMENT //  << "the file could not be opened\n";
         exit (1);
     }
 
     inst->instType = getInstanceType(argv);
-    cout << "\nInstance type: " << inst->instType << endl;
+    // TODO UNCOMMENT //  << "\nInstance type: " << inst->instType << endl;
     
     if (inst->instType == "sf_data"){
         int tempNode;
@@ -157,18 +157,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //}
 
         //if (trialK >= n){
-        //    cout << "Exceeded K size" << endl;
+        //    // TODO UNCOMMENT //  << "Exceeded K size" << endl;
         
         //    exit(1);
         //}
     //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
         
-        //cout << "K: " << K << endl;
+        //// TODO UNCOMMENT //  << "K: " << K << endl;
         // getchar();
 
         if (K > n - 1){
-            //cout << "\nExceeded max number of vehicles\n";            
+            //// TODO UNCOMMENT //  << "\nExceeded max number of vehicles\n";            
             exit(1);
         }
 
@@ -178,7 +178,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //service = 0.1;
         //service = 0.083;
 
-        //cout << "Service: " << service << endl;
+        //// TODO UNCOMMENT //  << "Service: " << service << endl;
 
 
 
@@ -267,7 +267,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         vl.erase(vl.begin());
 
         if (problem->model != "osarp" && problem->model != "fip"){
-            //cout << "this" << endl;
+            //// TODO UNCOMMENT //  << "this" << endl;
             for (int i = 0; i < n; i++){
                 vxs.erase(vxs.begin() + n + m);
                 vys.erase(vys.begin() + n + m);
@@ -348,7 +348,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }          
         }
 
-        //cout << "size of vector currently: "  << ve.size() << endl;
+        //// TODO UNCOMMENT //  << "size of vector currently: "  << ve.size() << endl;
         // Calculate distance matrix (Geolocation)
 
         //CalcLatLong ( vxs, vys, vxf, vyf, V, slatitude, slongitude, flatitude, flongitude );
@@ -418,8 +418,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     }
                 }
             }
-            //cout <<"value of original: " << V << endl;
-            //cout << "earlier and later: " << ve[V-1] << " - " << vl[V-1] << endl;
+            //// TODO UNCOMMENT //  <<"value of original: " << V << endl;
+            //// TODO UNCOMMENT //  << "earlier and later: " << ve[V-1] << " - " << vl[V-1] << endl;
         }
         else{
             for (int i = 0; i < V + inst->dummy; i++){
@@ -558,12 +558,12 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
         
 
-        //cout << "Earlier/Later: \n{";
+        //// TODO UNCOMMENT //  << "Earlier/Later: \n{";
 
         //for (int i = 0; i < nodeVec.size(); i++){
-        //    cout << nodeVec[i].e << " , " << nodeVec[i].l << "} {";
+        //    // TODO UNCOMMENT //  << nodeVec[i].e << " , " << nodeVec[i].l << "} {";
         //}
-        //cout << endl;
+        //// TODO UNCOMMENT //  << endl;
         //getchar();
 
         *Mdist = dist;
@@ -588,7 +588,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             inst->totalCustomProfit += nodeVec[i].profit;
         }
 
-        // cout << "\ntotal profit: " << inst->totalCustomProfit;
+        // // TODO UNCOMMENT //  << "\ntotal profit: " << inst->totalCustomProfit;
 
         // getchar();
 
@@ -637,7 +637,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //}
 
         //if (trialK >= n){
-        //    cout << "Exceeded K size" << endl;
+        //    // TODO UNCOMMENT //  << "Exceeded K size" << endl;
         
         //    exit(1);
         //}
@@ -647,18 +647,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 K += trialK;
             }
             else{
-                cout << "\nExceeded max number of vehicles\n";            
+                // TODO UNCOMMENT //  << "\nExceeded max number of vehicles\n";            
                 exit(1);
             }
         }
-        // cout << "Value of K: " << K << endl;
+        // // TODO UNCOMMENT //  << "Value of K: " << K << endl;
         // getchar();
         
         inst->preInst = 1;
 
-        cout << "\nn: " << n;
-        cout << "\nm: " << m;
-        cout << "\nK: " << K << endl;
+        // TODO UNCOMMENT //  << "\nn: " << n;
+        // TODO UNCOMMENT //  << "\nm: " << m;
+        // TODO UNCOMMENT //  << "\nK: " << K << endl;
         // getchar();
         service = service/60;
         //service = valRound(service);
@@ -770,18 +770,18 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
 
-        // cout << "Vector of final points:" << endl;
+        // // TODO UNCOMMENT //  << "Vector of final points:" << endl;
 
         // for (int i = 0; i < vxs.size(); i++){
-        //     cout << i << ": " << vxs[i] << " " << vys[i] << endl;
+        //     // TODO UNCOMMENT //  << i << ": " << vxs[i] << " " << vys[i] << endl;
         // }
-        // cout << endl;     
+        // // TODO UNCOMMENT //  << endl;     
 
         // getchar();
 
-        // cout << "\nve: " << endl;
+        // // TODO UNCOMMENT //  << "\nve: " << endl;
         // for (int i = 0; i < ve.size(); i++){
-        //     cout << ve[i] << endl;
+        //     // TODO UNCOMMENT //  << ve[i] << endl;
         // }
         // getchar();
 
@@ -949,7 +949,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 //ve[i] = valRound(ve[i]);
                 //ve[i] = timeRound(ve[i]);
                 vl[i] = ve[i];
-                cout << "i: " << i << " - " << ve[i] << endl;
+                // TODO UNCOMMENT //  << "i: " << i << " - " << ve[i] << endl;
             }
 
         }        
@@ -1004,24 +1004,24 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         
-        //cout << "Earlier // Later: " << endl;
+        //// TODO UNCOMMENT //  << "Earlier // Later: " << endl;
 
         //for (int i = 0; i < nodeVec.size(); i++){
-        //    cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
+        //    // TODO UNCOMMENT //  << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
         //}
-        //cout << endl;
+        //// TODO UNCOMMENT //  << endl;
         //getchar();
 
-        //cout << "Service times: " << endl;
+        //// TODO UNCOMMENT //  << "Service times: " << endl;
         //for (int i = 0; i < nodeVec.size(); i++){
-        //    cout << i << ": " << nodeVec[i].delta << endl;
+        //    // TODO UNCOMMENT //  << i << ": " << nodeVec[i].delta << endl;
         //}
 
         // getchar();
 
-        //cout << "Profits: " << endl;
+        //// TODO UNCOMMENT //  << "Profits: " << endl;
         //for (int i = 0; i < nodeVec.size(); i++){
-        //    cout << i << ": " << nodeVec[i].profit << endl;
+        //    // TODO UNCOMMENT //  << i << ": " << nodeVec[i].profit << endl;
         //}
 
         // getchar();
@@ -1046,7 +1046,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         for (int i = 0; i < n; i++){
             inst->totalCustomProfit += nodeVec[i].profit;
         }
-        // cout << "\ntotal profit: " << inst->totalCustomProfit;
+        // // TODO UNCOMMENT //  << "\ntotal profit: " << inst->totalCustomProfit;
 
         // getchar();
 
@@ -1056,50 +1056,50 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     }
 
-    // cout << "Coordinates: " << endl;
+    // // TODO UNCOMMENT //  << "Coordinates: " << endl;
     // for (int i = 0; i < nodeVec.size(); i++){
-    //     cout << i << ": " << nodeVec[i].xs << " - " << nodeVec[i].ys << endl;
+    //     // TODO UNCOMMENT //  << i << ": " << nodeVec[i].xs << " - " << nodeVec[i].ys << endl;
     // }
     // getchar();
 
-    cout << "\nTime windows: " << endl;
+    // TODO UNCOMMENT //  << "\nTime windows: " << endl;
 
     for (int i = 0; i < nodeVec.size(); i++){
-        cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
+        // TODO UNCOMMENT //  << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
     }
     //getchar();
-    // // cout << "\nDist Multiplier: " << trialMulti << endl;
+    // // // TODO UNCOMMENT //  << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
 
-    //cout << "Service times: " << endl;
+    //// TODO UNCOMMENT //  << "Service times: " << endl;
     //for (int i = 0; i < nodeVec.size(); i++){
-    //    cout << i << ": " << nodeVec[i].delta << endl;
+    //    // TODO UNCOMMENT //  << i << ": " << nodeVec[i].delta << endl;
     //}
 
     //// getchar();
 
-    ////cout << "Profits: " << endl;
+    ////// TODO UNCOMMENT //  << "Profits: " << endl;
     ////for (int i = 0; i < nodeVec.size(); i++){
-    ////    cout << i << ": " << nodeVec[i].profit << endl;
+    ////    // TODO UNCOMMENT //  << i << ": " << nodeVec[i].profit << endl;
     ////}
 
     //// // getchar();
 
-    //cout << "\nEarlier times: " << endl;
+    //// TODO UNCOMMENT //  << "\nEarlier times: " << endl;
 
     //for (int i = 0; i < inst->n; i++){
-    //    cout << i << ": " << nodeVec[i].e << endl;
+    //    // TODO UNCOMMENT //  << i << ": " << nodeVec[i].e << endl;
     //}
 
-    //// cout << "\nLoads: " << endl;
+    //// // TODO UNCOMMENT //  << "\nLoads: " << endl;
 
     //// for (int i = 0; i < nodeVec.size(); i++){
-    ////     cout << i << ": " << nodeVec[i].load << endl;
+    ////     // TODO UNCOMMENT //  << i << ": " << nodeVec[i].load << endl;
     //// }
 
-    //cout << "\nDeltas: " << endl;
+    //// TODO UNCOMMENT //  << "\nDeltas: " << endl;
 
     //for (int i = 0; i < inst->n; i++){
-    //    cout << i << ": " << nodeVec[i].delta << endl;
+    //    // TODO UNCOMMENT //  << i << ": " << nodeVec[i].delta << endl;
     //}
 }
