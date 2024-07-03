@@ -1321,6 +1321,8 @@ void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem){
     oFile2 << inst->InstName + ",";
     oFile2 << sStat->time;
     oFile2 << ",";
+    oFile2 << sStat->solDual;
+    oFile2 << ",";
     oFile2 << sStat->solprofit;
     oFile2 << ",";
     if (problem->model == "fip") {

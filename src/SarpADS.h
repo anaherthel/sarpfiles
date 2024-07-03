@@ -100,6 +100,7 @@ struct probStat{
 
 struct solStats{
 	double solprofit;
+	double solDual;
 	double tParcel;
 	double tPass;
 	double tBoth;

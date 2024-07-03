@@ -1204,6 +1204,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         // TODO UNCOMMENT //  << " LB: " << nSARP1.getObjValue() << endl;
         // TODO UNCOMMENT //  << " UB: " << nSARP1.getBestObjValue() << endl;
         sStat->solprofit = nSARP1.getObjValue();
+		sStat->solDual = nSARP1.getBestObjValue();
         sStat->time = time;
 
         for (int k = 0; k < inst->K; k++){
@@ -1727,6 +1728,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
         // TODO UNCOMMENT //  << " LB: " << nSARP.getObjValue() << endl;
         // TODO UNCOMMENT //  << " UB: " << nSARP.getBestObjValue() << endl;
         fipStat->solprofit = nSARP.getObjValue();
+		sStat->solDual = nSARP.getBestObjValue();
 		// // TODO UNCOMMENT //  << "Solution value pii: " << fipStat->solprofit << end
         sStat->time = time;
 
@@ -2589,6 +2591,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
         // TODO UNCOMMENT //  << " LB: " << nSARP.getObjValue() << endl;
         // TODO UNCOMMENT //  << " UB: " << nSARP.getBestObjValue() << endl;
         sStat->solprofit = nSARP.getObjValue();
+		sStat->solDual = nSARP.getBestObjValue();
         sStat->time = time;
 
 		if (((nSARP.getBestObjValue() - nSARP.getObjValue())/nSARP.getBestObjValue()) * 100 < 0.01) {
