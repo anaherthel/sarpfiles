@@ -647,7 +647,6 @@ void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeSta
             bStat->vArcPlus[i][k].push_back(bStat->bArcVec[a]);
             bStat->vArcMinus[j][k].push_back(bStat->bArcVec[a]);
         }
-
     }
 }
 
@@ -897,18 +896,24 @@ bool compareCosts2(const bParcelStruct &a, const bParcelStruct &b){
     return a.cost < b.cost;
 }
 
-void nodeSolution2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
+void nodeSolution2 (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat, probStat* problem, bool fip){
 
     bool inserted;
 
     vector< pair <int, int> > auxVec;
     pair<int, int> auxPair;
     // int setN = bStat->bundleVec.size() - inst->K - 1;
-    int setN = bStat->bundleVec.size() - (2*inst->K);
+    int setPD;
+    int setN;
     int currSP;
     vector<int> orderVec;
 
-    
+    if (fip) {
+        setPD = bStat->bundleVec.size() - 3*inst->m;
+        setN = setPD - (2*inst->K);
+    } else {
+        setN = bStat->bundleVec.size() - (2*inst->K);
+    }
 
     for (int k = 0; k < inst->K; k++){
         currSP = setN + k;
@@ -1502,7 +1507,7 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
     if(sStat->feasible){
         // solStatIni(sStat);
 
-        nodeSolution2 (inst, mdist, &bStat, nodeVec, sStat);
+        nodeSolution2 (inst, mdist, &bStat, nodeVec, sStat, problem, false);
         
         stillTimeBundle2(inst, mdist, &bStat, nodeVec, sStat);
 
@@ -1514,7 +1519,7 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         
     }
     
-    if(problem->model == "bundle3" && sStat->servedParcels < inst->m){
+    if((problem->model == "bundle3" || problem->model == "bundle4") && sStat->servedParcels < inst->m){
         fipBundleStats fipStat;
 
         setUpFipBundle(inst, mdist, nodeVec, &bStat, problem, &fipStat);
@@ -1559,11 +1564,28 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         cout << endl;        
 
         fipStructBundle(inst, sStat, &bStat, &fipStat);
-
-        fipbundle(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat, &fipStat);
+        
+        if (problem->model == "bundle3") {
+            fipbundle(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat, &fipStat);
+        } else {
+            mfipbundle(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat, &fipStat);
+        }
         cout << "after fip" << endl;
 
+        if(sStat->feasible && problem->model == "bundle4"){
+            // solStatIni(sStat);
 
+            // nodeSolution2 (inst, mdist, &bStat, nodeVec, sStat, problem, true);
+            
+            // stillTimeBundle2(inst, mdist, &bStat, nodeVec, sStat);
+
+            // mipSolStatsPlus (inst, mdist, &bStat, nodeVec, sStat);
+
+            // // // cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
+
+            // printStats(inst, sStat);
+            
+        }
     }
 
     for ( int i = 0; i < inst->V + inst->dummy; i++) {

@@ -1978,7 +1978,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 			// exp1 = b[k][v] - b[k][u] - (mdist[u][v]/inst->vmed);
 			double cvalue = mdist[u][v]/inst->vmed;
 			//cvalue = std::round(cvalue * multiplier) / multiplier;			
-			exp1 = b[k][b2] - (b[k][b1]) - inst->service - (cvalue);
+			exp1 = b[k][b2] - (b[k][b1]) - bStat->bundleServVec[b1] - (cvalue);
 
 			//for(int j = 2*inst->n; j < 2*inst->n + 2*inst->m; j++){
             for(int j = setPD; j < bStat->bundleVec.size(); j++){
@@ -2257,7 +2257,8 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
                     continue;
                 }                           
                 if (bStat->bArcs[i][j] == true){
-                    for (int k = 0; k < inst->K; k++){
+                    for (int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
+                        int k = bStat->arcV[i][j][k1];
                         if (b2SARP.getValue(x[i][j][k]) > 0.5){
                             auxPair.first = i;
                             auxPair.second = j;
@@ -2290,7 +2291,8 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
             for(int j = 0; j < bStat->bundleVec.size(); j++){
 				// cout << "j: " << j << endl;             
                 if (bStat->bArcs[i][j] == true){
-                    for (int k = 0; k < inst->K; k++){
+                    for (int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
+                        int k = bStat->arcV[i][j][k1];
 						// cout << "k: " << k << endl;
                         if (b2SARP.getValue(x[i][j][k]) > 0.5){
 							// fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
@@ -2362,4 +2364,595 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
     // startVar.end();
 	// startVal2.end();
     // startVar2.end();
+}
+
+void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, clSt *cStat, probStat* problem, solStats *sStat, fipBundleStats *fipStat){
+
+	char var[100];
+	IloEnv env;
+	IloModel model(env, "b2SARP");
+	int currSP;
+	//// long M = 2*inst->T;
+	//// long M2 = 2*(inst->n + inst->m + 1);
+	//// long W = inst->m + 1;
+	//// int Q = 5;
+	int Q = 4; //q4 fip (only 1 parcel between passengers)
+	////int Q = inst->m + 3; //qm fip (multiple parcels between passengers)
+    int ref = 3*inst->m;
+
+    int setN; //last index of bundles before starting points
+    int setP; //last index of bundles with only passengers
+    int setPD; //last index of bundles before parcel only
+    // setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
+    
+    int fDummy;
+    int M = 2*inst->T;
+
+    setPD = bStat->bundleVec.size() - 3*inst->m;
+    setN = setPD - (2*inst->K);
+    fDummy = setPD - inst->K;
+
+    int fDepot = setN;
+
+    int csetP = cStat->clusterVec.size() - (inst->K*2);
+    int csetN = csetP;
+	//int decimalPlaces = 4;
+    //double multiplier = std::pow(10, decimalPlaces);
+	
+	//vector< pair<int, int> > auxPairVec;
+	//pair<int, int> auxPair;
+
+
+
+	//Creating variable (i in set of assigned passengers)
+    //Reduce number of variables
+	IloArray <IloArray <IloBoolVarArray> > x(env, bStat->bundleVec.size());
+
+    for (int i = 0; i < bStat->bundleVec.size(); i++){
+        x[i] = IloArray <IloBoolVarArray> (env, bStat->bundleVec.size());
+        for(int j = 0; j < bStat->bundleVec.size(); ++j){
+			if (bStat->bArcs[i][j] != true){
+				continue; // If arc i to j is invalid
+			} 
+            x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
+            for(int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
+                int k = bStat->arcV[i][j][k1];
+                sprintf(var, "x(%d,%d,%d)", i, j, k);
+				x[i][j][k].setName(var);
+				model.add(x[i][j][k]);
+			}
+        }
+    }
+
+	IloNumVarArray b(env, bStat->bundleVec.size(), 9, inst->T);
+	// cout << "Size of solpass: " << fipStat->solPass.size() << endl;
+    // cout << "Size of solpass K: " << fipStat->solPass[k].size() << endl;
+
+    // for (int k = 0; k < fipStat->solPass.size(); k++) {
+    //     for (int i = 0; i < fipStat->solPass[k].size(); i++){
+    //         int u = fipStat->solPass[k][i];
+    //         sprintf(var, "b(%d)", u);
+    //         b[u].setName(var);
+    //         model.add(b[u]);
+    //     }
+    // }
+
+    for (int i = 0; i < bStat->bundleVec.size(); i++){
+        sprintf(var, "b(%d)", i);
+        b[i].setName(var);
+        model.add(b[i]);
+    }
+
+	//Creating objective function
+	
+	IloExpr objFunction(env);
+
+    objFunction -= sStat->solprofit;
+
+	for (int a = 0; a < bStat->bArcVec.size(); a++){
+        int i = bStat->bArcVec[a].first;
+        int j = bStat->bArcVec[a].second;
+        for(int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
+            int k = bStat->arcV[i][j][k1];
+			objFunction += bStat->bundleProfVec[i] * x[i][j][k];
+			//objFunction += bStat->bundleProfVec[bStat->bArcVec[i].second] * x[bStat->bArcVec[i].first][bStat->bArcVec[i].second][k];
+		}
+	}
+    //i: last element of first bundle of the arc
+    //j: first element of the second bundle of the arc
+    //compute costs in between bundles
+	for (int a = 0; a < bStat->bArcVec.size(); a++){
+        int u = bStat->bArcVec[a].first;
+        int v = bStat->bArcVec[a].second;       
+		int i = bStat->lastElement[u];
+		int j = bStat->firstElement[v];
+        // cout << "Last: " << i << " - First: " << j;
+        
+        for (int k1 = 0; k1 < bStat->arcV[u][v].size(); k1++){
+            int k = bStat->arcV[u][v][k1];
+            objFunction -= (double)(inst->costkm*mdist[i][j]) * x[u][v][k];
+            // cout << "Cost: " << inst->costkm*mdist[lastElOfi][firstElOfj] << endl;
+            // getchar();
+        }
+
+	}
+
+	model.add(IloMaximize(env, objFunction));
+
+    //Constraint 1 - all solution bundles should be used
+    for (int k = 0; k < inst->K; k++) {
+        // cout << k << endl;
+        // cout << inst->K << endl;
+        // getchar();
+
+        if (fipStat->solPass[k].size() < 3) {
+            IloExpr exp(env);
+
+            exp += x[fipStat->solPass[k][0]][fipStat->solPass[k][1]][k];
+
+            sprintf (var, "Constraint1_%d_%d", k, 0);
+            IloRange cons = (exp == 1);
+            cons.setName(var);
+		    model.add(cons);
+        }
+        else
+        {
+            for (int i = 0; i < fipStat->solPass[k].size() - 1; i++) {
+                IloExpr exp(env);
+                //int count = 0;
+
+                // cout << k << " " << i << endl;
+
+                int node = fipStat->solPass[k][i];
+
+                // cout << node << endl;
+                // getchar();
+
+                // cout << node << endl;
+
+                for (int a = 0; a < bStat->vArcPlus[node][k].size(); a++) {
+                    //count++;
+                    // cout << a << " " << node << " " << k << endl;
+                    int u = bStat->vArcPlus[node][k][a].first;
+                    int v = bStat->vArcPlus[node][k][a].second;
+                    // cout << a << " " << node << " " << k << endl;
+
+                    exp += x[u][v][k];
+                }
+
+                // cout << count << endl;
+                // getchar();
+
+                sprintf (var, "Constraint1_%d_%d", k, i);
+                IloRange cons = (exp == 1);
+                cons.setName(var);
+                model.add(cons);
+            }
+        }
+    }
+
+    //Constraint 2 - flow conservation for bundles
+    for (int i = 0; i < bStat->bundleVec.size(); i++) {
+        if (i >= setN && i < setPD) {
+            continue;
+        }
+        for (int k = 0; k < inst->K; k++) {
+            IloExpr exp1(env);
+            IloExpr exp2(env);
+
+            for (int a = 0; a < bStat->vArcPlus[i][k].size(); a++) {
+                int u = bStat->vArcPlus[i][k][a].first;
+                int v = bStat->vArcPlus[i][k][a].second;
+
+                exp1 += x[u][v][k];
+            }
+
+            for (int a = 0; a < bStat->vArcMinus[i][k].size(); a++) {
+                int u = bStat->vArcMinus[i][k][a].first;
+                int v = bStat->vArcMinus[i][k][a].second;
+
+                exp2 += x[u][v][k];
+            }
+
+            sprintf (var, "Constraint2_%d_%d", i, k);
+            IloRange cons = (exp1 - exp2 == 0);
+            cons.setName(var);
+		    model.add(cons);
+        }
+    }
+  
+    //Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle
+
+	for (int i = 0; i < fipStat->bundlesPonly.size(); i++){
+		for (int k = 0; k < inst->K; k++){
+			IloExpr exp1(env);
+			IloExpr exp2(env);
+
+            int u1 = fipStat->bundlesPonly[i];
+            int v1 = fipStat->bundlesDonly[i];
+			//Left side: arc leaves i
+			for (int a = 0; a < bStat->vArcPlus[u1][k].size(); a++){
+                int u = bStat->vArcPlus[u1][k][a].first;
+                int v = bStat->vArcPlus[u1][k][a].second;
+
+				exp1 += x[u][v][k];
+			}
+			//Right side: arc leaves i + m
+			for (int a = 0; a < bStat->vArcPlus[v1][k].size(); a++){
+				int u = bStat->vArcPlus[v1][k][a].first;
+                int v = bStat->vArcPlus[v1][k][a].second;
+
+                exp2 += x[u][v][k];
+			}
+			sprintf (var, "Constraint3_%d_%d_%d", u1, v1, k);
+			IloRange cons = ((exp1-exp2) == 0);
+			cons.setName(var);
+			model.add(cons);
+		}
+	}
+
+	//Constraint 4 - Max of one arc coming out of any of the bundles related to a certain parcel (23)
+	for(int i = 0; i < bStat->parcelBundleVec.size(); i++){
+		IloExpr exp(env);
+        for (int a = 0; a < bStat->parcelBundleVec[i].size(); a++){
+            int p = bStat->parcelBundleVec[i][a];
+            
+            for (int k = 0; k < inst->K; k++) {
+                for (int b = 0; b < bStat->vArcPlus[p][k].size(); b++) {
+                    int u = bStat->vArcPlus[p][k][b].first;
+                    int v = bStat->vArcPlus[p][k][b].first;
+
+                    if (!bStat->bArcs[u][v]) {
+                        continue;
+                    }
+
+                    exp += x[u][v][k];
+                }
+            }
+        }
+		sprintf (var, "Constraint4_%d", i + inst->n);
+
+        IloRange cons = (exp <= 1);
+		
+		cons.setName(var);
+		model.add(cons);
+	}
+
+    // Constraint 5 - only one arc leaves the cluster
+    for (int i = 0; i < csetP; i++){
+		IloExpr exp(env);
+		for (int k = 0; k < inst->K; k++){
+			for (int a = 0; a < cStat->vArcPlus[i][k].size(); a++){
+                int u = cStat->vArcPlus[i][k][a].first;
+                int v = cStat->vArcPlus[i][k][a].second;
+
+				exp += x[u][v][k];
+			}
+		}
+		sprintf (var, "Constraint5_%d", i);
+		IloRange cons1 = (exp == 1);
+		cons1.setName(var);
+		model.add(cons1);
+	}
+
+    for (int i = 0; i < csetP; i++){
+        IloExpr exp(env);
+        for (int k = 0; k < inst->K; k++){
+            for (int a = 0; a < cStat->vArcMinus[i][k].size(); a++){
+                int u = cStat->vArcMinus[i][k][a].first;
+                int v = cStat->vArcMinus[i][k][a].second;
+
+                exp += x[u][v][k];
+            }
+        }
+        sprintf (var, "Constraint5_%d", i);
+        IloRange cons = (exp == 1);
+        cons.setName(var);
+        model.add(cons);
+    }
+
+	// ////Constraint 2 - At most 1 parcel between passenger nodes (or starting and passenger) (24)
+	// ////remove it for fip qm
+
+	// for (int k = 0; k < fipStat->solPass.size(); k++){
+	// 	if (fipStat->solPass[k].size() < 3){
+	// 		continue;
+	// 	}
+
+	// 	for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
+	// 		IloExpr exp(env);
+	// 		int u = fipStat->solPass[k][i];
+	// 		for(int j = setPD; j < bStat->bundleVec.size(); j++){
+    //             if (bStat->bArcs[u][j] != true){
+    //                 continue;
+    //             }
+	// 			exp += x[u][j][k];
+	// 		}
+
+	// 		sprintf (var, "Constraint2_%d_%d", k, u);
+	// 		IloRange cons = (exp <= 1);
+	// 		cons.setName(var);
+	// 		model.add(cons);
+	// 	}
+	// }
+    // cout << "Define constraints 2" << endl;
+	// Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle (25)
+
+	// for (int k = 0; k < fipStat->solPass.size(); k++){
+	// 	if (fipStat->solPass[k].size() < 3){
+	// 		continue;
+	// 	}        
+	// 	for(int j = 0; j < fipStat->bundlesPonly.size(); j++){
+    //         int a = fipStat->bundlesPonly[j];
+    //         int b = fipStat->bundlesDonly[j];
+    //         //cout << "Parcel: " << j + inst->n << " a: " << a << " b: " << b << endl;
+	// 		IloExpr exp1(env);
+	// 		IloExpr exp2(env);
+	// 		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
+	// 			int u = fipStat->solPass[k][i];
+    //             if (bStat->bArcs[u][a] != true){
+    //                 continue;
+    //             }
+	// 			exp1 +=  x[u][a][k];
+	// 		}
+	// 		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
+	// 			int u = fipStat->solPass[k][i];
+    //             if (bStat->bArcs[u][b] != true){
+    //                 continue;
+    //             }
+	// 			exp2 +=  x[u][b][k];
+	// 		}
+
+	// 		sprintf (var, "Constraint3_%d_%d", j + inst->n, k);
+	// 		IloRange cons = ((exp1-exp2) == 0);
+	// 		cons.setName(var);
+	// 		model.add(cons);			
+	// 	}
+	// }
+
+	// //Constraint 4 - Parcel origin precedes its destination (26)
+
+	// for (int k = 0; k < fipStat->solPass.size(); k++){
+	// 	if (fipStat->solPass[k].size() < 3){
+	// 		continue;
+	// 	}        
+	// 	for(int j = 0; j < fipStat->bundlesPonly.size(); j++){
+    //         int a = fipStat->bundlesPonly[j];
+    //         int b = fipStat->bundlesDonly[j];            
+	// 		for (int i = 1; i < fipStat->solPass[k].size(); i++){
+	// 			int u = fipStat->solPass[k][i];
+	// 			IloExpr exp1(env);
+	// 			IloExpr exp2(env);
+
+	// 			for (int f = 0; f < i; f++){
+	// 				int v = fipStat->solPass[k][f];
+    //                 if (bStat->bArcs[v][a] != true){
+    //                     continue;
+    //                 }
+	// 				exp1 += x[v][a][k];
+	// 			}
+
+	// 			for (int f = 0; f < i; f++){
+	// 				int v = fipStat->solPass[k][f];
+    //                 if (bStat->bArcs[v][b] != true){
+    //                     continue;
+    //                 }                    
+	// 				exp2 += x[v][b][k];
+	// 			}                
+
+	// 			sprintf (var, "Constraint4_%d_%d_%d", k, a, u);
+	// 			IloRange cons = ((exp1-exp2) >= 0);
+	// 			cons.setName(var);
+	// 			model.add(cons);	
+	// 		}
+	// 	}
+	// }
+
+    cout << 5 << endl;
+
+	//Constraint 6 - service of pickup must come before the delivery
+
+	for (int i = 0; i < fipStat->bundlesPonly.size(); i++){
+        
+        int u = fipStat->bundlesPonly[i];
+        int v = fipStat->bundlesDonly[i];
+
+		IloExpr exp(env);
+		exp = b[u] - b[v];
+
+		sprintf (var, "Constraint6_%d", i);
+		IloRange cons = (exp <= 0);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+    cout << 6 << endl;
+
+	//Constraints 7 - TW 
+
+	for (int a = 0; a < bStat->bArcVec.size(); a++){
+		IloExpr exp(env);
+		IloExpr sumX(env);
+        int i = bStat->bArcVec[a].first;
+        int j = bStat->bArcVec[a].second;
+
+        int u = bStat->lastElement[i];
+        int v = bStat->firstElement[j];
+
+        if (!bStat->bArcs[i][j]) {
+            continue;
+        }
+
+        for (int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
+            int k = bStat->arcV[i][j][k1];
+            sumX += x[i][j][k];
+		}
+
+        double cvalue = mdist[u][v]/inst->vmed;
+        //cvalue = std::round(cvalue * multiplier) / multiplier;
+        //cvalue = timeRound(cvalue);
+        exp = b[i] - b[j] + bStat->bundleServVec[i] + (cvalue) - M * (1 - sumX);
+        sprintf (var, "Constraint7_%d_%d", i, j);
+        IloRange cons = (exp <= 0);
+        cons.setName(var);
+        model.add(cons);			
+
+	}
+
+	// Constraint 8 - ensure solution sequence
+	for (int k = 0; k < fipStat->solPass.size(); k++) {
+		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++) {
+			int u = fipStat->solPass[k][i];
+			int v = fipStat->solPass[k][i + 1];
+			IloExpr exp(env);
+
+            int i1 = bStat->lastElement[u];
+            int j1 = bStat->firstElement[v];
+
+			exp += b[v] - b[u] - bStat->bundleServVec[u] - mdist[i1][j1]/inst->vmed;
+
+			sprintf (var, "Constraint8_%d_%d", k, i);
+			IloRange cons = (exp >= 0);
+			cons.setName(var);
+			model.add(cons);
+		}
+	}
+
+    // // Constraint 9 - time service only when bundle is used
+    // for (int i = 0; i < bStat->bundleVec.size(); i++) {
+    //     IloExpr exp(env);
+
+    //     exp += b[i];
+
+    //     for (int k = 0; k < inst->K; k++) {
+    //         for (int a = 0; a < bStat->vArcPlus[i][k].size(); a++) {
+    //             int u = bStat->vArcPlus[i][k][a].first;
+    //             int v = bStat->vArcPlus[i][k][a].second;
+
+    //             if (!bStat->bArcs[u][v]) {
+    //                 continue;
+    //             }
+
+    //             exp -= M*x[u][v][k];
+    //         }
+    //     }
+
+    //     sprintf (var, "Constraint9_%d", i);
+    //     IloRange cons = (exp <= bStat->bundleStart[i]);
+    //     cons.setName(var);
+    //     model.add(cons);
+    // }
+
+	// // //Constraints 10 - load constraints
+
+	// for (int a = 0; a < nas->allArcs.size(); a++){
+		
+	// 	IloExpr exp(env);
+	// 	IloExpr exp2(env);
+	// 	IloExpr sumX(env);
+    //     int i = nas->allArcs[a].first;
+    //     int j = nas->allArcs[a].second;
+
+    //     for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+    //         int k = nas->arcV[i][j][k1];
+	// 		sumX += x[i][j][k];
+	// 	}
+
+	// 	exp = w[i] + nodeVec[j].load - W*(1 - sumX);
+	// 	exp2 = w[j];
+		
+    //     sprintf (var, "Constraint10_%d_%d", i, j);
+		
+    //     IloRange cons1 = (exp2 - exp >= 0);
+	// 	cons1.setName(var);
+	// 	model.add(cons1);
+	// }
+
+	//Constraints 11 and 12 - bound the service beginning time by the earlier and later service times for each node
+
+	for (int i = 0; i < bStat->bundleVec.size(); i++){
+		IloExpr exp(env);
+		exp = b[i];
+
+        double startWindow = (i < setN? bStat->bundleStart[i] : bStat->bundleStart[i]);
+        double endWindow = (i < setN? bStat->bundleStart[i] : bStat->bundleEnd[i]);
+
+		sprintf (var, "Constraint11_%d", i);
+		IloRange cons1 = (exp <= endWindow);
+		cons1.setName(var);
+		model.add(cons1);
+		
+		sprintf (var, "Constraint12_%d", i);
+		IloRange cons2 = (startWindow <= exp);
+		cons2.setName(var);
+		model.add(cons2);			
+	}
+    //////////////////////////////////////
+
+    int threads = 1;
+	IloCplex bSARP(model);
+	bSARP.exportModel("bSARP.lp");
+	bSARP.setParam(IloCplex::Threads, threads);
+
+    bSARP.setParam(IloCplex::Param::TimeLimit, 7200);
+    // bSARP.setParam(IloCplex::Param::TimeLimit, 10);
+
+    IloNum start;
+    IloNum time;
+    start = bSARP.getTime();
+	bSARP.solve();
+    time = (bSARP.getTime() - start)/threads;
+
+	cout << "\nSol status: " << bSARP.getStatus() << endl;
+	sStat->feasible = bSARP.isPrimalFeasible();
+
+    vector< pair<int, int> > auxPairVec;
+    pair<int, int> auxPair;
+
+    // cout << "here" << endl;
+    // getchar();
+    cout << " Tree_Size: " <<  bSARP.getNnodes() + bSARP.getNnodesLeft() + 1 << endl;
+    cout << " Total Time: " << time << endl;
+
+	if(sStat->feasible){
+
+        cout << " LB: " << bSARP.getObjValue() << endl;
+        cout << " UB: " << bSARP.getBestObjValue() << endl;
+
+        solStatIni(sStat);
+		cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
+
+		sStat->solprofit = bSARP.getObjValue();
+
+        cout << "\nSolve Time: " << setprecision(15) << time << endl << endl;
+
+		for (int k = 0; k < inst->K; k++){
+	 		sStat->solvec.push_back(auxPairVec);
+		}
+
+		for (int i = 0; i < bStat->bundleVec.size(); i++){
+			for(int j = 0; j < bStat->bundleVec.size(); ++j){
+				if (bStat->bArcs[i][j] == true){
+                    for (int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
+                        int k = bStat->arcV[i][j][k1];
+						if (bSARP.getValue(x[i][j][k]) > 0.5){
+							auxPair.first = i;
+							auxPair.second = j;
+							sStat->solvec[k].push_back(auxPair);
+							// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
+							// getchar();
+						}
+					}
+				}
+			}	
+		}
+		
+		for (int k = 0; k < inst->K; k++){
+			for (int i = 0; i < sStat->solvec[k].size(); i++){
+				cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ")" << endl;
+			}
+		}		
+    }
+    
+	env.end();
 }
