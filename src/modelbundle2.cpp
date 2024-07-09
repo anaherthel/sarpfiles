@@ -429,7 +429,23 @@ void feasibleBundleArcs2 (instanceStat *inst, double **mdist, vector<nodeStat> &
             bStat->vArcPlus[i][k].push_back(bStat->bArcVec[a]);
             bStat->vArcMinus[j][k].push_back(bStat->bArcVec[a]);
         }
-    }  
+    }
+
+    // Creating cluster of bundles
+    bStat->cBundles.resize(currentCluster + 1);
+
+    for (int i = 0; i < bStat->clofbundle.size(); i++) {
+        bStat->cBundles[bStat->clofbundle[i]].push_back(i);
+    }
+
+    // for (int i = 0; i < bStat->cBundles.size(); i++) {
+    //     cout << "cluster : " << i << endl;
+    //     for (int j = 0; j < bStat->cBundles[i].size(); j++) {
+    //         cout << bStat->cBundles[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+    // getchar();
 }
 
 void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem){
@@ -464,17 +480,16 @@ void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeSta
                     if (i != j){
                         if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){\
                             //if (bStat->bundleEnd[j] <= inst->T){
-                                if (bStat->bundleStart[j] > 0){
-                                    //cout << "i: " << i << " - j: " << j << " - bundleStart[i]: " << bStat->bundleStart[i] << " - bundleServVec[i]: " << bStat->bundleServVec[i] << " - mdist: " << mdist[bStat->lastElement[i]][bStat->firstElement[j]] << " - bundleStart[j]: " << bStat->bundleStart[j] << endl;
-                                    //cout << "test: " << (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]) << endl;
-                                    if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
-                                        bStat->bArcs[i][j] = true;
-                                    } 
-                                }
-                                else{
+                            if (bStat->bundleStart[j] > 0){
+                                //cout << "i: " << i << " - j: " << j << " - bundleStart[i]: " << bStat->bundleStart[i] << " - bundleServVec[i]: " << bStat->bundleServVec[i] << " - mdist: " << mdist[bStat->lastElement[i]][bStat->firstElement[j]] << " - bundleStart[j]: " << bStat->bundleStart[j] << endl;
+                                //cout << "test: " << (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]) << endl;
+                                if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
                                     bStat->bArcs[i][j] = true;
                                 }
-                            //}
+                            }
+                            else{
+                                bStat->bArcs[i][j] = true;
+                            }
                         }
                     } 
                 }
@@ -484,7 +499,6 @@ void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeSta
                 for (int j = setPD; j < bStat->bundleVec.size(); j++){//j is a parcel only bundle
                     bStat->bArcs[i][j] = true; 
                 }
-
             }
 
             else if (i >= setN && i < setPD){//i is a starting point bundle
@@ -852,7 +866,6 @@ void makeStartTimes2 (instanceStat *inst, double **mdist, vector<nodeStat> &node
                     }
                 }
             }
-            
             
             endTime += nodeVec[bStat->bundleVec[i].back()].delta;
             bStat->bundleEnd.push_back(endTime);
@@ -1246,7 +1259,7 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
     setN = setPD - (2*inst->K);
     fdummy = setPD - inst->K;
     fdepot = setN;
-
+    
     for (int i = 0; i < setPD; i++){
         fipStat->solBegin.push_back(0);
     }

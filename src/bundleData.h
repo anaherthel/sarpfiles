@@ -51,6 +51,7 @@ struct bundleStat{
 	vector<int> vecofPass;
 	vector< vector<int> > vecofPU;
 	vector< vector<int> > vecofDL;
+	vector< vector<int> > cBundles;
 
 	
 };
