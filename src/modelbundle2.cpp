@@ -448,7 +448,7 @@ void feasibleBundleArcs2 (instanceStat *inst, double **mdist, vector<nodeStat> &
     // getchar();
 }
 
-void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem){
+void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem, fipBundleStats *fipStat){
     int setN; //last index of bundles before starting points
     int setP; //last index of bundles with only passengers
     int setPD; //last index of bundles before parcel only
@@ -469,6 +469,24 @@ void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeSta
     pair<int, int> bFArc;
     int auxK;
 
+    for (int k = 0; k < fipStat->solPass.size(); k++) {
+        for (int i = 0; i < fipStat->solPass[k][i] - 1; i++) {
+            int u = fipStat->solPass[k][i];
+            int v = fipStat->solPass[k][i + 1];
+
+            bStat->bArcs[u][v];
+        }
+        
+        for (int i = 1; i < fipStat->solPass[k][i] - 1; i++) {
+            int u = fipStat->solPass[k][i];
+            int v = fipStat->solPass[k][i + 1];
+
+            for (int j = setPD; j < bStat->bundleVec.size(); j++) {
+                
+            }
+        }
+    }
+    
     for(int i = 0; i < bStat->bundleVec.size(); i++){
         if (i < fDummy){
             if(i < setP){//i is not depot or dummy or parcel only
@@ -484,20 +502,20 @@ void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeSta
                                 //cout << "i: " << i << " - j: " << j << " - bundleStart[i]: " << bStat->bundleStart[i] << " - bundleServVec[i]: " << bStat->bundleServVec[i] << " - mdist: " << mdist[bStat->lastElement[i]][bStat->firstElement[j]] << " - bundleStart[j]: " << bStat->bundleStart[j] << endl;
                                 //cout << "test: " << (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]) << endl;
                                 if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
-                                    bStat->bArcs[i][j] = true;
+                                    // TODO UNCOMMENT // bStat->bArcs[i][j] = true;
                                 }
                             }
                             else{
-                                bStat->bArcs[i][j] = true;
+                                // TODO UNCOMMENT // bStat->bArcs[i][j] = true;
                             }
                         }
                     } 
                 }
                 for (int j = fDummy; j < setPD; j++){//j is dummy node
-                    bStat->bArcs[i][j] = true;                                     
+                    // TODO UNCOMMENT // bStat->bArcs[i][j] = true;                                     
                 }                    
                 for (int j = setPD; j < bStat->bundleVec.size(); j++){//j is a parcel only bundle
-                    bStat->bArcs[i][j] = true; 
+                    // TODO UNCOMMENT // bStat->bArcs[i][j] = true; 
                 }
             }
 
@@ -508,23 +526,23 @@ void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeSta
                     //if (bStat->bundleEnd[j] <= inst->T){
                         if (bStat->bundleStart[j] > 0){
                             if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
-                                bStat->bArcs[i][j] = true;                        
+                                // TODO UNCOMMENT // bStat->bArcs[i][j] = true;                        
                             }
                         }
                         else{
-                            bStat->bArcs[i][j] = true;
+                            // TODO UNCOMMENT // bStat->bArcs[i][j] = true;
                         }
                     //}
                 }
-                bStat->bArcs[i][i + inst->K] = true;//direct trip to depot (empty vehicle)
+                // TODO UNCOMMENT // bStat->bArcs[i][i + inst->K] = true;//direct trip to depot (empty vehicle)
 
                 for (int j = setPD; j < bStat->bundleVec.size(); j++){//j is a parcel only bundle
                     if (bStat->firstElement[j] < inst->n+inst->m){ // arc only if bundle starts with Parcel request pickup
-                        bStat->bArcs[i][j] = true; 
+                        // TODO UNCOMMENT // bStat->bArcs[i][j] = true; 
                     }
                     else{
                         //cout << "i: " << i << " - j: " << j << " - firstElement: " << bStat->firstElement[j] << endl;
-                        bStat->bArcs[i][j] = false; 
+                        // TODO UNCOMMENT // bStat->bArcs[i][j] = false; 
                     }
                 }
 
@@ -1539,7 +1557,7 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
 
         clearArcs(&bStat);
         initArcs2(inst, &bStat, &cStat);
-        feasibleBundleArcs2next(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
+        feasibleBundleArcs2next(inst, mdist, nodeVec, &bStat, &cStat, p, problem, &fipStat);
         //std::ofstream file("bundleArcs.csv");
 
         //if (!file.is_open()) {

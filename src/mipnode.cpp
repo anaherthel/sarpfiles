@@ -1890,7 +1890,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	// 	Q = inst->m;
 	// }
 
-	Q = 1;
+	Q = inst->m;
 
 	int P = 2*inst->m;
 	// int P = 1;
@@ -1901,6 +1901,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++) {
 			int u = fipStat->solPass[k][i];
 			int v = fipStat->solPass[k][i + 1];
+
 			NNarcs += mdist[u][v]*inst->costkm;
 		}
 	}

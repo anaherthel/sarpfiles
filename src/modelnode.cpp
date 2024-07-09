@@ -444,7 +444,7 @@ void fipPassSol(instanceStat *inst, fipStats *fipStat) {
     int fDepot = inst->n + 2*inst->m;
     int fDummy = inst->n + 2*inst->m + inst->K;
 
-    string filename = "src/fippassSol/" + inst->InstName + ".txt";
+    string filename = "src/Aux/fippassSol/" + inst->InstName + ".txt";
 
 	ifstream iFile(filename);
 
@@ -464,36 +464,32 @@ void fipPassSol(instanceStat *inst, fipStats *fipStat) {
     sequencePairs.resize(inst->n + 2*inst->m + 2*inst->K, -1);
     NodeVehicle.resize(inst->n + 2*inst->m + 2*inst->K, -1);
 
+    for (int k = 0; k < inst->K; k++) {
+        fipStat->solPass.push_back(vector<int>());
+    }
+
+    for (int i = 0; i < nMandatory; i++) {
+		int u;
+		int v;
+
+		iFile >> u >> v;
+
+		emptyRoutes.insert(v - inst->V);
+	}
+
     int nSolNodes;
 	iFile >> nSolNodes;
-    
+
 	for (int i = 0; i < nSolNodes; i++) {
 		int u;
 		int k;
 
 		iFile >> u >> k;
 
-        if (fipStat->solPass.size() <= k) {
-            fipStat->solPass.push_back(vector<int>());
-        }
-
         fipStat->solPass[k].push_back(u);
 
 		nodeLocal.push_back(make_pair(u, k));
         NodeVehicle[u] = k;
-	}
-
-	for (int i = 0; i < nMandatory; i++) {
-		int u;
-		int v;
-
-		iFile >> u >> v;
-
-        fipStat->solPass.push_back(vector<int>());
-        fipStat->solPass[u - fDepot].push_back(u);
-        fipStat->solPass[u - fDepot].push_back(v);
-
-		emptyRoutes.insert(v - inst->V);
 	}
 
 	int nSequencePairs;
@@ -1189,7 +1185,7 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
 void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem){
 
     if (problem->model == "fip") {
-        string filename = "src/fippassSol/" + inst->InstName + ".txt";
+        string filename = "src/Aux/fippassSol/" + inst->InstName + ".txt";
 
         // TODO UNCOMMENT //  << filename << endl;
 
@@ -1311,9 +1307,9 @@ void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem){
     string filename2;
     
     if (problem->model == "fip") {
-        filename2 = "src/fippassResults/" + inst->InstName + ".csv"; 
+        filename2 = "src/Results/fippassResults/" + inst->InstName + ".csv"; 
     } else if (problem->model == "nodefip"){
-        filename2 = "src/nodefipResults/" + inst->InstName + ".csv"; 
+        filename2 = "src/Results/mnodefipresults/" + inst->InstName + ".csv"; 
     }
 
     ofstream oFile2(filename2);
