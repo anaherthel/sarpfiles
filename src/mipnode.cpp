@@ -1890,7 +1890,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	// 	Q = inst->m;
 	// }
 
-	Q = inst->m;
+	Q = 1;
 
 	int P = 2*inst->m;
 	// int P = 1;

@@ -1309,7 +1309,7 @@ void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem){
     if (problem->model == "fip") {
         filename2 = "src/Results/fippassResults/" + inst->InstName + ".csv"; 
     } else if (problem->model == "nodefip"){
-        filename2 = "src/Results/mnodefipresults/" + inst->InstName + ".csv"; 
+        filename2 = "src/Results/nodefipResults/" + inst->InstName + ".csv"; 
     }
 
     ofstream oFile2(filename2);
