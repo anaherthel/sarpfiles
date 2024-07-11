@@ -469,108 +469,109 @@ void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeSta
     pair<int, int> bFArc;
     int auxK;
 
+    cout << "aqui" << endl;
+
     for (int k = 0; k < fipStat->solPass.size(); k++) {
-        for (int i = 0; i < fipStat->solPass[k][i] - 1; i++) {
+        for (int i = 0; i < fipStat->solPass[k].size() - 1; i++) {
             int u = fipStat->solPass[k][i];
             int v = fipStat->solPass[k][i + 1];
 
-            bStat->bArcs[u][v];
-        }
-        
-        for (int i = 1; i < fipStat->solPass[k][i] - 1; i++) {
-            int u = fipStat->solPass[k][i];
-            int v = fipStat->solPass[k][i + 1];
+            cout << u << " ";
 
-            for (int j = setPD; j < bStat->bundleVec.size(); j++) {
-                
+            bStat->bArcs[u][v] = true;
+
+            for (int w = setPD; w < bStat->bundleVec.size(); w++) {
+                bStat->bArcs[u][w] = true;
+                bStat->bArcs[w][v] = true;
             }
         }
+        cout << endl;
     }
     
     for(int i = 0; i < bStat->bundleVec.size(); i++){
-        if (i < fDummy){
-            if(i < setP){//i is not depot or dummy or parcel only
-                if (i > currentCluster*(ref + 1) + ref){
-                    currentCluster++;
-                }
-                bStat->clofbundle.push_back(currentCluster);
-                for (int j = 0; j < setN; j++){//j is not depot or dummy
-                    if (i != j){
-                        if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){\
-                            //if (bStat->bundleEnd[j] <= inst->T){
-                            if (bStat->bundleStart[j] > 0){
-                                //cout << "i: " << i << " - j: " << j << " - bundleStart[i]: " << bStat->bundleStart[i] << " - bundleServVec[i]: " << bStat->bundleServVec[i] << " - mdist: " << mdist[bStat->lastElement[i]][bStat->firstElement[j]] << " - bundleStart[j]: " << bStat->bundleStart[j] << endl;
-                                //cout << "test: " << (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]) << endl;
-                                if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
-                                    // TODO UNCOMMENT // bStat->bArcs[i][j] = true;
-                                }
-                            }
-                            else{
-                                // TODO UNCOMMENT // bStat->bArcs[i][j] = true;
-                            }
-                        }
-                    } 
-                }
-                for (int j = fDummy; j < setPD; j++){//j is dummy node
-                    // TODO UNCOMMENT // bStat->bArcs[i][j] = true;                                     
-                }                    
-                for (int j = setPD; j < bStat->bundleVec.size(); j++){//j is a parcel only bundle
-                    // TODO UNCOMMENT // bStat->bArcs[i][j] = true; 
-                }
-            }
+        // if (i < fDummy){
+        //     if(i < setP){//i is not depot or dummy or parcel only
+        //         if (i > currentCluster*(ref + 1) + ref){
+        //             currentCluster++;
+        //         }
+        //         bStat->clofbundle.push_back(currentCluster);
+        //         for (int j = 0; j < setN; j++){//j is not depot or dummy
+        //             if (i != j){
+        //                 if (j > currentCluster*(ref + 1) + ref || j < currentCluster*(ref + 1)){\
+        //                     //if (bStat->bundleEnd[j] <= inst->T){
+        //                     if (bStat->bundleStart[j] > 0){
+        //                         //cout << "i: " << i << " - j: " << j << " - bundleStart[i]: " << bStat->bundleStart[i] << " - bundleServVec[i]: " << bStat->bundleServVec[i] << " - mdist: " << mdist[bStat->lastElement[i]][bStat->firstElement[j]] << " - bundleStart[j]: " << bStat->bundleStart[j] << endl;
+        //                         //cout << "test: " << (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]) << endl;
+        //                         if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+        //                             // TODO UNCOMMENT // bStat->bArcs[i][j] = true;
+        //                         }
+        //                     }
+        //                     else{
+        //                         // TODO UNCOMMENT // bStat->bArcs[i][j] = true;
+        //                     }
+        //                 }
+        //             } 
+        //         }
+        //         for (int j = fDummy; j < setPD; j++){//j is dummy node
+        //             // TODO UNCOMMENT // bStat->bArcs[i][j] = true;                                     
+        //         }                    
+        //         for (int j = setPD; j < bStat->bundleVec.size(); j++){//j is a parcel only bundle
+        //             // TODO UNCOMMENT // bStat->bArcs[i][j] = true; 
+        //         }
+        //     }
 
-            else if (i >= setN && i < setPD){//i is a starting point bundle
-                currentCluster++;
-                bStat->clofbundle.push_back(currentCluster);
-                for (int j = 0; j < setN; j++){//j is a request bundle
-                    //if (bStat->bundleEnd[j] <= inst->T){
-                        if (bStat->bundleStart[j] > 0){
-                            if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
-                                // TODO UNCOMMENT // bStat->bArcs[i][j] = true;                        
-                            }
-                        }
-                        else{
-                            // TODO UNCOMMENT // bStat->bArcs[i][j] = true;
-                        }
-                    //}
-                }
-                // TODO UNCOMMENT // bStat->bArcs[i][i + inst->K] = true;//direct trip to depot (empty vehicle)
+        //     else if (i >= setN && i < setPD){//i is a starting point bundle
+        //         currentCluster++;
+        //         bStat->clofbundle.push_back(currentCluster);
+        //         for (int j = 0; j < setN; j++){//j is a request bundle
+        //             //if (bStat->bundleEnd[j] <= inst->T){
+        //                 if (bStat->bundleStart[j] > 0){
+        //                     if (bStat->bundleStart[i] + bStat->bundleServVec[i] + (mdist[bStat->lastElement[i]][bStat->firstElement[j]]/inst->vmed) <= bStat->bundleStart[j]){
+        //                         // TODO UNCOMMENT // bStat->bArcs[i][j] = true;                        
+        //                     }
+        //                 }
+        //                 else{
+        //                     // TODO UNCOMMENT // bStat->bArcs[i][j] = true;
+        //                 }
+        //             //}
+        //         }
+        //         // TODO UNCOMMENT // bStat->bArcs[i][i + inst->K] = true;//direct trip to depot (empty vehicle)
 
-                for (int j = setPD; j < bStat->bundleVec.size(); j++){//j is a parcel only bundle
-                    if (bStat->firstElement[j] < inst->n+inst->m){ // arc only if bundle starts with Parcel request pickup
-                        // TODO UNCOMMENT // bStat->bArcs[i][j] = true; 
-                    }
-                    else{
-                        //cout << "i: " << i << " - j: " << j << " - firstElement: " << bStat->firstElement[j] << endl;
-                        // TODO UNCOMMENT // bStat->bArcs[i][j] = false; 
-                    }
-                }
+        //         for (int j = setPD; j < bStat->bundleVec.size(); j++){//j is a parcel only bundle
+        //             if (bStat->firstElement[j] < inst->n+inst->m){ // arc only if bundle starts with Parcel request pickup
+        //                 // TODO UNCOMMENT // bStat->bArcs[i][j] = true; 
+        //             }
+        //             else{
+        //                 //cout << "i: " << i << " - j: " << j << " - firstElement: " << bStat->firstElement[j] << endl;
+        //                 // TODO UNCOMMENT // bStat->bArcs[i][j] = false; 
+        //             }
+        //         }
 
 
-            }
-            //currentCluster++;
-            //bStat->clofbundle.push_back(currentCluster);
+        //     }
+        //     //currentCluster++;
+        //     //bStat->clofbundle.push_back(currentCluster);
 
-        }
-        else{
-            currentCluster++;
-            bStat->clofbundle.push_back(currentCluster);
-        }
+        // }
+        // else{
+        //     currentCluster++;
+        //     bStat->clofbundle.push_back(currentCluster);
+        // }
         if (i >= setPD){
-            for (int j = 0; j < setN; j++){//j is a request bundle
-                if (bStat->bundleStart[j] > 0){
-                    bStat->bArcs[i][j] = true;                        
-                }
-            }
-            for (int j = fDummy; j < setPD; j++){//j is a dummy bundle
-                if (bStat->lastElement[i] >= inst->n+inst->m){ // arc only if bundle ends with Parcel request dropoff
-                    bStat->bArcs[i][j] = true; 
-                }
-                else{
-                    //cout << "i: " << i << " - j: " << j << " - lastElement: " << bStat->lastElement[i] << endl;
-                    bStat->bArcs[i][j] = false; 
-                }
-            }
+            // for (int j = 0; j < setN; j++){//j is a request bundle
+            //     if (bStat->bundleStart[j] > 0){
+            //         bStat->bArcs[i][j] = true;                        
+            //     }
+            // }
+            // for (int j = fDummy; j < setPD; j++){//j is a dummy bundle
+            //     if (bStat->lastElement[i] >= inst->n+inst->m){ // arc only if bundle ends with Parcel request dropoff
+            //         bStat->bArcs[i][j] = true; 
+            //     }
+            //     else{
+            //         //cout << "i: " << i << " - j: " << j << " - lastElement: " << bStat->lastElement[i] << endl;
+            //         bStat->bArcs[i][j] = false; 
+            //     }
+            // }
             for (int j = setPD; j < bStat->bundleVec.size(); j++){//j is a parcel only bundle
                 if (i != j){
                     bStat->bArcs[i][j] = true; 
@@ -1353,6 +1354,157 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
     //}
 }
 
+void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem) {
+    if (problem->model == "bundle2") {
+        string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
+
+        // TODO UNCOMMENT //  << filename << endl;
+
+        ofstream oFile(filename);
+
+        vector<pair<int, int>> emptyRoutes;
+        vector<pair<int, int>> nodeInRoute;
+        vector<pair<int, int>> sequencePairs;
+
+        for (int k = 0; k < sStat->solOrder.size(); k++) {
+            if (sStat->solOrder[k].size() < 3) {
+                int u = sStat->solOrder[k][0] - inst->n;
+                int v = sStat->solOrder[k][1] - inst->n;
+
+                emptyRoutes.push_back(make_pair(u, v));
+            }
+        }
+
+        for (int k = 0; k < sStat->solOrder.size(); k++) {
+            for (int i = 0; i < sStat->solOrder[k].size(); i++) {
+                int u = sStat->solOrder[k][i];
+
+                if (u < inst->n) { 
+                    nodeInRoute.push_back(make_pair(u, k));
+                }
+
+                if (u >= 2*inst->n + 2*inst->m) {
+                    nodeInRoute.push_back(make_pair(u - inst->n, k));
+                }
+            }
+        }
+
+        for (int k = 0; k < sStat->solOrder.size(); k++) {
+            for (int i = 0; i < sStat->solOrder[k].size() - 1; i++) {
+                int u = sStat->solOrder[k][i];
+                int v = sStat->solOrder[k][i + 1];
+
+                if (u < inst->n) continue;
+                if (u >= inst->n) {
+                    u -= inst->n;
+                }
+
+                if (v >= inst->n) {
+                    v -= inst->n;
+                }
+
+                sequencePairs.push_back(make_pair(u, v));
+            }
+        }
+
+        oFile << sStat->time << endl;
+        oFile << sStat->solprofit << endl;
+
+        oFile << emptyRoutes.size() << endl;
+        for (auto arcPair : emptyRoutes) {
+            oFile << arcPair.first << " " << arcPair.second << endl;
+        }
+
+        oFile << nodeInRoute.size() << endl;
+        for (auto arcPair : nodeInRoute) {
+            oFile << arcPair.first << " " << arcPair.second << endl;
+        }
+
+        oFile << sequencePairs.size() << endl;
+        for (auto arcPair : sequencePairs) {
+            oFile << arcPair.first << " " << arcPair.second << endl;
+        }
+
+        oFile.close();
+    }
+
+
+    // // TODO UNCOMMENT //  << "\nNumber of Vehicles: " << inst->K << endl;
+
+    // // TODO UNCOMMENT //  << "\nSolution: " << endl;
+    // for (int k = 0; k < inst->K; k++){
+    //     // TODO UNCOMMENT //  << "Vehicle " << k << ": ";
+    //     for (int i = 0; i < sStat->solOrder[k].size(); i++){
+    //         if (i < sStat->solOrder[k].size() - 1){
+    //             // TODO UNCOMMENT //  << sStat->solOrder[k][i] << " - ";
+    //         }
+    //         else{
+    //             // TODO UNCOMMENT //  << sStat->solOrder[k][i];
+    //         }
+    //     }
+    //     // TODO UNCOMMENT //  << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
+    // }
+    // // TODO UNCOMMENT //  << endl;
+
+    // // disregard if fip
+    // // TODO UNCOMMENT //  << "\nSolution structure: " << endl;
+    // for (int k = 0; k < inst->K; k++){
+    //     // TODO UNCOMMENT //  << "Vehicle " << k << ": ";
+    //     for (int i = 0; i < sStat->solOrder[k].size(); i++){
+    //         if (i < sStat->solOrder[k].size() - 1){
+    //             if (sStat->solOrder[k][i] < inst->n){
+    //                 // TODO UNCOMMENT //  << "d" << " - ";
+    //             }
+    //             else if (sStat->solOrder[k][i] < inst->n + inst->m){
+    //                 // TODO UNCOMMENT //  << "P" << " - ";
+    //                 sStat->servedParcels++;
+    //             }
+    //             else if (sStat->solOrder[k][i] < inst->n + 2*inst->m){
+    //                 // TODO UNCOMMENT //  << "D" << " - ";
+    //             }
+    //             else if (sStat->solOrder[k][i] < inst->n + 2*inst->m + inst->K){
+    //                 // TODO UNCOMMENT //  << "S" << " - ";
+    //             }                                      
+    //         }
+    //         else{
+
+    //             // TODO UNCOMMENT //  << "f";
+    //         }
+    //     }
+    //     // TODO UNCOMMENT //  << endl;
+    // }
+    // // TODO UNCOMMENT //  << endl; 
+    
+    string filename2;
+    
+    if (problem->model == "bundle2") {
+        filename2 = "src/Results/bundleResults/" + inst->InstName + ".csv"; 
+    } else if (problem->model == "bundle3"){
+        filename2 = "src/Results/budlefipResults/" + inst->InstName + ".csv"; 
+    } else if (problem->model == "bundle4") {
+        filename2 = "src/Results/mbudlefipResults/" + inst->InstName + ".csv"; 
+    }
+
+    ofstream oFile2(filename2);
+
+    oFile2 << inst->InstName + ",";
+    oFile2 << sStat->time;
+    oFile2 << ",";
+    oFile2 << sStat->solDual;
+    oFile2 << ",";
+    oFile2 << sStat->solprofit;
+    oFile2 << ",";
+    oFile2 << sStat->servedParcels;
+    oFile2 << ",";
+    oFile2 << sStat->tNone;
+    oFile2 << ",";
+    oFile2 << sStat->dNone;
+    oFile2 << ",";
+    oFile2 << sStat->status;
+
+    oFile2.close();
+}
+
 
 void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
     bundleStat bStat;
@@ -1547,6 +1699,8 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         // // cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
 
         printStats(inst, sStat);
+
+        printBundleFile(inst, sStat, problem);
         
     }
     
@@ -1557,6 +1711,7 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
 
         clearArcs(&bStat);
         initArcs2(inst, &bStat, &cStat);
+        fipStructBundle(inst, sStat, &bStat, &fipStat);
         feasibleBundleArcs2next(inst, mdist, nodeVec, &bStat, &cStat, p, problem, &fipStat);
         //std::ofstream file("bundleArcs.csv");
 
@@ -1592,9 +1747,7 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         }
         cout << endl;
         }
-        cout << endl;        
-
-        fipStructBundle(inst, sStat, &bStat, &fipStat);
+        cout << endl;
         
         if (problem->model == "bundle3") {
             fipbundle(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat, &fipStat);
