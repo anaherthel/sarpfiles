@@ -100,6 +100,7 @@ struct probStat{
 
 struct solStats{
 	double solprofit;
+	double solDual;
 	double tParcel;
 	double tPass;
 	double tBoth;
@@ -117,7 +118,6 @@ struct solStats{
 	double time;
 
 	int servedParcels;
-	
 
     vector< vector<int> > solOrder; //for each k in K, the whole solution
 	vector< vector<int> > solInNode;
@@ -131,6 +131,8 @@ struct solStats{
 
 	double pProfit;
 	double costs;
+
+	string status;
 };
 
 struct fipStats{

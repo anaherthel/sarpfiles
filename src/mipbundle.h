@@ -35,6 +35,7 @@ void miphbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 void mipbundle2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, clSt *cStat, probStat* problem, solStats *sStat);
 void mipSolStatsPlus (instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat);
 void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, clSt *cStat, probStat* problem, solStats *sStat, fipBundleStats *fipStat);
+void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bundleStat *bStat, clSt *cStat, probStat* problem, solStats *sStat, fipBundleStats *fipStat);
 
 
 
