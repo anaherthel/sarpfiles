@@ -17,9 +17,6 @@ def merge_csvs_from_folders(folder1, folder2, output_path, target_class):
     output_rows = []
     header_written = False
 
-    print(len(os.listdir(folder1)))
-    print(len(os.listdir(folder2)))
-
     for filename in os.listdir(folder1):
         if filename.endswith(".csv"):
             instance_name = os.path.splitext(filename)[0]
@@ -27,10 +24,6 @@ def merge_csvs_from_folders(folder1, folder2, output_path, target_class):
             if get_class(instance_name) == target_class:
                 file1_path = os.path.join(folder1, filename)
                 file2_path = os.path.join(folder2, filename)
-
-                # print(file1_path)
-                # print(file2_path)
-                # print()
 
                 if os.path.exists(file2_path):
                     with open(file1_path, mode='r') as file1, open(file2_path, mode='r') as file2:
@@ -46,18 +39,21 @@ def merge_csvs_from_folders(folder1, folder2, output_path, target_class):
                             header_written = True
 
                         new_row = [instance_name]
-                        new_row.extend([float(row1[i]) + float(row2[i]) for i in range(1, 4)])  # sum columns 2, 3, and 4
-                        new_row.extend(row2[4:7])  # copy columns 5, 6, and 7 from csv2
-                        if row1[7] == "Optimal" and row2[7] == "Optimal":
+                        new_row.extend([round(float(row1[i]) + float(row2[i]), 4) for i in range(1, 4)])  # sum columns 2, 3, and 4 and round to 4 decimal places
+                        new_row.extend([round(float(value), 4) for value in row2[4:7]])  # copy columns 5, 6, and 7 from csv2 and round to 4 decimal places
+                        if row2[7] == "Optimal":
                             new_row.append("Optimal")
                         else:
                             new_row.append("Feasible")
 
                         output_rows.append(new_row)
 
+    # Sort rows by the instance name (first column)
+    output_rows = sorted(output_rows, key=lambda x: x[0])
+
     with open(output_path, mode='w', newline='') as output_file:
         csv_writer = csv.writer(output_file)
         csv_writer.writerows(output_rows)
 
 # Example usage:
-merge_csvs_from_folders('fippassResults', 'nodefipResults', 'C1/fip/singlePArcelLoad.csv', 'C1')  # Change 'C1' to 'C2' for C2 class
+merge_csvs_from_folders('fippassResults', 'nodefipResults/nodefipResults', 'C2/fip/singleParcelLoad.csv', 'C2')  # Change 'C1' to 'C2' for C2 class
