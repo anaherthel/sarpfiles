@@ -1883,14 +1883,12 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
 
-	// if (problem->p2 < 1){ //single parcel setting
-	// 	Q = 1;
-	// }
-	// else{
-	// 	Q = inst->m;
-	// }
-
-	Q = 1;
+	if (problem->model == "fip"){ //single parcel setting
+		Q = 1;
+	}
+	else if (problem->model == "nodefip"){
+		Q = inst->m;
+	}
 
 	int P = 2*inst->m;
 	// int P = 1;
@@ -2572,7 +2570,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
-	nSARP.setOut(env.getNullStream());
+	// nSARP.setOut(env.getNullStream());
 	nSARP.setParam(IloCplex::Threads, threads);
 	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
 

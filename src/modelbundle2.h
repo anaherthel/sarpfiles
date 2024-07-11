@@ -51,5 +51,6 @@ void setUpFipBundle(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVe
 void clearArcs(bundleStat *bStat);
 void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem, fipBundleStats *fipStat);
 void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat);
+void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem);
 
 #endif
