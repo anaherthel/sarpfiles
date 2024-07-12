@@ -293,36 +293,36 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
 void printStats(instanceStat *inst, solStats *sStat){
     // for (int i = 0; i < inst->K; i++){
 
-        // TODO UNCOMMENT //  << "\nsize of n: " << inst->n << endl;
-        // TODO UNCOMMENT //  << "\nsize of m: " << inst->m << endl;
+        cout << "\nsize of n: " << inst->n << endl;
+        cout << "\nsize of m: " << inst->m << endl;
         
-        // TODO UNCOMMENT //  << "\n*************" << endl;
+        cout << "\n*************" << endl;
 
-        // TODO UNCOMMENT //  << "\n\nServed parcels: " << sStat->servedParcels << endl;
-        // TODO UNCOMMENT //  << "\nUnserved parcels: " << inst->m - sStat->servedParcels << endl;
+        cout << "\n\nServed parcels: " << sStat->servedParcels << endl;
+        cout << "\nUnserved parcels: " << inst->m - sStat->servedParcels << endl;
 
 
-        // TODO UNCOMMENT //  << "\n*************" << endl;
+        cout << "\n*************" << endl;
 
-        // TODO UNCOMMENT //  << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone << endl;
-        // TODO UNCOMMENT //  << "\nTotal passenger time: " << sStat->tPass << endl;
-        // TODO UNCOMMENT //  << "\nTotal parcel time: " << sStat->tParcel << endl;
-        // TODO UNCOMMENT //  << "\nTotal combined transportation time: " << sStat->tBoth << endl;
-        // TODO UNCOMMENT //  << "\nTotal idle time: " << sStat->tNone << endl;
+        cout << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone << endl;
+        cout << "\nTotal passenger time: " << sStat->tPass << endl;
+        cout << "\nTotal parcel time: " << sStat->tParcel << endl;
+        cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
+        cout << "\nTotal idle time: " << sStat->tNone << endl;
 
-        // TODO UNCOMMENT //  << "\n*************" << endl;
+        cout << "\n*************" << endl;
 
-        // TODO UNCOMMENT //  << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
-        // TODO UNCOMMENT //  << "\nTotal passenger distance: " << sStat->dPass << endl;
-        // TODO UNCOMMENT //  << "\nTotal parcel distance: " << sStat->dParcel << endl;
-        // TODO UNCOMMENT //  << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
-        // TODO UNCOMMENT //  << "\nTotal idle distance: " << sStat->dNone << endl;
+        cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
+        cout << "\nTotal passenger distance: " << sStat->dPass << endl;
+        cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
+        cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
+        cout << "\nTotal idle distance: " << sStat->dNone << endl;
 
-        // TODO UNCOMMENT //  << "\n*************" << endl;
+        cout << "\n*************" << endl;
 
-        // TODO UNCOMMENT //  << "\nWaiting time passenger: " << sStat->tStillP << endl;
-        // TODO UNCOMMENT //  << "\nWaiting time goods: " << sStat->tStillG << endl;
-        // TODO UNCOMMENT //  << "\nTotal waiting time: " << sStat->tStillG + sStat->tStillP << endl;
+        cout << "\nWaiting time passenger: " << sStat->tStillP << endl;
+        cout << "\nWaiting time goods: " << sStat->tStillG << endl;
+        cout << "\nTotal waiting time: " << sStat->tStillG + sStat->tStillP << endl;
     // }
 
 }
@@ -1146,7 +1146,6 @@ void clearStats(solStats *sStat, fipStats *fipStat){
 	sStat->solBegin.clear();
 	sStat->solLoad.clear();
 
-
     fipStat->solPass.clear(); 
 	fipStat->solPassOrigins.clear(); 
 
@@ -1159,7 +1158,16 @@ void clearStats(solStats *sStat, fipStats *fipStat){
 	fipStat->fullSol.clear();
 	fipStat->fullBegin.clear();
 
-
 	fipStat->passDetour.clear();
 
+}
+
+void clearBndStats(solStats *sStat){
+
+    sStat->solOrder.clear(); 
+	sStat->solInNode.clear();
+	sStat->solvec.clear();
+
+	sStat->solBegin.clear();
+	sStat->solLoad.clear();
 }
