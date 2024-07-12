@@ -1701,7 +1701,6 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         printStats(inst, sStat);
 
         printBundleFile(inst, sStat, problem);
-        
     }
     
     if((problem->model == "bundle3" || problem->model == "bundle4") && sStat->servedParcels < inst->m){
@@ -1713,6 +1712,8 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         initArcs2(inst, &bStat, &cStat);
         fipStructBundle(inst, sStat, &bStat, &fipStat);
         feasibleBundleArcs2next(inst, mdist, nodeVec, &bStat, &cStat, p, problem, &fipStat);
+
+        clearBndStats(sStat);
         //std::ofstream file("bundleArcs.csv");
 
         //if (!file.is_open()) {
@@ -1751,7 +1752,7 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         
         if (problem->model == "bundle3") {
             fipbundle(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat, &fipStat);
-        } else {
+        } else if (problem->model == "bundle4"){
             mfipbundle(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat, &fipStat);
         }
         cout << "after fip" << endl;
@@ -1759,15 +1760,17 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         if(sStat->feasible && problem->model == "bundle4"){
             // solStatIni(sStat);
 
-            // nodeSolution2 (inst, mdist, &bStat, nodeVec, sStat, problem, true);
+            nodeSolution2 (inst, mdist, &bStat, nodeVec, sStat, problem, true);
             
-            // stillTimeBundle2(inst, mdist, &bStat, nodeVec, sStat);
+            stillTimeBundle2(inst, mdist, &bStat, nodeVec, sStat);
 
-            // mipSolStatsPlus (inst, mdist, &bStat, nodeVec, sStat);
+            mipSolStatsPlus (inst, mdist, &bStat, nodeVec, sStat);
 
             // // // cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
 
-            // printStats(inst, sStat);
+            printStats(inst, sStat);
+
+            // printBundleFile(inst, sStat, problem);
             
         }
     }

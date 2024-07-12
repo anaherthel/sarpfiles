@@ -248,6 +248,7 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat);
 void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat, fipStats *fipStat, bool feasFlag);
 void calcPassDetour(instanceStat *inst, vector<nodeStat> &nodeVec, fipStats *fipStat);
 void clearStats(solStats *sStat, fipStats *fipStat);
+void clearBndStats(solStats *sStat);
 
 void fipStatIniBundle(fipBundleStats *fipStat);
 
