@@ -42,6 +42,8 @@ struct bundleStat{
 	vector< vector< vector< pair<int,int> > > > vArcMinus;
 	vector< vector< vector<int> > > arcV; //set of vehicles that can travel arc a
 	vector< vector<int> > parcelBundleVec;
+	vector< vector<int> > parcelBundleVecWithP;
+	vector< vector<int> > parcelBundleVecWithD;
 	vector< vector<int> > passBundleVec;
 	vector<double> bundleStart;
 	vector<double> bundleEnd;

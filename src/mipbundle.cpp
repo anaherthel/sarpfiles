@@ -2457,7 +2457,7 @@ void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 	
 	IloExpr objFunction(env);
 
-    objFunction -= sStat->solprofit;
+    objFunction -= fipStat->solprofit;
 
 	for (int a = 0; a < bStat->bArcVec.size(); a++){
         int i = bStat->bArcVec[a].first;
@@ -2589,15 +2589,10 @@ void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 	}
 
 	//Constraint 4 - Max of one arc coming out of any of the bundles related to a certain parcel (23)
-	for(int i = 0; i < bStat->parcelBundleVec.size(); i++){
+	for(int i = 0; i < bStat->parcelBundleVecWithP.size(); i++){
 		IloExpr exp(env);
-        for (int a = 0; a < bStat->parcelBundleVec[i].size(); a++){
-            int p = bStat->parcelBundleVec[i][a];
-
-            int divisor = 1;
-            if ((p - setPD)%3 != 0 && p >= setPD) {
-                divisor = 2;
-            }
+        for (int a = 0; a < bStat->parcelBundleVecWithP[i].size(); a++){
+            int p = bStat->parcelBundleVecWithP[i][a];
             
             for (int k = 0; k < inst->K; k++) {
                 for (int b = 0; b < bStat->vArcPlus[p][k].size(); b++) {
@@ -2608,13 +2603,30 @@ void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
                         continue;
                     }
 
-                    exp += x[u][v][k]/divisor;
+                    exp += x[u][v][k];
+                }
+            }
+        }
+
+        for (int a = 0; a < bStat->parcelBundleVecWithD[i].size(); a++){
+            int p = bStat->parcelBundleVecWithD[i][a];
+            
+            for (int k = 0; k < inst->K; k++) {
+                for (int b = 0; b < bStat->vArcPlus[p][k].size(); b++) {
+                    int u = bStat->vArcPlus[p][k][b].first;
+                    int v = bStat->vArcPlus[p][k][b].second;
+
+                    if (!bStat->bArcs[u][v]) {
+                        continue;
+                    }
+
+                    exp += x[u][v][k];
                 }
             }
         }
 		sprintf (var, "Constraint4_%d", i + inst->n);
 
-        IloRange cons = (exp <= 1);
+        IloRange cons = (exp <= 2);
 		
 		cons.setName(var);
 		model.add(cons);

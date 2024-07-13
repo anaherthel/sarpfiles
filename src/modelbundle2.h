@@ -22,6 +22,7 @@
 #include <sys/time.h>
 #include <ctime>
 #include <unistd.h>
+#include <map>
 #include "SarpADS.h"
 #include "mipbundle.h"
 #include "bundleData.h"
@@ -52,5 +53,6 @@ void clearArcs(bundleStat *bStat);
 void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem, fipBundleStats *fipStat);
 void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat);
 void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem);
+void fillConversor(map<tuple<int, int, int>, int> &conversor, int n, int m, int v);
 
 #endif

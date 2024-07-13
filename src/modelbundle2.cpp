@@ -1235,10 +1235,25 @@ void setUpFipBundle(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVe
 
     } 
 
+    for (int i = 0; i < bStat->parcelBundleVec.size(); i++) {
+        bStat->parcelBundleVecWithD.push_back(vector<int>());
+        bStat->parcelBundleVecWithP.push_back(vector<int>());
 
-     
+        for (int a = 0; a < bStat->parcelBundleVec[i].size(); a++) {
+            int curBundle = bStat->parcelBundleVec[i][a];
 
-    //}
+            for (int b = 0; b < bStat->bundleVec[curBundle].size(); b++) {
+                int inNode = bStat->bundleVec[curBundle][b];
+
+                if (inNode >= inst->n && inNode < inst->n + inst->m) {
+                    bStat->parcelBundleVecWithP[i].push_back(curBundle);
+                } else if (inNode >= inst->n + inst->m && inNode < inst->n + 2*inst->m) {
+                    bStat->parcelBundleVecWithD[i].push_back(curBundle);
+                }
+            }
+        }
+    }
+
     cout << "\nBundle Vector: [";
 
     for (int i = 0; i < bStat->bundleVec.size(); i++){
@@ -1254,10 +1269,29 @@ void setUpFipBundle(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVe
         }
         cout << endl;
     }
-    //getchar();
+}
 
+void fillConversor(map<tuple<int, int, int>, int> &conversor, int n, int m, int v) {
+	int perCustomer = 1 + 3*m;
+	int l = 0;
 
+	for (int i = 0; i < n; i++) {
+		conversor[make_tuple(i, i, i)] = l++;
 
+		for (int j = 0; j < m; j++) {
+			conversor[make_tuple(j + n, i, j + n + m)] = l++;
+			conversor[make_tuple(i, j + n, j + n + m)] = l++;
+			conversor[make_tuple(j + n, j + n + m, i)] = l++;
+		}
+	}
+
+	for (int i = 0; i < v; i++) {
+		conversor[make_tuple(n + 2*m + i, n + 2*m + i, n + 2*m + i)] = l++;
+	}
+
+	for (int i = 0; i < v; i++) {
+		conversor[make_tuple(n + 2*m + v + i, n + 2*m + v + i, n + 2*m + v + i)] = l++;
+	}
 }
 
 void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat){
@@ -1283,26 +1317,118 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
         fipStat->solBegin.push_back(0);
     }
 
-    for (int i = 0; i < inst->n; i++){
-        fipStat->vehicleVec.push_back(-1);
-    }
-    for (int i = 0; i < sStat->solOrder.size(); i++){
-        int depot = fdepot + i;
-        int dummy = fdummy + i;
-        pulocations.push_back(depot);
+    // for (int i = 0; i < inst->n; i++){
+    //     fipStat->vehicleVec.push_back(-1);
+    // }
+    // for (int i = 0; i < sStat->solOrder.size(); i++){
+    //     int depot = fdepot + i;
+    //     int dummy = fdummy + i;
+    //     pulocations.push_back(depot);
+        
+    //     for (int j = 0; j < sStat->solOrder[i].size(); j++){
+    //         if (sStat->solOrder[i][j] < setN){
+    //             pulocations.push_back(sStat->solOrder[i][j]);
+    //             fipStat->solBegin[sStat->solOrder[i][j]] = bStat->bundleStart[sStat->solOrder[i][j]];
+    //         }
+    //     }
+    //     pulocations.push_back(dummy);
+    //     fipStat->solPass.push_back(pulocations);
+    //     pulocations.clear();
+    // }
+    // pulocations.clear();
+
+    string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
+    ifstream iFile(filename);
+
+    vector<vector<int>> nodeRoutes;
+    map<tuple<int, int, int>, int> conversor;
+
+    fillConversor(conversor, inst->n, inst->m, inst->K);  // Filling the conversor map
+
+    iFile >> fipStat->solprofit;
+
+    int _size;
+    iFile >> _size;
+
+    for (int i = 0; i < _size; i++) {
+        fipStat->solPass.push_back(vector<int>());
+        nodeRoutes.push_back(vector<int>());
+
+        int nNodes;
+        iFile >> nNodes;
+
+        for (int j = 0; j < nNodes; j++) {
+            int newElement;
+            iFile >> newElement;
+
+            nodeRoutes[i].push_back(newElement);
+
+            cout << newElement << " ";
+        }
+        cout << endl;
+
+        /**** Identifying and adding the variables and its values ****/
+
+        // Looking for the bundles (made by customers alone or with parcels)
+        int lastCustomer    = -1;   // Index of the last customer visited that still does not belong to a bundle
+        int resourceSum = 0;    // Customer "consumes" (-1) the resource, as parcel delivery "provides" (+1)
+
+        int newBundle   = -1;   // Newly made bundle. For readability reasons
 
 
-        for (int j = 0; j < sStat->solOrder[i].size(); j++){
-            if (sStat->solOrder[i][j] < setN){
-                pulocations.push_back(sStat->solOrder[i][j]);
-                fipStat->solBegin[sStat->solOrder[i][j]] = bStat->bundleStart[sStat->solOrder[i][j]];
+        for (int j = 0; j < nNodes; j++)
+        {
+            if (nodeRoutes[i][j] >= inst->n + inst->m && nodeRoutes[i][j] < inst->n + 2*inst->m)
+            {
+                resourceSum += 1;
+                if (resourceSum == 0)
+                {
+                    newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j-2], nodeRoutes[i][j-1], nodeRoutes[i][j]) ];
+
+                }
+                else // There must be a customer after this delivery. Otherwise the route would be infeasible
+                {
+                    newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j-1], nodeRoutes[i][j], nodeRoutes[i][j+1]) ];
+                    j++;
+                }
+                fipStat->solPass[i].push_back(newBundle);
+
+                resourceSum = 0;    // Restarting the resource sum
+            }
+            else if (nodeRoutes[i][j] < inst->n)
+            {
+                if (resourceSum == -1)
+                {
+                    newBundle  = conversor[ tuple<int, int, int>(lastCustomer, lastCustomer, lastCustomer) ];
+                    fipStat->solPass[i].push_back(newBundle);
+                }
+
+                resourceSum = -1;
+                lastCustomer    = nodeRoutes[i][j];
+            }
+
+            else if (nodeRoutes[i][j] >= inst->n + 2*inst->m)
+            {
+                if (resourceSum == -1)
+                {
+                    newBundle  = conversor[ tuple<int, int, int>(nodeRoutes[i][j-1], nodeRoutes[i][j-1], nodeRoutes[i][j-1]) ];
+                    fipStat->solPass[i].push_back(newBundle);
+                }
+
+                newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j], nodeRoutes[i][j], nodeRoutes[i][j]) ];
+
+                fipStat->solPass[i].push_back(newBundle);
             }
         }
-        pulocations.push_back(dummy);
-        fipStat->solPass.push_back(pulocations);
-        pulocations.clear();
     }
-    pulocations.clear();
+
+    // for (int k = 0; k < fipStat->solPass.size(); k++) {
+    //     for (int i = 0; i < fipStat->solPass[k].size(); i++) {
+    //         cout << fipStat->solPass[k][i] << " ";
+    //     }
+    //     cout << endl;
+    // }
+    // getchar();
 
     pair<int, int> clint;
 
@@ -1684,23 +1810,26 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
     //// getchar();
 
     /////////////////////////////////////////
-    
-    mipbundle2(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat);
-    
-    if(sStat->feasible){
-        // solStatIni(sStat);
 
-        nodeSolution2 (inst, mdist, &bStat, nodeVec, sStat, problem, false);
-        
-        stillTimeBundle2(inst, mdist, &bStat, nodeVec, sStat);
 
-        mipSolStatsPlus (inst, mdist, &bStat, nodeVec, sStat);
+    if (problem->model == "bundle" || problem->model == "bundle2") {
+        mipbundle2(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat);
 
-        // // cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
+         if(sStat->feasible){
+            // solStatIni(sStat);
 
-        printStats(inst, sStat);
+            nodeSolution2 (inst, mdist, &bStat, nodeVec, sStat, problem, false);
+            
+            stillTimeBundle2(inst, mdist, &bStat, nodeVec, sStat);
 
-        printBundleFile(inst, sStat, problem);
+            mipSolStatsPlus (inst, mdist, &bStat, nodeVec, sStat);
+
+            // // cout << sStat.tParcel << " " << sStat.tPass << " " << sStat.tBoth << " " << sStat.tNone << endl;
+
+            printStats(inst, sStat);
+
+            printBundleFile(inst, sStat, problem);
+        }
     }
     
     if((problem->model == "bundle3" || problem->model == "bundle4") && sStat->servedParcels < inst->m){
