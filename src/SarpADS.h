@@ -22,6 +22,7 @@
 #include <sys/time.h>
 #include <ctime>
 #include <unistd.h>
+#include <map>
 
 using namespace std;
 
@@ -251,5 +252,6 @@ void clearStats(solStats *sStat, fipStats *fipStat);
 void clearBndStats(solStats *sStat);
 
 void fipStatIniBundle(fipBundleStats *fipStat);
+void startAux(map<int, bool> &inSolution, map<int, pair<int, int>> &pairSequence, fipBundleStats *fipStat);
 
 #endif
