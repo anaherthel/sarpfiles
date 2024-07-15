@@ -1807,7 +1807,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
 			for(int j = setPD; j < bStat->bundleVec.size(); j++){ // j is a bundle
                 int c = bStat->firstElement[j];
-                int d = bStat->lastElement[j];           
+                int d = bStat->lastElement[j];     
 				if (bStat->bArcs[u][j] != true){
 					continue; // If arc i to j is invalid
 				}
@@ -1816,7 +1816,6 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 				double profitj = bStat->bundleProfVec[j];
 				// objFunction += (inst->minpar + (inst->parkm*mdist[j][j+inst->m]) - (inst->costkm*deltaij)) * x[u][j][k];
 				objFunction += (profitj - (inst->costkm*deltaij)) * x[u][j][k];
-
 			}
 		}
     }
@@ -1833,7 +1832,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
                 for (int b = 0; b < fipStat->solPass[k].size(); b++){
                     int u = bStat->parcelBundleVec[i][a];
                     int v = fipStat->solPass[k][b];
-
+                    
                     if (u == v){
                         continue;
                     }
@@ -1842,7 +1841,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
                             exp += x[v][u][k];
                         }                    
                     }
-
+                    
                     if (bStat->bArcs[u][v] == true){
                         for (int k = 0; k < inst->K; k++){
                             exp += x[u][v][k];
@@ -1886,7 +1885,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 			model.add(cons);
 		}
 	}
-    cout << "Define constraints 2" << endl;
+    // cout << "Define constraints 2" << endl;
 	// Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle (25)
 
 	for (int k = 0; k < fipStat->solPass.size(); k++){
@@ -1988,7 +1987,8 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 				double deltaij = (mdist[u][fj]) + (mdist[lj][v]) - (mdist[u][v]);
 				double cvalue2 = deltaij/inst->vmed;
 				//cvalue2 = std::round(cvalue2 * multiplier) / multiplier;	
-				double deltatime = (cvalue2) + bStat->bundleServVec[b1];
+				double deltatime = (cvalue2) + bStat->bundleServVec[j];
+
 				// double deltatime = (deltaij/inst->vmed);
                 if (bStat->bArcs[b1][j] != true || bStat->bArcs[j][b2] != true){
                     continue;
@@ -2027,7 +2027,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 				exp1 = s[j-setPD] - (b[k][b1] + bStat->bundleServVec[b1]) - (cvalue2)*x[b1][j][k];
 
 				// exp1 = s[j] - b[k][u] - (mdist[u][j]/inst->vmed)*x[u][j][k];
-				double bigM = nodeVec[u].l;
+				double bigM = nodeVec[u].l + bStat->bundleServVec[b1];
 				exp2 = bigM*(x[b1][j][k] - 1);
 
 				sprintf (var, "Constraint6_%d_%d_%d", k, b1, j);
@@ -2072,15 +2072,18 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 			
 			//int u = fipStat->solPass[k][i];
 
+            double endTime = (b1 < setN? bStat->bundleStart[b1] : bStat->bundleEnd[b1]);
+            double startTime = (b1 < setN? bStat->bundleStart[b1] : bStat->bundleStart[b1]);
+
 			exp = b[k][b1];
 
 			sprintf (var, "Constraint8_%d_%d", b1, k);
-			IloRange cons1 = (exp <= bStat->bundleEnd[b1]);
+			IloRange cons1 = (exp <= endTime);
 			cons1.setName(var);
 			model.add(cons1);
 			
 			sprintf (var, "Constraint9_%d_%d", b1, k);
-			IloRange cons2 = (bStat->bundleStart[b1] <= exp);
+			IloRange cons2 = (startTime <= exp);
 			cons2.setName(var);
 			model.add(cons2);
 		}
@@ -2177,7 +2180,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
     threads = 1;
 
-    cout << "\nThreads: " << threads << endl;
+    // cout << "\nThreads: " << threads << endl;
 
 	IloCplex b2SARP(model);
 	b2SARP.exportModel("fipbundleSARP.lp");
@@ -2218,94 +2221,166 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
     IloNum start;
     IloNum time;
     start = b2SARP.getTime();
+    b2SARP.setOut(env.getNullStream());
 	b2SARP.solve();
     time = (b2SARP.getTime() - start)/threads;
-	cout << "\nSol status: " << b2SARP.getStatus() << endl;
+	// cout << "\nSol status: " << b2SARP.getStatus() << endl;
 	sStat->feasible = b2SARP.isPrimalFeasible();
 
     // cout << " Tree_Size: " <<  b2SARP.getNnodes() + b2SARP.getNnodesLeft() + 1 << endl;
-    cout << " Total Time: " << time << endl;
+    // cout << " Total Time: " << time << endl;
 
 	vector< pair<int, int> > auxPairVec;
     pair<int, int> auxPair;
 
 	if (sStat->feasible){
-        cout << " LB: " << b2SARP.getObjValue() << endl;
-        cout << " UB: " << b2SARP.getBestObjValue() << endl;
+        // cout << " LB: " << b2SARP.getObjValue() << endl;
+        // cout << " UB: " << b2SARP.getBestObjValue() << endl;
         fipStat->solprofit = b2SARP.getObjValue();
         sStat->time = time;
 
-		//new addition
-		fipStat->solBegin.clear();
+        map<int, bool> inSolution;
+        map<int, pair<int, int>> pairSequence;
 
-		for (int i = 0; i < bStat->bundleVec.size(); i++){
-			fipStat->solBegin.push_back(-1);
-		}
-		//end
+        startAux(inSolution, pairSequence, fipStat);
 
-        for (int k = 0; k < inst->K; k++){
-			fipStat->solvec.push_back(auxPairVec);
-            // sStat->solvec.push_back(auxPairVec);
-        }
-		
-        for (int i = 0; i < bStat->bundleVec.size(); i++){
-            if (i >= setN && i < setPD){
-                continue;
-            }
-            for(int j = 0; j < bStat->bundleVec.size(); j++){     
-                if (j >= setN && j < setPD){
-                    continue;
-                }                           
-                if (bStat->bArcs[i][j] == true){
-                    for (int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
-                        int k = bStat->arcV[i][j][k1];
-                        if (b2SARP.getValue(x[i][j][k]) > 0.5){
-                            auxPair.first = i;
-                            auxPair.second = j;
-                            fipStat->solvec[k].push_back(auxPair);
-                            cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
-                            // getchar();
-                        }
-                    }
-                }
-            }   
-        }
+        solStatIni(sStat);
+		// cout << "\nObj Val: " << setprecision(15) << b2SARP.getObjValue() << endl;
+
+		sStat->solprofit = b2SARP.getObjValue();
+
+        // cout << "\nSolve Time: " << setprecision(15) << time << endl << endl;
+
+        sStat->solvec.clear();
 
 		for (int k = 0; k < inst->K; k++){
-			int i = fDepot+k;
-            for(int j = 0; j < bStat->bundleVec.size(); j++){                
-                if (bStat->bArcs[i][j] == true){
-					if (b2SARP.getValue(x[i][j][k]) > 0.5){
-						auxPair.first = i;
-						auxPair.second = j;
-						fipStat->solvec[k].push_back(auxPair);
-						cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
-						// getchar();
-					}
-                }
-            }   
-        }
+	 		sStat->solvec.push_back(auxPairVec);
+		}
 
-        for (int i = 0; i < setPD; i++){
-			// cout << "i: " << endl;
-            for(int j = 0; j < bStat->bundleVec.size(); j++){
-				// cout << "j: " << j << endl;             
-                if (bStat->bArcs[i][j] == true){
+		for (int i = 0; i < bStat->bundleVec.size(); i++){
+			for(int j = 0; j < bStat->bundleVec.size(); ++j){
+				if (bStat->bArcs[i][j] == true){
                     for (int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
                         int k = bStat->arcV[i][j][k1];
-						// cout << "k: " << k << endl;
-                        if (b2SARP.getValue(x[i][j][k]) > 0.5){
-							// fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
-							fipStat->solBegin[i] = b2SARP.getValue(b[k][i]);
-							cout << "\nb(" << k << ", " << i << "): " << b2SARP.getValue(b[k][i]);
+						if (b2SARP.getValue(x[i][j][k]) > 0.5){
+							auxPair.first = i;
+							auxPair.second = j;
+							sStat->solvec[k].push_back(auxPair);
+                            inSolution[auxPair.first] = true;
+							// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
 							// getchar();
-                            cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
-                            // getchar();
-                        }
-                    }
+						}
+					}
+				}
+            }
+		}
+
+        for (int k = 0; k < fipStat->solPass.size(); k++) {
+            for (int i = 0; i < fipStat->solPass[k].size() - 1; i++) {
+                int node = fipStat->solPass[k][i];
+
+                if (!inSolution[node]) {
+                    int vehicle = pairSequence[node].first;
+                    auxPair.first = node;
+                    auxPair.second = pairSequence[node].second;
+
+                    sStat->solvec[vehicle].push_back(auxPair);
                 }
-            }   
+            }
         }
+
+        for (int k = 0; k < inst->K; k++){
+			for (int i = 0; i < sStat->solvec[k].size(); i++){
+                auxPair.first = sStat->solvec[k][i].first;
+                auxPair.second = sStat->solvec[k][i].second;
+
+				if (auxPair.second >= setPD) {
+                    int prevCustomer = auxPair.first;
+                    auxPair.first = auxPair.second;
+                    auxPair.second = pairSequence[prevCustomer].second;
+
+                    sStat->solvec[k].push_back(auxPair);
+                }
+			}
+		}
+		
+		for (int k = 0; k < inst->K; k++){
+			for (int i = 0; i < sStat->solvec[k].size(); i++){
+				// cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ") = " << b2SARP.getValue(x[sStat->solvec[k][i].first][sStat->solvec[k][i].second][k]) << endl;
+			}
+		}
+
+		// //new addition
+		// fipStat->solBegin.clear();
+
+		// for (int i = 0; i < bStat->bundleVec.size(); i++){
+		// 	fipStat->solBegin.push_back(-1);
+		// }
+		// //end
+
+        // for (int k = 0; k < inst->K; k++){
+		// 	fipStat->solvec.push_back(auxPairVec);
+        //     // sStat->solvec.push_back(auxPairVec);
+        // }
+		
+        // for (int i = 0; i < bStat->bundleVec.size(); i++){
+        //     if (i >= setN && i < setPD){
+        //         continue;
+        //     }
+        //     for(int j = 0; j < bStat->bundleVec.size(); j++){     
+        //         if (j >= setN && j < setPD){
+        //             continue;
+        //         }                           
+        //         if (bStat->bArcs[i][j] == true){
+        //             for (int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
+        //                 int k = bStat->arcV[i][j][k1];
+        //                 if (b2SARP.getValue(x[i][j][k]) > 0.5){
+        //                     auxPair.first = i;
+        //                     auxPair.second = j;
+        //                     fipStat->solvec[k].push_back(auxPair);
+        //                     cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
+        //                     // getchar();
+        //                 }
+        //             }
+        //         }
+        //     }   
+        // }
+
+		// for (int k = 0; k < inst->K; k++){
+		// 	int i = fDepot+k;
+        //     for(int j = 0; j < bStat->bundleVec.size(); j++){                
+        //         if (bStat->bArcs[i][j] == true){
+		// 			if (b2SARP.getValue(x[i][j][k]) > 0.5){
+		// 				auxPair.first = i;
+		// 				auxPair.second = j;
+		// 				fipStat->solvec[k].push_back(auxPair);
+		// 				cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
+		// 				// getchar();
+		// 			}
+        //         }
+        //     }   
+        // }
+
+        // for (int i = 0; i < setPD; i++){
+		// 	// cout << "i: " << endl;
+        //     for(int j = 0; j < bStat->bundleVec.size(); j++){
+		// 		// cout << "j: " << j << endl;             
+        //         if (bStat->bArcs[i][j] == true){
+        //             for (int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
+        //                 int k = bStat->arcV[i][j][k1];
+		// 				// cout << "k: " << k << endl;
+        //                 if (b2SARP.getValue(x[i][j][k]) > 0.5){
+		// 					// fipStat->solBegin.push_back(nSARP.getValue(b[k][i]));
+		// 					fipStat->solBegin[i] = b2SARP.getValue(b[k][i]);
+		// 					cout << "\nb(" << k << ", " << i << "): " << b2SARP.getValue(b[k][i]);
+		// 					// getchar();
+        //                     cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
+        //                     // getchar();
+        //                 }
+        //             }
+        //         }
+        //     }   
+        // }
 
 		//for (int k = 0; k < inst->K; k++){
 		//	int i = fDepot+k;
@@ -2357,7 +2432,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
 	}
 	else{
-		cout << "\n\nServed parcels: " << 0 << endl;
+		// cout << "\n\nServed parcels: " << 0 << endl;
 	}
 	env.end();
     // startVal.end();
@@ -2862,10 +2937,11 @@ void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
     IloNum start;
     IloNum time;
     start = bSARP.getTime();
+    bSARP.setOut(env.getNullStream());
 	bSARP.solve();
     time = (bSARP.getTime() - start)/threads;
 
-	cout << "\nSol status: " << bSARP.getStatus() << endl;
+	// cout << "\nSol status: " << bSARP.getStatus() << endl;
 	sStat->feasible = bSARP.isPrimalFeasible();
 
     vector< pair<int, int> > auxPairVec;
@@ -2873,20 +2949,20 @@ void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 
     // cout << "here" << endl;
     // getchar();
-    cout << " Tree_Size: " <<  bSARP.getNnodes() + bSARP.getNnodesLeft() + 1 << endl;
-    cout << " Total Time: " << time << endl;
+    // cout << " Tree_Size: " <<  bSARP.getNnodes() + bSARP.getNnodesLeft() + 1 << endl;
+    // cout << " Total Time: " << time << endl;
 
 	if(sStat->feasible){
 
-        cout << " LB: " << bSARP.getObjValue() << endl;
-        cout << " UB: " << bSARP.getBestObjValue() << endl;
+        // cout << " LB: " << bSARP.getObjValue() << endl;
+        // cout << " UB: " << bSARP.getBestObjValue() << endl;
 
         solStatIni(sStat);
-		cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
+		// cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
 
 		sStat->solprofit = bSARP.getObjValue();
 
-        cout << "\nSolve Time: " << setprecision(15) << time << endl << endl;
+        // cout << "\nSolve Time: " << setprecision(15) << time << endl << endl;
 
         sStat->solvec.clear();
 
@@ -2908,12 +2984,12 @@ void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 						}
 					}
 				}
-			}	
+            }
 		}
 		
 		for (int k = 0; k < inst->K; k++){
 			for (int i = 0; i < sStat->solvec[k].size(); i++){
-				cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ") = " << bSARP.getValue(x[sStat->solvec[k][i].first][sStat->solvec[k][i].second][k]) << endl;
+				// cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ") = " << bSARP.getValue(x[sStat->solvec[k][i].first][sStat->solvec[k][i].second][k]) << endl;
 			}
 		}		
     }
