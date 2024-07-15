@@ -2221,7 +2221,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
     IloNum start;
     IloNum time;
     start = b2SARP.getTime();
-    b2SARP.setOut(env.getNullStream());
+    // b2SARP.setOut(env.getNullStream());
 	b2SARP.solve();
     time = (b2SARP.getTime() - start)/threads;
 	// cout << "\nSol status: " << b2SARP.getStatus() << endl;
@@ -2234,8 +2234,8 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
     pair<int, int> auxPair;
 
 	if (sStat->feasible){
-        // cout << " LB: " << b2SARP.getObjValue() << endl;
-        // cout << " UB: " << b2SARP.getBestObjValue() << endl;
+        cout << " LB: " << b2SARP.getObjValue() << endl;
+        cout << " UB: " << b2SARP.getBestObjValue() << endl;
         fipStat->solprofit = b2SARP.getObjValue();
         sStat->time = time;
 
@@ -2937,7 +2937,7 @@ void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
     IloNum start;
     IloNum time;
     start = bSARP.getTime();
-    bSARP.setOut(env.getNullStream());
+    // bSARP.setOut(env.getNullStream());
 	bSARP.solve();
     time = (bSARP.getTime() - start)/threads;
 
@@ -2954,8 +2954,8 @@ void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 
 	if(sStat->feasible){
 
-        // cout << " LB: " << bSARP.getObjValue() << endl;
-        // cout << " UB: " << bSARP.getBestObjValue() << endl;
+        cout << " LB: " << bSARP.getObjValue() << endl;
+        cout << " UB: " << bSARP.getBestObjValue() << endl;
 
         solStatIni(sStat);
 		// cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;

@@ -1001,78 +1001,78 @@ void nodeSolution2 (instanceStat *inst, double **mdist, bundleStat *bStat, vecto
         }
     }
 
-    // cout << "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
-    // cout << "Parcel profit: " << sStat->pProfit << endl;
-    // cout << "Costs: " << sStat->costs << endl;
+    cout << "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
+    cout << "Parcel profit: " << sStat->pProfit << endl;
+    cout << "Costs: " << sStat->costs << endl;
 
-    // cout << "\nNumber of Vehicles: " << inst->K << endl;
+    cout << "\nNumber of Vehicles: " << inst->K << endl;
 
-    // cout << "\nSolution by nodes: " << endl;
+    cout << "\nSolution by nodes: " << endl;
     
-    // //adjust K
-    // int usedVehicles = 0;
+    //adjust K
+    int usedVehicles = 0;
 
-    // vector<int> vehicleNumbers;
+    vector<int> vehicleNumbers;
 
-    // for (int k = 0; k < inst->K; k++){
-    //     cout << "Vehicle " << k << ": ";
+    for (int k = 0; k < inst->K; k++){
+        cout << "Vehicle " << k << ": ";
 
-    //     if (sStat->solInNode[k].size() > 2){
-    //         usedVehicles++;
-    //         vehicleNumbers.push_back(k);
-    //     }
+        if (sStat->solInNode[k].size() > 2){
+            usedVehicles++;
+            vehicleNumbers.push_back(k);
+        }
 
-    //     for (int i = 0; i < sStat->solInNode[k].size(); i++){
-    //         if (i < sStat->solInNode[k].size() - 1){
-    //             cout << sStat->solInNode[k][i] << " - ";
-    //         }
-    //         else{
-    //             cout << sStat->solInNode[k][i];
-    //         }
-    //     }
-    //     currSP = inst->n + 2*inst->m + k;
+        for (int i = 0; i < sStat->solInNode[k].size(); i++){
+            if (i < sStat->solInNode[k].size() - 1){
+                cout << sStat->solInNode[k][i] << " - ";
+            }
+            else{
+                cout << sStat->solInNode[k][i];
+            }
+        }
+        currSP = inst->n + 2*inst->m + k;
 
-    //     // cout << " // Bundle selection: " << (mdist[currSP][bStat->firstElement[sStat->solOrder[k][1]]]/inst->vmed);
+        // cout << " // Bundle selection: " << (mdist[currSP][bStat->firstElement[sStat->solOrder[k][1]]]/inst->vmed);
 
-    //     cout << " - Total time: " << bStat->bundleEnd[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - bStat->bundleStart[sStat->solOrder[k][1]] + (mdist[currSP][bStat->firstElement[sStat->solOrder[k][1]]]/inst->vmed) << endl;
-    // }
-    // cout << endl;
+        cout << " - Total time: " << bStat->bundleEnd[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - bStat->bundleStart[sStat->solOrder[k][1]] + (mdist[currSP][bStat->firstElement[sStat->solOrder[k][1]]]/inst->vmed) << endl;
+    }
+    cout << endl;
 
-    // cout << "\nSolution structure: " << endl;
-    // for (int k = 0; k < inst->K; k++){
-    //     cout << "Vehicle " << k << ": ";
-    //     for (int i = 0; i < sStat->solInNode[k].size(); i++){
-    //         if (i < sStat->solInNode[k].size() - 1){
-    //             if (sStat->solInNode[k][i] < inst->n){
-    //                 cout << "d" << " - ";
-    //             }
-    //             else if (sStat->solInNode[k][i] < inst->n + inst->m){
-    //                 cout << "P" << " - ";
-    //                 sStat->servedParcels++;
+    cout << "\nSolution structure: " << endl;
+    for (int k = 0; k < inst->K; k++){
+        cout << "Vehicle " << k << ": ";
+        for (int i = 0; i < sStat->solInNode[k].size(); i++){
+            if (i < sStat->solInNode[k].size() - 1){
+                if (sStat->solInNode[k][i] < inst->n){
+                    cout << "d" << " - ";
+                }
+                else if (sStat->solInNode[k][i] < inst->n + inst->m){
+                    cout << "P" << " - ";
+                    sStat->servedParcels++;
 
-    //             }
-    //             else if (sStat->solInNode[k][i] < inst->n + 2*inst->m){
-    //                 cout << "D" << " - ";
-    //             }
-    //             else if (sStat->solInNode[k][i] < inst->n + 2*inst->m + inst->K){
-    //                 cout << "S" << " - ";
-    //             }                                      
-    //         }
-    //         else{
+                }
+                else if (sStat->solInNode[k][i] < inst->n + 2*inst->m){
+                    cout << "D" << " - ";
+                }
+                else if (sStat->solInNode[k][i] < inst->n + 2*inst->m + inst->K){
+                    cout << "S" << " - ";
+                }                                      
+            }
+            else{
 
-    //             cout << "f";
-    //         }
-    //     }
-    //     cout << endl;
-    // }
-    // cout << endl;
+                cout << "f";
+            }
+        }
+        cout << endl;
+    }
+    cout << endl;
 
-    // cout << "Used vehicles: " << usedVehicles << endl;
-    // cout << "Vehicle numbers: ";
-    // for (int i = 0; i < vehicleNumbers.size(); i++){
-    //     cout << vehicleNumbers[i] << " ";
-    // }
-    // cout << endl;
+    cout << "Used vehicles: " << usedVehicles << endl;
+    cout << "Vehicle numbers: ";
+    for (int i = 0; i < vehicleNumbers.size(); i++){
+        cout << vehicleNumbers[i] << " ";
+    }
+    cout << endl;
 }
 
 void stillTimeBundle2(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
@@ -1453,23 +1453,23 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
         }
     }
 
-    //cout << "\nInitial served parcels: " << endl;
-    //for (int i = 0; i < fipStat->servedParcelsInit.size(); i++){
-    //    cout << inst->n + i << ": " << fipStat->servedParcelsInit[i] << endl;
-    //}
+    cout << "\nInitial served parcels: " << endl;
+    for (int i = 0; i < fipStat->servedParcelsInit.size(); i++){
+       cout << inst->n + i << ": " << fipStat->servedParcelsInit[i] << endl;
+    }
 
-    //for (int k = 0; k < inst->K; k++){
-    //    for (int i = 0; i < fipStat->solPass[k].size(); i++){
-            //if(fipStat->solPass[k][i] < inst->n){
-            //pairpuloc.first = fipStat->solPass[k][i];
-            //pairpuloc.second = i;
-            //pupairs.push_back(pairpuloc);
-            //fipStat->vehicleVec[fipStat->solPass[k][i]] = k;
-            //}
-        //}
-        //fipStat->solPassOrigins.push_back(pupairs);
-        //pupairs.clear();
-    //}
+    for (int k = 0; k < inst->K; k++){
+       for (int i = 0; i < fipStat->solPass[k].size(); i++){
+            if(fipStat->solPass[k][i] < inst->n){
+            pairpuloc.first = fipStat->solPass[k][i];
+            pairpuloc.second = i;
+            pupairs.push_back(pairpuloc);
+            fipStat->vehicleVec[fipStat->solPass[k][i]] = k;
+            }
+        }
+        fipStat->solPassOrigins.push_back(pupairs);
+        pupairs.clear();
+    }
 }
 
 void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem) {

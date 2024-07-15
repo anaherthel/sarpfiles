@@ -291,39 +291,39 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
 }
 
 void printStats(instanceStat *inst, solStats *sStat){
-    // for (int i = 0; i < inst->K; i++){
+    for (int i = 0; i < inst->K; i++){
 
-        // cout << "\nsize of n: " << inst->n << endl;
-        // cout << "\nsize of m: " << inst->m << endl;
+        cout << "\nsize of n: " << inst->n << endl;
+        cout << "\nsize of m: " << inst->m << endl;
         
-        // cout << "\n*************" << endl;
+        cout << "\n*************" << endl;
 
-        // cout << "\n\nServed parcels: " << sStat->servedParcels << endl;
-        // cout << "\nUnserved parcels: " << inst->m - sStat->servedParcels << endl;
+        cout << "\n\nServed parcels: " << sStat->servedParcels << endl;
+        cout << "\nUnserved parcels: " << inst->m - sStat->servedParcels << endl;
 
 
-        // cout << "\n*************" << endl;
+        cout << "\n*************" << endl;
 
-        // cout << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone << endl;
-        // cout << "\nTotal passenger time: " << sStat->tPass << endl;
-        // cout << "\nTotal parcel time: " << sStat->tParcel << endl;
-        // cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
-        // cout << "\nTotal idle time: " << sStat->tNone << endl;
+        cout << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone << endl;
+        cout << "\nTotal passenger time: " << sStat->tPass << endl;
+        cout << "\nTotal parcel time: " << sStat->tParcel << endl;
+        cout << "\nTotal combined transportation time: " << sStat->tBoth << endl;
+        cout << "\nTotal idle time: " << sStat->tNone << endl;
 
-        // cout << "\n*************" << endl;
+        cout << "\n*************" << endl;
 
-        // cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
-        // cout << "\nTotal passenger distance: " << sStat->dPass << endl;
-        // cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
-        // cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
-        // cout << "\nTotal idle distance: " << sStat->dNone << endl;
+        cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
+        cout << "\nTotal passenger distance: " << sStat->dPass << endl;
+        cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
+        cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
+        cout << "\nTotal idle distance: " << sStat->dNone << endl;
 
-        // cout << "\n*************" << endl;
+        cout << "\n*************" << endl;
 
-        // cout << "\nWaiting time passenger: " << sStat->tStillP << endl;
-        // cout << "\nWaiting time goods: " << sStat->tStillG << endl;
-        // cout << "\nTotal waiting time: " << sStat->tStillG + sStat->tStillP << endl;
-    // }
+        cout << "\nWaiting time passenger: " << sStat->tStillP << endl;
+        cout << "\nWaiting time goods: " << sStat->tStillG << endl;
+        cout << "\nTotal waiting time: " << sStat->tStillG + sStat->tStillP << endl;
+    }
 
 }
 
