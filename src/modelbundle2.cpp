@@ -1001,13 +1001,13 @@ void nodeSolution2 (instanceStat *inst, double **mdist, bundleStat *bStat, vecto
         }
     }
 
-    cout << "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
-    cout << "Parcel profit: " << sStat->pProfit << endl;
-    cout << "Costs: " << sStat->costs << endl;
+    // cout << "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
+    // cout << "Parcel profit: " << sStat->pProfit << endl;
+    // cout << "Costs: " << sStat->costs << endl;
 
-    cout << "\nNumber of Vehicles: " << inst->K << endl;
+    // cout << "\nNumber of Vehicles: " << inst->K << endl;
 
-    cout << "\nSolution by nodes: " << endl;
+    // cout << "\nSolution by nodes: " << endl;
     
     //adjust K
     int usedVehicles = 0;
@@ -1015,7 +1015,7 @@ void nodeSolution2 (instanceStat *inst, double **mdist, bundleStat *bStat, vecto
     vector<int> vehicleNumbers;
 
     for (int k = 0; k < inst->K; k++){
-        cout << "Vehicle " << k << ": ";
+        // cout << "Vehicle " << k << ": ";
 
         if (sStat->solInNode[k].size() > 2){
             usedVehicles++;
@@ -1024,55 +1024,55 @@ void nodeSolution2 (instanceStat *inst, double **mdist, bundleStat *bStat, vecto
 
         for (int i = 0; i < sStat->solInNode[k].size(); i++){
             if (i < sStat->solInNode[k].size() - 1){
-                cout << sStat->solInNode[k][i] << " - ";
+                // cout << sStat->solInNode[k][i] << " - ";
             }
             else{
-                cout << sStat->solInNode[k][i];
+                // cout << sStat->solInNode[k][i];
             }
         }
         currSP = inst->n + 2*inst->m + k;
 
-        // cout << " // Bundle selection: " << (mdist[currSP][bStat->firstElement[sStat->solOrder[k][1]]]/inst->vmed);
+        // // cout << " // Bundle selection: " << (mdist[currSP][bStat->firstElement[sStat->solOrder[k][1]]]/inst->vmed);
 
-        cout << " - Total time: " << bStat->bundleEnd[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - bStat->bundleStart[sStat->solOrder[k][1]] + (mdist[currSP][bStat->firstElement[sStat->solOrder[k][1]]]/inst->vmed) << endl;
+        // cout << " - Total time: " << bStat->bundleEnd[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - bStat->bundleStart[sStat->solOrder[k][1]] + (mdist[currSP][bStat->firstElement[sStat->solOrder[k][1]]]/inst->vmed) << endl;
     }
-    cout << endl;
+    // cout << endl;
 
-    cout << "\nSolution structure: " << endl;
+    // cout << "\nSolution structure: " << endl;
     for (int k = 0; k < inst->K; k++){
-        cout << "Vehicle " << k << ": ";
+        // cout << "Vehicle " << k << ": ";
         for (int i = 0; i < sStat->solInNode[k].size(); i++){
             if (i < sStat->solInNode[k].size() - 1){
                 if (sStat->solInNode[k][i] < inst->n){
-                    cout << "d" << " - ";
+                    // cout << "d" << " - ";
                 }
                 else if (sStat->solInNode[k][i] < inst->n + inst->m){
-                    cout << "P" << " - ";
+                    // cout << "P" << " - ";
                     sStat->servedParcels++;
 
                 }
                 else if (sStat->solInNode[k][i] < inst->n + 2*inst->m){
-                    cout << "D" << " - ";
+                    // cout << "D" << " - ";
                 }
                 else if (sStat->solInNode[k][i] < inst->n + 2*inst->m + inst->K){
-                    cout << "S" << " - ";
+                    // cout << "S" << " - ";
                 }                                      
             }
             else{
 
-                cout << "f";
+                // cout << "f";
             }
         }
-        cout << endl;
+        // cout << endl;
     }
-    cout << endl;
+    // cout << endl;
 
-    cout << "Used vehicles: " << usedVehicles << endl;
-    cout << "Vehicle numbers: ";
+    // cout << "Used vehicles: " << usedVehicles << endl;
+    // cout << "Vehicle numbers: ";
     for (int i = 0; i < vehicleNumbers.size(); i++){
-        cout << vehicleNumbers[i] << " ";
+        // cout << vehicleNumbers[i] << " ";
     }
-    cout << endl;
+    // cout << endl;
 }
 
 void stillTimeBundle2(instanceStat *inst, double **mdist, bundleStat *bStat, vector<nodeStat> &nodeVec, solStats *sStat){
@@ -1289,7 +1289,7 @@ void fillConversor(map<tuple<int, int, int>, int> &conversor, int n, int m, int 
 	}
 }
 
-void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat){
+void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat, bool bundleRun){
 
     vector<int> pulocations;
     pair <int, int> pairpuloc;
@@ -1312,115 +1312,122 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
         fipStat->solBegin.push_back(0);
     }
 
-    // for (int i = 0; i < inst->n; i++){
-    //     fipStat->vehicleVec.push_back(-1);
-    // }
-    // for (int i = 0; i < sStat->solOrder.size(); i++){
-    //     int depot = fdepot + i;
-    //     int dummy = fdummy + i;
-    //     pulocations.push_back(depot);
-        
-    //     for (int j = 0; j < sStat->solOrder[i].size(); j++){
-    //         if (sStat->solOrder[i][j] < setN){
-    //             pulocations.push_back(sStat->solOrder[i][j]);
-    //             fipStat->solBegin[sStat->solOrder[i][j]] = bStat->bundleStart[sStat->solOrder[i][j]];
-    //         }
-    //     }
-    //     pulocations.push_back(dummy);
-    //     fipStat->solPass.push_back(pulocations);
-    //     pulocations.clear();
-    // }
-    // pulocations.clear();
-
-    string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
-    ifstream iFile(filename);
-
-    vector<vector<int>> nodeRoutes;
-    map<tuple<int, int, int>, int> conversor;
-
-    fillConversor(conversor, inst->n, inst->m, inst->K);  // Filling the conversor map
-
-    iFile >> fipStat->solprofit;
-
-    int _size;
-    iFile >> _size;
-
-    for (int i = 0; i < _size; i++) {
-        fipStat->solPass.push_back(vector<int>());
-        nodeRoutes.push_back(vector<int>());
-
-        int nNodes;
-        iFile >> nNodes;
-
-        for (int j = 0; j < nNodes; j++) {
-            int newElement;
-            iFile >> newElement;
-
-            nodeRoutes[i].push_back(newElement);
+    if (bundleRun)
+    {
+        for (int i = 0; i < inst->n; i++){
+            fipStat->vehicleVec.push_back(-1);
         }
-
-        /**** Identifying and adding the variables and its values ****/
-
-        // Looking for the bundles (made by customers alone or with parcels)
-        int lastCustomer    = -1;   // Index of the last customer visited that still does not belong to a bundle
-        int resourceSum = 0;    // Customer "consumes" (-1) the resource, as parcel delivery "provides" (+1)
-
-        int newBundle   = -1;   // Newly made bundle. For readability reasons
-
-
-        for (int j = 0; j < nNodes; j++)
-        {
-            if (nodeRoutes[i][j] >= inst->n + inst->m && nodeRoutes[i][j] < inst->n + 2*inst->m)
-            {
-                resourceSum += 1;
-                if (resourceSum == 0)
-                {
-                    newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j-2], nodeRoutes[i][j-1], nodeRoutes[i][j]) ];
-
+        for (int i = 0; i < sStat->solOrder.size(); i++){
+            int depot = fdepot + i;
+            int dummy = fdummy + i;
+            pulocations.push_back(depot);
+            
+            for (int j = 0; j < sStat->solOrder[i].size(); j++){
+                if (sStat->solOrder[i][j] < setN){
+                    pulocations.push_back(sStat->solOrder[i][j]);
+                    fipStat->solBegin[sStat->solOrder[i][j]] = bStat->bundleStart[sStat->solOrder[i][j]];
                 }
-                else // There must be a customer after this delivery. Otherwise the route would be infeasible
-                {
-                    newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j-1], nodeRoutes[i][j], nodeRoutes[i][j+1]) ];
-                    j++;
-                }
-                fipStat->solPass[i].push_back(newBundle);
-
-                resourceSum = 0;    // Restarting the resource sum
             }
-            else if (nodeRoutes[i][j] < inst->n)
-            {
-                if (resourceSum == -1)
-                {
-                    newBundle  = conversor[ tuple<int, int, int>(lastCustomer, lastCustomer, lastCustomer) ];
-                    fipStat->solPass[i].push_back(newBundle);
-                }
-
-                resourceSum = -1;
-                lastCustomer    = nodeRoutes[i][j];
-            }
-
-            else if (nodeRoutes[i][j] >= inst->n + 2*inst->m)
-            {
-                if (resourceSum == -1)
-                {
-                    newBundle  = conversor[ tuple<int, int, int>(nodeRoutes[i][j-1], nodeRoutes[i][j-1], nodeRoutes[i][j-1]) ];
-                    fipStat->solPass[i].push_back(newBundle);
-                }
-
-                newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j], nodeRoutes[i][j], nodeRoutes[i][j]) ];
-
-                fipStat->solPass[i].push_back(newBundle);
-            }
+            pulocations.push_back(dummy);
+            fipStat->solPass.push_back(pulocations);
+            pulocations.clear();
         }
+        pulocations.clear();
     }
+    else
+    {
+        string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
+        ifstream iFile(filename);
 
-    // for (int k = 0; k < fipStat->solPass.size(); k++) {
-    //     for (int i = 0; i < fipStat->solPass[k].size(); i++) {
-    //         cout << fipStat->solPass[k][i] << " ";
-    //     }
-    //     cout << endl;
-    // }
-    // getchar();
+        vector<vector<int>> nodeRoutes;
+        map<tuple<int, int, int>, int> conversor;
+
+        fillConversor(conversor, inst->n, inst->m, inst->K);  // Filling the conversor map
+
+        iFile >> fipStat->solprofit;
+
+        int _size;
+        iFile >> _size;
+
+        for (int i = 0; i < _size; i++) {
+            fipStat->solPass.push_back(vector<int>());
+            nodeRoutes.push_back(vector<int>());
+
+            int nNodes;
+            iFile >> nNodes;
+
+            for (int j = 0; j < nNodes; j++) {
+                int newElement;
+                iFile >> newElement;
+
+                nodeRoutes[i].push_back(newElement);
+            }
+
+            /**** Identifying and adding the variables and its values ****/
+
+            // Looking for the bundles (made by customers alone or with parcels)
+            int lastCustomer    = -1;   // Index of the last customer visited that still does not belong to a bundle
+            int resourceSum = 0;    // Customer "consumes" (-1) the resource, as parcel delivery "provides" (+1)
+
+            int newBundle   = -1;   // Newly made bundle. For readability reasons
+
+
+            for (int j = 0; j < nNodes; j++)
+            {
+                if (nodeRoutes[i][j] >= inst->n + inst->m && nodeRoutes[i][j] < inst->n + 2*inst->m)
+                {
+                    resourceSum += 1;
+                    if (resourceSum == 0)
+                    {
+                        newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j-2], nodeRoutes[i][j-1], nodeRoutes[i][j]) ];
+
+                    }
+                    else // There must be a customer after this delivery. Otherwise the route would be infeasible
+                    {
+                        newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j-1], nodeRoutes[i][j], nodeRoutes[i][j+1]) ];
+                        j++;
+                    }
+                    fipStat->solPass[i].push_back(newBundle);
+
+                    resourceSum = 0;    // Restarting the resource sum
+                }
+                else if (nodeRoutes[i][j] < inst->n)
+                {
+                    if (resourceSum == -1)
+                    {
+                        newBundle  = conversor[ tuple<int, int, int>(lastCustomer, lastCustomer, lastCustomer) ];
+                        fipStat->solPass[i].push_back(newBundle);
+                    }
+
+                    resourceSum = -1;
+                    lastCustomer    = nodeRoutes[i][j];
+                }
+
+                else if (nodeRoutes[i][j] >= inst->n + 2*inst->m)
+                {
+                    if (resourceSum == -1)
+                    {
+                        newBundle  = conversor[ tuple<int, int, int>(nodeRoutes[i][j-1], nodeRoutes[i][j-1], nodeRoutes[i][j-1]) ];
+                        fipStat->solPass[i].push_back(newBundle);
+                    }
+
+                    newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j], nodeRoutes[i][j], nodeRoutes[i][j]) ];
+
+                    fipStat->solPass[i].push_back(newBundle);
+                }
+            }
+        }
+
+        // for (int k = 0; k < fipStat->solPass.size(); k++) {
+        //     for (int i = 0; i < fipStat->solPass[k].size(); i++) {
+        //         cout << fipStat->solPass[k][i] << " ";
+        //     }
+        //     cout << endl;
+        // }
+        // getchar();
+
+        iFile.close();
+    }
 
     pair<int, int> clint;
 
@@ -1453,9 +1460,9 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
         }
     }
 
-    cout << "\nInitial served parcels: " << endl;
+    // cout << "\nInitial served parcels: " << endl;
     for (int i = 0; i < fipStat->servedParcelsInit.size(); i++){
-       cout << inst->n + i << ": " << fipStat->servedParcelsInit[i] << endl;
+       // cout << inst->n + i << ": " << fipStat->servedParcelsInit[i] << endl;
     }
 
     for (int k = 0; k < inst->K; k++){
@@ -1626,6 +1633,7 @@ void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem) {
 
 void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
     bundleStat bStat;
+    fipBundleStats fipStat;
     clSt cStat;
 
     vector< vector<bParcelStruct> > clsParcel;
@@ -1803,15 +1811,17 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
 
     /////////////////////////////////////////
 
+    string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
+    ifstream iFile(filename);
 
-    if (problem->model == "bundle" || problem->model == "bundle2") {
+    if (problem->model == "bundle" || problem->model == "bundle2" || !iFile.is_open()) {
         mipbundle2(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat);
 
          if(sStat->feasible){
             // solStatIni(sStat);
 
             nodeSolution2 (inst, mdist, &bStat, nodeVec, sStat, problem, false);
-            
+
             stillTimeBundle2(inst, mdist, &bStat, nodeVec, sStat);
 
             mipSolStatsPlus (inst, mdist, &bStat, nodeVec, sStat);
@@ -1822,16 +1832,18 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
 
             printBundleFile(inst, sStat, problem);
         }
+
+        fipStructBundle(inst, sStat, &bStat, &fipStat, true);
+    } else {
+        iFile.close();
     }
     
     if((problem->model == "bundle3" || problem->model == "bundle4") && sStat->servedParcels < inst->m){
-        fipBundleStats fipStat;
-
         setUpFipBundle(inst, mdist, nodeVec, &bStat, problem, &fipStat);
 
         clearArcs(&bStat);
         initArcs2(inst, &bStat, &cStat);
-        fipStructBundle(inst, sStat, &bStat, &fipStat);
+        fipStructBundle(inst, sStat, &bStat, &fipStat, false);
         feasibleBundleArcs2next(inst, mdist, nodeVec, &bStat, &cStat, p, problem, &fipStat);
 
         clearBndStats(sStat);
