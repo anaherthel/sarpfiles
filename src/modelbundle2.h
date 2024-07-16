@@ -51,7 +51,7 @@ void stillTimeBundle2(instanceStat *inst, double **mdist, bundleStat *bStat, vec
 void setUpFipBundle(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem, fipBundleStats *fipStat);
 void clearArcs(bundleStat *bStat);
 void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem, fipBundleStats *fipStat);
-void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat);
+void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat, bool bundleRun);
 void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem);
 void fillConversor(map<tuple<int, int, int>, int> &conversor, int n, int m, int v);
 

@@ -184,7 +184,9 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	//Constraint 1 - All passenger nodes must be visited
 
-	for (int i = 0; i < inst->n; i++){
+	getchar();
+
+	for (int i = 0; i < inst->n + 2*inst->m; i++){
 		IloExpr exp(env);
 		for (int k = 0; k < inst->K; k++){
 			for (int a = 0; a < nas->vArcPlus[i][k].size(); a++){
@@ -2201,7 +2203,6 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
         cons.setName(var);
         model.add(cons);
     }
-
 
 	//Constraint 8 - service of pickup must come before the delivery
 
