@@ -648,6 +648,11 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
             }
         }        
     }
+
+    fipStat->servedParcels = parcelCount;
+    fipStat->solDual = sStat->solDual;
+    fipStat->time = sStat->time;
+
     for (int k = 0; k < fipStat->fullSol.size(); k++){
         currDepot = 2*inst->n + 2*inst->m + k;
         // TODO UNCOMMENT //  << "Vehicle: " << currDepot << ": ";

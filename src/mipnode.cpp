@@ -1729,7 +1729,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
         // TODO UNCOMMENT //  << " LB: " << nSARP.getObjValue() << endl;
         // TODO UNCOMMENT //  << " UB: " << nSARP.getBestObjValue() << endl;
-        fipStat->solprofit = nSARP.getObjValue();
+        sStat->solprofit = nSARP.getObjValue();
 		sStat->solDual = nSARP.getBestObjValue();
 		// // TODO UNCOMMENT //  << "Solution value pii: " << fipStat->solprofit << end
         sStat->time = time;
@@ -1761,7 +1761,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
                             auxPair.first = i;
                             auxPair.second = j;
                             fipStat->solvec[k].push_back(auxPair);
-                            // TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            // cout  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }
@@ -1777,7 +1777,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 						auxPair.first = i;
 						auxPair.second = j;
 						fipStat->solvec[k].push_back(auxPair);
-						// TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+						// cout  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
 						// getchar();
 					}
                 }
@@ -1796,7 +1796,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 							fipStat->solBegin[i] = nSARP.getValue(b[k][i]);
 							// TODO UNCOMMENT //  << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
 							// getchar();
-                            // TODO UNCOMMENT //  << " - " << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            // cout  << " - " << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }
@@ -1813,7 +1813,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 						fipStat->solBegin[i] = nSARP.getValue(b[k][i]);
 						// TODO UNCOMMENT //  << "\nb(" << k << ", " << i << "): " << nSARP.getValue(b[k][i]);
 						// getchar();
-						// TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+						// cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
 						// getchar();
 					}
                 }
@@ -1842,7 +1842,7 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 							fipStat->solBeginParcel.push_back(nSARP.getValue(s[j]));
 							// TODO UNCOMMENT //  << "\ns(" << j << "): " << nSARP.getValue(s[j]) << " - ";
 							// getchar();
-                            // TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
+                            // cout  << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }

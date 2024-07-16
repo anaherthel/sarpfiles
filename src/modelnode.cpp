@@ -1133,58 +1133,58 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
             // getchar();
         }
 
-        cout  << "\nNumber of Vehicles: " << inst->K << endl;
+        // cout  << "\nNumber of Vehicles: " << inst->K << endl;
 
-        cout  << "\nSolution: " << endl;
+        // cout  << "\nSolution: " << endl;
         for (int k = 0; k < inst->K; k++){
-            cout  << "Vehicle " << k << ": ";
+            // cout  << "Vehicle " << k << ": ";
             for (int i = 0; i < sStat->solOrder[k].size(); i++){
                 if (i < sStat->solOrder[k].size() - 1){
-                    cout  << sStat->solOrder[k][i] << " - ";
+                    // cout  << sStat->solOrder[k][i] << " - ";
                 }
                 else{
-                    cout  << sStat->solOrder[k][i];
+                    // cout  << sStat->solOrder[k][i];
                 }
             }
-            cout  << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
+            // cout  << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
         }
-        cout  << endl;
+        // cout  << endl;
 
         // disregard if fip
-        cout  << "\nSolution structure: " << endl;
+        // cout  << "\nSolution structure: " << endl;
         for (int k = 0; k < inst->K; k++){
-            cout  << "Vehicle " << k << ": ";
+            // cout  << "Vehicle " << k << ": ";
             for (int i = 0; i < sStat->solOrder[k].size(); i++){
                 if (i < sStat->solOrder[k].size() - 1){
                     if (sStat->solOrder[k][i] < inst->n){
-                        cout  << "d" << " - ";
+                        // cout  << "d" << " - ";
                     }
                     else if (sStat->solOrder[k][i] < inst->n + inst->m){
-                        cout  << "P" << " - ";
+                        // cout  << "P" << " - ";
                         sStat->servedParcels++;
                     }
                     else if (sStat->solOrder[k][i] < inst->n + 2*inst->m){
-                        cout  << "D" << " - ";
+                        // cout  << "D" << " - ";
                     }
                     else if (sStat->solOrder[k][i] < inst->n + 2*inst->m + inst->K){
-                        cout  << "S" << " - ";
+                        // cout  << "S" << " - ";
                     }                                      
                 }
                 else{
 
-                    cout  << "f";
+                    // cout  << "f";
                 }
             }
-            cout  << endl;
+            // cout  << endl;
         }
-        cout  << endl;   
+        // cout  << endl;   
         // getchar(); 
     // }
 }
 
-void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem){
+void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem, bool hasParcel){
 
-    if (problem->model == "fip") {
+    if (problem->model == "fip" && !hasParcel) {
         string filename = "src/Aux/fippassSol/" + inst->InstName + ".txt";
 
         // TODO UNCOMMENT //  << filename << endl;
@@ -1306,12 +1306,19 @@ void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem){
     
     string filename2;
     
-    if (problem->model == "fip") {
-        filename2 = "src/Results/fippassResults/" + inst->InstName + ".csv"; 
-    } else if (problem->model == "nodefip"){
+    if (problem->model == "fip" && !hasParcel)
+    {
+        filename2 = "src/Results/fippassResults/" + inst->InstName + ".csv";
+    }
+    else if (problem->model == "fip" && hasParcel)
+    {
+        filename2 = "src/Results/fipResults/" + inst->InstName + ".csv";
+    }
+    else if (problem->model == "nodefip")
+    {
         filename2 = "src/Results/mnodefipresults/" + inst->InstName + ".csv"; 
     }
-
+    
     ofstream oFile2(filename2);
 
     oFile2 << inst->InstName + ",";
@@ -1337,6 +1344,32 @@ void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem){
 
     // oFile2 << inst->InstName + ", ";
     // oFile2 << sStat->
+}
+
+void printSolFileFip1 (instanceStat *inst, solStats *sStat, probStat* problem, bool hasParcel, fipStats *fipStat){
+    
+    string filename2;
+    
+    filename2 = "src/Results/fipResults/" + inst->InstName + ".csv";
+    
+    ofstream oFile2(filename2);
+
+    oFile2 << inst->InstName + ",";
+    oFile2 << fipStat->time;
+    oFile2 << ",";
+    oFile2 << sStat->solDual;
+    oFile2 << ",";
+    oFile2 << sStat->solprofit;
+    oFile2 << ",";
+    oFile2 << fipStat->servedParcels;
+    oFile2 << ",";
+    oFile2 << fipStat->tNone;
+    oFile2 << ",";
+    oFile2 << fipStat->dNone;
+    oFile2 << ",";
+    oFile2 << sStat->status;
+
+    oFile2.close();
 }
 
 void testRoute (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec){
@@ -1979,7 +2012,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
 
 		printStats(inst, sStat);
 
-        printSolFile (inst, sStat, problem);
+        printSolFile (inst, sStat, problem, false);
 
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
@@ -2004,7 +2037,8 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     }
 
     // if(sStat->feasible){
-        mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat, feasFlag);
+    mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat, feasFlag);
+    printSolFileFip1 (inst, sStat, problem, true, &fipStat);
 
         //calcPassDetour(inst, nodeVec, &fipStat);
     // }
@@ -2041,9 +2075,9 @@ void fipnodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<n
 		viewSol (inst, mdist, nodeVec, sStat);
 		mipSolStats (inst, mdist, nodeVec, sStat);
 
-		printStats(inst, sStat);
+		printStats (inst, sStat);
 
-        printSolFile (inst, sStat, problem);
+        printSolFile (inst, sStat, problem, true);
 
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
