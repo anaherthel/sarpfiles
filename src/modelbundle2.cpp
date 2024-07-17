@@ -1312,11 +1312,12 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
         fipStat->solBegin.push_back(0);
     }
 
+    for (int i = 0; i < inst->n; i++){
+        fipStat->vehicleVec.push_back(-1);
+    }
+
     if (bundleRun)
     {
-        for (int i = 0; i < inst->n; i++){
-            fipStat->vehicleVec.push_back(-1);
-        }
         for (int i = 0; i < sStat->solOrder.size(); i++){
             int depot = fdepot + i;
             int dummy = fdummy + i;
@@ -1417,14 +1418,6 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
                 }
             }
         }
-
-        // for (int k = 0; k < fipStat->solPass.size(); k++) {
-        //     for (int i = 0; i < fipStat->solPass[k].size(); i++) {
-        //         cout << fipStat->solPass[k][i] << " ";
-        //     }
-        //     cout << endl;
-        // }
-        // getchar();
 
         iFile.close();
     }
