@@ -152,8 +152,12 @@ struct fipStats{
 	vector< vector<int> > fullSol; //merged solution with passengers and parcels.
 	vector< vector<double> > fullBegin; // beginning of service for all passengers and served parcels.
 	double solprofit;
+	double solDual;
+	double time;
 
 	vector <double> passDetour;//increase in percentage to the trip with no detours
+
+	int servedParcels;
 	
 	double tParcel;
 	double tPass;

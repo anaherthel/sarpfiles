@@ -1746,8 +1746,6 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	//vector< pair<int, int> > auxPairVec;
 	//pair<int, int> auxPair;
 
-
-
 	//Creating variable (i in set of assigned passengers)
     //Reduce number of variables
 	IloArray <IloArray <IloBoolVarArray> > x(env, bStat->bundleVec.size());
