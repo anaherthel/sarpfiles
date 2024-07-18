@@ -1742,6 +1742,45 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
     int fDepot = setN;
 	//int decimalPlaces = 4;
     //double multiplier = std::pow(10, decimalPlaces);
+
+    // for (int k = 0; k < inst->K; k++) {
+    //     for (int a = 0; a < bStat->vArcPlus[47][k].size(); a++) {
+    //         int u = bStat->vArcPlus[47][k][a].first;
+    //         int v = bStat->vArcPlus[47][k][a].second;
+
+    //         cout << u << " " << v << " " << k << endl;
+    //     }
+    //     getchar();
+    // }
+
+    // for (int j = 0; j < bStat->bundleVec.size(); j++) {
+    //     if (bStat->bArcs[6][j]) {
+    //         for (int k1 = 0; k1 < bStat->arcV[47][j].size(); k1++) {
+    //             int k = bStat->arcV[47][j][k1];
+
+    //             cout << 6 << " " << j << " " << k << endl;
+    //         }
+    //     }
+    //     // for (int a = 0; a < bStat->vArcPlus[6][k].size(); a++) {
+    //     //     int u = bStat->vArcPlus[6][k][a].first;
+    //     //     int v = bStat->vArcPlus[6][k][a].second;
+
+    //     //     cout << u << " " << v << " " << k << endl;
+    //     // }
+    //     // getchar();
+    // }
+
+    // for (int k = 0; k < bStat->vArcPlus.size(); k++) {
+    //     for (int i = 0; i < bStat->vArcPlus[k].size(); i++) {
+    //         for (int a = 0; a < bStat->vArcPlus[k][i].size(); a++) {
+    //             int u = bStat->vArcPlus[k][i][a].first;
+    //             int v = bStat->vArcPlus[k][i][a].second;
+
+    //             cout << u << " " << v << " " << k << endl;
+    //         }
+    //         getchar();
+    //     }
+    // }
 	
 	//vector< pair<int, int> > auxPairVec;
 	//pair<int, int> auxPair;
@@ -1755,7 +1794,6 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
         for(int j = 0; j < bStat->bundleVec.size(); ++j){
 			if (bStat->bArcs[i][j] != true){
 				continue; // If arc i to j is invalid
-
 			} 
             x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
             for(int k1 = 0; k1 < bStat->arcV[i][j].size(); k1++){
@@ -1764,7 +1802,6 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 				x[i][j][k].setName(var);
 				model.add(x[i][j][k]);
 			}
-
         }
     }
 
@@ -1880,6 +1917,37 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
 			sprintf (var, "Constraint2_%d_%d", k, u);
 			IloRange cons = (exp <= 1);
+			cons.setName(var);
+			model.add(cons);
+		}
+	}
+
+    ////Constraint 2.5 - a bundle request can not be in a different vehicle
+
+	for (int k = 0; k < fipStat->solPass.size(); k++){
+		if (fipStat->solPass[k].size() < 3){
+			continue;
+		}
+
+		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
+			IloExpr exp(env);
+			int u = fipStat->solPass[k][i];
+			for(int j = setPD; j < bStat->bundleVec.size(); j++){
+                if (bStat->bArcs[u][j] != true){
+                    continue;
+                }
+
+                for (int k1 = 0; k1 < bStat->arcV[u][j].size(); k1++) {
+                    int k2 = bStat->arcV[u][j][k1];
+
+                    if (k2 != k) {
+                        exp += x[u][j][k2];
+                    }
+                }
+			}
+
+			sprintf (var, "Constraint2.5_%d_%d", k, u);
+			IloRange cons = (exp <= 0);
 			cons.setName(var);
 			model.add(cons);
 		}
@@ -2266,7 +2334,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 							auxPair.second = j;
 							sStat->solvec[k].push_back(auxPair);
                             inSolution[auxPair.first] = true;
-							// cout << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
+							// cout << i << " " << j << " " << k << ": " << b2SARP.getValue(x[i][j][k]) << endl;
 							// getchar();
 						}
 					}
@@ -2305,7 +2373,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 		
 		for (int k = 0; k < inst->K; k++){
 			for (int i = 0; i < sStat->solvec[k].size(); i++){
-				// cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ") = " << b2SARP.getValue(x[sStat->solvec[k][i].first][sStat->solvec[k][i].second][k]) << endl;
+				//cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ") = " << b2SARP.getValue(x[sStat->solvec[k][i].first][sStat->solvec[k][i].second][k]) << endl;
 			}
 		}
 

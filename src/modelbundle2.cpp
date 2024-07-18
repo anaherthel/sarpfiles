@@ -1810,7 +1810,7 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
     if (problem->model == "bundle" || problem->model == "bundle2" || !iFile.is_open()) {
         mipbundle2(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat);
 
-         if(sStat->feasible){
+        if(sStat->feasible){
             // solStatIni(sStat);
 
             nodeSolution2 (inst, mdist, &bStat, nodeVec, sStat, problem, false);
@@ -1881,6 +1881,7 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         } else if (problem->model == "bundle4"){
             mfipbundle(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat, &fipStat);
         }
+
         // cout << "after fip" << endl;
 
         nodeSolution2 (inst, mdist, &bStat, nodeVec, sStat, problem, true);
