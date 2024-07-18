@@ -1522,6 +1522,17 @@ void mipbundle2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 
 		sStat->solprofit = bSARP.getObjValue();
 
+        int initialBundles = 0;
+
+        for (int i = 0; i < bStat->eligibleBundleVec.size(); i++) {
+            if (bStat->eligibleBundleVec[i]) {
+                initialBundles++;
+            }
+        }
+
+        sStat->totalBundles = bStat->bundleVec.size();
+        sStat->initialBundles = initialBundles;
+
         // cout << "\nSolve Time: " << setprecision(15) << time << endl << endl;
 
 		for (int k = 0; k < inst->K; k++){
