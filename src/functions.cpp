@@ -196,6 +196,14 @@ void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<node
         bundleMethod2(node, inst, mdist, nodeVec, problem, sStat);
     }
 
+    else if (problem->model == "bundle5"){
+        bundleMethod2(node, inst, mdist, nodeVec, problem, sStat);
+    }
+
+    else if (problem->model == "bundle6"){
+        bundleMethod2(node, inst, mdist, nodeVec, problem, sStat);
+    }
+
     else if (problem->model == "fip"){
         fipMethod(node, inst, mdist, nodeVec, problem, sStat);
 

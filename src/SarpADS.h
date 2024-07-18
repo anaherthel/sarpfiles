@@ -119,6 +119,8 @@ struct solStats{
 	double time;
 
 	int servedParcels;
+	int totalBundles;
+	int initialBundles;
 
     vector< vector<int> > solOrder; //for each k in K, the whole solution
 	vector< vector<int> > solInNode;
