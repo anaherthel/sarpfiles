@@ -2036,7 +2036,9 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 			int b1 = fipStat->solPass[k][i];
 			int b2 = fipStat->solPass[k][i + 1];
 			int u = bStat->lastElement[b1];
-			int v = bStat->firstElement[b2];     
+			int v = bStat->firstElement[b2];  
+
+            // cout << b1 << " ";   
 
 			IloExpr exp1(env);
 			IloExpr exp2(env);
@@ -2068,6 +2070,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 			cons.setName(var);
 			model.add(cons);
         }
+        // cout << endl;
     }
 
 	// Constraint 6 - TW constraint (28)
@@ -2373,7 +2376,7 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 		
 		for (int k = 0; k < inst->K; k++){
 			for (int i = 0; i < sStat->solvec[k].size(); i++){
-				//cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ") = " << b2SARP.getValue(x[sStat->solvec[k][i].first][sStat->solvec[k][i].second][k]) << endl;
+				// cout << "x(" << sStat->solvec[k][i].first << ", " << sStat->solvec[k][i].second << ", " << k << ") = " << b2SARP.getValue(x[sStat->solvec[k][i].first][sStat->solvec[k][i].second][k]) << endl;
 			}
 		}
 
