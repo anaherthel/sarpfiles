@@ -2329,6 +2329,14 @@ void fipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 		// cout << "\nObj Val: " << setprecision(15) << b2SARP.getObjValue() << endl;
 
 		sStat->solprofit = b2SARP.getObjValue();
+        sStat->solDual = b2SARP.getBestObjValue();
+        sStat->time = time;
+
+        if (((b2SARP.getBestObjValue() - b2SARP.getObjValue())/b2SARP.getBestObjValue()) * 100 < 0.01) {
+			sStat->status = "Optimal";
+		} else {
+			sStat->status = "Feasible";
+		}
 
         // cout << "\nSolve Time: " << setprecision(15) << time << endl << endl;
 
@@ -2787,16 +2795,32 @@ void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 		model.add(cons);
 	}
 
+    // cout << inst->K << endl;
+    // for (int i = 0; i < bStat->cBundles.size(); i++) {
+    //     cout << "cluster " << i << ":" << endl;
+    //     for (int b = 0; b < bStat->cBundles[i].size(); b++) {
+    //         cout << bStat->cBundles[i][b] << " ";
+    //     }
+    //     cout << endl;
+    // }
+    // getchar();
+
     // Constraint 5 - only one arc leaves the cluster
-    for (int i = 0; i < inst->n; i++){
+    for (int i = 0; i < inst->n + inst->K; i++){
 		IloExpr exp(env);
         for (int b = 0; b < bStat->cBundles[i].size(); b++) {
             int b1 = bStat->cBundles[i][b];
 
             for (int k = 0; k < inst->K; k++){
                 for (int a = 0; a < bStat->vArcPlus[b1][k].size(); a++){
+                    // cout << "aqui" << endl;
                     int u = bStat->vArcPlus[b1][k][a].first;
                     int v = bStat->vArcPlus[b1][k][a].second;
+                    // cout << "aqu2" << endl;
+
+                    // if (!bStat->bArcs[u][v]) {
+                    //     continue;
+                    // }
 
                     exp += x[u][v][k];
                 }
@@ -2808,7 +2832,11 @@ void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 		model.add(cons1);
 	}
 
-    for (int i = 0; i < inst->n; i++){
+    for (int i = 0; i < inst->n + 2*inst->K; i++){
+        if (i >= inst->n && i < inst->n + inst->K) {
+            continue;
+        }
+        
         IloExpr exp(env);
         for (int b = 0; b < bStat->cBundles[i].size(); b++) {
             int b1 = bStat->cBundles[i][b];
@@ -3041,6 +3069,14 @@ void mfipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 		// cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
 
 		sStat->solprofit = bSARP.getObjValue();
+        sStat->solDual = bSARP.getBestObjValue();
+        sStat->time = time;
+
+        if (((bSARP.getBestObjValue() - bSARP.getObjValue())/bSARP.getBestObjValue()) * 100 < 0.01) {
+			sStat->status = "Optimal";
+		} else {
+			sStat->status = "Feasible";
+		}
 
         // cout << "\nSolve Time: " << setprecision(15) << time << endl << endl;
 
