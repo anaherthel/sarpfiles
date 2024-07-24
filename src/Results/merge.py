@@ -56,4 +56,4 @@ def merge_csvs_from_folders(folder1, folder2, output_path, target_class):
         csv_writer.writerows(output_rows)
 
 # Example usage:
-merge_csvs_from_folders('fippassResults', 'mnodefipresults', 'C2/fip/multiParcelLoad.csv', 'C2')  # Change 'C1' to 'C2' for C2 class
+merge_csvs_from_folders('bundleResults', 'mbundlefipResults', 'C2/bundlefip/multiInsertion.csv', 'C2')  # Change 'C1' to 'C2' for C2 class

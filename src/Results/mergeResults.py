@@ -61,8 +61,8 @@ def process_csv_files(csv_files):
                     avg_col7 = sum(values[f'col7_file{i}']) / len(values[f'col7_file{i}']) if values[f'col7_file{i}'] else 0
                     avg_values.extend([avg_col2, avg_col4, avg_col5, avg_col7])
                 num_customers, num_parcels = key.split('-')
-                if int(num_customers) >= 30 and int(num_parcels) >= 20:
-                    continue
+                # if int(num_customers) >= 30 and int(num_parcels) >= 20:
+                #     continue
                 avg_values_str = " & ".join(f"{val:.2f}" for val in avg_values)
                 file.write(f"{num_customers} & {num_parcels} & {avg_values_str} \\\\ \n")
     
@@ -71,6 +71,6 @@ def process_csv_files(csv_files):
         save_results(group, results)
 
 # Exemplos de arquivos CSV a serem processados
-csv_files = ['C2/fip/multiParcelLoad.csv']
+csv_files = ['C2/fip/multiParcelLoad.csv', 'C2/bundlefip/singleInsertion.csv', 'C2/bundlefip/multiInsertion.csv']
 
 process_csv_files(csv_files)
