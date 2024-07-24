@@ -1951,6 +1951,10 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
     string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
     ifstream iFile(filename);
 
+    if (!iFile.is_open()) {
+        return;
+    }
+
     if (onlyBundleExec.find(problem->model) != onlyBundleExec.end()) {
         mipbundle2(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat);
 
