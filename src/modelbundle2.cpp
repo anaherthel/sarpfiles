@@ -153,7 +153,7 @@ void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> 
     }
 
     // Remove bundle with negastive profit
-    if (problem->model == "bundle5") {
+    if (problem->model == "bundle5" || problem->model == "bundle7") {
         for (int i = 0; i < nClusters; i++) {
             int index = clusterSize*i;
 
@@ -169,7 +169,7 @@ void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> 
     }
 
     // Remove bundles cheaper than the customer
-    else if (problem->model == "bundle6") {
+    else if (problem->model == "bundle6" || problem->model == "bundle7") {
         for (int i = 0; i < nClusters; i++) {
             int index = clusterSize*i;
             int customerProfit = bStat->bundleProfVec[index];
@@ -186,7 +186,7 @@ void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> 
     }
     
     // To be developed
-    else if (problem->model == "bundle7") {
+    else if (problem->model == "bundle8") {
 
     }
 
@@ -1595,77 +1595,116 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
 
 void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem, string execution) {
     if (execution == "bundle2") {
-        string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
+        string filename;
+
+        if (problem->model == "bundle2"){ 
+            filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
+        } else if (problem->model == "bundle5") {
+            filename = "src/Aux/bundleSolRem1/" + inst->InstName + ".txt";
+        } else if (problem->model == "bundle6") {
+            filename = "src/Aux/bundleSolRem2/" + inst->InstName + ".txt";
+        }
 
         // TODO UNCOMMENT //  << filename << endl;
 
         ofstream oFile(filename);
 
-        vector<pair<int, int>> emptyRoutes;
-        vector<pair<int, int>> nodeInRoute;
-        vector<pair<int, int>> sequencePairs;
+        // oFile << sStat->time << endl;
+        oFile << sStat->solprofit << endl;
+        oFile << sStat->solOrder.size() << " " << endl;
 
         for (int k = 0; k < sStat->solOrder.size(); k++) {
-            if (sStat->solOrder[k].size() < 3) {
-                int u = sStat->solOrder[k][0] - inst->n;
-                int v = sStat->solOrder[k][1] - inst->n;
-
-                emptyRoutes.push_back(make_pair(u, v));
-            }
-        }
-
-        for (int k = 0; k < sStat->solOrder.size(); k++) {
+            oFile << sStat->solOrder[k].size() << " ";
             for (int i = 0; i < sStat->solOrder[k].size(); i++) {
                 int u = sStat->solOrder[k][i];
 
-                if (u < inst->n) { 
-                    nodeInRoute.push_back(make_pair(u, k));
-                }
-
-                if (u >= 2*inst->n + 2*inst->m) {
-                    nodeInRoute.push_back(make_pair(u - inst->n, k));
-                }
+                oFile << u << " ";
             }
-        }
-
-        for (int k = 0; k < sStat->solOrder.size(); k++) {
-            for (int i = 0; i < sStat->solOrder[k].size() - 1; i++) {
-                int u = sStat->solOrder[k][i];
-                int v = sStat->solOrder[k][i + 1];
-
-                if (u < inst->n) continue;
-                if (u >= inst->n) {
-                    u -= inst->n;
-                }
-
-                if (v >= inst->n) {
-                    v -= inst->n;
-                }
-
-                sequencePairs.push_back(make_pair(u, v));
-            }
-        }
-
-        oFile << sStat->time << endl;
-        oFile << sStat->solprofit << endl;
-
-        oFile << emptyRoutes.size() << endl;
-        for (auto arcPair : emptyRoutes) {
-            oFile << arcPair.first << " " << arcPair.second << endl;
-        }
-
-        oFile << nodeInRoute.size() << endl;
-        for (auto arcPair : nodeInRoute) {
-            oFile << arcPair.first << " " << arcPair.second << endl;
-        }
-
-        oFile << sequencePairs.size() << endl;
-        for (auto arcPair : sequencePairs) {
-            oFile << arcPair.first << " " << arcPair.second << endl;
+            oFile << endl;
         }
 
         oFile.close();
     }
+    // if (execution == "bundle2") {
+    //     string filename;
+
+    //     if (problem->model == "bundle2"){ 
+    //         filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
+    //     } else if (problem->model == "bundle5") {
+    //         filename = "src/Aux/bundleSolRem1/" + inst->InstName + ".txt";
+    //     } else if (problem->model == "bundle6") {
+    //         filename = "src/Aux/bundleSolRem2/" + inst->InstName + ".txt";
+    //     }
+
+    //     // TODO UNCOMMENT //  << filename << endl;
+
+    //     ofstream oFile(filename);
+
+    //     vector<pair<int, int>> emptyRoutes;
+    //     vector<pair<int, int>> nodeInRoute;
+    //     vector<pair<int, int>> sequencePairs;
+
+    //     for (int k = 0; k < sStat->solOrder.size(); k++) {
+    //         if (sStat->solOrder[k].size() < 3) {
+    //             int u = sStat->solOrder[k][0] - inst->n;
+    //             int v = sStat->solOrder[k][1] - inst->n;
+
+    //             emptyRoutes.push_back(make_pair(u, v));
+    //         }
+    //     }
+
+    //     for (int k = 0; k < sStat->solOrder.size(); k++) {
+    //         for (int i = 0; i < sStat->solOrder[k].size(); i++) {
+    //             int u = sStat->solOrder[k][i];
+
+    //             if (u < inst->n) { 
+    //                 nodeInRoute.push_back(make_pair(u, k));
+    //             }
+
+    //             if (u >= 2*inst->n + 2*inst->m) {
+    //                 nodeInRoute.push_back(make_pair(u - inst->n, k));
+    //             }
+    //         }
+    //     }
+
+    //     for (int k = 0; k < sStat->solOrder.size(); k++) {
+    //         for (int i = 0; i < sStat->solOrder[k].size() - 1; i++) {
+    //             int u = sStat->solOrder[k][i];
+    //             int v = sStat->solOrder[k][i + 1];
+
+    //             if (u < inst->n) continue;
+    //             if (u >= inst->n) {
+    //                 u -= inst->n;
+    //             }
+
+    //             if (v >= inst->n) {
+    //                 v -= inst->n;
+    //             }
+
+    //             sequencePairs.push_back(make_pair(u, v));
+    //         }
+    //     }
+
+    //     oFile << sStat->time << endl;
+    //     oFile << sStat->solprofit << endl;
+
+    //     oFile << emptyRoutes.size() << endl;
+    //     for (auto arcPair : emptyRoutes) {
+    //         oFile << arcPair.first << " " << arcPair.second << endl;
+    //     }
+
+    //     oFile << nodeInRoute.size() << endl;
+    //     for (auto arcPair : nodeInRoute) {
+    //         oFile << arcPair.first << " " << arcPair.second << endl;
+    //     }
+
+    //     oFile << sequencePairs.size() << endl;
+    //     for (auto arcPair : sequencePairs) {
+    //         oFile << arcPair.first << " " << arcPair.second << endl;
+    //     }
+
+    //     oFile.close();
+    // }
 
 
     // // TODO UNCOMMENT //  << "\nNumber of Vehicles: " << inst->K << endl;
@@ -1948,13 +1987,6 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
 
     /////////////////////////////////////////
 
-    string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
-    ifstream iFile(filename);
-
-    if (!iFile.is_open()) {
-        return;
-    }
-
     if (onlyBundleExec.find(problem->model) != onlyBundleExec.end()) {
         mipbundle2(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat);
 
@@ -1975,9 +2007,15 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         }
 
         fipStructBundle(inst, sStat, &bStat, &fipStat, true);
-    } else {
-        iFile.close();
     }
+
+    string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
+    ifstream iFile(filename);
+
+    if (!iFile.is_open()) {
+        return;
+    }
+    
     
     if((problem->model == "bundle3" || problem->model == "bundle4") && sStat->servedParcels < inst->m){
         setUpFipBundle(inst, mdist, nodeVec, &bStat, problem, &fipStat);
@@ -2044,6 +2082,8 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
 
         printBundleFile(inst, sStat, problem, problem->model);
     }
+
+    iFile.close();
 
     for ( int i = 0; i < inst->V + inst->dummy; i++) {
         delete[] mdist[i];
