@@ -1397,7 +1397,7 @@ void fillConversor(map<tuple<int, int, int>, int> &conversor, int n, int m, int 
 	}
 }
 
-void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat, bool bundleRun){
+void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat, string model, bool bundleRun){
 
     vector<int> pulocations;
     pair <int, int> pairpuloc;
@@ -1447,10 +1447,14 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
         }
         pulocations.clear();
     }
-    else
+    else if (model == "bundle3" || model == "bundle4")
     {
         string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
         ifstream iFile(filename);
+
+        if (!iFile.is_open()) {
+            cout << "falha ao abrir " << filename << endl;
+        }
 
         vector<vector<int>> nodeRoutes;
         map<tuple<int, int, int>, int> conversor;
@@ -1532,6 +1536,44 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
         }
 
         iFile.close();
+    } else if (model == "bundle7" || model == "bundle8") {
+        
+        string filename;
+
+        if (model == "bundle7") {
+            filename = "src/Aux/bundleSolRem1/" + inst->InstName + ".txt";
+        } else if (model == "bundle8") {
+            filename = "src/Aux/bundleSolRem2/" + inst->InstName + ".txt";
+        }
+
+        ifstream iFile(filename);
+
+        if (!iFile.is_open()) {
+            cout << "falha ao abrir " << filename << endl;
+        }
+
+        iFile >> fipStat->solprofit;
+
+        int _size;
+        iFile >> _size;
+
+        for (int i = 0; i < _size; i++) {
+            fipStat->solPass.push_back(vector<int>());
+
+            int nNodes;
+            iFile >> nNodes;
+
+            for (int j = 0; j < nNodes; j++) {
+                int newElement;
+                iFile >> newElement;
+
+                fipStat->solPass[i].push_back(newElement);
+            }
+        }
+
+        iFile.close();
+    } else {
+        cout << "modelo " << model << " é incompatível!" << endl;
     }
 
     // for (int k = 0; k < fipStat->solPass.size(); k++) {
@@ -1768,6 +1810,10 @@ void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem, st
         filename2 = "src/Results/bundlefipResults/" + inst->InstName + ".csv"; 
         } else if (problem->model == "bundle4") {
             filename2 = "src/Results/mbundlefipResults/" + inst->InstName + ".csv"; 
+        } else if (problem->model == "bundle7") {
+            filename2 = "src/Results/bundlefipRem1/" + inst->InstName + ".csv"; 
+        } else if (problem->model == "bundle8") {
+            filename2 = "src/Results/bundlefipRem2/" + inst->InstName + ".csv"; 
         }
     }
 
@@ -1798,7 +1844,14 @@ void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem, st
     oFile2.close();
 }
 
-
+// OBS: DESCRIPTION
+    // bundle2: execute only bundles without selection
+    // bundle3: execute mono insertion bundlefip without selection
+    // bundle4: execute multi insertion bundlefip without selection
+    // bundle5: execute only bundle with profit based selection
+    // bundle6: execute only bundle with priority based selection
+    // bundle7: execute multi insertion bundlefip with profit based selection
+    // bundle8: execute multi insertion bundlefip with priority based selection
 void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
     bundleStat bStat;
     fipBundleStats fipStat;
@@ -2006,24 +2059,32 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
             printBundleFile(inst, sStat, problem, "bundle2");
         }
 
-        fipStructBundle(inst, sStat, &bStat, &fipStat, true);
+        fipStructBundle(inst, sStat, &bStat, &fipStat, problem->model, true);
     }
 
-    string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
+    string filename; 
+    
+    if (problem->model == "bundle3" || problem->model == "bundle4") {
+        filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
+    } else if (problem->model == "bundle7") {
+        filename = "src/Aux/bundleSolRem1/" + inst->InstName + ".txt";
+    } else if (problem->model == "bundle8") {
+        filename = "src/Aux/bundleSolRem2/" + inst->InstName + ".txt";
+    }
+
     ifstream iFile(filename);
 
     if (!iFile.is_open()) {
         return;
     }
     
-    
-    if((problem->model == "bundle3" || problem->model == "bundle4") && sStat->servedParcels < inst->m){
+    if(sStat->servedParcels < inst->m){
         setUpFipBundle(inst, mdist, nodeVec, &bStat, problem, &fipStat);
 
         clearArcs(&bStat);
         initArcs2(inst, &bStat, &cStat);
         if (fipStat.solPass.size() < 1) {
-            fipStructBundle(inst, sStat, &bStat, &fipStat, false);
+            fipStructBundle(inst, sStat, &bStat, &fipStat, problem->model, false);
         }
         feasibleBundleArcs2next(inst, mdist, nodeVec, &bStat, &cStat, p, problem, &fipStat);
 
@@ -2066,7 +2127,7 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         
         if (problem->model == "bundle3") {
             fipbundle(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat, &fipStat);
-        } else if (problem->model == "bundle4"){
+        } else {
             mfipbundle(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat, &fipStat);
         }
 
