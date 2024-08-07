@@ -132,7 +132,7 @@ void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> 
     bStat->eligibleBundleVec.clear();
     bStat->eligibleBundleVec.resize(nBundles);
 
-    // Removing bundles that unfeatible to any route
+    // Removing bundles unfeasible to any route
     for (int i = 0; i < bStat->bundleVec.size(); i++) {
         int u = bStat->firstElement[i];
 
@@ -153,7 +153,7 @@ void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> 
     }
 
     // Remove bundle with negastive profit
-    if (problem->model == "bundle5" || problem->model == "bundle7") {
+    if (problem->model != "bundle2") {
         for (int i = 0; i < nClusters; i++) {
             int index = clusterSize*i;
 
@@ -169,7 +169,7 @@ void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> 
     }
 
     // Remove bundles cheaper than the customer
-    else if (problem->model == "bundle6" || problem->model == "bundle7") {
+    else if (problem->model != "bundle2") {
         for (int i = 0; i < nClusters; i++) {
             int index = clusterSize*i;
             int customerProfit = bStat->bundleProfVec[index];
@@ -185,9 +185,24 @@ void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> 
         }
     }
     
-    // To be developed
-    else if (problem->model == "bundle8") {
+    // selecting bundles by priority
+    else if (problem->model == "bundle6") {
+        // Para encontrar os bundles associados a um customer, faça o seguinte:
+        // - para n customers e m parcels, os bundles associados ao bundle i < n são 
+        //   indexados de [a -- z], onde 'a = i * (3*m + 1)' e 'z = (i+1)*(3*m + 1) - 1';
+        // - os bundles associados a uma parcel i < m podem ser encontrados em bStat->parcelBundleVec[i];
 
+        // 1 - criar matriz de prioridades
+        vector<bool> priority(bStat->bundleVec.size(), false);
+
+        // 2 - para cada customer, calcular a média dos profits de todos os seus bundles e marcar como prioritários os bundles acima da média
+        for (int i = 0; i < inst->n; i++) {
+            
+        }
+        // 3 - para cada parcel, calcular a distância média percorrida nos bundles (tirando a distância interna do customer) e marcar como
+        // prioritários os bundles cuja distância percorrida é menor do que a média (por hora usar o tempo de viagem em bStat->bundleServVec
+        // como referência, mas tem que descobrir onde tá armazenada a informação da distância)
+        // 4 - remover da eligibilidade os bundles que não sáo prioritários para nenhum dos critérios
     }
 
     for (int i = 0; i < bStat->bundleVec.size(); i++) {
