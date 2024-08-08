@@ -197,12 +197,65 @@ void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> 
 
         // 2 - para cada customer, calcular a média dos profits de todos os seus bundles e marcar como prioritários os bundles acima da média
         for (int i = 0; i < inst->n; i++) {
-            
+            double media = 0;
+            int qtd = 0;
+
+            for (int a = i * (3*inst->m + 1) + 1; a < (i+1)*(3*inst->m + 1); a++) {
+                if (bStat->eligibleBundleVec[a])
+                {
+                    media += bStat->bundleProfVec[a];
+                    qtd++;
+                }
+            }
+
+            media /= qtd;
+
+            for (int a = i * (3*inst->m + 1) + 1; a < (i+1)*(3*inst->m + 1); a++) {
+                if (bStat->bundleProfVec[a] >= media && bStat->eligibleBundleVec[a]) {
+                    priority[a] = true;
+                }
+            }
         }
+
         // 3 - para cada parcel, calcular a distância média percorrida nos bundles (tirando a distância interna do customer) e marcar como
         // prioritários os bundles cuja distância percorrida é menor do que a média (por hora usar o tempo de viagem em bStat->bundleServVec
         // como referência, mas tem que descobrir onde tá armazenada a informação da distância)
+        for (int i = 0; i < inst->m; i++)
+        {
+            double media = 0;
+            int qtd = 0;
+
+            for (int a = 0; a < bStat->parcelBundleVec[i].size(); a++)
+            {
+                int bundleIdx = bStat->parcelBundleVec[i][a];
+
+                if (bStat->eligibleBundleVec[ bundleIdx ])
+                {
+                    int customerIdx = min(
+                        bStat->bundleVec[bundleIdx][0], 
+                        min(bStat->bundleVec[bundleIdx][1], bStat->bundleVec[bundleIdx][2])
+                    );
+
+                    media += bStat->bundleServVec[ bundleIdx ] - nodeVec[customerIdx].delta;
+                    qtd++;
+                }
+            }
+
+            media /= qtd;
+
+            for (int a = 0; a < bStat->parcelBundleVec[i].size(); a++)
+            {
+                if (bStat->bundleServVec[ bStat->parcelBundleVec[i][a] ] <= media && bStat->eligibleBundleVec[ bStat->parcelBundleVec[i][a] ])
+                {
+                    priority[ bStat->parcelBundleVec[i][a] ] = true;
+                }
+            }
+        }
+
         // 4 - remover da eligibilidade os bundles que não sáo prioritários para nenhum dos critérios
+        for (int i = 0; i < bStat->bundleVec.size() - 2*inst->K; i++) {
+            bStat->eligibleBundleVec[i] = (bStat->eligibleBundleVec[i] & priority[i]);
+        }
     }
 
     for (int i = 0; i < bStat->bundleVec.size(); i++) {

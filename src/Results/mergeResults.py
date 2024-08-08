@@ -71,6 +71,6 @@ def process_csv_files(csv_files):
         save_results(group, results)
 
 # Exemplos de arquivos CSV a serem processados
-csv_files = ['C2/fip/multiParcelLoad.csv', 'C2/bundlefip/singleInsertion.csv', 'C2/bundlefip/multiInsertion.csv']
+csv_files = ['C2/fip/multiParcelLoad.csv', 'C2/bundlefip/multiInsertion.csv']
 
 process_csv_files(csv_files)
