@@ -1984,14 +1984,6 @@ void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem, st
     oFile2.close();
 }
 
-// OBS: DESCRIPTION
-    // bundle2: execute only bundles without selection
-    // bundle3: execute mono insertion bundlefip without selection
-    // bundle4: execute multi insertion bundlefip without selection
-    // bundle5: execute only bundle with profit based selection
-    // bundle6: execute only bundle with priority based selection
-    // bundle7: execute multi insertion bundlefip with profit based selection
-    // bundle8: execute multi insertion bundlefip with priority based selection
 void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
     bundleStat bStat;
     fipBundleStats fipStat;

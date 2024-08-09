@@ -171,15 +171,23 @@ void getInstParam (instanceStat *inst, vector<int> &instParam){
     instParam.push_back(stoi(param2));
 }
 
+// OBS: DESCRIPTION
+    // bundle2: execute only bundles without selection
+    // bundle3: execute mono insertion bundlefip without selection
+    // bundle4: execute multi insertion bundlefip without selection
+    // bundle5: execute only bundle with profit based selection
+    // bundle6: execute only bundle with priority based selection
+    // bundle7: execute multi insertion bundlefip with profit based selection
+    // bundle8: execute multi insertion bundlefip with priority based selection
 void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
-    
     if (problem->model == "node"){
         nodeMethod(node, inst, mdist, nodeVec, problem, sStat);
-
     }
+
     else if (problem->model == "nodefip"){
         fipnodeMethod(node, inst, mdist, nodeVec, problem, sStat);
     }
+
     else if (problem->model == "bundle"){
         bundleMethod(node, inst, mdist, nodeVec, problem, sStat);
     }
@@ -193,7 +201,8 @@ void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<node
     }
 
     else if (problem->model == "bundle4"){
-        bundleMethod2(node, inst, mdist, nodeVec, problem, sStat);
+        // bundleMethod2(node, inst, mdist, nodeVec, problem, sStat);
+        fipnodeMethod(node, inst, mdist, nodeVec, problem, sStat);
     }
 
     else if (problem->model == "bundle5"){
