@@ -2575,11 +2575,11 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
     //         threads = 1;
     //     }
     // }
-    cout  << "\nThreads: " << threads << endl;
+    // cout  << "\nThreads: " << threads << endl;
 
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
-	// nSARP.setOut(env.getNullStream());
+	nSARP.setOut(env.getNullStream());
 	nSARP.setParam(IloCplex::Threads, threads);
 	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
 
