@@ -1127,11 +1127,11 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
                 auxPair.second = sStat->solvec[k][i].second;            
                 auxVec.push_back(auxPair);
             }
-            cout << "here1";
+            // cout << "here1";
             // getchar();
-            cout  << "auxVec: " << endl;
+            // cout  << "auxVec: " << endl;
             // for (int i = 0; i < auxVec.size(); i++){
-            //     cout  << auxVec[i].first << " " << auxVec[i].second << endl;
+            //     // cout  << auxVec[i].first << " " << auxVec[i].second << endl;
             // }
 
             while(!auxVec.empty()){
@@ -1157,58 +1157,58 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
                         }
                     }
                 }       
-            cout << "auxvec size: " << auxVec.size();
+            // cout << "auxvec size: " << auxVec.size();
             // getchar();
             }
-            cout << "here3";
+            // cout << "here3";
             // getchar();
         }
 
-        cout  << "\nNumber of Vehicles: " << inst->K << endl;
+        // cout  << "\nNumber of Vehicles: " << inst->K << endl;
 
-        cout  << "\nSolution: " << endl;
+        // cout  << "\nSolution: " << endl;
         for (int k = 0; k < inst->K; k++){
-            cout  << "Vehicle " << k << ": ";
+            // cout  << "Vehicle " << k << ": ";
             for (int i = 0; i < sStat->solOrder[k].size(); i++){
                 if (i < sStat->solOrder[k].size() - 1){
-                    cout  << sStat->solOrder[k][i] << " - ";
+                    // cout  << sStat->solOrder[k][i] << " - ";
                 }
                 else{
-                    cout  << sStat->solOrder[k][i];
+                    // cout  << sStat->solOrder[k][i];
                 }
             }
-            cout  << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
+            // cout  << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
         }
-        cout  << endl;
+        // cout  << endl;
 
         // disregard if fip
-        cout  << "\nSolution structure: " << endl;
+        // cout  << "\nSolution structure: " << endl;
         for (int k = 0; k < inst->K; k++){
-            cout  << "Vehicle " << k << ": ";
+            // cout  << "Vehicle " << k << ": ";
             for (int i = 0; i < sStat->solOrder[k].size(); i++){
                 if (i < sStat->solOrder[k].size() - 1){
                     if (sStat->solOrder[k][i] < inst->n){
-                        cout  << "d" << " - ";
+                        // cout  << "d" << " - ";
                     }
                     else if (sStat->solOrder[k][i] < inst->n + inst->m){
-                        cout  << "P" << " - ";
+                        // cout  << "P" << " - ";
                         sStat->servedParcels++;
                     }
                     else if (sStat->solOrder[k][i] < inst->n + 2*inst->m){
-                        cout  << "D" << " - ";
+                        // cout  << "D" << " - ";
                     }
                     else if (sStat->solOrder[k][i] < inst->n + 2*inst->m + inst->K){
-                        cout  << "S" << " - ";
+                        // cout  << "S" << " - ";
                     }                                      
                 }
                 else{
 
-                    cout  << "f";
+                    // cout  << "f";
                 }
             }
-            cout  << endl;
+            // cout  << endl;
         }
-        cout  << endl;   
+        // cout  << endl;   
         // getchar(); 
     // }
 }

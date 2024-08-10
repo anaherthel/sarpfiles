@@ -1904,11 +1904,11 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 
 			NNarcs += mdist[u][v]*inst->costkm;
 
-			cout << u << " ";
+			// cout << u << " ";
 		}
-		cout << endl;
+		// cout << endl;
 	}
-	getchar();
+	// getchar();
 
 	//// TODO UNCOMMENT //  << "Printing node vec: " << endl;
 	//for (int i = 0; i < nodeVec.size(); i++){
@@ -2588,16 +2588,16 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
     start = nSARP.getTime();
 	nSARP.solve();
     time = (nSARP.getTime() - start)/threads;
-	cout  << "\nSol status: " << nSARP.getStatus() << endl;
+	// cout  << "\nSol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
 
-    cout  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
-    cout  << " Total Time: " << time << endl;
+    // cout  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
+    // cout  << " Total Time: " << time << endl;
 
 	if (sStat->feasible){
 
-        cout  << " LB: " << nSARP.getObjValue() << endl;
-        cout  << " UB: " << nSARP.getBestObjValue() << endl;
+        // cout  << " LB: " << nSARP.getObjValue() << endl;
+        // cout  << " UB: " << nSARP.getBestObjValue() << endl;
         sStat->solprofit = nSARP.getObjValue();
 		sStat->solDual = nSARP.getBestObjValue();
         sStat->time = time;
