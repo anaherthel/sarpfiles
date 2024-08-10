@@ -506,6 +506,37 @@ void fipPassSol(instanceStat *inst, fipStats *fipStat) {
 	iFile.close();
 }
 
+void fipPassSolBundles(instanceStat *inst, fipStats *fipStat) {
+    int fDepot = inst->n + 2*inst->m;
+    int fDummy = inst->n + 2*inst->m + inst->K;
+
+    string filename = "src/Aux/bundleSol/" + inst->InstName + ".txt";
+
+	ifstream iFile(filename);
+
+    double trash;
+    iFile >> fipStat->solprofit;
+
+	int nRoutes;
+    iFile >> nRoutes;
+
+    for (int i = 0; i < nRoutes; i++) {
+        int nElements;
+        iFile >> nElements;
+
+        fipStat->solPass.push_back(vector<int>());
+
+        for (int j = 0; j < nElements; j++) {
+            int newElement;
+            iFile >> newElement;
+
+            fipStat->solPass[i].push_back(newElement);
+        }
+    }
+
+	iFile.close();
+}
+
 // void mfeasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<nodeStat> &nodeVec, double **mdist, fipStats *fipStat){
 //     int auxK;
 
@@ -1100,7 +1131,7 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
             // getchar();
             // cout  << "auxVec: " << endl;
             // for (int i = 0; i < auxVec.size(); i++){
-            //     cout  << auxVec[i].first << " " << auxVec[i].second << endl;
+            //     // cout  << auxVec[i].first << " " << auxVec[i].second << endl;
             // }
 
             while(!auxVec.empty()){
@@ -1317,6 +1348,8 @@ void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem, bool 
     else if (problem->model == "nodefip")
     {
         filename2 = "src/Results/mnodefipresults/" + inst->InstName + ".csv"; 
+    } else if (problem->model == "bundle4") {
+        filename2 = "src/Results/newBundlefip1/" + inst->InstName + ".csv"; 
     }
     
     ofstream oFile2(filename2);
@@ -1330,7 +1363,7 @@ void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem, bool 
     oFile2 << ",";
     if (problem->model == "fip") {
         oFile2 << 0;
-    } else if (problem->model == "nodefip"){
+    } else if (problem->model == "nodefip" || problem->model == "bundle4"){
         oFile2 << sStat->servedParcels;
     }
     oFile2 << ",";
@@ -2062,7 +2095,11 @@ void fipnodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<n
 	feasibleArcs(inst, &nas, problem, nodeVec, mdist);
 
     // TODO UNCOMMENT //  << "aqui 1" << endl;
-    fipPassSol(inst, &fipStat);
+    if (problem->model == "bundle4") {
+        fipPassSolBundles(inst, &fipStat);
+    } else {
+        fipPassSol(inst, &fipStat);
+    }
     // TODO UNCOMMENT //  << "aqui 2" << endl;
 
     mipnodefip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
