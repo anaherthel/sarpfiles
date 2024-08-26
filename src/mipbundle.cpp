@@ -19,6 +19,7 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	int currCluster;
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
+    inst->maxTime = 8;
 
     // if (problem->scen == "1AD"){
     //     setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
@@ -59,7 +60,10 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	}
 
     // Variable start of service time depot
-    IloNumVarArray u(env, inst->K, 0, inst->T);
+
+
+    //IloNumVarArray u(env, inst->K, 0, inst->T);
+    IloNumVarArray u(env, inst->K, 0, 24);
 
     for (int k = 0; k < inst->K; k++){
         sprintf(var, "u(%d)", k);
@@ -69,7 +73,8 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
     // Variable start of service time dummy
 
-    IloNumVarArray uf(env, inst->K, 0, inst->T);
+    //IloNumVarArray uf(env, inst->K, 0, inst->T);
+    IloNumVarArray uf(env, inst->K, 0, 24);
 
     for (int k = 0; k < inst->K; k++){
         sprintf(var, "uf(%d)", k);
@@ -313,30 +318,30 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
     //     }      
     // }
     //Constraints 7 - calculating uk
-        //for (int k = 0; k < inst->K; k++){
-        //    IloExpr exp1(env);
-        //    IloExpr exp2(env);
-        //    currSP = setN + k;
-        //    int currDum = fcDummy + k;
+        for (int k = 0; k < inst->K; k++){
+            IloExpr exp1(env);
+            IloExpr exp2(env);
+            currSP = setN + k;
+            int currDum = fcDummy + k;
 
-        //    for (int a = 0; a < bStat->vArcMinus[currDum][k].size(); a++){
-        //        int u = bStat->vArcMinus[currDum][k][a].first;
-        //        int v = bStat->vArcMinus[currDum][k][a].second;
+            for (int a = 0; a < bStat->vArcMinus[currDum][k].size(); a++){
+                int u = bStat->vArcMinus[currDum][k][a].first;
+                int v = bStat->vArcMinus[currDum][k][a].second;
 
-        //        exp1 += (bStat->bundleEnd[u])*x[u][v][k];
-        //    }
-        //    for (int a = 0; a < bStat->vArcPlus[currSP][k].size(); a++){
-        //        int u = bStat->vArcPlus[currSP][k][a].first;
-        //        int v = bStat->vArcPlus[currSP][k][a].second;
-        //        double trip = (mdist[bStat->firstElement[u]][bStat->firstElement[v]])/inst->vmed;
+                exp1 += (bStat->bundleEnd[u])*x[u][v][k];
+            }
+            for (int a = 0; a < bStat->vArcPlus[currSP][k].size(); a++){
+                int u = bStat->vArcPlus[currSP][k][a].first;
+                int v = bStat->vArcPlus[currSP][k][a].second;
+                double trip = (mdist[bStat->firstElement[u]][bStat->firstElement[v]])/inst->vmed;
 
-        //        exp2 += (bStat->bundleStart[v] - trip)*x[u][v][k];
-        //    }
-        //    sprintf (var, "Constraint7_%d", k);
-        //    IloRange cons = (exp1 - exp2 <= inst->maxTime);
-        //    cons.setName(var);
-        //    model.add(cons);                
-        //}
+                exp2 += (bStat->bundleStart[v] - trip)*x[u][v][k];
+            }
+            sprintf (var, "Constraint7_%d", k);
+            IloRange cons = (exp1 - exp2 <= inst->maxTime);
+            cons.setName(var);
+            model.add(cons);                
+        }
         
     //Constraints 8  - calculating ûk
         // for (int k = 0; k < inst->K; k++){
@@ -369,7 +374,28 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
         //     cons1.setName(var);
         //     model.add(cons1);
         // }
+        
+// //Constraint 8 - A parcel served has to be delivered
 
+	for (int i = 0; i < bStat->parcelBundleVec.size() - inst->m; i++){ //parcelBundleVec is the size of parcels
+		IloExpr exp(env);
+		currParcel = inst->n + i;
+		for (int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
+            int h = bStat->parcelBundleVec[i][j];
+			for (int k = 0; k < inst->K; k++){    
+                for (int a = 0; a < bStat->vArcPlus[h][k].size(); a++){
+                    int u = bStat->vArcPlus[h][k][a].first;
+                    int v = bStat->vArcPlus[h][k][a].second;
+
+					exp += x[u][v][k];
+				}
+			}
+		}
+		sprintf (var, "Constraint8_%d", currParcel);
+		IloRange cons = (exp <= 1);
+		cons.setName(var);
+		model.add(cons);
+	}	
 
  //*******************************
 
@@ -1042,6 +1068,9 @@ void mipbundle2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
 
+    inst->T = 24;
+    inst->maxTime = 8;
+
     // if (problem->scen == "1AD"){
     //     setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
     //     setN = bStat->bundleVec.size() - (2*inst->K);
@@ -1335,30 +1364,30 @@ void mipbundle2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
     //     }      
     // }
     //Constraints 7 - calculating uk
-        //for (int k = 0; k < inst->K; k++){
-        //    IloExpr exp1(env);
-        //    IloExpr exp2(env);
-        //    currSP = setN + k;
-        //    int currDum = fcDummy + k;
+        for (int k = 0; k < inst->K; k++){
+            IloExpr exp1(env);
+            IloExpr exp2(env);
+            currSP = setN + k;
+            int currDum = fcDummy + k;
 
-        //    for (int a = 0; a < bStat->vArcMinus[currDum][k].size(); a++){
-        //        int u = bStat->vArcMinus[currDum][k][a].first;
-        //        int v = bStat->vArcMinus[currDum][k][a].second;
+            for (int a = 0; a < bStat->vArcMinus[currDum][k].size(); a++){
+                int u = bStat->vArcMinus[currDum][k][a].first;
+                int v = bStat->vArcMinus[currDum][k][a].second;
 
-        //        exp1 += (bStat->bundleEnd[u])*x[u][v][k];
-        //    }
-        //    for (int a = 0; a < bStat->vArcPlus[currSP][k].size(); a++){
-        //        int u = bStat->vArcPlus[currSP][k][a].first;
-        //        int v = bStat->vArcPlus[currSP][k][a].second;
-        //        double trip = (mdist[bStat->firstElement[u]][bStat->firstElement[v]])/inst->vmed;
+                exp1 += (bStat->bundleEnd[u])*x[u][v][k];
+            }
+            for (int a = 0; a < bStat->vArcPlus[currSP][k].size(); a++){
+                int u = bStat->vArcPlus[currSP][k][a].first;
+                int v = bStat->vArcPlus[currSP][k][a].second;
+                double trip = (mdist[bStat->firstElement[u]][bStat->firstElement[v]])/inst->vmed;
 
-        //        exp2 += (bStat->bundleStart[v] - trip)*x[u][v][k];
-        //    }
-        //    sprintf (var, "Constraint7_%d", k);
-        //    IloRange cons = (exp1 - exp2 <= inst->maxTime);
-        //    cons.setName(var);
-        //    model.add(cons);                
-        //}
+                exp2 += (bStat->bundleStart[v] - trip)*x[u][v][k];
+            }
+            sprintf (var, "Constraint7_%d", k);
+            IloRange cons = (exp1 - exp2 <= inst->maxTime);
+            cons.setName(var);
+            model.add(cons);                
+        }
         
     //Constraints 8  - calculating ûk
         // for (int k = 0; k < inst->K; k++){
@@ -1500,17 +1529,17 @@ void mipbundle2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
     IloNum start;
     IloNum time;
     start = bSARP.getTime();
-    bSARP.setOut(env.getNullStream());
+    //bSARP.setOut(env.getNullStream());
 	bSARP.solve();
     time = (bSARP.getTime() - start)/threads;
 
-	// cout << "\nSol status: " << bSARP.getStatus() << endl;
+	 cout << "\nSol status: " << bSARP.getStatus() << endl;
 	sStat->feasible = bSARP.isPrimalFeasible();
 
     // cout << "here" << endl;
     // getchar();
     // cout << " Tree_Size: " <<  bSARP.getNnodes() + bSARP.getNnodesLeft() + 1 << endl;
-    // cout << " Total Time: " << time << endl;
+     cout << " Total Time: " << time << endl;
 
 	if(sStat->feasible){
 
@@ -1518,7 +1547,7 @@ void mipbundle2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
         // cout << " UB: " << bSARP.getBestObjValue() << endl;
 
         solStatIni(sStat);
-		// cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
+		 cout << "\nObj Val: " << setprecision(15) << bSARP.getObjValue() << endl;
 
 		sStat->solprofit = bSARP.getObjValue();
         sStat->solDual = bSARP.getBestObjValue();

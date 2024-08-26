@@ -172,6 +172,8 @@ void getInstParam (instanceStat *inst, vector<int> &instParam){
 }
 
 // OBS: DESCRIPTION
+    // fip: fip with single insertion
+    // nodefip: fip with multiple insertions
     // bundle2: execute only bundles without selection
     // bundle3: execute mono insertion bundlefip without selection
     // bundle4: execute multi insertion bundlefip without selection
@@ -228,6 +230,20 @@ void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<node
     // else if (){
 
     // }
+
+//Bundle 7 e 8 por enquanto não fazem nada.
+
+//Bundle 5 é o método de bundle padrão, só que selecionando bundles com base no lucro deles (aqueles dois métodos iniciais)
+
+//Bundle 6 - método de bundle padrão, só que selecionando bundles com base em prioridade ( o terceiro método que a gente tava tentando desenvolver)
+
+//Bundle 3 - bundlefip com uma única inserção
+
+//Bundle 4 - bundlefip com múltiplas inserções
+
+//Bundle2 - método bundle padrão
+
+//Bundle 1 - esse eu não sei, ele já existia quando peguei no código, mas deve ser o método de bundle padrão antigo
 
     else if (problem->model == "math"){
         // h.orderRequests(&inst, nodeVec, distMatrix, &problem);

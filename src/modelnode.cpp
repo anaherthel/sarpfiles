@@ -504,6 +504,37 @@ void fipPassSol(instanceStat *inst, fipStats *fipStat) {
 		sequencePairs[u] = v;
 	}
 	iFile.close();
+    //cout << "pass solution before: " << endl;
+    //for (int i = 0; i < fipStat->solPass.size(); i++) {
+    //    cout << "Route " << i << ": ";
+    //    for (int j = 0; j < fipStat->solPass[i].size(); j++) {
+    //        cout << fipStat->solPass[i][j] << " ";
+    //    }
+    //    cout << endl;
+    //}
+    // Fixing depot numbers in the pass solution
+    for (int i = 0; i < fipStat->solPass.size(); i++) {
+        if(fipStat->solPass[i].size() == 0){
+            fipStat->solPass[i].push_back(inst->n + 2*inst->m + i);
+            fipStat->solPass[i].push_back(inst->n + 2*inst->m + inst->K + i);
+        }
+        else{
+            int begin = 0;
+            int end = fipStat->solPass[i].size() - 1;
+
+            fipStat->solPass[i][begin] = inst->n + 2*inst->m + i;
+            fipStat->solPass[i][end] = inst->n + 2*inst->m + inst->K + i;
+        }
+    }
+    cout << "pass solution after: " << endl;
+    for (int i = 0; i < fipStat->solPass.size(); i++) {
+        cout << "Route " << i << ": ";
+        for (int j = 0; j < fipStat->solPass[i].size(); j++) {
+            cout << fipStat->solPass[i][j] << " ";
+        }
+        cout << endl;
+    }
+
 }
 
 void fipPassSolBundles(instanceStat *inst, fipStats *fipStat) {
@@ -535,6 +566,15 @@ void fipPassSolBundles(instanceStat *inst, fipStats *fipStat) {
     }
 
 	iFile.close();
+
+    cout << "pass solution after: " << endl;
+    for (int i = 0; i < fipStat->solPass.size(); i++) {
+        cout << "Route " << i << ": ";
+        for (int j = 0; j < fipStat->solPass[i].size(); j++) {
+            cout << fipStat->solPass[i][j] << " ";
+        }
+        cout << endl;
+    }
 }
 
 // void mfeasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<nodeStat> &nodeVec, double **mdist, fipStats *fipStat){
@@ -1166,49 +1206,49 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
 
         // cout  << "\nNumber of Vehicles: " << inst->K << endl;
 
-        // cout  << "\nSolution: " << endl;
+         cout  << "\nSolution: " << endl;
         for (int k = 0; k < inst->K; k++){
-            // cout  << "Vehicle " << k << ": ";
+             cout  << "Vehicle " << k << ": ";
             for (int i = 0; i < sStat->solOrder[k].size(); i++){
                 if (i < sStat->solOrder[k].size() - 1){
-                    // cout  << sStat->solOrder[k][i] << " - ";
+                     cout  << sStat->solOrder[k][i] << " - ";
                 }
                 else{
-                    // cout  << sStat->solOrder[k][i];
+                     cout  << sStat->solOrder[k][i];
                 }
             }
-            // cout  << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
+             cout  << " - Total time: " << sStat->solBegin[sStat->solOrder[k][sStat->solOrder[k].size()-2]] - sStat->solBegin[sStat->solOrder[k][0]] << endl;
         }
-        // cout  << endl;
+         cout  << endl;
 
         // disregard if fip
         // cout  << "\nSolution structure: " << endl;
         for (int k = 0; k < inst->K; k++){
-            // cout  << "Vehicle " << k << ": ";
+             cout  << "Vehicle " << k << ": ";
             for (int i = 0; i < sStat->solOrder[k].size(); i++){
                 if (i < sStat->solOrder[k].size() - 1){
                     if (sStat->solOrder[k][i] < inst->n){
-                        // cout  << "d" << " - ";
+                         cout  << "d" << " - ";
                     }
                     else if (sStat->solOrder[k][i] < inst->n + inst->m){
-                        // cout  << "P" << " - ";
+                         cout  << "P" << " - ";
                         sStat->servedParcels++;
                     }
                     else if (sStat->solOrder[k][i] < inst->n + 2*inst->m){
-                        // cout  << "D" << " - ";
+                         cout  << "D" << " - ";
                     }
                     else if (sStat->solOrder[k][i] < inst->n + 2*inst->m + inst->K){
-                        // cout  << "S" << " - ";
+                         cout  << "S" << " - ";
                     }                                      
                 }
                 else{
 
-                    // cout  << "f";
+                     cout  << "f";
                 }
             }
-            // cout  << endl;
+             cout  << endl;
         }
-        // cout  << endl;   
+         cout  << endl;   
         // getchar(); 
     // }
 }
@@ -2037,7 +2077,8 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     
     fipStat.fipstage = 0;
     fippass(inst, nodeVec, mdist, problem, &nas, sStat);
-    // TODO UNCOMMENT //  << "After fip pass" << endl;
+    // TODO UNCOMMENT // 
+    cout << "After fip pass" << endl;
 	if(sStat->feasible){
 		viewSol (inst, mdist, nodeVec, sStat);
 
@@ -2093,8 +2134,8 @@ void fipnodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<n
 
 	initArcs(inst, &nas);
 	feasibleArcs(inst, &nas, problem, nodeVec, mdist);
-
     // TODO UNCOMMENT //  << "aqui 1" << endl;
+
     if (problem->model == "bundle4") {
         fipPassSolBundles(inst, &fipStat);
     } else {

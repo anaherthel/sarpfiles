@@ -55,5 +55,6 @@ void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeSta
 void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat, string model, bool bundleRun);
 void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem);
 void fillConversor(map<tuple<int, int, int>, int> &conversor, int n, int m, int v);
+void bestProfBundles(instanceStat *inst, bundleStat *bStat, clSt *cStat);
 
 #endif
