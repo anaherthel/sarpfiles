@@ -836,7 +836,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<nodeStat> &nodeVec){ //model node
-		cout << "Begin of printing results" << endl;
+		//cout << "Begin of printing results" << endl;
         solStatIni(sStat);
         cout<< "\nObj Val: " << setprecision(15) << sStat->solprofit << endl;
 
@@ -851,13 +851,13 @@ void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<no
                 }
 
                 sStat->costs += (double)inst->costkm*mdist[i][j];
-                cout<< "x(" << i << ", " << j << ", " << k << ")" << endl;
+                //cout<< "x(" << i << ", " << j << ", " << k << ")" << endl;
 
             }
         }
 
         for (int i = 0; i < nodeVec.size(); i++){
-            cout<< "b(" << i << "): " << sStat->solBegin[i] << endl;
+            //cout<< "b(" << i << "): " << sStat->solBegin[i] << endl;
         }
 
         //for (int i = 0; i < nodeVec.size(); i++){
@@ -879,7 +879,7 @@ void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<no
         else{
             inst->min = false;
         }
-		cout << "End of printing results" << endl;
+		//cout << "End of printing results" << endl;
 }
 
 void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probStat* problem, nodeArcsStruct *nas, solStats *sStat){

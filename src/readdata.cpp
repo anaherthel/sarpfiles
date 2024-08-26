@@ -1004,15 +1004,15 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         
-        // TODO UNCOMMENT 
-        cout << "Earlier // Later: " << endl;
+        //// TODO UNCOMMENT 
+        //cout << "Earlier // Later: " << endl;
 
-        for (int i = 0; i < nodeVec.size(); i++){
-        //    // TODO UNCOMMENT // 
-            cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
-        }
-        //// TODO UNCOMMENT // 
-        cout << endl;
+        //for (int i = 0; i < nodeVec.size(); i++){
+        ////    // TODO UNCOMMENT // 
+        //    cout << i << ": {" << nodeVec[i].e << "}-{" << nodeVec[i].l << "}" << endl;
+        //}
+        ////// TODO UNCOMMENT // 
+        //cout << endl;
         //getchar();
 
         //// TODO UNCOMMENT //  << "Service times: " << endl;
@@ -1101,10 +1101,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     //// }
 
     //// TODO UNCOMMENT //  
-    cout << "\nDeltas: " << endl;
+    //cout << "\nDeltas: " << endl;
 
-    for (int i = 0; i < inst->n; i++){
-    //    // TODO UNCOMMENT //  
-        cout << i << ": " << nodeVec[i].delta << endl;
-    }
+    //for (int i = 0; i < inst->n; i++){
+    ////    // TODO UNCOMMENT //  
+    //    cout << i << ": " << nodeVec[i].delta << endl;
+    //}
 }
