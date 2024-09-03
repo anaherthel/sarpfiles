@@ -57,6 +57,7 @@ struct Info{
 };
 
 double CalcDistEuc (double X1, double Y1, double X2, double Y2);
+double CalcDistEuc2 (double X1, double Y1, double X2, double Y2);
 void genPoints (int argc, char** argv, Info *info);
 double fRand(double fMin, double fMax);
 bool compareDist(const NodesStruct &a, const NodesStruct &b);
@@ -71,6 +72,14 @@ int getRandomValue(int min, int max);
 double CalcDistEuc (double X1, double Y1, double X2, double Y2){
     return sqrt ( pow ( X1 - X2, 2 ) + pow ( Y1 - Y2, 2 ) );
 }
+
+double CalcDistEuc2 (double X1, double Y1, double X2, double Y2){
+
+    double a = pow ( X1 - X2, 2 );
+    double b = pow ( Y1 - Y2, 2 );
+    return floor(sqrt(a + b)*10)/10;
+}
+
 
 void genPoints (int argc, char** argv, Info *info){
 
@@ -145,7 +154,8 @@ void genPoints (int argc, char** argv, Info *info){
                             dist[j][k] = 0;
                         }
                         else{
-                            dist[j][k] = CalcDistEuc(info->coordVec[j].first, info->coordVec[j].second, info->coordVec[k].first, info->coordVec[k].second);
+                            //dist[j][k] = CalcDistEuc(info->coordVec[j].first, info->coordVec[j].second, info->coordVec[k].first, info->coordVec[k].second);
+                            dist[j][k] = CalcDistEuc2(info->coordVec[j].first, info->coordVec[j].second, info->coordVec[k].first, info->coordVec[k].second);
                         }
                     }
                 }
@@ -530,7 +540,8 @@ void createDelta(Info *info, vector<CandStruct> &orgNodes)
         p2.first = info->coordVec[orgNodes[j].realInd].first;
         p2.second = info->coordVec[orgNodes[j].realInd].second;
 
-        dist = CalcDistEuc(p1.first, p1.second, p2.first, p2.second);
+        //dist = CalcDistEuc(p1.first, p1.second, p2.first, p2.second);
+        dist = CalcDistEuc2(p1.first, p1.second, p2.first, p2.second);
  
         delta = (double)dist/info->speed;
 
@@ -574,22 +585,26 @@ void createTimesLoad(Info *info, vector<CandStruct> &orgNodes)
 
     for (int i = 0; i < orgNodes.size(); i++){
         if (orgNodes[i].label1 == 3){//depot
-            //info->tsVec[i].first = 0;
-            //info->tsVec[i].second = 1440;
-            info->tsVec[i].first = 540;
-            info->tsVec[i].second = 1140;
+            info->tsVec[i].first = 0;
+            info->tsVec[i].second = 1440;
+            //info->tsVec[i].first = 540;
+            //info->tsVec[i].second = 1140;
             continue;
         }
         else if(orgNodes[i].label1 == 1){//customer
             if (orgNodes[i].label2 == 1){//pickup
                 // tsVec[i].first = 560 + rand() % 480;
                 // tsVec[i].second = tsVec[i].first;
-                //info->tsVec[i].first = 30 + rand() % 1300;
-                info->tsVec[i].first = getRandomValue(560, 1110);
-                //while (info->tsVec[i].first + info->delta[i] > 1440){
-                while (info->tsVec[i].first + info->delta[i] > 1140){  
-                    info->tsVec[i].first = getRandomValue(560, 1110);            
-                    //info->tsVec[i].first = 30 + rand() % 1300;
+                info->tsVec[i].first = 30 + rand() % 1300;
+
+                //info->tsVec[i].first = getRandomValue(560, 1110);
+
+                while (info->tsVec[i].first + info->delta[i] > 1440){
+                //while (info->tsVec[i].first + info->delta[i] > 1140){  
+
+                    //info->tsVec[i].first = getRandomValue(560, 1110);  
+
+                    info->tsVec[i].first = 30 + rand() % 1300;
                     // cout << "Time point for node " << i << ": " << info->tsVec[i].first << endl; 
                     // //getchar();
                 }
@@ -607,10 +622,10 @@ void createTimesLoad(Info *info, vector<CandStruct> &orgNodes)
 
         }
         else if (orgNodes[i].label1 == 2){//parcel
-            //info->tsVec[i].first = 0;
-            //info->tsVec[i].second = 1440;
-            info->tsVec[i].first = 540;
-            info->tsVec[i].second = 1140;
+            info->tsVec[i].first = 0;
+            info->tsVec[i].second = 1440;
+            //info->tsVec[i].first = 540;
+            //info->tsVec[i].second = 1140;
             continue;                          
         }
     }

@@ -25,6 +25,7 @@
 #include "readdata.h"
 #include "modelbundle.h"
 #include "modelbundle2.h"
+#include "modelbundlep.h"
 #include "bundleData.h"
 #include "hbundle.h"
 #include "SarpADS.h"

@@ -59,7 +59,52 @@ struct bundleStat{
 	
 };
 
+struct bundlePStat{//bstat for partial bundles
+	vector<int> bundle;
+	vector< vector<int> > bundleVec;
+	vector<double> bundleTimes;
+	vector<double> bundleProfVec;
+	vector<double> bundleServVec;
+	vector< vector<bool> > bArcs; //values of all arcs
+	vector< pair<int,int> > bArcVec; //the indexes of all arcs
+
+	vector< vector< pair<int,int> > > bArcPlus; //vector of size equal to requests, containing the arcs that start with i.
+	vector< vector< pair<int,int> > > bArcMinus;//vector of size equal to requests, containing the arcs that end with i.
+	vector< vector< vector< pair<int,int> > > > vArcPlus; //arcs leaving i that can be travelled by k. (For each bundle, for each available vehicle, the vector of arcs that can be served by that vehicle, that start on bundle i)
+	vector< vector< vector< pair<int,int> > > > vArcMinus;
+	vector< vector< vector<int> > > arcV; //set of vehicles that can travel arc a
+	vector< vector<int> > parcelBundleVec;
+	vector< vector<int> > parcelBundleVecWithP;
+	vector< vector<int> > parcelBundleVecWithD;
+	vector< vector<int> > passBundleVec;
+	vector<double> bundleStart;
+	vector<double> bundleEnd;
+
+    vector<int> clofbundle;
+	vector<int> vecofPass;
+	vector<bool> eligibleBundleVec;
+	vector< vector<int> > vecofPU;
+	vector< vector<int> > vecofDL;
+	vector< vector<int> > cBundles;
+
+};
+
 struct clSt{
+	int nCluster;
+	vector<int> clusters;
+	vector< vector<int> > clusterVec;
+	vector< vector< pair<int,int> > > cArcPlus;
+	vector< vector< pair<int,int> > > cArcMinus;
+	vector< vector<bool> > cArcs;
+	vector< vector< vector< pair<int,int> > > > vArcPlus;
+	vector< vector< vector< pair<int,int> > > > vArcMinus;
+	vector< vector< vector<int> > > arcV;
+	vector<int> clindex;
+
+    vector< pair<int,int> > cArcVec;
+};
+
+struct clPSt{
 	int nCluster;
 	vector<int> clusters;
 	vector< vector<int> > clusterVec;

@@ -48,4 +48,4 @@ obj/hbundle.o: src/hbundle.cpp src/hbundle.h \
  /opt/ibm/ILOG/CPLEX_Studio2211/cplex/include/ilcplex/iloCPXCALLBACKSOLUTIONSTRATEGYenum.h \
  /opt/ibm/ILOG/CPLEX_Studio2211/cplex/include/ilcplex/ilogoals.h \
  src/bundleData.h src/readdata.h src/SarpADS.h src/modelbundle.h \
- src/mipbundle.h src/modelbundle2.h
+ src/mipbundle.h src/modelbundle2.h src/modelbundlep.h

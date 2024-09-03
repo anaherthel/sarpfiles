@@ -50,6 +50,7 @@ void makeBundles2 (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bS
                 cStat->clusters.push_back(bStat->bundleVec.size()-1);
                 bStat->bundle.clear();
 
+
             }
             cStat->clusterVec.push_back(cStat->clusters);
             cStat->clusters.clear();
@@ -68,9 +69,8 @@ void makeBundles2 (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bS
         }
     // }
 
-
-
 }
+
 
 void bundleProfit2(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat){
     double cost;
@@ -124,6 +124,261 @@ void bundleProfit2(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec
 }
 
 void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat *problem, bundleStat *bStat) {
+    int clusterSize = 1 + 3*inst->m;
+    int nClusters = inst->n;
+    int nBundles = bStat->bundleVec.size();
+
+    int nRemoved = 0;
+    vector<int> RemovedByTime;
+    vector<int> RemovedByCriterion;
+
+    bStat->eligibleBundleVec.clear();
+    bStat->eligibleBundleVec.resize(nBundles);
+
+    inst->T = 24;
+
+    // Removing bundles unfeasible to any route
+    for (int i = 0; i < bStat->bundleVec.size(); i++) {
+        //if (i == 64 || i == 32){
+        //    cout << "bundle: " << i << endl;
+        //    cout << "bundleStart: " << bStat->bundleStart[i] << endl;
+        //    cout << "bundleEnd: " << bStat->bundleEnd[i] << endl;
+        //    cout << "firstElement: " << bStat->firstElement[i] << endl;
+        //    cout << "lastElement: " << bStat->lastElement[i] << endl;
+        //    cout << "bundleVec: ";
+        //    for (int j = 0; j < bStat->bundleVec[i].size(); j++){
+        //        cout << bStat->bundleVec[i][j] << " ";
+        //    }
+        //    cout << endl;
+        //    cout << "eligibleBundleVec: " << bStat->eligibleBundleVec[i] << endl;
+        //    cout << endl;
+        //}
+        int u = bStat->firstElement[i];
+
+        for (int k = 0; k < inst->K; k++) {
+            int sDepot = bStat->firstElement[nBundles - 2*inst->K + k];
+
+            double earliestArrv = bStat->bundleStart[nBundles - 2*inst->K + k] + mdist[sDepot][u]/inst->vmed;
+            double latestEnd = bStat->bundleEnd[i];
+
+            if (earliestArrv <= bStat->bundleStart[i] && bStat->bundleEnd[i] <= inst->T) {
+                bStat->eligibleBundleVec[i] = true;
+            }
+        }
+        //if (i == 64 || i == 32){
+        //    cout << "eligibleBundleVec: " << bStat->eligibleBundleVec[i] << endl;
+        //    getchar();
+        //}
+
+        if (bStat->eligibleBundleVec[i] == false) {
+            RemovedByTime.push_back(i);
+        }
+    }
+
+    // // Remove bundle with negastive profit
+    // if (problem->model != "bundle2") {
+    //     for (int i = 0; i < nClusters; i++) {
+    //         int index = clusterSize*i;
+
+    //         for (int parcelIndex = index; parcelIndex < index + clusterSize; parcelIndex++) {
+    //             bool isEligible = (bStat->bundleProfVec[parcelIndex] >= 0);
+    //             bStat->eligibleBundleVec[parcelIndex] = isEligible & bStat->eligibleBundleVec[parcelIndex];
+
+    //             if (bStat->eligibleBundleVec[parcelIndex] == false) {
+    //                 RemovedByCriterion.push_back(parcelIndex);
+    //             }
+    //         }
+    //     }
+    // }
+
+    // // Remove bundles cheaper than the customer
+    // else if (problem->model != "bundle2") {
+    //     for (int i = 0; i < nClusters; i++) {
+    //         int index = clusterSize*i;
+    //         int customerProfit = bStat->bundleProfVec[index];
+
+    //         for (int parcelIndex = index; parcelIndex < index + clusterSize; parcelIndex++) {
+    //             bool isEligible = (bStat->bundleProfVec[parcelIndex] >= customerProfit);
+    //             bStat->eligibleBundleVec[parcelIndex] = isEligible & bStat->eligibleBundleVec[parcelIndex];
+
+    //             if (bStat->eligibleBundleVec[parcelIndex] == false) {
+    //                 RemovedByCriterion.push_back(parcelIndex);
+    //             }
+    //         }
+    //     }
+    // }
+    
+    // // selecting bundles by priority
+    // else 
+    if (problem->model == "bundle6") {
+        // Para encontrar os bundles associados a um customer, faça o seguinte:
+        // - para n customers e m parcels, os bundles associados ao bundle i < n são 
+        //   indexados de [a -- z], onde 'a = i * (3*m + 1)' e 'z = (i+1)*(3*m + 1) - 1';
+        // - os bundles associados a uma parcel i < m podem ser encontrados em bStat->parcelBundleVec[i];
+
+        // 1 - criar matriz de prioridades
+
+        int cur, prev, count;
+        cur = 0;
+        prev = -1;
+
+        count = 0;
+
+        // while (cur != prev) {
+            vector<bool> priority(bStat->bundleVec.size(), false);
+            // cout << cur << " " << prev << endl;
+            // prev = cur;
+            cur = 0;
+            // cout << "Customer" << endl;
+            // 2 - para cada customer, calcular a média dos profits de todos os seus bundles e marcar como prioritários os bundles acima da média
+            for (int i = 0; i < inst->n; i++) {
+                double media = 0;
+                int qtd = 0;
+
+                for (int a = i * (3*inst->m + 1) + 1; a < (i+1)*(3*inst->m + 1); a++) {
+                    if (bStat->eligibleBundleVec[a])
+                    {
+                        media += bStat->bundleProfVec[a];
+                        qtd++;
+                    }
+                }
+
+                media /= qtd;
+
+                for (int a = i * (3*inst->m + 1) + 1; a < (i+1)*(3*inst->m + 1); a++) {
+                    if (bStat->bundleProfVec[a] >= media && bStat->eligibleBundleVec[a]) {
+                        priority[a] = true;
+                        cur++;
+                    }
+
+                    // if (bStat->eligibleBundleVec[a] && !priority[a])
+                    // {
+                    //     cout << endl;
+                    //     cout << "Removed bundle: " << a << endl;
+                    //     cout << "Type: Customer" << endl;
+                    //     cout << "Profit: " << bStat->bundleProfVec[a] << endl;
+                    //     cout << "Serve: " << bStat->bundleServVec[a] << endl;
+                    //     cout << endl;
+                    // } else if (priority[a]) {
+                    //     cout << endl;
+                    //     cout << "selected bundle: " << a << endl;
+                    //     cout << "Type: Customer" << endl;
+                    //     cout << "Profit: " << bStat->bundleProfVec[a] << endl;
+                    //     cout << "Serve: " << bStat->bundleServVec[a] << endl;
+                    //     cout << endl;
+                    // }
+                }
+            }
+
+            // cout << "Parcel" << endl;
+            // 3 - para cada parcel, calcular a distância média percorrida nos bundles (tirando a distância interna do customer) e marcar como
+            // prioritários os bundles cuja distância percorrida é menor do que a média (por hora usar o tempo de viagem em bStat->bundleServVec
+            // como referência, mas tem que descobrir onde tá armazenada a informação da distância)
+            for (int i = 0; i < inst->m; i++)
+            {
+                double media = 0;
+                int qtd = 0;
+
+                for (int a = 0; a < bStat->parcelBundleVec[i].size(); a++)
+                {
+                    int bundleIdx = bStat->parcelBundleVec[i][a];
+
+                    if (bStat->eligibleBundleVec[ bundleIdx ])
+                    {
+                        int customerIdx = min(
+                            bStat->bundleVec[bundleIdx][0], 
+                            min(bStat->bundleVec[bundleIdx][1], bStat->bundleVec[bundleIdx][2])
+                        );
+
+                        media += bStat->bundleServVec[ bundleIdx ] - nodeVec[customerIdx].delta;
+                        qtd++;
+                    }
+                }
+
+                media /= qtd;
+
+                for (int a = 0; a < bStat->parcelBundleVec[i].size(); a++)
+                {
+                    int bundleIdx = bStat->parcelBundleVec[i][a];
+                    int customerIdx = min(
+                            bStat->bundleVec[bundleIdx][0], 
+                            min(bStat->bundleVec[bundleIdx][1], bStat->bundleVec[bundleIdx][2])
+                        );
+
+                    if (bStat->bundleServVec[ bundleIdx ] - nodeVec[customerIdx].delta <= media && bStat->eligibleBundleVec[ bundleIdx ])
+                    {
+                        priority[ bundleIdx ] = true;
+                        cur++;
+                    }
+        
+                    // if (bStat->eligibleBundleVec[bundleIdx] && bStat->bundleServVec[ bundleIdx ] > media && !priority[bundleIdx])
+                    // {
+                    //     cout << endl;
+                    //     cout << "Removed bundle: " << bundleIdx << endl;
+                    //     cout << "Type: Parcel" << endl;
+                    //     cout << "Profit: " << bStat->bundleProfVec[ bundleIdx ] << endl;
+                    //     cout << "Serve: " << bStat->bundleServVec[ bundleIdx ] - nodeVec[customerIdx].delta << endl;
+                    //     cout << endl;
+                    // } else if (priority[bundleIdx]) {
+                    //     cout << endl;
+                    //     cout << "selected bundle: " << bundleIdx << endl;
+                    //     cout << "Type: Parcel" << endl;
+                    //     cout << "Profit: " << bStat->bundleProfVec[ bundleIdx ] << endl;
+                    //     cout << "Serve: " << bStat->bundleServVec[ bundleIdx ] - nodeVec[customerIdx].delta << endl;
+                    //     cout << endl;
+                    // }
+                }
+            }
+
+            // 4 - remover da eligibilidade os bundles que não sáo prioritários para nenhum dos critérios
+            for (int i = 0; i < bStat->bundleVec.size() - 2*inst->K; i++) {
+                // cout << "1 aqui" << endl;
+
+                // if (bStat->eligibleBundleVec[i])
+                // {
+                //     bStat->eligibleBundleVec[i] = (bStat->eligibleBundleVec[i] & priority[i]);
+                //     if (!bStat->eligibleBundleVec[i])
+                //     {
+                //         cout << endl;
+                //         cout << "Removed bundle: " << i << endl;
+                //         cout << "Profit: " << bStat->bundleProfVec[i] << endl;
+                //         cout << "Serve: " << bStat->bundleServVec[i] << endl;
+                //         cout << endl;
+                //     }
+                // }
+                bStat->eligibleBundleVec[i] = (bStat->eligibleBundleVec[i] & priority[i]);
+            }
+        // }
+
+    }
+
+    for (int i = 0; i < bStat->bundleVec.size(); i++) {
+        if (bStat->eligibleBundleVec[i] == false) {
+            nRemoved++;
+        }
+    }
+
+    // cout << endl;
+    // cout << "total bundles: " << bStat->bundleVec.size() << endl;
+    // cout << "total bundles removed: " << nRemoved << endl;
+
+    // cout << endl;
+    // cout << "Bundles Removed By time horizon:" << endl;
+    // for (int i = 0; i < RemovedByTime.size(); i++) {
+    //     cout << RemovedByTime[i] << " ";
+    // }
+    // cout << endl;
+
+    // cout << endl;
+    // cout << "Bundles Removed By criterion:" << endl;
+    // for (int i = 0; i < RemovedByCriterion.size(); i++) {
+    //     cout << RemovedByCriterion[i] << " ";
+    // }
+    // cout << endl;
+    // getchar();
+}
+
+void selectEligibleBundles2(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat *problem, bundleStat *bStat) {
     int clusterSize = 1 + 3*inst->m;
     int nClusters = inst->n;
     int nBundles = bStat->bundleVec.size();
@@ -546,7 +801,7 @@ void makeSmallerProblem2(instanceStat *inst, vector<nodeStat> &nodeVec, double *
 }
 
 void feasibleBundleArcs2 (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem){
-    cout << "Begin feasibleBundleArcs2" << endl;
+    //cout << "Begin feasibleBundleArcs2" << endl;
     int setN; //last index of bundles before starting points
     int setP; //last index of bundles with only passengers
     int ref;
@@ -561,7 +816,7 @@ void feasibleBundleArcs2 (instanceStat *inst, double **mdist, vector<nodeStat> &
 
     pair<int, int> bFArc;
     int auxK;
-    cout << "1. arc between 64 and 32: " << bStat->bArcs[64][32] << endl;
+    //cout << "1. arc between 64 and 32: " << bStat->bArcs[64][32] << endl;
     int fDummy = bStat->bundleVec.size() - inst->K;
 
     for(int i = 0; i < bStat->bundleVec.size(); i++){
@@ -720,7 +975,7 @@ void feasibleBundleArcs2 (instanceStat *inst, double **mdist, vector<nodeStat> &
     //     cout << endl;
     // }
     // getchar();
-    cout << "End feasibleBundleArcs2" << endl;
+    //cout << "End feasibleBundleArcs2" << endl;
 }
 
 
@@ -2055,171 +2310,55 @@ void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem, st
     oFile2.close();
 }
 
-void bestProfBundles(instanceStat *inst, bundleStat *bStat, clSt *cStat){
 
-    //vector<vector<int> > bestBundlesC; //bestbundles per passenger request
-    //vector<vector<int> > bestBundlesP; //bestbundles per parcel request
+void printBundleInfo(instanceStat *inst, bundleStat *bStat, clSt *cStat){
 
-    vector<vector<pair<int, int> > > bestBundlesC;//bestbundles per passenger request
-    vector<vector<pair<int, int> > > bestBundlesP; //bestbundles per parcel request
-
-    pair<int, int> pr;
-
-    vector<pair<int, int> > auxvector;
-
-    // Sort the vector based on the second element of each pair
-
-
-
-    for (int i = 0; i < inst->n; i++){
-        bestBundlesC.push_back(auxvector);
-    }
-    for (int i = 0; i < inst->m; i++){
-        bestBundlesP.push_back(auxvector);
-    }
+    cout << "\nBundle Vector: [";
 
     for (int i = 0; i < bStat->bundleVec.size(); i++){
+        cout << "(" << i << "): [";
         for (int j = 0; j < bStat->bundleVec[i].size(); j++){
-            pr.first = i;
-            pr.second = bStat->bundleProfVec[i];
-            if (bStat->bundleVec[i][j] < inst->n){
-                bestBundlesC[bStat->bundleVec[i][j]].push_back(pr);
-                continue;
+            cout << bStat->bundleVec[i][j];
+            if (j < bStat->bundleVec[i].size() - 1){
+                cout << ",";
             }
-            else if (bStat->bundleVec[i][j] < inst->n + inst->m){
-                bestBundlesP[bStat->bundleVec[i][j] - inst->n].push_back(pr);
-                continue;
+            else{
+                cout << "] ";
             }
         }
+        cout << endl;
     }
 
-    //cout << "Printing before sorting" << endl;
-    //for(int i = 0; i < bestBundlesC.size(); i++){
-    //    //int bundle = bStat->bundleVec[i];
-    //    for (int j = 0; j < bStat->bundleVec[i].size()-1; j++){
-    //        cout << bStat->bundleVec[i][j] << "-";
-    //    }
-    //    cout << bStat->bundleVec[i][bStat->bundleVec[i].size()-1] << endl;
-    //}
-
-
-
-    //cout << endl;
-    //getchar();
-
-    //// Print the sorted vector
-    //std::sort(bestBundlesC.begin(), bestBundlesC.end(), [](const pair<int, int>& a, const pair<int, int>& b) {
-    //    return a.second > b.second;
-    //});
-
-    //for (const auto& p : bestBundlesC) {
-    //    std::cout << "(" << p.first << ", " << p.second << ")" << std::endl;
-    //}
-
-    //for(int i = 0; i < bestBundlesC.size(); i++){
-    //    int bundle = bStat->bundleVec[i];
-    //    for (int j = 0; j < bStat->bundleVec[i].size(); j++){
-    //        cout << j << "-";
-    //    }
-    //    cout << endl;
-
-    //}
-    //cout << endl;
-
-}
-
-
-void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
-    bundleStat bStat;
-    fipBundleStats fipStat;
-    clSt cStat;
-
-    vector< vector<bParcelStruct> > clsParcel;
-
-    int p = -1; //number of parcel requests to be associated with a passenger request(1A) or the number of best matchings
-    int Q = 5;
-
-    set<string> onlyBundleExec;
-    onlyBundleExec.insert("bundle");
-    onlyBundleExec.insert("bundle2");
-    onlyBundleExec.insert("bundle5");
-    onlyBundleExec.insert("bundle6");
-
-    initVecs2(inst, clsParcel, &bStat, problem);
-
-    makeSmallerProblem2(inst, nodeVec, mdist, p, clsParcel, problem, Q);
-
-    //cout << "Before making bundles" << endl;
-    makeBundles2(inst, nodeVec, &bStat, &cStat, clsParcel, problem);
-    //cout << "After making bundles" << endl;
-
-    //cout << "\nBundle Vector: [";
-
-    //for (int i = 0; i < bStat.bundleVec.size(); i++){
-    //    cout << "(" << i << "): [";
-    //    for (int j = 0; j < bStat.bundleVec[i].size(); j++){
-    //        cout << bStat.bundleVec[i][j];
-    //        if (j < bStat.bundleVec[i].size() - 1){
-    //            cout << ",";
-    //        }
-    //        else{
-    //            cout << "] ";
-    //        }
-    //    }
-    //    cout << endl;
-    //}
-    //getchar();
-    
-    //Uncomment from this line
-    makeParcelBundles2(inst, nodeVec, &bStat, problem);
 
     //cout << "\nParcel Bundles: " << endl;
 
-    //for (int i = 0 ; i < bStat.parcelBundleVec.size(); i++){
+    //for (int i = 0 ; i < bStat->parcelBundleVec.size(); i++){
     //cout << i + inst->n << ": ";
-    //for(int j = 0; j < bStat.parcelBundleVec[i].size(); j++){
-    //    cout << bStat.parcelBundleVec[i][j] << " ";
+    //for(int j = 0; j < bStat->parcelBundleVec[i].size(); j++){
+    //    cout << bStat->parcelBundleVec[i][j] << " ";
     //}
     //cout << endl;
     //}
     //cout << endl;
-    // getchar();
-
-    bundleProfit2(inst, mdist, nodeVec, &bStat);
 
     cout << "\nBundle Profit: " << endl;
-    for (int i = 0; i < bStat.bundleProfVec.size(); i++){
-        cout << i << ": " << setw(3) << std:: right << bStat.bundleProfVec[i] << endl;
+    for (int i = 0; i < bStat->bundleProfVec.size(); i++){
+        cout << i << ": " << setw(3) << std:: right << bStat->bundleProfVec[i] << endl;
     }
     cout << endl;
 
-    //// getchar();
+    // getchar();
 
+    //cout << "\nBundle Service Times: ";
+    //for (int i = 0; i < bStat->bundleServVec.size(); i++){
+    //cout << i  << ": " <<   bStat->bundleServVec[i] << endl;
+    //}
+    //cout << endl;
 
-    makeStartTimes2(inst, mdist, nodeVec, &bStat, problem);
-
-    makeBundleReference2(inst, mdist, nodeVec, &bStat);
-
-
-    cout << "\nBundle Service Times: ";
-    for (int i = 0; i < bStat.bundleServVec.size(); i++){
-    cout << i  << ": " <<   bStat.bundleServVec[i] << endl;
-    }
-    cout << endl;
-
-    //// getchar();
-
-    selectEligibleBundles(inst, mdist, nodeVec, problem, &bStat);
-
-    initArcs2(inst, &bStat, &cStat);
-
-    feasibleBundleArcs2(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
-
-    //For passenger only solutions:
-    // feasibleBundleArcsPass2(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
+    ////// getchar();
 
     //cout<< "\nFeasible arcs between bundles:" << endl;
-    //for (int i = 0; i < bStat.bundleVec.size(); i++){
+    //for (int i = 0; i < bStat->bundleVec.size(); i++){
     //    if (i == 0){
     //        cout << setw(3) << " ";
     //    }
@@ -2227,10 +2366,10 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
     //}
     //cout << endl;
 
-    //for (int i = 0; i < bStat.bundleVec.size(); i++){
+    //for (int i = 0; i < bStat->bundleVec.size(); i++){
     //    cout << setw(3) << std::right << i;
-    //    for (int j = 0; j < bStat.bundleVec.size(); j++){
-    //        cout << setw(3) << std:: right << bStat.bArcs[i][j];
+    //    for (int j = 0; j < bStat->bundleVec.size(); j++){
+    //        cout << setw(3) << std:: right << bStat->bArcs[i][j];
     //    }
     //    cout << endl;
     //}
@@ -2259,64 +2398,110 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
 
     //file.close();
 
-
-    // getchar();
-
-    // cout << "Bundle beginning times: " << endl;
-    // for (int i = 0; i < bStat.bundleStart.size(); i++){
-    //     cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleStart[i];
-    //     cout << endl;
-    // }
-    // // getchar();
+    //cout << "Bundle beginning times: " << endl;
+    //for (int i = 0; i < bStat->bundleStart.size(); i++){
+    //    cout << setw(3) << std::right << i << ": " << std:: right << bStat->bundleStart[i];
+    //    cout << endl;
+    //}
+    //// getchar();
 
 
-    // cout << "Bundle ending times: " << endl;
-    // for (int i = 0; i < bStat.bundleEnd.size(); i++){
-    //     cout << setw(3) << std::right << i << ": " << std:: right << bStat.bundleEnd[i];
-    //     cout << endl;
-    // }
-    // getchar();
+    //cout << "Bundle ending times: " << endl;
+    //for (int i = 0; i < bStat->bundleEnd.size(); i++){
+    //    cout << setw(3) << std::right << i << ": " << std:: right << bStat->bundleEnd[i];
+    //    cout << endl;
+    //}
+    //// getchar();
 
-     for (int i = 0; i < cStat.clusterVec.size(); i++){
-         cout << "\nCluster " << i << ": [";
-         for(int k = 0; k < cStat.clusterVec[i].size(); k++){
-             cout << "(" << cStat.clusterVec[i][k] << ") " << "[";
-             for (int j = 0; j < bStat.bundleVec[cStat.clusterVec[i][k]].size(); j++){
-                 cout << setw(3) << std:: right << bStat.bundleVec[cStat.clusterVec[i][k]][j];
-                 if (j < bStat.bundleVec[cStat.clusterVec[i][k]].size() - 1){
-                     cout << ",";
-                 }
-                 else{
-                     cout << "] ";
-                 }
-             }
-        
-         }
-         cout << "]" << endl;
-     }
-    // getchar();
+    for (int i = 0; i < cStat->clusterVec.size(); i++){
+        cout << "\nCluster " << i << ": [";
+        for(int k = 0; k < cStat->clusterVec[i].size(); k++){
+            cout << "(" << cStat->clusterVec[i][k] << ") " << "[";
+            for (int j = 0; j < bStat->bundleVec[cStat->clusterVec[i][k]].size(); j++){
+                cout << setw(3) << std:: right << bStat->bundleVec[cStat->clusterVec[i][k]][j];
+                if (j < bStat->bundleVec[cStat->clusterVec[i][k]].size() - 1){
+                    cout << ",";
+                }
+                else{
+                    cout << "] ";
+                }
+            }
     
-    feasibleClusterArcs2(inst, nodeVec, &bStat, &cStat, p, problem);
-
-    bestProfBundles(inst, &bStat, &cStat);
+        }
+        cout << "]" << endl;
+    }
+    // getchar();
 
     //cout<< "\nFeasible arcs between clusters:" << endl;
-    //for (int i = 0; i < cStat.clusterVec.size(); i++){
+    //for (int i = 0; i < cStat->clusterVec.size(); i++){
     //    if (i == 0){
     //        cout << setw(3) << " ";
     //    }
     //    cout << setw(3) << std::right << i;
     //}
     //cout << endl;
-    //for (int i = 0; i < cStat.clusterVec.size(); i++){
+    //for (int i = 0; i < cStat->clusterVec.size(); i++){
     //    cout << setw(3) << std::right << i;
-    //    for (int j = 0; j < cStat.clusterVec.size(); j++){
-    //        cout << setw(3) << std:: right << cStat.cArcs[i][j];
+    //    for (int j = 0; j < cStat->clusterVec.size(); j++){
+    //        cout << setw(3) << std:: right << cStat->cArcs[i][j];
     //    }
     //    cout << endl;
     //}
 
     //// getchar();
+}
+
+
+
+
+void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
+    bundleStat bStat;
+    fipBundleStats fipStat;
+    clSt cStat;
+
+    vector< vector<bParcelStruct> > clsParcel;
+
+    int p = -1; //number of parcel requests to be associated with a passenger request(1A) or the number of best matchings
+    int Q = 5;
+
+    set<string> onlyBundleExec;
+    onlyBundleExec.insert("bundle");
+    onlyBundleExec.insert("bundle2");
+    onlyBundleExec.insert("bundle5");
+    onlyBundleExec.insert("bundle6");
+
+    initVecs2(inst, clsParcel, &bStat, problem);
+
+    makeSmallerProblem2(inst, nodeVec, mdist, p, clsParcel, problem, Q);
+
+    //cout << "Before making bundles" << endl;
+    makeBundles2(inst, nodeVec, &bStat, &cStat, clsParcel, problem);
+    //cout << "After making bundles" << endl;
+
+    //Uncomment from this line
+    makeParcelBundles2(inst, nodeVec, &bStat, problem);
+
+    bundleProfit2(inst, mdist, nodeVec, &bStat);
+
+    makeStartTimes2(inst, mdist, nodeVec, &bStat, problem);
+
+    makeBundleReference2(inst, mdist, nodeVec, &bStat);
+
+    selectEligibleBundles(inst, mdist, nodeVec, problem, &bStat);
+
+    initArcs2(inst, &bStat, &cStat);
+
+    feasibleBundleArcs2(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
+
+    //For passenger only solutions:
+    // feasibleBundleArcsPass2(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
+
+    // getchar();
+
+    printBundleInfo(inst, &bStat, &cStat); 
+    
+    feasibleClusterArcs2(inst, nodeVec, &bStat, &cStat, p, problem);
+
 
     /////////////////////////////////////////
 
@@ -2369,41 +2554,6 @@ void bundleMethod2(nodeStat *node, instanceStat *inst, double **mdist, vector<no
         feasibleBundleArcs2next(inst, mdist, nodeVec, &bStat, &cStat, p, problem, &fipStat);
 
         clearBndStats(sStat);
-        //std::ofstream file("bundleArcs.csv");
-
-        //if (!file.is_open()) {
-        //    std::cerr << "Failed to open file for writing.\n";
-        //    return;
-        //}
-        //file << -1 << ",";
-        //for (int i = 0; i < bStat.bundleVec.size(); i++) {
-        //    file << i;
-        //    if (i < bStat.bundleVec.size() - 1) file << ",";
-
-        //}
-        //file << "\n";    
-        //for (int i = 0; i < bStat.bundleVec.size(); i++) {
-        //    file << i << ",";
-        //    for (int j = 0; j < bStat.bundleVec.size(); j++){
-        //        file << bStat.bArcs[i][j];
-        //        if (j < bStat.bundleVec.size() - 1) file << ",";
-        //    }
-        //    file << "\n";
-        //}
-
-        //file.close();
-       
-       
-        // cout << "\nParcel Bundles: " << endl;
-
-        // for (int i = 0 ; i < bStat.parcelBundleVec.size(); i++){
-        // cout << i + inst->n << ": ";
-        // for(int j = 0; j < bStat.parcelBundleVec[i].size(); j++){
-        //     cout << bStat.parcelBundleVec[i][j] << " ";
-        // }
-        // cout << endl;
-        // }
-        // cout << endl;
         
         if (problem->model == "bundle3") {
             fipbundle(inst, nodeVec, mdist, &bStat, &cStat, problem, sStat, &fipStat);

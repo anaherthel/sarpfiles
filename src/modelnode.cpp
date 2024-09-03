@@ -1251,6 +1251,23 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
          cout  << endl;   
         // getchar(); 
     // }
+
+        //Test cost calculation
+    double fullCost = 0;
+    double fullProfit = 0;
+    for (int k = 0; k < inst->K; k++){
+        for (int i = 0; i < sStat->solOrder[k].size()-1; i++){
+
+            int u = sStat->solOrder[k][i];
+            int v = sStat->solOrder[k][i+1];
+
+            fullCost += inst->costkm*mdist[u][v];
+            fullProfit += nodeVec[u].profit;
+        }
+    }
+    cout << "************************************" << endl;
+    cout << "Final solution value: " << fullProfit - fullCost << endl;
+    cout << "************************************" << endl;
 }
 
 void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem, bool hasParcel){
@@ -2100,7 +2117,8 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     fipArcs (inst, &nas, problem, nodeVec, mdist, 2);
 
     // printStructures(&nas);
-    // TODO UNCOMMENT //  << endl << endl << "______PART II_____" << endl << endl;
+    // TODO UNCOMMENT //  
+    cout << endl << endl << "______PART II_____" << endl << endl;
 
     fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
 

@@ -630,17 +630,21 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
 
     for (int k = 0; k < fipStat->fullSol.size(); k++){
         currDepot = 2*inst->n + 2*inst->m + k;
-        // TODO UNCOMMENT //  << "Vehicle: " << currDepot << ": ";
+        // TODO UNCOMMENT // 
+        cout  << "Vehicle: " << currDepot << ": ";
         if(fipStat->fullSol[k].size() < 1){
-            // TODO UNCOMMENT //  << endl;
+            // TODO UNCOMMENT // 
+            cout << endl;
         }
         else{
             for (int j = 0; j < fipStat->fullSol[k].size(); j++){
                 if (j == fipStat->fullSol[k].size() - 1){
-                    // TODO UNCOMMENT //  << fipStat->fullSol[k][j] << endl;
+                    // TODO UNCOMMENT // 
+                    cout << fipStat->fullSol[k][j] << endl;
                 }
                 else{
-                    // TODO UNCOMMENT //  << fipStat->fullSol[k][j] << " - ";
+                    // TODO UNCOMMENT // 
+                    cout << fipStat->fullSol[k][j] << " - ";
                 }
                 if (fipStat->fullSol[k][j] >= 2*inst->n && fipStat->fullSol[k][j] < 2*inst->n+inst->m){
                     parcelCount++;
@@ -777,6 +781,24 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         timeVec.clear();
     }
 
+    //Test cost calculation
+    double fullCost = 0;
+    double fullProfit = 0;
+    for (int k = 0; k < fipStat->fullSol.size(); k++){
+        int currentDepot = 2*inst->n + 2*inst->m + k;
+
+        for (int i = 0; i < fipStat->fullSol[k].size() - 1; i++){
+
+            int u = fipStat->fullSol[k][i];
+            int v = fipStat->fullSol[k][i+1];
+
+            fullCost += inst->costkm*mdist[u][v];
+            fullProfit += nodeVec[u].profit;
+        }
+    }
+    cout << "************************************" << endl;
+    cout << "Final solution value: " << fullProfit - fullCost << endl;
+    cout << "************************************" << endl;
 
     // TODO UNCOMMENT // << "\n\nFull solution with times: " << endl;
 
