@@ -283,10 +283,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             }
 
             for (int i = n; i < V-K; i++){
-                ve[i] = 0;
-                //ve[i] = 540;
-                vl[i] = 1440;
-                //vl[i] = 1140;
+                //ve[i] = 0;
+                ve[i] = 540;
+                //vl[i] = 1440;
+                vl[i] = 1140;
 
             }
 
@@ -294,10 +294,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 vload[i] = 0;
             }
             for (int i = V-K; i < V; i++){
-                ve[i] = 0;
-                //ve[i] = 540;
-                vl[i] = 1440;
-                //vl[i] = 1140;
+                //ve[i] = 0;
+                ve[i] = 540;
+                //vl[i] = 1440;
+                vl[i] = 1140;
 
                 //vl[i] = 720;
             }
@@ -307,22 +307,22 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             //     vl[i] = ve[i] + 10;
             // }
             for (int i = n; i < n + m; i++){//parcel PU
-                ve[i] = 0;
-                //ve[i] = 540;
-                vl[i] = 1440;
-                //vl[i] = 1140;
+                //ve[i] = 0;
+                ve[i] = 540;
+                //vl[i] = 1440;
+                vl[i] = 1140;
             }
             for (int i = 2*n + m; i < 2*n + 2*m; i++){//parcel DL
-                ve[i] = 0;
-                //ve[i] = 540;
-                vl[i] = 1440;
-                //vl[i] = 1140;
+                //ve[i] = 0;
+                ve[i] = 540;
+                //vl[i] = 1440;
+                vl[i] = 1140;
             }
             for (int i =  2*n + 2*m; i <  originalV; i++){//depot
-                ve[i] = 0;
-                //ve[i] = 540;
-                vl[i] = 1440;
-                //vl[i] = 1140;
+                //ve[i] = 0;
+                ve[i] = 540;
+                //vl[i] = 1440;
+                vl[i] = 1140;
                 //vl[i] = 720;
             }
 
@@ -544,11 +544,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->ys = 0;
             node->load = 0;
             node->load2 = 0;
-            node->e = 0;
-            //node->e = 9;
+            //node->e = 0;
+            node->e = 9;
             // node->l = 14*60;
-            node->l = 24;
-            //node->l = 19;
+            //node->l = 24;
+            node->l = 19;
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
@@ -751,8 +751,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         for (int i = n + 2*m; i < vl.size(); i++){
-            vl[i] = 1440;
-            //vl[i] = 1140;
+            //vl[i] = 1440;
+            vl[i] = 1140;
             //vl[i] = 750;
             //vl[i] = 480;
         }
@@ -991,10 +991,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             node->xs = 0;
             node->ys = 0;
             node->load = 0;        
-            node->e = 0;
-            node->l = 24;
-            //node->e = 9;
-            //node->l = 19;           
+            //node->e = 0;
+            //node->l = 24;
+            node->e = 9;
+            node->l = 19;           
             node->xf = 0;
             node->yf = 0;
             node->delta = 0;
@@ -1067,9 +1067,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     // TODO UNCOMMENT //  << "\nTime windows: " << endl;
 
-    for (int i = 0; i < nodeVec.size(); i++){
-        // TODO UNCOMMENT //  << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
-    }
+    //for (int i = 0; i < nodeVec.size(); i++){
+    //    // TODO UNCOMMENT //  
+    //    cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
+    //}
     //getchar();
     // // // TODO UNCOMMENT //  << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
@@ -1081,17 +1082,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     //// getchar();
 
-    ////// TODO UNCOMMENT //  << "Profits: " << endl;
-    ////for (int i = 0; i < nodeVec.size(); i++){
-    ////    // TODO UNCOMMENT //  << i << ": " << nodeVec[i].profit << endl;
-    ////}
+    ////// TODO UNCOMMENT //  
+    //cout << "Profits: " << endl;
+    //for (int i = 0; i < nodeVec.size(); i++){
+    //    cout  << i << ": " << nodeVec[i].profit << endl;
+    //}
 
     //// // getchar();
 
     //// TODO UNCOMMENT //  << "\nEarlier times: " << endl;
 
     //for (int i = 0; i < inst->n; i++){
-    //    // TODO UNCOMMENT //  << i << ": " << nodeVec[i].e << endl;
+    //    // TODO UNCOMMENT 
+    //    cout << i << ": " << nodeVec[i].e << endl;
     //}
 
     //// // TODO UNCOMMENT //  << "\nLoads: " << endl;

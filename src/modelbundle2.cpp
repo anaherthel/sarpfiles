@@ -378,261 +378,6 @@ void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> 
     // getchar();
 }
 
-void selectEligibleBundles2(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat *problem, bundleStat *bStat) {
-    int clusterSize = 1 + 3*inst->m;
-    int nClusters = inst->n;
-    int nBundles = bStat->bundleVec.size();
-
-    int nRemoved = 0;
-    vector<int> RemovedByTime;
-    vector<int> RemovedByCriterion;
-
-    bStat->eligibleBundleVec.clear();
-    bStat->eligibleBundleVec.resize(nBundles);
-
-    inst->T = 24;
-
-    // Removing bundles unfeasible to any route
-    for (int i = 0; i < bStat->bundleVec.size(); i++) {
-        //if (i == 64 || i == 32){
-        //    cout << "bundle: " << i << endl;
-        //    cout << "bundleStart: " << bStat->bundleStart[i] << endl;
-        //    cout << "bundleEnd: " << bStat->bundleEnd[i] << endl;
-        //    cout << "firstElement: " << bStat->firstElement[i] << endl;
-        //    cout << "lastElement: " << bStat->lastElement[i] << endl;
-        //    cout << "bundleVec: ";
-        //    for (int j = 0; j < bStat->bundleVec[i].size(); j++){
-        //        cout << bStat->bundleVec[i][j] << " ";
-        //    }
-        //    cout << endl;
-        //    cout << "eligibleBundleVec: " << bStat->eligibleBundleVec[i] << endl;
-        //    cout << endl;
-        //}
-        int u = bStat->firstElement[i];
-
-        for (int k = 0; k < inst->K; k++) {
-            int sDepot = bStat->firstElement[nBundles - 2*inst->K + k];
-
-            double earliestArrv = bStat->bundleStart[nBundles - 2*inst->K + k] + mdist[sDepot][u]/inst->vmed;
-            double latestEnd = bStat->bundleEnd[i];
-
-            if (earliestArrv <= bStat->bundleStart[i] && bStat->bundleEnd[i] <= inst->T) {
-                bStat->eligibleBundleVec[i] = true;
-            }
-        }
-        //if (i == 64 || i == 32){
-        //    cout << "eligibleBundleVec: " << bStat->eligibleBundleVec[i] << endl;
-        //    getchar();
-        //}
-
-        if (bStat->eligibleBundleVec[i] == false) {
-            RemovedByTime.push_back(i);
-        }
-    }
-
-    // // Remove bundle with negastive profit
-    // if (problem->model != "bundle2") {
-    //     for (int i = 0; i < nClusters; i++) {
-    //         int index = clusterSize*i;
-
-    //         for (int parcelIndex = index; parcelIndex < index + clusterSize; parcelIndex++) {
-    //             bool isEligible = (bStat->bundleProfVec[parcelIndex] >= 0);
-    //             bStat->eligibleBundleVec[parcelIndex] = isEligible & bStat->eligibleBundleVec[parcelIndex];
-
-    //             if (bStat->eligibleBundleVec[parcelIndex] == false) {
-    //                 RemovedByCriterion.push_back(parcelIndex);
-    //             }
-    //         }
-    //     }
-    // }
-
-    // // Remove bundles cheaper than the customer
-    // else if (problem->model != "bundle2") {
-    //     for (int i = 0; i < nClusters; i++) {
-    //         int index = clusterSize*i;
-    //         int customerProfit = bStat->bundleProfVec[index];
-
-    //         for (int parcelIndex = index; parcelIndex < index + clusterSize; parcelIndex++) {
-    //             bool isEligible = (bStat->bundleProfVec[parcelIndex] >= customerProfit);
-    //             bStat->eligibleBundleVec[parcelIndex] = isEligible & bStat->eligibleBundleVec[parcelIndex];
-
-    //             if (bStat->eligibleBundleVec[parcelIndex] == false) {
-    //                 RemovedByCriterion.push_back(parcelIndex);
-    //             }
-    //         }
-    //     }
-    // }
-    
-    // // selecting bundles by priority
-    // else 
-    if (problem->model == "bundle6") {
-        // Para encontrar os bundles associados a um customer, faça o seguinte:
-        // - para n customers e m parcels, os bundles associados ao bundle i < n são 
-        //   indexados de [a -- z], onde 'a = i * (3*m + 1)' e 'z = (i+1)*(3*m + 1) - 1';
-        // - os bundles associados a uma parcel i < m podem ser encontrados em bStat->parcelBundleVec[i];
-
-        // 1 - criar matriz de prioridades
-
-        int cur, prev, count;
-        cur = 0;
-        prev = -1;
-
-        count = 0;
-
-        // while (cur != prev) {
-            vector<bool> priority(bStat->bundleVec.size(), false);
-            // cout << cur << " " << prev << endl;
-            // prev = cur;
-            cur = 0;
-            // cout << "Customer" << endl;
-            // 2 - para cada customer, calcular a média dos profits de todos os seus bundles e marcar como prioritários os bundles acima da média
-            for (int i = 0; i < inst->n; i++) {
-                double media = 0;
-                int qtd = 0;
-
-                for (int a = i * (3*inst->m + 1) + 1; a < (i+1)*(3*inst->m + 1); a++) {
-                    if (bStat->eligibleBundleVec[a])
-                    {
-                        media += bStat->bundleProfVec[a];
-                        qtd++;
-                    }
-                }
-
-                media /= qtd;
-
-                for (int a = i * (3*inst->m + 1) + 1; a < (i+1)*(3*inst->m + 1); a++) {
-                    if (bStat->bundleProfVec[a] >= media && bStat->eligibleBundleVec[a]) {
-                        priority[a] = true;
-                        cur++;
-                    }
-
-                    // if (bStat->eligibleBundleVec[a] && !priority[a])
-                    // {
-                    //     cout << endl;
-                    //     cout << "Removed bundle: " << a << endl;
-                    //     cout << "Type: Customer" << endl;
-                    //     cout << "Profit: " << bStat->bundleProfVec[a] << endl;
-                    //     cout << "Serve: " << bStat->bundleServVec[a] << endl;
-                    //     cout << endl;
-                    // } else if (priority[a]) {
-                    //     cout << endl;
-                    //     cout << "selected bundle: " << a << endl;
-                    //     cout << "Type: Customer" << endl;
-                    //     cout << "Profit: " << bStat->bundleProfVec[a] << endl;
-                    //     cout << "Serve: " << bStat->bundleServVec[a] << endl;
-                    //     cout << endl;
-                    // }
-                }
-            }
-
-            // cout << "Parcel" << endl;
-            // 3 - para cada parcel, calcular a distância média percorrida nos bundles (tirando a distância interna do customer) e marcar como
-            // prioritários os bundles cuja distância percorrida é menor do que a média (por hora usar o tempo de viagem em bStat->bundleServVec
-            // como referência, mas tem que descobrir onde tá armazenada a informação da distância)
-            for (int i = 0; i < inst->m; i++)
-            {
-                double media = 0;
-                int qtd = 0;
-
-                for (int a = 0; a < bStat->parcelBundleVec[i].size(); a++)
-                {
-                    int bundleIdx = bStat->parcelBundleVec[i][a];
-
-                    if (bStat->eligibleBundleVec[ bundleIdx ])
-                    {
-                        int customerIdx = min(
-                            bStat->bundleVec[bundleIdx][0], 
-                            min(bStat->bundleVec[bundleIdx][1], bStat->bundleVec[bundleIdx][2])
-                        );
-
-                        media += bStat->bundleServVec[ bundleIdx ] - nodeVec[customerIdx].delta;
-                        qtd++;
-                    }
-                }
-
-                media /= qtd;
-
-                for (int a = 0; a < bStat->parcelBundleVec[i].size(); a++)
-                {
-                    int bundleIdx = bStat->parcelBundleVec[i][a];
-                    int customerIdx = min(
-                            bStat->bundleVec[bundleIdx][0], 
-                            min(bStat->bundleVec[bundleIdx][1], bStat->bundleVec[bundleIdx][2])
-                        );
-
-                    if (bStat->bundleServVec[ bundleIdx ] - nodeVec[customerIdx].delta <= media && bStat->eligibleBundleVec[ bundleIdx ])
-                    {
-                        priority[ bundleIdx ] = true;
-                        cur++;
-                    }
-        
-                    // if (bStat->eligibleBundleVec[bundleIdx] && bStat->bundleServVec[ bundleIdx ] > media && !priority[bundleIdx])
-                    // {
-                    //     cout << endl;
-                    //     cout << "Removed bundle: " << bundleIdx << endl;
-                    //     cout << "Type: Parcel" << endl;
-                    //     cout << "Profit: " << bStat->bundleProfVec[ bundleIdx ] << endl;
-                    //     cout << "Serve: " << bStat->bundleServVec[ bundleIdx ] - nodeVec[customerIdx].delta << endl;
-                    //     cout << endl;
-                    // } else if (priority[bundleIdx]) {
-                    //     cout << endl;
-                    //     cout << "selected bundle: " << bundleIdx << endl;
-                    //     cout << "Type: Parcel" << endl;
-                    //     cout << "Profit: " << bStat->bundleProfVec[ bundleIdx ] << endl;
-                    //     cout << "Serve: " << bStat->bundleServVec[ bundleIdx ] - nodeVec[customerIdx].delta << endl;
-                    //     cout << endl;
-                    // }
-                }
-            }
-
-            // 4 - remover da eligibilidade os bundles que não sáo prioritários para nenhum dos critérios
-            for (int i = 0; i < bStat->bundleVec.size() - 2*inst->K; i++) {
-                // cout << "1 aqui" << endl;
-
-                // if (bStat->eligibleBundleVec[i])
-                // {
-                //     bStat->eligibleBundleVec[i] = (bStat->eligibleBundleVec[i] & priority[i]);
-                //     if (!bStat->eligibleBundleVec[i])
-                //     {
-                //         cout << endl;
-                //         cout << "Removed bundle: " << i << endl;
-                //         cout << "Profit: " << bStat->bundleProfVec[i] << endl;
-                //         cout << "Serve: " << bStat->bundleServVec[i] << endl;
-                //         cout << endl;
-                //     }
-                // }
-                bStat->eligibleBundleVec[i] = (bStat->eligibleBundleVec[i] & priority[i]);
-            }
-        // }
-
-    }
-
-    for (int i = 0; i < bStat->bundleVec.size(); i++) {
-        if (bStat->eligibleBundleVec[i] == false) {
-            nRemoved++;
-        }
-    }
-
-    // cout << endl;
-    // cout << "total bundles: " << bStat->bundleVec.size() << endl;
-    // cout << "total bundles removed: " << nRemoved << endl;
-
-    // cout << endl;
-    // cout << "Bundles Removed By time horizon:" << endl;
-    // for (int i = 0; i < RemovedByTime.size(); i++) {
-    //     cout << RemovedByTime[i] << " ";
-    // }
-    // cout << endl;
-
-    // cout << endl;
-    // cout << "Bundles Removed By criterion:" << endl;
-    // for (int i = 0; i < RemovedByCriterion.size(); i++) {
-    //     cout << RemovedByCriterion[i] << " ";
-    // }
-    // cout << endl;
-    // getchar();
-}
-
 void initVecs2 (instanceStat *inst, vector< vector<bParcelStruct> > &clsParcel, bundleStat *bStat, probStat * problem){
 
     vector<bParcelStruct> auxbpsvec;
@@ -1981,7 +1726,98 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
         }
 
         iFile.close();
-    } else if (model == "bundle7" || model == "bundle8") {
+    }
+    else if (model == "bundlep2")
+    {
+        string filename = "src/Aux/partbundleSol/" + inst->InstName + ".txt";
+        ifstream iFile(filename);
+
+        if (!iFile.is_open()) {
+            cout << "falha ao abrir " << filename << endl;
+        }
+
+        vector<vector<int>> nodeRoutes;
+        map<tuple<int, int, int>, int> conversor;
+
+        fillConversor(conversor, inst->n, inst->m, inst->K);  // Filling the conversor map
+
+        iFile >> fipStat->solprofit;
+
+        int _size;
+        iFile >> _size;
+
+        for (int i = 0; i < _size; i++) {
+            fipStat->solPass.push_back(vector<int>());
+            nodeRoutes.push_back(vector<int>());
+
+            int nNodes;
+            iFile >> nNodes;
+
+            for (int j = 0; j < nNodes; j++) {
+                int newElement;
+                iFile >> newElement;
+
+                nodeRoutes[i].push_back(newElement);
+            }
+
+            /**** Identifying and adding the variables and its values ****/
+
+            // Looking for the bundles (made by customers alone or with parcels)
+            int lastCustomer    = -1;   // Index of the last customer visited that still does not belong to a bundle
+            int resourceSum = 0;    // Customer "consumes" (-1) the resource, as parcel delivery "provides" (+1)
+
+            int newBundle   = -1;   // Newly made bundle. For readability reasons
+
+
+            for (int j = 0; j < nNodes; j++)
+            {
+                if (nodeRoutes[i][j] >= inst->n + inst->m && nodeRoutes[i][j] < inst->n + 2*inst->m)
+                {
+                    resourceSum += 1;
+                    if (resourceSum == 0)
+                    {
+                        newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j-2], nodeRoutes[i][j-1], nodeRoutes[i][j]) ];
+
+                    }
+                    else // There must be a customer after this delivery. Otherwise the route would be infeasible
+                    {
+                        newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j-1], nodeRoutes[i][j], nodeRoutes[i][j+1]) ];
+                        j++;
+                    }
+                    fipStat->solPass[i].push_back(newBundle);
+
+                    resourceSum = 0;    // Restarting the resource sum
+                }
+                else if (nodeRoutes[i][j] < inst->n)
+                {
+                    if (resourceSum == -1)
+                    {
+                        newBundle  = conversor[ tuple<int, int, int>(lastCustomer, lastCustomer, lastCustomer) ];
+                        fipStat->solPass[i].push_back(newBundle);
+                    }
+
+                    resourceSum = -1;
+                    lastCustomer    = nodeRoutes[i][j];
+                }
+
+                else if (nodeRoutes[i][j] >= inst->n + 2*inst->m)
+                {
+                    if (resourceSum == -1)
+                    {
+                        newBundle  = conversor[ tuple<int, int, int>(nodeRoutes[i][j-1], nodeRoutes[i][j-1], nodeRoutes[i][j-1]) ];
+                        fipStat->solPass[i].push_back(newBundle);
+                    }
+
+                    newBundle   = conversor[ tuple<int, int, int>(nodeRoutes[i][j], nodeRoutes[i][j], nodeRoutes[i][j]) ];
+
+                    fipStat->solPass[i].push_back(newBundle);
+                }
+            }
+        }
+
+        iFile.close();        
+    } 
+    else if (model == "bundle7" || model == "bundle8") {
         
         string filename;
 
@@ -2082,6 +1918,7 @@ void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fip
 
 void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem, string execution) {
     if (execution == "bundle2") {
+
         string filename;
 
         if (problem->model == "bundle2"){ 
@@ -2133,6 +1970,54 @@ void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem, st
 
 
     }
+    if (execution == "bundlep") {
+        string filename;
+
+        if (problem->model == "bundlep"){
+            filename = "src/Aux/partbundleSol/" + inst->InstName + ".txt";
+        }
+
+        // TODO UNCOMMENT //  << filename << endl;
+
+        //ofstream oFile(filename);
+
+        //// oFile << sStat->time << endl;
+        //oFile << sStat->solprofit << endl;
+        //oFile << sStat->solOrder.size() << " " << endl;
+
+        //for (int k = 0; k < sStat->solOrder.size(); k++) {
+        //    oFile << sStat->solOrder[k].size() << " ";
+        //    for (int i = 0; i < sStat->solOrder[k].size(); i++) {
+        //        int u = sStat->solOrder[k][i];
+
+        //        oFile << u << " ";
+        //    }
+        //    oFile << endl;
+        //}
+
+        //oFile.close();
+
+
+        ofstream oFile(filename);
+
+        // oFile << sStat->time << endl;
+        oFile << sStat->solprofit << endl;
+        oFile << sStat->solInNode.size() << " " << endl;
+
+        for (int k = 0; k < sStat->solInNode.size(); k++) {
+            oFile << sStat->solInNode[k].size() << " ";
+            for (int i = 0; i < sStat->solInNode[k].size(); i++) {
+                int u = sStat->solInNode[k][i];
+
+                oFile << u << " ";
+            }
+            oFile << endl;
+        }
+
+        oFile.close();
+
+
+    }    
     // if (execution == "bundle2") {
     //     string filename;
 
@@ -2271,7 +2156,11 @@ void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem, st
         } else if (problem->model == "bundle6") {
             filename2 = "src/Results/bundleRemove2/" + inst->InstName + ".csv"; 
         }
-    } else {
+    } 
+    else if (execution == "bundlep") {
+        filename2 = "src/Results/partbundleResults/" + inst->InstName + ".csv"; 
+    }
+    else {
         if (problem->model == "bundle3"){
         filename2 = "src/Results/bundlefipResults/" + inst->InstName + ".csv"; 
         } else if (problem->model == "bundle4") {

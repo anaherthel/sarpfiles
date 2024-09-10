@@ -34,22 +34,20 @@ using namespace std;
 ////generate bundles and organize them into clusters
 void makeBundlesP (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, vector< vector<bParcelStruct> > &clsParcel, probStat* problem);
 void makeBundlesPartial (instanceStat *inst, vector<nodeStat> &nodeVec, 
-                        bundleStat *bStat, bundlePStat *bPStat, clSt *cStat, clPSt *cPStat,
+                        bundleStat *bStat, clSt *cStat,
                         vector< vector<bParcelStruct> > &clsParcel, 
-                        probStat* problem, vector< vector<int> > &fullsorted);
-void orderBundles(instanceStat *inst, bundleStat *bStat, vector< vector<int> > &fullsorted, clSt *cStat);                        
+                        probStat* problem);
+void orderBundles(instanceStat *inst, bundleStat *bStat, clSt *cStat);                        
 void makeParcelBundlesP(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem);
 void bundleProfitP(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
+void makeStartTimesP (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem); //obtain start and end times of each bundle
+void makeBundleReferenceP (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat); //assign first and last elements of each bundle   
+void selectEligibleBundlesP(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat *problem, bundleStat *bStat);
+void initArcsP (instanceStat *inst, bundleStat *bStat, clSt *cStat);
+void feasibleBundleArcsP (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, vector< vector<int> > &fullsorted, probStat* problem);
 
-////calculate bundles profits (for bundles of size 1 and 2, the profit is the one from the first node)
-//void initVecs2 (instanceStat *inst, vector< vector<bParcelStruct> > &clsParcel, bundleStat *bStat, probStat* problem);
-//void initArcs2 (instanceStat *inst, bundleStat *bStat, clSt *cStat);
-//void feasibleBundleArcs2 (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem);
-//void feasibleClusterArcs2 (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem);
-////obtain start and end times of each bundle 
-//void makeStartTimes2 (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem);
-////obtain first and last elements of each bundle
-//void makeBundleReference2 (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
+void feasibleClusterArcsP (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt cStat, probStat* problem);
+
 //void makeSmallerProblem2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, int p, vector< vector<bParcelStruct> > &clsParcel, probStat* problem, int Q);
 //bool compareCosts2(const bParcelStruct &a, const bParcelStruct &b);
 //void makeParcelSets2 (instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, vector< vector<int> > &parcelSets);

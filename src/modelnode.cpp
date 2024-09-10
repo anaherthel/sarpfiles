@@ -577,6 +577,46 @@ void fipPassSolBundles(instanceStat *inst, fipStats *fipStat) {
     }
 }
 
+void fipPartSolBundles(instanceStat *inst, fipStats *fipStat) {
+    int fDepot = inst->n + 2*inst->m;
+    int fDummy = inst->n + 2*inst->m + inst->K;
+
+    string filename = "src/Aux/partbundleSol/" + inst->InstName + ".txt";
+
+	ifstream iFile(filename);
+
+    double trash;
+    iFile >> fipStat->solprofit;
+
+	int nRoutes;
+    iFile >> nRoutes;
+
+    for (int i = 0; i < nRoutes; i++) {
+        int nElements;
+        iFile >> nElements;
+
+        fipStat->solPass.push_back(vector<int>());
+
+        for (int j = 0; j < nElements; j++) {
+            int newElement;
+            iFile >> newElement;
+
+            fipStat->solPass[i].push_back(newElement);
+        }
+    }
+
+	iFile.close();
+
+    cout << "pass solution after: " << endl;
+    for (int i = 0; i < fipStat->solPass.size(); i++) {
+        cout << "Route " << i << ": ";
+        for (int j = 0; j < fipStat->solPass[i].size(); j++) {
+            cout << fipStat->solPass[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
 // void mfeasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<nodeStat> &nodeVec, double **mdist, fipStats *fipStat){
 //     int auxK;
 
@@ -1267,6 +1307,7 @@ void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, sol
     }
     cout << "************************************" << endl;
     cout << "Final solution value: " << fullProfit - fullCost << endl;
+    sStat->solprofit = fullProfit - fullCost;
     cout << "************************************" << endl;
 }
 
@@ -2095,7 +2136,6 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     fipStat.fipstage = 0;
     fippass(inst, nodeVec, mdist, problem, &nas, sStat);
     // TODO UNCOMMENT // 
-    cout << "After fip pass" << endl;
 	if(sStat->feasible){
 		viewSol (inst, mdist, nodeVec, sStat);
 
@@ -2156,7 +2196,11 @@ void fipnodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<n
 
     if (problem->model == "bundle4") {
         fipPassSolBundles(inst, &fipStat);
-    } else {
+    } 
+    else if (problem->model == "bundlep2"){
+        fipPartSolBundles(inst, &fipStat);
+    }
+    else {
         fipPassSol(inst, &fipStat);
     }
     // TODO UNCOMMENT //  << "aqui 2" << endl;

@@ -32,10 +32,6 @@ using namespace std;
 
 //generate bundles and organize them into clusters
 void makeBundles2 (instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, vector< vector<bParcelStruct> > &clsParcel, probStat* problem);
-void makeBundlesPartial (instanceStat *inst, vector<nodeStat> &nodeVec, 
-                        bundleStat *bStat, bundlePStat *bPStat, clSt *cStat, clPSt *cPStat,
-                        vector< vector<bParcelStruct> > &clsParcel, 
-                        probStat* problem, vector< vector<int> > &fullsorted);
 //calculate bundles profits (for bundles of size 1 and 2, the profit is the one from the first node)
 void bundleProfit2(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
 void initVecs2 (instanceStat *inst, vector< vector<bParcelStruct> > &clsParcel, bundleStat *bStat, probStat* problem);
@@ -58,7 +54,7 @@ void setUpFipBundle(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVe
 void clearArcs(bundleStat *bStat);
 void feasibleBundleArcs2next (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, clSt *cStat, int p, probStat* problem, fipBundleStats *fipStat);
 void fipStructBundle(instanceStat *inst, solStats *sStat, bundleStat *bStat, fipBundleStats *fipStat, string model, bool bundleRun);
-void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem);
+void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem, string execution);
 void fillConversor(map<tuple<int, int, int>, int> &conversor, int n, int m, int v);
 void printBundleInfo(instanceStat *inst, bundleStat *bStat, clSt *cStat);
 void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat *problem, bundleStat *bStat);

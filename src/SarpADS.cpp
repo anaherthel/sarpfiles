@@ -797,7 +797,9 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
         }
     }
     cout << "************************************" << endl;
-    cout << "Final solution value: " << fullProfit - fullCost << endl;
+    cout << "Final solution value merge: " << fullProfit - fullCost << endl;
+    fipStat->solprofit = fullProfit - fullCost;
+    sStat->solprofit = fullProfit - fullCost;
     cout << "************************************" << endl;
 
     // TODO UNCOMMENT // << "\n\nFull solution with times: " << endl;

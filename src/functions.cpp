@@ -197,11 +197,15 @@ void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<node
     else if (problem->model == "bundle2"){
         bundleMethod2(node, inst, mdist, nodeVec, problem, sStat);
         //bundleMethodPartial(node, inst, mdist, nodeVec, problem, sStat);
-
     }
 
     else if (problem->model == "bundlep"){
         bundleMethodPartial(node, inst, mdist, nodeVec, problem, sStat);
+    }
+
+    else if (problem->model == "bundlep2"){
+        // bundleMethod2(node, inst, mdist, nodeVec, problem, sStat);
+        fipnodeMethod(node, inst, mdist, nodeVec, problem, sStat);
     }
 
     else if (problem->model == "bundle3"){
