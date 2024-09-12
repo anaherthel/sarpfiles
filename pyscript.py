@@ -64,17 +64,33 @@ files_csarp = list_files(folder_path)
 
 files_csarp = order_files(files_csarp)
 
-# Example usage
 rootpath = "/home/ana/Documents/PHD/Research/Implementation/sarpfiles/"  # Replace with your input folder path
+
 results1 = "src/Results/newBundlefip2/" #partial bundles (bundlep2)
 results2 = "src/Results/mnodefipresults/" #fip multi
 results3 = "src/Results/fipResults/" #fip single
 results4 = "src/Results/bundleResults/" #bundle2
-results5 = "src/Results/mbundlefipResults/" #bundle4
+results5 = "src/Results/newBundlefip1/" #bundle4
 
-filename = rootpath + results1
+filename = rootpath + results2
 
-output_file = "csarppartialbundlresults.csv"   # Replace with your desired output file path
+#output_file = "csarppartialbundleresults.csv"   # Replace with your desired output file path
+#output_file = "csarpfipsingleresults.csv"   # Replace with your desired output file path
+output_file = "csarpfipmultiresults.csv"   # Replace with your desired output file path
+#output_file = "csarpbundle2results.csv"   # Replace with your desired output file path
+#output_file = "csarpbundle4results.csv"   # Replace with your desired output file path
+
+#output_file = "ghsarppartialbundleresults.csv"   # Replace with your desired output file path
+#output_file = "ghsarpfipsingleresults.csv"   # Replace with your desired output file path
+#output_file = "ghsarpfipmultiresults.csv"   # Replace with your desired output file path
+#output_file = "ghsarpbundle2results.csv"   # Replace with your desired output file path
+#output_file = "ghsarpbundle4results.csv"   # Replace with your desired output file path
+
+#output_file = "sfsarppartialbundleresults.csv"   # Replace with your desired output file path
+#output_file = "sfsarpfipsingleresults.csv"   # Replace with your desired output file path
+#output_file = "sfsarpfipmultiresults.csv"   # Replace with your desired output file path
+#output_file = "sfsarpbundle2results.csv"   # Replace with your desired output file path
+#output_file = "sfsarpbundle4results.csv"   # Replace with your desired output file path
 
 merge_csv_files(filename, output_file, files_csarp)
 

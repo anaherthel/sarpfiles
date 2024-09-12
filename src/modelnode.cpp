@@ -1449,9 +1449,8 @@ void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem, bool 
     } else if (problem->model == "bundle4") {
         filename2 = "src/Results/newBundlefip1/" + inst->InstName + ".csv"; 
     }
-
     else if (problem->model == "bundlep2") {
-        filename2 = "src/Results/newBundlefip2/" + inst->InstName + ".csv"; 
+        filename2 = "src/Results/newBundlefip2/" + inst->InstName + ".csv";
     }
     ofstream oFile2(filename2);
 
@@ -1467,6 +1466,7 @@ void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem, bool 
     } else if (problem->model == "nodefip" || problem->model == "bundle4" || problem->model == "bundlep2") {
         oFile2 << sStat->servedParcels;
     }
+
     oFile2 << ",";
     oFile2 << sStat->tNone;
     oFile2 << ",";
