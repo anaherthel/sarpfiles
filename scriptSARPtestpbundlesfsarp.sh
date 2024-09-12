@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dirInstancias='Instances/sf_data'
+dirInstancias='C3/sf_data'
 output='testNsfsarpbundlep1.txt'
 #runs=10
 
