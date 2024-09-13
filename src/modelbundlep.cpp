@@ -690,7 +690,8 @@ void feasibleBundleArcsP (instanceStat *inst, double **mdist, vector<nodeStat> &
     int setN; //last index of bundles before starting points
     int setP; //last index of bundles with only passengers
     int ref;
-    int bundlelimit = inst->m*0.2 + 1; // '+1' to add the pass only bundle to the list
+    //int bundlelimit = inst->m*0.2 + 1; // '+1' to add the pass only bundle to the list
+    int bundlelimit = inst->n*0.2 + 1; // '+1' to add the pass only bundle to the list
 
     //int bundlelimit = 1;
     // setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
@@ -1220,7 +1221,8 @@ void printBundleInfoP(instanceStat *inst, bundleStat *bStat, clSt *cStat){
     //    cout << "]" << endl;
     //}
 
-    int bundlelimit = inst->m*0.2 + 1;
+    //int bundlelimit = inst->m*0.2 + 1;
+    int bundlelimit = inst->n*0.2 + 1;
 
     cout << "Used bundles: " << endl;
     for (int i = 0; i < cStat->clusterVec.size(); i++){
