@@ -58,9 +58,9 @@ def merge_csv_files(input_folder, output_file, filelist):
     print(f"Data from all CSV files has been merged into {output_file}.")
     
 
-#folder_path = "/home/ana/Documents/PHD/Research/Implementation/sarpfiles/C3/csarp" # folder path
+folder_path = "/home/ana/Documents/PHD/Research/Implementation/sarpfiles/C3/csarp" # folder path
 #folder_path = "/home/ana/Documents/PHD/Research/Implementation/sarpfiles/C3/ghsarp" # folder path
-folder_path = "/home/ana/Documents/PHD/Research/Implementation/sarpfiles/C3/sfsarp" # folder path
+#folder_path = "/home/ana/Documents/PHD/Research/Implementation/sarpfiles/C3/sfsarp" # folder path
 
 
 
@@ -76,9 +76,9 @@ results3 = "src/Results/fipResults/" #fip single
 results4 = "src/Results/bundleResults/" #bundle2
 results5 = "src/Results/newBundlefip1/" #bundle4
 
-filename = rootpath + results4
+filename = rootpath + results1
 
-#output_file = "csarppartialbundleresults.csv"   # Replace with your desired output file path
+output_file = "csarppartialbundleresults.csv"   # Replace with your desired output file path
 #output_file = "csarpfipsingleresults.csv"   # Replace with your desired output file path
 #output_file = "csarpfipmultiresults.csv"   # Replace with your desired output file path
 #output_file = "csarpbundle2results.csv"   # Replace with your desired output file path
@@ -93,7 +93,7 @@ filename = rootpath + results4
 #output_file = "sfsarppartialbundleresults.csv"   # Replace with your desired output file path
 #output_file = "sfsarpfipsingleresults.csv"   # Replace with your desired output file path
 #output_file = "sfsarpfipmultiresults.csv"   # Replace with your desired output file path
-output_file = "sfsarpbundle2results.csv"   # Replace with your desired output file path
+#output_file = "sfsarpbundle2results.csv"   # Replace with your desired output file path
 #output_file = "sfsarpbundle4results.csv"   # Replace with your desired output file path
 
 merge_csv_files(filename, output_file, files_csarp)
