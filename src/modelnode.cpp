@@ -548,6 +548,13 @@ void fipPassSolBundles(instanceStat *inst, fipStats *fipStat) {
     double trash;
     iFile >> fipStat->solprofit;
 
+    double time1;
+    iFile >> time1;
+    fipStat->time = 0;
+    if (time1 > 0) {
+        fipStat->time = time1;
+    }
+
 	int nRoutes;
     iFile >> nRoutes;
 
@@ -587,6 +594,13 @@ void fipPartSolBundles(instanceStat *inst, fipStats *fipStat) {
 
     double trash;
     iFile >> fipStat->solprofit;
+
+    double time1;
+    iFile >> time1;
+    fipStat->time = 0;
+    if (time1 > 0) {
+        fipStat->time = time1;
+    }
 
 	int nRoutes;
     iFile >> nRoutes;
@@ -1382,6 +1396,7 @@ void printSolFile (instanceStat *inst, solStats *sStat, probStat* problem, bool 
         for (auto arcPair : sequencePairs) {
             oFile << arcPair.first << " " << arcPair.second << endl;
         }
+
 
         oFile.close();
     }

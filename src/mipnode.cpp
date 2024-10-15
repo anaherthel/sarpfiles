@@ -24,12 +24,15 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
 
-	if (problem->p2 < 1){ //single parcel setting
-		Q = 1;
-	}
-	else{
-		Q = inst->m;
-	}
+	//if (problem->p2 < 1){ //single parcel setting
+	//	Q = 1;
+	//}
+	//else{
+	//	Q = inst->m;
+	//}
+	
+	//In the moto case
+	Q = 1;
 
 	//// TODO UNCOMMENT //  << "Printing node vec: " << endl;
 	//for (int i = 0; i < nodeVec.size(); i++){
@@ -80,6 +83,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	//Load variable
 
+	cout << "Value of Q: " << Q << endl;
 	IloNumVarArray w(env, nodeVec.size(), 0, Q);
 
 	for (int i = 0; i < nodeVec.size(); i++){
@@ -1684,6 +1688,27 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 			model.add(cons);
 		}
 	}
+
+
+
+	//for(int j = 2*inst->n; j < 2*inst->n+2*inst->m; j++){
+	//	IloExpr exp(env);
+	//	for (int k = 0; k < fipStat->solPass.size(); k++){
+	//		if (fipStat->solPass[k].size() < 3){
+	//			continue;
+	//		}
+	//		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
+	//			int u = fipStat->solPass[k][i];
+	//			exp += x[u][j][k];
+	//		}
+	//	}
+	//	sprintf (var, "Constraint1_%d", j);
+	//	IloRange cons = (exp <= 1);
+	//	cons.setName(var);
+	//	model.add(cons);
+	//}
+
+	
 	//test constraints
 
 	//IloExpr exp(env);
@@ -1921,13 +1946,14 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
 
-	if (problem->model == "fip"){ //single parcel setting
-		Q = 1;
-	}
-	else if (problem->model == "nodefip" || problem->model == "bundle4" || problem->model == "bundlep2"){
-		Q = inst->m;
-	}
+	//if (problem->model == "fip"){ //single parcel setting
+	//	Q = 1;
+	//}
+	//else if (problem->model == "nodefip" || problem->model == "bundle4" || problem->model == "bundlep2"){
+	//	Q = inst->m;
+	//}
 
+	Q = 1;
 	int P = 2*inst->m;
 	// int P = 1;
 
@@ -2441,46 +2467,47 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	
 	//end of new constraints
 
-	//test constraints
-	//// TODO UNCOMMENT //  << "here" << endl;
+	////test constraints
+	////// TODO UNCOMMENT //  << "here" << endl;
 	//IloExpr exp(env);
-	//exp = b[18];
+	////exp = b[];
 
-	//sprintf (var, "Constraint15");
+	////sprintf (var, "Constraint15");
 
-	//IloRange cons = (exp == 24);
-	//cons.setName(var);
-	//model.add(cons);
-	////// TODO UNCOMMENT //  << "A" << endl;
+	////IloRange cons = (exp == 24);
+	////cons.setName(var);
+	////model.add(cons);
+	//////// TODO UNCOMMENT //  << "A" << endl;
 
-	//exp = x[11][4][0];
+	//exp = x[17][9][0];
 
 	//sprintf (var, "Constraint16");
+
+	////// TODO UNCOMMENT //  << "B" << endl;
+	//IloRange cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
+
+	//exp = x[9][15][0];
+
+	//sprintf (var, "Constraint17");
 
 	////// TODO UNCOMMENT //  << "B" << endl;
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[4][18][0];
 
-	////// TODO UNCOMMENT //  << "C" << endl;
-	//sprintf (var, "Constraint17");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-	////// TODO UNCOMMENT //  << "after" << endl;
-	//exp = x[18][10][0];
+	//exp = x[15][8][0];
 
 	//sprintf (var, "Constraint18");
 
+	////// TODO UNCOMMENT //  << "B" << endl;
 	//cons = (exp == 1);
 	//cons.setName(var);
-	//model.add(cons);
+	//model.add(cons);	
 
-	//exp = x[10][3][0];
+	//exp = x[8][0][0];
 
 	//sprintf (var, "Constraint19");
 
@@ -2488,7 +2515,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[3][17][0];
+	//exp = x[0][1][0];
 
 	//sprintf (var, "Constraint20");
 
@@ -2496,7 +2523,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[17][1][0];
+	//exp = x[1][4][0];	
 
 	//sprintf (var, "Constraint21");
 
@@ -2504,98 +2531,47 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[1][0][0];
+	//exp = x[4][14][0];
 
 	//sprintf (var, "Constraint22");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[0][6][0];
+	//exp = x[14][5][0];
 
 	//sprintf (var, "Constraint23");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[6][2][0];
+	//exp = x[5][11][0];
 
 	//sprintf (var, "Constraint24");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
-	//exp = x[2][13][0];
+	//exp = x[11][3][0];
 
 	//sprintf (var, "Constraint25");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
 
-
-
-
-
-	//exp = x[12][2][1];
-
+	//exp = x[3][10][0];	
+	
 	//sprintf (var, "Constraint26");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-		
-	//exp = x[2][18][1];
+
+	//exp = x[10][16][0];
 
 	//sprintf (var, "Constraint27");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[18][0][1];
-
-	//sprintf (var, "Constraint28");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-	//exp = x[0][3][1];
-
-	//sprintf (var, "Constraint29");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-	//exp = x[3][4][1];
-
-	//sprintf (var, "Constraint30");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-	//exp = x[4][16][1];
-
-	//sprintf (var, "Constraint31");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-	//exp = x[16][5][1];
-
-	//sprintf (var, "Constraint32");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
 
     int threads;
 
@@ -2649,6 +2625,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 		cout  << "Obj Value: " << sStat->solprofit << endl;
 		sStat->solDual = nSARP.getBestObjValue();
         sStat->time = time;
+		sStat->time += fipStat->time;
 
 		if (((nSARP.getBestObjValue() - nSARP.getObjValue())/nSARP.getBestObjValue()) * 100 < 0.01) {
 			sStat->status = "Optimal";

@@ -158,7 +158,13 @@ void orderBundles(instanceStat *inst, bundleStat *bStat, clSt *cStat){
 
     //int refnumber = inst->m*3 + 1;
     int refnumber = inst->m*6 + 1;
-
+    
+    int bundlelimit = inst->n*0.2 + 1;
+    if (inst->m < inst->n){
+        int bundlelimit = inst->m*0.2 + 1;
+    }
+    
+    cout << "Bundle limit: " << bundlelimit << endl;
 
     int counter = 0;
     for (int i = 0; i < inst->n; i++){
@@ -204,7 +210,13 @@ void orderBundles(instanceStat *inst, bundleStat *bStat, clSt *cStat){
         //    cout << sortedBundles[j] << " - " << sortedProf[j] << endl;
 
         //}
-        bStat->fullsorted.push_back(bStat->sortedBundles);
+        vector<int> sbaux;
+
+        for(int j = 0; j < bundlelimit + 1; j++){
+            sbaux.push_back(bStat->sortedBundles[j]);
+        }
+        bStat->fullsorted.push_back(sbaux);
+        sbaux.clear();
         bStat->sortedBundles.clear();
         sortedProf.clear();
 
@@ -236,6 +248,260 @@ void orderBundles(instanceStat *inst, bundleStat *bStat, clSt *cStat){
     //    }
     //    cout << endl;
     //}
+}
+
+void orderBundlesP(instanceStat *inst, double **mdist, bundleStat *bStat, clSt *cStat){
+    //based on a bundles profit, order the bundles in decreasing order of profit.
+    vector<double> sortedProf;
+
+    //int refnumber = inst->m*3 + 1;
+    int refnumber = inst->m*6 + 1;
+
+    int bundlelimit = inst->n*0.2 + 1;
+    if (inst->m < inst->n){
+        int bundlelimit = inst->m*0.2 + 1;
+    }
+    
+    cout << "Bundle limit: " << bundlelimit << endl;
+
+    int counter = 0;
+    for (int i = 0; i < inst->n; i++){
+        cout << "Node: " << i << endl;
+        //for(int k = 0; k < cStat->clusterVec[i].size() - 2*inst->K; k++){
+            //bStat->bundleVec[cStat->clusterVec[i][k]];
+            //for (int j = 0; j < bStat->bundleVec[cStat->clusterVec[i][k]].size(); j++){
+            //bStat->bundleVec[cStat->clusterVec[i][k]];
+            vector< pair<double, int> > paired;  // To store pairs
+            vector< pair<double, int> > passPairBef;   // To store pairs of pass only bundles
+            vector< pair<double, int> > passPairAft;   // To store pairs of pass only bundles
+
+            // Pair each value with its corresponding vector
+            for (int j = counter; j < counter + (refnumber); ++j) {
+                paired.push_back(std::make_pair(bStat->bundleProfVec[j], j));
+            }
+
+            for (int j = 0; j < inst->n; j++){
+                int bundleID = j * refnumber;
+                cout << "Bundle: " << bundleID << endl;
+                if (j == i){ //skip bundles with the same single pass as i
+                    cout << "Same passenger bundle" << endl;
+                    continue;
+                }
+
+                int currentPassBundle = (i)*refnumber;
+                double profitPair = bStat->bundleProfVec[currentPassBundle] + bStat->bundleProfVec[bundleID];
+                
+                if (bStat->bundleStart[bundleID] > bStat->bundleEnd[currentPassBundle]){
+                    profitPair -= inst->costkm*mdist[bStat->firstElement[currentPassBundle]][bStat->firstElement[bundleID]];
+                    passPairAft.push_back(std::make_pair(profitPair, bundleID));
+                }
+
+                else if (bStat->bundleStart[bundleID] < bStat->bundleEnd[currentPassBundle]){
+                    profitPair -= inst->costkm*mdist[bStat->firstElement[bundleID]][bStat->firstElement[currentPassBundle]];
+                    passPairBef.push_back(std::make_pair(profitPair, bundleID));
+                }
+
+                else{
+                    continue;
+                }
+                continue;   
+            }
+            // Sort the paired vector based on the double values
+            std::sort(paired.begin(), paired.end(), [](const std::pair<double, int>& a, const std::pair<double, int>& b) {
+                return a.first > b.first;
+            });    
+
+            std::sort(passPairAft.begin(), passPairAft.end(), [](const std::pair<double, int>& a, const std::pair<double, int>& b) {
+                return a.first > b.first;
+            });  
+
+            std::sort(passPairBef.begin(), passPairBef.end(), [](const std::pair<double, int>& a, const std::pair<double, int>& b) {
+                return a.first > b.first;
+            });  
+
+            bStat->sortedBundles.push_back((i)*refnumber);//adding pass only bundle to the sorted bundles
+            sortedProf.push_back(bStat->bundleProfVec[(i)*refnumber]);//adding pass only profit to the sorted profits
+
+            //cout << "Sorted pass after" << endl;
+            //for (int j = 0; j < passPairAft.size(); j++){
+            //    cout << passPairAft[j].first << " - " << passPairAft[j].second << endl;
+            //}
+            
+            //cout << "Sorted pass before" << endl;
+            //for (int j = 0; j < passPairBef.size(); j++){
+            //    cout << passPairBef[j].first << " - " << passPairBef[j].second << endl;
+            //}
+
+            //cout << "Sorted parcel bundles" << endl;
+            //for (int j = 0; j < paired.size(); j++){
+            //    cout << paired[j].first << " - " << paired[j].second << endl;
+            //}
+            //getchar();
+            // Extract the sorted vectors
+            //push back to sorted Bundles, only the best ones that have higher profit than the pass only bundle arcs
+            for (int j = 0; j < paired.size(); ++j) { 
+                int currentBundle = paired[j].second;
+                //cout << "Current bundle: " << currentBundle << endl;
+                if (bStat->firstElement[currentBundle] == i || bStat->bundleVec[currentBundle][1] == i){
+                    int klimiter = 2;
+                    if (passPairAft.size() < 2){
+                        if (passPairAft.size() == 0){
+                            bStat->sortedBundles.push_back(paired[j].second);
+                            sortedProf.push_back(paired[j].first);
+                            continue;
+                        }
+                        else{
+                            klimiter = passPairAft.size();
+                        }
+                    }                    
+                    for(int k = 0; k < klimiter; k++){
+                        if(paired[j].first > passPairAft[k].first){
+                            bStat->sortedBundles.push_back(paired[j].second);
+                            sortedProf.push_back(paired[j].first);
+                            break;
+                        }                                           
+                    }
+                }
+                else if (bStat->lastElement[currentBundle] == i || bStat->bundleVec[currentBundle][1] == i){
+                    int klimiter = 2;
+                    if (passPairBef.size() < 2){
+                        if (passPairAft.size() == 0){
+                            bStat->sortedBundles.push_back(paired[j].second);
+                            sortedProf.push_back(paired[j].first);
+                            continue;
+                        }    
+                        else{
+                            klimiter = passPairBef.size();
+                        }                    
+                    }
+                    for(int k = 0; k < klimiter; k++){
+                        if(paired[j].first > passPairBef[k].first){
+                            bStat->sortedBundles.push_back(paired[j].second);
+                            sortedProf.push_back(paired[j].first);
+                            break;
+                        }                      
+
+                    }
+
+                }        
+
+                //bStat->sortedBundles.push_back(paired[j].second);
+                //sortedProf.push_back(paired[j].first);
+                //bStat->bundleVec[cStat->clusterVec[i][j]] = paired[j].second;
+                //bStat->bundleProfVec[cStat->clusterVec[i][j]] = paired[j].first; // Optional: If you also want to sort the values array
+            }
+            //}
+            paired.clear();
+            passPairAft.clear();
+            passPairBef.clear();
+        //}
+        
+        //cout << "Sorted bundles:" << endl;
+
+        //for (int j = 0; j < sortedBundles.size(); j++){
+        //    cout << sortedBundles[j] << " - " << sortedProf[j] << endl;
+
+        //}
+        //bStat->fullsorted.push_back(bStat->sortedBundles);
+
+        vector<int> sbaux;
+
+        for(int j = 0; j < bundlelimit + 1; j++){
+            sbaux.push_back(bStat->sortedBundles[j]);
+        }
+        bStat->fullsorted.push_back(sbaux);
+        sbaux.clear();
+
+        bStat->sortedBundles.clear();
+        sortedProf.clear();
+
+        //cout << "End of loop" << endl;
+
+        //cout << "\nCluster " << i << ": [";  
+        //for(int k = 0; k < cStat->clusterVec[i].size(); k++){
+        //    cout << "(" << cStat->clusterVec[i][k] << ") " << "[";
+        //    for (int j = 0; j < bStat->bundleVec[cStat->clusterVec[i][k]].size(); j++){
+        //        cout << setw(3) << std:: right << bStat->bundleVec[cStat->clusterVec[i][k]][j];
+        //        if (j < bStat->bundleVec[cStat->clusterVec[i][k]].size() - 1){
+        //            cout << ",";
+        //        }
+        //        else{
+        //            cout << "] ";
+                    
+        //        }
+        //    }
+        //}
+        //cout << "]" << endl;
+        counter = (refnumber)*(i + 1);
+
+    }
+
+   //Print the sorted bundles
+    //for (int i = 0; i < bStat->fullsorted.size(); i++){
+    //    cout << "Cluster " << i << ": ";
+    //    for (int j = 0; j < bStat->fullsorted[i].size(); j++){
+    //        cout << bStat->fullsorted[i][j] << " ";
+    //    }
+    //    cout << endl;
+    //}
+}
+
+void adjustBundles(instanceStat *inst, bundleStat *bStat){
+    vector<int> selectedParcels;
+
+    int customer;
+    int auxvalue;
+    int punumber;
+    int addval;
+
+    for (int i = 0; i < inst->m; i++){
+        selectedParcels.push_back(0);
+    }
+    int refnumber = inst->m*6 + 1;
+
+    int bundlelimit = inst->n*0.2 + 1;
+    if (inst->m < inst->n){
+        int bundlelimit = inst->m*0.2 + 1;
+    }
+    
+    //checking which parcel bundles were selected
+    for (int i = 0; i < bStat->fullsorted.size(); i++){
+        for (int j = 0; j < bundlelimit + 1; j++){
+            int thisBundle = bStat->fullsorted[i][j];
+            if (thisBundle == i*refnumber){
+                continue;
+            }
+            customer = floor(thisBundle/refnumber);
+            auxvalue = thisBundle - (customer*refnumber) - 1 + 6*inst->n;
+            punumber = floor(auxvalue/6);
+            addval = ((double(auxvalue)/double(6)) - punumber)*6;
+            cout << "Passenger number: " << i << endl;
+            cout << "Bundle: " << thisBundle << " - Customer: " << customer << " - Parcel: " << punumber << " - Addval: " << addval << endl;
+
+            if (addval > 1 && addval < 4){
+                selectedParcels[punumber - inst->n] = 1;
+            }
+        }
+    }
+
+    //adding parcel delivery bundles
+    int thisBundle;
+    for (int i = 0; i < selectedParcels.size(); i++){
+        int parcel = i + inst->n;
+
+        if (selectedParcels[i] == 1){
+            for (int j = 0; j < bStat->fullsorted.size(); j++){
+                thisBundle = j*refnumber + (i)*6 + 1 + 4;
+                bStat->fullsorted[j].push_back(thisBundle);
+                thisBundle = j*refnumber + (i)*6 + 1 + 5;
+                bStat->fullsorted[j].push_back(thisBundle);
+
+            }
+        }
+    }
+
+
+
 }
 
 void makeParcelBundlesP(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem){
@@ -696,6 +962,10 @@ void feasibleBundleArcsP (instanceStat *inst, double **mdist, vector<nodeStat> &
         int bundlelimit = inst->m*0.2 + 1;
     }
 
+    cout << "Bundle limit: " << bundlelimit << endl;
+
+    //bundlelimit = 1;
+
 
     //int bundlelimit = 1;
     // setP = bStat->bundleVec.size() - (2*inst->K) - inst->m;
@@ -1103,6 +1373,8 @@ void printBundleInfoP(instanceStat *inst, bundleStat *bStat, clSt *cStat){
     //    cout << endl;
     //}
 
+    //getchar();
+
 
     //cout << "\nParcel Bundles: " << endl;
 
@@ -1207,6 +1479,8 @@ void printBundleInfoP(instanceStat *inst, bundleStat *bStat, clSt *cStat){
     //}
     //// getchar();
 
+    //cout << "Full bundles:" << endl;
+
     //for (int i = 0; i < cStat->clusterVec.size(); i++){
     //    cout << "\nCluster " << i << ": [";
     //    for(int k = 0; k < cStat->clusterVec[i].size(); k++){
@@ -1227,16 +1501,21 @@ void printBundleInfoP(instanceStat *inst, bundleStat *bStat, clSt *cStat){
 
     //int bundlelimit = inst->m*0.2 + 1;
     //int bundlelimit = inst->n*0.2 + 1;
-    int bundlelimit = inst->n*0.2 + 1;
-    if (inst->m < inst->n){
-        int bundlelimit = inst->m*0.2 + 1;
-    }
+    //int bundlelimit = inst->n*0.2 + 1;
+    //if (inst->m < inst->n){
+    //    int bundlelimit = inst->m*0.2 + 1;
+    //}
+
+    ////bundlelimit = bStat->fullsorted[0].size();
+
+    //cout << "Bundle limit: " << bundlelimit << endl;
 
     cout << "Used bundles: " << endl;
     for (int i = 0; i < cStat->clusterVec.size(); i++){
         cout << "\nCluster " << i << ": [";
         if (i < inst->n){
-            for(int k = 0; k < bundlelimit+1; k++){
+            //for(int k = 0; k < bundlelimit+1; k++){
+            for(int k = 0; k < bStat->fullsorted[i].size(); k++){
                 int bundle = bStat->fullsorted[i][k];
                 cout << "(" << bundle << ") " << "[";
                 for (int j = 0; j < bStat->bundleVec[bundle].size(); j++){
@@ -1332,15 +1611,18 @@ void bundleMethodPartial(nodeStat *node, instanceStat *inst, double **mdist, vec
 
     selectEligibleBundlesP(inst, mdist, nodeVec, problem, &bStat);
     
-    orderBundles(inst, &bStat, &cStat);
+    //orderBundles(inst, &bStat, &cStat);
+    orderBundlesP(inst, mdist, &bStat, &cStat);
+
+    adjustBundles(inst, &bStat);
 
     initArcsP(inst, &bStat, &cStat);
 
     //printBundleInfoP(inst, &bStat, &cStat);
 
     feasibleBundleArcsP(inst, mdist, nodeVec, &bStat, &cStat, p, problem);
-    //printBundleInfoP(inst, &bStat, &cStat);
-    //getchar();
+    printBundleInfoP(inst, &bStat, &cStat);
+    
     //clearBndStats(sStat);
     //std::ofstream file("bundleArcs.csv");
 

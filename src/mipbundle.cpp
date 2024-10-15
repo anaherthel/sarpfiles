@@ -1651,7 +1651,6 @@ void mipbundlep(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
     csetN = csetP;
 
 	//Creating variables
-    cout << "Before variables x" << endl;
 
 	IloArray <IloArray <IloBoolVarArray> > x(env, bStat->bundleVec.size());
 
@@ -1674,7 +1673,6 @@ void mipbundlep(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 			}
 		}	
 	}
-    cout << "After variables x" << endl;
 
     // Variable start of service time depot
     //IloNumVarArray u(env, inst->K, 0, inst->T);

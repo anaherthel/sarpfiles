@@ -37,7 +37,10 @@ void makeBundlesPartial (instanceStat *inst, vector<nodeStat> &nodeVec,
                         bundleStat *bStat, clSt *cStat,
                         vector< vector<bParcelStruct> > &clsParcel, 
                         probStat* problem);
-void orderBundles(instanceStat *inst, bundleStat *bStat, clSt *cStat);                        
+void orderBundles(instanceStat *inst, bundleStat *bStat, clSt *cStat);
+void orderBundlesP(instanceStat *inst, double **mdist, bundleStat *bStat, clSt *cStat);
+void adjustBundles(instanceStat *inst, bundleStat *bStat);
+  
 void makeParcelBundlesP(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem);
 void bundleProfitP(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat);
 void makeStartTimesP (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem); //obtain start and end times of each bundle

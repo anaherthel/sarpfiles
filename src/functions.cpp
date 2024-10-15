@@ -194,7 +194,7 @@ void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<node
         bundleMethod(node, inst, mdist, nodeVec, problem, sStat);
     }
 
-    else if (problem->model == "bundle2"){
+    else if (problem->model == "bundle2" || problem->model == "bundle21"){
         bundleMethod2(node, inst, mdist, nodeVec, problem, sStat);
         //bundleMethodPartial(node, inst, mdist, nodeVec, problem, sStat);
     }

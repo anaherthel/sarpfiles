@@ -58,5 +58,6 @@ void printBundleFile (instanceStat *inst, solStats *sStat, probStat* problem, st
 void fillConversor(map<tuple<int, int, int>, int> &conversor, int n, int m, int v);
 void printBundleInfo(instanceStat *inst, bundleStat *bStat, clSt *cStat);
 void selectEligibleBundles(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat *problem, bundleStat *bStat);
+void orderBundles2(instanceStat *inst, double **mdist, bundleStat *bStat, clSt *cStat);
 
 #endif

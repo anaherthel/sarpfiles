@@ -480,6 +480,14 @@ void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat){
         fipStat->solBegin.push_back(sStat->solBegin[i]);
     }
 
+    fipStat->time = 0;
+
+    if(sStat->time > 0){
+        fipStat->time = sStat->time;
+
+    }
+
+
     // for (int i = 0; i < 2*inst->n; i++){
     //     fipStat->fullBegin.push_back(fipStat->solBegin[i]);
     // }
@@ -655,7 +663,7 @@ void mergeFipSol(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, 
 
     fipStat->servedParcels = parcelCount;
     fipStat->solDual = sStat->solDual;
-    fipStat->time = sStat->time;
+    fipStat->time += sStat->time;
 
     for (int k = 0; k < fipStat->fullSol.size(); k++){
         currDepot = 2*inst->n + 2*inst->m + k;
