@@ -1,106 +1,116 @@
-Bundle limit: 2
-Node: 0
-Bundle: 0
-Same passenger bundle
-Bundle: 37
-Bundle: 74
-Bundle: 111
-Bundle: 148
-Node: 1
-Bundle: 0
-Bundle: 37
-Same passenger bundle
-Bundle: 74
-Bundle: 111
-Bundle: 148
-Node: 2
-Bundle: 0
-Bundle: 37
-Bundle: 74
-Same passenger bundle
-Bundle: 111
-Bundle: 148
-Node: 3
-Bundle: 0
-Bundle: 37
-Bundle: 74
-Bundle: 111
-Same passenger bundle
-Bundle: 148
-Node: 4
-Bundle: 0
-Bundle: 37
-Bundle: 74
-Bundle: 111
-Bundle: 148
-Same passenger bundle
-Passenger number: 0
-Bundle: 21 - Customer: 0 - Parcel: 8 - Addval: 2
-Parcel selected: 8
-Passenger number: 0
-Bundle: 22 - Customer: 0 - Parcel: 8 - Addval: 3
-Parcel selected: 8
-Passenger number: 1
-Bundle: 71 - Customer: 1 - Parcel: 10 - Addval: 3
-Parcel selected: 10
-Passenger number: 1
-Bundle: 70 - Customer: 1 - Parcel: 10 - Addval: 2
-Parcel selected: 10
-Passenger number: 2
-Bundle: 108 - Customer: 2 - Parcel: 10 - Addval: 3
-Parcel selected: 10
-Passenger number: 2
-Bundle: 107 - Customer: 2 - Parcel: 10 - Addval: 2
-Parcel selected: 10
-Passenger number: 3
-Bundle: 144 - Customer: 3 - Parcel: 10 - Addval: 2
-Parcel selected: 10
-Passenger number: 3
-Bundle: 145 - Customer: 3 - Parcel: 10 - Addval: 3
-Parcel selected: 10
-Passenger number: 4
-Bundle: 182 - Customer: 4 - Parcel: 10 - Addval: 3
-Parcel selected: 10
-Passenger number: 4
-Bundle: 181 - Customer: 4 - Parcel: 10 - Addval: 2
-Parcel selected: 10
-Size of fullsorted before: 3
-Size of fullsorted after: 5
-Size of fullsorted before: 3
-Size of fullsorted after: 5
-Size of fullsorted before: 3
-Size of fullsorted after: 5
-Size of fullsorted before: 3
-Size of fullsorted after: 5
-Size of fullsorted before: 3
-Size of fullsorted after: 5
-Size of fullsorted before: 5
-Size of fullsorted after: 7
-Size of fullsorted before: 5
-Size of fullsorted after: 7
-Size of fullsorted before: 5
-Size of fullsorted after: 7
-Size of fullsorted before: 5
-Size of fullsorted after: 7
-Size of fullsorted before: 5
-Size of fullsorted after: 7
-Bundle limit: 2
-Used bundles: 
+pass solution after: 
+Route 0: 17 6 1 0 12 4 19 
+Route 1: 18 2 10 16 3 20 
+MIP Node FIP
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 369 rows and 319 columns.
+MIP Presolve added 24 rows and 0 columns.
+MIP Presolve modified 1145 coefficients.
+Reduced MIP has 401 rows, 321 columns, and 1813 nonzeros.
+Reduced MIP has 298 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.85 ticks)
+Found incumbent of value 16.860000 after 0.01 sec. (4.52 ticks)
+Probing fixed 42 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (1.67 ticks)
+Cover probing fixed 6 vars, tightened 28 bounds.
+Tried aggregator 2 times.
+MIP Presolve eliminated 82 rows and 44 columns.
+MIP Presolve added 1 rows and 0 columns.
+MIP Presolve modified 74 coefficients.
+Aggregator did 1 substitutions.
+Reduced MIP has 319 rows, 276 columns, and 1425 nonzeros.
+Reduced MIP has 256 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.11 ticks)
+Probing fixed 1 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (1.19 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 2 rows and 1 columns.
+Reduced MIP has 317 rows, 275 columns, and 1416 nonzeros.
+Reduced MIP has 255 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.91 ticks)
+Probing time = 0.00 sec. (1.13 ticks)
+Clique table members: 939.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.89 ticks)
 
-Cluster 0: [(0) [  0] (21) [  0,  8] (22) [  8,  0] (23) [  0, 14] (24) [ 14,  0] (35) [  0, 16] (36) [ 16,  0] ]
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
-Cluster 1: [(37) [  1] (71) [ 10,  1] (70) [  1, 10] (60) [  1, 14] (61) [ 14,  1] (72) [  1, 16] (73) [ 16,  1] ]
+*     0+    0                           16.8600      293.0180              --- 
+      0     0       41.2965    26       16.8600       41.2965       73  144.94%
+      0     0       37.7990    30       16.8600      Cuts: 22       94  124.19%
+      0     0       35.9437    36       16.8600      Cuts: 20      110  113.19%
+      0     0       35.5303    26       16.8600      Cuts: 19      127  110.74%
+      0     0       35.2690    10       16.8600      Cuts: 15      133  109.19%
+      0     0       35.1770    37       16.8600       Cuts: 8      142  108.64%
+Detecting symmetries...
+      0     0       34.9930    42       16.8600      Cuts: 14      153  107.55%
+      0     0       34.9718    40       16.8600      Cuts: 17      162  107.42%
+      0     0       34.8520    41       16.8600      Cuts: 10      173  106.71%
+      0     0       34.6526    35       16.8600      Cuts: 16      185  105.53%
+      0     0       34.5368    49       16.8600      Cuts: 24      195  104.84%
+      0     0       34.4257    37       16.8600      Cuts: 16      211  104.19%
+      0     0       34.4042    50       16.8600       Cuts: 7      223  104.06%
+      0     0       34.3761    53       16.8600       Cuts: 4      228  103.89%
+      0     0       34.3720    28       16.8600       Cuts: 6      231  103.87%
+      0     0       34.3427    47       16.8600       Cuts: 2      239  103.69%
+      0     0       34.2959    53       16.8600       Cuts: 4      252  103.42%
+      0     0       34.2570    49       16.8600       Cuts: 8      261  103.19%
+      0     0       34.2509    50       16.8600   ZeroHalf: 1      264  103.15%
+      0     0       34.2502    51       16.8600       Cuts: 4      265  103.14%
+*     0+    0                           20.6650       34.2502            65.74%
+      0     0        cutoff             20.6650       34.2502      265   65.74%
+Detecting symmetries...
+      0     2       34.2502    51       20.6650       34.2496      265   65.74%
+Elapsed time = 0.09 sec. (62.40 ticks, tree = 0.01 MB, solutions = 2)
+    934   481    infeasible             20.6650       30.9450     9550   49.75%
+*  1189   399      integral     0       25.2440       30.3766    11538   20.33%
+*  1290   317      integral     0       26.1150       30.0047    12337   14.89%
+*  1390+  278                           26.2070       29.2717            11.69%
 
-Cluster 2: [(74) [  2] (108) [ 10,  2] (107) [  2, 10] (97) [  2, 14] (98) [ 14,  2] (109) [  2, 16] (110) [ 16,  2] ]
+Cover cuts applied:  2
+Implied bound cuts applied:  52
+Mixed integer rounding cuts applied:  4
+Zero-half cuts applied:  18
+Lift and project cuts applied:  1
+Gomory fractional cuts applied:  2
 
-Cluster 3: [(111) [  3] (144) [  3, 10] (145) [ 10,  3] (134) [  3, 14] (135) [ 14,  3] (146) [  3, 16] (147) [ 16,  3] ]
+Root node processing (before b&c):
+  Real time             =    0.09 sec. (62.43 ticks)
+Sequential b&c:
+  Real time             =    0.33 sec. (409.43 ticks)
+                          ------------
+Total (root+branch&cut) =    0.42 sec. (471.85 ticks)
 
-Cluster 4: [(148) [  4] (182) [ 10,  4] (181) [  4, 10] (171) [  4, 14] (172) [ 14,  4] (183) [  4, 16] (184) [ 16,  4] ]
+Sol status: Optimal
+ Total Time: 0.42
+ LB: 26.207
+ UB: 26.207
+Obj Value: 26.207
 
-Cluster 5: [(185) [ 17] ]
+Obj Val: 26.207
 
-Cluster 6: [(186) [ 18] ]
+Solve Time: 2.27
 
-Cluster 7: [(187) [ 19] ]
 
-Cluster 8: [(188) [ 20] ]
+Customer profit: 27.429
+Parcel profit: 59.268
+Costs: 60.49
+Without fixed: 1.222
+
+Solution: 
+Vehicle 0: 17 - 5 - 11 - 6 - 1 - 0 - 12 - 8 - 14 - 4 - 9 - 15 - 19 - Total time: 9.83943089430894
+Vehicle 1: 18 - 7 - 13 - 2 - 10 - 16 - 3 - 20 - Total time: 2.8
+
+Vehicle 0: S - P - D - P - d - d - D - P - D - d - P - D - f
+Vehicle 1: S - P - D - d - P - D - d - f
+
+************************************
+Final solution value: 26.207
+************************************

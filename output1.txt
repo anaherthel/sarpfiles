@@ -1,0 +1,104 @@
+pass solution after: 
+Route 0: 17 8 0 1 4 14 3 19 
+Route 1: 18 2 20 
+MIP Node FIP
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 1 time.
+MIP Presolve eliminated 298 rows and 253 columns.
+MIP Presolve added 14 rows and 0 columns.
+MIP Presolve modified 1094 coefficients.
+Reduced MIP has 459 rows, 387 columns, and 2229 nonzeros.
+Reduced MIP has 364 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (3.08 ticks)
+Found incumbent of value 9.837000 after 0.01 sec. (5.08 ticks)
+Probing fixed 50 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (2.17 ticks)
+Cover probing fixed 4 vars, tightened 32 bounds.
+Tried aggregator 1 time.
+MIP Presolve eliminated 73 rows and 51 columns.
+MIP Presolve modified 85 coefficients.
+Reduced MIP has 386 rows, 336 columns, and 1796 nonzeros.
+Reduced MIP has 314 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.34 ticks)
+Probing time = 0.00 sec. (1.52 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 386 rows, 336 columns, and 1796 nonzeros.
+Reduced MIP has 314 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.17 ticks)
+Probing time = 0.00 sec. (1.50 ticks)
+Clique table members: 1177.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (1.05 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                            9.8370      259.3260              --- 
+      0     0       36.4974    32        9.8370       36.4974       73  271.02%
+      0     0       31.4047    42        9.8370      Cuts: 45      115  219.25%
+      0     0       29.6389    40        9.8370      Cuts: 39      153  201.30%
+      0     0       29.1149    44        9.8370      Cuts: 31      176  195.97%
+      0     0       28.6906    38        9.8370      Cuts: 25      205  191.66%
+      0     0       28.4623    53        9.8370      Cuts: 27      228  189.34%
+Detecting symmetries...
+      0     0       27.9926    53        9.8370      Cuts: 28      252  184.56%
+      0     0       27.5567    37        9.8370      Cuts: 16      271  180.13%
+      0     0       27.5005    44        9.8370      Cuts: 13      282  179.56%
+      0     0       27.2435    52        9.8370      Cuts: 19      300  176.95%
+      0     0       27.0046    56        9.8370      Cuts: 17      317  174.52%
+      0     0       26.8623    58        9.8370      Cuts: 10      332  173.07%
+      0     0       26.8167    57        9.8370      Cuts: 16      343  172.61%
+      0     0       26.7849    59        9.8370       Cuts: 8      354  172.29%
+      0     0       26.7849    59        9.8370       Cuts: 7      358  172.29%
+      0     0       26.7849    59        9.8370    MIRcuts: 1      359  172.29%
+*     0+    0                           21.9840       26.7849            21.84%
+      0     0        cutoff             21.9840       26.7849      359   21.84%
+Detecting symmetries...
+      0     2       26.7849    59       21.9840       26.7800      359   21.82%
+Elapsed time = 0.16 sec. (81.39 ticks, tree = 0.01 MB, solutions = 2)
+*    14     4      integral     0       26.1690       26.5321      619    1.39%
+
+Clique cuts applied:  4
+Implied bound cuts applied:  9
+Mixed integer rounding cuts applied:  5
+Zero-half cuts applied:  22
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.16 sec. (81.40 ticks)
+Sequential b&c:
+  Real time             =    0.01 sec. (9.31 ticks)
+                          ------------
+Total (root+branch&cut) =    0.17 sec. (90.71 ticks)
+
+Sol status: Optimal
+ Total Time: 0.17
+ LB: 26.169
+ UB: 26.169
+Obj Value: 26.169
+
+Obj Val: 26.169
+
+Solve Time: 4.94
+
+
+Customer profit: 25.89
+Parcel profit: 48.395
+Costs: 48.116
+Without fixed: -0.279000000000003
+
+Solution: 
+Vehicle 0: 17 - 9 - 15 - 8 - 0 - 1 - 4 - 14 - 5 - 11 - 3 - 10 - 16 - 19 - Total time: 9.91666666666666
+Vehicle 1: 18 - 6 - 12 - 2 - 7 - 13 - 20 - Total time: 5.71747967479675
+
+Vehicle 0: S - P - D - P - d - d - d - D - P - D - d - P - D - f
+Vehicle 1: S - P - D - d - P - D - f
+
+************************************
+Final solution value: 26.169
+************************************

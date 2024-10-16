@@ -1874,8 +1874,29 @@ void mipbundlep(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 		cons.setName(var);
 		model.add(cons);
 	}	
+	// //Constraint 5 - No parcel can be delivered more than once
 
-	// //Constraint 6 - Flow conservation between clusters(bundles)
+    for (int i = 0; i < bStat->vecofDL.size(); i++){ //parcelBundleVec is the size of parcels
+		IloExpr exp(env);
+		currParcel = inst->n + inst->m + i;
+		for (int j = 0; j < bStat->vecofDL[i].size(); j++){
+            int h = bStat->vecofDL[i][j];
+			for (int k = 0; k < inst->K; k++){    
+                for (int a = 0; a < bStat->vArcPlus[h][k].size(); a++){
+                    int u = bStat->vArcPlus[h][k][a].first;
+                    int v = bStat->vArcPlus[h][k][a].second;
+
+					exp += x[u][v][k];
+				}
+			}
+		}
+		sprintf (var, "Constraint5_%d", currParcel);
+		IloRange cons = (exp <= 1);
+		cons.setName(var);
+		model.add(cons);
+	}	
+
+	// //Constraint 7 - Flow conservation between clusters(bundles)
 
 	for (int i = 0; i < setN; i++){
 		for (int k = 0; k < inst->K; k++){
@@ -1895,12 +1916,76 @@ void mipbundlep(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, b
 				exp2 += x[u][v][k];
 			}
 
-			sprintf (var, "Constraint6_%d_%d", i, k);
+			sprintf (var, "Constraint7_%d_%d", i, k);
 			IloRange cons = (exp1 - exp2 == 0);
 			cons.setName(var);
 			model.add(cons);			
 		}
 	}
+
+    //Constraints 8 - Delivery feasibility constraints
+
+    for (int k = 0; k < inst->K; k++){
+        for (int i = 0; i < bStat->vecofPU.size(); i++){ //parcelBundleVec is the size of parcels
+            IloExpr exp1(env);
+            IloExpr exp2(env);
+            currParcel = inst->n + i;
+            for (int j = 0; j < bStat->vecofPU[i].size(); j++){
+                int h = bStat->vecofPU[i][j];
+                for (int a = 0; a < bStat->vArcPlus[h][k].size(); a++){
+                    int u = bStat->vArcPlus[h][k][a].first;
+                    int v = bStat->vArcPlus[h][k][a].second;
+
+                    exp1 += x[u][v][k];
+                }
+            }
+            for (int j = 0; j < bStat->vecofDL[i].size(); j++){
+                int h = bStat->vecofDL[i][j];
+                for (int a = 0; a < bStat->vArcPlus[h][k].size(); a++){
+                    int u = bStat->vArcPlus[h][k][a].first;
+                    int v = bStat->vArcPlus[h][k][a].second;
+
+                    exp2 += x[u][v][k];
+                }
+            }
+            sprintf (var, "Constraint8_%d_%d", currParcel, k);
+            IloRange cons = (exp1 - exp2 == 0);
+            cons.setName(var);
+            model.add(cons);
+        }
+    }
+
+    ////Constraints 9 - Precedence constraints
+    for (int k = 0; k < inst->K; k++){
+        for (int i = 0; i < bStat->vecofPU.size(); i++){ //parcelBundleVec is the size of parcels
+            IloExpr exp1(env);
+            IloExpr exp2(env);
+            currParcel = inst->n + i;
+            for (int j = 0; j < bStat->vecofPU[i].size(); j++){
+                int h = bStat->vecofPU[i][j];
+                for (int a = 0; a < bStat->vArcPlus[h][k].size(); a++){
+                    int u = bStat->vArcPlus[h][k][a].first;
+                    int v = bStat->vArcPlus[h][k][a].second;
+
+                    exp1 += bStat->bundleStart[h]*x[u][v][k];
+                }
+            }
+            for (int j = 0; j < bStat->vecofDL[i].size(); j++){
+                int h = bStat->vecofDL[i][j];
+                for (int a = 0; a < bStat->vArcPlus[h][k].size(); a++){
+                    int u = bStat->vArcPlus[h][k][a].first;
+                    int v = bStat->vArcPlus[h][k][a].second;
+
+                    exp2 += bStat->bundleStart[h]*x[u][v][k];
+                }
+            }
+            sprintf (var, "Constraint9_%d_%d", currParcel, k);
+            IloRange cons = (exp1 - exp2 <= 0);
+            cons.setName(var);
+            model.add(cons);
+        }
+    }
+
 
 //    //Constraints 7 - maximum driving time
 

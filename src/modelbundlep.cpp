@@ -261,9 +261,9 @@ void orderBundlesP(instanceStat *inst, double **mdist, bundleStat *bStat, clSt *
     if (inst->m < inst->n){
         int bundlelimit = inst->m*0.2 + 1;
     }
-    
-    cout << "Bundle limit: " << bundlelimit << endl;
 
+    bundlelimit = 3;
+    
     int counter = 0;
     for (int i = 0; i < inst->n; i++){
         cout << "Node: " << i << endl;
@@ -282,9 +282,7 @@ void orderBundlesP(instanceStat *inst, double **mdist, bundleStat *bStat, clSt *
 
             for (int j = 0; j < inst->n; j++){
                 int bundleID = j * refnumber;
-                cout << "Bundle: " << bundleID << endl;
                 if (j == i){ //skip bundles with the same single pass as i
-                    cout << "Same passenger bundle" << endl;
                     continue;
                 }
 
@@ -406,7 +404,8 @@ void orderBundlesP(instanceStat *inst, double **mdist, bundleStat *bStat, clSt *
 
         vector<int> sbaux;
 
-        for(int j = 0; j < bundlelimit + 1; j++){
+        //for(int j = 0; j < bundlelimit + 1; j++){
+        for(int j = 0; j < bStat->sortedBundles.size(); j++){   
             sbaux.push_back(bStat->sortedBundles[j]);
         }
         bStat->fullsorted.push_back(sbaux);
@@ -448,6 +447,7 @@ void orderBundlesP(instanceStat *inst, double **mdist, bundleStat *bStat, clSt *
 
 void adjustBundles(instanceStat *inst, bundleStat *bStat){
     vector<int> selectedParcels;
+    vector<int> auxVec;
 
     int customer;
     int auxvalue;
@@ -456,6 +456,8 @@ void adjustBundles(instanceStat *inst, bundleStat *bStat){
 
     for (int i = 0; i < inst->m; i++){
         selectedParcels.push_back(0);
+        bStat->vecofDL.push_back(auxVec);
+        bStat->vecofPU.push_back(auxVec);
     }
     int refnumber = inst->m*6 + 1;
 
@@ -466,7 +468,8 @@ void adjustBundles(instanceStat *inst, bundleStat *bStat){
     
     //checking which parcel bundles were selected
     for (int i = 0; i < bStat->fullsorted.size(); i++){
-        for (int j = 0; j < bundlelimit + 1; j++){
+        //for (int j = 0; j < bundlelimit + 1; j++){
+        for (int j = 0; j < bStat->fullsorted[i].size(); j++){
             int thisBundle = bStat->fullsorted[i][j];
             if (thisBundle == i*refnumber){
                 continue;
@@ -475,9 +478,7 @@ void adjustBundles(instanceStat *inst, bundleStat *bStat){
             auxvalue = thisBundle - (customer*refnumber) - 1 + 6*inst->n;
             punumber = floor(auxvalue/6);
             addval = ((double(auxvalue)/double(6)) - punumber)*6;
-            cout << "Passenger number: " << i << endl;
-            cout << "Bundle: " << thisBundle << " - Customer: " << customer << " - Parcel: " << punumber << " - Addval: " << addval << endl;
-
+            bStat->vecofPU[punumber-inst->n].push_back(thisBundle);
             if (addval > 1 && addval < 4){
                 selectedParcels[punumber - inst->n] = 1;
             }
@@ -493,9 +494,11 @@ void adjustBundles(instanceStat *inst, bundleStat *bStat){
             for (int j = 0; j < bStat->fullsorted.size(); j++){
                 thisBundle = j*refnumber + (i)*6 + 1 + 4;
                 bStat->fullsorted[j].push_back(thisBundle);
+                bStat->vecofDL[i].push_back(thisBundle);
+
                 thisBundle = j*refnumber + (i)*6 + 1 + 5;
                 bStat->fullsorted[j].push_back(thisBundle);
-
+                bStat->vecofDL[i].push_back(thisBundle);
             }
         }
     }
@@ -957,12 +960,12 @@ void feasibleBundleArcsP (instanceStat *inst, double **mdist, vector<nodeStat> &
     int setP; //last index of bundles with only passengers
     int ref;
     //int bundlelimit = inst->m*0.2 + 1; // '+1' to add the pass only bundle to the list
-    int bundlelimit = inst->n*0.2 + 1;
-    if (inst->m < inst->n){
-        int bundlelimit = inst->m*0.2 + 1;
-    }
+    //int bundlelimit = inst->n*0.2 + 1;
+    //if (inst->m < inst->n){
+    //    int bundlelimit = inst->m*0.2 + 1;
+    //}
 
-    cout << "Bundle limit: " << bundlelimit << endl;
+    //cout << "Bundle limit: " << bundlelimit << endl;
 
     //bundlelimit = 1;
 
@@ -1054,7 +1057,9 @@ void feasibleBundleArcsP (instanceStat *inst, double **mdist, vector<nodeStat> &
     //Uncomment this if partial bundle with no restriction
 
     for (int i = 0; i < bStat->fullsorted.size(); i++){
-        for (int j = 0; j < bundlelimit + 1; j++){
+        //for (int j = 0; j < bundlelimit + 1; j++){
+        for (int j = 0; j < bStat->fullsorted[i].size(); j++){
+
             bStat->sortedBundles.push_back(bStat->fullsorted[i][j]);
         }
     }
@@ -1547,7 +1552,24 @@ void printBundleInfoP(instanceStat *inst, bundleStat *bStat, clSt *cStat){
         cout << "]" << endl;
     }
 
-    // getchar();
+    //cout << "vector of selected PU" << endl;
+    //for (int i = 0; i < bStat->vecofPU.size(); i++){
+    //    for (int j = 0; j < bStat->vecofPU[i].size(); j++){
+    //        cout << bStat->vecofPU[i][j] << " ";
+    //    }
+    //    cout << endl;
+    //}
+    //cout << endl;
+
+    //cout << "vector of selected DL" << endl;
+    //for (int i = 0; i < bStat->vecofDL.size(); i++){
+    //    for (int j = 0; j < bStat->vecofDL[i].size(); j++){
+    //        cout << bStat->vecofDL[i][j] << " ";
+    //    }
+    //    cout << endl;
+    //}
+    //cout << endl;
+
 
     //cout<< "\nFeasible arcs between clusters:" << endl;
     //for (int i = 0; i < cStat->clusterVec.size(); i++){

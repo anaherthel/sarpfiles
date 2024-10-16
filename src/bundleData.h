@@ -55,6 +55,8 @@ struct bundleStat{
 	vector< vector<int> > vecofPU;
 	vector< vector<int> > vecofDL;
 	vector< vector<int> > cBundles;
+	vector< vector<int> > s2parcelPU;
+	vector< vector<int> > s2parcelDL;
 
 	vector<int> sortedBundles;
 	vector<vector <int> > fullsorted;
