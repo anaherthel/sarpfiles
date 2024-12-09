@@ -83,7 +83,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
             double ttij = mdist[i][j]/inst->vmed;
             ttij = std::round(ttij * multiplier) / multiplier;
 
-            if (nodeVec[i].e + ttij < nodeVec[j].l){
+            if (nodeVec[i].e + ttij <= nodeVec[j].l){
                 nas->arcs[i][j] = true;
                 nas->fArc.first = i;
                 nas->fArc.second = j;
@@ -96,10 +96,31 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                 nas->arcV[i][j].push_back(auxK);
             }         
         }
+        //cout << "True parcel arcs for parcels: " << endl;
+        //for (int j = inst->n; j < inst->n + inst->m; j++){ //j is a parcel pu node
+        //    double ttij = mdist[i][j]/inst->vmed;
+        //    ttij = std::round(ttij * multiplier) / multiplier;
+        //    if (ttij < inst->T){
+        //        cout << "i: " << i << " j: " << j << " ttij: " << ttij << endl;
+        //        nas->arcs[i][j] = true;
+        //        nas->fArc.first = i;
+        //        nas->fArc.second = j;
+        //        nas->arcMinus[j].push_back(nas->fArc);
+        //        nas->arcPlus[i].push_back(nas->fArc);
+        //        nas->allArcs.push_back(nas->fArc);
+
+        //        nas->arcnf.push_back(nas->fArc);
+        //        auxK = i - fDepot;
+        //        nas->arcV[i][j].push_back(auxK);
+        //    }
+        //}
+        //For tighter TW:
+        cout << "True parcel arcs for parcels: " << endl;
         for (int j = inst->n; j < inst->n + inst->m; j++){ //j is a parcel pu node
             double ttij = mdist[i][j]/inst->vmed;
             ttij = std::round(ttij * multiplier) / multiplier;
-            if (ttij < inst->T){
+            if (nodeVec[i].e + ttij <= nodeVec[j].l){
+                cout << "i: " << i << " j: " << j << " ttij: " << ttij << endl;
                 nas->arcs[i][j] = true;
                 nas->fArc.first = i;
                 nas->fArc.second = j;
@@ -284,7 +305,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                 ttij = std::round(ttij * multiplier) / multiplier;
                 //if lowest time for req i + travel time from i to j is lower or equal to
                 //the latest point in time to serve request j. If latest time == T, it is always valid                        
-                if (nodeVec[i].e + ttij < nodeVec[j].l){
+                if (nodeVec[i].e + ttij <= nodeVec[j].l){
                     nas->arcs[i][j] = true;
                     nas->fArc.first = i;
                     nas->fArc.second = j;
@@ -302,40 +323,49 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
             }
         }
 
-        for (int i = inst->n; i < inst->n + inst->m; i++){//i is a parcel pu node           
+        for (int i = inst->n; i < inst->n + inst->m; i++){//i is a parcel pu node  
             for (int j = 0; j < inst->n; j++){ //j is a passenger node
-                nas->arcs[i][j] = true;
-                nas->fArc.first = i;
-                nas->fArc.second = j;
-                nas->arcMinus[j].push_back(nas->fArc);
-                nas->arcPlus[i].push_back(nas->fArc);
-                
-                nas->arcPN.push_back(nas->fArc);
+                double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j
+                ttij = std::round(ttij * multiplier) / multiplier;    
+                if (nodeVec[i].e + ttij <= nodeVec[j].l){    
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
+                    
+                    nas->arcPN.push_back(nas->fArc);
 
-                nas->allArcs.push_back(nas->fArc);
-                nas->arcnf.push_back(nas->fArc);
-                for (int k = 0; k < inst->K; k++){
-                    nas->arcV[i][j].push_back(k);
+                    nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
+                    for (int k = 0; k < inst->K; k++){
+                        nas->arcV[i][j].push_back(k);
+                    }
                 }
             }      
         }
 
-        for (int i = inst->n + inst->m; i < inst->n + 2*inst->m; i++){//i is a parcel dl node           
+        for (int i = inst->n + inst->m; i < inst->n + 2*inst->m; i++){//i is a parcel dl node         
             for (int j = 0; j < inst->n; j++){ //j is a passenger node
-                nas->arcs[i][j] = true;
-                nas->fArc.first = i;
-                nas->fArc.second = j;
-                nas->arcMinus[j].push_back(nas->fArc);
-                nas->arcPlus[i].push_back(nas->fArc);
+                double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j
+                ttij = std::round(ttij * multiplier) / multiplier;
 
-                // if (j < inst->n){//j is a passenger node
-                //     nas->arcPN.push_back(nas->fArc);
-                // }
+                if(nodeVec[i].e + ttij <= nodeVec[j].l){
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
 
-                nas->allArcs.push_back(nas->fArc);
-                nas->arcnf.push_back(nas->fArc);
-                for (int k = 0; k < inst->K; k++){
-                    nas->arcV[i][j].push_back(k);
+                    // if (j < inst->n){//j is a passenger node
+                    //     nas->arcPN.push_back(nas->fArc);
+                    // }
+
+                    nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
+                    for (int k = 0; k < inst->K; k++){
+                        nas->arcV[i][j].push_back(k);
+                    }
                 }
 
             }
@@ -358,9 +388,14 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
         //%%%%%%%%%%%%%%%%%%%%%%%
 
         if (problem->p2 > 0){ //multi parcel
-            for (int i = inst->n; i < inst->n + 2*inst->m; i++){//i is a parcel pu or dl node                   
+            cout << "Multi parcel" << endl;
+            for (int i = inst->n; i < inst->n + 2*inst->m; i++){//i is a parcel pu or dl node            
                 for (int j = inst->n; j < inst->n + 2*inst->m; j++){//j is a parcel pu or dl node
-                    if (j + inst->m != i && i != j && i + inst->m != j){ // no dl to its pu; no pu to its dl; not a node to itself
+                    double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j
+                    ttij = std::round(ttij * multiplier) / multiplier;
+
+                    if (j + inst->m != i && i != j && i + inst->m != j 
+                        && nodeVec[i].e + ttij <= nodeVec[j].l){ // no dl to its pu; no pu to its dl; not a node to itself; TW are respected
                         nas->arcs[i][j] = true;
                         nas->fArc.first = i;
                         nas->fArc.second = j;
@@ -382,7 +417,7 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
                 }
             }
         }
-        else { //single parcel 
+        else { //single parcel (NOT ADAPTED FOR TIGHT TW)
             for (int i = inst->n + inst->m; i < inst->n + 2*inst->m; i++){//i is a parcel dl node                   
                 for (int j = inst->n; j < inst->n + inst->m; j++){//j is a parcel pu node
                     if (j + inst->m != i){ // no dl to its pu; no pu to its dl; not a node to itself
@@ -406,23 +441,26 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
             }
         }
         if (problem->dParcel > 0){//direct parcel delivery
-
             for (int i = inst->n; i < inst->n + inst->m; i++){//i is a parcel pu node
                 int j = i + inst->m; //j is i's delivery location
+                double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j
+                ttij = std::round(ttij * multiplier) / multiplier;                
 
-                nas->arcs[i][j] = true;
-                nas->fArc.first = i;
-                nas->fArc.second = j;
-                nas->arcMinus[j].push_back(nas->fArc);
-                nas->arcPlus[i].push_back(nas->fArc);
+                if (nodeVec[i].e + ttij <= nodeVec[j].l){
+                    nas->arcs[i][j] = true;
+                    nas->fArc.first = i;
+                    nas->fArc.second = j;
+                    nas->arcMinus[j].push_back(nas->fArc);
+                    nas->arcPlus[i].push_back(nas->fArc);
 
-                nas->arcPD.push_back(nas->fArc);
+                    nas->arcPD.push_back(nas->fArc);
 
-                nas->allArcs.push_back(nas->fArc);
-                nas->arcnf.push_back(nas->fArc);
-                for (int k = 0; k < inst->K; k++){
-                    nas->arcV[i][j].push_back(k);
-                }                                                
+                    nas->allArcs.push_back(nas->fArc);
+                    nas->arcnf.push_back(nas->fArc);
+                    for (int k = 0; k < inst->K; k++){
+                        nas->arcV[i][j].push_back(k);
+                    }                                                
+                }
             }
         }
     }
@@ -1886,7 +1924,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem, nodeVec, mdist);
     
-    //printStructures(&nas);
+    printStructures(&nas);
 
     // getchar();
 
@@ -2147,8 +2185,9 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
     nodeArcsStruct nas;
     fipStats fipStat;
 
+
     initArcs(inst, &nas);
-	fipArcs (inst, &nas, problem, nodeVec, mdist, 1);
+    fipArcs (inst, &nas, problem, nodeVec, mdist, 1);
     //printStructures(&nas);
     
     fipStat.fipstage = 0;
@@ -2166,32 +2205,36 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
         }
+
+  		generateScaleCSV(inst, sStat); //For Scale K phase
+
 	}
 
-    fipStat.fipstage = 1;
-    fipStruct(inst, sStat, &fipStat); 
 
-    initArcs(inst, &nas);
-    fipArcs (inst, &nas, problem, nodeVec, mdist, 2);
+    //fipStat.fipstage = 1;
+    //fipStruct(inst, sStat, &fipStat); 
 
-    // printStructures(&nas);
-    // TODO UNCOMMENT //  
-    cout << endl << endl << "______PART II_____" << endl << endl;
+    //initArcs(inst, &nas);
+    //fipArcs (inst, &nas, problem, nodeVec, mdist, 2);
 
-    fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
+    //// printStructures(&nas);
+    //// TODO UNCOMMENT //  
+    //cout << endl << endl << "______PART II_____" << endl << endl;
 
-    bool feasFlag = false;
+    //fipmip(inst, nodeVec, mdist, problem, &nas, sStat, &fipStat);
 
-    if(sStat->feasible){
-        feasFlag = true;
-    }
+    //bool feasFlag = false;
 
-    // if(sStat->feasible){
-    mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat, feasFlag);
-    printSolFileFip1 (inst, sStat, problem, true, &fipStat);
+    //if(sStat->feasible){
+    //    feasFlag = true;
+    //}
 
-        //calcPassDetour(inst, nodeVec, &fipStat);
-    // }
+    //// if(sStat->feasible){
+    //mergeFipSol(inst, mdist, nodeVec, sStat, &fipStat, feasFlag);
+    //printSolFileFip1 (inst, sStat, problem, true, &fipStat);
+
+    //    //calcPassDetour(inst, nodeVec, &fipStat);
+    //// }
 
 
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
@@ -2228,10 +2271,12 @@ void fipnodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<n
     // mtznode(inst, nodeVec, mdist, problem, &nas, sStat);
 
 	if(sStat->feasible){
+        cout << "The solution is feasible" << endl;
         //viewSolVRPS (inst, mdist, nodeVec, sStat);
 
 		viewSol (inst, mdist, nodeVec, sStat);
-		mipSolStats (inst, mdist, nodeVec, sStat);
+		
+        mipSolStats (inst, mdist, nodeVec, sStat);
 
 		printStats (inst, sStat);
 

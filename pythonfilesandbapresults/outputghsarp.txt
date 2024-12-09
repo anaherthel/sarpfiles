@@ -1,0 +1,86 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   BaPCod v0.82.5, 24/09/2023, © Inria Bordeaux, France, bapcod.math.u-bordeaux.fr 
+           THIS CODE IS PROVIDED AS IS, USE IT AT YOUR OWN RISK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Application version is 6.1, 17/11/2021
+command line:./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C1/ghsarp/ghsarp-5-10-6.txt --setting 1 --useBundleRCSP=false 
+Share-a-ride Parameters  
+Subproblem solver: resource constrained shortest path solver
+cutOffValue = 10000
+setting = 1
+7
+1 5 10
+RCSP solver info : size of non-robust cut bitmask in a label is 640 bits
+Bucket steps were recalculated for graph G_0 : [0.0944]
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 10.4
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 4151( 94.2338% ) / 3561( 85.7866% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 4195( 95.2327% ) / 3599( 85.7926% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+Model is built TIME = 0h0m0s5t = 5
+************************************************************************************************
+**** BaB tree root node
+**** Local DB = -1e+12, global bounds : [ -1e+12 , 10000 ], TIME = 0h0m0s5t = 5
+**** 1 open nodes, 0 columns (0 active), 0 dyn. constrs. (0 active), 22 art. vars. (22 active)
+************************************************************************************************
+#<DWph=2> <it=  1> <et=0.06> <Mt= 0.00> <Spt= 0.00> <nCl=  9> <al=0.00> <DB=59999.8086> <Mlp=60000.0000> <PB=10000> 
+#<DWph=2> <it=  2> <et=0.07> <Mt= 0.00> <Spt= 0.01> <nCl=  0> <al=0.00> <DB=59999.9043> <Mlp=59999.9043> <PB=10000> 
+ Artificial variables in the solution : decreasing phase of stage 
+#<DWph=1> <it=  3> <et=0.08> <Mt= 0.00> <Spt= 0.02> <nCl=  3> <al=0.30> <DB=59994.9428> <Mlp=59999.9043> <PB=10000> 
+#<DWph=1> <it=  4> <et=0.12> <Mt= 0.00> <Spt= 0.03> <nCl=  0> <al=0.00> <DB=59996.0433> <Mlp=59996.0433> <PB=10000> 
+ Artificial variables in the solution : decreasing phase of stage 
+#1 bl.dch (355)...2 bl.dch (450)...3 bl.dch (522)...4 bl.dch (583)...5 bl.dch (639)...6 bl.dch (691)...7 bl.dch (742)...8 bl.dch (788)...9 bl.dch (832)...10 bl.dch (877)...11 bl.dch (917)...12 bl.dch (955)...13 bl.dch (994)...14 bl.dch (1032)...15 bl.dch (1069)...16 bl.dch (1104)...17 bl.dch (1139)...18 bl.dch (1174)...19 bl.dch (1207)...20 bl.dch (1241)...21 bl.dch (1276)...22 bl.dch (1310)...23 bl.dch (1342)...24 bl.dch (1373)...25 bl.dch (1405)...26 bl.dch (1437)...27 bl.dch (1468)...28 bl.dch (1501)...29 bl.dch (1534)...30 bl.dch (1566)...31 bl.dch (1598)...32 bl.dch (1629)...33 bl.dch (1658)...34 bl.dch (1689)...35 bl.dch (1721)...36 bl.dch (1752)...37 bl.dch (1785)...38 bl.dch (1817)...39 bl.dch (1849)...40 bl.dch (1879)...41 bl.dch (1910)...42 bl.dch (1945)...43 bl.dch (1995)...44 bl.dch (2063)...45 bl.dch (2111)...46 bl.dch (2149)...47 bl.dch (2185)...48 bl.dch (2216)...49 bl.dch (2247)...50 bl.dch (2272)...51 bl.dch (2298)...52 bl.dch (2323)...53 bl.dch (2344)...54 bl.dch (2367)...55 bl.dch (2390)...56 bl.dch (2408)...57 bl.dch (2429)...58 bl.dch (2449)...59 bl.dch (2468)...60 bl.dch (2487)...61 bl.dch (2508)...62 bl.dch (2526)...63 bl.dch (2547)...64 bl.dch (2567)...65 bl.dch (2585)...66 bl.dch (2606)...67 bl.dch (2640)...68 bl.dch (2682)...69 bl.dch (2720)...70 bl.dch (2761)...71 bl.dch (2797)...72 bl.dch (2834)...73 bl.dch (2871)...74 bl.dch (2907)...75 bl.dch (2945)...76 bl.dch (3010)...77 bl.dch (3075)...78 bl.dch (3172)...79 bl.dch (3240)...80 bl.dch (3300)...81 bl.dch (3347)...82 bl.dch (3390)...83 bl.dch (3426)...84 bl.dch (3462)...85 bl.dch (3506)...    RCSP exact solver info for graph G_0 : TT = 663.313, pt = 5e-05, dt = 663.305, ct = 0, ndl = 5526667', bdl = 60962044', odl = 4651403', odf = 65969730', bdch = 85459760104', odch = 19920714408', lcp = 30726356098', #sols = 15
+<DWph=0> <it=  5> <et=663.43> <Mt= 0.00> <Spt=663.31> <nCl= 15> <al=0.20> <DB=-36436.6374> <Mlp=59996.0433> <PB=10000> 
+#1 bl.dch (343)...2 bl.dch (434)...3 bl.dch (505)...4 bl.dch (564)...5 bl.dch (613)...6 bl.dch (660)...7 bl.dch (700)...8 bl.dch (737)...9 bl.dch (772)...10 bl.dch (804)...11 bl.dch (832)...12 bl.dch (862)...13 bl.dch (891)...14 bl.dch (918)...15 bl.dch (945)...16 bl.dch (970)...17 bl.dch (995)...18 bl.dch (1021)...19 bl.dch (1044)...20 bl.dch (1067)...21 bl.dch (1092)...22 bl.dch (1113)...23 bl.dch (1135)...24 bl.dch (1155)...25 bl.dch (1178)...26 bl.dch (1200)...27 bl.dch (1219)...28 bl.dch (1240)...29 bl.dch (1260)...30 bl.dch (1279)...31 bl.dch (1298)...32 bl.dch (1319)...33 bl.dch (1336)...34 bl.dch (1356)...35 bl.dch (1373)...36 bl.dch (1393)...37 bl.dch (1410)...38 bl.dch (1429)...39 bl.dch (1446)...40 bl.dch (1465)...41 bl.dch (1482)...42 bl.dch (1500)...43 bl.dch (1517)...44 bl.dch (1536)...45 bl.dch (1552)...46 bl.dch (1571)...47 bl.dch (1586)...48 bl.dch (1605)...49 bl.dch (1621)...50 bl.dch (1638)...51 bl.dch (1656)...52 bl.dch (1673)...53 bl.dch (1690)...54 bl.dch (1708)...55 bl.dch (1724)...56 bl.dch (1742)...57 bl.dch (1758)...58 bl.dch (1777)...59 bl.dch (1792)...60 bl.dch (1810)...61 bl.dch (1826)...62 bl.dch (1842)...63 bl.dch (1860)...64 bl.dch (1877)...65 bl.dch (1896)...66 bl.dch (1913)...67 bl.dch (1932)...68 bl.dch (1957)...69 bl.dch (1982)...70 bl.dch (2031)...71 bl.dch (2075)...72 bl.dch (2112)...73 bl.dch (2143)...74 bl.dch (2167)...75 bl.dch (2193)...76 bl.dch (2218)...77 bl.dch (2238)...78 bl.dch (2264)...79 bl.dch (2290)...80 bl.dch (2314)...81 bl.dch (2338)...82 bl.dch (2364)...83 bl.dch (2389)...84 bl.dch (2411)...85 bl.dch (2436)...86 bl.dch (2461)...87 bl.dch (2482)...88 bl.dch (2504)...89 bl.dch (2526)...90 bl.dch (2550)...91 bl.dch (2573)...92 bl.dch (2595)...93 bl.dch (2623)...94 bl.dch (2669)...95 bl.dch (2711)...96 bl.dch (2753)...97 bl.dch (2791)...98 bl.dch (2829)...99 bl.dch (2862)...100 bl.dch (2893)...101 bl.dch (2922)...RCSP solver warning : labelling time has exploded
+SEARCH IS INTERRUPTED due to the pricing problem return status. 
+RCSP solver dynamic params and stats :  bidir.bord. = 10.4 aver.obdmd = 154.407
+@@ 1 0 -36436.6 663.305 663.305 88.1877 1913.67
+ColGenEvalAlg final dual bound: -36436.6 (rounded: -36436.6)
+**** Strong branching phase 1 is started *****
+**** Strong branching phase 3 is started *****
+************************************************************************************************
+Search is finished, global bounds : [ -36436.6 , 10000 ], TIME = 0h31m53s67t = 191367
+************************************************************************************************
+undefined solution
+data/C1/ghsarp/ghsarp-5-10-6.txt
+bcAverageDualSolSize 6 40 
+bcAveragePrimalSolSize 6 39 
+bcCountCg 8 
+bcCountCgSpSolverCall 8 
+bcCountCol 27 
+bcCountMastSol 6 
+bcCountNodeGen 1 
+bcCountNodeProc 1 
+bcCountNodeTreat 1 
+bcCountPrimalSolSize 8 
+bcCountSpSol 8 
+bcEstimTreeSize 0 
+bcFailToSolveModel 1 
+bcMaxDualSpaceSize 17 
+bcMaxIterCg 6 
+bcMaxNbColInMastLp 27 
+bcMaxNbRowInMastLp 16 
+bcMaxPUpd 1 
+bcMaxPrimalSpaceSize 17 
+bcRecBestDb -36436.63742 
+bcRecBestInc 1e+12 
+bcRecRootDb -36436.63742 
+bcRecRootInc 10000 
+bcRecRootLpVal 1e+12 
+bcTimeBaP 191362 & 0h31m53s61t 
+bcTimeCgSpOracle 191361 & 0h31m53s61t 
+bcTimeColGen 191361 & 0h31m53s61t 
+bcTimeHeurSpOracle 6.51125 & 0h0m0s6t 
+bcTimeMain 191367 & 0h31m53s67t 
+bcTimeMastMPsol 0.0974352 & 0h0m0s0t 
+bcTimeMastPrepareProbConfig 5.30997 & 0h0m0s5t 
+bcTimeRoot 191367 & 0h31m53s67t 
+bcTimeRootEval 191367 & 0h31m53s67t 
+bcTimeSBphase1 0.0394338 & 0h0m0s0t 
+bcTimeSepFracSol 0.0625565 & 0h0m0s0t 
+bcTimeSetMast 0.217671 & 0h0m0s0t 
+bcTimeSpMPsol 191361 & 0h31m53s61t 
+bcTimeSpSol 191361 & 0h31m53s61t 
+bcTimeSpUpdateProb 0.061086 & 0h0m0s0t 
+BaPStat: data/C1/ghsarp/ghsarp-5-10-6.txt & 191367 & 0h31m53s67t  \\ 
+TIME = 0h31m53s67t = 191367

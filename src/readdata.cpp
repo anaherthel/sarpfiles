@@ -24,7 +24,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     inst->preInst = 0;
     inst->InstName = getInstName(argv);
 
-    // TODO UNCOMMENT //  << "Instance Name: " << inst->InstName;
+    cout << "Instance Name: " << inst->InstName << endl;
     // getchar();
     // if (argv[2] == "sim"){
     //     problem->sim = true;
@@ -43,6 +43,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     //getchar();
     problem->scen = argv[2];
     problem->model = argv[3];
+
+    vector <double> passDistances;
 
     if (problem->scen == "1A"){
         if (problem->model == "math"){
@@ -142,25 +144,25 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // K = n - 1;
     //&&&&&&&For scaling K&&&&&&&&&&&&&&&&
-        //if (n <= 10){
-        //    K = n-1;
-        //}
-        //else{
-        //    K = ceil(0.6*n);
-        //}
+        if (n <= 10){
+            K = n-1;
+        }
+        else{
+            K = ceil(0.6*n);
+        }
 
-        //if (trialK <= K){
-        //    K = trialK;
-        //}
-        //else{
-        //    trialK = K;
-        //}
+        if (trialK <= K){
+            K = trialK;
+        }
+        else{
+            trialK = K;
+        }
 
-        //if (trialK >= n){
-        //    // TODO UNCOMMENT //  << "Exceeded K size" << endl;
+        if (trialK >= n){
+            // TODO UNCOMMENT //  << "Exceeded K size" << endl;
         
-        //    exit(1);
-        //}
+            exit(1);
+        }
     //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
         
@@ -168,7 +170,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // getchar();
 
         if (K > n - 1){
-            //// TODO UNCOMMENT //  << "\nExceeded max number of vehicles\n";            
+            cout << "\nExceeded max number of vehicles\n";            
             exit(1);
         }
 
@@ -216,8 +218,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         vector<double> vxf;
         vector<double> vyf;
         vector<double> vl;
-
-
 
         for (int i = 0; i < originalV; i++){
             vxs.push_back(0);
@@ -282,13 +282,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 vl[i] = ve[i];
             }
 
-            for (int i = n; i < V-K; i++){
-                //ve[i] = 0;
-                ve[i] = 540;
-                //vl[i] = 1440;
-                vl[i] = 1140;
+            //for (int i = n; i < V-K; i++){ //comment for tight time windows
+            //    //ve[i] = 0;
+            //    ve[i] = 540;
+            //    //vl[i] = 1440;
+            //    vl[i] = 1140;
 
-            }
+            //}
 
             for (int i = 0; i < n; i++){
                 vload[i] = 0;
@@ -306,18 +306,22 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             // for (int i = 0; i < n; i++){
             //     vl[i] = ve[i] + 10;
             // }
-            for (int i = n; i < n + m; i++){//parcel PU
-                //ve[i] = 0;
-                ve[i] = 540;
-                //vl[i] = 1440;
-                vl[i] = 1140;
-            }
-            for (int i = 2*n + m; i < 2*n + 2*m; i++){//parcel DL
-                //ve[i] = 0;
-                ve[i] = 540;
-                //vl[i] = 1440;
-                vl[i] = 1140;
-            }
+
+            //commented for tight time windows (a)
+            //for (int i = n; i < n + m; i++){//parcel PU
+            //    //ve[i] = 0;
+            //    ve[i] = 540;
+            //    //vl[i] = 1440;
+            //    vl[i] = 1140;
+            //}
+            //for (int i = 2*n + m; i < 2*n + 2*m; i++){//parcel DL
+            //    //ve[i] = 0;
+            //    ve[i] = 540;
+            //    //vl[i] = 1440;
+            //    vl[i] = 1140;
+            //}
+            //end of comment (a)
+
             for (int i =  2*n + 2*m; i <  originalV; i++){//depot
                 //ve[i] = 0;
                 ve[i] = 540;
@@ -362,7 +366,6 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 if (i < n){ 
                     // manhattan = CalcMan(vxs, vys, vxf, vyf, i, i);
                     //geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
-                    mandist = CalcMan(vxs, vys, vxf, vyf, i, i);
                     //mandist = valRound(mandist);
                     //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                     delta[i] = (2 * (service)) + (mandist)/inst->vmed;
@@ -428,6 +431,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     //geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+n);
                     //geodist = std::round(geodist * multiplier) / multiplier;
                     mandist = CalcMan(vxs, vys, vxf, vyf, i, i+n);
+                    passDistances.push_back(mandist);
+
                     //mandist = valRound(mandist);                    
                     //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                     // manhattan = CalcMan(vxs, vys, vxf, vyf, i, i+n);      
@@ -490,12 +495,13 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             //     vl[i] = ve[i] + 10;//10 minutes of tw
             // }
 
-            // //fixing passenger dl tw
-            // for (int i = n; i < 2*n; i++){
-            //     double vmed2 = 0.683333;
-            //     ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + max(double(5), ((dist[i-n][i]*0.5)/vmed2));
-            //     vl[i] = ve[i] + 10;//10 minutes of tw
-            // }
+             //fixing passenger dl tw
+            for (int i = n; i < 2*n; i++){
+                double vmed2 = 0.683333;
+                ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + max(double(5), ((dist[i-n][i]*0.5)/vmed2));
+                // vl[i] = ve[i] + 10;//10 minutes of tw
+                vl[i] = ve[i];
+            }
 
             //fixing passenger pu tw (NO detours)
             for (int i = 0; i < n; i++){
@@ -622,36 +628,39 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         //&&&&&&&&&&&&&&&& Uncomment to scale K &&&&&&&&&&&&&&&&
-        //if (n <= 10){
-        //    K = n-1;
-        //}
-        //else{
-        //    K = ceil(0.6*n);
-        //}
+        if (n <= 10){
+            K = n-1;
+        }
+        else{
+            K = ceil(0.6*n);
+        }
 
-        //if (trialK <= K){
-        //    K = trialK;
-        //}
-        //else{
-        //    trialK = K;
-        //}
+        if (trialK <= K){
+            K = trialK;
+        }
+        else{
+            trialK = K;
+        }
 
-        //if (trialK >= n){
-        //    // TODO UNCOMMENT //  << "Exceeded K size" << endl;
+        if (trialK >= n){
+            // TODO UNCOMMENT //  << "Exceeded K size" << endl;
         
-        //    exit(1);
-        //}
+            exit(1);
+        }
         //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         if (n > 40){
             if (K + trialK <= n - 1){
                 K += trialK;
             }
             else{
-                // TODO UNCOMMENT //  << "\nExceeded max number of vehicles\n";            
+                cout << "\nExceeded max number of vehicles\n";            
                 exit(1);
             }
         }
-        // // TODO UNCOMMENT //  << "Value of K: " << K << endl;
+        //K = 10;
+
+        //K = 3;
+        cout << "Value of K: " << K << endl;
         // getchar();
         
         inst->preInst = 1;
@@ -749,15 +758,21 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             //     vl[i] = ve[i];
             // }
         }
-
-        for (int i = n + 2*m; i < vl.size(); i++){
-            //vl[i] = 1440;
-            vl[i] = 1140;
-            //vl[i] = 750;
-            //vl[i] = 480;
+        if (problem->model != "osarp" && problem->model != "fip"){
+            for (int i = n + 2*m; i < vl.size(); i++){
+                //vl[i] = 1440;
+                vl[i] = 1140;
+                //vl[i] = 750;
+                //vl[i] = 480;
+            }
         }
 
         if (inst->instType == "ghsarp"){ //multiplying depots
+            //if (problem->model == "fip"){ 
+            //    for (int i = n; i < 2*n; i++){
+            //        vl[i] = 1140;
+            //    }
+            //}
             for (int i = 1; i < K; i++){
                 vxs.push_back(vxs[vxs.size()-1]);
                 vys.push_back(vys[vys.size()-1]);
@@ -869,7 +884,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                         //euclidean = valRound(euclidean); 
                     }
                     //euclidean = static_cast<int>(euclidean * multiplier) / multiplier;
-
+                    passDistances.push_back(euclidean);
                     profit[i] = inst->minpas + inst->paskm*euclidean;
                     //profit[i] = valRound(profit[i]); 
                 }
@@ -930,27 +945,29 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             //     vl[i] = ve[i] + 10;//10 minutes of tw
             // }
 
-            // //fixing passenger dl tw
-            // for (int i = n; i < 2*n; i++){
-            //     double vmed2 = 0.683333;
-            //     ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + max(double(5), ((dist[i-n][i]*0.5)/vmed2));
-            //     vl[i] = ve[i] + 10;//10 minutes of tw
-            // }
+             //fixing passenger dl tw
+            for (int i = n; i < 2*n; i++){
+                double vmed2 = 0.683333;
+                ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + max(double(5), ((dist[i-n][i]*0.5)/vmed2));
+                //vl[i] = ve[i] + 10;//10 minutes of tw
+                vl[i] = ve[i] + 10;
+                //vl[i] = 1140;
+            }
 
             //fixing passenger pu tw (NO detours)
             for (int i = 0; i < n; i++){
-                vl[i] = ve[i];//10 minutes of tw
+                vl[i] = ve[i];
             }
 
             //fixing passenger dl tw
-            for (int i = n; i < 2*n; i++){
-                //double vmed2 = 0.683333;
-                ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + double(5);
-                //ve[i] = valRound(ve[i]);
-                //ve[i] = timeRound(ve[i]);
-                vl[i] = ve[i];
-                // TODO UNCOMMENT //  << "i: " << i << " - " << ve[i] << endl;
-            }
+            //for (int i = n; i < 2*n; i++){
+            //    //double vmed2 = 0.683333;
+            //    ve[i] = ve[i-n] + dist[i-n][i]/vmed2 + double(5);
+            //    //ve[i] = valRound(ve[i]);
+            //    //ve[i] = timeRound(ve[i]);
+            //    vl[i] = ve[i];
+            //    // TODO UNCOMMENT //  << "i: " << i << " - " << ve[i] << endl;
+            //}
 
         }        
 
@@ -1004,7 +1021,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         
-        //// TODO UNCOMMENT 
+        // TODO UNCOMMENT 
         //cout << "Earlier // Later: " << endl;
 
         //for (int i = 0; i < nodeVec.size(); i++){
@@ -1071,18 +1088,49 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     //    // TODO UNCOMMENT //  
     //    cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
     //}
+
+    vector < pair <int, double> > orderedPassengers;
+    pair <int, double> p;
+
+    
+
+    for (int i = 0; i < inst->n; i++){
+        p.first = i;
+        p.second = nodeVec[i].e;
+        orderedPassengers.push_back(p);
+    } 
+
+    std::sort(orderedPassengers.begin(), orderedPassengers.end(), [](const std::pair<int, double>& a, const std::pair<int, double>& b) {
+        return a.second < b.second;
+    });
+
+    //cout << "Ordered passengers: " << endl;
+    //for (int i = 0; i < orderedPassengers.size(); i++){
+    //    cout << orderedPassengers[i].first << " - " << orderedPassengers[i].second << endl;
+    //}
     //getchar();
     // // // TODO UNCOMMENT //  << "\nDist Multiplier: " << trialMulti << endl;
     // getchar();
 
-    //// TODO UNCOMMENT //  << "Service times: " << endl;
+    //cout  << "Service times: " << endl;
     //for (int i = 0; i < nodeVec.size(); i++){
-    //    // TODO UNCOMMENT //  << i << ": " << nodeVec[i].delta << endl;
+    //    cout  << i << ": " << nodeVec[i].delta << endl;
     //}
 
-    //// getchar();
+    //cout << "Check feasibility of passengers: " << endl;
+    //for (int i = 0; i < inst->n; i++){
+    //    int j = i + inst->n;
+    //    double diff = nodeVec[j].e - nodeVec[i].l;
+    //    double distance = passDistances[i];
+    //    double traveltime = distance/inst->vmed;
 
-    ////// TODO UNCOMMENT //  
+    //    cout << i << " to "  << j << " // travel time: " << traveltime << " // diff: " << diff << " possible? " << (diff >= traveltime) << endl;
+    //}
+
+    //getchar();
+
+    //passDistances.clear();
+    //// TODO UNCOMMENT //  
     //cout << "Profits: " << endl;
     //for (int i = 0; i < nodeVec.size(); i++){
     //    cout  << i << ": " << nodeVec[i].profit << endl;

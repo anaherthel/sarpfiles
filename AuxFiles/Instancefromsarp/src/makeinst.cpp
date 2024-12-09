@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include <cstdlib>
 #include <stdio.h>
+#include <string>
 
 using namespace std;
 
@@ -64,6 +65,8 @@ struct Info{
     string scale;
     vector<int> vecOfn;
     vector<int> vecOfm;
+
+    vector<int> vecOfLambda;
 };
 
 // double CalcDistEuc (double X1, double Y1, double X2, double Y2);
@@ -79,6 +82,16 @@ void ReadData(int argc, char** argv, Info *info);
 void extractData(Info *info, vector<OrStruct> &NdVec);
 void output(Info *info, vector<OrStruct> &newvec, int p);
 void getInstanceScale(int argc, char** argv, Info *info);
+double CalcMan (double Xs, double Ys, double Xf, double Yf);
+double CalcManOr (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
+
+double CalcManOr (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
+    return abs(Xf[I] - Xs[J]) + abs(Yf[I] - Ys[J]);
+}
+
+double CalcMan (double Xs, double Ys, double Xf, double Yf){
+    return abs(Xf - Xs) + abs(Yf - Ys);
+}
 
 void ReadData(int argc, char** argv, Info *info)
 {
@@ -94,14 +107,27 @@ void ReadData(int argc, char** argv, Info *info)
     double service;
     int originalV;
 
-    in >> K;
-    in >> service;
-    in >> n;
-    in >> m;
+    std::string line;
+
+    // Step 1: Read and process the first line
+    if (std::getline(in, line)) {
+        std::istringstream firstLineStream(line);
+        firstLineStream >> K >> service >> n >> m;
+
+        // Output the parsed values from the first line
+        //std::cout << "First line (metadata): " << K << ", " << service
+                //  << ", " << n << ", " << m << std::endl;
+    }
+
+    //getchar();
+    //in >> K;
+    //in >> service;
+    //in >> n;
+    //in >> m;
 
     int V = n + m + 2;
     
-    originalV = 2*n + 2*m + 2; 
+    originalV = 2*n + 2*m + 2;    
 
     string strN, strM, strP;
     
@@ -109,17 +135,41 @@ void ReadData(int argc, char** argv, Info *info)
     
     vector<OrStruct> Ndvec;
 
-    int tempNode;
+    while (std::getline(in, line)) {
+        std::istringstream lineStream(line);
+        int id, temp, load;
+        double lat, lon, twe, twl;
 
-    for (int i = 0; i < originalV; i++){
+        // Parse values from the line
+        lineStream >> id >> lat >> lon >> temp >> load >> twe >> twl;
+
+        // Output the parsed values for each data line
+        //std::cout << "ID: " << id << ", Lat: " << lat << ", Lon: " << lon
+        //        << ", Load: " << load << ", TWE: " << twe << ", TWL: " << twl << std::endl;
+        
+        nd.index = id;
+        nd.vxs = lat;
+        nd.vys = lon;
+        nd.vload = load;
+        nd.ve = twe;
+        nd.vl = twl;
         Ndvec.push_back(nd);
+        //getchar();
     }
 
-    for (int i = 0; i < originalV; i++){
-        in >> Ndvec[i].index >> Ndvec[i].vxs >> Ndvec[i].vys >> tempNode >> Ndvec[i].vload >> Ndvec[i].ve >> Ndvec[i].vl;
-    }
+    in.close();
+    
+    //cout << "size of Ndvec: " << Ndvec.size() << endl;
+    //cout << "Checking the vector: " << endl;
+    //for (int i = 0; i < Ndvec.size(); i++){
+    //    cout << "i: " << Ndvec[i].index << " - " << Ndvec[i].vload << " - " << Ndvec[i].ve << "\t";
+
+    //}
+    //Ndvec.pop_back();
+    //getchar();
 
     extractData(info, Ndvec);
+
 }
 
 void extractData(Info *info, vector<OrStruct> &Ndvec){
@@ -130,6 +180,8 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
 
     vector<OrStruct> newvec;
 
+ 
+
     for (int i = 0; i < Ndvec.size() - 1; i++){
         if (Ndvec[i].vload == 3){
             auxnp.push_back(Ndvec[i]);
@@ -139,7 +191,6 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
         }
         else if (Ndvec[i].vload == -3){
             auxnd.push_back(Ndvec[i]);
-
         }
         else if (Ndvec[i].vload == -1){
             auxmd.push_back(Ndvec[i]);
@@ -148,13 +199,19 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
             dp.push_back(Ndvec[i]);
         }
     }
-    // cout << "\nAux ND: " << endl;
 
-    // for (int i = 0; i < auxnd.size(); i++){
-    //     cout << "i: " << auxnd[i].index << endl;
-    // }
+    cout << "\nAux MD: " << endl;
 
-    // //getchar();
+    for (int i = 0; i < auxmd.size(); i++){
+        cout << "i: " << auxmd[i].index << " - " << auxmd[i].vload  << endl;
+    }
+
+    cout << "depot nd: " << endl;
+    for (int i = 0; i < dp.size(); i++){
+        cout << "i: " << dp[i].index << " - " << dp[i].vxs << " - " << dp[i].vys << "::" << dp[i].vload << " - " << dp[i].ve << " - " << dp[i].vl << endl;
+    }
+
+    //getchar();
     for (int i = 0; i < info->dimVec.size(); i++){
         for (int j = 0; j < info->dimVec[i].size(); j++){
             for (int p = 1; p < ninst+1; p++){
@@ -174,23 +231,25 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                     newvec.insert(newvec.begin() + counter, auxnp[c]);
                     newvec.push_back(auxnd[c]);
                     counter++;
-                    // cout << "vector populating n: " << endl;
-                    // for (int v = 0; v < newvec.size(); v++){
-                    //     cout << newvec[v].index << " " << newvec[v].vload << endl;
-                    // }
-                    // //getchar();
+                    cout << "vector populating n: " << endl;
+                    for (int v = 0; v < newvec.size(); v++){
+                        cout << newvec[v].index << " " << newvec[v].vload << endl;
+                    }
+                    //getchar();
                 }
                 counter = 0;
                 for (int j = 0; j < info->m; j++){
                     c = rand() % auxmp.size();
+                    cout << "Value of c: " << c << endl;
                     newvec.insert(newvec.begin() + info->n + counter, auxmp[c]);
                     newvec.push_back(auxmd[c]);
+                    cout << "index of mp and load: " << auxmp[c].index << "; " << auxmp[c].vload << " - index of md: " << auxmd[c].index << "; " << auxmd[c].vload << endl;
                     counter++;
-                    // cout << "vector populating m: " << endl;
-                    // for (int v = 0; v < newvec.size(); v++){
-                    //     cout << newvec[v].index << " " << newvec[v].vload << endl;
-                    // }
-                    // //getchar();
+                    cout << "vector populating m: " << endl;
+                    for (int v = 0; v < newvec.size(); v++){
+                        cout << newvec[v].index << " " << newvec[v].vload << endl;
+                    }
+                    //getchar();
                 }
 
                 newvec.insert(newvec.begin(), dp[0]);
@@ -201,26 +260,83 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                 // //getchar();
 
 
+                double service = 5;
+                double timePoint = 0;
 
                 for (int i = 0; i < newvec.size(); i++){
 
-                if (newvec[i].vload == 3){
-                    newvec[i].vl = newvec[i].ve;
+                    if (newvec[i].vload == 3){
+                        newvec[i].vl = newvec[i].ve;
+                    }
+
+                    else if (newvec[i].vload == -3){
+                        newvec[i].ve = newvec[i - info->n - info->m].ve;
+                        newvec[i].vl = newvec[i].ve;
+                    }
+                    //cout << "i: " << newvec[i].index << " - " << newvec[i].vload << " - " << newvec[i].ve << endl;
+
+                    else if (newvec[i].vload == 1){
+                        double vxs = newvec[i + 1].vxs;
+                        double vys = newvec[i + 1].vys;
+                        double vxf = newvec[i + info->n + info->m + 1].vxs;
+                        double vyf = newvec[i + info->n + info->m + 1].vys;
+                        //cout << "node: " << i << endl;
+                        //cout << std::fixed << std::setprecision(5) << "vxs: " << vxs << " - vys: " << vys << " - vxf: " << vxf << " - vyf: " << vyf << endl;
+
+                        double calcDelta = CalcMan(vxs, vys, vxf, vyf);
+                        
+                        double deltaMin = ceil(calcDelta*60);
+                        //cout << "Calculated delta in hours: " << calcDelta << endl;
+                        //cout << "Calculated delta in minutes: " << deltaMin << endl;
+
+                        timePoint = 540 + rand() % 470;
+
+                        while (timePoint + 60 + deltaMin + 2*service > 1140){  //remove possibility of parcel being delivered after 1140
+
+                            timePoint = 540 + rand() % 470; 
+                        }
+                        newvec[i].ve = timePoint;
+                        //newvec[i].vl = timePoint + 30;
+                        newvec[i].vl = timePoint + 60; //1hour of pickup TW
+
+                        int dl = i + info->m + info->n;
+                        cout << "Pickup index: " << i << " - Delivery index: " << dl << endl;
+
+                        if (deltaMin < 1){
+                            deltaMin = 1;
+                        }
+
+                        //version with tight delivery TW
+                        newvec[dl].ve = newvec[i].vl + deltaMin + service;
+                        //newvec[dl].vl = newvec[dl].ve + 60;
+                        newvec[dl].vl = 1140; //latest delivery time is the end of tw with time for service
+                        
+
+                        //cout << "Calculated delta in minutes: " << deltaMin << endl;
+                        //cout << "Time point PU: " << newvec[i].ve << " - " << newvec[i].vl << endl;
+                        //cout << "Time point DL: " << newvec[dl].ve << " - " << newvec[dl].vl << endl;
+                        //getchar();
+
+                    }
                 }
 
-                else if (newvec[i].vload == -3){
-                    newvec[i].ve = newvec[i - info->n - info->m].ve;
-                    newvec[i].vl = newvec[i].ve;
-                }
-                //cout << "i: " << newvec[i].index << " - " << newvec[i].vload << " - " << newvec[i].ve << endl;
-                }
-                 //getchar();
+                //fix depot
 
+                //newvec[0].ve = 540;
+                //newvec[0].vl = 1020;
+                //newvec[0].vxs = ;
+                //newvec[0].vys = ;    
 
+                cout << "Vector: " << endl;
+                for (int i = 0; i < newvec.size(); i++){
+                    cout << "i: " << newvec[i].index << " - " << newvec[i].vxs << "    " << newvec[i].vys << " :: " << newvec[i].vload << " - " << newvec[i].ve << " - " << newvec[i].vl << endl;
+                }
+                //getchar();
                 output(info, newvec, p);
             }
         }
     }
+
 }
 
 void getInstanceScale(int argc, char** argv, Info *info){

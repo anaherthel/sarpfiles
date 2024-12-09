@@ -340,22 +340,22 @@ void startAux(map<int, bool> &inSolution, map<int, pair<int, int>> &pairSequence
 
 void printStructures(nodeArcsStruct *nas){
 
-	// TODO UNCOMMENT // << "\nArcs:" << endl;
+	cout << "\nArcs:" << endl;
     for (int i = 0; i < nas->arcs.size(); i++){
         if (i == 0){
-            // TODO UNCOMMENT //  << setw(3) << " ";
+            cout  << setw(3) << " ";
         }
-        // TODO UNCOMMENT //  << setw(3) << std::right << i << " ";
+        cout  << setw(3) << std::right << i << " ";
     }
-    // TODO UNCOMMENT //  << endl;
+    cout  << endl;
     for(int i = 0; i < nas->arcs.size(); i++){
-        // TODO UNCOMMENT //  << setw(3) << std::right << i;
+        cout  << setw(3) << std::right << i;
         for(int j = 0; j <  nas->arcs[i].size(); j++){
-            // TODO UNCOMMENT //  << setw(3) <<   nas->arcs[i][j] << " ";
+            cout  << setw(3) <<   nas->arcs[i][j] << " ";
         }
-        // TODO UNCOMMENT //  << endl;
+        cout  << endl;
     }
-    // TODO UNCOMMENT //  << endl;
+    cout  << endl;
     // getchar();
 
     // // TODO UNCOMMENT //  << "\n\nAll Arcs: " << endl;

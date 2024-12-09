@@ -1,0 +1,102 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   BaPCod v0.82.5, 24/09/2023, © Inria Bordeaux, France, bapcod.math.u-bordeaux.fr 
+           THIS CODE IS PROVIDED AS IS, USE IT AT YOUR OWN RISK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Application version is 6.1, 17/11/2021
+command line:./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C1/sfsarp/sfsarp-5-10-3.txt --cutOffValue -27 --setting 1 
+Share-a-ride Parameters  
+Subproblem solver: resource constrained shortest path solver
+cutOffValue = -27
+setting = 1
+7
+1 5 10
+RCSP solver info : size of non-robust cut bitmask in a label is 640 bits
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 13.6
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 21605( 94.2257% ) / 21605( 100% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 21444( 93.5235% ) / 21444( 100% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+Model is built TIME = 0h0m0s17t = 17
+************************************************************************************************
+**** BaB tree root node
+**** Local DB = -1e+12, global bounds : [ -1e+12 , -27 ], TIME = 0h0m0s17t = 17
+**** 1 open nodes, 0 columns (0 active), 0 dyn. constrs. (0 active), 22 art. vars. (22 active)
+************************************************************************************************
+#<DWph=2> <it=  1> <et=0.19> <Mt= 0.00> <Spt= 0.02> <nCl= 10> <al=0.00> <DB= 5997.2523> <Mlp= 6000.0000> <PB=-27> 
+#<DWph=2> <it=  2> <et=0.23> <Mt= 0.00> <Spt= 0.03> <nCl=  0> <al=0.00> <DB= 5997.2523> <Mlp= 5997.2523> <PB=-27> 
+ Artificial variables in the solution : decreasing phase of stage 
+#<DWph=1> <it=  3> <et=0.31> <Mt= 0.00> <Spt= 0.09> <nCl=  7> <al=0.30> <DB= 5967.0696> <Mlp= 5997.2523> <PB=-27> 
+#<DWph=1> <it=  4> <et=0.41> <Mt= 0.00> <Spt= 0.09> <nCl=  8> <al=0.30> <DB= 5956.7393> <Mlp= 5984.3009> <PB=-27> 
+#<DWph=1> <it=  5> <et=0.52> <Mt= 0.00> <Spt= 0.11> <nCl=  8> <al=0.37> <DB= 5967.8869> <Mlp= 5979.3984> <PB=-27> 
+#<DWph=1> <it=  6> <et=0.65> <Mt= 0.00> <Spt= 0.13> <nCl=  9> <al=0.43> <DB= 5959.5592> <Mlp= 5978.5589> <PB=-27> 
+#<DWph=1> <it=  7> <et=0.78> <Mt= 0.00> <Spt= 0.13> <nCl=  9> <al=0.49> <DB= 4744.9357> <Mlp= 5977.7703> <PB=-27> 
+#<DWph=1> <it=  8> <et=1.01> <Mt= 0.00> <Spt= 0.23> <nCl= 10> <al=0.54> <DB=   -0.6992> <Mlp= 5676.9456> <PB=-27> 
+#<DWph=1> <it=  9> <et=1.26> <Mt= 0.00> <Spt= 0.25> <nCl=  5> <al=0.44> <DB= -444.2806> <Mlp= 5379.0217> <PB=-27> 
+#<DWph=1> <it= 10> <et=1.43> <Mt= 0.00> <Spt= 0.18> <nCl=  9> <al=0.50> <DB= 3102.3076> <Mlp= 5086.2949> <PB=-27> 
+#<DWph=1> <it= 11> <et=1.70> <Mt= 0.00> <Spt= 0.26> <nCl= 10> <al=0.55> <DB= -593.1109> <Mlp= 4938.8973> <PB=-27> 
+#<DWph=1> <it= 12> <et=2.01> <Mt= 0.00> <Spt= 0.31> <nCl= 10> <al=0.59> <DB= -450.2339> <Mlp= 4866.9023> <PB=-27> 
+#<DWph=1> <it= 13> <et=2.38> <Mt= 0.00> <Spt= 0.37> <nCl= 10> <al=0.63> <DB= -552.3792> <Mlp= 4715.1864> <PB=-27> 
+#<DWph=1> <it= 14> <et=2.77> <Mt= 0.00> <Spt= 0.39> <nCl= 10> <al=0.67> <DB= -531.0714> <Mlp= 4677.1133> <PB=-27> 
+#<DWph=1> <it= 15> <et=3.09> <Mt= 0.00> <Spt= 0.32> <nCl= 10> <al=0.70> <DB= -491.9568> <Mlp= 4631.7641> <PB=-27> 
+#<DWph=1> <it= 16> <et=3.37> <Mt= 0.00> <Spt= 0.28> <nCl= 10> <al=0.73> <DB= -441.8312> <Mlp= 4599.5041> <PB=-27> 
+#<DWph=1> <it= 17> <et=3.66> <Mt= 0.00> <Spt= 0.30> <nCl= 10> <al=0.76> <DB= -369.1694> <Mlp= 4585.4976> <PB=-27> 
+#<DWph=1> <it= 18> <et=3.91> <Mt= 0.00> <Spt= 0.24> <nCl= 15> <al=0.78> <DB= -315.2031> <Mlp= 4573.5981> <PB=-27> 
+<DWph=1> <it= 19> <et=3.91> <Mt= 0.00> <Spt= 0.00> <nCl=  0> <al=0.80> <DB= -315.2031> <Mlp=  -27.1526> <PB=-27> 
+1 bl.dch (2351)...2 bl.dch (3933)...3 bl.dch (5209)...4 bl.dch (6100)...5 bl.dch (6598)...6 bl.dch (7057)...7 bl.dch (7490)...8 bl.dch (8069)...9 bl.dch (9249)...10 bl.dch (10027)...11 bl.dch (10477)...12 bl.dch (10886)...13 bl.dch (11281)...14 bl.dch (11642)...15 bl.dch (12188)...16 bl.dch (12527)...17 bl.dch (12864)...18 bl.dch (13792)...19 bl.dch (14323)...20 bl.dch (14949)...21 bl.dch (15335)...22 bl.dch (15688)...23 bl.dch (16026)...24 bl.dch (16299)...25 bl.dch (16756)...26 bl.dch (17054)...27 bl.dch (17295)...28 bl.dch (17544)...29 bl.dch (17760)...30 bl.dch (17986)...31 bl.dch (18194)...32 bl.dch (18363)...33 bl.dch (18572)...34 bl.dch (18869)...35 bl.dch (19045)...36 bl.dch (19262)...37 bl.dch (19430)...38 bl.dch (19576)...39 bl.dch (19696)...40 bl.dch (19865)...41 bl.dch (19993)...42 bl.dch (20137)...43 bl.dch (20290)...44 bl.dch (20459)...45 bl.dch (20588)...46 bl.dch (20692)...47 bl.dch (20925)...48 bl.dch (21037)...49 bl.dch (21174)...50 bl.dch (21285)...51 bl.dch (21398)...    RCSP exact solver info for graph G_0 : TT = 312.149, pt = 0.000432, dt = 312.142, ct = 0, ndl = 4194089', bdl = 34407259', odl = 3562878', odf = 171773393', bdch = 51050622046', odch = 10011542904', lcp = 10518002808', #sols = 15
+<DWph=0> <it= 20> <et=316.06> <Mt= 0.00> <Spt=312.15> <nCl= 15> <al=0.80> <DB= -126.8627> <Mlp=  -27.1526> <PB=-27> 
+1 bl.dch (2242)...2 bl.dch (3900)...3 bl.dch (5176)...4 bl.dch (6028)...5 bl.dch (6534)...6 bl.dch (6992)...7 bl.dch (7417)...8 bl.dch (7892)...9 bl.dch (9072)...10 bl.dch (9698)...11 bl.dch (10380)...12 bl.dch (10815)...13 bl.dch (11216)...14 bl.dch (11609)...15 bl.dch (12164)...16 bl.dch (12519)...17 bl.dch (12872)...18 bl.dch (13841)...19 bl.dch (14356)...20 bl.dch (14949)...21 bl.dch (15319)...22 bl.dch (15656)...23 bl.dch (15962)...24 bl.dch (16250)...25 bl.dch (16572)...26 bl.dch (16957)...27 bl.dch (17182)...28 bl.dch (17430)...29 bl.dch (17624)...30 bl.dch (17866)...31 bl.dch (18066)...32 bl.dch (18243)...33 bl.dch (18412)...34 bl.dch (18603)...35 bl.dch (18901)...36 bl.dch (19054)...37 bl.dch (19255)...38 bl.dch (19415)...39 bl.dch (19560)...40 bl.dch (19671)...41 bl.dch (19825)...42 bl.dch (19960)...43 bl.dch (20098)...44 bl.dch (20226)...45 bl.dch (20387)...46 bl.dch (20523)...47 bl.dch (20635)...48 bl.dch (20852)...49 bl.dch (20964)...50 bl.dch (21086)...51 bl.dch (21206)...52 bl.dch (21309)...    RCSP exact solver info for graph G_0 : TT = 324.075, pt = 0.000627, dt = 324.067, ct = 0, ndl = 4292063', bdl = 35287650', odl = 3540957', odf = 176511682', bdch = 52896489005', odch = 10414303980', lcp = 11003458952', #sols = 15
+<DWph=0> <it= 21> <et=640.13> <Mt= 0.00> <Spt=324.07> <nCl= 13> <al=0.70> <DB=  -97.4371> <Mlp=  -27.1719> <PB=-27> 
+1 bl.dch (2082)...2 bl.dch (2490)...3 bl.dch (2774)...4 bl.dch (2974)...5 bl.dch (3159)...6 bl.dch (3312)...7 bl.dch (3449)...8 bl.dch (3579)...9 bl.dch (3779)...10 bl.dch (3915)...11 bl.dch (4010)...12 bl.dch (4099)...13 bl.dch (4165)...14 bl.dch (4236)...15 bl.dch (4340)...16 bl.dch (4438)...17 bl.dch (4526)...18 bl.dch (4919)...19 bl.dch (5337)...20 bl.dch (5610)...21 bl.dch (5915)...22 bl.dch (6100)...23 bl.dch (6228)...24 bl.dch (6365)...25 bl.dch (6470)...26 bl.dch (6542)...27 bl.dch (6623)...28 bl.dch (6727)...29 bl.dch (6823)...30 bl.dch (6889)...31 bl.dch (6984)...32 bl.dch (7040)...33 bl.dch (7104)...34 bl.dch (7168)...35 bl.dch (7225)...36 bl.dch (7289)...37 bl.dch (7361)...38 bl.dch (7426)...39 bl.dch (7498)...40 bl.dch (7570)...41 bl.dch (7644)...42 bl.dch (7756)...43 bl.dch (7812)...44 bl.dch (7844)...45 bl.dch (7877)...46 bl.dch (7916)...47 bl.dch (7956)...48 bl.dch (8020)...49 bl.dch (8069)...50 bl.dch (8445)...51 bl.dch (8976)...52 bl.dch (9233)...53 bl.dch (9450)...54 bl.dch (9626)...55 bl.dch (9795)...56 bl.dch (10043)...57 bl.dch (10164)...58 bl.dch (10254)...59 bl.dch (10372)...60 bl.dch (10462)...61 bl.dch (10533)...62 bl.dch (10590)...63 bl.dch (10655)...64 bl.dch (10743)...65 bl.dch (10823)...66 bl.dch (10887)...67 bl.dch (10952)...68 bl.dch (11031)...69 bl.dch (11088)...70 bl.dch (11152)...71 bl.dch (11208)...72 bl.dch (11250)...73 bl.dch (11305)...74 bl.dch (11370)...75 bl.dch (11426)...76 bl.dch (11490)...77 bl.dch (11546)...78 bl.dch (11603)...79 bl.dch (11667)...80 bl.dch (11755)...81 bl.dch (11828)...82 bl.dch (11916)...83 bl.dch (11996)...84 bl.dch (12051)...85 bl.dch (12100)...86 bl.dch (12156)...87 bl.dch (12204)...88 bl.dch (12245)...89 bl.dch (12292)...90 bl.dch (12334)...91 bl.dch (12382)...92 bl.dch (12421)...93 bl.dch (12455)...94 bl.dch (12502)...95 bl.dch (12542)...96 bl.dch (12574)...97 bl.dch (12607)...98 bl.dch (12647)...99 bl.dch (12697)...100 bl.dch (12742)...101 bl.dch (12776)...102 bl.dch (12817)...103 bl.dch (12864)...104 bl.dch (12895)...105 bl.dch (12928)...106 bl.dch (12952)...107 bl.dch (13000)...108 bl.dch (13769)...109 bl.dch (14130)...110 bl.dch (14395)...111 bl.dch (14740)...112 bl.dch (14924)...113 bl.dch (15085)...114 bl.dch (15223)...115 bl.dch (15327)...116 bl.dch (15455)...117 bl.dch (15576)...118 bl.dch (15673)...119 bl.dch (15768)...120 bl.dch (15841)...121 bl.dch (15930)...122 bl.dch (16019)...123 bl.dch (16106)...124 bl.dch (16180)...125 bl.dch (16258)...126 bl.dch (16315)...127 bl.dch (16404)...128 bl.dch (16500)...129 bl.dch (16628)...130 bl.dch (16733)...131 bl.dch (16805)...132 bl.dch (16886)...133 bl.dch (16933)...134 bl.dch (16981)...135 bl.dch (17038)...136 bl.dch (17088)...137 bl.dch (17127)...138 bl.dch (17174)...139 bl.dch (17231)...140 bl.dch (17270)...141 bl.dch (17311)...142 bl.dch (17367)...143 bl.dch (17422)...144 bl.dch (17464)...145 bl.dch (17512)...146 bl.dch (17562)...147 bl.dch (17599)...148 bl.dch (17632)...149 bl.dch (17665)...150 bl.dch (17706)...151 bl.dch (17753)...152 bl.dch (17785)...153 bl.dch (17817)...154 bl.dch (17857)...155 bl.dch (17906)...156 bl.dch (17939)...157 bl.dch (17977)...158 bl.dch (18011)...159 bl.dch (18066)...160 bl.dch (18099)...161 bl.dch (18132)...162 bl.dch (18162)...163 bl.dch (18204)...164 bl.dch (18243)...165 bl.dch (18274)...166 bl.dch (18299)...167 bl.dch (18324)...168 bl.dch (18363)...169 bl.dch (18412)...170 bl.dch (18459)...171 bl.dch (18500)...172 bl.dch (18565)...173 bl.dch (18620)...174 bl.dch (18669)...175 bl.dch (18717)...176 bl.dch (18772)...177 bl.dch (18806)...178 bl.dch (18854)...179 bl.dch (18901)...180 bl.dch (18918)...181 bl.dch (18942)...182 bl.dch (18966)...183 bl.dch (18989)...184 bl.dch (19021)...185 bl.dch (19047)...186 bl.dch (19079)...187 bl.dch (19109)...188 bl.dch (19134)...RCSP solver warning : labelling time has exploded
+SEARCH IS INTERRUPTED due to the pricing problem return status. 
+RCSP solver dynamic params and stats :  bidir.bord. = 13.6 aver.obdmd = 793.259
+@@ 1 0 -97.4371 318.105 324.067 88.4631 1890.23
+ColGenEvalAlg final dual bound: -97.4371 (rounded: -97.4371)
+**** Strong branching phase 1 is started *****
+**** Strong branching phase 3 is started *****
+************************************************************************************************
+Search is finished, global bounds : [ -97.4371 , -27 ], TIME = 0h31m30s24t = 189024
+************************************************************************************************
+undefined solution
+data/C1/sfsarp/sfsarp-5-10-3.txt
+bcAverageDualSolSize 22 272 
+bcAveragePrimalSolSize 22 251 
+bcCountCg 22 
+bcCountCgSpSolverCall 22 
+bcCountCgT1 1 
+bcCountCol 188 
+bcCountMastSol 22 
+bcCountNodeGen 1 
+bcCountNodeProc 1 
+bcCountNodeTreat 1 
+bcCountPrimalSolSize 11 
+bcCountSpSol 22 
+bcEstimTreeSize 0 
+bcFailToSolveModel 1 
+bcMaxDualSpaceSize 17 
+bcMaxIterCg 22 
+bcMaxNbColInMastLp 188 
+bcMaxNbRowInMastLp 16 
+bcMaxPUpd 1 
+bcMaxPrimalSpaceSize 17 
+bcRecBestDb -97.4370767849 
+bcRecBestInc 1e+12 
+bcRecRootDb -97.4370767849 
+bcRecRootInc -27 
+bcRecRootLpVal -27.1722215285 
+bcTimeBaP 189007 & 0h31m30s7t 
+bcTimeCgSpOracle 189005 & 0h31m30s5t 
+bcTimeColGen 189006 & 0h31m30s5t 
+bcTimeHeurSpOracle 373.109 & 0h0m3s73t 
+bcTimeMain 189025 & 0h31m30s24t 
+bcTimeMastMPsol 0.623718 & 0h0m0s0t 
+bcTimeMastPrepareProbConfig 16.8922 & 0h0m0s16t 
+bcTimeRoot 189025 & 0h31m30s24t 
+bcTimeRootEval 189024 & 0h31m30s24t 
+bcTimeSBphase1 0.102342 & 0h0m0s0t 
+bcTimeSepFracSol 0.202454 & 0h0m0s0t 
+bcTimeSetMast 0.973284 & 0h0m0s0t 
+bcTimeSpMPsol 189004 & 0h31m30s4t 
+bcTimeSpSol 189005 & 0h31m30s4t 
+bcTimeSpUpdateProb 0.255222 & 0h0m0s0t 
+BaPStat: data/C1/sfsarp/sfsarp-5-10-3.txt & 189025 & 0h31m30s24t  \\ 
+TIME = 0h31m30s24t = 189024

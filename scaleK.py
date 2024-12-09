@@ -22,6 +22,32 @@ Created on Thu Jul 28 15:52:42 2022
         
 #     return instlist, klist
 
+
+import csv
+
+def read_csv(file_name):
+    data = []
+    try:
+        # Open the CSV file
+        with open(file_name, mode='r') as file:
+            # Create a CSV reader
+            csv_reader = csv.reader(file)
+            
+            # Iterate through each row
+            for row in csv_reader:
+                # Convert the first column to int and the second to float
+                int_value = int(row[0])
+                float_value = float(row[1])
+                
+                # Append the pair to the list
+                data.append((int_value, float_value))
+    except Exception as e:
+        print(f"Error: {e}")
+    return data
+
+
+    
+
 # will take the original test log and get instance names and K for feasible solution
 def extractK(filename):
     instlist = []
@@ -44,8 +70,7 @@ def extractK(filename):
         
                     # knumber = words[1].strip('\n')
                     klist.append(int(currK))
-    
-    
+        
     return instlist, klist
 
 def makeinstKlist(instlist, klist,filename):
@@ -207,9 +232,24 @@ def changeKmulti(instlist, Klist):
 # missing = checkInstances(instlist, 'file_list.txt')
 
 ############
-instlist, Klist = makeinstList('Scscale1.txt')
 
-changeKmulti(instlist, Klist)
+
+#instlist, Klist = makeinstList('Scscale1.txt')
+
+#changeKmulti(instlist, Klist)
+
+
+
+# Example usage
+folder_name = 'CSVScale/'
+file_name = 'data.csv'
+data = read_csv(file_name)
+
+# Print the data
+for item in data:
+    print(item)
+    
+    
 # changeK(instlist, Klist)
 ##################
 # print(instlist)

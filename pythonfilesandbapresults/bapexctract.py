@@ -68,5 +68,5 @@ def get_instance(filename):
                 
                 
 # LB, UB, instance, total_time = get_instance('output.txt') 
-get_instance('bap31ssfsarp.txt') 
+get_instance('bap1mcsarp.txt') 
 

@@ -31,8 +31,14 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	//	Q = inst->m;
 	//}
 	
-	//In the moto case
-	Q = 1;
+	
+	Q = inst->m;
+
+	//cout << "All arcs before MIP: " << endl;
+	//for (int i = 0; i < nas->allArcs.size(); i++){
+	//	cout << nas->allArcs[i].first << " - " << nas->allArcs[i].second << endl;
+	//}
+	//getchar();
 
 	//// TODO UNCOMMENT //  << "Printing node vec: " << endl;
 	//for (int i = 0; i < nodeVec.size(); i++){
@@ -392,6 +398,14 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             sumX += x[i][j][k];
 		}
 			double cvalue = mdist[i][j]/inst->vmed;
+
+			if (i == 6 && j == 11){
+				cout << "cvalue: " << cvalue << endl;
+				cout << "delta of i: " << nodeVec[i].delta << endl;
+
+			}
+
+
 			//cvalue = std::round(cvalue * multiplier) / multiplier;
 			//cvalue = timeRound(cvalue);
 			exp = b[i] - b[j] + nodeVec[i].delta + (cvalue) - M * (1 - sumX);
@@ -458,6 +472,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	
 	//Constraint 14  - bound number of passenger visits transporting parcel
 	if (problem->p1 < 1){
+
 		// // TODO UNCOMMENT //  << "Constraint 14" << endl;
 		// getchar();
 		for (int i = 0; i < nas->arcNN.size(); i++){
@@ -482,7 +497,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 
 	if (problem->p1 < 1 && problem->dParcel > 0){
-		
+
 		//for (int i = inst->n + 2*inst->m; i < nodeVec.size(); i++){
 		//	IloExpr exp(env);
 		//	exp = u[i];
@@ -563,170 +578,88 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	}
 
 
-
-	////end of new constraints
-
-	//////test constraints
-	//////// TODO UNCOMMENT //  << "here" << endl;
 	//IloExpr exp(env);
-	//exp = x[19][9][0];
-
-	//sprintf (var, "Constraint15");
-
+	//exp = x[15][6][0];
+	//sprintf (var, "Constraint16");
 	//IloRange cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//////// TODO UNCOMMENT //  << "A" << endl;
-
-	//exp = x[9][16][0];
-
-	//sprintf (var, "Constraint16");
-
-	//////// TODO UNCOMMENT //  << "B" << endl;
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-	//exp = x[16][2][0];
-
-	//////// TODO UNCOMMENT //  << "C" << endl;
+	//exp = x[6][11][0];
 	//sprintf (var, "Constraint17");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//////// TODO UNCOMMENT //  << "after" << endl;
-	//exp = x[2][6][0];
-
+	//exp = x[11][5][0];
 	//sprintf (var, "Constraint18");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[6][13][0];
-
+	//exp = x[5][1][0];
 	//sprintf (var, "Constraint19");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[13][21][0];
-
+	//exp = x[1][3][0];
 	//sprintf (var, "Constraint20");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[20][0][1];
-
+	//exp = x[3][2][0];
 	//sprintf (var, "Constraint21");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[0][11][1];
-
+	//exp = x[2][7][0];
 	//sprintf (var, "Constraint22");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[11][8][1];
-
+	//exp = x[7][0][0];
 	//sprintf (var, "Constraint23");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[8][3][1];
-
+	//exp = x[0][8][0];
 	//sprintf (var, "Constraint24");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[3][1][1];
-
+	//exp = x[8][13][0];
 	//sprintf (var, "Constraint25");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[1][7][1];
-
+	//exp = x[13][10][0];
 	//sprintf (var, "Constraint26");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-		
-	//exp = x[7][15][1];
-
+	//exp = x[10][12][0];
 	//sprintf (var, "Constraint27");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[15][14][1];
-
+	//exp = x[12][9][0];
 	//sprintf (var, "Constraint28");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[14][18][1];
-
+	//exp = x[9][4][0];
 	//sprintf (var, "Constraint29");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[18][10][1];
-
+	//exp = x[4][14][0];
 	//sprintf (var, "Constraint30");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[10][17][1];
-
+	//exp = x[14][16][0];
 	//sprintf (var, "Constraint31");
-
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-
-	//exp = x[17][4][1];
-
-	//sprintf (var, "Constraint32");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-
-	//exp = x[4][22][1];
-
-	//sprintf (var, "Constraint33");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-
+	////end of new constraints
 
     int threads;
 
@@ -898,6 +831,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	// int Q;
 	//inst->T = 24;
 	//inst->maxTime = 8;
+	//inst->maxTime = 10;
     int fDepot = 2*inst->n + 2*inst->m;
     int fDummy = 2*inst->n + 2*inst->m + inst->K;
     int decimalPlaces = 4;
@@ -915,20 +849,22 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         x[i] = IloArray <IloBoolVarArray> (env, nodeVec.size());
         for(int j = 0; j <  nodeVec.size(); ++j){
             if (nas->arcs[i][j] != true){
-				//// TODO UNCOMMENT // << i << "-" << j << ": invalid";
+				//cout << i << "-" << j << ": invalid";
                 continue; // If arc i to j is invalid
             } 
             x[i][j] = IloBoolVarArray (env, inst->K); //Number of Vehicles
-			//// TODO UNCOMMENT //  << "nas arc v size: " << nas->arcV[i][j].size() << endl;
+			//cout << "nas arc v size: " << nas->arcV[i][j].size() << endl;
+			//getchar();
             for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
                 int k = nas->arcV[i][j][k1];
                 sprintf(var, "x(%d,%d,%d)", i, j, k);
                 x[i][j][k].setName(var);
                 model.add(x[i][j][k]);
-                //// TODO UNCOMMENT //  << "x: [" << i << "][" << j << "][" << k << "]" << endl;
+                //cout << "x: [" << i << "][" << j << "][" << k << "]" << endl;
             }
         }
     }
+	//getchar();
 
 	// // Variable start of service time
 	// IloArray <IloNumVarArray> b(env, nodeVec.size());
@@ -951,6 +887,8 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	}
 	
 	IloExpr objFunction(env);
+
+
 
 	for (int i = 0; i < inst->n; i++){
 		for (int j = 0; j < nodeVec.size(); j++){
@@ -975,10 +913,12 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	model.add(IloMaximize(env, objFunction));
 
+
 	//Creating constraints
+	//cout << "There is an arc from 7 to 17: " << nas->arcs[7][17] << endl;
+	//getchar();
 
 	//Constraint 1 - All passenger pu nodes go directly to the deliveries
-
 	for (int i = 0; i < inst->n; i++){
 		IloExpr exp(env);
 		int j = i + inst->n;
@@ -991,7 +931,6 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		cons.setName(var);
 		model.add(cons);
 	}
-
 
 	//Set all parcel variables to 0;
 
@@ -1064,7 +1003,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         model.add(cons);
     }
 
-	// Constraint 6 - The route of every used vehicle has to end at dummy node f
+ 	// Constraint 6 - The route of every used vehicle has to end at dummy node f
 
 	for (int k = 0; k < inst->K; k++){
 		IloExpr exp(env);
@@ -1079,6 +1018,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		cons.setName(var);
 		model.add(cons);
 	}
+
 
 	//Constraints 9 - TW bj >= (bi + tij)xijk
 
@@ -1122,6 +1062,7 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	}
 
+
 	//Constraints 11 and 12 - bound the service beginning time by the earlier and later service times for each node
 
 	// for (int i = 0; i < nodeVec.size(); i++){
@@ -1160,15 +1101,15 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
     //Constraints 13 - maximum driving time
 
-    for (int i = fDepot; i < fDummy; i++){
-        IloExpr exp(env);
-        exp = b[i + inst->K] - b[i];
+    //for (int i = fDepot; i < fDummy; i++){
+    //    IloExpr exp(env);
+    //    exp = b[i + inst->K] - b[i];
 
-        sprintf (var, "Constraint9_%d", i);
-        IloRange cons1 = (exp <= inst->maxTime);
-        cons1.setName(var);
-        model.add(cons1);        
-    }
+    //    sprintf (var, "Constraint9_%d", i);
+    //    IloRange cons1 = (exp <= inst->maxTime);
+    //    cons1.setName(var);
+    //    model.add(cons1);        
+    //}
 
 	//Constraint 11 - No passenger repeated
 
@@ -1188,28 +1129,28 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		model.add(cons);
 	}
 
+	//cout << "After constraint 10" << endl;
 
 	
-	//test constraints
+	////test constraints
 
-	// IloExpr exp(env);
-	// exp = x[28][1][0];
+	//IloExpr exp(env);
+	//exp = x[30][7][0];
 
-	// sprintf (var, "Constraint14");
+	//sprintf (var, "Constraint14");
 
-	// IloRange cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
+	//IloRange cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-	// exp = x[1][6][0];
+	//exp = x[7][17][0];
 
-	// sprintf (var, "Constraint14A");
+	//sprintf (var, "Constraint14A");
 
-	// cons = (exp == 1);
-	// cons.setName(var);
-	// model.add(cons);
+	//cons = (exp == 1);
+	//cons.setName(var);
+	//model.add(cons);
 
-	
 	int threads;
 
     threads = 1;
@@ -1946,14 +1887,14 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	vector< pair<int, int> > auxPairVec;
 	pair<int, int> auxPair;
 
-	//if (problem->model == "fip"){ //single parcel setting
-	//	Q = 1;
-	//}
-	//else if (problem->model == "nodefip" || problem->model == "bundle4" || problem->model == "bundlep2"){
-	//	Q = inst->m;
-	//}
+	if (problem->model == "fip"){ //single parcel setting
+		Q = 1;
+	}
+	else if (problem->model == "nodefip" || problem->model == "bundle4" || problem->model == "bundlep2"){
+		Q = inst->m;
+	}
 
-	Q = 1;
+	//Q = 1;
 	int P = 2*inst->m;
 	// int P = 1;
 
@@ -2388,6 +2329,9 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
         cons1.setName(var);
         model.add(cons1);        
     }
+
+
+
 	
 	// //Constraint 14  - bound number of passenger visits transporting parcel
 	// if (problem->p1 < 1){

@@ -2,6 +2,10 @@
 #include <cstdlib>
 #include <stdio.h>
 
+bool checkFileExists(const std::string& filename) {
+    std::ifstream file(filename);
+    return file.good();
+}
 void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempData, double *curAvg, int *scale){
     double distSum, avgDist, totalAvg;
 
@@ -181,6 +185,7 @@ void getInstParam (instanceStat *inst, vector<int> &instParam){
     // bundle6: execute only bundle with priority based selection
     // bundle7: execute multi insertion bundlefip with profit based selection
     // bundle8: execute multi insertion bundlefip with priority based selection
+    
 void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
     if (problem->model == "node"){
         nodeMethod(node, inst, mdist, nodeVec, problem, sStat);
@@ -233,7 +238,7 @@ void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<node
         bundleMethod2(node, inst, mdist, nodeVec, problem, sStat);
     }
 
-    else if (problem->model == "fip"){
+    else if (problem->model == "fip"){ // at the moment: solving to a passenger only solution
         fipMethod(node, inst, mdist, nodeVec, problem, sStat);
 
     }
@@ -472,5 +477,61 @@ void startPermutation(instanceStat *inst, double **mdist, vector<nodeStat> &node
     // TODO UNCOMMENT //  << "Exceed duration: " <<  (static_cast<double>(stats[2]) / permutationCount)*100 << "%" << endl;
 
     // TODO UNCOMMENT //  << "\nInfeasible sets of 3: " << (static_cast<double>(infSets) / setCount)*100 << "%" << endl;
+}
+
+void generateScaleCSV(instanceStat *inst, solStats *sStat) {
+    
+    // Open a file in write mode
+    string sizeOfInst = "S";
+    if (inst->n + inst->m > 15) {
+        sizeOfInst = "M";
+    }
+    else if (inst->n + inst->m > 60) {
+        sizeOfInst = "L";
+    }
+
+    string filename = "TreatResults/ScaleK/scale" + inst->instType + sizeOfInst + ".csv";
+    bool fileExists = checkFileExists(filename);
+    cout << "File exists: " << fileExists << endl;
+
+
+    // Write the header for the CSV file
+    if (fileExists) {
+        std::ofstream file(filename, std::ios::app);
+        if (!file.is_open()) {
+            std::cerr << "Error: Could not open file " << filename << std::endl;
+            return;
+        }
+
+        file << inst->InstName << "," << sStat->solOrder.size() << "\n";
+        file.close();
+
+        std::cout << "CSV file '" << filename << "' generated successfully!" << std::endl;
+        return;
+    }
+
+    else{
+        std::ofstream file(filename);
+
+        if (!file.is_open()) {
+            std::cerr << "Error: Could not open file " << filename << std::endl;
+            return;
+        }        
+
+        file << "Instance Name , K\n";
+        file << inst->InstName << "," << sStat->solOrder.size() << "\n";
+        file.close();
+        std::cout << "CSV file '" << filename << "' generated successfully!" << std::endl;
+
+        return;
+    }
+
+
+
+    //for (const auto& pair : data) {
+    //    file << pair.first << "," << pair.second << "\n";
+    //}
+
+    // Close the file
 }
 

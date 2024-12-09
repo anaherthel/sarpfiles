@@ -19,6 +19,7 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <random>
+#include <filesystem>
 
 using namespace std;
 
@@ -48,6 +49,7 @@ struct Info{
     vector< pair <double, double> > coordVec;
     vector<int> loadVec;
     vector<double> delta;
+    vector<double> deltaMin;
 
     vector<int> scaleVec;
     string scale;
@@ -120,12 +122,21 @@ void genPoints (int argc, char** argv, Info *info){
     //double ub = 19;
     int multiplier = 1;
 
+    //std::string folder = "instancesNewTWsmall/";
+
+    //if (!std::filesystem::exists(folder)) {
+    //    std::filesystem::create_directory(folder); // Create the directory
+    //    std::cout << "Folder created: " << folder << std::endl;
+    //}
+
     for (int p = 1; p < 3; p++){ // 2 of each lambda
         for (int i = 0; i < info->dimVec.size(); i++){
             for (int scd = 0; scd < info->dimVec[i].size(); scd++){
                 info->n = info->dimVec[i][scd].first;
                 info->m = info->dimVec[i][scd].second;
-                info->seed = pow((info->n-1), 8) + pow((info->m-1), 4) + pow(p, 6);//changed (same as gh)
+                //info->seed = pow((info->n-1), 8) + pow((info->m-1), 4) + pow(p, 6);//changed (same as gh)//some issues with C instances in L scale
+                //info->seed = pow((info->n/2), 6) + pow((info->m/4), 7) + pow(p, 5); 
+                info->seed = info->n + info->m + p;
                 
                 //info->K = floor(info->n/2);
                 info->K = info->n-1;
@@ -534,7 +545,7 @@ void createDelta(Info *info, vector<CandStruct> &orgNodes)
     double delta;
 
     for (int i = 0; i < info->n; i++){
-        int j = info->n + i;
+        int j = i + info->n;
         p1.first = info->coordVec[orgNodes[i].realInd].first;
         p1.second = info->coordVec[orgNodes[i].realInd].second;
         p2.first = info->coordVec[orgNodes[j].realInd].first;
@@ -547,13 +558,42 @@ void createDelta(Info *info, vector<CandStruct> &orgNodes)
 
         info->delta.push_back(delta);
     }
+    for (int i = info->n; i < (2*info->n); i++){
+        info->delta.push_back(0);
+    }
 
-    // cout <<"Delta vector: " << endl;
+    //________________________________________
+    //if tight time windows, deltas for parcels also need to be stored
+    for (int i = 2*info->n; i < (2*info->n + info->m); i++){
+        int j = i + info->m;
+        p1.first = info->coordVec[orgNodes[i].realInd].first;
+        p1.second = info->coordVec[orgNodes[i].realInd].second;
+        p2.first = info->coordVec[orgNodes[j].realInd].first;
+        p2.second = info->coordVec[orgNodes[j].realInd].second;
 
-    // for (int i = 0; i < info->delta.size(); i++){
-    //     cout << info->delta[i] << endl;
-    // }
-    // //getchar();
+        //dist = CalcDistEuc(p1.first, p1.second, p2.first, p2.second);
+        dist = CalcDistEuc2(p1.first, p1.second, p2.first, p2.second);
+
+        delta = (double)dist/info->speed;
+
+
+        //cout << "Node " << i << " - " << j << " - " << dist << " - " << delta << "- tt: " << ceil(delta*60) << endl;
+
+        info->delta.push_back(delta);
+    }
+
+    for (int i = 2*info->n + info->m; i < (2*info->n + 2*info->m); i++){
+        info->delta.push_back(0);
+    }
+    //getchar();
+    //____________________________________
+    
+    //cout <<"Delta vector: " << endl;
+
+    //for (int i = 0; i < info->delta.size(); i++){
+    //    cout << info->delta[i] << endl;
+    //}
+    // getchar();
 
 }
 
@@ -584,50 +624,106 @@ void createTimesLoad(Info *info, vector<CandStruct> &orgNodes)
     //l2: 1 - pickup; 2 - delivery; 3 - depot
 
     for (int i = 0; i < orgNodes.size(); i++){
+        cout << "Current node: " << i << endl;
+        
         if (orgNodes[i].label1 == 3){//depot
-            info->tsVec[i].first = 0;
-            info->tsVec[i].second = 1440;
-            //info->tsVec[i].first = 540;
-            //info->tsVec[i].second = 1140;
+            //info->tsVec[i].first = 0;
+            //info->tsVec[i].second = 1440;
+            info->tsVec[i].first = 540;
+            info->tsVec[i].second = 1140;
             continue;
         }
         else if(orgNodes[i].label1 == 1){//customer
+            double delta = ceil(info->delta[i]*60);        
+            double service = 5;
             if (orgNodes[i].label2 == 1){//pickup
                 // tsVec[i].first = 560 + rand() % 480;
                 // tsVec[i].second = tsVec[i].first;
-                info->tsVec[i].first = 30 + rand() % 1300;
+                //info->tsVec[i].first = 30 + rand() % 1300;
+                //info->tsVec[i].first = 30 + rand() % 1000;
+                info->tsVec[i].first = 560 + rand() % 480;
 
                 //info->tsVec[i].first = getRandomValue(560, 1110);
 
-                while (info->tsVec[i].first + info->delta[i] > 1440){
-                //while (info->tsVec[i].first + info->delta[i] > 1140){  
+                //while (info->tsVec[i].first + info->delta[i] > 1440){
 
-                    //info->tsVec[i].first = getRandomValue(560, 1110);  
+                while (info->tsVec[i].first + 2*service + delta > 1140){
 
-                    info->tsVec[i].first = 30 + rand() % 1300;
+                    info->tsVec[i].first = 560 + rand() % 480;
+  
+
+                    //info->tsVec[i].first = 30 + rand() % 1300;
+                    //info->tsVec[i].first = 30 + rand() % 1000;
                     // cout << "Time point for node " << i << ": " << info->tsVec[i].first << endl; 
                     // //getchar();
                 }
+
                 info->tsVec[i].second = info->tsVec[i].first;               
-                continue;               
-            }
-            else if (orgNodes[i].label2 == 2){//customer delivery
                 // tsVec[i].first = tsVec[i - n].first + rand() % 480;
                 // tsVec[i].second = tsVec[i].first;
-                int pu = i - info->n;
-                info->tsVec[i].first = info->tsVec[pu].first;
-                info->tsVec[i].second = info->tsVec[pu].second;
-                continue;                   
+                int dl = i + info->n;
+                info->tsVec[dl].first = info->tsVec[i].first;
+                info->tsVec[dl].second = info->tsVec[i].second;
+                continue;  
+
+            }
+            else{
+                continue;
             }
 
         }
-        else if (orgNodes[i].label1 == 2){//parcel
-            info->tsVec[i].first = 0;
-            info->tsVec[i].second = 1440;
-            //info->tsVec[i].first = 540;
-            //info->tsVec[i].second = 1140;
-            continue;                          
+        //else if (orgNodes[i].label1 == 2){//parcel with loose time windows
+        //    //info->tsVec[i].first = 0;
+        //    //info->tsVec[i].second = 1440;
+        //    info->tsVec[i].first = 540;
+        //    info->tsVec[i].second = 1140;
+        //    continue;                          
+        //}
+        //****************************** */
+        else if (orgNodes[i].label1 == 2){//parcel with tight time windows
+            double service = 5;
+            double delta = ceil(info->delta[i]*60);
+            cout << "\n\nNode: " << i << " - " << i + info->m << endl;
+            cout << "Delta in hours: " << info->delta[i] << endl;
+            cout << "Delta: " << delta << endl;    
+
+            if (orgNodes[i].label2 == 1){ // parcel pickup
+                //info->tsVec[i].first = 10 + rand() % 1300;
+                info->tsVec[i].first = 540 + rand() % 470;
+                cout << "Random value: " << info->tsVec[i].first << endl;
+                cout << "Limit: " << info->tsVec[i].first + delta << endl;
+
+                while (info->tsVec[i].first + delta + 60 + 2*service > 1140){// remove the possibility of a parcel delivery happening after time horizon
+                    //info->tsVec[i].first = 10 + rand() % 1300;
+                    info->tsVec[i].first = 540 + rand() % 470;
+
+                }
+                //info->tsVec[i].second = info->tsVec[i].first + 30;
+                info->tsVec[i].second = info->tsVec[i].first + 60; // 1 hour for pickup
+
+
+                int dl = i + info->m;
+
+                if (delta < 1){
+                    delta = 1;
+                }
+
+                info->tsVec[dl].first = info->tsVec[i].second + delta + service;
+                //info->tsVec[dl].second = info->tsVec[dl].first + 60;
+                info->tsVec[dl].second = 1140; //parcel delivery can happen at any time after pickup
+
+                cout << "Time point for node " << i << ": " << info->tsVec[i].first << "-" << info->tsVec[i].second << endl;
+                cout << "Time point for node " << dl << ": " << info->tsVec[dl].first << "-" << info->tsVec[dl].second << endl;
+
+                continue;                
+            }
+            else{
+                continue;
+            }
+
+        //****************************** */   
         }
+        //getchar();
     }
 
     for (int i = 0; i < orgNodes.size(); i++){

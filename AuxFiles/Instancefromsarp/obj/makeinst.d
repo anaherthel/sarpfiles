@@ -1,1 +1,2 @@
-obj/makeinst.o: src/makeinst.cpp
+-MM
+src/makeinst.cpp

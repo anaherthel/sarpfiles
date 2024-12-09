@@ -266,7 +266,6 @@ void orderBundlesP(instanceStat *inst, double **mdist, bundleStat *bStat, clSt *
     
     int counter = 0;
     for (int i = 0; i < inst->n; i++){
-        cout << "Node: " << i << endl;
         //for(int k = 0; k < cStat->clusterVec[i].size() - 2*inst->K; k++){
             //bStat->bundleVec[cStat->clusterVec[i][k]];
             //for (int j = 0; j < bStat->bundleVec[cStat->clusterVec[i][k]].size(); j++){
