@@ -1924,7 +1924,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	initArcs(inst, &nas);
 	feasibleArcs (inst, &nas, problem, nodeVec, mdist);
     
-    printStructures(&nas);
+    //printStructures(&nas); //arcs from network
 
     // getchar();
 
@@ -2146,11 +2146,7 @@ void fipArcs(instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<
         //         }
         //     }
         // }
-
-        
     }
-
-
 
     //check if they can be last before dummy
     // for (int i = 2*inst->n + inst->m; i < 2*inst->n + 2*inst->m; i++){//i is a parcel dl node           
@@ -2206,7 +2202,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
             output(inst, nodeVec,  sStat, problem);
         }
 
-  		generateScaleCSV(inst, sStat); //For Scale K phase
+  		//generateScaleCSV(inst, sStat); //For Scale K phase
 
 	}
 
@@ -2240,6 +2236,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
 	for ( int i = 0; i < inst->V + inst->dummy; i++) {
 		delete[] mdist[i];
 	}
+    
 	delete[] mdist;
 
     clearStats(sStat, &fipStat);
@@ -2271,7 +2268,7 @@ void fipnodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<n
     // mtznode(inst, nodeVec, mdist, problem, &nas, sStat);
 
 	if(sStat->feasible){
-        cout << "The solution is feasible" << endl;
+        //cout << "The solution is feasible" << endl;
         //viewSolVRPS (inst, mdist, nodeVec, sStat);
 
 		viewSol (inst, mdist, nodeVec, sStat);

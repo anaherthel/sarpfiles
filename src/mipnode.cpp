@@ -794,7 +794,7 @@ void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<no
         }
 
         for (int i = 0; i < nodeVec.size(); i++){
-            //cout<< "b(" << i << "): " << sStat->solBegin[i] << endl;
+            cout<< "b(" << i << "): " << sStat->solBegin[i] << endl;
         }
 
         //for (int i = 0; i < nodeVec.size(); i++){

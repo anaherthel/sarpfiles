@@ -143,36 +143,36 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         // K++;
 
         // K = n - 1;
-    //&&&&&&&For scaling K&&&&&&&&&&&&&&&&
-        if (n <= 10){
-            K = n-1;
-        }
-        else{
-            K = ceil(0.6*n);
-        }
+    //&&&&&&&Uncomment for scaling K&&&&&&&&&&&&&&&&
+    //    if (n <= 10){
+    //        K = n-1;
+    //    }
+    //    else{
+    //        K = ceil(0.6*n);
+    //    }
 
-        if (trialK <= K){
-            K = trialK;
-        }
-        else{
-            trialK = K;
-        }
+    //    if (trialK <= K){
+    //        K = trialK;
+    //    }
+    //    else{
+    //        trialK = K;
+    //    }
 
-        if (trialK >= n){
-            // TODO UNCOMMENT //  << "Exceeded K size" << endl;
+    //    if (trialK >= n){
+    //        // TODO UNCOMMENT //  << "Exceeded K size" << endl;
         
-            exit(1);
-        }
-    //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+    //        exit(1);
+    //    }
 
         
-        //// TODO UNCOMMENT //  << "K: " << K << endl;
-        // getchar();
+    //    //// TODO UNCOMMENT //  << "K: " << K << endl;
+    //    // getchar();
 
-        if (K > n - 1){
-            cout << "\nExceeded max number of vehicles\n";            
-            exit(1);
-        }
+    //    if (K > n - 1){
+    //        cout << "\nExceeded max number of vehicles\n";            
+    //        exit(1);
+    //    }
+    ////&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
         service = service/60;
     
@@ -628,41 +628,41 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         //&&&&&&&&&&&&&&&& Uncomment to scale K &&&&&&&&&&&&&&&&
-        if (n <= 10){
-            K = n-1;
-        }
-        else{
-            K = ceil(0.6*n);
-        }
+        //if (n <= 10){
+        //    K = n-1;
+        //}
+        //else{
+        //    K = ceil(0.6*n);
+        //}
 
-        if (trialK <= K){
-            K = trialK;
-        }
-        else{
-            trialK = K;
-        }
+        //if (trialK <= K){
+        //    K = trialK;
+        //}
+        //else{
+        //    trialK = K;
+        //}
 
-        if (trialK >= n){
-            // TODO UNCOMMENT //  << "Exceeded K size" << endl;
+        //if (trialK >= n){
+        //    // TODO UNCOMMENT //  << "Exceeded K size" << endl;
         
-            exit(1);
-        }
-        //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-        if (n > 40){
-            if (K + trialK <= n - 1){
-                K += trialK;
-            }
-            else{
-                cout << "\nExceeded max number of vehicles\n";            
-                exit(1);
-            }
-        }
+        //    exit(1);
+        //}
+        //if (n > 40){
+        //    if (K + trialK <= n - 1){
+        //        K += trialK;
+        //    }
+        //    else{
+        //        cout << "\nExceeded max number of vehicles\n";            
+        //        exit(1);
+        //    }
+        //}
         //K = 10;
 
         //K = 3;
-        cout << "Value of K: " << K << endl;
+        //cout << "Value of K: " << K << endl;
         // getchar();
-        
+        //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
         inst->preInst = 1;
 
         // TODO UNCOMMENT //  << "\nn: " << n;
@@ -1082,12 +1082,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // }
     // getchar();
 
-    // TODO UNCOMMENT //  << "\nTime windows: " << endl;
+    cout << "\nTime windows: " << endl;
 
-    //for (int i = 0; i < nodeVec.size(); i++){
-    //    // TODO UNCOMMENT //  
-    //    cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
-    //}
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout << i << ": " << nodeVec[i].e << " - " <<  nodeVec[i].l << endl;
+    }
 
     vector < pair <int, double> > orderedPassengers;
     pair <int, double> p;
