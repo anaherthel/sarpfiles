@@ -483,7 +483,7 @@ void generateScaleCSV(instanceStat *inst, solStats *sStat) {
     
     // Open a file in write mode
     string sizeOfInst = "S";
-    if (inst->n + inst->m > 15) {
+    if (inst->n + inst->m > 15 && inst->n + inst->m <= 60) {
         sizeOfInst = "M";
     }
     else if (inst->n + inst->m > 60) {
@@ -535,3 +535,69 @@ void generateScaleCSV(instanceStat *inst, solStats *sStat) {
     // Close the file
 }
 
+void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat) {
+    
+    // Open a file in write mode
+    string sizeOfInst = "S";
+    if (inst->n + inst->m > 15 && inst->n + inst->m <= 60) {
+        sizeOfInst = "M";
+    }
+    else if (inst->n + inst->m > 60) {
+        sizeOfInst = "L";
+    }
+
+    string filename = "TreatResults/FullResults/" + problem->model + problem->scen + inst->instType + sizeOfInst + ".csv";
+    bool fileExists = checkFileExists(filename);
+
+    cout << "File exists: " << fileExists << endl;
+
+    double vrps = inst->totalCustomProfit - sStat->LB;
+    double totalDist = sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone;
+    double totalTime = sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone;
+    double percDist = sStat->dNone/totalDist;
+    double percTime = sStat->tNone/totalTime;
+
+    // Write the header for the CSV file
+    if (fileExists) {
+        std::ofstream file(filename, std::ios::app);
+        if (!file.is_open()) {
+            std::cerr << "Error: Could not open file " << filename << std::endl;
+            return;
+        }
+
+        file << inst->InstName << "," << inst->n << "," << inst->m << "," << sStat->servedParcels << "," << inst->totalCustomProfit
+             << "," << sStat->pProfit << "," << sStat->costs << "," << inst->K << "," << sStat->time << "," 
+             << sStat->solprofit << "," << sStat->status << "," << sStat->LB << "," << sStat->UB << ","
+             << sStat->gap << "," << vrps << "," << sStat->tNone << "," <<  percTime << "," << sStat->dNone << "," << percDist << "\n";        file.close();
+
+        std::cout << "CSV file '" << filename << "' generated successfully!" << std::endl;
+        return;
+    }
+
+    else{
+        std::ofstream file(filename);
+
+        if (!file.is_open()) {
+            std::cerr << "Error: Could not open file " << filename << std::endl;
+            return;
+        }        
+
+        file << "Instance Name , n, m, served, prof Customer, prof Parcel, costs, K, Sol Time, Sol Val, sol Stat, LB, UB, GAP, vrps, e(h), et(%), e(km), ed(%) \n";
+        file << inst->InstName << "," << inst->n << "," << inst->m << "," << sStat->servedParcels << "," << inst->totalCustomProfit
+             << "," << sStat->pProfit << "," << sStat->costs << "," << inst->K << "," << sStat->time << "," 
+             << sStat->solprofit << "," << sStat->status << "," << sStat->LB << "," << sStat->UB << ","
+             << sStat->gap << "," << vrps << "," << sStat->tNone << "," <<  percTime << "," << sStat->dNone << "," << percDist << "\n";
+        file.close();
+        std::cout << "CSV file '" << filename << "' generated successfully!" << std::endl;
+
+        return;
+    }
+
+
+
+    //for (const auto& pair : data) {
+    //    file << pair.first << "," << pair.second << "\n";
+    //}
+
+    // Close the file
+}

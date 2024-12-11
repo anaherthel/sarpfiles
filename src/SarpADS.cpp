@@ -4,26 +4,32 @@
 
 void solStatIni(solStats *sStat){
 
+    cout << "Initializing solStats" << endl;
     sStat->tParcel = 0;
     sStat->tPass = 0;
     sStat->tBoth = 0;
     sStat->tNone = 0;
+    //cout << "block1" << endl;
 
     sStat->tStillP = 0;
     sStat->tStillG = 0;
     sStat->tStill = 0;
-
+    //cout << "block2" << endl;
 
     sStat->dParcel = 0;
     sStat->dPass = 0;
     sStat->dBoth = 0;
     sStat->dNone = 0;
+    //cout << "block3" << endl;
 
     sStat->solOrder.clear();
     sStat->servedParcels = 0;
+    //cout << "block4" << endl;
 
     sStat->pProfit = 0;
     sStat->costs = 0;
+    //cout << "block5" << endl;
+
 
     // sStat->solvec.clear();
 }

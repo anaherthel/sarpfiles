@@ -107,6 +107,10 @@ struct solStats{
 	double tBoth;
 	double tNone;
 
+	double UB;
+	double LB;
+	double gap;
+
 	double tStillP;
 	double tStillG;
 	double tStill;

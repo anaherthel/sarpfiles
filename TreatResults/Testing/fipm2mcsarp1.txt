@@ -1,0 +1,6651 @@
+Instance Name: sarp-10-10-A-1
+
+Time windows: 
+0: 11.9833 - 11.9833
+1: 10.4667 - 10.4667
+2: 17.3167 - 17.3167
+3: 10.55 - 10.55
+4: 16.5333 - 16.5333
+5: 11.9167 - 11.9167
+6: 14.0667 - 14.0667
+7: 14.45 - 14.45
+8: 13.4833 - 13.4833
+9: 15.1333 - 15.1333
+10: 12.1057 - 12.2724
+11: 10.5622 - 10.7289
+12: 17.4854 - 17.652
+13: 10.7553 - 10.922
+14: 16.6898 - 16.8565
+15: 12.0341 - 12.2008
+16: 14.1695 - 14.3362
+17: 14.5821 - 14.7488
+18: 13.6325 - 13.7992
+19: 15.3069 - 15.4736
+20: 16.3333 - 17.3333
+21: 9.55 - 10.55
+22: 11.95 - 12.95
+23: 9.95 - 10.95
+24: 12.6333 - 13.6333
+25: 13.1 - 14.1
+26: 10.7667 - 11.7667
+27: 12.8 - 13.8
+28: 14.7333 - 15.7333
+29: 15.0333 - 16.0333
+30: 17.4667 - 19
+31: 10.7167 - 19
+32: 13.15 - 19
+33: 11.25 - 19
+34: 13.8 - 19
+35: 14.2 - 19
+36: 11.8667 - 19
+37: 13.9 - 19
+38: 15.8333 - 19
+39: 16.1333 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1107 rows and 1838 columns.
+MIP Presolve modified 1936 coefficients.
+Aggregator did 16 substitutions.
+Reduced MIP has 115 rows, 200 columns, and 574 nonzeros.
+Reduced MIP has 200 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (3.04 ticks)
+Found incumbent of value -27.774000 after 0.01 sec. (4.08 ticks)
+Probing fixed 62 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.44 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 19 rows and 63 columns.
+Reduced MIP has 96 rows, 137 columns, and 412 nonzeros.
+Reduced MIP has 137 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.28 ticks)
+Probing time = 0.00 sec. (0.19 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 96 rows, 137 columns, and 412 nonzeros.
+Reduced MIP has 137 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.28 ticks)
+Probing time = 0.00 sec. (0.19 ticks)
+Clique table members: 365.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.17 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -27.7740       27.6560           199.58%
+*     0     0      integral     0       -5.8320       -5.8320       20    0.00%
+Elapsed time = 0.01 sec. (6.32 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (6.39 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (6.39 ticks)
+ Total Time: 0.01
+ LB: -5.832
+ UB: -5.832
+
+Obj Val: -5.832
+
+Solve Time: 0.01
+b(0): 11.9833333333333
+b(1): 10.4666666666667
+b(2): 17.3166666666667
+b(3): 10.55
+b(4): 16.5333333333333
+b(5): 11.9166666666667
+b(6): 14.0666666666667
+b(7): 14.45
+b(8): 13.4833333333333
+b(9): 15.1333333333333
+b(10): 12.1056910759469
+b(11): 10.5621951279001
+b(12): 17.6520325619671
+b(13): 10.9219512790006
+b(14): 16.689837434067
+b(15): 12.0341463581202
+b(16): 14.1695122046401
+b(17): 14.7487805116002
+b(18): 13.632520357327
+b(19): 15.3069106131271
+b(20): 16.3333333333333
+b(21): 9.55
+b(22): 11.95
+b(23): 9.95
+b(24): 12.6333333333333
+b(25): 13.1
+b(26): 10.7666666666667
+b(27): 12.8
+b(28): 14.7333333333333
+b(29): 15.0333333333333
+b(30): 17.4666666666667
+b(31): 10.7166666666667
+b(32): 13.15
+b(33): 11.25
+b(34): 13.8
+b(35): 14.2
+b(36): 11.8666666666667
+b(37): 13.9
+b(38): 15.8333333333333
+b(39): 16.1333333333333
+b(40): 9
+b(41): 9
+b(42): 19
+b(43): 19
+
+
+Customer profit: 57.326
+Parcel profit: 0
+Costs: 63.158
+Without fixed: 63.158
+
+Solution: 
+Vehicle 0: 40 - 3 - 13 - 5 - 15 - 7 - 17 - 9 - 19 - 42 - Total time: 6.30691061312713
+Vehicle 1: 41 - 1 - 11 - 0 - 10 - 8 - 18 - 6 - 16 - 4 - 14 - 2 - 12 - 43 - Total time: 8.6520325619671
+
+Vehicle 0: d - P - d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - d - P - d - P - d - P - f
+
+************************************
+Final solution value: -5.83199999999999
+************************************
+Instance Name: sarp-10-10-A-2
+
+Time windows: 
+0: 16.95 - 16.95
+1: 16.4833 - 16.4833
+2: 11.8333 - 11.8333
+3: 15.4667 - 15.4667
+4: 9.81667 - 9.81667
+5: 9.38333 - 9.38333
+6: 11.95 - 11.95
+7: 13.5 - 13.5
+8: 12.1667 - 12.1667
+9: 16.7167 - 16.7167
+10: 17.1065 - 17.2732
+11: 16.613 - 16.7797
+12: 11.985 - 12.1516
+13: 15.6207 - 15.7874
+14: 9.95366 - 10.1203
+15: 9.55447 - 9.72114
+16: 12.065 - 12.2317
+17: 13.6077 - 13.7744
+18: 12.4012 - 12.5679
+19: 16.8951 - 17.0618
+20: 9.26667 - 10.2667
+21: 10.5333 - 11.5333
+22: 9.73333 - 10.7333
+23: 14.5167 - 15.5167
+24: 10.5167 - 11.5167
+25: 16.6667 - 17.6667
+26: 9.98333 - 10.9833
+27: 12.7167 - 13.7167
+28: 14.4167 - 15.4167
+29: 11.5833 - 12.5833
+30: 10.4 - 19
+31: 11.7 - 19
+32: 10.9333 - 19
+33: 15.8167 - 19
+34: 11.6833 - 19
+35: 17.7667 - 19
+36: 11.0833 - 19
+37: 13.8167 - 19
+38: 15.5167 - 19
+39: 12.6833 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+44: 9 - 19
+45: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1155 rows and 2734 columns.
+MIP Presolve modified 522 coefficients.
+Aggregator did 19 substitutions.
+Reduced MIP has 124 rows, 290 columns, and 880 nonzeros.
+Reduced MIP has 283 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.74 ticks)
+Found incumbent of value -41.850000 after 0.01 sec. (6.95 ticks)
+Probing time = 0.00 sec. (1.24 ticks)
+Cover probing fixed 0 vars, tightened 1 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 9 rows and 15 columns.
+MIP Presolve modified 25 coefficients.
+Aggregator did 2 substitutions.
+Reduced MIP has 113 rows, 273 columns, and 810 nonzeros.
+Reduced MIP has 267 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.95 ticks)
+Probing time = 0.00 sec. (1.06 ticks)
+Clique table members: 662.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.44 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -41.8500       44.5840           206.53%
+*     0     0      integral     0        7.7840        7.7840       45    0.00%
+Elapsed time = 0.01 sec. (11.60 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (11.70 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (11.70 ticks)
+ Total Time: 0.01
+ LB: 7.784
+ UB: 7.784
+
+Obj Val: 7.784
+
+Solve Time: 0.01
+b(0): 16.95
+b(1): 16.4833333333333
+b(2): 11.8333333333333
+b(3): 15.4666666666667
+b(4): 9.81666666666667
+b(5): 9.38333333333333
+b(6): 11.95
+b(7): 13.5
+b(8): 12.1666666666667
+b(9): 16.7166666666667
+b(10): 17.2731707674004
+b(11): 16.6199187455879
+b(12): 12.1516260495737
+b(13): 15.6207317418204
+b(14): 9.95365856276027
+b(15): 9.55447158754712
+b(16): 12.0650406658735
+b(17): 13.6077235891335
+b(18): 12.4012195859608
+b(19): 17.0617886642872
+b(20): 9.26666666666667
+b(21): 10.5333333333333
+b(22): 9.73333333333333
+b(23): 14.5166666666667
+b(24): 10.5166666666667
+b(25): 16.6666666666667
+b(26): 9.98333333333333
+b(27): 12.7166666666667
+b(28): 14.4166666666667
+b(29): 11.5833333333333
+b(30): 10.4
+b(31): 11.7
+b(32): 10.9333333333333
+b(33): 15.8166666666667
+b(34): 11.6833333333333
+b(35): 17.7666666666667
+b(36): 11.0833333333333
+b(37): 13.8166666666667
+b(38): 15.5166666666667
+b(39): 12.6833333333333
+b(40): 9
+b(41): 9
+b(42): 9
+b(43): 19
+b(44): 19
+b(45): 19
+
+
+Customer profit: 62.064
+Parcel profit: 0
+Costs: 54.28
+Without fixed: 54.28
+
+Solution: 
+Vehicle 0: 40 - 8 - 18 - 9 - 19 - 43 - Total time: 8.06178866428715
+Vehicle 1: 41 - 6 - 16 - 7 - 17 - 0 - 10 - 44 - Total time: 8.27317076740037
+Vehicle 2: 42 - 5 - 15 - 4 - 14 - 2 - 12 - 3 - 13 - 1 - 11 - 45 - Total time: 7.61991874558795
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - d - P - d - P - f
+
+************************************
+Final solution value: 7.784
+************************************
+Instance Name: sarp-10-10-B-1
+
+Time windows: 
+0: 15.7333 - 15.7333
+1: 15.1333 - 15.1333
+2: 14.15 - 14.15
+3: 11.2167 - 11.2167
+4: 16.15 - 16.15
+5: 17.1667 - 17.1667
+6: 16.85 - 16.85
+7: 10.2 - 10.2
+8: 14.2667 - 14.2667
+9: 17.1333 - 17.1333
+10: 15.8947 - 16.0614
+11: 15.302 - 15.4687
+12: 14.4646 - 14.6313
+13: 11.3463 - 11.513
+14: 16.3455 - 16.5122
+15: 17.2549 - 17.4215
+16: 17.0016 - 17.1683
+17: 10.398 - 10.5646
+18: 14.4695 - 14.6362
+19: 17.3069 - 17.4736
+20: 9.01667 - 10.0167
+21: 14.9 - 15.9
+22: 11.5167 - 12.5167
+23: 10.7333 - 11.7333
+24: 10.3333 - 11.3333
+25: 9.16667 - 10.1667
+26: 9.9 - 10.9
+27: 16.5333 - 17.5333
+28: 15.8833 - 16.8833
+29: 16.8 - 17.8
+30: 10.15 - 19
+31: 16.0667 - 19
+32: 12.7167 - 19
+33: 12.0333 - 19
+34: 11.5 - 19
+35: 10.2667 - 19
+36: 11 - 19
+37: 17.6333 - 19
+38: 16.9833 - 19
+39: 17.9 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+44: 9 - 19
+45: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1158 rows and 2738 columns.
+MIP Presolve modified 527 coefficients.
+Aggregator did 19 substitutions.
+Reduced MIP has 125 rows, 295 columns, and 897 nonzeros.
+Reduced MIP has 288 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (4.79 ticks)
+Found incumbent of value -10.605000 after 0.01 sec. (7.12 ticks)
+Probing time = 0.00 sec. (1.25 ticks)
+Cover probing fixed 0 vars, tightened 1 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 7 rows and 14 columns.
+MIP Presolve modified 23 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 115 rows, 278 columns, and 829 nonzeros.
+Reduced MIP has 272 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.00 ticks)
+Probing time = 0.00 sec. (1.07 ticks)
+Clique table members: 658.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.63 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -10.6050       51.6790           587.31%
+*     0     0      integral     0       18.9730       18.9730       71    0.00%
+Elapsed time = 0.02 sec. (12.05 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (12.16 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (12.16 ticks)
+ Total Time: 0.02
+ LB: 18.973
+ UB: 18.973
+
+Obj Val: 18.973
+
+Solve Time: 0.02
+b(0): 15.7333333333333
+b(1): 15.1333333333333
+b(2): 14.15
+b(3): 11.2166666666667
+b(4): 16.15
+b(5): 17.1666666666667
+b(6): 16.85
+b(7): 10.2
+b(8): 14.2666666666667
+b(9): 17.1333333333333
+b(10): 15.8947154852271
+b(11): 15.3020325619671
+b(12): 14.4646342998216
+b(13): 11.3463414860202
+b(14): 16.5121951766806
+b(15): 17.4215447178267
+b(16): 17.1682927162404
+b(17): 10.3979675355939
+b(18): 14.6361789200873
+b(19): 17.4735772797938
+b(20): 9.01666666666667
+b(21): 14.9
+b(22): 11.5166666666667
+b(23): 10.7333333333333
+b(24): 10.3333333333333
+b(25): 9.16666666666667
+b(26): 9.9
+b(27): 16.5333333333333
+b(28): 15.8833333333333
+b(29): 16.8
+b(30): 10.15
+b(31): 16.0666666666667
+b(32): 12.7166666666667
+b(33): 12.0333333333333
+b(34): 11.5
+b(35): 10.2666666666667
+b(36): 11
+b(37): 17.6333333333333
+b(38): 16.9833333333333
+b(39): 17.9
+b(40): 9
+b(41): 9
+b(42): 9
+b(43): 19
+b(44): 19
+b(45): 19
+
+
+Customer profit: 71.643
+Parcel profit: 0
+Costs: 52.67
+Without fixed: 52.67
+
+Solution: 
+Vehicle 0: 40 - 2 - 12 - 1 - 11 - 0 - 10 - 6 - 16 - 43 - Total time: 8.16829271624036
+Vehicle 1: 41 - 7 - 17 - 3 - 13 - 9 - 19 - 44 - Total time: 8.47357727979379
+Vehicle 2: 42 - 8 - 18 - 4 - 14 - 5 - 15 - 45 - Total time: 8.42154471782669
+
+Vehicle 0: d - P - d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - f
+
+************************************
+Final solution value: 18.973
+************************************
+Instance Name: sarp-10-10-B-2
+
+Time windows: 
+0: 13.3167 - 13.3167
+1: 15.8667 - 15.8667
+2: 13.1 - 13.1
+3: 15.5833 - 15.5833
+4: 12.7667 - 12.7667
+5: 12.55 - 12.55
+6: 13.6 - 13.6
+7: 11.0167 - 11.0167
+8: 13.3 - 13.3
+9: 15.4167 - 15.4167
+10: 13.4366 - 13.6033
+11: 16.0622 - 16.2289
+12: 13.2516 - 13.4183
+13: 15.7545 - 15.9211
+14: 12.9622 - 13.1289
+15: 12.7772 - 12.9439
+16: 13.7711 - 13.9378
+17: 11.1317 - 11.2984
+18: 13.4858 - 13.6524
+19: 15.6317 - 15.7984
+20: 9.96667 - 10.9667
+21: 10.4167 - 11.4167
+22: 15.9833 - 16.9833
+23: 16.7 - 17.7
+24: 13.6833 - 14.6833
+25: 16.8167 - 17.8167
+26: 14 - 15
+27: 14.65 - 15.65
+28: 10.3167 - 11.3167
+29: 11.5833 - 12.5833
+30: 11.1 - 19
+31: 11.5833 - 19
+32: 17.1833 - 19
+33: 18 - 19
+34: 14.85 - 19
+35: 17.9167 - 19
+36: 15.1 - 19
+37: 15.75 - 19
+38: 11.4167 - 19
+39: 12.6833 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+44: 9 - 19
+45: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1156 rows and 2735 columns.
+MIP Presolve modified 481 coefficients.
+Aggregator did 19 substitutions.
+Reduced MIP has 119 rows, 277 columns, and 837 nonzeros.
+Reduced MIP has 270 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (4.68 ticks)
+Found incumbent of value 8.235000 after 0.01 sec. (6.82 ticks)
+Probing time = 0.00 sec. (1.17 ticks)
+Cover probing fixed 0 vars, tightened 1 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 7 rows and 15 columns.
+MIP Presolve modified 26 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 109 rows, 259 columns, and 767 nonzeros.
+Reduced MIP has 253 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.13 ticks)
+Probing time = 0.00 sec. (0.99 ticks)
+Clique table members: 579.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.46 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                            8.2350       57.5930           599.37%
+*     0     0      integral     0       20.5630       20.5630       51    0.00%
+Elapsed time = 0.02 sec. (11.50 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (11.61 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (11.61 ticks)
+ Total Time: 0.02
+ LB: 20.563
+ UB: 20.563
+
+Obj Val: 20.563
+
+Solve Time: 0.02
+b(0): 13.3166666666667
+b(1): 15.8666666666667
+b(2): 13.1
+b(3): 15.5833333333333
+b(4): 12.7666666666667
+b(5): 12.55
+b(6): 13.6
+b(7): 11.0166666666667
+b(8): 13.3
+b(9): 15.4166666666667
+b(10): 13.6032520503669
+b(11): 16.2288618433472
+b(12): 13.2516260495737
+b(13): 15.9211382542138
+b(14): 12.9621951766806
+b(15): 12.8386178861789
+b(16): 13.7711382542138
+b(17): 11.1317073325402
+b(18): 13.4857724076939
+b(19): 15.7983740479874
+b(20): 9.96666666666667
+b(21): 10.4166666666667
+b(22): 15.9833333333333
+b(23): 16.7
+b(24): 13.6833333333333
+b(25): 16.8166666666667
+b(26): 14
+b(27): 14.65
+b(28): 10.3166666666667
+b(29): 11.5833333333333
+b(30): 11.1
+b(31): 11.5833333333333
+b(32): 17.1833333333333
+b(33): 18
+b(34): 14.85
+b(35): 17.9166666666667
+b(36): 15.1
+b(37): 15.75
+b(38): 11.4166666666667
+b(39): 12.6833333333333
+b(40): 9
+b(41): 9
+b(42): 9
+b(43): 19
+b(44): 19
+b(45): 19
+
+
+Customer profit: 71.025
+Parcel profit: 0
+Costs: 50.462
+Without fixed: 50.462
+
+Solution: 
+Vehicle 0: 40 - 4 - 14 - 8 - 18 - 1 - 11 - 43 - Total time: 7.22886184334724
+Vehicle 1: 41 - 0 - 10 - 3 - 13 - 44 - Total time: 6.92113825421378
+Vehicle 2: 42 - 7 - 17 - 5 - 15 - 2 - 12 - 6 - 16 - 9 - 19 - 45 - Total time: 6.79837404798735
+
+Vehicle 0: d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - d - P - d - P - f
+
+************************************
+Final solution value: 20.563
+************************************
+Instance Name: sarp-10-10-C-1
+
+Time windows: 
+0: 11.35 - 11.35
+1: 14.7333 - 14.7333
+2: 9.35 - 9.35
+3: 13.1333 - 13.1333
+4: 16.1833 - 16.1833
+5: 14.9667 - 14.9667
+6: 16.0833 - 16.0833
+7: 9.55 - 9.55
+8: 17.0833 - 17.0833
+9: 9.46667 - 9.46667
+10: 11.6683 - 11.835
+11: 15.1065 - 15.2732
+12: 9.97561 - 10.1423
+13: 13.7553 - 13.922
+14: 16.6772 - 16.8439
+15: 15.285 - 15.4516
+16: 16.4016 - 16.5683
+17: 9.74309 - 9.90976
+18: 17.6358 - 17.8024
+19: 9.65244 - 9.81911
+20: 13.8833 - 14.8833
+21: 9.41667 - 10.4167
+22: 14.4 - 15.4
+23: 11.65 - 12.65
+24: 15.2167 - 16.2167
+25: 10.6333 - 11.6333
+26: 9.05 - 10.05
+27: 14.7667 - 15.7667
+28: 12.35 - 13.35
+29: 16.25 - 17.25
+30: 15.0167 - 19
+31: 10.5833 - 19
+32: 15.6 - 19
+33: 12.95 - 19
+34: 16.3833 - 19
+35: 11.7333 - 19
+36: 10.15 - 19
+37: 15.8667 - 19
+38: 13.45 - 19
+39: 17.35 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+44: 9 - 19
+45: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1159 rows and 2754 columns.
+MIP Presolve modified 653 coefficients.
+Aggregator did 20 substitutions.
+Reduced MIP has 128 rows, 293 columns, and 901 nonzeros.
+Reduced MIP has 286 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.59 ticks)
+Found incumbent of value 15.865000 after 0.01 sec. (6.64 ticks)
+Probing fixed 19 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (1.09 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 9 rows and 40 columns.
+MIP Presolve modified 21 coefficients.
+Aggregator did 2 substitutions.
+Reduced MIP has 117 rows, 251 columns, and 786 nonzeros.
+Reduced MIP has 244 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.08 ticks)
+Probing time = 0.00 sec. (0.81 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve modified 2 coefficients.
+Reduced MIP has 117 rows, 251 columns, and 786 nonzeros.
+Reduced MIP has 244 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.51 ticks)
+Probing time = 0.00 sec. (0.81 ticks)
+Clique table members: 630.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.51 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           15.8650       87.2570           450.00%
+*     0     0      integral     0       63.2450       63.2450       57    0.00%
+Elapsed time = 0.02 sec. (12.79 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (12.89 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (12.89 ticks)
+ Total Time: 0.02
+ LB: 63.245
+ UB: 63.245
+
+Obj Val: 63.245
+
+Solve Time: 0.02
+b(0): 11.35
+b(1): 14.7333333333333
+b(2): 9.35
+b(3): 13.1333333333333
+b(4): 16.1833333333333
+b(5): 14.9666666666667
+b(6): 16.0833333333333
+b(7): 9.55
+b(8): 17.0833333333333
+b(9): 9.46666666666667
+b(10): 11.6682928381916
+b(11): 15.1065042470752
+b(12): 9.9756100612732
+b(13): 13.7552848562365
+b(14): 16.8439026799525
+b(15): 15.2849595048583
+b(16): 16.401626171525
+b(17): 9.74308948443389
+b(18): 17.8024392938728
+b(19): 9.65243907436052
+b(20): 13.8833333333333
+b(21): 9.41666666666667
+b(22): 14.4
+b(23): 11.65
+b(24): 15.2166666666667
+b(25): 10.6333333333333
+b(26): 9.05
+b(27): 14.7666666666667
+b(28): 12.35
+b(29): 16.25
+b(30): 15.0166666666667
+b(31): 10.5833333333333
+b(32): 15.6
+b(33): 12.95
+b(34): 16.3833333333333
+b(35): 11.7333333333333
+b(36): 10.15
+b(37): 15.8666666666667
+b(38): 13.45
+b(39): 17.35
+b(40): 9
+b(41): 9
+b(42): 9
+b(43): 19
+b(44): 19
+b(45): 19
+
+
+Customer profit: 143.331
+Parcel profit: 0
+Costs: 80.086
+Without fixed: 80.086
+
+Solution: 
+Vehicle 0: 40 - 9 - 19 - 0 - 10 - 6 - 16 - 8 - 18 - 43 - Total time: 8.80243929387283
+Vehicle 1: 41 - 2 - 12 - 5 - 15 - 44 - Total time: 6.28495950485829
+Vehicle 2: 42 - 7 - 17 - 3 - 13 - 1 - 11 - 4 - 14 - 45 - Total time: 7.84390267995253
+
+Vehicle 0: d - P - d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - d - P - f
+
+************************************
+Final solution value: 63.245
+************************************
+Instance Name: sarp-10-10-C-2
+
+Time windows: 
+0: 13.8 - 13.8
+1: 9.83333 - 9.83333
+2: 12.5 - 12.5
+3: 17.3 - 17.3
+4: 15.7333 - 15.7333
+5: 12.2 - 12.2
+6: 14.7833 - 14.7833
+7: 15.5667 - 15.5667
+8: 11.6667 - 11.6667
+9: 16.8167 - 16.8167
+10: 14.1732 - 14.3398
+11: 10.1699 - 10.3366
+12: 12.8402 - 13.0069
+13: 17.8012 - 17.9679
+14: 16.0772 - 16.2439
+15: 12.437 - 12.6037
+16: 15.365 - 15.5317
+17: 16.1776 - 16.3443
+18: 12.2045 - 12.3711
+19: 17.2959 - 17.4626
+20: 12.45 - 13.45
+21: 11.1833 - 12.1833
+22: 9.66667 - 10.6667
+23: 12.0833 - 13.0833
+24: 14.8333 - 15.8333
+25: 16.1667 - 17.1667
+26: 9.6 - 10.6
+27: 9.78333 - 10.7833
+28: 16.7167 - 17.7167
+29: 14.1333 - 15.1333
+30: 13.5833 - 19
+31: 12.35 - 19
+32: 10.8667 - 19
+33: 13.3833 - 19
+34: 16 - 19
+35: 17.2667 - 19
+36: 10.7 - 19
+37: 10.8833 - 19
+38: 17.8167 - 19
+39: 15.2333 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+44: 9 - 19
+45: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1154 rows and 2728 columns.
+MIP Presolve modified 565 coefficients.
+Aggregator did 16 substitutions.
+Reduced MIP has 133 rows, 311 columns, and 950 nonzeros.
+Reduced MIP has 304 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.79 ticks)
+Found incumbent of value 27.081000 after 0.01 sec. (7.00 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+Cover probing fixed 0 vars, tightened 1 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 8 rows and 16 columns.
+MIP Presolve modified 23 coefficients.
+Aggregator did 2 substitutions.
+Reduced MIP has 123 rows, 293 columns, and 883 nonzeros.
+Reduced MIP has 286 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.03 ticks)
+Probing time = 0.00 sec. (1.08 ticks)
+Clique table members: 668.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.63 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           27.0810       99.0710           265.83%
+*     0     0      integral     0       65.8130       65.8130       66    0.00%
+Elapsed time = 0.02 sec. (12.06 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (12.17 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (12.17 ticks)
+ Total Time: 0.02
+ LB: 65.813
+ UB: 65.813
+
+Obj Val: 65.813
+
+Solve Time: 0.02
+b(0): 13.8
+b(1): 9.83333333333333
+b(2): 12.5
+b(3): 17.3
+b(4): 15.7333333333333
+b(5): 12.2
+b(6): 14.7833333333333
+b(7): 15.5666666666667
+b(8): 11.6666666666667
+b(9): 16.8166666666667
+b(10): 14.1731709137419
+b(11): 10.1699188633751
+b(12): 12.8402440684117
+b(13): 17.9678864233592
+b(14): 16.0772359401151
+b(15): 12.4369919448741
+b(16): 15.3650409341663
+b(17): 16.1776425744598
+b(18): 12.2044718070594
+b(19): 17.4626018598058
+b(20): 12.45
+b(21): 11.1833333333333
+b(22): 9.66666666666667
+b(23): 12.0833333333333
+b(24): 14.8333333333333
+b(25): 16.1666666666667
+b(26): 9.6
+b(27): 9.78333333333333
+b(28): 16.7166666666667
+b(29): 14.1333333333333
+b(30): 13.5833333333333
+b(31): 12.35
+b(32): 10.8666666666667
+b(33): 13.3833333333333
+b(34): 16
+b(35): 17.2666666666667
+b(36): 10.7
+b(37): 10.8833333333333
+b(38): 17.8166666666667
+b(39): 15.2333333333333
+b(40): 9
+b(41): 9
+b(42): 9
+b(43): 19
+b(44): 19
+b(45): 19
+
+
+Customer profit: 154.455
+Parcel profit: 0
+Costs: 88.642
+Without fixed: 88.642
+
+Solution: 
+Vehicle 0: 40 - 5 - 15 - 6 - 16 - 3 - 13 - 43 - Total time: 8.96788642335923
+Vehicle 1: 41 - 8 - 18 - 4 - 14 - 44 - Total time: 7.0772359401151
+Vehicle 2: 42 - 1 - 11 - 2 - 12 - 0 - 10 - 7 - 17 - 9 - 19 - 45 - Total time: 8.46260185980578
+
+Vehicle 0: d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - d - P - d - P - f
+
+************************************
+Final solution value: 65.813
+************************************
+Instance Name: sarp-10-15-A-1
+
+Time windows: 
+0: 15.0333 - 15.0333
+1: 15.15 - 15.15
+2: 11.8833 - 11.8833
+3: 15.6167 - 15.6167
+4: 10.95 - 10.95
+5: 12.35 - 12.35
+6: 15.35 - 15.35
+7: 10.3167 - 10.3167
+8: 11.9333 - 11.9333
+9: 15.9167 - 15.9167
+10: 15.1703 - 15.337
+11: 15.2602 - 15.4268
+12: 12.0179 - 12.1846
+13: 15.7488 - 15.9154
+14: 11.0992 - 11.2659
+15: 12.4675 - 12.6341
+16: 15.4919 - 15.6585
+17: 10.4463 - 10.613
+18: 12.102 - 12.2687
+19: 16.0439 - 16.2106
+20: 13.9667 - 14.9667
+21: 12.4167 - 13.4167
+22: 10.8167 - 11.8167
+23: 10.45 - 11.45
+24: 13.7333 - 14.7333
+25: 9.23333 - 10.2333
+26: 14.0167 - 15.0167
+27: 16.0833 - 17.0833
+28: 10.8167 - 11.8167
+29: 13.85 - 14.85
+30: 9.96667 - 10.9667
+31: 12.5167 - 13.5167
+32: 9.38333 - 10.3833
+33: 15.2833 - 16.2833
+34: 10.3833 - 11.3833
+35: 15.1 - 19
+36: 13.5833 - 19
+37: 12.0167 - 19
+38: 11.75 - 19
+39: 14.9 - 19
+40: 10.3333 - 19
+41: 15.1167 - 19
+42: 17.1833 - 19
+43: 11.9167 - 19
+44: 14.95 - 19
+45: 11.0667 - 19
+46: 13.6167 - 19
+47: 10.4833 - 19
+48: 16.3833 - 19
+49: 11.4833 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+54: 9 - 19
+55: 9 - 19
+56: 9 - 19
+57: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1678 rows and 5274 columns.
+MIP Presolve modified 594 coefficients.
+Aggregator did 25 substitutions.
+Reduced MIP has 133 rows, 359 columns, and 1070 nonzeros.
+Reduced MIP has 353 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (7.31 ticks)
+Found incumbent of value -15.465000 after 0.01 sec. (10.53 ticks)
+Probing time = 0.00 sec. (1.90 ticks)
+Cover probing fixed 0 vars, tightened 7 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 5 rows and 15 columns.
+MIP Presolve modified 44 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 125 rows, 341 columns, and 1010 nonzeros.
+Reduced MIP has 335 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.35 ticks)
+Probing time = 0.00 sec. (1.67 ticks)
+Clique table members: 785.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.53 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -15.4650       46.9730           403.74%
+*     0     0      integral     0       16.8730       16.8730       49    0.00%
+Elapsed time = 0.02 sec. (17.36 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (17.55 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (17.55 ticks)
+ Total Time: 0.02
+ LB: 16.873
+ UB: 16.873
+
+Obj Val: 16.873
+
+Solve Time: 0.02
+b(0): 15.0333333333333
+b(1): 15.15
+b(2): 11.8833333333333
+b(3): 15.6166666666667
+b(4): 10.95
+b(5): 12.35
+b(6): 15.35
+b(7): 10.3166666666667
+b(8): 11.9333333333333
+b(9): 15.9166666666667
+b(10): 15.1703252294269
+b(11): 15.2601626147135
+b(12): 12.0178862038469
+b(13): 15.9154471782669
+b(14): 11.0991870239937
+b(15): 12.4674796914535
+b(16): 15.6585366139203
+b(17): 10.4463414860202
+b(18): 12.2686992286338
+b(19): 16.2105691271069
+b(20): 13.9666666666667
+b(21): 12.4166666666667
+b(22): 10.8166666666667
+b(23): 10.45
+b(24): 13.7333333333333
+b(25): 9.23333333333333
+b(26): 14.0166666666667
+b(27): 16.0833333333333
+b(28): 10.8166666666667
+b(29): 13.85
+b(30): 9.96666666666667
+b(31): 12.5166666666667
+b(32): 9.38333333333333
+b(33): 15.2833333333333
+b(34): 10.3833333333333
+b(35): 15.1
+b(36): 13.5833333333333
+b(37): 12.0166666666667
+b(38): 11.75
+b(39): 14.9
+b(40): 10.3333333333333
+b(41): 15.1166666666667
+b(42): 17.1833333333333
+b(43): 11.9166666666667
+b(44): 14.95
+b(45): 11.0666666666667
+b(46): 13.6166666666667
+b(47): 10.4833333333333
+b(48): 16.3833333333333
+b(49): 11.4833333333333
+b(50): 9
+b(51): 9
+b(52): 9
+b(53): 9
+b(54): 19
+b(55): 19
+b(56): 19
+b(57): 19
+
+
+Customer profit: 54.133
+Parcel profit: 0
+Costs: 37.26
+Without fixed: 37.26
+
+Solution: 
+Vehicle 0: 50 - 1 - 11 - 54 - Total time: 6.26016261471347
+Vehicle 1: 51 - 7 - 17 - 4 - 14 - 0 - 10 - 9 - 19 - 55 - Total time: 7.21056912710689
+Vehicle 2: 52 - 2 - 12 - 5 - 15 - 3 - 13 - 56 - Total time: 6.91544717826691
+Vehicle 3: 53 - 8 - 18 - 6 - 16 - 57 - Total time: 6.6585366139203
+
+Vehicle 0: d - P - f
+Vehicle 1: d - P - d - P - d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - f
+Vehicle 3: d - P - d - P - f
+
+************************************
+Final solution value: 16.873
+************************************
+Instance Name: sarp-10-15-A-2
+
+Time windows: 
+0: 15.9833 - 15.9833
+1: 10.05 - 10.05
+2: 16.1167 - 16.1167
+3: 12.4167 - 12.4167
+4: 10.9333 - 10.9333
+5: 16.1333 - 16.1333
+6: 14.0833 - 14.0833
+7: 14.25 - 14.25
+8: 14.3667 - 14.3667
+9: 13.3667 - 13.3667
+10: 16.0837 - 16.2504
+11: 10.226 - 10.3927
+12: 16.2293 - 16.3959
+13: 12.5463 - 12.713
+14: 11.0923 - 11.2589
+15: 16.2801 - 16.4467
+16: 14.1935 - 14.3602
+17: 14.3821 - 14.5488
+18: 14.4915 - 14.6581
+19: 13.5134 - 13.6801
+20: 10.6167 - 11.6167
+21: 10 - 11
+22: 13 - 14
+23: 10.65 - 11.65
+24: 16.2 - 17.2
+25: 12.9667 - 13.9667
+26: 9.06667 - 10.0667
+27: 9.41667 - 10.4167
+28: 16.0167 - 17.0167
+29: 15.2333 - 16.2333
+30: 10 - 11
+31: 10.7 - 11.7
+32: 11 - 12
+33: 9.16667 - 10.1667
+34: 9.78333 - 10.7833
+35: 11.75 - 19
+36: 11.1667 - 19
+37: 14.2 - 19
+38: 11.95 - 19
+39: 17.3667 - 19
+40: 14.0667 - 19
+41: 10.1667 - 19
+42: 10.5167 - 19
+43: 17.1167 - 19
+44: 16.3333 - 19
+45: 11.1 - 19
+46: 11.8 - 19
+47: 12.1 - 19
+48: 10.2667 - 19
+49: 10.8833 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+54: 9 - 19
+55: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1610 rows and 3927 columns.
+MIP Presolve modified 514 coefficients.
+Aggregator did 19 substitutions.
+Reduced MIP has 124 rows, 292 columns, and 887 nonzeros.
+Reduced MIP has 285 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.84 ticks)
+Found incumbent of value -62.521000 after 0.01 sec. (8.61 ticks)
+Probing time = 0.00 sec. (1.23 ticks)
+Cover probing fixed 0 vars, tightened 1 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 7 rows and 14 columns.
+MIP Presolve modified 26 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 114 rows, 275 columns, and 819 nonzeros.
+Reduced MIP has 269 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.14 ticks)
+Probing time = 0.00 sec. (1.05 ticks)
+Clique table members: 645.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.66 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -62.5210       41.2550           165.99%
+*     0     0      integral     0       -3.3650       -3.3650       71    0.00%
+Elapsed time = 0.02 sec. (13.78 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (13.93 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (13.93 ticks)
+ Total Time: 0.01
+ LB: -3.365
+ UB: -3.365
+
+Obj Val: -3.365
+
+Solve Time: 0.01
+b(0): 15.9833333333333
+b(1): 10.05
+b(2): 16.1166666666667
+b(3): 12.4166666666667
+b(4): 10.9333333333333
+b(5): 16.1333333333333
+b(6): 14.0833333333333
+b(7): 14.25
+b(8): 14.3666666666667
+b(9): 13.3666666666667
+b(10): 16.2504065123934
+b(11): 10.2260163053738
+b(12): 16.3959349736268
+b(13): 12.5463414860202
+b(14): 11.0922764596471
+b(15): 16.4467479984137
+b(16): 14.1934959480468
+b(17): 14.3821138449336
+b(18): 14.4914634348602
+b(19): 13.680081331747
+b(20): 10.6166666666667
+b(21): 10
+b(22): 13
+b(23): 10.65
+b(24): 16.2
+b(25): 12.9666666666667
+b(26): 9.06666666666667
+b(27): 9.41666666666667
+b(28): 16.0166666666667
+b(29): 15.2333333333333
+b(30): 10
+b(31): 10.7
+b(32): 11
+b(33): 9.16666666666667
+b(34): 9.78333333333333
+b(35): 11.75
+b(36): 11.1666666666667
+b(37): 14.2
+b(38): 11.95
+b(39): 17.3666666666667
+b(40): 14.0666666666667
+b(41): 10.1666666666667
+b(42): 10.5166666666667
+b(43): 17.1166666666667
+b(44): 16.3333333333333
+b(45): 11.1
+b(46): 11.8
+b(47): 12.1
+b(48): 10.2666666666667
+b(49): 10.8833333333333
+b(50): 9
+b(51): 9
+b(52): 9
+b(53): 19
+b(54): 19
+b(55): 19
+
+
+Customer profit: 53.721
+Parcel profit: 0
+Costs: 57.086
+Without fixed: 57.086
+
+Solution: 
+Vehicle 0: 50 - 7 - 17 - 5 - 15 - 53 - Total time: 7.44674799841366
+Vehicle 1: 51 - 4 - 14 - 9 - 19 - 8 - 18 - 0 - 10 - 54 - Total time: 7.25040651239343
+Vehicle 2: 52 - 1 - 11 - 3 - 13 - 6 - 16 - 2 - 12 - 55 - Total time: 7.39593497362682
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - d - P - f
+
+************************************
+Final solution value: -3.36500000000002
+************************************
+Instance Name: sarp-10-15-B-1
+
+Time windows: 
+0: 15.2167 - 15.2167
+1: 12.6333 - 12.6333
+2: 10.0667 - 10.0667
+3: 14.2333 - 14.2333
+4: 16.9833 - 16.9833
+5: 11.8667 - 11.8667
+6: 9.86667 - 9.86667
+7: 17.1167 - 17.1167
+8: 9.61667 - 9.61667
+9: 17.25 - 17.25
+10: 15.3537 - 15.5203
+11: 12.8069 - 12.9736
+12: 10.2378 - 10.4045
+13: 14.3484 - 14.515
+14: 17.1545 - 17.3211
+15: 12.0012 - 12.1679
+16: 10.0183 - 10.185
+17: 17.2829 - 17.4496
+18: 9.84634 - 10.013
+19: 17.5061 - 17.6728
+20: 11.8833 - 12.8833
+21: 9.81667 - 10.8167
+22: 14.25 - 15.25
+23: 12.6333 - 13.6333
+24: 12.4167 - 13.4167
+25: 13.2833 - 14.2833
+26: 9.01667 - 10.0167
+27: 10.05 - 11.05
+28: 10.65 - 11.65
+29: 10.05 - 11.05
+30: 13.9 - 14.9
+31: 9.28333 - 10.2833
+32: 10.0833 - 11.0833
+33: 11.4833 - 12.4833
+34: 12.7 - 13.7
+35: 13.0167 - 19
+36: 10.9833 - 19
+37: 15.45 - 19
+38: 13.9333 - 19
+39: 13.5833 - 19
+40: 14.3833 - 19
+41: 10.1167 - 19
+42: 11.15 - 19
+43: 11.75 - 19
+44: 11.15 - 19
+45: 15 - 19
+46: 10.3833 - 19
+47: 11.1833 - 19
+48: 12.5833 - 19
+49: 13.8 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+54: 9 - 19
+55: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1616 rows and 3949 columns.
+MIP Presolve modified 519 coefficients.
+Aggregator did 20 substitutions.
+Reduced MIP has 132 rows, 314 columns, and 973 nonzeros.
+Reduced MIP has 306 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.66 ticks)
+Found incumbent of value -8.983000 after 0.01 sec. (8.63 ticks)
+Probing time = 0.00 sec. (1.35 ticks)
+Cover probing fixed 0 vars, tightened 6 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 7 rows and 16 columns.
+MIP Presolve modified 42 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 122 rows, 295 columns, and 899 nonzeros.
+Reduced MIP has 288 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.36 ticks)
+Probing time = 0.00 sec. (1.26 ticks)
+Clique table members: 672.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.60 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           -8.9830       42.4430           572.48%
+*     0     0      integral     0       18.1570       18.1570       41    0.00%
+Elapsed time = 0.02 sec. (14.36 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (14.51 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (14.51 ticks)
+ Total Time: 0.02
+ LB: 18.157
+ UB: 18.157
+
+Obj Val: 18.157
+
+Solve Time: 0.02
+b(0): 15.2166666666667
+b(1): 12.6333333333333
+b(2): 10.0666666666667
+b(3): 14.2333333333333
+b(4): 16.9833333333333
+b(5): 11.8666666666667
+b(6): 9.86666666666667
+b(7): 17.1166666666667
+b(8): 9.61666666666667
+b(9): 17.25
+b(10): 15.5203252294269
+b(11): 12.8069106131271
+b(12): 10.2378049208804
+b(13): 14.3483739992068
+b(14): 17.1544715875471
+b(15): 12.0012195371803
+b(16): 10.0182927162403
+b(17): 17.4495935363871
+b(18): 9.84634153480075
+b(19): 17.672764352568
+b(20): 11.8833333333333
+b(21): 9.81666666666667
+b(22): 14.25
+b(23): 12.6333333333333
+b(24): 12.4166666666667
+b(25): 13.2833333333333
+b(26): 9.01666666666667
+b(27): 10.05
+b(28): 10.65
+b(29): 10.05
+b(30): 13.9
+b(31): 9.28333333333333
+b(32): 10.0833333333333
+b(33): 11.4833333333333
+b(34): 12.7
+b(35): 13.0166666666667
+b(36): 10.9833333333333
+b(37): 15.45
+b(38): 13.9333333333333
+b(39): 13.5833333333333
+b(40): 14.3833333333333
+b(41): 10.1166666666667
+b(42): 11.15
+b(43): 11.75
+b(44): 11.15
+b(45): 15
+b(46): 10.3833333333333
+b(47): 11.1833333333333
+b(48): 12.5833333333333
+b(49): 13.8
+b(50): 9
+b(51): 9
+b(52): 9
+b(53): 19
+b(54): 19
+b(55): 19
+
+
+Customer profit: 69.171
+Parcel profit: 0
+Costs: 51.014
+Without fixed: 51.014
+
+Solution: 
+Vehicle 0: 50 - 6 - 16 - 7 - 17 - 53 - Total time: 8.4495935363871
+Vehicle 1: 51 - 2 - 12 - 5 - 15 - 1 - 11 - 0 - 10 - 9 - 19 - 54 - Total time: 8.67276435256798
+Vehicle 2: 52 - 8 - 18 - 3 - 13 - 4 - 14 - 55 - Total time: 8.15447158754711
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - f
+
+************************************
+Final solution value: 18.157
+************************************
+Instance Name: sarp-10-15-B-2
+
+Time windows: 
+0: 13.7833 - 13.7833
+1: 11.2833 - 11.2833
+2: 14.0333 - 14.0333
+3: 14.9333 - 14.9333
+4: 12.8167 - 12.8167
+5: 13.8 - 13.8
+6: 13.3667 - 13.3667
+7: 11.75 - 11.75
+8: 13.4667 - 13.4667
+9: 10.4 - 10.4
+10: 13.9593 - 14.126
+11: 11.3837 - 11.5504
+12: 14.1996 - 14.3663
+13: 15.1215 - 15.2882
+14: 12.9463 - 13.113
+15: 13.9516 - 14.1183
+16: 13.6012 - 13.7679
+17: 11.926 - 12.0927
+18: 13.6768 - 13.8435
+19: 10.5638 - 10.7305
+20: 10.5 - 11.5
+21: 13.3833 - 14.3833
+22: 12.9 - 13.9
+23: 13.2667 - 14.2667
+24: 16.7 - 17.7
+25: 12.4 - 13.4
+26: 14.1333 - 15.1333
+27: 15.05 - 16.05
+28: 16.3 - 17.3
+29: 16.55 - 17.55
+30: 13.3667 - 14.3667
+31: 12.1833 - 13.1833
+32: 12.25 - 13.25
+33: 12.3667 - 13.3667
+34: 10.0333 - 11.0333
+35: 11.6333 - 19
+36: 14.55 - 19
+37: 14.1 - 19
+38: 14.5667 - 19
+39: 17.8667 - 19
+40: 13.5 - 19
+41: 15.2333 - 19
+42: 16.15 - 19
+43: 17.4 - 19
+44: 17.65 - 19
+45: 14.4667 - 19
+46: 13.2833 - 19
+47: 13.35 - 19
+48: 13.4667 - 19
+49: 11.1333 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+54: 9 - 19
+55: 9 - 19
+56: 9 - 19
+57: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1668 rows and 5226 columns.
+MIP Presolve modified 586 coefficients.
+Aggregator did 24 substitutions.
+Reduced MIP has 139 rows, 384 columns, and 1159 nonzeros.
+Reduced MIP has 376 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (7.26 ticks)
+Found incumbent of value -15.548000 after 0.01 sec. (9.85 ticks)
+Probing time = 0.00 sec. (1.74 ticks)
+Cover probing fixed 0 vars, tightened 8 bounds.
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve modified 32 coefficients.
+Reduced MIP has 139 rows, 384 columns, and 1159 nonzeros.
+Reduced MIP has 376 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.90 ticks)
+Probing time = 0.00 sec. (1.73 ticks)
+Clique table members: 812.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.55 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -15.5480       48.3190           410.77%
+*     0     0      integral     0       24.0120       24.0120       44    0.00%
+Elapsed time = 0.02 sec. (16.20 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (16.39 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (16.39 ticks)
+ Total Time: 0.02
+ LB: 24.012
+ UB: 24.012
+
+Obj Val: 24.012
+
+Solve Time: 0.02
+b(0): 13.7833333333333
+b(1): 11.2833333333333
+b(2): 14.0333333333333
+b(3): 14.9333333333333
+b(4): 12.8166666666667
+b(5): 13.8
+b(6): 13.3666666666667
+b(7): 11.75
+b(8): 13.4666666666667
+b(9): 10.4
+b(10): 13.9593496387071
+b(11): 11.5504065123934
+b(12): 14.1995935363871
+b(13): 15.2882114332739
+b(14): 12.9463414860202
+b(15): 13.9516260495737
+b(16): 13.6012195859608
+b(17): 11.9260163053738
+b(18): 13.6768293301606
+b(19): 10.5638211774737
+b(20): 10.5
+b(21): 13.3833333333333
+b(22): 12.9
+b(23): 13.2666666666667
+b(24): 16.7
+b(25): 12.4
+b(26): 14.1333333333333
+b(27): 15.05
+b(28): 16.3
+b(29): 16.55
+b(30): 13.3666666666667
+b(31): 12.1833333333333
+b(32): 12.25
+b(33): 12.3666666666667
+b(34): 10.0333333333333
+b(35): 11.6333333333333
+b(36): 14.55
+b(37): 14.1
+b(38): 14.5666666666667
+b(39): 17.8666666666667
+b(40): 13.5
+b(41): 15.2333333333333
+b(42): 16.15
+b(43): 17.4
+b(44): 17.65
+b(45): 14.4666666666667
+b(46): 13.2833333333333
+b(47): 13.35
+b(48): 13.4666666666667
+b(49): 11.1333333333333
+b(50): 9
+b(51): 9
+b(52): 9
+b(53): 9
+b(54): 19
+b(55): 19
+b(56): 19
+b(57): 19
+
+
+Customer profit: 68.862
+Parcel profit: 0
+Costs: 44.85
+Without fixed: 44.85
+
+Solution: 
+Vehicle 0: 50 - 5 - 15 - 54 - Total time: 4.95162604957368
+Vehicle 1: 51 - 9 - 19 - 1 - 11 - 6 - 16 - 55 - Total time: 4.60121958596077
+Vehicle 2: 52 - 7 - 17 - 4 - 14 - 0 - 10 - 3 - 13 - 56 - Total time: 6.28821143327387
+Vehicle 3: 53 - 8 - 18 - 2 - 12 - 57 - Total time: 5.19959353638709
+
+Vehicle 0: d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - d - P - f
+Vehicle 3: d - P - d - P - f
+
+************************************
+Final solution value: 24.012
+************************************
+Instance Name: sarp-10-15-C-1
+
+Time windows: 
+0: 13.1167 - 13.1167
+1: 10.5667 - 10.5667
+2: 12.6167 - 12.6167
+3: 10.7333 - 10.7333
+4: 11.8167 - 11.8167
+5: 17.1 - 17.1
+6: 17.0833 - 17.0833
+7: 12.5 - 12.5
+8: 17.25 - 17.25
+9: 13.15 - 13.15
+10: 13.7167 - 13.8833
+11: 11.2435 - 11.4102
+12: 12.7805 - 12.9472
+13: 11.2528 - 11.4195
+14: 12.0293 - 12.1959
+15: 17.3175 - 17.4841
+16: 17.2496 - 17.4163
+17: 12.8915 - 13.0581
+18: 18.172 - 18.3386
+19: 13.5049 - 13.6715
+20: 13 - 14
+21: 11.2833 - 12.2833
+22: 10.5 - 11.5
+23: 14.8833 - 15.8833
+24: 15.4833 - 16.4833
+25: 10.5667 - 11.5667
+26: 13.45 - 14.45
+27: 12.5667 - 13.5667
+28: 10.8333 - 11.8333
+29: 9.83333 - 10.8333
+30: 10.55 - 11.55
+31: 9.41667 - 10.4167
+32: 12.2167 - 13.2167
+33: 11.1 - 12.1
+34: 11.85 - 12.85
+35: 14.1333 - 19
+36: 12.45 - 19
+37: 11.7 - 19
+38: 16.1833 - 19
+39: 16.65 - 19
+40: 11.6667 - 19
+41: 14.55 - 19
+42: 13.6667 - 19
+43: 11.9333 - 19
+44: 10.9333 - 19
+45: 11.65 - 19
+46: 10.5167 - 19
+47: 13.3167 - 19
+48: 12.2 - 19
+49: 12.95 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+54: 9 - 19
+55: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1613 rows and 3944 columns.
+MIP Presolve modified 592 coefficients.
+Aggregator did 19 substitutions.
+Reduced MIP has 125 rows, 290 columns, and 870 nonzeros.
+Reduced MIP has 285 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.85 ticks)
+Found incumbent of value 24.318000 after 0.01 sec. (8.24 ticks)
+Probing time = 0.00 sec. (1.54 ticks)
+Cover probing fixed 0 vars, tightened 4 bounds.
+Tried aggregator 2 times.
+MIP Presolve eliminated 14 rows and 28 columns.
+MIP Presolve modified 38 coefficients.
+Aggregator did 4 substitutions.
+Reduced MIP has 107 rows, 258 columns, and 754 nonzeros.
+Reduced MIP has 253 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.04 ticks)
+Probing time = 0.00 sec. (1.14 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 107 rows, 258 columns, and 754 nonzeros.
+Reduced MIP has 253 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.54 ticks)
+Probing time = 0.00 sec. (1.13 ticks)
+Clique table members: 564.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.44 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           24.3180       88.9480           265.77%
+*     0     0      integral     0       63.3260       63.3260       47    0.00%
+Elapsed time = 0.02 sec. (15.57 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (15.72 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (15.72 ticks)
+ Total Time: 0.02
+ LB: 63.326
+ UB: 63.326
+
+Obj Val: 63.326
+
+Solve Time: 0.02
+b(0): 13.1166666666667
+b(1): 10.5666666666667
+b(2): 12.6166666666667
+b(3): 10.7333333333333
+b(4): 11.8166666666667
+b(5): 17.1
+b(6): 17.0833333333333
+b(7): 12.5
+b(8): 17.25
+b(9): 13.15
+b(10): 13.8833336260164
+b(11): 11.2434962651201
+b(12): 12.7804878441404
+b(13): 11.252845781876
+b(14): 12.1959350224073
+b(15): 17.4841464069007
+b(16): 17.4162602030538
+b(17): 12.891463605592
+b(18): 18.3386183359114
+b(19): 13.6715448885585
+b(20): 13
+b(21): 11.2833333333333
+b(22): 10.5
+b(23): 14.8833333333333
+b(24): 15.4833333333333
+b(25): 10.5666666666667
+b(26): 13.45
+b(27): 12.5666666666667
+b(28): 10.8333333333333
+b(29): 9.83333333333333
+b(30): 10.55
+b(31): 9.41666666666667
+b(32): 12.2166666666667
+b(33): 11.1
+b(34): 11.85
+b(35): 14.1333333333333
+b(36): 12.45
+b(37): 11.7
+b(38): 16.1833333333333
+b(39): 16.65
+b(40): 11.6666666666667
+b(41): 14.55
+b(42): 13.6666666666667
+b(43): 11.9333333333333
+b(44): 10.9333333333333
+b(45): 11.65
+b(46): 10.5166666666667
+b(47): 13.3166666666667
+b(48): 12.2
+b(49): 12.95
+b(50): 9
+b(51): 9
+b(52): 9
+b(53): 19
+b(54): 19
+b(55): 19
+
+
+Customer profit: 147.966
+Parcel profit: 0
+Costs: 84.64
+Without fixed: 84.64
+
+Solution: 
+Vehicle 0: 50 - 1 - 11 - 4 - 14 - 0 - 10 - 6 - 16 - 53 - Total time: 8.41626020305376
+Vehicle 1: 51 - 2 - 12 - 9 - 19 - 5 - 15 - 54 - Total time: 8.48414640690068
+Vehicle 2: 52 - 3 - 13 - 7 - 17 - 8 - 18 - 55 - Total time: 9.33861833591138
+
+Vehicle 0: d - P - d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - f
+
+************************************
+Final solution value: 63.326
+************************************
+Instance Name: sarp-10-15-C-2
+
+Time windows: 
+0: 11.6 - 11.6
+1: 13.0167 - 13.0167
+2: 15.6833 - 15.6833
+3: 13.5333 - 13.5333
+4: 16.6833 - 16.6833
+5: 11.9167 - 11.9167
+6: 10.9667 - 10.9667
+7: 15.5 - 15.5
+8: 13.0667 - 13.0667
+9: 16.2833 - 16.2833
+10: 12.3354 - 12.502
+11: 13.2293 - 13.3959
+12: 16.4699 - 16.6366
+13: 14.1041 - 14.2707
+14: 16.9358 - 17.1024
+15: 12.7252 - 12.8919
+16: 11.7423 - 11.9089
+17: 16.0561 - 16.2228
+18: 13.8972 - 14.0638
+19: 16.7992 - 16.9659
+20: 16.0667 - 17.0667
+21: 9.81667 - 10.8167
+22: 10.9167 - 11.9167
+23: 12.6 - 13.6
+24: 16.0833 - 17.0833
+25: 9.28333 - 10.2833
+26: 10.8333 - 11.8333
+27: 16.4833 - 17.4833
+28: 10.0667 - 11.0667
+29: 9.48333 - 10.4833
+30: 11.65 - 12.65
+31: 16.15 - 17.15
+32: 13.9667 - 14.9667
+33: 13.4 - 14.4
+34: 12.7833 - 13.7833
+35: 17.2 - 19
+36: 10.9833 - 19
+37: 12.1167 - 19
+38: 13.9 - 19
+39: 17.25 - 19
+40: 10.3833 - 19
+41: 11.9333 - 19
+42: 17.5833 - 19
+43: 11.1667 - 19
+44: 10.5833 - 19
+45: 12.75 - 19
+46: 17.25 - 19
+47: 15.0667 - 19
+48: 14.5 - 19
+49: 13.8833 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+54: 9 - 19
+55: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1624 rows and 3967 columns.
+MIP Presolve modified 522 coefficients.
+Aggregator did 23 substitutions.
+Reduced MIP has 113 rows, 269 columns, and 811 nonzeros.
+Reduced MIP has 263 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (5.80 ticks)
+Found incumbent of value 35.475000 after 0.01 sec. (8.37 ticks)
+Probing time = 0.00 sec. (1.14 ticks)
+Cover probing fixed 0 vars, tightened 1 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 6 rows and 14 columns.
+MIP Presolve modified 17 coefficients.
+Aggregator did 2 substitutions.
+Reduced MIP has 105 rows, 253 columns, and 754 nonzeros.
+Reduced MIP has 247 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.87 ticks)
+Probing time = 0.00 sec. (0.98 ticks)
+Clique table members: 582.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.52 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           35.4750      151.7890           327.88%
+*     0     0      integral     0       78.0250       78.0250       62    0.00%
+Elapsed time = 0.02 sec. (12.91 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (13.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (13.05 ticks)
+ Total Time: 0.01
+ LB: 78.025
+ UB: 78.025
+
+Obj Val: 78.025
+
+Solve Time: 0.01
+b(0): 11.6
+b(1): 13.0166666666667
+b(2): 15.6833333333333
+b(3): 13.5333333333333
+b(4): 16.6833333333333
+b(5): 11.9166666666667
+b(6): 10.9666666666667
+b(7): 15.5
+b(8): 13.0666666666667
+b(9): 16.2833333333333
+b(10): 12.3353662123738
+b(11): 13.3621951219512
+b(12): 16.636585749554
+b(13): 14.1040653190563
+b(14): 17.1024391475313
+b(15): 12.8918703131075
+b(16): 11.7422768011106
+b(17): 16.2227644989095
+b(18): 13.8971548766609
+b(19): 16.9658539101726
+b(20): 16.0666666666667
+b(21): 9.81666666666667
+b(22): 10.9166666666667
+b(23): 12.6
+b(24): 16.0833333333333
+b(25): 9.28333333333333
+b(26): 10.8333333333333
+b(27): 16.4833333333333
+b(28): 10.0666666666667
+b(29): 9.48333333333333
+b(30): 11.65
+b(31): 16.15
+b(32): 13.9666666666667
+b(33): 13.4
+b(34): 12.7833333333333
+b(35): 17.2
+b(36): 10.9833333333333
+b(37): 12.1166666666667
+b(38): 13.9
+b(39): 17.25
+b(40): 10.3833333333333
+b(41): 11.9333333333333
+b(42): 17.5833333333333
+b(43): 11.1666666666667
+b(44): 10.5833333333333
+b(45): 12.75
+b(46): 17.25
+b(47): 15.0666666666667
+b(48): 14.5
+b(49): 13.8833333333333
+b(50): 9
+b(51): 9
+b(52): 9
+b(53): 19
+b(54): 19
+b(55): 19
+
+
+Customer profit: 202.041
+Parcel profit: 0
+Costs: 124.016
+Without fixed: 124.016
+
+Solution: 
+Vehicle 0: 50 - 0 - 10 - 1 - 11 - 3 - 13 - 9 - 19 - 53 - Total time: 7.96585391017264
+Vehicle 1: 51 - 5 - 15 - 2 - 12 - 54 - Total time: 7.63658574955402
+Vehicle 2: 52 - 6 - 16 - 8 - 18 - 7 - 17 - 4 - 14 - 55 - Total time: 8.10243914753129
+
+Vehicle 0: d - P - d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - d - P - f
+
+************************************
+Final solution value: 78.025
+************************************
+Instance Name: sarp-10-20-A-1
+
+Time windows: 
+0: 12.0833 - 12.0833
+1: 13.0333 - 13.0333
+2: 11.4833 - 11.4833
+3: 10.1 - 10.1
+4: 16.6167 - 16.6167
+5: 15.1667 - 15.1667
+6: 15.8333 - 15.8333
+7: 9.95 - 9.95
+8: 9.63333 - 9.63333
+9: 14.2167 - 14.2167
+10: 12.2252 - 12.3919
+11: 13.1679 - 13.3346
+12: 11.6252 - 11.7919
+13: 10.2272 - 10.3939
+14: 16.7683 - 16.935
+15: 15.2622 - 15.4289
+16: 15.9386 - 16.1053
+17: 10.0821 - 10.2488
+18: 9.74837 - 9.91504
+19: 14.3585 - 14.5252
+20: 10.2 - 11.2
+21: 15.0167 - 16.0167
+22: 16.0333 - 17.0333
+23: 14.7 - 15.7
+24: 10.5 - 11.5
+25: 10.3833 - 11.3833
+26: 10.95 - 11.95
+27: 10.95 - 11.95
+28: 14.6833 - 15.6833
+29: 16.15 - 17.15
+30: 9.06667 - 10.0667
+31: 10.3167 - 11.3167
+32: 13.35 - 14.35
+33: 12.2833 - 13.2833
+34: 13.7333 - 14.7333
+35: 11.5667 - 12.5667
+36: 10.6 - 11.6
+37: 11 - 12
+38: 10.8 - 11.8
+39: 16.15 - 17.15
+40: 11.3333 - 19
+41: 16.1833 - 19
+42: 17.2333 - 19
+43: 16 - 19
+44: 11.6667 - 19
+45: 11.4833 - 19
+46: 12.05 - 19
+47: 12.05 - 19
+48: 15.7833 - 19
+49: 17.25 - 19
+50: 10.1667 - 19
+51: 11.4167 - 19
+52: 14.45 - 19
+53: 13.3833 - 19
+54: 14.8333 - 19
+55: 12.6667 - 19
+56: 11.7 - 19
+57: 12.1 - 19
+58: 11.9 - 19
+59: 17.25 - 19
+60: 9 - 19
+61: 9 - 19
+62: 9 - 19
+63: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 2009 rows and 3461 columns.
+MIP Presolve modified 3027 coefficients.
+Aggregator did 16 substitutions.
+Reduced MIP has 116 rows, 203 columns, and 582 nonzeros.
+Reduced MIP has 202 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.42 ticks)
+Found incumbent of value -22.594000 after 0.01 sec. (5.98 ticks)
+Probing fixed 78 vars, tightened 0 bounds.
+Probing changed sense of 1 constraints.
+Probing time = 0.00 sec. (0.44 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 34 rows and 83 columns.
+MIP Presolve modified 5 coefficients.
+Reduced MIP has 82 rows, 120 columns, and 356 nonzeros.
+Reduced MIP has 120 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.36 ticks)
+Probing time = 0.00 sec. (0.23 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 82 rows, 120 columns, and 356 nonzeros.
+Reduced MIP has 120 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.25 ticks)
+Probing time = 0.00 sec. (0.23 ticks)
+Clique table members: 376.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.16 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -22.5940       27.0400           219.68%
+*     0     0      integral     0       -0.8360       -0.8360       22    0.00%
+Elapsed time = 0.01 sec. (8.54 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (8.66 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (8.66 ticks)
+ Total Time: 0.01
+ LB: -0.836
+ UB: -0.836
+
+Obj Val: -0.835999999999999
+
+Solve Time: 0.01
+b(0): 12.0833333333333
+b(1): 13.0333333333333
+b(2): 11.4833333333333
+b(3): 10.1
+b(4): 16.6166666666667
+b(5): 15.1666666666667
+b(6): 15.8333333333333
+b(7): 9.95
+b(8): 9.63333333333333
+b(9): 14.2166666666667
+b(10): 12.3918699472536
+b(11): 13.1678862038469
+b(12): 11.625203280587
+b(13): 10.3939024604402
+b(14): 16.934959382907
+b(15): 15.2621951279001
+b(16): 15.9386178968868
+b(17): 10.0821138449336
+b(18): 9.74837399920683
+b(19): 14.3585366139203
+b(20): 10.2
+b(21): 15.0166666666667
+b(22): 16.0333333333333
+b(23): 14.7
+b(24): 10.5
+b(25): 10.3833333333333
+b(26): 10.95
+b(27): 10.95
+b(28): 14.6833333333333
+b(29): 16.15
+b(30): 9.06666666666667
+b(31): 10.3166666666667
+b(32): 13.35
+b(33): 12.2833333333333
+b(34): 13.7333333333333
+b(35): 11.5666666666667
+b(36): 10.6
+b(37): 11
+b(38): 10.8
+b(39): 16.15
+b(40): 11.3333333333333
+b(41): 16.1833333333333
+b(42): 17.2333333333333
+b(43): 16
+b(44): 11.6666666666667
+b(45): 11.4833333333333
+b(46): 12.05
+b(47): 12.05
+b(48): 15.7833333333333
+b(49): 17.25
+b(50): 10.1666666666667
+b(51): 11.4166666666667
+b(52): 14.45
+b(53): 13.3833333333333
+b(54): 14.8333333333333
+b(55): 12.6666666666667
+b(56): 11.7
+b(57): 12.1
+b(58): 11.9
+b(59): 17.25
+b(60): 9
+b(61): 9
+b(62): 19
+b(63): 19
+
+
+Customer profit: 51.558
+Parcel profit: 0
+Costs: 52.394
+Without fixed: 52.394
+
+Solution: 
+Vehicle 0: 60 - 8 - 18 - 3 - 13 - 0 - 10 - 1 - 11 - 6 - 16 - 4 - 14 - 62 - Total time: 7.93495938290702
+Vehicle 1: 61 - 7 - 17 - 2 - 12 - 9 - 19 - 5 - 15 - 63 - Total time: 6.26219512790006
+
+Vehicle 0: d - P - d - P - d - P - d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - d - P - f
+
+************************************
+Final solution value: -0.835999999999991
+************************************
+Instance Name: sarp-10-20-A-2
+
+Time windows: 
+0: 9.6 - 9.6
+1: 12.75 - 12.75
+2: 12.5667 - 12.5667
+3: 12.7833 - 12.7833
+4: 17.3167 - 17.3167
+5: 10.5667 - 10.5667
+6: 13.7167 - 13.7167
+7: 9.71667 - 9.71667
+8: 10.2667 - 10.2667
+9: 13.5167 - 13.5167
+10: 9.72967 - 9.89634
+11: 12.8577 - 13.0244
+12: 12.7061 - 12.8728
+13: 12.9447 - 13.1114
+14: 17.4634 - 17.6301
+15: 10.7378 - 10.9045
+16: 13.8683 - 14.035
+17: 9.83415 - 10.0008
+18: 10.411 - 10.5776
+19: 13.6585 - 13.8252
+20: 14.5167 - 15.5167
+21: 11.7667 - 12.7667
+22: 11.4 - 12.4
+23: 12.35 - 13.35
+24: 9.81667 - 10.8167
+25: 9.35 - 10.35
+26: 11.4667 - 12.4667
+27: 11.8833 - 12.8833
+28: 12.9167 - 13.9167
+29: 10.8667 - 11.8667
+30: 10.5167 - 11.5167
+31: 16.65 - 17.65
+32: 11.5833 - 12.5833
+33: 9.76667 - 10.7667
+34: 12.3667 - 13.3667
+35: 14.3333 - 15.3333
+36: 14.7167 - 15.7167
+37: 10.9667 - 11.9667
+38: 11.3833 - 12.3833
+39: 9.71667 - 10.7167
+40: 15.65 - 19
+41: 12.9333 - 19
+42: 12.6 - 19
+43: 13.65 - 19
+44: 10.9833 - 19
+45: 10.45 - 19
+46: 12.5667 - 19
+47: 12.9833 - 19
+48: 14.0167 - 19
+49: 11.9667 - 19
+50: 11.6167 - 19
+51: 17.75 - 19
+52: 12.6833 - 19
+53: 10.8667 - 19
+54: 13.4667 - 19
+55: 15.4333 - 19
+56: 15.8167 - 19
+57: 12.0667 - 19
+58: 12.4833 - 19
+59: 10.8167 - 19
+60: 9 - 19
+61: 9 - 19
+62: 9 - 19
+63: 9 - 19
+64: 9 - 19
+65: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 2065 rows and 5122 columns.
+MIP Presolve modified 544 coefficients.
+Aggregator did 19 substitutions.
+Reduced MIP has 127 rows, 298 columns, and 905 nonzeros.
+Reduced MIP has 291 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.77 ticks)
+Found incumbent of value -29.945000 after 0.01 sec. (9.18 ticks)
+Probing time = 0.00 sec. (1.30 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 127 rows, 298 columns, and 905 nonzeros.
+Reduced MIP has 291 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.63 ticks)
+Probing time = 0.00 sec. (1.30 ticks)
+Clique table members: 664.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.50 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -29.9450       41.4930           238.56%
+*     0     0      integral     0       10.7190       10.7190       47    0.00%
+Elapsed time = 0.02 sec. (14.16 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (14.35 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (14.35 ticks)
+ Total Time: 0.01
+ LB: 10.719
+ UB: 10.719
+
+Obj Val: 10.719
+
+Solve Time: 0.01
+b(0): 9.6
+b(1): 12.75
+b(2): 12.5666666666667
+b(3): 12.7833333333333
+b(4): 17.3166666666667
+b(5): 10.5666666666667
+b(6): 13.7166666666667
+b(7): 9.71666666666667
+b(8): 10.2666666666667
+b(9): 13.5166666666667
+b(10): 9.72967481935357
+b(11): 12.8577235891335
+b(12): 12.7060975883403
+b(13): 12.9447154852271
+b(14): 17.630081331747
+b(15): 10.7378049208804
+b(16): 13.8682927162403
+b(17): 9.83414635812017
+b(18): 10.4109756395003
+b(19): 13.6585366139203
+b(20): 14.5166666666667
+b(21): 11.7666666666667
+b(22): 11.4
+b(23): 12.35
+b(24): 9.81666666666667
+b(25): 9.35
+b(26): 11.4666666666667
+b(27): 11.8833333333333
+b(28): 12.9166666666667
+b(29): 10.8666666666667
+b(30): 10.5166666666667
+b(31): 16.65
+b(32): 11.5833333333333
+b(33): 9.76666666666667
+b(34): 12.3666666666667
+b(35): 14.3333333333333
+b(36): 14.7166666666667
+b(37): 10.9666666666667
+b(38): 11.3833333333333
+b(39): 9.71666666666667
+b(40): 15.65
+b(41): 12.9333333333333
+b(42): 12.6
+b(43): 13.65
+b(44): 10.9833333333333
+b(45): 10.45
+b(46): 12.5666666666667
+b(47): 12.9833333333333
+b(48): 14.0166666666667
+b(49): 11.9666666666667
+b(50): 11.6166666666667
+b(51): 17.75
+b(52): 12.6833333333333
+b(53): 10.8666666666667
+b(54): 13.4666666666667
+b(55): 15.4333333333333
+b(56): 15.8166666666667
+b(57): 12.0666666666667
+b(58): 12.4833333333333
+b(59): 10.8166666666667
+b(60): 9
+b(61): 9
+b(62): 9
+b(63): 19
+b(64): 19
+b(65): 19
+
+
+Customer profit: 56.811
+Parcel profit: 0
+Costs: 46.092
+Without fixed: 46.092
+
+Solution: 
+Vehicle 0: 60 - 7 - 17 - 3 - 13 - 9 - 19 - 63 - Total time: 4.6585366139203
+Vehicle 1: 61 - 0 - 10 - 5 - 15 - 2 - 12 - 64 - Total time: 3.70609758834029
+Vehicle 2: 62 - 8 - 18 - 1 - 11 - 6 - 16 - 4 - 14 - 65 - Total time: 8.63008133174699
+
+Vehicle 0: d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - d - P - f
+
+************************************
+Final solution value: 10.719
+************************************
+Instance Name: sarp-10-20-B-1
+
+Time windows: 
+0: 16.0167 - 16.0167
+1: 15.7833 - 15.7833
+2: 14.35 - 14.35
+3: 12.9333 - 12.9333
+4: 14.9 - 14.9
+5: 9.71667 - 9.71667
+6: 11.8667 - 11.8667
+7: 12.8667 - 12.8667
+8: 13.9667 - 13.9667
+9: 13.4333 - 13.4333
+10: 16.1585 - 16.3252
+11: 15.9959 - 16.1626
+12: 14.5138 - 14.6805
+13: 13.1289 - 13.2955
+14: 15.0272 - 15.1939
+15: 9.94634 - 10.113
+16: 12.0402 - 12.2069
+17: 12.9988 - 13.1654
+18: 14.1134 - 14.2801
+19: 13.6045 - 13.7711
+20: 13.9667 - 14.9667
+21: 15.2833 - 16.2833
+22: 9.03333 - 10.0333
+23: 12.4667 - 13.4667
+24: 15.2167 - 16.2167
+25: 9.6 - 10.6
+26: 14.1 - 15.1
+27: 9.61667 - 10.6167
+28: 10.3833 - 11.3833
+29: 12.8167 - 13.8167
+30: 14.1833 - 15.1833
+31: 13.3667 - 14.3667
+32: 13.7167 - 14.7167
+33: 9.71667 - 10.7167
+34: 9.28333 - 10.2833
+35: 13.25 - 14.25
+36: 10.0667 - 11.0667
+37: 10.8 - 11.8
+38: 13.85 - 14.85
+39: 12.25 - 13.25
+40: 15.1 - 19
+41: 16.45 - 19
+42: 10.2333 - 19
+43: 13.7667 - 19
+44: 16.3833 - 19
+45: 10.7 - 19
+46: 15.2 - 19
+47: 10.7167 - 19
+48: 11.4833 - 19
+49: 13.9167 - 19
+50: 15.2833 - 19
+51: 14.4667 - 19
+52: 14.8167 - 19
+53: 10.8167 - 19
+54: 10.3833 - 19
+55: 14.35 - 19
+56: 11.1667 - 19
+57: 11.9 - 19
+58: 14.95 - 19
+59: 13.35 - 19
+60: 9 - 19
+61: 9 - 19
+62: 9 - 19
+63: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 2010 rows and 3462 columns.
+MIP Presolve modified 2736 coefficients.
+Aggregator did 14 substitutions.
+Reduced MIP has 116 rows, 202 columns, and 576 nonzeros.
+Reduced MIP has 200 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.42 ticks)
+Found incumbent of value -1.943000 after 0.01 sec. (6.26 ticks)
+Probing fixed 86 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.49 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 32 rows and 89 columns.
+Reduced MIP has 84 rows, 113 columns, and 340 nonzeros.
+Reduced MIP has 111 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.24 ticks)
+Probing time = 0.00 sec. (0.16 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 84 rows, 113 columns, and 340 nonzeros.
+Reduced MIP has 111 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.23 ticks)
+Probing time = 0.00 sec. (0.17 ticks)
+Clique table members: 346.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.12 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           -1.9430       48.6570              --- 
+*     0     0      integral     0        9.1890        9.1890       15    0.00%
+Elapsed time = 0.01 sec. (8.59 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (8.71 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (8.71 ticks)
+ Total Time: 0.01
+ LB: 9.189
+ UB: 9.189
+
+Obj Val: 9.189
+
+Solve Time: 0.01
+b(0): 16.0166666666667
+b(1): 15.7833333333333
+b(2): 14.35
+b(3): 12.9333333333333
+b(4): 14.9
+b(5): 9.71666666666667
+b(6): 11.8666666666667
+b(7): 12.8666666666667
+b(8): 13.9666666666667
+b(9): 13.4333333333333
+b(10): 16.325203280587
+b(11): 15.9959350224073
+b(12): 14.5138211774737
+b(13): 13.1288618433472
+b(14): 15.0272357937736
+b(15): 9.94634153480075
+b(16): 12.0402439464605
+b(17): 12.9987805116002
+b(18): 14.1134146650803
+b(19): 13.6044715875471
+b(20): 13.9666666666667
+b(21): 15.2833333333333
+b(22): 9.03333333333333
+b(23): 12.4666666666667
+b(24): 15.2166666666667
+b(25): 9.6
+b(26): 14.1
+b(27): 9.61666666666667
+b(28): 10.3833333333333
+b(29): 12.8166666666667
+b(30): 14.1833333333333
+b(31): 13.3666666666667
+b(32): 13.7166666666667
+b(33): 9.71666666666667
+b(34): 9.28333333333333
+b(35): 13.25
+b(36): 10.0666666666667
+b(37): 10.8
+b(38): 13.85
+b(39): 12.25
+b(40): 15.1
+b(41): 16.45
+b(42): 10.2333333333333
+b(43): 13.7666666666667
+b(44): 16.3833333333333
+b(45): 10.7
+b(46): 15.2
+b(47): 10.7166666666667
+b(48): 11.4833333333333
+b(49): 13.9166666666667
+b(50): 15.2833333333333
+b(51): 14.4666666666667
+b(52): 14.8166666666667
+b(53): 10.8166666666667
+b(54): 10.3833333333333
+b(55): 14.35
+b(56): 11.1666666666667
+b(57): 11.9
+b(58): 14.95
+b(59): 13.35
+b(60): 9
+b(61): 9
+b(62): 19
+b(63): 19
+
+
+Customer profit: 68.759
+Parcel profit: 0
+Costs: 59.57
+Without fixed: 59.57
+
+Solution: 
+Vehicle 0: 60 - 6 - 16 - 3 - 13 - 9 - 19 - 2 - 12 - 4 - 14 - 0 - 10 - 62 - Total time: 7.32520328058697
+Vehicle 1: 61 - 5 - 15 - 7 - 17 - 8 - 18 - 1 - 11 - 63 - Total time: 6.99593502240733
+
+Vehicle 0: d - P - d - P - d - P - d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - d - P - f
+
+************************************
+Final solution value: 9.18899999999999
+************************************
+Instance Name: sarp-10-20-B-2
+
+Time windows: 
+0: 12.5167 - 12.5167
+1: 10.2833 - 10.2833
+2: 10.6333 - 10.6333
+3: 14.3833 - 14.3833
+4: 14.1333 - 14.1333
+5: 14.8167 - 14.8167
+6: 11.4333 - 11.4333
+7: 12.4667 - 12.4667
+8: 15.2 - 15.2
+9: 14.5167 - 14.5167
+10: 12.6463 - 12.813
+11: 10.4252 - 10.5919
+12: 10.8045 - 10.9711
+13: 14.5447 - 14.7114
+14: 14.3118 - 14.4785
+15: 15 - 15.1667
+16: 11.585 - 11.7516
+17: 12.6207 - 12.7874
+18: 15.4443 - 15.611
+19: 14.7 - 14.8667
+20: 15.5167 - 16.5167
+21: 10.5 - 11.5
+22: 10.5833 - 11.5833
+23: 10.3 - 11.3
+24: 9.31667 - 10.3167
+25: 15.7167 - 16.7167
+26: 13.9 - 14.9
+27: 11.2333 - 12.2333
+28: 13.2333 - 14.2333
+29: 9.16667 - 10.1667
+30: 13.45 - 14.45
+31: 11.6667 - 12.6667
+32: 14.8333 - 15.8333
+33: 10.0833 - 11.0833
+34: 16.5333 - 17.5333
+35: 14.6667 - 15.6667
+36: 9.76667 - 10.7667
+37: 11.1833 - 12.1833
+38: 11 - 12
+39: 16.5667 - 17.5667
+40: 16.65 - 19
+41: 11.6667 - 19
+42: 11.7833 - 19
+43: 11.6 - 19
+44: 10.4833 - 19
+45: 16.8167 - 19
+46: 15 - 19
+47: 12.3333 - 19
+48: 14.3333 - 19
+49: 10.2667 - 19
+50: 14.55 - 19
+51: 12.7667 - 19
+52: 15.9333 - 19
+53: 11.1833 - 19
+54: 17.6333 - 19
+55: 15.7667 - 19
+56: 10.8667 - 19
+57: 12.2833 - 19
+58: 12.1 - 19
+59: 17.6667 - 19
+60: 9 - 19
+61: 9 - 19
+62: 9 - 19
+63: 9 - 19
+64: 9 - 19
+65: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 2068 rows and 5133 columns.
+MIP Presolve modified 513 coefficients.
+Aggregator did 18 substitutions.
+Reduced MIP has 129 rows, 303 columns, and 926 nonzeros.
+Reduced MIP has 296 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (6.73 ticks)
+Found incumbent of value -12.317000 after 0.01 sec. (9.87 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+Cover probing fixed 0 vars, tightened 1 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 6 rows and 16 columns.
+MIP Presolve modified 17 coefficients.
+Aggregator did 2 substitutions.
+Reduced MIP has 121 rows, 285 columns, and 863 nonzeros.
+Reduced MIP has 278 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.99 ticks)
+Probing time = 0.00 sec. (1.10 ticks)
+Clique table members: 701.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.50 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -12.3170       45.9650           473.18%
+*     0     0      integral     0       15.5590       15.5590       53    0.00%
+Elapsed time = 0.02 sec. (14.84 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (15.02 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (15.02 ticks)
+ Total Time: 0.02
+ LB: 15.559
+ UB: 15.559
+
+Obj Val: 15.559
+
+Solve Time: 0.02
+b(0): 12.5166666666667
+b(1): 10.2833333333333
+b(2): 10.6333333333333
+b(3): 14.3833333333333
+b(4): 14.1333333333333
+b(5): 14.8166666666667
+b(6): 11.4333333333333
+b(7): 12.4666666666667
+b(8): 15.2
+b(9): 14.5166666666667
+b(10): 12.6463414860202
+b(11): 10.425203280587
+b(12): 10.8044715875471
+b(13): 14.5447154852271
+b(14): 14.4784553309538
+b(15): 15.1666667154472
+b(16): 11.584959382907
+b(17): 12.6207317418204
+b(18): 15.6109756882808
+b(19): 14.7000000487805
+b(20): 15.5166666666667
+b(21): 10.5
+b(22): 10.5833333333333
+b(23): 10.3
+b(24): 9.31666666666667
+b(25): 15.7166666666667
+b(26): 13.9
+b(27): 11.2333333333333
+b(28): 13.2333333333333
+b(29): 9.16666666666667
+b(30): 13.45
+b(31): 11.6666666666667
+b(32): 14.8333333333333
+b(33): 10.0833333333333
+b(34): 16.5333333333333
+b(35): 14.6666666666667
+b(36): 9.76666666666667
+b(37): 11.1833333333333
+b(38): 11
+b(39): 16.5666666666667
+b(40): 16.65
+b(41): 11.6666666666667
+b(42): 11.7833333333333
+b(43): 11.6
+b(44): 10.4833333333333
+b(45): 16.8166666666667
+b(46): 15
+b(47): 12.3333333333333
+b(48): 14.3333333333333
+b(49): 10.2666666666667
+b(50): 14.55
+b(51): 12.7666666666667
+b(52): 15.9333333333333
+b(53): 11.1833333333333
+b(54): 17.6333333333333
+b(55): 15.7666666666667
+b(56): 10.8666666666667
+b(57): 12.2833333333333
+b(58): 12.1
+b(59): 17.6666666666667
+b(60): 9
+b(61): 9
+b(62): 9
+b(63): 19
+b(64): 19
+b(65): 19
+
+
+Customer profit: 68.965
+Parcel profit: 0
+Costs: 53.406
+Without fixed: 53.406
+
+Solution: 
+Vehicle 0: 60 - 1 - 11 - 6 - 16 - 0 - 10 - 4 - 14 - 5 - 15 - 63 - Total time: 6.16666671544718
+Vehicle 1: 61 - 7 - 17 - 3 - 13 - 64 - Total time: 5.54471548522707
+Vehicle 2: 62 - 2 - 12 - 9 - 19 - 8 - 18 - 65 - Total time: 6.61097568828082
+
+Vehicle 0: d - P - d - P - d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - f
+
+************************************
+Final solution value: 15.559
+************************************
+Instance Name: sarp-10-20-C-1
+
+Time windows: 
+0: 10.2333 - 10.2333
+1: 9.4 - 9.4
+2: 10.2 - 10.2
+3: 13.5167 - 13.5167
+4: 16.45 - 16.45
+5: 10.3667 - 10.3667
+6: 10.7667 - 10.7667
+7: 16.8667 - 16.8667
+8: 14.15 - 14.15
+9: 12.45 - 12.45
+10: 10.8516 - 11.0183
+11: 10.0183 - 10.185
+12: 10.4224 - 10.589
+13: 13.7634 - 13.9301
+14: 17.0207 - 17.1874
+15: 10.6667 - 10.8333
+16: 11.6557 - 11.8224
+17: 17.485 - 17.6516
+18: 14.6585 - 14.8252
+19: 12.9402 - 13.1069
+20: 9.11667 - 10.1167
+21: 12.3667 - 13.3667
+22: 11.35 - 12.35
+23: 14.6167 - 15.6167
+24: 14.15 - 15.15
+25: 9.68333 - 10.6833
+26: 10.65 - 11.65
+27: 14.05 - 15.05
+28: 9.98333 - 10.9833
+29: 14.0833 - 15.0833
+30: 12.1833 - 13.1833
+31: 14.1833 - 15.1833
+32: 13.8167 - 14.8167
+33: 11.3333 - 12.3333
+34: 13.1667 - 14.1667
+35: 12.6333 - 13.6333
+36: 9.55 - 10.55
+37: 9.93333 - 10.9333
+38: 9.96667 - 10.9667
+39: 13.9167 - 14.9167
+40: 10.25 - 19
+41: 13.5333 - 19
+42: 12.55 - 19
+43: 15.9167 - 19
+44: 15.3167 - 19
+45: 10.7833 - 19
+46: 11.75 - 19
+47: 15.15 - 19
+48: 11.0833 - 19
+49: 15.1833 - 19
+50: 13.2833 - 19
+51: 15.2833 - 19
+52: 14.9167 - 19
+53: 12.4333 - 19
+54: 14.2667 - 19
+55: 13.7333 - 19
+56: 10.65 - 19
+57: 11.0333 - 19
+58: 11.0667 - 19
+59: 15.0167 - 19
+60: 9 - 19
+61: 9 - 19
+62: 9 - 19
+63: 9 - 19
+64: 9 - 19
+65: 9 - 19
+66: 9 - 19
+67: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 2143 rows and 6876 columns.
+MIP Presolve modified 651 coefficients.
+Aggregator did 31 substitutions.
+Reduced MIP has 133 rows, 365 columns, and 1113 nonzeros.
+Reduced MIP has 358 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.76 ticks)
+Found incumbent of value 26.797000 after 0.02 sec. (12.73 ticks)
+Probing time = 0.00 sec. (1.67 ticks)
+Cover probing fixed 0 vars, tightened 1 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 8 rows and 24 columns.
+MIP Presolve modified 30 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 122 rows, 338 columns, and 1021 nonzeros.
+Reduced MIP has 331 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.23 ticks)
+Probing time = 0.00 sec. (1.40 ticks)
+Clique table members: 820.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.37 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           26.7970      170.5380           536.41%
+*     0     0      integral     0       74.6370       74.6370       25    0.00%
+Elapsed time = 0.03 sec. (18.93 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.03 sec. (19.18 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.03 sec. (19.18 ticks)
+ Total Time: 0.02
+ LB: 74.637
+ UB: 74.637
+
+Obj Val: 74.637
+
+Solve Time: 0.02
+b(0): 10.2333333333333
+b(1): 9.4
+b(2): 10.2
+b(3): 13.5166666666667
+b(4): 16.45
+b(5): 10.3666666666667
+b(6): 10.7666666666667
+b(7): 16.8666666666667
+b(8): 14.15
+b(9): 12.45
+b(10): 10.8516263178665
+b(11): 10.0182929845332
+b(12): 10.422357791394
+b(13): 13.7634147138608
+b(14): 17.1873986523896
+b(15): 10.6666668130082
+b(16): 11.6556914905812
+b(17): 17.6516263178665
+b(18): 14.6585368334326
+b(19): 12.9402441415825
+b(20): 9.11666666666667
+b(21): 12.3666666666667
+b(22): 11.35
+b(23): 14.6166666666667
+b(24): 14.15
+b(25): 9.68333333333333
+b(26): 10.65
+b(27): 14.05
+b(28): 9.98333333333333
+b(29): 14.0833333333333
+b(30): 12.1833333333333
+b(31): 14.1833333333333
+b(32): 13.8166666666667
+b(33): 11.3333333333333
+b(34): 13.1666666666667
+b(35): 12.6333333333333
+b(36): 9.55
+b(37): 9.93333333333333
+b(38): 9.96666666666667
+b(39): 13.9166666666667
+b(40): 10.25
+b(41): 13.5333333333333
+b(42): 12.55
+b(43): 15.9166666666667
+b(44): 15.3166666666667
+b(45): 10.7833333333333
+b(46): 11.75
+b(47): 15.15
+b(48): 11.0833333333333
+b(49): 15.1833333333333
+b(50): 13.2833333333333
+b(51): 15.2833333333333
+b(52): 14.9166666666667
+b(53): 12.4333333333333
+b(54): 14.2666666666667
+b(55): 13.7333333333333
+b(56): 10.65
+b(57): 11.0333333333333
+b(58): 11.0666666666667
+b(59): 15.0166666666667
+b(60): 9
+b(61): 9
+b(62): 9
+b(63): 9
+b(64): 19
+b(65): 19
+b(66): 19
+b(67): 19
+
+
+Customer profit: 175.055
+Parcel profit: 0
+Costs: 100.418
+Without fixed: 100.418
+
+Solution: 
+Vehicle 0: 60 - 2 - 12 - 64 - Total time: 1.42235779139404
+Vehicle 1: 61 - 5 - 15 - 3 - 13 - 4 - 14 - 65 - Total time: 8.18739865238959
+Vehicle 2: 62 - 0 - 10 - 8 - 18 - 7 - 17 - 66 - Total time: 8.65162631786649
+Vehicle 3: 63 - 1 - 11 - 6 - 16 - 9 - 19 - 67 - Total time: 3.94024414158251
+
+Vehicle 0: d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+Vehicle 2: d - P - d - P - d - P - f
+Vehicle 3: d - P - d - P - d - P - f
+
+************************************
+Final solution value: 74.637
+************************************
+Instance Name: sarp-10-20-C-2
+
+Time windows: 
+0: 9.85 - 9.85
+1: 10.2 - 10.2
+2: 11.6167 - 11.6167
+3: 14.65 - 14.65
+4: 10.4333 - 10.4333
+5: 10.1167 - 10.1167
+6: 11.3667 - 11.3667
+7: 15 - 15
+8: 14.4167 - 14.4167
+9: 13.2333 - 13.2333
+10: 10.0967 - 10.2634
+11: 10.9244 - 11.0911
+12: 12.3337 - 12.5004
+13: 15.0927 - 15.2593
+14: 10.9967 - 11.1634
+15: 10.6106 - 10.7772
+16: 11.9923 - 12.1589
+17: 15.5598 - 15.7264
+18: 14.9618 - 15.1285
+19: 13.8333 - 14
+20: 15.15 - 16.15
+21: 14.1667 - 15.1667
+22: 13.9333 - 14.9333
+23: 9.53333 - 10.5333
+24: 9.21667 - 10.2167
+25: 12.5667 - 13.5667
+26: 14.8 - 15.8
+27: 9.95 - 10.95
+28: 13.3333 - 14.3333
+29: 15.65 - 16.65
+30: 9.68333 - 10.6833
+31: 16 - 17
+32: 12.2833 - 13.2833
+33: 11.7333 - 12.7333
+34: 14.75 - 15.75
+35: 9.41667 - 10.4167
+36: 10.3 - 11.3
+37: 11.05 - 12.05
+38: 12.1333 - 13.1333
+39: 10.2 - 11.2
+40: 16.2833 - 19
+41: 15.3333 - 19
+42: 15.1333 - 19
+43: 10.8333 - 19
+44: 10.3833 - 19
+45: 13.6667 - 19
+46: 15.9 - 19
+47: 11.05 - 19
+48: 14.4333 - 19
+49: 16.75 - 19
+50: 10.7833 - 19
+51: 17.1 - 19
+52: 13.3833 - 19
+53: 12.8333 - 19
+54: 15.85 - 19
+55: 10.5167 - 19
+56: 11.4 - 19
+57: 12.15 - 19
+58: 13.2333 - 19
+59: 11.3 - 19
+60: 9 - 19
+61: 9 - 19
+62: 9 - 19
+63: 9 - 19
+64: 9 - 19
+65: 9 - 19
+66: 9 - 19
+67: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 2144 rows and 6870 columns.
+MIP Presolve modified 700 coefficients.
+Aggregator did 27 substitutions.
+Reduced MIP has 137 rows, 375 columns, and 1127 nonzeros.
+Reduced MIP has 369 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (8.64 ticks)
+Found incumbent of value 42.088000 after 0.01 sec. (12.12 ticks)
+Probing time = 0.00 sec. (2.10 ticks)
+Cover probing fixed 0 vars, tightened 2 bounds.
+Tried aggregator 2 times.
+MIP Presolve eliminated 14 rows and 42 columns.
+MIP Presolve modified 52 coefficients.
+Aggregator did 6 substitutions.
+Reduced MIP has 117 rows, 327 columns, and 963 nonzeros.
+Reduced MIP has 321 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.32 ticks)
+Probing time = 0.00 sec. (1.53 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 117 rows, 327 columns, and 963 nonzeros.
+Reduced MIP has 321 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.67 ticks)
+Probing time = 0.00 sec. (1.52 ticks)
+Clique table members: 735.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.51 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           42.0880      171.9130           308.46%
+*     0     0      integral     0       82.9360       82.9360       52    0.00%
+Elapsed time = 0.03 sec. (21.92 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.03 sec. (22.17 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.03 sec. (22.17 ticks)
+ Total Time: 0.03
+ LB: 82.936
+ UB: 82.936
+
+Obj Val: 82.936
+
+Solve Time: 0.03
+b(0): 9.85
+b(1): 10.2
+b(2): 11.6166666666667
+b(3): 14.65
+b(4): 10.4333333333333
+b(5): 10.1166666666667
+b(6): 11.3666666666667
+b(7): 15
+b(8): 14.4166666666667
+b(9): 13.2333333333333
+b(10): 10.0967480471942
+b(11): 10.9243905972637
+b(12): 12.3337401871903
+b(13): 15.2593498094389
+b(14): 10.9967482423162
+b(15): 10.7772360132859
+b(16): 11.9922767279399
+b(17): 15.7264230372795
+b(18): 15.1284555504661
+b(19): 13.8333336260164
+b(20): 15.15
+b(21): 14.1666666666667
+b(22): 13.9333333333333
+b(23): 9.53333333333333
+b(24): 9.21666666666667
+b(25): 12.5666666666667
+b(26): 14.8
+b(27): 9.95
+b(28): 13.3333333333333
+b(29): 15.65
+b(30): 9.68333333333333
+b(31): 16
+b(32): 12.2833333333333
+b(33): 11.7333333333333
+b(34): 14.75
+b(35): 9.41666666666667
+b(36): 10.3
+b(37): 11.05
+b(38): 12.1333333333333
+b(39): 10.2
+b(40): 16.2833333333333
+b(41): 15.3333333333333
+b(42): 15.1333333333333
+b(43): 10.8333333333333
+b(44): 10.3833333333333
+b(45): 13.6666666666667
+b(46): 15.9
+b(47): 11.05
+b(48): 14.4333333333333
+b(49): 16.75
+b(50): 10.7833333333333
+b(51): 17.1
+b(52): 13.3833333333333
+b(53): 12.8333333333333
+b(54): 15.85
+b(55): 10.5166666666667
+b(56): 11.4
+b(57): 12.15
+b(58): 13.2333333333333
+b(59): 11.3
+b(60): 9
+b(61): 9
+b(62): 9
+b(63): 9
+b(64): 19
+b(65): 19
+b(66): 19
+b(67): 19
+
+
+Customer profit: 187.724
+Parcel profit: 0
+Costs: 104.788
+Without fixed: 104.788
+
+Solution: 
+Vehicle 0: 60 - 4 - 14 - 2 - 12 - 7 - 17 - 64 - Total time: 6.72642303727953
+Vehicle 1: 61 - 0 - 10 - 6 - 16 - 8 - 18 - 65 - Total time: 6.12845555046612
+Vehicle 2: 62 - 5 - 15 - 9 - 19 - 66 - Total time: 4.8333336260164
+Vehicle 3: 63 - 1 - 11 - 3 - 13 - 67 - Total time: 6.25934980943893
+
+Vehicle 0: d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+Vehicle 2: d - P - d - P - f
+Vehicle 3: d - P - d - P - f
+
+************************************
+Final solution value: 82.936
+************************************
+Instance Name: sarp-5-15-A-1
+
+Time windows: 
+0: 12.3667 - 12.3667
+1: 9.91667 - 9.91667
+2: 10.1833 - 10.1833
+3: 13 - 13
+4: 12.2333 - 12.2333
+5: 12.489 - 12.6557
+6: 10.1366 - 10.3033
+7: 10.2911 - 10.4577
+8: 13.1419 - 13.3085
+9: 12.3484 - 12.515
+10: 9.25 - 10.25
+11: 13.4667 - 14.4667
+12: 10.6833 - 11.6833
+13: 16.1333 - 17.1333
+14: 16.7667 - 17.7667
+15: 12.75 - 13.75
+16: 13.6167 - 14.6167
+17: 16.3167 - 17.3167
+18: 14 - 15
+19: 13.9667 - 14.9667
+20: 15.7833 - 16.7833
+21: 16.5167 - 17.5167
+22: 11.0333 - 12.0333
+23: 12.7833 - 13.7833
+24: 9.98333 - 10.9833
+25: 10.35 - 19
+26: 14.65 - 19
+27: 11.8667 - 19
+28: 17.35 - 19
+29: 17.9333 - 19
+30: 13.9 - 19
+31: 14.9333 - 19
+32: 17.45 - 19
+33: 15.1833 - 19
+34: 15.25 - 19
+35: 16.9167 - 19
+36: 17.6833 - 19
+37: 12.2333 - 19
+38: 14.0833 - 19
+39: 11.15 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 833 rows and 1290 columns.
+MIP Presolve modified 1210 coefficients.
+Aggregator did 11 substitutions.
+Reduced MIP has 30 rows, 45 columns, and 124 nonzeros.
+Reduced MIP has 45 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.57 ticks)
+Found incumbent of value -6.549000 after 0.00 sec. (2.12 ticks)
+Probing fixed 24 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.08 ticks)
+Tried aggregator 3 times.
+MIP Presolve eliminated 15 rows and 30 columns.
+Aggregator did 5 substitutions.
+Reduced MIP has 10 rows, 10 columns, and 28 nonzeros.
+Reduced MIP has 10 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.08 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 8 rows and 8 columns.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (2.47 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (2.47 ticks)
+ Total Time: 0.01
+ LB: 12.541
+ UB: 12.541
+
+Obj Val: 12.541
+
+Solve Time: 0.01
+b(0): 12.3666666666667
+b(1): 9.91666666666667
+b(2): 10.1833333333333
+b(3): 13
+b(4): 12.2333333333333
+b(5): 12.4890244092802
+b(6): 10.1365854324807
+b(7): 10.2910569224668
+b(8): 13.3085366139203
+b(9): 12.3483739992068
+b(10): 9.25
+b(11): 13.4666666666667
+b(12): 10.6833333333333
+b(13): 16.1333333333333
+b(14): 16.7666666666667
+b(15): 12.75
+b(16): 13.6166666666667
+b(17): 16.3166666666667
+b(18): 14
+b(19): 13.9666666666667
+b(20): 15.7833333333333
+b(21): 16.5166666666667
+b(22): 11.0333333333333
+b(23): 12.7833333333333
+b(24): 9.98333333333333
+b(25): 10.35
+b(26): 14.65
+b(27): 11.8666666666667
+b(28): 17.35
+b(29): 17.9333333333333
+b(30): 13.9
+b(31): 14.9333333333333
+b(32): 17.45
+b(33): 15.1833333333333
+b(34): 15.25
+b(35): 16.9166666666667
+b(36): 17.6833333333333
+b(37): 12.2333333333333
+b(38): 14.0833333333333
+b(39): 11.15
+b(40): 9
+b(41): 9
+b(42): 19
+b(43): 19
+
+
+Customer profit: 28.457
+Parcel profit: 0
+Costs: 15.916
+Without fixed: 15.916
+
+Solution: 
+Vehicle 0: 40 - 1 - 6 - 0 - 5 - 42 - Total time: 3.4890244092802
+Vehicle 1: 41 - 2 - 7 - 4 - 9 - 3 - 8 - 43 - Total time: 4.3085366139203
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+
+************************************
+Final solution value: 12.541
+************************************
+Instance Name: sarp-5-15-A-2
+
+Time windows: 
+0: 10.9833 - 10.9833
+1: 14.3333 - 14.3333
+2: 15.1167 - 15.1167
+3: 11.0833 - 11.0833
+4: 10.0167 - 10.0167
+5: 11.1179 - 11.2846
+6: 14.4728 - 14.6394
+7: 15.2829 - 15.4496
+8: 11.2715 - 11.4382
+9: 10.1244 - 10.2911
+10: 12.6833 - 13.6833
+11: 9.18333 - 10.1833
+12: 9.45 - 10.45
+13: 14.0333 - 15.0333
+14: 11.2667 - 12.2667
+15: 9.08333 - 10.0833
+16: 13.9833 - 14.9833
+17: 14.8667 - 15.8667
+18: 15.4167 - 16.4167
+19: 12.3 - 13.3
+20: 13.9333 - 14.9333
+21: 9.16667 - 10.1667
+22: 15.9667 - 16.9667
+23: 10.25 - 11.25
+24: 13.9167 - 14.9167
+25: 13.7833 - 19
+26: 10.3667 - 19
+27: 10.6333 - 19
+28: 15.25 - 19
+29: 12.4333 - 19
+30: 10.2333 - 19
+31: 15.3 - 19
+32: 16 - 19
+33: 16.6 - 19
+34: 13.5833 - 19
+35: 15.0667 - 19
+36: 10.3333 - 19
+37: 17.1667 - 19
+38: 11.55 - 19
+39: 15.0833 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 834 rows and 1292 columns.
+MIP Presolve modified 1030 coefficients.
+Aggregator did 9 substitutions.
+Reduced MIP has 35 rows, 53 columns, and 146 nonzeros.
+Reduced MIP has 53 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.60 ticks)
+Found incumbent of value -6.141000 after 0.01 sec. (1.98 ticks)
+Probing fixed 18 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.10 ticks)
+Tried aggregator 3 times.
+MIP Presolve eliminated 11 rows and 24 columns.
+Aggregator did 4 substitutions.
+Reduced MIP has 20 rows, 25 columns, and 72 nonzeros.
+Reduced MIP has 25 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.19 ticks)
+Probing time = 0.00 sec. (0.04 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 20 rows, 25 columns, and 72 nonzeros.
+Reduced MIP has 25 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.05 ticks)
+Probing time = 0.00 sec. (0.04 ticks)
+Clique table members: 111.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.03 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                            0.7130       16.5830              --- 
+*     0     0      integral     0       11.4310       11.4310        3    0.00%
+Elapsed time = 0.01 sec. (2.72 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (2.77 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (2.77 ticks)
+ Total Time: 0.01
+ LB: 11.431
+ UB: 11.431
+
+Obj Val: 11.431
+
+Solve Time: 0.01
+b(0): 10.9833333333333
+b(1): 14.3333333333333
+b(2): 15.1166666666667
+b(3): 11.0833333333333
+b(4): 10.0166666666667
+b(5): 11.1178862038469
+b(6): 14.472764255007
+b(7): 15.4495935363871
+b(8): 11.4382114332739
+b(9): 10.1243902558001
+b(10): 12.6833333333333
+b(11): 9.18333333333333
+b(12): 9.45
+b(13): 14.0333333333333
+b(14): 11.2666666666667
+b(15): 9.08333333333333
+b(16): 13.9833333333333
+b(17): 14.8666666666667
+b(18): 15.4166666666667
+b(19): 12.3
+b(20): 13.9333333333333
+b(21): 9.16666666666667
+b(22): 15.9666666666667
+b(23): 10.25
+b(24): 13.9166666666667
+b(25): 13.7833333333333
+b(26): 10.3666666666667
+b(27): 10.6333333333333
+b(28): 15.25
+b(29): 12.4333333333333
+b(30): 10.2333333333333
+b(31): 15.3
+b(32): 16
+b(33): 16.6
+b(34): 13.5833333333333
+b(35): 15.0666666666667
+b(36): 10.3333333333333
+b(37): 17.1666666666667
+b(38): 11.55
+b(39): 15.0833333333333
+b(40): 9
+b(41): 9
+b(42): 19
+b(43): 19
+
+
+Customer profit: 29.693
+Parcel profit: 0
+Costs: 18.262
+Without fixed: 18.262
+
+Solution: 
+Vehicle 0: 40 - 4 - 9 - 0 - 5 - 1 - 6 - 42 - Total time: 5.47276425500695
+Vehicle 1: 41 - 3 - 8 - 2 - 7 - 43 - Total time: 6.44959353638709
+
+Vehicle 0: d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+
+************************************
+Final solution value: 11.431
+************************************
+Instance Name: sarp-5-15-B-1
+
+Time windows: 
+0: 16.8333 - 16.8333
+1: 14.15 - 14.15
+2: 11.6167 - 11.6167
+3: 17.2 - 17.2
+4: 9.43333 - 9.43333
+5: 16.9557 - 17.1224
+6: 14.3236 - 14.4902
+7: 11.7537 - 11.9203
+8: 17.3297 - 17.4963
+9: 9.52642 - 9.69309
+10: 12.7 - 13.7
+11: 11.4167 - 12.4167
+12: 12.55 - 13.55
+13: 15.25 - 16.25
+14: 12.3667 - 13.3667
+15: 13.5 - 14.5
+16: 11.95 - 12.95
+17: 15.7833 - 16.7833
+18: 11 - 12
+19: 13.3333 - 14.3333
+20: 14.2333 - 15.2333
+21: 12.4333 - 13.4333
+22: 13.65 - 14.65
+23: 9.45 - 10.45
+24: 16.7 - 17.7
+25: 13.8 - 19
+26: 12.6 - 19
+27: 13.7333 - 19
+28: 16.4667 - 19
+29: 13.5333 - 19
+30: 14.65 - 19
+31: 13.2667 - 19
+32: 16.9167 - 19
+33: 12.1833 - 19
+34: 14.6167 - 19
+35: 15.3667 - 19
+36: 13.6 - 19
+37: 14.85 - 19
+38: 10.75 - 19
+39: 17.8667 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 833 rows and 1290 columns.
+MIP Presolve modified 1025 coefficients.
+Aggregator did 9 substitutions.
+Reduced MIP has 35 rows, 53 columns, and 146 nonzeros.
+Reduced MIP has 53 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.60 ticks)
+Found incumbent of value -8.114000 after 0.00 sec. (2.15 ticks)
+Probing fixed 14 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.10 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 7 rows and 17 columns.
+Reduced MIP has 28 rows, 36 columns, and 104 nonzeros.
+Reduced MIP has 36 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+Probing time = 0.00 sec. (0.08 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 28 rows, 36 columns, and 104 nonzeros.
+Reduced MIP has 36 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+Probing time = 0.00 sec. (0.08 ticks)
+Clique table members: 130.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.05 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           -8.1140       17.2780           312.94%
+*     0     0      integral     0        0.3040        0.3040       10    0.00%
+Elapsed time = 0.01 sec. (2.91 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (2.96 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (2.96 ticks)
+ Total Time: 0.01
+ LB: 0.304
+ UB: 0.304
+
+Obj Val: 0.303999999999999
+
+Solve Time: 0.01
+b(0): 16.8333333333333
+b(1): 14.15
+b(2): 11.6166666666667
+b(3): 17.2
+b(4): 9.43333333333333
+b(5): 16.9556910759469
+b(6): 14.3235772797938
+b(7): 11.7536585627603
+b(8): 17.4963414860202
+b(9): 9.52642276898672
+b(10): 12.7
+b(11): 11.4166666666667
+b(12): 12.55
+b(13): 15.25
+b(14): 12.3666666666667
+b(15): 13.5
+b(16): 11.95
+b(17): 15.7833333333333
+b(18): 11
+b(19): 13.3333333333333
+b(20): 14.2333333333333
+b(21): 12.4333333333333
+b(22): 13.65
+b(23): 9.45
+b(24): 16.7
+b(25): 13.8
+b(26): 12.6
+b(27): 13.7333333333333
+b(28): 16.4666666666667
+b(29): 13.5333333333333
+b(30): 14.65
+b(31): 13.2666666666667
+b(32): 16.9166666666667
+b(33): 12.1833333333333
+b(34): 14.6166666666667
+b(35): 15.3666666666667
+b(36): 13.6
+b(37): 14.85
+b(38): 10.75
+b(39): 17.8666666666667
+b(40): 9
+b(41): 9
+b(42): 19
+b(43): 19
+
+
+Customer profit: 26.294
+Parcel profit: 0
+Costs: 25.99
+Without fixed: 25.99
+
+Solution: 
+Vehicle 0: 40 - 4 - 9 - 2 - 7 - 0 - 5 - 42 - Total time: 7.95569107594687
+Vehicle 1: 41 - 1 - 6 - 3 - 8 - 43 - Total time: 8.49634148602024
+
+Vehicle 0: d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+
+************************************
+Final solution value: 0.303999999999998
+************************************
+Instance Name: sarp-5-15-B-2
+
+Time windows: 
+0: 10.3333 - 10.3333
+1: 9.68333 - 9.68333
+2: 9.76667 - 9.76667
+3: 10.8833 - 10.8833
+4: 10.9167 - 10.9167
+5: 10.4679 - 10.6346
+6: 9.84959 - 10.0163
+7: 10.0037 - 10.1703
+8: 11.0325 - 11.1992
+9: 11.0854 - 11.252
+10: 9.51667 - 10.5167
+11: 13.3 - 14.3
+12: 14.1 - 15.1
+13: 15.9333 - 16.9333
+14: 13.3167 - 14.3167
+15: 9.31667 - 10.3167
+16: 9.38333 - 10.3833
+17: 10.3333 - 11.3333
+18: 12.8 - 13.8
+19: 16.5167 - 17.5167
+20: 13.9833 - 14.9833
+21: 15.6 - 16.6
+22: 14.9 - 15.9
+23: 12.5667 - 13.5667
+24: 12.55 - 13.55
+25: 10.6167 - 19
+26: 14.4833 - 19
+27: 15.2833 - 19
+28: 17.15 - 19
+29: 14.4833 - 19
+30: 10.4667 - 19
+31: 10.7 - 19
+32: 11.4667 - 19
+33: 13.9833 - 19
+34: 17.8 - 19
+35: 15.1167 - 19
+36: 16.7667 - 19
+37: 16.1 - 19
+38: 13.8667 - 19
+39: 13.7167 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 837 rows and 1298 columns.
+MIP Presolve modified 1245 coefficients.
+Aggregator did 13 substitutions.
+Reduced MIP has 25 rows, 37 columns, and 102 nonzeros.
+Reduced MIP has 37 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.64 ticks)
+Found incumbent of value 4.656000 after 0.00 sec. (1.95 ticks)
+Probing fixed 20 vars, tightened 0 bounds.
+Probing changed sense of 1 constraints.
+Probing time = 0.00 sec. (0.04 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 12 rows and 25 columns.
+Reduced MIP has 13 rows, 12 columns, and 38 nonzeros.
+Reduced MIP has 12 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.04 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 13 rows, 12 columns, and 38 nonzeros.
+Reduced MIP has 12 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.03 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Clique table members: 15.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.02 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                            4.6560       16.6620           257.86%
+*     0     0      integral     0        9.1640        9.1640        4    0.00%
+Elapsed time = 0.00 sec. (2.34 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (2.39 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (2.39 ticks)
+ Total Time: 0
+ LB: 9.164
+ UB: 9.164
+
+Obj Val: 9.164
+
+Solve Time: 0
+b(0): 10.3333333333333
+b(1): 9.68333333333333
+b(2): 9.76666666666667
+b(3): 10.8833333333333
+b(4): 10.9166666666667
+b(5): 10.4678862038469
+b(6): 9.84959353638709
+b(7): 10.0036586115408
+b(8): 11.1991870239937
+b(9): 11.2520325619671
+b(10): 9.51666666666667
+b(11): 13.3
+b(12): 14.1
+b(13): 15.9333333333333
+b(14): 13.3166666666667
+b(15): 9.31666666666667
+b(16): 9.38333333333333
+b(17): 10.3333333333333
+b(18): 12.8
+b(19): 16.5166666666667
+b(20): 13.9833333333333
+b(21): 15.6
+b(22): 14.9
+b(23): 12.5666666666667
+b(24): 12.55
+b(25): 10.6166666666667
+b(26): 14.4833333333333
+b(27): 15.2833333333333
+b(28): 17.15
+b(29): 14.4833333333333
+b(30): 10.4666666666667
+b(31): 10.7
+b(32): 11.4666666666667
+b(33): 13.9833333333333
+b(34): 17.8
+b(35): 15.1166666666667
+b(36): 16.7666666666667
+b(37): 16.1
+b(38): 13.8666666666667
+b(39): 13.7166666666667
+b(40): 9
+b(41): 9
+b(42): 19
+b(43): 19
+
+
+Customer profit: 34.74
+Parcel profit: 0
+Costs: 25.576
+Without fixed: 25.576
+
+Solution: 
+Vehicle 0: 40 - 2 - 7 - 3 - 8 - 42 - Total time: 2.19918702399367
+Vehicle 1: 41 - 1 - 6 - 0 - 5 - 4 - 9 - 43 - Total time: 2.2520325619671
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+
+************************************
+Final solution value: 9.164
+************************************
+Instance Name: sarp-5-15-C-1
+
+Time windows: 
+0: 14.7167 - 14.7167
+1: 11.95 - 11.95
+2: 12.9 - 12.9
+3: 15.0667 - 15.0667
+4: 14.3167 - 14.3167
+5: 15.3569 - 15.5236
+6: 12.6854 - 12.852
+7: 13.7195 - 13.8862
+8: 15.2646 - 15.4313
+9: 14.5764 - 14.7431
+10: 13.2667 - 14.2667
+11: 15.0167 - 16.0167
+12: 13.4333 - 14.4333
+13: 12.0833 - 13.0833
+14: 14.2167 - 15.2167
+15: 10.2333 - 11.2333
+16: 11.9833 - 12.9833
+17: 10.3667 - 11.3667
+18: 11.9167 - 12.9167
+19: 15.4 - 16.4
+20: 12.4667 - 13.4667
+21: 15.2167 - 16.2167
+22: 16.0333 - 17.0333
+23: 9.95 - 10.95
+24: 10.1 - 11.1
+25: 14.3667 - 19
+26: 16.2 - 19
+27: 14.6167 - 19
+28: 13.3 - 19
+29: 15.3833 - 19
+30: 11.3833 - 19
+31: 13.3 - 19
+32: 11.5 - 19
+33: 13.1 - 19
+34: 16.6833 - 19
+35: 13.6 - 19
+36: 16.3833 - 19
+37: 17.2333 - 19
+38: 11.25 - 19
+39: 11.2667 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 837 rows and 1298 columns.
+MIP Presolve modified 966 coefficients.
+Aggregator did 13 substitutions.
+Reduced MIP has 26 rows, 39 columns, and 108 nonzeros.
+Reduced MIP has 39 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.57 ticks)
+Found incumbent of value 25.156000 after 0.00 sec. (1.98 ticks)
+Probing fixed 22 vars, tightened 0 bounds.
+Probing changed sense of 1 constraints.
+Probing time = 0.00 sec. (0.04 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 13 rows and 27 columns.
+Reduced MIP has 13 rows, 12 columns, and 38 nonzeros.
+Reduced MIP has 12 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.04 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 13 rows, 12 columns, and 38 nonzeros.
+Reduced MIP has 12 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.03 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Clique table members: 19.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.02 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           25.1560       44.8900            78.45%
+*     0     0      integral     0       34.4480       34.4480        5    0.00%
+Elapsed time = 0.00 sec. (2.38 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (2.42 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (2.42 ticks)
+ Total Time: 0.01
+ LB: 34.448
+ UB: 34.448
+
+Obj Val: 34.448
+
+Solve Time: 0.01
+b(0): 14.7166666666667
+b(1): 11.95
+b(2): 12.9
+b(3): 15.0666666666667
+b(4): 14.3166666666667
+b(5): 15.5235775480866
+b(6): 12.6853662123738
+b(7): 13.7195125948842
+b(8): 15.4313008689273
+b(9): 14.576422890938
+b(10): 13.2666666666667
+b(11): 15.0166666666667
+b(12): 13.4333333333333
+b(13): 12.0833333333333
+b(14): 14.2166666666667
+b(15): 10.2333333333333
+b(16): 11.9833333333333
+b(17): 10.3666666666667
+b(18): 11.9166666666667
+b(19): 15.4
+b(20): 12.4666666666667
+b(21): 15.2166666666667
+b(22): 16.0333333333333
+b(23): 9.95
+b(24): 10.1
+b(25): 14.3666666666667
+b(26): 16.2
+b(27): 14.6166666666667
+b(28): 13.3
+b(29): 15.3833333333333
+b(30): 11.3833333333333
+b(31): 13.3
+b(32): 11.5
+b(33): 13.1
+b(34): 16.6833333333333
+b(35): 13.6
+b(36): 16.3833333333333
+b(37): 17.2333333333333
+b(38): 11.25
+b(39): 11.2666666666667
+b(40): 9
+b(41): 9
+b(42): 19
+b(43): 19
+
+
+Customer profit: 90.154
+Parcel profit: 0
+Costs: 55.706
+Without fixed: 55.706
+
+Solution: 
+Vehicle 0: 40 - 1 - 6 - 0 - 5 - 42 - Total time: 6.52357754808661
+Vehicle 1: 41 - 2 - 7 - 4 - 9 - 3 - 8 - 43 - Total time: 6.43130086892725
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+
+************************************
+Final solution value: 34.448
+************************************
+Instance Name: sarp-5-15-C-2
+
+Time windows: 
+0: 16.0833 - 16.0833
+1: 15.6167 - 15.6167
+2: 16.5167 - 16.5167
+3: 15.1333 - 15.1333
+4: 9.96667 - 9.96667
+5: 16.5187 - 16.6854
+6: 16.3593 - 16.526
+7: 17.0581 - 17.2248
+8: 15.3967 - 15.5634
+9: 10.4679 - 10.6346
+10: 10.9833 - 11.9833
+11: 14.5833 - 15.5833
+12: 16.3167 - 17.3167
+13: 10.65 - 11.65
+14: 14.8333 - 15.8333
+15: 12.9333 - 13.9333
+16: 16.1 - 17.1
+17: 11.2667 - 12.2667
+18: 10.2333 - 11.2333
+19: 11.5667 - 12.5667
+20: 9.05 - 10.05
+21: 11.5 - 12.5
+22: 15.8667 - 16.8667
+23: 13.9333 - 14.9333
+24: 14.45 - 15.45
+25: 12.0833 - 19
+26: 15.7667 - 19
+27: 17.5 - 19
+28: 11.8667 - 19
+29: 16 - 19
+30: 14.0833 - 19
+31: 17.4167 - 19
+32: 12.4 - 19
+33: 11.4167 - 19
+34: 12.85 - 19
+35: 10.1833 - 19
+36: 12.6667 - 19
+37: 17.0667 - 19
+38: 15.2333 - 19
+39: 15.6167 - 19
+40: 9 - 19
+41: 9 - 19
+42: 9 - 19
+43: 9 - 19
+44: 9 - 19
+45: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 878 rows and 1913 columns.
+MIP Presolve modified 149 coefficients.
+Aggregator did 11 substitutions.
+Reduced MIP has 42 rows, 78 columns, and 216 nonzeros.
+Reduced MIP has 76 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.33 ticks)
+Found incumbent of value 10.053000 after 0.00 sec. (3.11 ticks)
+Probing time = 0.00 sec. (0.18 ticks)
+Cover probing fixed 0 vars, tightened 1 bounds.
+Tried aggregator 2 times.
+MIP Presolve eliminated 2 rows and 6 columns.
+MIP Presolve modified 5 coefficients.
+Aggregator did 2 substitutions.
+Reduced MIP has 38 rows, 70 columns, and 191 nonzeros.
+Reduced MIP has 68 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.20 ticks)
+Probing time = 0.00 sec. (0.15 ticks)
+Cover probing fixed 0 vars, tightened 1 bounds.
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 2 rows and 4 columns.
+MIP Presolve modified 11 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 33 rows, 63 columns, and 168 nonzeros.
+Reduced MIP has 62 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.25 ticks)
+Probing time = 0.00 sec. (0.12 ticks)
+Clique table members: 167.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.07 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           10.0530       50.7170           404.50%
+*     0     0      integral     0       33.1910       33.1910        9    0.00%
+Elapsed time = 0.01 sec. (4.57 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (4.64 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (4.64 ticks)
+ Total Time: 0.01
+ LB: 33.191
+ UB: 33.191
+
+Obj Val: 33.191
+
+Solve Time: 0.01
+b(0): 16.0833333333333
+b(1): 15.6166666666667
+b(2): 16.5166666666667
+b(3): 15.1333333333333
+b(4): 9.96666666666667
+b(5): 16.6853660660322
+b(6): 16.5260166224471
+b(7): 17.2247970120961
+b(8): 15.3967480959747
+b(9): 10.4678864233592
+b(10): 10.9833333333333
+b(11): 14.5833333333333
+b(12): 16.3166666666667
+b(13): 10.65
+b(14): 14.8333333333333
+b(15): 12.9333333333333
+b(16): 16.1
+b(17): 11.2666666666667
+b(18): 10.2333333333333
+b(19): 11.5666666666667
+b(20): 9.05
+b(21): 11.5
+b(22): 15.8666666666667
+b(23): 13.9333333333333
+b(24): 14.45
+b(25): 12.0833333333333
+b(26): 15.7666666666667
+b(27): 17.5
+b(28): 11.8666666666667
+b(29): 16
+b(30): 14.0833333333333
+b(31): 17.4166666666667
+b(32): 12.4
+b(33): 11.4166666666667
+b(34): 12.85
+b(35): 10.1833333333333
+b(36): 12.6666666666667
+b(37): 17.0666666666667
+b(38): 15.2333333333333
+b(39): 15.6166666666667
+b(40): 9
+b(41): 9
+b(42): 9
+b(43): 19
+b(44): 19
+b(45): 19
+
+
+Customer profit: 86.137
+Parcel profit: 0
+Costs: 52.946
+Without fixed: 52.946
+
+Solution: 
+Vehicle 0: 40 - 4 - 9 - 1 - 6 - 43 - Total time: 7.52601662244714
+Vehicle 1: 41 - 3 - 8 - 0 - 5 - 44 - Total time: 7.68536606603223
+Vehicle 2: 42 - 2 - 7 - 45 - Total time: 8.2247970120961
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+Vehicle 2: d - P - f
+
+************************************
+Final solution value: 33.191
+************************************
+Instance Name: sarp-5-20-A-1
+
+Time windows: 
+0: 11.5333 - 11.5333
+1: 12.85 - 12.85
+2: 11.3 - 11.3
+3: 10.9 - 10.9
+4: 11.5167 - 11.5167
+5: 11.6508 - 11.8175
+6: 13.0577 - 13.2244
+7: 11.4297 - 11.5963
+8: 11.0102 - 11.1768
+9: 11.6537 - 11.8203
+10: 12.1333 - 13.1333
+11: 10.65 - 11.65
+12: 9.26667 - 10.2667
+13: 16.2833 - 17.2833
+14: 15.1667 - 16.1667
+15: 12.3333 - 13.3333
+16: 10.5667 - 11.5667
+17: 10.7833 - 11.7833
+18: 14.3167 - 15.3167
+19: 13.95 - 14.95
+20: 16.2167 - 17.2167
+21: 11.6333 - 12.6333
+22: 10.8167 - 11.8167
+23: 13.55 - 14.55
+24: 11 - 12
+25: 9.96667 - 10.9667
+26: 11.2333 - 12.2333
+27: 12.5333 - 13.5333
+28: 15.8167 - 16.8167
+29: 13.7667 - 14.7667
+30: 13.2333 - 19
+31: 11.8333 - 19
+32: 10.45 - 19
+33: 17.5 - 19
+34: 16.3333 - 19
+35: 13.4833 - 19
+36: 11.8833 - 19
+37: 11.9167 - 19
+38: 15.5 - 19
+39: 15.2333 - 19
+40: 17.35 - 19
+41: 12.8 - 19
+42: 12.0167 - 19
+43: 14.85 - 19
+44: 12.1667 - 19
+45: 11.0667 - 19
+46: 12.3333 - 19
+47: 13.6333 - 19
+48: 16.9167 - 19
+49: 14.8667 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+54: 9 - 19
+55: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1137 rows and 2516 columns.
+MIP Presolve modified 98 coefficients.
+Aggregator did 15 substitutions.
+Reduced MIP has 35 rows, 66 columns, and 179 nonzeros.
+Reduced MIP has 63 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.82 ticks)
+Found incumbent of value -6.387000 after 0.00 sec. (3.53 ticks)
+Probing time = 0.00 sec. (0.14 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 35 rows, 66 columns, and 179 nonzeros.
+Reduced MIP has 63 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Probing time = 0.00 sec. (0.13 ticks)
+Clique table members: 183.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.06 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           -6.3870       14.4660           326.49%
+*     0     0      integral     0       -2.6610       -2.6610        6    0.00%
+Elapsed time = 0.01 sec. (4.35 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (4.44 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (4.44 ticks)
+ Total Time: 0.01
+ LB: -2.661
+ UB: -2.661
+
+Obj Val: -2.661
+
+Solve Time: 0.01
+b(0): 11.5333333333333
+b(1): 12.85
+b(2): 11.3
+b(3): 10.9
+b(4): 11.5166666666667
+b(5): 11.6508130247868
+b(6): 13.2243903045806
+b(7): 11.4296748193536
+b(8): 11.0101626147135
+b(9): 11.6536585627603
+b(10): 12.1333333333333
+b(11): 10.65
+b(12): 9.26666666666667
+b(13): 16.2833333333333
+b(14): 15.1666666666667
+b(15): 12.3333333333333
+b(16): 10.5666666666667
+b(17): 10.7833333333333
+b(18): 14.3166666666667
+b(19): 13.95
+b(20): 16.2166666666667
+b(21): 11.6333333333333
+b(22): 10.8166666666667
+b(23): 13.55
+b(24): 11
+b(25): 9.96666666666667
+b(26): 11.2333333333333
+b(27): 12.5333333333333
+b(28): 15.8166666666667
+b(29): 13.7666666666667
+b(30): 13.2333333333333
+b(31): 11.8333333333333
+b(32): 10.45
+b(33): 17.5
+b(34): 16.3333333333333
+b(35): 13.4833333333333
+b(36): 11.8833333333333
+b(37): 11.9166666666667
+b(38): 15.5
+b(39): 15.2333333333333
+b(40): 17.35
+b(41): 12.8
+b(42): 12.0166666666667
+b(43): 14.85
+b(44): 12.1666666666667
+b(45): 11.0666666666667
+b(46): 12.3333333333333
+b(47): 13.6333333333333
+b(48): 16.9166666666667
+b(49): 14.8666666666667
+b(50): 9
+b(51): 9
+b(52): 9
+b(53): 19
+b(54): 19
+b(55): 19
+
+
+Customer profit: 28.251
+Parcel profit: 0
+Costs: 30.912
+Without fixed: 30.912
+
+Solution: 
+Vehicle 0: 50 - 4 - 9 - 53 - Total time: 2.65365856276028
+Vehicle 1: 51 - 3 - 8 - 0 - 5 - 1 - 6 - 54 - Total time: 4.22439030458064
+Vehicle 2: 52 - 2 - 7 - 55 - Total time: 2.42967481935357
+
+Vehicle 0: d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+Vehicle 2: d - P - f
+
+************************************
+Final solution value: -2.661
+************************************
+Instance Name: sarp-5-20-A-2
+
+Time windows: 
+0: 9.58333 - 9.58333
+1: 12.1 - 12.1
+2: 11.1167 - 11.1167
+3: 11.8333 - 11.8333
+4: 13.3167 - 13.3167
+5: 9.70813 - 9.8748
+6: 12.2711 - 12.4378
+7: 11.2439 - 11.4106
+8: 11.9654 - 12.1321
+9: 13.4659 - 13.6325
+10: 11.5833 - 12.5833
+11: 9.86667 - 10.8667
+12: 10.8833 - 11.8833
+13: 16.7333 - 17.7333
+14: 9.3 - 10.3
+15: 11.5333 - 12.5333
+16: 13.1167 - 14.1167
+17: 9.4 - 10.4
+18: 11.2833 - 12.2833
+19: 10.7833 - 11.7833
+20: 16.2667 - 17.2667
+21: 12.2833 - 13.2833
+22: 13.9833 - 14.9833
+23: 14.2 - 15.2
+24: 13.5167 - 14.5167
+25: 10.6667 - 11.6667
+26: 12.1 - 13.1
+27: 9.18333 - 10.1833
+28: 13.8 - 14.8
+29: 15.1167 - 16.1167
+30: 12.6833 - 19
+31: 11.05 - 19
+32: 12.0667 - 19
+33: 17.95 - 19
+34: 10.4667 - 19
+35: 12.6833 - 19
+36: 14.4333 - 19
+37: 10.5333 - 19
+38: 12.4667 - 19
+39: 12.0667 - 19
+40: 17.4 - 19
+41: 13.45 - 19
+42: 15.1833 - 19
+43: 15.5 - 19
+44: 14.6833 - 19
+45: 11.7667 - 19
+46: 13.2 - 19
+47: 10.2833 - 19
+48: 14.9 - 19
+49: 16.2167 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1085 rows and 1704 columns.
+MIP Presolve modified 1350 coefficients.
+Aggregator did 9 substitutions.
+Reduced MIP has 35 rows, 53 columns, and 146 nonzeros.
+Reduced MIP has 53 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.02 ticks)
+Found incumbent of value -7.250000 after 0.00 sec. (2.72 ticks)
+Probing fixed 16 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.12 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 4 rows and 16 columns.
+Reduced MIP has 31 rows, 37 columns, and 106 nonzeros.
+Reduced MIP has 37 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+Probing time = 0.00 sec. (0.06 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 31 rows, 37 columns, and 106 nonzeros.
+Reduced MIP has 37 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+Probing time = 0.00 sec. (0.06 ticks)
+Clique table members: 143.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.05 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           -7.2500       15.9800           320.41%
+*     0     0      integral     0        0.8000        0.8000       10    0.00%
+Elapsed time = 0.01 sec. (3.52 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (3.58 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (3.58 ticks)
+ Total Time: 0.01
+ LB: 0.8
+ UB: 0.8
+
+Obj Val: 0.800000000000002
+
+Solve Time: 0.01
+b(0): 9.58333333333333
+b(1): 12.1
+b(2): 11.1166666666667
+b(3): 11.8333333333333
+b(4): 13.3166666666667
+b(5): 9.70813010152688
+b(6): 12.4378049208804
+b(7): 11.2439024604402
+b(8): 11.9654471782669
+b(9): 13.632520357327
+b(10): 11.5833333333333
+b(11): 9.86666666666667
+b(12): 10.8833333333333
+b(13): 16.7333333333333
+b(14): 9.3
+b(15): 11.5333333333333
+b(16): 13.1166666666667
+b(17): 9.4
+b(18): 11.2833333333333
+b(19): 10.7833333333333
+b(20): 16.2666666666667
+b(21): 12.2833333333333
+b(22): 13.9833333333333
+b(23): 14.2
+b(24): 13.5166666666667
+b(25): 10.6666666666667
+b(26): 12.1
+b(27): 9.18333333333333
+b(28): 13.8
+b(29): 15.1166666666667
+b(30): 12.6833333333333
+b(31): 11.05
+b(32): 12.0666666666667
+b(33): 17.95
+b(34): 10.4666666666667
+b(35): 12.6833333333333
+b(36): 14.4333333333333
+b(37): 10.5333333333333
+b(38): 12.4666666666667
+b(39): 12.0666666666667
+b(40): 17.4
+b(41): 13.45
+b(42): 15.1833333333333
+b(43): 15.5
+b(44): 14.6833333333333
+b(45): 11.7666666666667
+b(46): 13.2
+b(47): 10.2833333333333
+b(48): 14.9
+b(49): 16.2166666666667
+b(50): 9
+b(51): 9
+b(52): 19
+b(53): 19
+
+
+Customer profit: 28.354
+Parcel profit: 0
+Costs: 27.554
+Without fixed: 27.554
+
+Solution: 
+Vehicle 0: 50 - 2 - 7 - 1 - 6 - 4 - 9 - 52 - Total time: 4.632520357327
+Vehicle 1: 51 - 0 - 5 - 3 - 8 - 53 - Total time: 2.96544717826692
+
+Vehicle 0: d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+
+************************************
+Final solution value: 0.799999999999997
+************************************
+Instance Name: sarp-5-20-B-1
+
+Time windows: 
+0: 16.8667 - 16.8667
+1: 10.9167 - 10.9167
+2: 14.3333 - 14.3333
+3: 13.3167 - 13.3167
+4: 13.95 - 13.95
+5: 16.9963 - 17.163
+6: 11.1764 - 11.3431
+7: 14.4337 - 14.6004
+8: 13.4537 - 13.6203
+9: 14.1407 - 14.3073
+10: 13.2167 - 14.2167
+11: 11.25 - 12.25
+12: 14.35 - 15.35
+13: 12.6 - 13.6
+14: 15.7167 - 16.7167
+15: 13.6167 - 14.6167
+16: 13.4667 - 14.4667
+17: 10.3667 - 11.3667
+18: 14.2167 - 15.2167
+19: 11.3167 - 12.3167
+20: 15.7 - 16.7
+21: 14.9667 - 15.9667
+22: 15.6 - 16.6
+23: 15.1667 - 16.1667
+24: 10.9333 - 11.9333
+25: 16.0333 - 17.0333
+26: 10.9167 - 11.9167
+27: 11.4333 - 12.4333
+28: 11.85 - 12.85
+29: 12.2333 - 13.2333
+30: 14.3167 - 19
+31: 12.4333 - 19
+32: 15.5333 - 19
+33: 13.8167 - 19
+34: 16.8833 - 19
+35: 14.7667 - 19
+36: 14.7833 - 19
+37: 11.5 - 19
+38: 15.4 - 19
+39: 12.6 - 19
+40: 16.8333 - 19
+41: 16.1333 - 19
+42: 16.8 - 19
+43: 16.4667 - 19
+44: 12.1 - 19
+45: 17.1333 - 19
+46: 12.0167 - 19
+47: 12.5333 - 19
+48: 12.95 - 19
+49: 13.3333 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1084 rows and 1702 columns.
+MIP Presolve modified 1244 coefficients.
+Aggregator did 9 substitutions.
+Reduced MIP has 34 rows, 51 columns, and 140 nonzeros.
+Reduced MIP has 51 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.01 ticks)
+Found incumbent of value -0.085000 after 0.01 sec. (2.62 ticks)
+Probing fixed 26 vars, tightened 0 bounds.
+Probing changed sense of 1 constraints.
+Probing time = 0.00 sec. (0.10 ticks)
+Tried aggregator 3 times.
+MIP Presolve eliminated 18 rows and 34 columns.
+Aggregator did 5 substitutions.
+Reduced MIP has 11 rows, 12 columns, and 34 nonzeros.
+Reduced MIP has 12 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.13 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 11 rows, 12 columns, and 34 nonzeros.
+Reduced MIP has 12 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.02 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Clique table members: 15.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.01 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                            1.9390        8.3330           329.76%
+      0     0        cutoff              1.9390                      2     --- 
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (3.28 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (3.28 ticks)
+ Total Time: 0.01
+ LB: 1.939
+ UB: 1.939
+
+Obj Val: 1.939
+
+Solve Time: 0.01
+b(0): 16.8666666666667
+b(1): 10.9166666666667
+b(2): 14.3333333333333
+b(3): 13.3166666666667
+b(4): 13.95
+b(5): 17.1630081526869
+b(6): 11.176422890938
+b(7): 14.6004065123934
+b(8): 13.4536585627603
+b(9): 14.1406504588539
+b(10): 13.2166666666667
+b(11): 11.25
+b(12): 14.35
+b(13): 12.6
+b(14): 15.7166666666667
+b(15): 13.6166666666667
+b(16): 13.4666666666667
+b(17): 10.3666666666667
+b(18): 14.2166666666667
+b(19): 11.3166666666667
+b(20): 15.7
+b(21): 14.9666666666667
+b(22): 15.6
+b(23): 15.1666666666667
+b(24): 10.9333333333333
+b(25): 16.0333333333333
+b(26): 10.9166666666667
+b(27): 11.4333333333333
+b(28): 11.85
+b(29): 12.2333333333333
+b(30): 14.3166666666667
+b(31): 12.4333333333333
+b(32): 15.5333333333333
+b(33): 13.8166666666667
+b(34): 16.8833333333333
+b(35): 14.7666666666667
+b(36): 14.7833333333333
+b(37): 11.5
+b(38): 15.4
+b(39): 12.6
+b(40): 16.8333333333333
+b(41): 16.1333333333333
+b(42): 16.8
+b(43): 16.4666666666667
+b(44): 12.1
+b(45): 17.1333333333333
+b(46): 12.0166666666667
+b(47): 12.5333333333333
+b(48): 12.95
+b(49): 13.3333333333333
+b(50): 9
+b(51): 9
+b(52): 19
+b(53): 19
+
+
+Customer profit: 32.989
+Parcel profit: 0
+Costs: 31.05
+Without fixed: 31.05
+
+Solution: 
+Vehicle 0: 50 - 1 - 6 - 4 - 9 - 52 - Total time: 5.14065045885388
+Vehicle 1: 51 - 3 - 8 - 2 - 7 - 0 - 5 - 53 - Total time: 8.1630081526869
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+
+************************************
+Final solution value: 1.939
+************************************
+Instance Name: sarp-5-20-B-2
+
+Time windows: 
+0: 11.95 - 11.95
+1: 10.2 - 10.2
+2: 9.88333 - 9.88333
+3: 12.7667 - 12.7667
+4: 12.2333 - 12.2333
+5: 12.1407 - 12.3073
+6: 10.4598 - 10.6264
+7: 10.0276 - 10.1943
+8: 12.8622 - 13.0289
+9: 12.4118 - 12.5785
+10: 9.05 - 10.05
+11: 16.7167 - 17.7167
+12: 14.5 - 15.5
+13: 9.11667 - 10.1167
+14: 15.2833 - 16.2833
+15: 14.0667 - 15.0667
+16: 9.75 - 10.75
+17: 16.15 - 17.15
+18: 10.2667 - 11.2667
+19: 10.1333 - 11.1333
+20: 10.8667 - 11.8667
+21: 13.95 - 14.95
+22: 14.2 - 15.2
+23: 12.5333 - 13.5333
+24: 14.4333 - 15.4333
+25: 15.15 - 16.15
+26: 9.7 - 10.7
+27: 13.0667 - 14.0667
+28: 16.5 - 17.5
+29: 10.1167 - 11.1167
+30: 10.15 - 19
+31: 17.9 - 19
+32: 15.6833 - 19
+33: 10.3333 - 19
+34: 16.45 - 19
+35: 15.2167 - 19
+36: 11.0667 - 19
+37: 17.2833 - 19
+38: 11.45 - 19
+39: 11.4167 - 19
+40: 12 - 19
+41: 15.1167 - 19
+42: 15.4 - 19
+43: 13.8333 - 19
+44: 15.6 - 19
+45: 16.25 - 19
+46: 10.8 - 19
+47: 14.1667 - 19
+48: 17.6 - 19
+49: 11.2167 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1082 rows and 1697 columns.
+MIP Presolve modified 1446 coefficients.
+Aggregator did 11 substitutions.
+Reduced MIP has 32 rows, 50 columns, and 138 nonzeros.
+Reduced MIP has 49 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.00 ticks)
+Found incumbent of value -5.328000 after 0.00 sec. (2.70 ticks)
+Probing fixed 22 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.08 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 7 rows and 24 columns.
+MIP Presolve modified 5 coefficients.
+Reduced MIP has 25 rows, 26 columns, and 78 nonzeros.
+Reduced MIP has 26 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.08 ticks)
+Probing fixed 2 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.04 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 1 rows and 4 columns.
+MIP Presolve modified 1 coefficients.
+Reduced MIP has 24 rows, 22 columns, and 73 nonzeros.
+Reduced MIP has 22 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.06 ticks)
+Probing fixed 2 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.04 ticks)
+Clique table members: 104.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.04 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           -5.3280       19.0520           457.58%
+*     0     0      integral     0        7.6900        7.6900        4    0.00%
+Elapsed time = 0.01 sec. (3.38 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (3.43 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (3.43 ticks)
+ Total Time: 0
+ LB: 7.69
+ UB: 7.69
+
+Obj Val: 7.69
+
+Solve Time: 0
+b(0): 11.95
+b(1): 10.2
+b(2): 9.88333333333333
+b(3): 12.7666666666667
+b(4): 12.2333333333333
+b(5): 12.1406504588539
+b(6): 10.626422890938
+b(7): 10.027642306167
+b(8): 13.0288617945667
+b(9): 12.4117886642872
+b(10): 9.05
+b(11): 16.7166666666667
+b(12): 14.5
+b(13): 9.11666666666667
+b(14): 15.2833333333333
+b(15): 14.0666666666667
+b(16): 9.75
+b(17): 16.15
+b(18): 10.2666666666667
+b(19): 10.1333333333333
+b(20): 10.8666666666667
+b(21): 13.95
+b(22): 14.2
+b(23): 12.5333333333333
+b(24): 14.4333333333333
+b(25): 15.15
+b(26): 9.7
+b(27): 13.0666666666667
+b(28): 16.5
+b(29): 10.1166666666667
+b(30): 10.15
+b(31): 17.9
+b(32): 15.6833333333333
+b(33): 10.3333333333333
+b(34): 16.45
+b(35): 15.2166666666667
+b(36): 11.0666666666667
+b(37): 17.2833333333333
+b(38): 11.45
+b(39): 11.4166666666667
+b(40): 12
+b(41): 15.1166666666667
+b(42): 15.4
+b(43): 13.8333333333333
+b(44): 15.6
+b(45): 16.25
+b(46): 10.8
+b(47): 14.1666666666667
+b(48): 17.6
+b(49): 11.2166666666667
+b(50): 9
+b(51): 9
+b(52): 19
+b(53): 19
+
+
+Customer profit: 35.152
+Parcel profit: 0
+Costs: 27.462
+Without fixed: 27.462
+
+Solution: 
+Vehicle 0: 50 - 2 - 7 - 0 - 5 - 52 - Total time: 3.14065045885388
+Vehicle 1: 51 - 1 - 6 - 4 - 9 - 3 - 8 - 53 - Total time: 4.02886179456673
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+
+************************************
+Final solution value: 7.69
+************************************
+Instance Name: sarp-5-20-C-1
+
+Time windows: 
+0: 15.5167 - 15.5167
+1: 11.4 - 11.4
+2: 10.45 - 10.45
+3: 15.1333 - 15.1333
+4: 11.2333 - 11.2333
+5: 16.3033 - 16.4699
+6: 12.2524 - 12.4191
+7: 10.7463 - 10.913
+8: 15.6346 - 15.8012
+9: 11.5846 - 11.7512
+10: 10.4333 - 11.4333
+11: 14.1 - 15.1
+12: 16.1333 - 17.1333
+13: 16.4333 - 17.4333
+14: 11.9167 - 12.9167
+15: 10.8167 - 11.8167
+16: 13.35 - 14.35
+17: 12.6167 - 13.6167
+18: 16.2 - 17.2
+19: 10.25 - 11.25
+20: 10.4167 - 11.4167
+21: 11.0833 - 12.0833
+22: 12.6 - 13.6
+23: 11.15 - 12.15
+24: 14.9167 - 15.9167
+25: 15.1667 - 16.1667
+26: 11.1833 - 12.1833
+27: 10.6333 - 11.6333
+28: 15.4 - 16.4
+29: 9.7 - 10.7
+30: 11.5333 - 19
+31: 15.2833 - 19
+32: 17.3167 - 19
+33: 17.65 - 19
+34: 13.0833 - 19
+35: 11.9667 - 19
+36: 14.6667 - 19
+37: 13.75 - 19
+38: 17.3833 - 19
+39: 11.5333 - 19
+40: 11.55 - 19
+41: 12.25 - 19
+42: 13.8 - 19
+43: 12.45 - 19
+44: 16.0833 - 19
+45: 16.2667 - 19
+46: 12.2833 - 19
+47: 11.7333 - 19
+48: 16.5 - 19
+49: 10.8 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1083 rows and 1700 columns.
+MIP Presolve modified 1236 coefficients.
+Aggregator did 9 substitutions.
+Reduced MIP has 34 rows, 51 columns, and 140 nonzeros.
+Reduced MIP has 51 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.00 ticks)
+Found incumbent of value 17.682000 after 0.00 sec. (2.75 ticks)
+Probing fixed 26 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.08 ticks)
+Tried aggregator 3 times.
+MIP Presolve eliminated 17 rows and 35 columns.
+Aggregator did 4 substitutions.
+Reduced MIP has 13 rows, 12 columns, and 38 nonzeros.
+Reduced MIP has 12 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.14 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 13 rows, 12 columns, and 38 nonzeros.
+Reduced MIP has 12 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.03 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Clique table members: 15.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.02 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           29.8720       49.5140            65.75%
+      0     0        cutoff             29.8720                      4     --- 
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (3.41 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (3.41 ticks)
+ Total Time: 0.01
+ LB: 29.872
+ UB: 29.872
+
+Obj Val: 29.872
+
+Solve Time: 0.01
+b(0): 15.5166666666667
+b(1): 11.4
+b(2): 10.45
+b(3): 15.1333333333333
+b(4): 11.2333333333333
+b(5): 16.4699190828874
+b(6): 12.2524394402144
+b(7): 10.7463416079715
+b(8): 15.6345530900259
+b(9): 11.5845530168551
+b(10): 10.4333333333333
+b(11): 14.1
+b(12): 16.1333333333333
+b(13): 16.4333333333333
+b(14): 11.9166666666667
+b(15): 10.8166666666667
+b(16): 13.35
+b(17): 12.6166666666667
+b(18): 16.2
+b(19): 10.25
+b(20): 10.4166666666667
+b(21): 11.0833333333333
+b(22): 12.6
+b(23): 11.15
+b(24): 14.9166666666667
+b(25): 15.1666666666667
+b(26): 11.1833333333333
+b(27): 10.6333333333333
+b(28): 15.4
+b(29): 9.7
+b(30): 11.5333333333333
+b(31): 15.2833333333333
+b(32): 17.3166666666667
+b(33): 17.65
+b(34): 13.0833333333333
+b(35): 11.9666666666667
+b(36): 14.6666666666667
+b(37): 13.75
+b(38): 17.3833333333333
+b(39): 11.5333333333333
+b(40): 11.55
+b(41): 12.25
+b(42): 13.8
+b(43): 12.45
+b(44): 16.0833333333333
+b(45): 16.2666666666667
+b(46): 12.2833333333333
+b(47): 11.7333333333333
+b(48): 16.5
+b(49): 10.8
+b(50): 9
+b(51): 9
+b(52): 19
+b(53): 19
+
+
+Customer profit: 94.686
+Parcel profit: 0
+Costs: 64.814
+Without fixed: 64.814
+
+Solution: 
+Vehicle 0: 50 - 2 - 7 - 1 - 6 - 0 - 5 - 52 - Total time: 7.46991908288736
+Vehicle 1: 51 - 4 - 9 - 3 - 8 - 53 - Total time: 6.6345530900259
+
+Vehicle 0: d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+
+************************************
+Final solution value: 29.872
+************************************
+Instance Name: sarp-5-20-C-2
+
+Time windows: 
+0: 11.1167 - 11.1167
+1: 13.6 - 13.6
+2: 14.4667 - 14.4667
+3: 11.8333 - 11.8333
+4: 11.3167 - 11.3167
+5: 11.3947 - 11.5614
+6: 13.7711 - 13.9378
+7: 14.9679 - 15.1346
+8: 11.9825 - 12.1492
+9: 12.0081 - 12.1748
+10: 11.9667 - 12.9667
+11: 16.75 - 17.75
+12: 14.55 - 15.55
+13: 14.3833 - 15.3833
+14: 11.45 - 12.45
+15: 15.15 - 16.15
+16: 14.4167 - 15.4167
+17: 13.1333 - 14.1333
+18: 9.91667 - 10.9167
+19: 15.0167 - 16.0167
+20: 10.8833 - 11.8833
+21: 12.9667 - 13.9667
+22: 10.7167 - 11.7167
+23: 9.61667 - 10.6167
+24: 10 - 11
+25: 15.1833 - 16.1833
+26: 10.4667 - 11.4667
+27: 13.1333 - 14.1333
+28: 10.5167 - 11.5167
+29: 14.2 - 15.2
+30: 13.0667 - 19
+31: 17.9333 - 19
+32: 15.7333 - 19
+33: 15.6 - 19
+34: 12.6167 - 19
+35: 16.3 - 19
+36: 15.7333 - 19
+37: 14.2667 - 19
+38: 11.1 - 19
+39: 16.3 - 19
+40: 12.0167 - 19
+41: 14.1333 - 19
+42: 11.9167 - 19
+43: 10.9167 - 19
+44: 11.1667 - 19
+45: 16.2833 - 19
+46: 11.5667 - 19
+47: 14.2333 - 19
+48: 11.6167 - 19
+49: 15.3 - 19
+50: 9 - 19
+51: 9 - 19
+52: 9 - 19
+53: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1083 rows and 1700 columns.
+MIP Presolve modified 1286 coefficients.
+Aggregator did 11 substitutions.
+Reduced MIP has 31 rows, 47 columns, and 130 nonzeros.
+Reduced MIP has 47 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.99 ticks)
+Found incumbent of value 22.833000 after 0.00 sec. (2.58 ticks)
+Probing fixed 20 vars, tightened 0 bounds.
+Probing changed sense of 1 constraints.
+Probing time = 0.00 sec. (0.07 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 12 rows and 24 columns.
+Reduced MIP has 19 rows, 23 columns, and 66 nonzeros.
+Reduced MIP has 23 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.05 ticks)
+Probing time = 0.00 sec. (0.04 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 19 rows, 23 columns, and 66 nonzeros.
+Reduced MIP has 23 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.05 ticks)
+Probing time = 0.00 sec. (0.04 ticks)
+Clique table members: 99.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.02 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           22.8330       27.2490            19.34%
+      0     0        cutoff             22.8330                      3     --- 
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (3.23 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (3.23 ticks)
+ Total Time: 0.01
+ LB: 22.833
+ UB: 22.833
+
+Obj Val: 22.833
+
+Solve Time: 0.01
+b(0): 11.1166666666667
+b(1): 13.6
+b(2): 14.4666666666667
+b(3): 11.8333333333333
+b(4): 11.3166666666667
+b(5): 11.3947155827881
+b(6): 13.7711382542138
+b(7): 15.1345530900259
+b(8): 11.982520357327
+b(9): 12.0081304186002
+b(10): 11.9666666666667
+b(11): 16.75
+b(12): 14.55
+b(13): 14.3833333333333
+b(14): 11.45
+b(15): 15.15
+b(16): 14.4166666666667
+b(17): 13.1333333333333
+b(18): 9.91666666666667
+b(19): 15.0166666666667
+b(20): 10.8833333333333
+b(21): 12.9666666666667
+b(22): 10.7166666666667
+b(23): 9.61666666666667
+b(24): 10
+b(25): 15.1833333333333
+b(26): 10.4666666666667
+b(27): 13.1333333333333
+b(28): 10.5166666666667
+b(29): 14.2
+b(30): 13.0666666666667
+b(31): 17.9333333333333
+b(32): 15.7333333333333
+b(33): 15.6
+b(34): 12.6166666666667
+b(35): 16.3
+b(36): 15.7333333333333
+b(37): 14.2666666666667
+b(38): 11.1
+b(39): 16.3
+b(40): 12.0166666666667
+b(41): 14.1333333333333
+b(42): 11.9166666666667
+b(43): 10.9166666666667
+b(44): 11.1666666666667
+b(45): 16.2833333333333
+b(46): 11.5666666666667
+b(47): 14.2333333333333
+b(48): 11.6166666666667
+b(49): 15.3
+b(50): 9
+b(51): 9
+b(52): 19
+b(53): 19
+
+
+Customer profit: 64.095
+Parcel profit: 0
+Costs: 41.262
+Without fixed: 41.262
+
+Solution: 
+Vehicle 0: 50 - 4 - 9 - 52 - Total time: 3.0081304186002
+Vehicle 1: 51 - 0 - 5 - 3 - 8 - 1 - 6 - 2 - 7 - 53 - Total time: 6.1345530900259
+
+Vehicle 0: d - P - f
+Vehicle 1: d - P - d - P - d - P - d - P - f
+
+************************************
+Final solution value: 22.833
+************************************
+Instance Name: sarp-5-30-A-1
+
+Time windows: 
+0: 9.86667 - 9.86667
+1: 13.1 - 13.1
+2: 16.2167 - 16.2167
+3: 10.3167 - 10.3167
+4: 13.1 - 13.1
+5: 9.96463 - 10.1313
+6: 13.2102 - 13.3768
+7: 16.3171 - 16.4837
+8: 10.439 - 10.6057
+9: 13.198 - 13.3646
+10: 9.51667 - 10.5167
+11: 10.6 - 11.6
+12: 9.85 - 10.85
+13: 11.95 - 12.95
+14: 15.9667 - 16.9667
+15: 11.95 - 12.95
+16: 9.58333 - 10.5833
+17: 14.5167 - 15.5167
+18: 13.7 - 14.7
+19: 12.3 - 13.3
+20: 14.6833 - 15.6833
+21: 13.6667 - 14.6667
+22: 9.35 - 10.35
+23: 13.4333 - 14.4333
+24: 9.98333 - 10.9833
+25: 12.1333 - 13.1333
+26: 13.5833 - 14.5833
+27: 12.6333 - 13.6333
+28: 15.1333 - 16.1333
+29: 16.5667 - 17.5667
+30: 15.6667 - 16.6667
+31: 11.95 - 12.95
+32: 15.6333 - 16.6333
+33: 9 - 10
+34: 14.9167 - 15.9167
+35: 11.5833 - 12.5833
+36: 12.2 - 13.2
+37: 10.55 - 11.55
+38: 12.6333 - 13.6333
+39: 14.5667 - 15.5667
+40: 10.6167 - 19
+41: 11.7833 - 19
+42: 11.0333 - 19
+43: 13.1667 - 19
+44: 17.1333 - 19
+45: 13.1 - 19
+46: 10.9 - 19
+47: 15.65 - 19
+48: 14.8833 - 19
+49: 13.5833 - 19
+50: 15.8167 - 19
+51: 14.8333 - 19
+52: 10.55 - 19
+53: 14.7333 - 19
+54: 11.15 - 19
+55: 13.2333 - 19
+56: 14.6833 - 19
+57: 13.7333 - 19
+58: 16.2333 - 19
+59: 17.6667 - 19
+60: 16.7667 - 19
+61: 13.05 - 19
+62: 16.7333 - 19
+63: 10.1 - 19
+64: 16.0167 - 19
+65: 12.6833 - 19
+66: 13.3 - 19
+67: 11.65 - 19
+68: 13.7333 - 19
+69: 15.6667 - 19
+70: 9 - 19
+71: 9 - 19
+72: 9 - 19
+73: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1582 rows and 2518 columns.
+MIP Presolve modified 1816 coefficients.
+Aggregator did 9 substitutions.
+Reduced MIP has 34 rows, 51 columns, and 140 nonzeros.
+Reduced MIP has 51 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.82 ticks)
+Found incumbent of value -22.256000 after 0.00 sec. (3.78 ticks)
+Probing fixed 16 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.12 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 4 rows and 16 columns.
+Reduced MIP has 30 rows, 35 columns, and 100 nonzeros.
+Reduced MIP has 35 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.06 ticks)
+Probing time = 0.00 sec. (0.06 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 30 rows, 35 columns, and 100 nonzeros.
+Reduced MIP has 35 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.07 ticks)
+Probing time = 0.00 sec. (0.06 ticks)
+Clique table members: 129.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.04 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -22.2560       14.3600           164.52%
+*     0     0      integral     0       -3.2580       -3.2580        8    0.00%
+Elapsed time = 0.01 sec. (4.68 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (4.77 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (4.77 ticks)
+ Total Time: 0
+ LB: -3.258
+ UB: -3.258
+
+Obj Val: -3.258
+
+Solve Time: 0
+b(0): 9.86666666666667
+b(1): 13.1
+b(2): 16.2166666666667
+b(3): 10.3166666666667
+b(4): 13.1
+b(5): 9.96463415348007
+b(6): 13.2101626147135
+b(7): 16.4837398457268
+b(8): 10.6056910759469
+b(9): 13.1979674868134
+b(10): 9.51666666666667
+b(11): 10.6
+b(12): 9.85
+b(13): 11.95
+b(14): 15.9666666666667
+b(15): 11.95
+b(16): 9.58333333333333
+b(17): 14.5166666666667
+b(18): 13.7
+b(19): 12.3
+b(20): 14.6833333333333
+b(21): 13.6666666666667
+b(22): 9.35
+b(23): 13.4333333333333
+b(24): 9.98333333333333
+b(25): 12.1333333333333
+b(26): 13.5833333333333
+b(27): 12.6333333333333
+b(28): 15.1333333333333
+b(29): 16.5666666666667
+b(30): 15.6666666666667
+b(31): 11.95
+b(32): 15.6333333333333
+b(33): 9
+b(34): 14.9166666666667
+b(35): 11.5833333333333
+b(36): 12.2
+b(37): 10.55
+b(38): 12.6333333333333
+b(39): 14.5666666666667
+b(40): 10.6166666666667
+b(41): 11.7833333333333
+b(42): 11.0333333333333
+b(43): 13.1666666666667
+b(44): 17.1333333333333
+b(45): 13.1
+b(46): 10.9
+b(47): 15.65
+b(48): 14.8833333333333
+b(49): 13.5833333333333
+b(50): 15.8166666666667
+b(51): 14.8333333333333
+b(52): 10.55
+b(53): 14.7333333333333
+b(54): 11.15
+b(55): 13.2333333333333
+b(56): 14.6833333333333
+b(57): 13.7333333333333
+b(58): 16.2333333333333
+b(59): 17.6666666666667
+b(60): 16.7666666666667
+b(61): 13.05
+b(62): 16.7333333333333
+b(63): 10.1
+b(64): 16.0166666666667
+b(65): 12.6833333333333
+b(66): 13.3
+b(67): 11.65
+b(68): 13.7333333333333
+b(69): 15.6666666666667
+b(70): 9
+b(71): 9
+b(72): 19
+b(73): 19
+
+
+Customer profit: 20.938
+Parcel profit: 0
+Costs: 24.196
+Without fixed: 24.196
+
+Solution: 
+Vehicle 0: 70 - 1 - 6 - 2 - 7 - 72 - Total time: 7.48373984572676
+Vehicle 1: 71 - 0 - 5 - 3 - 8 - 4 - 9 - 73 - Total time: 4.19796748681341
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+
+************************************
+Final solution value: -3.258
+************************************
+Instance Name: sarp-5-30-A-2
+
+Time windows: 
+0: 11.7167 - 11.7167
+1: 11.7333 - 11.7333
+2: 11.95 - 11.95
+3: 15.4333 - 15.4333
+4: 17.15 - 17.15
+5: 11.878 - 12.0447
+6: 11.8606 - 12.0272
+7: 12.0431 - 12.2098
+8: 15.585 - 15.7516
+9: 17.2577 - 17.4244
+10: 12.6833 - 13.6833
+11: 15.3333 - 16.3333
+12: 11.5667 - 12.5667
+13: 12.3667 - 13.3667
+14: 14.8333 - 15.8333
+15: 13.55 - 14.55
+16: 11.4833 - 12.4833
+17: 11.0333 - 12.0333
+18: 14.2167 - 15.2167
+19: 16.7833 - 17.7833
+20: 16.65 - 17.65
+21: 15.2333 - 16.2333
+22: 13.5 - 14.5
+23: 15.9333 - 16.9333
+24: 16.3333 - 17.3333
+25: 14.6 - 15.6
+26: 10.65 - 11.65
+27: 12.5 - 13.5
+28: 10.1 - 11.1
+29: 14.7333 - 15.7333
+30: 15.7667 - 16.7667
+31: 10.65 - 11.65
+32: 10.6667 - 11.6667
+33: 13.6 - 14.6
+34: 14.6 - 15.6
+35: 14.3833 - 15.3833
+36: 14.5167 - 15.5167
+37: 11.2 - 12.2
+38: 11.05 - 12.05
+39: 11.15 - 12.15
+40: 13.7833 - 19
+41: 16.5167 - 19
+42: 12.75 - 19
+43: 13.5833 - 19
+44: 16 - 19
+45: 14.7 - 19
+46: 12.8 - 19
+47: 12.1667 - 19
+48: 15.4 - 19
+49: 18.0667 - 19
+50: 17.7833 - 19
+51: 16.4 - 19
+52: 14.7 - 19
+53: 17.2333 - 19
+54: 17.5 - 19
+55: 15.7 - 19
+56: 11.75 - 19
+57: 13.6 - 19
+58: 11.2 - 19
+59: 15.8333 - 19
+60: 16.8667 - 19
+61: 11.75 - 19
+62: 11.7667 - 19
+63: 14.7 - 19
+64: 15.7 - 19
+65: 15.4833 - 19
+66: 15.6167 - 19
+67: 12.3 - 19
+68: 12.15 - 19
+69: 12.25 - 19
+70: 9 - 19
+71: 9 - 19
+72: 9 - 19
+73: 9 - 19
+74: 9 - 19
+75: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 3 times.
+MIP Presolve eliminated 1655 rows and 3742 columns.
+MIP Presolve modified 132 coefficients.
+Aggregator did 19 substitutions.
+Reduced MIP has 31 rows, 53 columns, and 154 nonzeros.
+Reduced MIP has 52 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.81 ticks)
+Found incumbent of value -35.090000 after 0.01 sec. (5.82 ticks)
+Probing time = 0.00 sec. (0.10 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 31 rows, 53 columns, and 154 nonzeros.
+Reduced MIP has 52 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.11 ticks)
+Probing time = 0.00 sec. (0.10 ticks)
+Clique table members: 150.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.05 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          -35.0900       13.2560           137.78%
+*     0     0      integral     0        3.0440        3.0440        5    0.00%
+Elapsed time = 0.01 sec. (6.64 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (6.77 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (6.77 ticks)
+ Total Time: 0.01
+ LB: 3.044
+ UB: 3.044
+
+Obj Val: 3.044
+
+Solve Time: 0.01
+b(0): 11.7166666666667
+b(1): 11.7333333333333
+b(2): 11.95
+b(3): 15.4333333333333
+b(4): 17.15
+b(5): 11.8780488185604
+b(6): 11.8605691271069
+b(7): 12.0430894356534
+b(8): 15.584959382907
+b(9): 17.4243902558001
+b(10): 12.6833333333333
+b(11): 15.3333333333333
+b(12): 11.5666666666667
+b(13): 12.3666666666667
+b(14): 14.8333333333333
+b(15): 13.55
+b(16): 11.4833333333333
+b(17): 11.0333333333333
+b(18): 14.2166666666667
+b(19): 16.7833333333333
+b(20): 16.65
+b(21): 15.2333333333333
+b(22): 13.5
+b(23): 15.9333333333333
+b(24): 16.3333333333333
+b(25): 14.6
+b(26): 10.65
+b(27): 12.5
+b(28): 10.1
+b(29): 14.7333333333333
+b(30): 15.7666666666667
+b(31): 10.65
+b(32): 10.6666666666667
+b(33): 13.6
+b(34): 14.6
+b(35): 14.3833333333333
+b(36): 14.5166666666667
+b(37): 11.2
+b(38): 11.05
+b(39): 11.15
+b(40): 13.7833333333333
+b(41): 16.5166666666667
+b(42): 12.75
+b(43): 13.5833333333333
+b(44): 16
+b(45): 14.7
+b(46): 12.8
+b(47): 12.1666666666667
+b(48): 15.4
+b(49): 18.0666666666667
+b(50): 17.7833333333333
+b(51): 16.4
+b(52): 14.7
+b(53): 17.2333333333333
+b(54): 17.5
+b(55): 15.7
+b(56): 11.75
+b(57): 13.6
+b(58): 11.2
+b(59): 15.8333333333333
+b(60): 16.8666666666667
+b(61): 11.75
+b(62): 11.7666666666667
+b(63): 14.7
+b(64): 15.7
+b(65): 15.4833333333333
+b(66): 15.6166666666667
+b(67): 12.3
+b(68): 12.15
+b(69): 12.25
+b(70): 9
+b(71): 9
+b(72): 9
+b(73): 19
+b(74): 19
+b(75): 19
+
+
+Customer profit: 25.676
+Parcel profit: 0
+Costs: 22.632
+Without fixed: 22.632
+
+Solution: 
+Vehicle 0: 70 - 2 - 7 - 4 - 9 - 73 - Total time: 8.42439025580012
+Vehicle 1: 71 - 0 - 5 - 74 - Total time: 2.8780488185604
+Vehicle 2: 72 - 1 - 6 - 3 - 8 - 75 - Total time: 6.58495938290702
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - f
+Vehicle 2: d - P - d - P - f
+
+************************************
+Final solution value: 3.044
+************************************
+Instance Name: sarp-5-30-B-1
+
+Time windows: 
+0: 9.7 - 9.7
+1: 11.45 - 11.45
+2: 10.1 - 10.1
+3: 11.8333 - 11.8333
+4: 11.6667 - 11.6667
+5: 9.79797 - 9.96463
+6: 11.6187 - 11.7854
+7: 10.2516 - 10.4183
+8: 11.9606 - 12.1272
+9: 11.7646 - 11.9313
+10: 16.3167 - 17.3167
+11: 15.8667 - 16.8667
+12: 16.45 - 17.45
+13: 10.1 - 11.1
+14: 9.18333 - 10.1833
+15: 14.75 - 15.75
+16: 15.4667 - 16.4667
+17: 14.0333 - 15.0333
+18: 14.6167 - 15.6167
+19: 13.1167 - 14.1167
+20: 11.1167 - 12.1167
+21: 13.9833 - 14.9833
+22: 11.9333 - 12.9333
+23: 9.3 - 10.3
+24: 12.85 - 13.85
+25: 16.0833 - 17.0833
+26: 11.0667 - 12.0667
+27: 15.8 - 16.8
+28: 15.55 - 16.55
+29: 15.1 - 16.1
+30: 15.7167 - 16.7167
+31: 12.3833 - 13.3833
+32: 15.5833 - 16.5833
+33: 9.36667 - 10.3667
+34: 9.56667 - 10.5667
+35: 13.3667 - 14.3667
+36: 11.5667 - 12.5667
+37: 10.05 - 11.05
+38: 12.1833 - 13.1833
+39: 11.7333 - 12.7333
+40: 17.4167 - 19
+41: 17.05 - 19
+42: 17.6333 - 19
+43: 11.3167 - 19
+44: 10.35 - 19
+45: 15.9 - 19
+46: 16.7833 - 19
+47: 15.1667 - 19
+48: 15.8 - 19
+49: 14.4 - 19
+50: 12.25 - 19
+51: 15.15 - 19
+52: 13.1333 - 19
+53: 10.6 - 19
+54: 14.0167 - 19
+55: 17.1833 - 19
+56: 12.1667 - 19
+57: 16.9 - 19
+58: 16.65 - 19
+59: 16.2 - 19
+60: 16.8167 - 19
+61: 13.4833 - 19
+62: 16.6833 - 19
+63: 10.4667 - 19
+64: 10.6667 - 19
+65: 14.4667 - 19
+66: 12.6667 - 19
+67: 11.15 - 19
+68: 13.2833 - 19
+69: 12.8333 - 19
+70: 9 - 19
+71: 9 - 19
+72: 9 - 19
+73: 9 - 19
+74: 9 - 19
+75: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 3 times.
+MIP Presolve eliminated 1659 rows and 3759 columns.
+MIP Presolve modified 124 coefficients.
+Aggregator did 19 substitutions.
+Reduced MIP has 29 rows, 45 columns, and 132 nonzeros.
+Reduced MIP has 44 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (4.80 ticks)
+Found incumbent of value 2.733000 after 0.01 sec. (5.99 ticks)
+Probing time = 0.00 sec. (0.08 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 29 rows, 45 columns, and 132 nonzeros.
+Reduced MIP has 44 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.09 ticks)
+Probing time = 0.00 sec. (0.08 ticks)
+Clique table members: 141.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.05 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                            2.7330       14.7390           439.30%
+      0     0        cutoff              2.7330                      9     --- 
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (6.80 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (6.80 ticks)
+ Total Time: 0.01
+ LB: 2.733
+ UB: 2.733
+
+Obj Val: 2.733
+
+Solve Time: 0.01
+b(0): 9.7
+b(1): 11.45
+b(2): 10.1
+b(3): 11.8333333333333
+b(4): 11.6666666666667
+b(5): 9.79796748681341
+b(6): 11.7853658953004
+b(7): 10.2516260495737
+b(8): 12.1272357937736
+b(9): 11.9313008201467
+b(10): 16.3166666666667
+b(11): 15.8666666666667
+b(12): 16.45
+b(13): 10.1
+b(14): 9.18333333333333
+b(15): 14.75
+b(16): 15.4666666666667
+b(17): 14.0333333333333
+b(18): 14.6166666666667
+b(19): 13.1166666666667
+b(20): 11.1166666666667
+b(21): 13.9833333333333
+b(22): 11.9333333333333
+b(23): 9.3
+b(24): 12.85
+b(25): 16.0833333333333
+b(26): 11.0666666666667
+b(27): 15.8
+b(28): 15.55
+b(29): 15.1
+b(30): 15.7166666666667
+b(31): 12.3833333333333
+b(32): 15.5833333333333
+b(33): 9.36666666666667
+b(34): 9.56666666666667
+b(35): 13.3666666666667
+b(36): 11.5666666666667
+b(37): 10.05
+b(38): 12.1833333333333
+b(39): 11.7333333333333
+b(40): 17.4166666666667
+b(41): 17.05
+b(42): 17.6333333333333
+b(43): 11.3166666666667
+b(44): 10.35
+b(45): 15.9
+b(46): 16.7833333333333
+b(47): 15.1666666666667
+b(48): 15.8
+b(49): 14.4
+b(50): 12.25
+b(51): 15.15
+b(52): 13.1333333333333
+b(53): 10.6
+b(54): 14.0166666666667
+b(55): 17.1833333333333
+b(56): 12.1666666666667
+b(57): 16.9
+b(58): 16.65
+b(59): 16.2
+b(60): 16.8166666666667
+b(61): 13.4833333333333
+b(62): 16.6833333333333
+b(63): 10.4666666666667
+b(64): 10.6666666666667
+b(65): 14.4666666666667
+b(66): 12.6666666666667
+b(67): 11.15
+b(68): 13.2833333333333
+b(69): 12.8333333333333
+b(70): 9
+b(71): 9
+b(72): 9
+b(73): 19
+b(74): 19
+b(75): 19
+
+
+Customer profit: 25.779
+Parcel profit: 0
+Costs: 23.046
+Without fixed: 23.046
+
+Solution: 
+Vehicle 0: 70 - 1 - 6 - 73 - Total time: 2.78536589530044
+Vehicle 1: 71 - 0 - 5 - 2 - 7 - 3 - 8 - 74 - Total time: 3.12723579377356
+Vehicle 2: 72 - 4 - 9 - 75 - Total time: 2.93130082014674
+
+Vehicle 0: d - P - f
+Vehicle 1: d - P - d - P - d - P - f
+Vehicle 2: d - P - f
+
+************************************
+Final solution value: 2.733
+************************************
+Instance Name: sarp-5-30-B-2
+
+Time windows: 
+0: 17.0667 - 17.0667
+1: 10.9833 - 10.9833
+2: 11.2833 - 11.2833
+3: 11.8667 - 11.8667
+4: 10.55 - 10.55
+5: 17.2768 - 17.4435
+6: 11.1545 - 11.3211
+7: 11.4545 - 11.6211
+8: 11.9744 - 12.1411
+9: 10.7211 - 10.8878
+10: 12.3167 - 13.3167
+11: 9.15 - 10.15
+12: 9.91667 - 10.9167
+13: 9.73333 - 10.7333
+14: 10.85 - 11.85
+15: 15.8167 - 16.8167
+16: 13.9 - 14.9
+17: 12.7167 - 13.7167
+18: 16.3333 - 17.3333
+19: 14.1167 - 15.1167
+20: 16 - 17
+21: 12.05 - 13.05
+22: 16.5167 - 17.5167
+23: 14.25 - 15.25
+24: 9.63333 - 10.6333
+25: 11.1 - 12.1
+26: 15.6833 - 16.6833
+27: 10 - 11
+28: 15.65 - 16.65
+29: 10.8833 - 11.8833
+30: 15.6333 - 16.6333
+31: 9.68333 - 10.6833
+32: 12.3333 - 13.3333
+33: 9.78333 - 10.7833
+34: 10.6333 - 11.6333
+35: 13.85 - 14.85
+36: 11.3833 - 12.3833
+37: 15.6333 - 16.6333
+38: 16.4667 - 17.4667
+39: 14.9167 - 15.9167
+40: 13.4167 - 19
+41: 10.3333 - 19
+42: 11.1 - 19
+43: 10.95 - 19
+44: 12.0167 - 19
+45: 16.9667 - 19
+46: 15.2167 - 19
+47: 13.85 - 19
+48: 17.5167 - 19
+49: 15.4 - 19
+50: 17.1333 - 19
+51: 13.2167 - 19
+52: 17.7167 - 19
+53: 15.55 - 19
+54: 10.8 - 19
+55: 12.2 - 19
+56: 16.7833 - 19
+57: 11.1 - 19
+58: 16.75 - 19
+59: 11.9833 - 19
+60: 16.7333 - 19
+61: 10.7833 - 19
+62: 13.4333 - 19
+63: 10.8833 - 19
+64: 11.7333 - 19
+65: 14.95 - 19
+66: 12.4833 - 19
+67: 16.7333 - 19
+68: 17.5667 - 19
+69: 16.0167 - 19
+70: 9 - 19
+71: 9 - 19
+72: 9 - 19
+73: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1584 rows and 2522 columns.
+MIP Presolve modified 1832 coefficients.
+Aggregator did 11 substitutions.
+Reduced MIP has 31 rows, 47 columns, and 130 nonzeros.
+Reduced MIP has 47 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.82 ticks)
+Found incumbent of value -1.572000 after 0.01 sec. (3.51 ticks)
+Probing fixed 20 vars, tightened 0 bounds.
+Probing changed sense of 1 constraints.
+Probing time = 0.00 sec. (0.07 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 12 rows and 24 columns.
+Reduced MIP has 19 rows, 23 columns, and 66 nonzeros.
+Reduced MIP has 23 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.05 ticks)
+Probing time = 0.00 sec. (0.04 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 19 rows, 23 columns, and 66 nonzeros.
+Reduced MIP has 23 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.05 ticks)
+Probing time = 0.00 sec. (0.04 ticks)
+Clique table members: 99.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.03 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           -1.5720       10.5720           772.52%
+*     0     0      integral     0        4.9600        4.9600        3    0.00%
+Elapsed time = 0.01 sec. (4.25 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (4.34 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (4.34 ticks)
+ Total Time: 0.01
+ LB: 4.96
+ UB: 4.96
+
+Obj Val: 4.96
+
+Solve Time: 0.01
+b(0): 17.0666666666667
+b(1): 10.9833333333333
+b(2): 11.2833333333333
+b(3): 11.8666666666667
+b(4): 10.55
+b(5): 17.4434959968273
+b(6): 11.3211382542138
+b(7): 11.6211382542138
+b(8): 11.9743902558001
+b(9): 10.7211382542138
+b(10): 12.3166666666667
+b(11): 9.15
+b(12): 9.91666666666667
+b(13): 9.73333333333333
+b(14): 10.85
+b(15): 15.8166666666667
+b(16): 13.9
+b(17): 12.7166666666667
+b(18): 16.3333333333333
+b(19): 14.1166666666667
+b(20): 16
+b(21): 12.05
+b(22): 16.5166666666667
+b(23): 14.25
+b(24): 9.63333333333333
+b(25): 11.1
+b(26): 15.6833333333333
+b(27): 10
+b(28): 15.65
+b(29): 10.8833333333333
+b(30): 15.6333333333333
+b(31): 9.68333333333333
+b(32): 12.3333333333333
+b(33): 9.78333333333333
+b(34): 10.6333333333333
+b(35): 13.85
+b(36): 11.3833333333333
+b(37): 15.6333333333333
+b(38): 16.4666666666667
+b(39): 14.9166666666667
+b(40): 13.4166666666667
+b(41): 10.3333333333333
+b(42): 11.1
+b(43): 10.95
+b(44): 12.0166666666667
+b(45): 16.9666666666667
+b(46): 15.2166666666667
+b(47): 13.85
+b(48): 17.5166666666667
+b(49): 15.4
+b(50): 17.1333333333333
+b(51): 13.2166666666667
+b(52): 17.7166666666667
+b(53): 15.55
+b(54): 10.8
+b(55): 12.2
+b(56): 16.7833333333333
+b(57): 11.1
+b(58): 16.75
+b(59): 11.9833333333333
+b(60): 16.7333333333333
+b(61): 10.7833333333333
+b(62): 13.4333333333333
+b(63): 10.8833333333333
+b(64): 11.7333333333333
+b(65): 14.95
+b(66): 12.4833333333333
+b(67): 16.7333333333333
+b(68): 17.5666666666667
+b(69): 16.0166666666667
+b(70): 9
+b(71): 9
+b(72): 19
+b(73): 19
+
+
+Customer profit: 33.71
+Parcel profit: 0
+Costs: 28.75
+Without fixed: 28.75
+
+Solution: 
+Vehicle 0: 70 - 4 - 9 - 2 - 7 - 3 - 8 - 72 - Total time: 2.97439025580013
+Vehicle 1: 71 - 1 - 6 - 0 - 5 - 73 - Total time: 8.44349599682732
+
+Vehicle 0: d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+
+************************************
+Final solution value: 4.96
+************************************
+Instance Name: sarp-5-30-C-1
+
+Time windows: 
+0: 15.15 - 15.15
+1: 12.8667 - 12.8667
+2: 10.1 - 10.1
+3: 10.5333 - 10.5333
+4: 10.85 - 10.85
+5: 15.3309 - 15.4976
+6: 13.4301 - 13.5967
+7: 10.539 - 10.7057
+8: 10.8809 - 11.0476
+9: 11.439 - 11.6057
+10: 13.1667 - 14.1667
+11: 9.35 - 10.35
+12: 9.45 - 10.45
+13: 10.8333 - 11.8333
+14: 11.6833 - 12.6833
+15: 15.7833 - 16.7833
+16: 14.7667 - 15.7667
+17: 16.1833 - 17.1833
+18: 12.5833 - 13.5833
+19: 14.05 - 15.05
+20: 10.9833 - 11.9833
+21: 10.9333 - 11.9333
+22: 12.45 - 13.45
+23: 11.3667 - 12.3667
+24: 13.7333 - 14.7333
+25: 12.2 - 13.2
+26: 16.2667 - 17.2667
+27: 11.2333 - 12.2333
+28: 11.2167 - 12.2167
+29: 10.3167 - 11.3167
+30: 11.3333 - 12.3333
+31: 10.9667 - 11.9667
+32: 9.6 - 10.6
+33: 13.5833 - 14.5833
+34: 9.31667 - 10.3167
+35: 10.75 - 11.75
+36: 10.2333 - 11.2333
+37: 13.05 - 14.05
+38: 10.35 - 11.35
+39: 10.4667 - 11.4667
+40: 14.2667 - 19
+41: 10.5333 - 19
+42: 10.6333 - 19
+43: 12.05 - 19
+44: 12.85 - 19
+45: 16.9333 - 19
+46: 16.0833 - 19
+47: 17.3167 - 19
+48: 13.7667 - 19
+49: 15.3333 - 19
+50: 12.1167 - 19
+51: 12.1 - 19
+52: 13.65 - 19
+53: 12.6667 - 19
+54: 14.9 - 19
+55: 13.3 - 19
+56: 17.3667 - 19
+57: 12.3333 - 19
+58: 12.3167 - 19
+59: 11.4167 - 19
+60: 12.4333 - 19
+61: 12.0667 - 19
+62: 10.7 - 19
+63: 14.6833 - 19
+64: 10.4167 - 19
+65: 11.85 - 19
+66: 11.3333 - 19
+67: 14.15 - 19
+68: 11.45 - 19
+69: 11.5667 - 19
+70: 9 - 19
+71: 9 - 19
+72: 9 - 19
+73: 9 - 19
+74: 9 - 19
+75: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1661 rows and 3748 columns.
+MIP Presolve modified 145 coefficients.
+Aggregator did 15 substitutions.
+Reduced MIP has 39 rows, 78 columns, and 221 nonzeros.
+Reduced MIP has 75 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.10 ticks)
+Found incumbent of value 20.216000 after 0.01 sec. (4.95 ticks)
+Probing time = 0.00 sec. (0.15 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 39 rows, 78 columns, and 221 nonzeros.
+Reduced MIP has 75 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.15 ticks)
+Probing time = 0.00 sec. (0.15 ticks)
+Clique table members: 214.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.07 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           20.2160       56.0580           177.30%
+*     0     0      integral     0       40.7320       40.7320        2    0.00%
+Elapsed time = 0.01 sec. (5.98 ticks, tree = 0.00 MB, solutions = 2)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (6.11 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (6.11 ticks)
+ Total Time: 0.01
+ LB: 40.732
+ UB: 40.732
+
+Obj Val: 40.732
+
+Solve Time: 0.01
+b(0): 15.15
+b(1): 12.8666666666667
+b(2): 10.1
+b(3): 10.5333333333333
+b(4): 10.85
+b(5): 15.4975610232005
+b(6): 13.4300815756496
+b(7): 10.5390246044022
+b(8): 10.8808944784851
+b(9): 11.439024677573
+b(10): 13.1666666666667
+b(11): 9.35
+b(12): 9.45
+b(13): 10.8333333333333
+b(14): 11.6833333333333
+b(15): 15.7833333333333
+b(16): 14.7666666666667
+b(17): 16.1833333333333
+b(18): 12.5833333333333
+b(19): 14.05
+b(20): 10.9833333333333
+b(21): 10.9333333333333
+b(22): 12.45
+b(23): 11.3666666666667
+b(24): 13.7333333333333
+b(25): 12.2
+b(26): 16.2666666666667
+b(27): 11.2333333333333
+b(28): 11.2166666666667
+b(29): 10.3166666666667
+b(30): 11.3333333333333
+b(31): 10.9666666666667
+b(32): 9.6
+b(33): 13.5833333333333
+b(34): 9.31666666666667
+b(35): 10.75
+b(36): 10.2333333333333
+b(37): 13.05
+b(38): 10.35
+b(39): 10.4666666666667
+b(40): 14.2666666666667
+b(41): 10.5333333333333
+b(42): 10.6333333333333
+b(43): 12.05
+b(44): 12.85
+b(45): 16.9333333333333
+b(46): 16.0833333333333
+b(47): 17.3166666666667
+b(48): 13.7666666666667
+b(49): 15.3333333333333
+b(50): 12.1166666666667
+b(51): 12.1
+b(52): 13.65
+b(53): 12.6666666666667
+b(54): 14.9
+b(55): 13.3
+b(56): 17.3666666666667
+b(57): 12.3333333333333
+b(58): 12.3166666666667
+b(59): 11.4166666666667
+b(60): 12.4333333333333
+b(61): 12.0666666666667
+b(62): 10.7
+b(63): 14.6833333333333
+b(64): 10.4166666666667
+b(65): 11.85
+b(66): 11.3333333333333
+b(67): 14.15
+b(68): 11.45
+b(69): 11.5666666666667
+b(70): 9
+b(71): 9
+b(72): 9
+b(73): 19
+b(74): 19
+b(75): 19
+
+
+Customer profit: 74.91
+Parcel profit: 0
+Costs: 34.178
+Without fixed: 34.178
+
+Solution: 
+Vehicle 0: 70 - 3 - 8 - 0 - 5 - 73 - Total time: 6.4975610232005
+Vehicle 1: 71 - 2 - 7 - 74 - Total time: 1.53902460440225
+Vehicle 2: 72 - 4 - 9 - 1 - 6 - 75 - Total time: 4.43008157564955
+
+Vehicle 0: d - P - d - P - f
+Vehicle 1: d - P - f
+Vehicle 2: d - P - d - P - f
+
+************************************
+Final solution value: 40.732
+************************************
+Instance Name: sarp-5-30-C-2
+
+Time windows: 
+0: 12.7167 - 12.7167
+1: 9.71667 - 9.71667
+2: 14.6 - 14.6
+3: 14.9 - 14.9
+4: 12.6667 - 12.6667
+5: 13.3606 - 13.5272
+6: 10.5289 - 10.6955
+7: 14.776 - 14.9427
+8: 15.1854 - 15.352
+9: 12.8037 - 12.9703
+10: 9.03333 - 10.0333
+11: 11.2333 - 12.2333
+12: 16.6333 - 17.6333
+13: 11.85 - 12.85
+14: 15.9 - 16.9
+15: 9.46667 - 10.4667
+16: 16.75 - 17.75
+17: 14.5333 - 15.5333
+18: 16.05 - 17.05
+19: 13.9833 - 14.9833
+20: 14.9167 - 15.9167
+21: 11.9833 - 12.9833
+22: 9.56667 - 10.5667
+23: 12.15 - 13.15
+24: 15.8333 - 16.8333
+25: 9.18333 - 10.1833
+26: 15.7833 - 16.7833
+27: 13.7333 - 14.7333
+28: 12.4167 - 13.4167
+29: 10.2167 - 11.2167
+30: 12.8 - 13.8
+31: 11.25 - 12.25
+32: 15.0667 - 16.0667
+33: 14.2333 - 15.2333
+34: 11.7833 - 12.7833
+35: 15.2333 - 16.2333
+36: 11.45 - 12.45
+37: 9.5 - 10.5
+38: 16.7 - 17.7
+39: 15.7167 - 16.7167
+40: 10.1333 - 19
+41: 12.4167 - 19
+42: 17.8167 - 19
+43: 13.0667 - 19
+44: 17.0667 - 19
+45: 10.6167 - 19
+46: 18.0667 - 19
+47: 15.6667 - 19
+48: 17.2333 - 19
+49: 15.2667 - 19
+50: 16.05 - 19
+51: 13.15 - 19
+52: 10.7667 - 19
+53: 13.45 - 19
+54: 17 - 19
+55: 10.2833 - 19
+56: 16.8833 - 19
+57: 14.8333 - 19
+58: 13.5167 - 19
+59: 11.3167 - 19
+60: 13.9 - 19
+61: 12.35 - 19
+62: 16.1667 - 19
+63: 15.3333 - 19
+64: 12.8833 - 19
+65: 16.3333 - 19
+66: 12.55 - 19
+67: 10.6 - 19
+68: 17.8 - 19
+69: 16.8167 - 19
+70: 9 - 19
+71: 9 - 19
+72: 9 - 19
+73: 9 - 19
+Version identifier: 22.1.1.0 | 2022-11-28 | 9160aff4d
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               7200
+Tried aggregator 2 times.
+MIP Presolve eliminated 1582 rows and 2518 columns.
+MIP Presolve modified 1867 coefficients.
+Aggregator did 9 substitutions.
+Reduced MIP has 34 rows, 51 columns, and 140 nonzeros.
+Reduced MIP has 51 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.82 ticks)
+Found incumbent of value 10.136000 after 0.00 sec. (3.70 ticks)
+Probing fixed 26 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.08 ticks)
+Tried aggregator 3 times.
+MIP Presolve eliminated 17 rows and 35 columns.
+Aggregator did 4 substitutions.
+Reduced MIP has 13 rows, 12 columns, and 38 nonzeros.
+Reduced MIP has 12 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.14 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 13 rows, 12 columns, and 38 nonzeros.
+Reduced MIP has 12 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.03 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Clique table members: 15.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (0.02 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                           18.3700       29.7780            62.10%
+*     0     0      integral     0       18.5540       18.5540        4    0.00%
+Elapsed time = 0.01 sec. (4.45 ticks, tree = 0.00 MB, solutions = 3)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (4.55 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (4.55 ticks)
+ Total Time: 0
+ LB: 18.554
+ UB: 18.554
+
+Obj Val: 18.554
+
+Solve Time: 0
+b(0): 12.7166666666667
+b(1): 9.71666666666667
+b(2): 14.6
+b(3): 14.9
+b(4): 12.6666666666667
+b(5): 13.36056941979
+b(6): 10.5288621848108
+b(7): 14.7760163053738
+b(8): 15.3520326595281
+b(9): 12.8036585627603
+b(10): 9.03333333333333
+b(11): 11.2333333333333
+b(12): 16.6333333333333
+b(13): 11.85
+b(14): 15.9
+b(15): 9.46666666666667
+b(16): 16.75
+b(17): 14.5333333333333
+b(18): 16.05
+b(19): 13.9833333333333
+b(20): 14.9166666666667
+b(21): 11.9833333333333
+b(22): 9.56666666666667
+b(23): 12.15
+b(24): 15.8333333333333
+b(25): 9.18333333333333
+b(26): 15.7833333333333
+b(27): 13.7333333333333
+b(28): 12.4166666666667
+b(29): 10.2166666666667
+b(30): 12.8
+b(31): 11.25
+b(32): 15.0666666666667
+b(33): 14.2333333333333
+b(34): 11.7833333333333
+b(35): 15.2333333333333
+b(36): 11.45
+b(37): 9.5
+b(38): 16.7
+b(39): 15.7166666666667
+b(40): 10.1333333333333
+b(41): 12.4166666666667
+b(42): 17.8166666666667
+b(43): 13.0666666666667
+b(44): 17.0666666666667
+b(45): 10.6166666666667
+b(46): 18.0666666666667
+b(47): 15.6666666666667
+b(48): 17.2333333333333
+b(49): 15.2666666666667
+b(50): 16.05
+b(51): 13.15
+b(52): 10.7666666666667
+b(53): 13.45
+b(54): 17
+b(55): 10.2833333333333
+b(56): 16.8833333333333
+b(57): 14.8333333333333
+b(58): 13.5166666666667
+b(59): 11.3166666666667
+b(60): 13.9
+b(61): 12.35
+b(62): 16.1666666666667
+b(63): 15.3333333333333
+b(64): 12.8833333333333
+b(65): 16.3333333333333
+b(66): 12.55
+b(67): 10.6
+b(68): 17.8
+b(69): 16.8166666666667
+b(70): 9
+b(71): 9
+b(72): 19
+b(73): 19
+
+
+Customer profit: 71.408
+Parcel profit: 0
+Costs: 52.854
+Without fixed: 52.854
+
+Solution: 
+Vehicle 0: 70 - 1 - 6 - 4 - 9 - 3 - 8 - 72 - Total time: 6.35203265952813
+Vehicle 1: 71 - 0 - 5 - 2 - 7 - 73 - Total time: 5.77601630537381
+
+Vehicle 0: d - P - d - P - d - P - f
+Vehicle 1: d - P - d - P - f
+
+************************************
+Final solution value: 18.554
+************************************

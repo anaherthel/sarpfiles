@@ -48,6 +48,7 @@ void generatePermutations(int a, int b, instanceStat *inst, int c, double **mdis
 void startPermutation(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec);
 bool checkFileExists(const std::string& filename);
 void generateScaleCSV(instanceStat *inst, solStats *sStat);
+void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat);
 
 
 #endif

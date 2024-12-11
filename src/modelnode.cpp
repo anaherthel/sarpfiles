@@ -564,14 +564,14 @@ void fipPassSol(instanceStat *inst, fipStats *fipStat) {
             fipStat->solPass[i][end] = inst->n + 2*inst->m + inst->K + i;
         }
     }
-    cout << "pass solution after: " << endl;
-    for (int i = 0; i < fipStat->solPass.size(); i++) {
-        cout << "Route " << i << ": ";
-        for (int j = 0; j < fipStat->solPass[i].size(); j++) {
-            cout << fipStat->solPass[i][j] << " ";
-        }
-        cout << endl;
-    }
+    //cout << "pass solution after: " << endl;
+    //for (int i = 0; i < fipStat->solPass.size(); i++) {
+    //    cout << "Route " << i << ": ";
+    //    for (int j = 0; j < fipStat->solPass[i].size(); j++) {
+    //        cout << fipStat->solPass[i][j] << " ";
+    //    }
+    //    cout << endl;
+    //}
 
 }
 
@@ -612,14 +612,14 @@ void fipPassSolBundles(instanceStat *inst, fipStats *fipStat) {
 
 	iFile.close();
 
-    cout << "pass solution after: " << endl;
-    for (int i = 0; i < fipStat->solPass.size(); i++) {
-        cout << "Route " << i << ": ";
-        for (int j = 0; j < fipStat->solPass[i].size(); j++) {
-            cout << fipStat->solPass[i][j] << " ";
-        }
-        cout << endl;
-    }
+    //cout << "pass solution after: " << endl;
+    //for (int i = 0; i < fipStat->solPass.size(); i++) {
+    //    cout << "Route " << i << ": ";
+    //    for (int j = 0; j < fipStat->solPass[i].size(); j++) {
+    //        cout << fipStat->solPass[i][j] << " ";
+    //    }
+    //    cout << endl;
+    //}
 }
 
 void fipPartSolBundles(instanceStat *inst, fipStats *fipStat) {
@@ -668,504 +668,6 @@ void fipPartSolBundles(instanceStat *inst, fipStats *fipStat) {
         cout << endl;
     }
 }
-
-// void mfeasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, vector<nodeStat> &nodeVec, double **mdist, fipStats *fipStat){
-//     int auxK;
-
-//     int fDepot = inst->n + 2*inst->m;
-//     int fDummy = inst->n + 2*inst->m + inst->K;
-
-//     int decimalPlaces = 4;
-//     double multiplier = std::pow(10, decimalPlaces);
-
-//     string filename = "src/fippassSol/" + inst->InstName + ".txt";
-
-// 	ifstream iFile(filename);
-
-// 	int nMandatory;
-// 	iFile >> nMandatory;
-//     std::set<int> emptyRoutes;
-//     vector<pair<int, int>> nodeLocal;
-//     vector<int> sequencePairs;
-//     vector<int> NodeVehicle;
-
-//     sequencePairs.clear();
-//     NodeVehicle.clear();
-//     sequencePairs.resize(inst->n + 2*inst->m + 2*inst->K, -1);
-//     NodeVehicle.resize(inst->n + 2*inst->m + 2*inst->K, -1);
-
-//     int nSolNodes;
-// 	iFile >> nSolNodes;
-
-// 	for (int i = 0; i < nSolNodes; i++) {
-// 		int u;
-// 		int k;
-
-// 		iFile >> u >> k;
-
-//         if (fipStat->solPass.size() <= k) {
-//             fipStat->solPass.push_back(vector<int>());
-//         }
-
-//         fipStat->solPass[k].push_back(u);
-
-// 		nodeLocal.push_back(make_pair(u, k));
-//         NodeVehicle[u] = k;
-// 	}
-
-// 	for (int i = 0; i < nMandatory; i++) {
-// 		int u;
-// 		int v;
-
-// 		iFile >> u >> v;
-
-//         fipStat->solPass.push_back(vector<int>());
-//         fipStat->solPass[u - fDepot].push_back(u);
-//         fipStat->solPass[u - fDepot].push_back(v);
-
-// 		emptyRoutes.insert(v - inst->V);
-// 	}
-
-// 	int nSequencePairs;
-// 	iFile >> nSequencePairs;
-
-// 	for (int i = 0; i < nSequencePairs; i++) {
-// 		int u;
-// 		int v;
-
-//         iFile >> u >> v;
-
-// 		sequencePairs[u] = v;
-// 	}
-
-// 	iFile.close();
-
-//     // Only one arc is allowed between the elements in the first solution
-
-//     for (int i = 0; i < nodeLocal.size(); i++) {
-//         int u = nodeLocal[i].first;
-//         int v = sequencePairs[u];
-//         int k = nodeLocal[i].second;
-
-//         if (v == -1) continue;
-
-//         nas->arcs[u][v] = true;
-//         nas->fArc.first = u;
-//         nas->fArc.second = v;
-//         nas->arcMinus[v].push_back(nas->fArc);
-//         nas->arcPlus[u].push_back(nas->fArc);
-//         nas->allArcs.push_back(nas->fArc);
-
-//         nas->arcV[u][v].push_back(k);
-//     }
-
-//     // In empty routes, we should ensure arc between depot and dummy depot
-
-//     for (auto k : emptyRoutes) {
-//         int u = k + fDepot;
-//         int v = k + fDummy;
-
-//         nas->arcs[u][v] = true;
-//         nas->fArc.first = u;
-//         nas->fArc.second = v;
-//         nas->arcMinus[v].push_back(nas->fArc);
-//         nas->arcPlus[u].push_back(nas->fArc);
-//         nas->allArcs.push_back(nas->fArc);
-
-//         nas->arcV[u][v].push_back(k);
-
-//         if (u < inst->n && v < inst->n) {
-//             nas->arcNN.push_back(nas->fArc);
-//             nas->arcNplus.push_back(nas->fArc);
-//             nas->arcnf.push_back(nas->fArc);
-//         } else if (u < inst->n) {
-//             nas->arcNplus.push_back(nas->fArc);
-//         }
-//     }
-
-//     // Ensure arcs to parcel in non empty routes
-
-//     for(int i = inst->n + 2*inst->m; i < inst->V; i++){//i is a starting point
-
-//         if (emptyRoutes.find(i - fDepot) != emptyRoutes.end()) continue;
-
-//         // int l = i + inst->K; //its dummy node
-
-//         // nas->arcs[i][l] = true;
-//         // nas->fArc.first = i;
-//         // nas->fArc.second = l;
-//         // nas->arcMinus[l].push_back(nas->fArc);
-//         // nas->arcPlus[i].push_back(nas->fArc);
-//         // nas->allArcs.push_back(nas->fArc);
-
-//         // auxK = l - inst->V;
-//         // nas->arcV[i][l].push_back(auxK);
-        
-//         // for (int j = 0; j < inst->n; j++){ //j is a passenger node
-
-//         //     double ttij = mdist[i][j]/inst->vmed;
-//         //     ttij = std::round(ttij * multiplier) / multiplier;
-
-//         //     if (nodeVec[i].e + ttij < nodeVec[j].l){
-//         //         nas->arcs[i][j] = true;
-//         //         nas->fArc.first = i;
-//         //         nas->fArc.second = j;
-//         //         nas->arcMinus[j].push_back(nas->fArc);
-//         //         nas->arcPlus[i].push_back(nas->fArc);
-//         //         nas->allArcs.push_back(nas->fArc);
-
-//         //         nas->arcnf.push_back(nas->fArc);
-//         //         auxK = i - fDepot;
-//         //         nas->arcV[i][j].push_back(auxK);
-//         //     }         
-//         // }
-//         for (int j = inst->n; j < inst->n + inst->m; j++){ //j is a parcel pu node
-//             double ttij = mdist[i][j]/inst->vmed;
-//             ttij = std::round(ttij * multiplier) / multiplier;
-//             if (ttij < inst->T){
-//                 nas->arcs[i][j] = true;
-//                 nas->fArc.first = i;
-//                 nas->fArc.second = j;
-//                 nas->arcMinus[j].push_back(nas->fArc);
-//                 nas->arcPlus[i].push_back(nas->fArc);
-//                 nas->allArcs.push_back(nas->fArc);
-
-//                 nas->arcnf.push_back(nas->fArc);
-//                 auxK = i - fDepot;
-//                 nas->arcV[i][j].push_back(auxK);
-//             }
-//         }
-//     }
-
-//     // for (int i = 0; i < inst->n; i++){//i is a passenger node
-//     //     for(int j = 0; j < inst->n; j++){// j is a passenger req
-//     //         if(i != j){
-//     //             double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j 
-//     //             ttij = std::round(ttij * multiplier) / multiplier;
-//     //             //if lowest time for req i + travel time from i to j is lower or equal to
-//     //             //the latest point in time to serve request j. If latest time == T, it is always valid                        
-
-//     //             if (nodeVec[i].e + ttij < nodeVec[j].l){
-//     //                 nas->arcs[i][j] = true;
-//     //                 nas->fArc.first = i;
-//     //                 nas->fArc.second = j;
-//     //                 nas->arcMinus[j].push_back(nas->fArc);
-//     //                 nas->arcPlus[i].push_back(nas->fArc);
-
-//     //                 nas->arcNN.push_back(nas->fArc);
-//     //                 nas->arcNplus.push_back(nas->fArc);
-
-//     //                 nas->allArcs.push_back(nas->fArc);
-//     //                 nas->arcnf.push_back(nas->fArc);
-//     //                 for (int k = 0; k < inst->K; k++){
-//     //                     nas->arcV[i][j].push_back(k);
-//     //                 }                        
-//     //             }
-//     //        }
-//     //     }
-
-//     //     for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
-//     //         nas->arcs[i][j] = true;
-//     //         nas->fArc.first = i;
-//     //         nas->fArc.second = j;
-//     //         nas->arcMinus[j].push_back(nas->fArc);
-//     //         nas->arcPlus[i].push_back(nas->fArc);
-
-//     //         nas->arcNplus.push_back(nas->fArc);
-
-//     //         nas->allArcs.push_back(nas->fArc);
-//     //         auxK = j - inst->V;
-//     //         nas->arcV[i][j].push_back(auxK);
-//     //     }
-//     // }
-
-//     if (problem->p3 > 0){ // arcs for baseline scenarios
-//         //passenger-passenger
-//         if (problem->p1 > 0){ //if BL2
-//             for (int i = 0; i < inst->n; i++){ //i is a passenger request
-//                 for (int j = inst->n; j < inst->n + inst->m; j++){// j is a parcel pu req
-//                     double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j
-//                     ttij = std::round(ttij * multiplier) / multiplier;
-//                     //if lowest time for req i + travel time from i to j is lower or equal to
-//                     //the latest point in time to serve request j. If latest time == T, it is always valid                        
-//                     if (nodeVec[i].e + ttij < nodeVec[j].l){                
-//                         nas->arcs[i][j] = true;
-//                         nas->fArc.first = i;
-//                         nas->fArc.second = j;
-//                         nas->arcMinus[j].push_back(nas->fArc);
-//                         nas->arcPlus[i].push_back(nas->fArc);
-
-//                         nas->arcNplus.push_back(nas->fArc);
-
-//                         nas->allArcs.push_back(nas->fArc);
-//                         nas->arcnf.push_back(nas->fArc);
-
-//                         nas->arcV[i][j].push_back(NodeVehicle[i]);
-//                     }                 
-//                 }                
-//             }
-//         }
-//         // parcelpu-parcel
-//         for (int i = inst->n; i < inst->n + inst->m; i++){//i is a parcel pu node
-//             for (int j = inst->n; j < inst->n + 2*inst->m; j++){//j is a parcel pu or dl node
-//                 if (j + inst->m != i && i != j && i + inst->m != j){
-//                     nas->arcs[i][j] = true;
-//                     nas->fArc.first = i;
-//                     nas->fArc.second = j;
-//                     nas->arcMinus[j].push_back(nas->fArc);
-//                     nas->arcPlus[i].push_back(nas->fArc);
-                    
-//                     if (j < inst->n + inst->m){
-//                         nas->arcPP.push_back(nas->fArc);
-//                     }
-
-//                     nas->allArcs.push_back(nas->fArc);
-//                     nas->arcnf.push_back(nas->fArc);
-//                     for (int k = 0; k < inst->K; k++){
-//                         if (emptyRoutes.find(k) != emptyRoutes.end()) continue;
-//                         nas->arcV[i][j].push_back(k);
-//                     } 
-//                 }
-//             }
-//         }
-
-//         //parceldl-parcel
-//         for (int i = inst->n + inst->m; i < inst->n + 2*inst->m; i++){//i is a parcel dl node
-//             for (int j = inst->n; j < inst->n + 2*inst->m; j++){//j is a parcel pu or dl node
-//                 if (i != j && j != i - inst->m){//different nodes; no dl to its pickup
-//                     nas->arcs[i][j] = true;
-//                     nas->fArc.first = i;
-//                     nas->fArc.second = j;
-//                     nas->arcMinus[j].push_back(nas->fArc);
-//                     nas->arcPlus[i].push_back(nas->fArc);
-//                     nas->allArcs.push_back(nas->fArc);
-//                     nas->arcnf.push_back(nas->fArc);
-//                     for (int k = 0; k < inst->K; k++){
-//                         if (emptyRoutes.find(i - fDepot) != emptyRoutes.end()) continue;
-//                         nas->arcV[i][j].push_back(k);
-//                     } 
-//                 }
-//             }
-//             if (problem->p1 > 0){ //if BL2
-//                 for (int j = 0; j < inst->n; j++){//j is a passenger node
-//                     nas->arcs[i][j] = true;
-//                     nas->fArc.first = i;
-//                     nas->fArc.second = j;
-//                     nas->arcMinus[j].push_back(nas->fArc);
-//                     nas->arcPlus[i].push_back(nas->fArc);
-
-//                     nas->arcPN.push_back(nas->fArc);
-
-//                     nas->allArcs.push_back(nas->fArc);
-//                     nas->arcnf.push_back(nas->fArc);
-
-//                     nas->arcV[i][j].push_back(NodeVehicle[j]);
-//                 } 
-//             }
-
-//             for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
-//                 if (emptyRoutes.find(j - inst->V) != emptyRoutes.end()) continue;
-
-//                 nas->arcs[i][j] = true;
-//                 nas->fArc.first = i;
-//                 nas->fArc.second = j;
-//                 nas->arcMinus[j].push_back(nas->fArc);
-//                 nas->arcPlus[i].push_back(nas->fArc);
-
-//                 nas->allArcs.push_back(nas->fArc);
-//                 auxK = j - inst->V;
-//                 nas->arcV[i][j].push_back(auxK);
-//             } 
-//         }
-
-//         if (problem->dParcel > 0){//direct parcel delivery
-
-//             for (int i = inst->n; i < inst->n + inst->m; i++){//i is a parcel pu node
-//                 int j = i + inst->m; //j is i's delivery location
-
-//                 nas->arcs[i][j] = true;
-//                 nas->fArc.first = i;
-//                 nas->fArc.second = j;
-//                 nas->arcMinus[j].push_back(nas->fArc);
-//                 nas->arcPlus[i].push_back(nas->fArc);
-
-//                 nas->arcPD.push_back(nas->fArc);
-
-//                 nas->allArcs.push_back(nas->fArc);
-//                 nas->arcnf.push_back(nas->fArc);
-//                 for (int k = 0; k < inst->K; k++){
-//                     if (emptyRoutes.find(k) != emptyRoutes.end()) continue;
-//                     nas->arcV[i][j].push_back(k);
-//                 }                                                
-//             }
-//         }
-//     }
-
-//     else{
-
-//         for (int i = 0; i < inst->n; i++){//i is a passenger node
-//             for(int j = inst->n; j < inst->n + 2*inst->m; j++){// j is a parcel req (pu or del)
-//                 double ttij = mdist[i][j]/inst->vmed;//travel time between requests i and j
-//                 ttij = std::round(ttij * multiplier) / multiplier;
-//                 //if lowest time for req i + travel time from i to j is lower or equal to
-//                 //the latest point in time to serve request j. If latest time == T, it is always valid                        
-//                 if (nodeVec[i].e + ttij < nodeVec[j].l){
-//                     nas->arcs[i][j] = true;
-//                     nas->fArc.first = i;
-//                     nas->fArc.second = j;
-//                     nas->arcMinus[j].push_back(nas->fArc);
-//                     nas->arcPlus[i].push_back(nas->fArc);
-
-//                     nas->arcNplus.push_back(nas->fArc);
-
-//                     nas->allArcs.push_back(nas->fArc);
-//                     nas->arcnf.push_back(nas->fArc);
-
-//                     nas->arcV[i][j].push_back(NodeVehicle[i]);
-//                 }
-//             }
-//         }
-
-//         for (int i = inst->n; i < inst->n + inst->m; i++){//i is a parcel pu node           
-//             for (int j = 0; j < inst->n; j++){ //j is a passenger node
-//                 nas->arcs[i][j] = true;
-//                 nas->fArc.first = i;
-//                 nas->fArc.second = j;
-//                 nas->arcMinus[j].push_back(nas->fArc);
-//                 nas->arcPlus[i].push_back(nas->fArc);
-                
-//                 nas->arcPN.push_back(nas->fArc);
-
-//                 nas->allArcs.push_back(nas->fArc);
-//                 nas->arcnf.push_back(nas->fArc);
-
-//                 nas->arcV[i][j].push_back(NodeVehicle[j]);
-//             }      
-//         }
-
-//         for (int i = inst->n + inst->m; i < inst->n + 2*inst->m; i++){//i is a parcel dl node           
-//             for (int j = 0; j < inst->n; j++){ //j is a passenger node
-//                 nas->arcs[i][j] = true;
-//                 nas->fArc.first = i;
-//                 nas->fArc.second = j;
-//                 nas->arcMinus[j].push_back(nas->fArc);
-//                 nas->arcPlus[i].push_back(nas->fArc);
-
-//                 // if (j < inst->n){//j is a passenger node
-//                 //     nas->arcPN.push_back(nas->fArc);
-//                 // }
-
-//                 nas->allArcs.push_back(nas->fArc);
-//                 nas->arcnf.push_back(nas->fArc);
-
-//                 nas->arcV[i][j].push_back(NodeVehicle[j]);
-//             }
-
-//             for (int j = inst->V; j < inst->V + inst->dummy; j++){//j is the dummy node
-
-//                 if (emptyRoutes.find(j - inst->V) != emptyRoutes.end()) continue;
-
-//                 nas->arcs[i][j] = true;
-//                 nas->fArc.first = i;
-//                 nas->fArc.second = j;
-//                 nas->arcMinus[j].push_back(nas->fArc);
-//                 nas->arcPlus[i].push_back(nas->fArc);
-
-//                 nas->allArcs.push_back(nas->fArc);
-//                 auxK = j - inst->V;
-//                 nas->arcV[i][j].push_back(auxK);
-//             }
-//         }
-
-//         //%%%%%%%%%%%%%%%%%%%%%%%
-//         //specific cases
-//         //%%%%%%%%%%%%%%%%%%%%%%%
-
-//         if (problem->p2 > 0){ //multi parcel
-//             for (int i = inst->n; i < inst->n + 2*inst->m; i++){//i is a parcel pu or dl node                   
-//                 for (int j = inst->n; j < inst->n + 2*inst->m; j++){//j is a parcel pu or dl node
-//                     if (j + inst->m != i && i != j && i + inst->m != j){ // no dl to its pu; no pu to its dl; not a node to itself
-//                         nas->arcs[i][j] = true;
-//                         nas->fArc.first = i;
-//                         nas->fArc.second = j;
-//                         nas->arcMinus[j].push_back(nas->fArc);
-//                         nas->arcPlus[i].push_back(nas->fArc);
-
-//                         //if (j < inst->n + inst->m){
-//                         //    nas->arcPP.push_back(nas->fArc);
-//                         //}
-//                         nas->arcPP.push_back(nas->fArc);
-
-                        
-//                         nas->allArcs.push_back(nas->fArc);
-//                         nas->arcnf.push_back(nas->fArc);
-//                         for (int k = 0; k < inst->K; k++){
-//                             if (emptyRoutes.find(k) != emptyRoutes.end()) continue;
-//                             nas->arcV[i][j].push_back(k);
-//                         }
-//                     }                    
-//                 }
-//             }
-//         }
-//         else { //single parcel 
-//             for (int i = inst->n + inst->m; i < inst->n + 2*inst->m; i++){//i is a parcel dl node                   
-//                 for (int j = inst->n; j < inst->n + inst->m; j++){//j is a parcel pu node
-//                     if (j + inst->m != i){ // no dl to its pu; no pu to its dl; not a node to itself
-//                         nas->arcs[i][j] = true;
-//                         nas->fArc.first = i;
-//                         nas->fArc.second = j;
-//                         nas->arcMinus[j].push_back(nas->fArc);
-//                         nas->arcPlus[i].push_back(nas->fArc);
-
-//                         if (j < inst->n + inst->m){
-//                             nas->arcPP.push_back(nas->fArc);
-//                         }                        
-    
-//                         nas->allArcs.push_back(nas->fArc);
-//                         nas->arcnf.push_back(nas->fArc);
-//                         for (int k = 0; k < inst->K; k++){
-//                             if (emptyRoutes.find(k) != emptyRoutes.end()) continue;
-//                             nas->arcV[i][j].push_back(k);
-//                         }
-//                     }                    
-//                 }
-//             }
-//         }
-//         if (problem->dParcel > 0){//direct parcel delivery
-
-//             for (int i = inst->n; i < inst->n + inst->m; i++){//i is a parcel pu node
-//                 int j = i + inst->m; //j is i's delivery location
-
-//                 nas->arcs[i][j] = true;
-//                 nas->fArc.first = i;
-//                 nas->fArc.second = j;
-//                 nas->arcMinus[j].push_back(nas->fArc);
-//                 nas->arcPlus[i].push_back(nas->fArc);
-
-//                 nas->arcPD.push_back(nas->fArc);
-
-//                 nas->allArcs.push_back(nas->fArc);
-//                 nas->arcnf.push_back(nas->fArc);
-//                 for (int k = 0; k < inst->K; k++){
-//                     if (emptyRoutes.find(k) != emptyRoutes.end()) continue;
-//                     nas->arcV[i][j].push_back(k);
-//                 }                                                
-//             }
-//         }
-//     }
-
-//     for (int a = 0; a < nas->allArcs.size(); a++){
-//         int i = nas->allArcs[a].first;
-//         int j = nas->allArcs[a].second;
-
-//         for(int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
-//             int k = nas->arcV[i][j][k1];
-//             nas->vArcPlus[i][k].push_back(nas->allArcs[a]);
-//             nas->vArcMinus[j][k].push_back(nas->allArcs[a]);
-//         }
-
-//     }
-// }
 
 void viewSol (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat){
     bool inserted;
@@ -1862,25 +1364,25 @@ void viewSolVRPS (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
 
 void output(instanceStat *inst, vector<nodeStat> &nodeVec,  solStats *sStat, probStat* problem){
 
-    //output
-    string btoutputname;
+    ////output
+    //string btoutputname;
 
-    btoutputname = "bt-" + inst->InstName + "-" + problem->scen + ".txt";
-    // // TODO UNCOMMENT //  << "output bt: " << btoutputname << endl;
+    //btoutputname = "bt-" + inst->InstName + "-" + problem->scen + ".txt";
+    //// // TODO UNCOMMENT //  << "output bt: " << btoutputname << endl;
 
-    ofstream ofile;
+    //ofstream ofile;
 
-    ofile.open(btoutputname);
+    //ofile.open(btoutputname);
     
-    // ofile << K << "\t" << 5 << "\t" << dimVec[i].first << "\t" << dimVec[i].second << endl;
+    //// ofile << K << "\t" << 5 << "\t" << dimVec[i].first << "\t" << dimVec[i].second << endl;
 
-    for (int i = 0; i < inst->n; i++){
-        ofile << i << "\t" << setw(9) << fixed << setprecision(4) << sStat->solBegin[i] << endl;
-    }
-    // for (int i = 0; i < inst->n; i++){
-    //     ofile << i << "\t" << setw(9) << fixed << setprecision(4) << sStat->solBegin[i] << endl;
+    //for (int i = 0; i < inst->n; i++){
+    //    ofile << i << "\t" << setw(9) << fixed << setprecision(4) << sStat->solBegin[i] << endl;
+    //}
+    //// for (int i = 0; i < inst->n; i++){
+    ////     ofile << i << "\t" << setw(9) << fixed << setprecision(4) << sStat->solBegin[i] << endl;
 
-    // }
+    //// }
 }
 
 void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, probStat* problem, solStats *sStat){
@@ -1954,12 +1456,11 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
-
-
-
         }
-	}
 
+        generateResultsCSV(inst, problem, sStat);
+
+    }
     //// TODO UNCOMMENT //  << "before test route" << endl;
     //testRoute(inst, mdist, nodeVec);
 
@@ -2201,6 +1702,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
         }
+        generateResultsCSV(inst, problem, sStat);
 
   		//generateScaleCSV(inst, sStat); //For Scale K phase
 
@@ -2282,6 +1784,8 @@ void fipnodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<n
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
         }
+        generateResultsCSV(inst, problem, sStat);
+
 	}
 
     //// TODO UNCOMMENT //  << "before test route" << endl;

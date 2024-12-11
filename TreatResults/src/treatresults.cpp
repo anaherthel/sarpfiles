@@ -92,7 +92,7 @@ void createOutputInst(vector<instInfoN>& vecInst, string instName)
     for(int i = 0; i < vecInst.size(); i++){
         if(vecInst[i].name == firstInst){
             // ofile << vecInst[i].scen << ", " << vecInst[i].pperc << endl;
-            ofile << vecInst[i].scen << endl;
+            //ofile << vecInst[i].scen << endl;
             ofile << "Instance,n,m,served,prof Customer,prof Parcel,costs,K,Sol Time,Sol Val,sol Stat,LB,UB,GAP" << endl;
         }
         ofile << vecInst[i].name << "," << vecInst[i].n << "," << vecInst[i].m << "," << vecInst[i].servP << "," << vecInst[i].pCust << "," << vecInst[i].pParc << "," << vecInst[i].costs << "," << vecInst[i].K << "," << vecInst[i].soltime << "," << vecInst[i].objval << "," << vecInst[i].stats << "," << vecInst[i].lb << "," << vecInst[i].ub << "," << vecInst[i].gap << endl;
@@ -117,7 +117,7 @@ void createOutputDist(vector<instInfoN>& vecInst, vector<distInfo>& vecDist, str
     for(int i = 0; i < vecInst.size(); i++){
         if(vecInst[i].name == firstInst){
             // ofile << vecInst[i].pperc << endl;
-            ofile << vecInst[i].scen << endl;
+            //ofile << vecInst[i].scen << endl;
             ofile << "Instance,c(km),p(km),b(km),e(km),Total,c(%),p(%),b(%),e(%)" << endl;
         }
         totalDist = vecDist[i].cDist + vecDist[i].pDist + vecDist[i].bDist + vecDist[i].eDist;
@@ -196,7 +196,7 @@ void createOutputTime(vector<instInfoN>& vecInst, vector<timeInfo>& vecTime, str
     for(int i = 0; i < vecInst.size(); i++){
         if(vecInst[i].name == firstInst){
             // ofile << vecInst[i].pperc << endl;
-            ofile << vecInst[i].scen << endl;
+            //ofile << vecInst[i].scen << endl;
             // ofile << "Instance,c(h),p(h),b(h),e(h),waitc(h),waitp(h),Total,c(%),p(%),b(%),e(%),waitc(%),waitp(%)" << endl;
 
             ofile << "Instance,c(h),p(h),b(h),e(h),Total,c(%),p(%),b(%),e(%)" << endl;
@@ -226,7 +226,7 @@ void createOutputDetours(vector<instInfoN>& vecInst, string instName)
     for(int i = 0; i < vecInst.size(); i++){
         if(vecInst[i].name == firstInst){
             // ofile << vecInst[i].scen << ", " << vecInst[i].pperc << endl;
-            ofile << vecInst[i].scen << endl;
+            //ofile << vecInst[i].scen << endl;
             ofile << "Instance,Detours(%)" << endl;
         }
         ofile << vecInst[i].name << ",";
@@ -331,15 +331,15 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
 
 	    while(getline(in, line)) {
 
-            flag = substrPosition(line, "RunningScen ");
+            //flag = substrPosition(line, "RunningScen ");
 
-            if (flag) {
-                loc = line.find_first_of(":");
-                inst.scen = line.substr(loc + 3, line.size() - loc - 3);
+            //if (flag) {
+            //    loc = line.find_first_of(":");
+            //    inst.scen = line.substr(loc + 3, line.size() - loc - 3);
 
-                // cout << "Name of scenario:" << inst.scen << endl;
-                // getchar();
-            }
+            //    // cout << "Name of scenario:" << inst.scen << endl;
+            //    // getchar();
+            //}
             flag = false;
 
             flag = substrPosition(line, "Instance Name");
@@ -349,7 +349,7 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
                 loc2 = line.find_last_of(":", line.size());
                 inst.name = line.substr(loc + 1, loc2 - loc - 1);
 
-                // cout << "Name of instance:" << inst.name << endl;
+                 cout << "Name of instance:" << inst.name << endl;
                 // getchar();
             }
             flag = false;
@@ -373,7 +373,7 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
                 if (testStr == "Optimal" || testStr == "Feasible" ){
                     optflag = true;
                     inst.stats = line.substr(loc + 2, line.size() - loc - 2);
-                    // cout << "Status:" << inst.stats << endl;
+                     cout << "Status:" << inst.stats << endl;
                     // getchar();
                 }
                 else{
@@ -399,7 +399,7 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
                 if (flag) {
                     loc = line.find_first_of(":");
                     inst.lb = stod(line.substr(loc + 1, line.size() - loc - 1));
-                    // cout << "LB:" << inst.lb << endl;
+                     cout << "LB:" << inst.lb << endl;
                     // getchar();
                 }
                 flag = false;
@@ -409,10 +409,10 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
                 if (flag) {
                     loc = line.find_first_of(":");
                     inst.ub = stod(line.substr(loc + 1, line.size() - loc - 1));
-                    // cout << "UB:" << inst.ub << endl;
+                     cout << "UB:" << inst.ub << endl;
                     // getchar();
                     inst.gap = (double)((inst.ub - inst.lb)/inst.ub) * 100;
-                    // cout << "GAP:" << inst.gap << endl;
+                     cout << "GAP:" << inst.gap << endl;
                     // getchar();
                 }
                 flag = false;
@@ -422,7 +422,7 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
                 if (flag) {
                     loc = line.find_first_of(":");
                     inst.objval = stod(line.substr(loc + 1, line.size() - loc - 1));
-                    // cout << "objval:" << inst.objval << endl;
+                     cout << "objval:" << inst.objval << endl;
                     // getchar();
                 }
                 flag = false;
@@ -432,7 +432,7 @@ void readData (int argc, char** argv, vector<instInfoN>& vecInst, vector<distInf
                 if (flag) {
                     loc = line.find_first_of(":");
                     inst.soltime = stod(line.substr(loc + 1, line.size() - loc - 1));
-                    // cout << "objval:" << inst.soltime << endl;
+                     cout << "objval:" << inst.soltime << endl;
                     // getchar();
                 }
                 flag = false;
@@ -702,15 +702,15 @@ void readDataFIP (int argc, char** argv, vector<instInfoN>& vecInst, vector<dist
 
 	    while(getline(in, line)) {
 
-            flag = substrPosition(line, "RunningScen");
+            //flag = substrPosition(line, "RunningScen");
 
-            if (flag) {
-                loc = line.find_first_of(":");
-                inst.scen = line.substr(loc + 1, line.size() - loc - 1);
+            //if (flag) {
+            //    loc = line.find_first_of(":");
+            //    inst.scen = line.substr(loc + 1, line.size() - loc - 1);
 
-                // cout << "Name of scenario:" << inst.scen << endl;
-                // getchar();
-            }
+            //    // cout << "Name of scenario:" << inst.scen << endl;
+            //    // getchar();
+            //}
             
             flag = false;
 
@@ -1049,6 +1049,7 @@ int main (int argc, char *argv[])
     model = argv[2];
 
     if (model == "fip"){
+        cout << "in fip" << endl;
         readDataFIP (argc, argv, vecInst, vecDist, vecTime);
     }
 

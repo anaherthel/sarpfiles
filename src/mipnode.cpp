@@ -708,6 +708,18 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
         // TODO UNCOMMENT //  << " LB: " << nSARP.getObjValue() << endl;
         // TODO UNCOMMENT //  << " UB: " << nSARP.getBestObjValue() << endl;
+
+		sStat->UB = nSARP.getBestObjValue();
+		sStat->LB = nSARP.getObjValue();
+
+		sStat->gap = ((nSARP.getBestObjValue() - nSARP.getObjValue())/nSARP.getBestObjValue()) * 100;
+
+		if (sStat->gap < 0.01) {
+			sStat->status = "Optimal";
+		} else {
+			sStat->status = "Feasible";
+		}
+
         sStat->solprofit = nSARP.getObjValue();
         sStat->time = time;
 
@@ -724,13 +736,14 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
                             auxPair.first = i;
                             auxPair.second = j;
                             sStat->solvec[k].push_back(auxPair);
-                            // // TODO UNCOMMENT //  << i << " " << j << " " << k << ": " << bSARP.getValue(x[i][j][k]) << endl;
+                            //cout << i << " " << j << " " << k << ": " << nSARP.getValue(x[i][j][k]) << endl;
                             // getchar();
                         }
                     }
                 }
             }   
         }
+
 
         for (int i = 0; i < nodeVec.size(); i++){
             if (nSARP.getValue(b[i]) > 0){
@@ -761,6 +774,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         }		
 
         printResults(inst, mdist, sStat, nodeVec);
+		cout << "after print results" << endl;
 
 	}
 	if (problem->scen == "PC"){
@@ -775,6 +789,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<nodeStat> &nodeVec){ //model node
 		//cout << "Begin of printing results" << endl;
         solStatIni(sStat);
+
         cout<< "\nObj Val: " << setprecision(15) << sStat->solprofit << endl;
 
         cout<< "\nSolve Time: " << setprecision(15) << sStat->time << endl;
@@ -1181,6 +1196,18 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		cout << " LB: " << nSARP1.getObjValue() << endl;
         // TODO UNCOMMENT // 
 		cout << " UB: " << nSARP1.getBestObjValue() << endl;
+
+		sStat->UB = nSARP1.getBestObjValue();
+		sStat->LB = nSARP1.getObjValue();
+
+		sStat->gap = ((nSARP1.getBestObjValue() - nSARP1.getObjValue())/nSARP1.getBestObjValue()) * 100;
+
+		if (sStat->gap < 0.01) {
+			sStat->status = "Optimal";
+		} else {
+			sStat->status = "Feasible";
+		}
+
         sStat->solprofit = nSARP1.getObjValue();
 		sStat->solDual = nSARP1.getBestObjValue();
         sStat->time = time;
@@ -1728,13 +1755,18 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
         // TODO UNCOMMENT //  << " LB: " << nSARP.getObjValue() << endl;
         // TODO UNCOMMENT //  << " UB: " << nSARP.getBestObjValue() << endl;
+
+		sStat->UB = nSARP.getBestObjValue();
+		sStat->LB = nSARP.getObjValue();
+
         sStat->solprofit = nSARP.getObjValue();
 		cout << " Obj Value: " <<  sStat->solprofit << endl;
 		sStat->solDual = nSARP.getBestObjValue();
 		// // TODO UNCOMMENT //  << "Solution value pii: " << fipStat->solprofit << end
         sStat->time = time;
+		sStat->gap = ((nSARP.getBestObjValue() - nSARP.getObjValue())/nSARP.getBestObjValue()) * 100;
 
-		if (((nSARP.getBestObjValue() - nSARP.getObjValue())/nSARP.getBestObjValue()) * 100 < 0.01) {
+		if (sStat->gap < 0.01) {
 			sStat->status = "Optimal";
 		} else {
 			sStat->status = "Feasible";
@@ -2563,8 +2595,19 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 
 	if (sStat->feasible){
 
-         cout  << " LB: " << nSARP.getObjValue() << endl;
-         cout  << " UB: " << nSARP.getBestObjValue() << endl;
+		cout  << " LB: " << nSARP.getObjValue() << endl;
+		cout  << " UB: " << nSARP.getBestObjValue() << endl;
+
+		sStat->UB = nSARP.getBestObjValue();
+		sStat->LB = nSARP.getObjValue();
+		sStat->gap = ((nSARP.getBestObjValue() - nSARP.getObjValue())/nSARP.getBestObjValue())*100;
+
+		if (sStat->gap < 0.01) {
+			sStat->status = "Optimal";
+		} else {
+			sStat->status = "Feasible";
+		}		
+
         sStat->solprofit = nSARP.getObjValue();
 		cout  << "Obj Value: " << sStat->solprofit << endl;
 		sStat->solDual = nSARP.getBestObjValue();
