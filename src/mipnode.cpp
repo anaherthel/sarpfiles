@@ -368,7 +368,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
         IloExpr exp(env);
         exp = b[i] - M * y[i]; 
         sprintf (var, "Constraint7_%d", i);
-        IloRange cons = (exp <= 9);
+        IloRange cons = (exp <= nodeVec[i].l);
         cons.setName(var);
         model.add(cons);
     }
@@ -398,13 +398,6 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
             sumX += x[i][j][k];
 		}
 			double cvalue = mdist[i][j]/inst->vmed;
-
-			if (i == 6 && j == 11){
-				cout << "cvalue: " << cvalue << endl;
-				cout << "delta of i: " << nodeVec[i].delta << endl;
-
-			}
-
 
 			//cvalue = std::round(cvalue * multiplier) / multiplier;
 			//cvalue = timeRound(cvalue);
@@ -579,71 +572,78 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 
 	//IloExpr exp(env);
-	//exp = x[15][6][0];
+	//exp = x[15][9][0];
 	//sprintf (var, "Constraint16");
 	//IloRange cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[6][11][0];
+	//exp = x[9][5][0];
 	//sprintf (var, "Constraint17");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[11][5][0];
+	//exp = x[5][10][0];
 	//sprintf (var, "Constraint18");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[5][1][0];
+	//exp = x[10][7][0];
 	//sprintf (var, "Constraint19");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[1][3][0];
+	//exp = x[7][12][0];
 	//sprintf (var, "Constraint20");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[3][2][0];
+	//exp = x[12][14][0];
 	//sprintf (var, "Constraint21");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[2][7][0];
+	//exp = x[14][2][0];
 	//sprintf (var, "Constraint22");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[7][0][0];
+	//exp = x[2][0][0];
 	//sprintf (var, "Constraint23");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[0][8][0];
+	//exp = x[0][17][0];
 	//sprintf (var, "Constraint24");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[8][13][0];
+	//exp = x[16][3][1];
 	//sprintf (var, "Constraint25");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[13][10][0];
+	//exp = x[3][4][1];
 	//sprintf (var, "Constraint26");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[10][12][0];
+	//exp = x[4][1][1];
 	//sprintf (var, "Constraint27");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
-	//exp = x[12][9][0];
+	//exp = x[1][18][1];
 	//sprintf (var, "Constraint28");
 	//cons = (exp == 1);
 	//cons.setName(var);
 	//model.add(cons);
+
+	//exp = y[8];
+	//sprintf (var, "Constraint29");
+	//cons = (exp == 0);
+	//cons.setName(var);
+	//model.add(cons);
+
 	//exp = x[9][4][0];
 	//sprintf (var, "Constraint29");
 	//cons = (exp == 1);
@@ -2247,11 +2247,20 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	}
 	//Constraint 7 - tie service begining to node visit
 
-    for (int i = 0; i < fDepot; i++){
+    //for (int i = 0; i < fDepot; i++){
+    //    IloExpr exp(env);
+    //    exp = b[i] - M * y[i]; 
+    //    sprintf (var, "Constraint7_%d", i);
+    //    IloRange cons = (exp <= 9);
+    //    cons.setName(var);
+    //    model.add(cons);
+    //}
+
+	for (int i = 0; i < fDepot; i++){
         IloExpr exp(env);
         exp = b[i] - M * y[i]; 
         sprintf (var, "Constraint7_%d", i);
-        IloRange cons = (exp <= 9);
+        IloRange cons = (exp <= nodeVec[i].l);
         cons.setName(var);
         model.add(cons);
     }
