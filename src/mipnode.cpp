@@ -808,9 +808,9 @@ void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<no
             }
         }
 
-        for (int i = 0; i < nodeVec.size(); i++){
-            cout<< "b(" << i << "): " << sStat->solBegin[i] << endl;
-        }
+        //for (int i = 0; i < nodeVec.size(); i++){
+        //    cout<< "b(" << i << "): " << sStat->solBegin[i] << endl;
+        //}
 
         //for (int i = 0; i < nodeVec.size(); i++){
         //    cout<< "u(" << i << "): " << sStat->solLoad2[i] << endl;
@@ -2351,16 +2351,47 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 		model.add(cons2);			
 	}
 
-    //Constraints 14 - maximum driving time
-    for (int i = fDepot; i < fDummy; i++){
-        IloExpr exp(env);
-        exp = b[i + inst->K] - b[i];
+	//Constraints 14 - guarantee that at most one vehicle is used
 
-        sprintf (var, "Constraint14_%d", i);
-        IloRange cons1 = (exp <= inst->maxTime);
-        cons1.setName(var);
-        model.add(cons1);        
+    for (int k = 0; k < inst->K; k++){
+        IloExpr exp(env);
+        for (int a = 0; a < nas->vArcPlus[inst->V - inst->K + k][k].size(); a++){
+            int u = nas->vArcPlus[inst->V - inst->K + k][k][a].first;
+            int v = nas->vArcPlus[inst->V - inst->K + k][k][a].second;
+
+            exp += x[u][v][k];
+        }
+        sprintf (var, "Constraint5_%d", k);
+        IloRange cons = (exp == 1);
+        cons.setName(var);
+        model.add(cons);
     }
+	// Constraint 15 - The route of every used vehicle has to end at dummy node f
+
+	for (int k = 0; k < inst->K; k++){
+		IloExpr exp(env);
+		for (int a = 0; a < nas->vArcMinus[inst->V + k][k].size(); a++){
+            int u = nas->vArcMinus[inst->V + k][k][a].first;
+            int v = nas->vArcMinus[inst->V + k][k][a].second;
+
+        	exp += x[u][v][k];
+		}
+		sprintf (var, "Constraint6_%d", k);
+		IloRange cons = (exp == 1);
+		cons.setName(var);
+		model.add(cons);
+	}
+
+    ////Constraints 14 - maximum driving time
+    //for (int i = fDepot; i < fDummy; i++){
+    //    IloExpr exp(env);
+    //    exp = b[i + inst->K] - b[i];
+
+    //    sprintf (var, "Constraint14_%d", i);
+    //    IloRange cons1 = (exp <= inst->maxTime);
+    //    cons1.setName(var);
+    //    model.add(cons1);        
+    //}
 
 
 

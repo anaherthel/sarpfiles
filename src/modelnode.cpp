@@ -115,12 +115,12 @@ void feasibleArcs (instanceStat *inst, nodeArcsStruct *nas, probStat* problem, v
         //    }
         //}
         //For tighter TW:
-        cout << "True parcel arcs for parcels: " << endl;
+        //cout << "True parcel arcs for parcels: " << endl;
         for (int j = inst->n; j < inst->n + inst->m; j++){ //j is a parcel pu node
             double ttij = mdist[i][j]/inst->vmed;
             ttij = std::round(ttij * multiplier) / multiplier;
             if (nodeVec[i].e + ttij <= nodeVec[j].l){
-                cout << "i: " << i << " j: " << j << " ttij: " << ttij << endl;
+                //cout << "i: " << i << " j: " << j << " ttij: " << ttij << endl;
                 nas->arcs[i][j] = true;
                 nas->fArc.first = i;
                 nas->fArc.second = j;
@@ -1774,16 +1774,13 @@ void fipnodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<n
         //viewSolVRPS (inst, mdist, nodeVec, sStat);
 
 		viewSol (inst, mdist, nodeVec, sStat);
-		
         mipSolStats (inst, mdist, nodeVec, sStat);
-
 		printStats (inst, sStat);
-
         printSolFile (inst, sStat, problem, true);
-
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
         }
+
         generateResultsCSV(inst, problem, sStat);
 
 	}
