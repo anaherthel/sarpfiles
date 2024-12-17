@@ -698,7 +698,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
     start = nSARP.getTime();
 	nSARP.solve();
     time = (nSARP.getTime() - start)/threads;
-	// TODO UNCOMMENT //  << "\nSol status: " << nSARP.getStatus() << endl;
+	cout << "\nCPLEX Sol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
 
     // TODO UNCOMMENT //  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
@@ -706,8 +706,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	if (sStat->feasible){
 
-        // TODO UNCOMMENT //  << " LB: " << nSARP.getObjValue() << endl;
-        // TODO UNCOMMENT //  << " UB: " << nSARP.getBestObjValue() << endl;
+        cout << " LB: " << nSARP.getObjValue() << endl;
+        cout << " UB: " << nSARP.getBestObjValue() << endl;
 
 		sStat->UB = nSARP.getBestObjValue();
 		sStat->LB = nSARP.getObjValue();
@@ -2627,7 +2627,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
     start = nSARP.getTime();
 	nSARP.solve();
     time = (nSARP.getTime() - start)/threads;
-	cout  << "\nSol status: " << nSARP.getStatus() << endl;
+	cout  << "\nCPLEX Sol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
 
     // cout  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
