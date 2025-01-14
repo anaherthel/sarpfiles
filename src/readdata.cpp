@@ -165,7 +165,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     //}
 
     
-    ////// TODO UNCOMMENT   << "K: " << K << endl;
+    // TODO UNCOMMENT   << "K: " << K << endl;
     //// getchar();
 
     //if (K > n - 1){
@@ -614,9 +614,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         in >> service;
         in >> n;
         in >> m;
-        if (n > 40){
-            K = floor((n+m)*0.1);
-        }
+        //if (n > 40){
+        //    K = floor((n+m)*0.1);
+        //}
 
         
         if (inst->instType == "ghsarp"){
@@ -627,26 +627,26 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             // originalK = 1;
         }
 
-        ////&&&&&&&&&&&&&&&& Uncomment to scale K &&&&&&&&&&&&&&&&
-        ////if (n <= 10){
-        ////    K = n-1;
-        ////}
-        ////else{
-        ////    K = ceil(0.6*n);
-        ////}
-
-        //if (trialK <= K){
-        //    K = trialK;
+        //&&&&&&&&&&&&&&&& Uncomment to scale K &&&&&&&&&&&&&&&&
+        //if (n <= 10){
+        //    K = n-1;
         //}
         //else{
-        //    trialK = K;
+        //    K = ceil(0.6*n);
         //}
 
-        //if (trialK >= n){
-        //    cout << "Exceeded K size" << endl;
+        if (trialK <= K){
+            K = trialK;
+        }
+        else{
+            trialK = K;
+        }
+
+        if (trialK >= n){
+            cout << "Exceeded K size" << endl;
         
-        //    exit(1);
-        //}
+            exit(1);
+        }
         //if (n > 40){
         //    if (K + trialK <= n - 1){
         //        K += trialK;
@@ -656,14 +656,14 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //        exit(1);
         //    }
         //}
-        //// getchar();
-        ////&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        // getchar();
+        //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
         inst->preInst = 1;
 
         // TODO UNCOMMENT //  << "\nn: " << n;
         // TODO UNCOMMENT //  << "\nm: " << m;
-        // TODO UNCOMMENT //  << "\nK: " << K << endl;
+        cout << "\nK: " << K << endl;
         // getchar();
         service = service/60;
         //service = valRound(service);

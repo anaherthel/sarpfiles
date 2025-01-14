@@ -1702,9 +1702,9 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
         }
-        generateResultsCSV(inst, problem, sStat);
+        //generateResultsCSV(inst, problem, sStat);
 
-  		//generateScaleCSV(inst, sStat); //For Scale K phase
+  		generateScaleCSV(inst, sStat); //For Scale K phase
 
 	}
 
