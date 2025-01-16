@@ -1458,7 +1458,7 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
             output(inst, nodeVec,  sStat, problem);
         }
 
-        generateResultsCSV(inst, problem, sStat);
+        generateResultsCSV(inst, problem, sStat, mdist);
 
     }
     //// TODO UNCOMMENT //  << "before test route" << endl;
@@ -1702,7 +1702,7 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
         if (inst->preInst == 1) {
             output(inst, nodeVec,  sStat, problem);
         }
-        //generateResultsCSV(inst, problem, sStat);
+        //generateResultsCSV(inst, problem, sStat, mdist);
 
   		generateScaleCSV(inst, sStat); //For Scale K phase
 
@@ -1781,7 +1781,7 @@ void fipnodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<n
             output(inst, nodeVec,  sStat, problem);
         }
 
-        generateResultsCSV(inst, problem, sStat);
+        generateResultsCSV(inst, problem, sStat, mdist);
 
 	}
 

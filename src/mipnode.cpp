@@ -699,8 +699,21 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	nSARP.solve();
     time = (nSARP.getTime() - start)/threads;
 	cout << "\nCPLEX Sol status: " << nSARP.getStatus() << endl;
-	sStat->feasible = nSARP.isPrimalFeasible();
 
+	if (nSARP.getStatus() == IloAlgorithm::Infeasible){
+		sStat->status = "Infeasible";
+	}
+	else if (nSARP.getStatus() == IloAlgorithm::Optimal){
+		sStat->status = "Optimal";
+	}
+	else if (nSARP.getStatus() == IloAlgorithm::Feasible){
+		sStat->status = "Feasible";
+	}
+	else{
+		sStat->status = "Unknown";
+	}
+
+	sStat->feasible = nSARP.isPrimalFeasible();
     // TODO UNCOMMENT //  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
     // TODO UNCOMMENT //  << " Total Time: " << time << endl;
 
@@ -714,11 +727,11 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 		sStat->gap = ((nSARP.getBestObjValue() - nSARP.getObjValue())/nSARP.getBestObjValue()) * 100;
 
-		if (sStat->gap < 0.01) {
-			sStat->status = "Optimal";
-		} else {
-			sStat->status = "Feasible";
-		}
+		//if (sStat->gap < 0.01) {
+		//	sStat->status = "Optimal";
+		//} else {
+		//	sStat->status = "Feasible";
+		//}
 
         sStat->solprofit = nSARP.getObjValue();
         sStat->time = time;
@@ -819,12 +832,11 @@ void printResults(instanceStat *inst, double **mdist, solStats *sStat, vector<no
         // for (int i = 0; i < nodeVec.size(); i++){
         //     cout<< "w(" << i << "): " << sStat->solLoad[i] << endl;
         // }
-
         cout<< "\n\nCustomer profit: " << inst->totalCustomProfit << endl;
         cout<< "Parcel profit: " << sStat->pProfit << endl;
         cout<< "Costs: " << sStat->costs << endl;
 		cout<< "Without fixed: " << sStat->costs - sStat->pProfit << endl;
-        
+
         if (sStat->pProfit == 0){
         	inst->min = true;
         }
@@ -1183,7 +1195,20 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
     start = nSARP1.getTime();
 	nSARP1.solve();
     time = (nSARP1.getTime() - start)/threads;
-	// TODO UNCOMMENT //  << "\nSol status: " << nSARP1.getStatus() << endl;
+	cout  << "\nSol status: " << nSARP1.getStatus() << endl;
+	if (nSARP1.getStatus() == IloAlgorithm::Infeasible){
+		sStat->status = "Infeasible";
+	}
+	else if (nSARP1.getStatus() == IloAlgorithm::Optimal){
+		sStat->status = "Optimal";
+	}
+	else if (nSARP1.getStatus() == IloAlgorithm::Feasible){
+		sStat->status = "Feasible";
+	}
+	else{
+		sStat->status = "Unknown";
+	}
+
 	sStat->feasible = nSARP1.isPrimalFeasible();
 
     // // TODO UNCOMMENT //  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
@@ -1200,13 +1225,14 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		sStat->UB = nSARP1.getBestObjValue();
 		sStat->LB = nSARP1.getObjValue();
 
-		sStat->gap = ((nSARP1.getBestObjValue() - nSARP1.getObjValue())/nSARP1.getBestObjValue()) * 100;
 
-		if (sStat->gap < 0.01) {
-			sStat->status = "Optimal";
-		} else {
-			sStat->status = "Feasible";
-		}
+		sStat->gap = ((sStat->UB - sStat->LB)/sStat->UB) * 100;
+
+		//if (sStat->gap < 0.001) {
+		//	sStat->status = "Optimal";
+		//} else {
+		//	sStat->status = "Feasible";
+		//}
 
         sStat->solprofit = nSARP1.getObjValue();
 		sStat->solDual = nSARP1.getBestObjValue();
@@ -1258,12 +1284,14 @@ void fippass(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
                 sStat->solBegin.push_back(0);
             }
         }
+
 		// TODO UNCOMMENT //  << "Before print: " << endl;
         printResults(inst, mdist, sStat, nodeVec);
 		// TODO UNCOMMENT //  << "After print: " << endl;
 
 	}
 	env.end();
+
 
 }
 
@@ -1744,8 +1772,22 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
     start = nSARP.getTime();
 	nSARP.solve();
     time = (nSARP.getTime() - start)/threads;
-	// TODO UNCOMMENT //  << "\nSol status: " << nSARP.getStatus() << endl;
+	// TODO UNCOMMENT // 
+	cout << "\nSol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
+
+	if (nSARP.getStatus() == IloAlgorithm::Infeasible){
+		sStat->status = "Infeasible";
+	}
+	else if (nSARP.getStatus() == IloAlgorithm::Optimal){
+		sStat->status = "Optimal";
+	}
+	else if (nSARP.getStatus() == IloAlgorithm::Feasible){
+		sStat->status = "Feasible";
+	}
+	else{
+		sStat->status = "Unknown";
+	}
 
     // // TODO UNCOMMENT //  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
     // TODO UNCOMMENT //  << " Total Time: " << time << endl;
@@ -1766,11 +1808,11 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
         sStat->time = time;
 		sStat->gap = ((nSARP.getBestObjValue() - nSARP.getObjValue())/nSARP.getBestObjValue()) * 100;
 
-		if (sStat->gap < 0.01) {
-			sStat->status = "Optimal";
-		} else {
-			sStat->status = "Feasible";
-		}
+		//if (sStat->gap < 0.01) {
+		//	sStat->status = "Optimal";
+		//} else {
+		//	sStat->status = "Feasible";
+		//}
 
 		//new addition
 		fipStat->solBegin.clear();
@@ -2630,6 +2672,19 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	cout  << "\nCPLEX Sol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
 
+	if (nSARP.getStatus() == IloAlgorithm::Infeasible){
+		sStat->status = "Infeasible";
+	}
+	else if (nSARP.getStatus() == IloAlgorithm::Optimal){
+		sStat->status = "Optimal";
+	}
+	else if (nSARP.getStatus() == IloAlgorithm::Feasible){
+		sStat->status = "Feasible";
+	}
+	else{
+		sStat->status = "Unknown";
+	}
+
     // cout  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
      cout  << " Total Time: " << time << endl;
 
@@ -2642,11 +2697,11 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 		sStat->LB = nSARP.getObjValue();
 		sStat->gap = ((nSARP.getBestObjValue() - nSARP.getObjValue())/nSARP.getBestObjValue())*100;
 
-		if (sStat->gap < 0.01) {
-			sStat->status = "Optimal";
-		} else {
-			sStat->status = "Feasible";
-		}		
+		//if (sStat->gap < 0.01) {
+		//	sStat->status = "Optimal";
+		//} else {
+		//	sStat->status = "Feasible";
+		//}		
 
         sStat->solprofit = nSARP.getObjValue();
 		cout  << "Obj Value: " << sStat->solprofit << endl;

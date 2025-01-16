@@ -84,6 +84,10 @@ void output(Info *info, vector<OrStruct> &newvec, int p);
 void getInstanceScale(int argc, char** argv, Info *info);
 double CalcMan (double Xs, double Ys, double Xf, double Yf);
 double CalcManOr (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
+constexpr double degreesToRadians(double degrees);
+//double CalcManKm(vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
+
+double CalcManKm(double Xs, double Ys, double Xf, double Yf);
 
 double CalcManOr (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
     return abs(Xf[I] - Xs[J]) + abs(Yf[I] - Ys[J]);
@@ -91,6 +95,43 @@ double CalcManOr (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, ve
 
 double CalcMan (double Xs, double Ys, double Xf, double Yf){
     return abs(Xf - Xs) + abs(Yf - Ys);
+}
+
+constexpr double degreesToRadians(double degrees) {
+    return degrees * M_PI / 180.0;
+}
+
+// Function to calculate Manhattan distance in kilometers
+//double CalcManKm(vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J) {
+double CalcManKm(double Xs, double Ys, double Xf, double Yf){
+
+    // Earth's approximate radius (for conversion purposes)
+
+    //double lat1 = Xs[I];
+    //double lon1 = Ys[I];
+    //double lat2 = Xf[J];
+    //double lon2 = Ys[J];
+
+    double lat1 = Xs;
+    double lon1 = Ys;
+    double lat2 = Xf;
+    double lon2 = Ys;
+
+    constexpr double kmPerDegreeLat = 111.0;
+
+    // Calculate absolute differences in latitude and longitude
+    double deltaLat = std::abs(lat2 - lat1) * kmPerDegreeLat;
+
+    // Average latitude in radians for longitude scaling
+    double avgLat = degreesToRadians((lat1 + lat2) / 2.0);
+
+    // Calculate kilometers per degree of longitude at the average latitude
+    double kmPerDegreeLon = kmPerDegreeLat * std::cos(avgLat);
+
+    double deltaLon = std::abs(lon2 - lon1) * kmPerDegreeLon;
+
+    // Return the Manhattan distance in kilometers
+    return deltaLat + deltaLon;
 }
 
 void ReadData(int argc, char** argv, Info *info)
@@ -200,16 +241,16 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
         }
     }
 
-    cout << "\nAux MD: " << endl;
+    //cout << "\nAux MD: " << endl;
 
-    for (int i = 0; i < auxmd.size(); i++){
-        cout << "i: " << auxmd[i].index << " - " << auxmd[i].vload  << endl;
-    }
+    //for (int i = 0; i < auxmd.size(); i++){
+    //    cout << "i: " << auxmd[i].index << " - " << auxmd[i].vload  << endl;
+    //}
 
-    cout << "depot nd: " << endl;
-    for (int i = 0; i < dp.size(); i++){
-        cout << "i: " << dp[i].index << " - " << dp[i].vxs << " - " << dp[i].vys << "::" << dp[i].vload << " - " << dp[i].ve << " - " << dp[i].vl << endl;
-    }
+    //cout << "depot nd: " << endl;
+    //for (int i = 0; i < dp.size(); i++){
+    //    cout << "i: " << dp[i].index << " - " << dp[i].vxs << " - " << dp[i].vys << "::" << dp[i].vload << " - " << dp[i].ve << " - " << dp[i].vl << endl;
+    //}
 
     //getchar();
     for (int i = 0; i < info->dimVec.size(); i++){
@@ -218,7 +259,9 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                 info->n = info->dimVec[i][j].first;
                 info->m = info->dimVec[i][j].second;
 
-                info->seed = pow(info->n, 8) + pow(info->m, 7) + pow(p, 6);//changed (same as gh)
+                //info->seed = pow(info->n, 8) + pow(info->m, 7) + pow(p, 6);//changed (same as gh)
+                info->seed = pow(info->n, 5) + pow(info->m, 6) + pow(p, 4);
+
                 srand(info->seed);
 
                 int newV = info->n + info->m + 1;
@@ -231,7 +274,7 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                     newvec.insert(newvec.begin() + counter, auxnp[c]);
                     newvec.push_back(auxnd[c]);
                     counter++;
-                    cout << "vector populating n: " << endl;
+                    //cout << "vector populating n: " << endl;
                     for (int v = 0; v < newvec.size(); v++){
                         cout << newvec[v].index << " " << newvec[v].vload << endl;
                     }
@@ -240,12 +283,12 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                 counter = 0;
                 for (int j = 0; j < info->m; j++){
                     c = rand() % auxmp.size();
-                    cout << "Value of c: " << c << endl;
+                    //cout << "Value of c: " << c << endl;
                     newvec.insert(newvec.begin() + info->n + counter, auxmp[c]);
                     newvec.push_back(auxmd[c]);
-                    cout << "index of mp and load: " << auxmp[c].index << "; " << auxmp[c].vload << " - index of md: " << auxmd[c].index << "; " << auxmd[c].vload << endl;
+                    //cout << "index of mp and load: " << auxmp[c].index << "; " << auxmp[c].vload << " - index of md: " << auxmd[c].index << "; " << auxmd[c].vload << endl;
                     counter++;
-                    cout << "vector populating m: " << endl;
+                    //cout << "vector populating m: " << endl;
                     for (int v = 0; v < newvec.size(); v++){
                         cout << newvec[v].index << " " << newvec[v].vload << endl;
                     }
@@ -283,7 +326,12 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                         //cout << "node: " << i << endl;
                         //cout << std::fixed << std::setprecision(5) << "vxs: " << vxs << " - vys: " << vys << " - vxf: " << vxf << " - vyf: " << vyf << endl;
 
-                        double calcDelta = CalcMan(vxs, vys, vxf, vyf);
+                        //double calcDelta = CalcMan(vxs, vys, vxf, vyf);
+                        double calcDist = CalcManKm(vxs, vys, vxf, vyf);
+
+                        double calcDelta = calcDist/info->speed;
+
+                        //cout << "Calculated delta in km: " << calcDist << endl;
                         
                         double deltaMin = ceil(calcDelta*60);
                         //cout << "Calculated delta in hours: " << calcDelta << endl;
@@ -300,7 +348,7 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                         newvec[i].vl = timePoint + 60; //1hour of pickup TW
 
                         int dl = i + info->m + info->n;
-                        cout << "Pickup index: " << i << " - Delivery index: " << dl << endl;
+                        //cout << "Pickup index: " << i << " - Delivery index: " << dl << endl;
 
                         if (deltaMin < 1){
                             deltaMin = 1;

@@ -72,6 +72,35 @@ double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vect
     return abs(Xf[I] - Xs[J]) + abs(Yf[I] - Ys[J]);
 }
 
+constexpr double degreesToRadians(double degrees) {
+    return degrees * M_PI / 180.0;
+}
+
+// Function to calculate Manhattan distance in kilometers
+double CalcManKm(vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J) {
+    // Earth's approximate radius (for conversion purposes)
+
+    double lat1 = Xs[I];
+    double lon1 = Ys[I];
+    double lat2 = Xf[J];
+    double lon2 = Ys[J];
+    constexpr double kmPerDegreeLat = 111.0;
+
+    // Calculate absolute differences in latitude and longitude
+    double deltaLat = std::abs(lat2 - lat1) * kmPerDegreeLat;
+
+    // Average latitude in radians for longitude scaling
+    double avgLat = degreesToRadians((lat1 + lat2) / 2.0);
+
+    // Calculate kilometers per degree of longitude at the average latitude
+    double kmPerDegreeLon = kmPerDegreeLat * std::cos(avgLat);
+
+    double deltaLon = std::abs(lon2 - lon1) * kmPerDegreeLon;
+
+    // Return the Manhattan distance in kilometers
+    return deltaLat + deltaLon;
+}
+
 double valRound(double value){
     //int decimalPlaces = 4;
     //double multiplier = std::pow(10, decimalPlaces);
@@ -535,7 +564,9 @@ void generateScaleCSV(instanceStat *inst, solStats *sStat) {
     // Close the file
 }
 
-void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat) {
+void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat, double **mdist) {
+
+    cout << "IN GENERATE RESULTS CSV" << endl;
     
     // Open a file in write mode
     string sizeOfInst = "S";
@@ -545,7 +576,7 @@ void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat) 
     else if (inst->n + inst->m > 60) {
         sizeOfInst = "L";
     }
-
+    double partialCustomProfit = 0;
     string filename = "TreatResults/FullResults/" + problem->model + problem->scen + inst->instType + sizeOfInst + ".csv";
     bool fileExists = checkFileExists(filename);
 
@@ -557,6 +588,18 @@ void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat) 
     double percDist = sStat->dNone/totalDist;
     double percTime = sStat->tNone/totalTime;
 
+    //if(problem->model == "fip"){
+    //    cout << "calculating partial profit" << endl;
+
+    //    double partialCustomProfit = inst->totalCustomProfit;
+
+
+
+    //    cout<< "Partial profit: " << partialCustomProfit << endl;
+        
+    //}
+
+
     // Write the header for the CSV file
     if (fileExists) {
         std::ofstream file(filename, std::ios::app);
@@ -565,11 +608,26 @@ void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat) 
             return;
         }
 
-        file << inst->InstName << "," << inst->n << "," << inst->m << "," << sStat->servedParcels << "," << inst->totalCustomProfit
+        if(problem->model == "fip"){
+            for (int i = 0; i < inst->n; i++){
+                partialCustomProfit -= mdist[i][i + inst->n]*inst->costkm;
+            }
+            partialCustomProfit += inst->totalCustomProfit;
+            cout << "partial: " << endl;
+            file << inst->InstName << "," << inst->n << "," << inst->m << "," << sStat->servedParcels << "," << inst->totalCustomProfit
+             << "," << partialCustomProfit << "," << sStat->pProfit << "," << sStat->costs << "," << inst->K << "," << sStat->time << "," 
+             << sStat->solprofit << "," << sStat->status << "," << sStat->LB << "," << sStat->UB << ","
+             << sStat->gap << "," << vrps << "," << sStat->tNone << "," <<  percTime << "," << sStat->dNone << "," << percDist << "\n";
+        }
+        else{
+            file << inst->InstName << "," << inst->n << "," << inst->m << "," << sStat->servedParcels << "," << inst->totalCustomProfit
              << "," << sStat->pProfit << "," << sStat->costs << "," << inst->K << "," << sStat->time << "," 
              << sStat->solprofit << "," << sStat->status << "," << sStat->LB << "," << sStat->UB << ","
-             << sStat->gap << "," << vrps << "," << sStat->tNone << "," <<  percTime << "," << sStat->dNone << "," << percDist << "\n";        file.close();
+             << sStat->gap << "," << vrps << "," << sStat->tNone << "," <<  percTime << "," << sStat->dNone << "," << percDist << "\n";
 
+        }
+        
+        file.close();
         std::cout << "CSV file '" << filename << "' generated successfully!" << std::endl;
         return;
     }
@@ -582,11 +640,29 @@ void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat) 
             return;
         }        
 
-        file << "Instance Name , n, m, served, prof Customer, prof Parcel, costs, K, Sol Time, Sol Val, sol Stat, LB, UB, GAP, vrps, e(h), et(%), e(km), ed(%) \n";
-        file << inst->InstName << "," << inst->n << "," << inst->m << "," << sStat->servedParcels << "," << inst->totalCustomProfit
-             << "," << sStat->pProfit << "," << sStat->costs << "," << inst->K << "," << sStat->time << "," 
-             << sStat->solprofit << "," << sStat->status << "," << sStat->LB << "," << sStat->UB << ","
-             << sStat->gap << "," << vrps << "," << sStat->tNone << "," <<  percTime << "," << sStat->dNone << "," << percDist << "\n";
+        if(problem->model == "fip"){
+            for (int i = 0; i < inst->n; i++){
+                partialCustomProfit -= mdist[i][i + inst->n]*inst->costkm;
+            }              
+            partialCustomProfit += inst->totalCustomProfit;
+
+            file << "Instance Name , n, m, served, prof Customer, prof Cust Part, prof Parcel, costs, K, Sol Time, Sol Val, sol Stat, LB, UB, GAP, vrps, e(h), et(%), e(km), ed(%) \n";
+            file << inst->InstName << "," << inst->n << "," << inst->m << "," << sStat->servedParcels << "," << inst->totalCustomProfit
+                << "," << partialCustomProfit << "," << sStat->pProfit << "," << sStat->costs << "," << inst->K << "," << sStat->time << "," 
+                << sStat->solprofit << "," << sStat->status << "," << sStat->LB << "," << sStat->UB << ","
+                << sStat->gap << "," << vrps << "," << sStat->tNone << "," <<  percTime << "," << sStat->dNone << "," << percDist << "\n";
+        }
+
+        else{
+            file << "Instance Name , n, m, served, prof Customer, prof Parcel, costs, K, Sol Time, Sol Val, sol Stat, LB, UB, GAP, vrps, e(h), et(%), e(km), ed(%) \n";
+            file << inst->InstName << "," << inst->n << "," << inst->m << "," << sStat->servedParcels << "," << inst->totalCustomProfit
+                << "," << sStat->pProfit << "," << sStat->costs << "," << inst->K << "," << sStat->time << "," 
+                << sStat->solprofit << "," << sStat->status << "," << sStat->LB << "," << sStat->UB << ","
+                << sStat->gap << "," << vrps << "," << sStat->tNone << "," <<  percTime << "," << sStat->dNone << "," << percDist << "\n";
+        }
+        
+
+
         file.close();
         std::cout << "CSV file '" << filename << "' generated successfully!" << std::endl;
 

@@ -144,29 +144,29 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // K = n - 1;
     ////&&&&&&&Uncomment for scaling K&&&&&&&&&&&&&&&&
-    ////if (n <= 10){
-    ////    K = n-1;
-    ////}
-    ////else{
-    ////    K = ceil(0.6*n);
-    ////}
-
-    //if (trialK <= K){
-    //    K = trialK;
+    //if (n <= 10){
+    //    K = n-1;
     //}
     //else{
-    //    trialK = K;
+    //    K = ceil(0.6*n);
     //}
 
-    //if (trialK >= n){
-    //    cout << "Exceeded K size" << endl;
+    if (trialK <= K){
+        K = trialK;
+    }
+    else{
+        trialK = K;
+    }
+
+    if (trialK >= n){
+        cout << "Exceeded K size" << endl;
     
-    //    exit(1);
-    //}
+        exit(1);
+    }
 
     
-    // TODO UNCOMMENT   << "K: " << K << endl;
-    //// getchar();
+    cout << "K: " << K << endl;
+    //getchar();
 
     //if (K > n - 1){
     //    cout << "\nExceeded max number of vehicles\n";            
@@ -368,6 +368,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     //geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i);
                     //mandist = valRound(mandist);
                     //geodist = static_cast<int>(geodist * multiplier) / multiplier;
+                    mandist = CalcManKm(vxs, vys, vxf, vyf, i, i);
                     delta[i] = (2 * (service)) + (mandist)/inst->vmed;
                     //delta[i] = timeRound(delta[i]);
                     //profit[i] = inst->minpas + inst->paskm*mandist - inst->costkm*mandist;
@@ -379,7 +380,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     delta[i] = service;
                     if (i < n + m){
                         //geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
-                        mandist = CalcMan(vxs, vys, vxf, vyf, i, i+m);
+                        //mandist = CalcMan(vxs, vys, vxf, vyf, i, i+m);
+                        mandist = CalcManKm(vxs, vys, vxf, vyf, i, i+m);
                         //mandist = valRound(mandist);
                         //geodist = std::round(geodist * multiplier) / multiplier;
                         //geodist = static_cast<int>(geodist * multiplier) / multiplier;
@@ -405,7 +407,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                                 // manhattan = CalcMan(vxs, vys, vxf, vyf, i, j);
                                 //geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
                                 //geodist = std::round(geodist * multiplier) / multiplier;
-                                mandist = CalcMan(vxs, vys, vxf, vyf, i, j);
+                                //mandist = CalcMan(vxs, vys, vxf, vyf, i, j);
+                                mandist = CalcManKm(vxs, vys, vxf, vyf, i, j);
                                 //mandist = valRound(mandist);
                                 //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                                 //dist[i][j] = geodist;
@@ -430,7 +433,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 if (i < n){ 
                     //geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+n);
                     //geodist = std::round(geodist * multiplier) / multiplier;
-                    mandist = CalcMan(vxs, vys, vxf, vyf, i, i+n);
+                    //mandist = CalcMan(vxs, vys, vxf, vyf, i, i+n);
+                    mandist = CalcManKm(vxs, vys, vxf, vyf, i, i+n);
                     passDistances.push_back(mandist);
 
                     //mandist = valRound(mandist);                    
@@ -446,7 +450,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     else if (i < 2*n + m){
                         //geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, i+m);
                         //geodist = std::round(geodist * multiplier) / multiplier;
-                        mandist = CalcMan(vxs, vys, vxf, vyf, i, i+m);
+                        //mandist = CalcMan(vxs, vys, vxf, vyf, i, i+m);
+                        mandist = CalcManKm(vxs, vys, vxf, vyf, i, i+m);
                         //mandist = valRound(mandist); 
                         //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                         // manhattan = CalcMan(vxs, vys, vxf, vyf, i, i+m); 
@@ -471,7 +476,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                             if (j < V){
                                 //geodist = CalcDistGeo(slatitude, slongitude, flatitude, flongitude, i, j);
                                 //geodist = std::round(geodist * multiplier) / multiplier;
-                                mandist = CalcMan(vxs, vys, vxf, vyf, i, j);
+                                //mandist = CalcMan(vxs, vys, vxf, vyf, i, j);
+                                mandist = CalcManKm(vxs, vys, vxf, vyf, i, j);
                                 //mandist = valRound(mandist);                                 
                                 //geodist = static_cast<int>(geodist * multiplier) / multiplier;
                                 // manhattan = CalcMan(vxs, vys, vxf, vyf, i, j);                      
@@ -628,35 +634,35 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         }
 
         //&&&&&&&&&&&&&&&& Uncomment to scale K &&&&&&&&&&&&&&&&
-        //if (n <= 10){
-        //    K = n-1;
+        ////if (n <= 10){
+        ////    K = n-1;
+        ////}
+        ////else{
+        ////    K = ceil(0.6*n);
+        ////}
+
+        //if (trialK <= K){
+        //    K = trialK;
         //}
         //else{
-        //    K = ceil(0.6*n);
+        //    trialK = K;
         //}
 
-        if (trialK <= K){
-            K = trialK;
-        }
-        else{
-            trialK = K;
-        }
-
-        if (trialK >= n){
-            cout << "Exceeded K size" << endl;
+        //if (trialK >= n){
+        //    cout << "Exceeded K size" << endl;
         
-            exit(1);
-        }
-        //if (n > 40){
-        //    if (K + trialK <= n - 1){
-        //        K += trialK;
-        //    }
-        //    else{
-        //        cout << "\nExceeded max number of vehicles\n";            
-        //        exit(1);
-        //    }
+        //    exit(1);
         //}
-        // getchar();
+        ////if (n > 40){
+        ////    if (K + trialK <= n - 1){
+        ////        K += trialK;
+        ////    }
+        ////    else{
+        ////        cout << "\nExceeded max number of vehicles\n";            
+        ////        exit(1);
+        ////    }
+        ////}
+        //// getchar();
         //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
         inst->preInst = 1;
@@ -1129,19 +1135,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     //passDistances.clear();
     //// TODO UNCOMMENT //  
-    //cout << "Profits: " << endl;
-    //for (int i = 0; i < nodeVec.size(); i++){
-    //    cout  << i << ": " << nodeVec[i].profit << endl;
-    //}
+    cout << "Profits: " << endl;
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout  << i << ": " << nodeVec[i].profit << endl;
+    }
 
     //// // getchar();
 
     //// TODO UNCOMMENT //  << "\nEarlier times: " << endl;
-
-    //for (int i = 0; i < inst->n; i++){
-    //    // TODO UNCOMMENT 
-    //    cout << i << ": " << nodeVec[i].e << endl;
-    //}
+    cout << "\nEarlier times: " << endl;
+    for (int i = 0; i < inst->n; i++){
+        // TODO UNCOMMENT 
+        cout << i << ": " << nodeVec[i].e << endl;
+    }
 
     //// // TODO UNCOMMENT //  << "\nLoads: " << endl;
 
@@ -1150,10 +1156,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     //// }
 
     //// TODO UNCOMMENT //  
-    //cout << "\nDeltas: " << endl;
+    cout << "\nDeltas: " << endl;
 
-    //for (int i = 0; i < inst->n; i++){
-    ////    // TODO UNCOMMENT //  
-    //    cout << i << ": " << nodeVec[i].delta << endl;
-    //}
+    for (int i = 0; i < inst->n; i++){
+    //    // TODO UNCOMMENT //  
+        cout << i << ": " << nodeVec[i].delta << endl;
+    }
 }

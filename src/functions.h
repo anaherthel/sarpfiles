@@ -35,6 +35,8 @@ void distScale(instanceStat *inst, int *instV, vector <vector <double> > &tempDa
 double calcEucDist (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
 double calcEucDist2 (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
 double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
+constexpr double degreesToRadians(double degrees);
+double CalcManKm(vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J);
 double valRound(double value);
 double timeRound(double value);
 double CalcLatLong (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int n, double *slatit, double* slongit, double *flatit, double* flongit);
@@ -48,7 +50,7 @@ void generatePermutations(int a, int b, instanceStat *inst, int c, double **mdis
 void startPermutation(instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec);
 bool checkFileExists(const std::string& filename);
 void generateScaleCSV(instanceStat *inst, solStats *sStat);
-void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat);
+void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat, double **mdist);
 
 
 #endif
