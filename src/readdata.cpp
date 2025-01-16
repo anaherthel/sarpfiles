@@ -144,34 +144,34 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
         // K = n - 1;
     ////&&&&&&&Uncomment for scaling K&&&&&&&&&&&&&&&&
-    //if (n <= 10){
-    //    K = n-1;
+    ////if (n <= 10){
+    ////    K = n-1;
+    ////}
+    ////else{
+    ////    K = ceil(0.6*n);
+    ////}
+
+    //if (trialK <= K){
+    //    K = trialK;
     //}
     //else{
-    //    K = ceil(0.6*n);
+    //    trialK = K;
     //}
 
-    if (trialK <= K){
-        K = trialK;
-    }
-    else{
-        trialK = K;
-    }
-
-    if (trialK >= n){
-        cout << "Exceeded K size" << endl;
+    //if (trialK >= n){
+    //    cout << "Exceeded K size" << endl;
     
-        exit(1);
-    }
-
-    
-    cout << "K: " << K << endl;
-    //getchar();
-
-    //if (K > n - 1){
-    //    cout << "\nExceeded max number of vehicles\n";            
     //    exit(1);
     //}
+
+    
+    //cout << "K: " << K << endl;
+    ////getchar();
+
+    ////if (K > n - 1){
+    ////    cout << "\nExceeded max number of vehicles\n";            
+    ////    exit(1);
+    ////}
     //////&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
         service = service/60;
@@ -1133,33 +1133,33 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     //getchar();
 
-    //passDistances.clear();
-    //// TODO UNCOMMENT //  
-    cout << "Profits: " << endl;
-    for (int i = 0; i < nodeVec.size(); i++){
-        cout  << i << ": " << nodeVec[i].profit << endl;
-    }
+    ////passDistances.clear();
+    ////// TODO UNCOMMENT //  
+    //cout << "Profits: " << endl;
+    //for (int i = 0; i < nodeVec.size(); i++){
+    //    cout  << i << ": " << nodeVec[i].profit << endl;
+    //}
 
-    //// // getchar();
+    ////// // getchar();
 
-    //// TODO UNCOMMENT //  << "\nEarlier times: " << endl;
-    cout << "\nEarlier times: " << endl;
-    for (int i = 0; i < inst->n; i++){
-        // TODO UNCOMMENT 
-        cout << i << ": " << nodeVec[i].e << endl;
-    }
+    ////// TODO UNCOMMENT //  << "\nEarlier times: " << endl;
+    //cout << "\nEarlier times: " << endl;
+    //for (int i = 0; i < inst->n; i++){
+    //    // TODO UNCOMMENT 
+    //    cout << i << ": " << nodeVec[i].e << endl;
+    //}
 
-    //// // TODO UNCOMMENT //  << "\nLoads: " << endl;
+    ////// // TODO UNCOMMENT //  << "\nLoads: " << endl;
 
-    //// for (int i = 0; i < nodeVec.size(); i++){
-    ////     // TODO UNCOMMENT //  << i << ": " << nodeVec[i].load << endl;
-    //// }
+    ////// for (int i = 0; i < nodeVec.size(); i++){
+    //////     // TODO UNCOMMENT //  << i << ": " << nodeVec[i].load << endl;
+    ////// }
 
-    //// TODO UNCOMMENT //  
-    cout << "\nDeltas: " << endl;
+    ////// TODO UNCOMMENT //  
+    //cout << "\nDeltas: " << endl;
 
-    for (int i = 0; i < inst->n; i++){
-    //    // TODO UNCOMMENT //  
-        cout << i << ": " << nodeVec[i].delta << endl;
-    }
+    //for (int i = 0; i < inst->n; i++){
+    ////    // TODO UNCOMMENT //  
+    //    cout << i << ": " << nodeVec[i].delta << endl;
+    //}
 }
