@@ -260,7 +260,7 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                 info->m = info->dimVec[i][j].second;
 
                 //info->seed = pow(info->n, 8) + pow(info->m, 7) + pow(p, 6);//changed (same as gh)
-                info->seed = pow(info->n, 5) + pow(info->m, 6) + pow(p, 4);
+                info->seed = pow(info->n, 6) + pow(info->m, 6) + pow(p, 4);
 
                 srand(info->seed);
 
