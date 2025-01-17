@@ -1135,19 +1135,19 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     ////passDistances.clear();
     ////// TODO UNCOMMENT //  
-    //cout << "Profits: " << endl;
-    //for (int i = 0; i < nodeVec.size(); i++){
-    //    cout  << i << ": " << nodeVec[i].profit << endl;
-    //}
+    cout << "Profits: " << endl;
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout  << i << ": " << nodeVec[i].profit << endl;
+    }
 
     ////// // getchar();
 
     ////// TODO UNCOMMENT //  << "\nEarlier times: " << endl;
-    //cout << "\nEarlier times: " << endl;
-    //for (int i = 0; i < inst->n; i++){
-    //    // TODO UNCOMMENT 
-    //    cout << i << ": " << nodeVec[i].e << endl;
-    //}
+    cout << "\nEarlier times: " << endl;
+    for (int i = 0; i < inst->n; i++){
+        // TODO UNCOMMENT 
+        cout << i << ": " << nodeVec[i].e << endl;
+    }
 
     ////// // TODO UNCOMMENT //  << "\nLoads: " << endl;
 

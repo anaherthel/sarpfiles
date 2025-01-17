@@ -56,22 +56,22 @@ int main (int argc, char *argv[]) {
 		
 		//startPermutation(&inst, distMatrix, nodeVec);
 
-		//cout << "Dist Matrix: " << endl;
-		//for (int i = 0; i < inst.V + inst.dummy; i++){
-		//	for (int j = 0; j < inst.V + inst.dummy; j++){
-		//		cout << setw(10) << distMatrix[i][j] << " ";
-		//	}
-		//	cout << endl;
-		//}
+		cout << "Dist Matrix: " << endl;
+		for (int i = 0; i < inst.V + inst.dummy; i++){
+			for (int j = 0; j < inst.V + inst.dummy; j++){
+				cout << setw(10) << distMatrix[i][j] << " ";
+			}
+			cout << endl;
+		}
 
-		//cout << "Time Matrix: " << endl;
-		//for (int i = 0; i < inst.V + inst.dummy; i++){
-		//	for (int j = 0; j < inst.V + inst.dummy; j++){
-		//		double ttij = distMatrix[i][j]/inst.vmed;
-		//		cout << setw(10) << ttij << " ";
-		//	}
-		//	cout << endl;
-		//}
+		cout << "Time Matrix: " << endl;
+		for (int i = 0; i < inst.V + inst.dummy; i++){
+			for (int j = 0; j < inst.V + inst.dummy; j++){
+				double ttij = distMatrix[i][j]/inst.vmed;
+				cout << setw(10) << ttij << " ";
+			}
+			cout << endl;
+		}
 
 
 		//getchar();
