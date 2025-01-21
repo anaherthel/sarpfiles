@@ -34,6 +34,24 @@ def read_csv_to_tuples(file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
         return None
+    
+def purge_repeated(orderedresultslist):
+    
+    currentInstance = orderedresultslist[0][0]
+    selectedInstances = []
+    selectItem = None
+
+    for i in range(1, len(orderedresultslist)):
+        if orderedresultslist[i][0] == currentInstance: 
+            selectItem = orderedresultslist[i]
+        else:
+            selectedInstances.append(selectItem)
+            currentInstance = orderedresultslist[i][0]
+            selectItem = orderedresultslist[i]
+    
+    selectedInstances.append(selectItem)
+    
+    return selectedInstances
 
 
 def write_to_csv (file_path, list_instances, header):
@@ -52,9 +70,11 @@ def write_to_csv (file_path, list_instances, header):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-file_path = 'node2MMcsarpM.csv'  # Replace with the path to your CSV file
+file_name = 'nodefip2MMcsarpM'
+file_path = file_name + '.csv'  # Replace with the path to your CSV file
 list_instances, header = read_csv_to_tuples(file_path)
 
-ordered_list = orderResults(list_instances) 
+ordered_list = orderResults(list_instances)
+ordered_list = purge_repeated(ordered_list)
 
-write_to_csv('node2MMcsarpM_ordered.csv', ordered_list, header)
+write_to_csv(file_name + '_ordered2.csv', ordered_list, header)

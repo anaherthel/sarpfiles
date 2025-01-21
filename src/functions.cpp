@@ -76,14 +76,20 @@ constexpr double degreesToRadians(double degrees) {
     return degrees * M_PI / 180.0;
 }
 
+double roundToDecimalPlaces(double value, int decimalPlaces) {
+    double factor = std::pow(10.0, decimalPlaces);
+    return std::round(value * factor) / factor;
+}
+
 // Function to calculate Manhattan distance in kilometers
 double CalcManKm(vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J) {
     // Earth's approximate radius (for conversion purposes)
-
-    double lat1 = Xs[I];
-    double lon1 = Ys[I];
-    double lat2 = Xf[J];
+    
+    double lat1 = Xf[I];
+    double lon1 = Yf[I];
+    double lat2 = Xs[J];
     double lon2 = Ys[J];
+
     constexpr double kmPerDegreeLat = 111.0;
 
     // Calculate absolute differences in latitude and longitude
@@ -98,7 +104,10 @@ double CalcManKm(vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vec
     double deltaLon = std::abs(lon2 - lon1) * kmPerDegreeLon;
 
     // Return the Manhattan distance in kilometers
-    return deltaLat + deltaLon;
+    double dist = deltaLat + deltaLon;
+    double roundDist = roundToDecimalPlaces(dist, 3);
+
+    return roundDist;
 }
 
 double valRound(double value){

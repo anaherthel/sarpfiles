@@ -56,6 +56,16 @@ int main (int argc, char *argv[]) {
 		
 		//startPermutation(&inst, distMatrix, nodeVec);
 
+		cout << "Checking values: " << endl;
+		if (problem.model != "fip"){
+			cout << distMatrix[0][6] << endl;
+			cout << distMatrix[18][0] << endl;
+		}
+		else{
+			cout << distMatrix[6][12] << endl;
+			cout << distMatrix[24][0] << endl;
+		}
+
 		cout << "Dist Matrix: " << endl;
 		for (int i = 0; i < inst.V + inst.dummy; i++){
 			for (int j = 0; j < inst.V + inst.dummy; j++){
@@ -64,17 +74,21 @@ int main (int argc, char *argv[]) {
 			cout << endl;
 		}
 
-		cout << "Time Matrix: " << endl;
-		for (int i = 0; i < inst.V + inst.dummy; i++){
-			for (int j = 0; j < inst.V + inst.dummy; j++){
-				double ttij = distMatrix[i][j]/inst.vmed;
-				cout << setw(10) << ttij << " ";
-			}
-			cout << endl;
-		}
 
 
-		//getchar();
+
+
+		//cout << "Time Matrix: " << endl;
+		//for (int i = 0; i < inst.V + inst.dummy; i++){
+		//	for (int j = 0; j < inst.V + inst.dummy; j++){
+		//		double ttij = distMatrix[i][j]/inst.vmed;
+		//		cout << setw(10) << ttij << " ";
+		//	}
+		//	cout << endl;
+		//}
+
+
+		getchar();
 		solveselect(&node, &inst, distMatrix, nodeVec, &problem, &sStat);
 
 
