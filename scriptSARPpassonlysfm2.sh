@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances/sf_data'
-output='fip1ADSsfsarp.txt'
+dirInstancias='Instances_M2/sf_data'
+output='passOnlymsfsarp2.txt'
 #runs=10
 
 cat /dev/null > $output
