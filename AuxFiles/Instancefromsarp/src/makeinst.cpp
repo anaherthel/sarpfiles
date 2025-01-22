@@ -115,7 +115,7 @@ double CalcManKm(double Xs, double Ys, double Xf, double Yf){
     double lat1 = Xs;
     double lon1 = Ys;
     double lat2 = Xf;
-    double lon2 = Ys;
+    double lon2 = Yf;
 
     constexpr double kmPerDegreeLat = 111.0;
 
@@ -284,7 +284,9 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                 for (int j = 0; j < info->m; j++){
                     c = rand() % auxmp.size();
                     //cout << "Value of c: " << c << endl;
-                    newvec.insert(newvec.begin() + info->n + counter, auxmp[c]);
+                    //newvec.insert(newvec.begin() + info->n + counter, auxmp[c]);
+                    newvec.insert(newvec.begin() + 2*info->n + counter, auxmp[c]);
+                    //newvec.push_back(auxmp[c]);
                     newvec.push_back(auxmd[c]);
                     //cout << "index of mp and load: " << auxmp[c].index << "; " << auxmp[c].vload << " - index of md: " << auxmd[c].index << "; " << auxmd[c].vload << endl;
                     counter++;
@@ -295,8 +297,8 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                     //getchar();
                 }
 
-                newvec.insert(newvec.begin(), dp[0]);
-
+                //newvec.insert(newvec.begin(), dp[0]);
+                newvec.push_back(dp[0]);
                 // for (int i = 0; i < newvec.size(); i++){
                 //     cout << "i: " << newvec[i].index << " - " << newvec[i].vload << " - " << newvec[i].ve << endl;
                 // }
@@ -313,7 +315,8 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                     }
 
                     else if (newvec[i].vload == -3){
-                        newvec[i].ve = newvec[i - info->n - info->m].ve;
+                        //newvec[i].ve = newvec[i - info->n - info->m].ve;
+                        newvec[i].ve = newvec[i - info->n].ve;
                         newvec[i].vl = newvec[i].ve;
                     }
                     //cout << "i: " << newvec[i].index << " - " << newvec[i].vload << " - " << newvec[i].ve << endl;
@@ -321,8 +324,10 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                     else if (newvec[i].vload == 1){
                         double vxs = newvec[i + 1].vxs;
                         double vys = newvec[i + 1].vys;
-                        double vxf = newvec[i + info->n + info->m + 1].vxs;
-                        double vyf = newvec[i + info->n + info->m + 1].vys;
+                        //double vxf = newvec[i + info->n + info->m + 1].vxs;
+                        //double vyf = newvec[i + info->n + info->m + 1].vys;
+                        double vxf = newvec[i + info->m + 1].vxs;
+                        double vyf = newvec[i + info->m + 1].vys;                        
                         //cout << "node: " << i << endl;
                         //cout << std::fixed << std::setprecision(5) << "vxs: " << vxs << " - vys: " << vys << " - vxf: " << vxf << " - vyf: " << vyf << endl;
 
@@ -347,7 +352,8 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                         //newvec[i].vl = timePoint + 30;
                         newvec[i].vl = timePoint + 60; //1hour of pickup TW
 
-                        int dl = i + info->m + info->n;
+                        //int dl = i + info->m + info->n;
+                        int dl = i + info->m;
                         //cout << "Pickup index: " << i << " - Delivery index: " << dl << endl;
 
                         if (deltaMin < 1){
@@ -578,7 +584,7 @@ void output(Info *info, vector<OrStruct> &newvec, int p)
     ofile << info->K << "\t" << 5 << "\t" << info->n << "\t" << info->m << endl;
 
     for (int i = 0; i < newvec.size(); i++){
-        ofile << i << "\t" << setw(9) << fixed << setprecision(4) << newvec[i].vxs << "\t" << setw(9) << newvec[i].vys << "\t" << 0 << "\t" << fixed << setprecision(0) << newvec[i].vload << "\t" << fixed << setprecision(0) << newvec[i].ve << "\t" << newvec[i].vl << endl;
+        ofile << i << "\t" << setw(9) << fixed << setprecision(4) << newvec[i].vxs << "\t" << setw(9) << newvec[i].vys << "\t" << fixed << setprecision(0) << newvec[i].vload << "\t" << fixed << setprecision(0) << newvec[i].ve << "\t" << newvec[i].vl << endl;
     }
 
     newvec.clear();
