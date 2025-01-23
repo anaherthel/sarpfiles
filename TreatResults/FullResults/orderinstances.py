@@ -70,11 +70,11 @@ def write_to_csv (file_path, list_instances, header):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-file_name = 'nodefip2MMcsarpM'
+file_name = 'fip1ADsf_dataM'
 file_path = file_name + '.csv'  # Replace with the path to your CSV file
 list_instances, header = read_csv_to_tuples(file_path)
 
 ordered_list = orderResults(list_instances)
-ordered_list = purge_repeated(ordered_list)
+#ordered_list = purge_repeated(ordered_list)
 
 write_to_csv(file_name + '_ordered2.csv', ordered_list, header)

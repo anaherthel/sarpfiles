@@ -639,29 +639,29 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     //getchar();
 
-    //////passDistances.clear();
-    //////// TODO UNCOMMENT //  
+    ////////passDistances.clear();
+    ////////// TODO UNCOMMENT //  
     //cout << "Profits: " << endl;
     //for (int i = 0; i < nodeVec.size(); i++){
     //    cout  << i << ": " << nodeVec[i].profit << endl;
     //}
 
-    //////// // getchar();
+    ////////// // getchar();
 
-    //////// TODO UNCOMMENT //  << "\nEarlier times: " << endl;
+    ////////// TODO UNCOMMENT //  << "\nEarlier times: " << endl;
     //cout << "\nEarlier times: " << endl;
     //for (int i = 0; i < inst->n; i++){
     //    // TODO UNCOMMENT 
     //    cout << i << ": " << nodeVec[i].e << endl;
     //}
 
-    //////// // TODO UNCOMMENT //  << "\nLoads: " << endl;
+    ////////// // TODO UNCOMMENT //  << "\nLoads: " << endl;
 
-    //////// for (int i = 0; i < nodeVec.size(); i++){
-    ////////     // TODO UNCOMMENT //  << i << ": " << nodeVec[i].load << endl;
-    //////// }
+    ////////// for (int i = 0; i < nodeVec.size(); i++){
+    //////////     // TODO UNCOMMENT //  << i << ": " << nodeVec[i].load << endl;
+    ////////// }
 
-    ////// TODO UNCOMMENT //  
+    //////// TODO UNCOMMENT //  
     //cout << "\nDeltas: " << endl;
 
     //for (int i = 0; i < inst->n; i++){
