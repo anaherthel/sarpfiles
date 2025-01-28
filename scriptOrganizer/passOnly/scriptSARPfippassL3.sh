@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances_M2/sf_data'
-output='fipm2msfsarp2.txt'
+dirInstancias='Instances_L3/csarp'
+output='fippassLcsarp3.txt'
 #runs=10
 
 cat /dev/null > $output
@@ -16,7 +16,7 @@ cat /dev/null > $output
 #			echo "Solving: " ${arquivo} ":" >> $output #output pra saber que instancia ta sendo rodada
 #			echo "Scenario: 1A bundle "  >> $output
 			./bin/bin.out ${dirInstancias}/${arquivo} 1AD fip >> $output
-			./bin/bin.out ${dirInstancias}/${arquivo} 2MM nodefip >> $output
+			#./bin/bin.out ${dirInstancias}/${arquivo} 2MM nodefip >> $output
 		done
 #	done
 #done

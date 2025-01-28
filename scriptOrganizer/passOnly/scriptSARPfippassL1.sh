@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='ReInst/csarp'
-output='fippassLcsarp.txt'
+dirInstancias='Instances_L/csarp'
+output='fippassLcsarp1.txt'
 #runs=10
 
 cat /dev/null > $output
