@@ -71,7 +71,7 @@ def read_csv_to_tuples(file_path):
         return None
     
 
-file_name = 'fip1ADsf_dataM_ordered2'
+file_name = 'node2MMsf_dataM'
 inst_path = '/home/ana/Documents/PHD/Research/Implementation/sarpfiles/Instances_M2/sf_data'
 list_instances = list_files_in_folder(inst_path)
 

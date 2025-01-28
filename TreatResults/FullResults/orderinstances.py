@@ -70,7 +70,7 @@ def write_to_csv (file_path, list_instances, header):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-file_name = 'fip1ADsf_dataM'
+file_name = 'node2MMsf_dataM'
 file_path = file_name + '.csv'  # Replace with the path to your CSV file
 list_instances, header = read_csv_to_tuples(file_path)
 
