@@ -260,7 +260,9 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                 info->m = info->dimVec[i][j].second;
 
                 //info->seed = pow(info->n, 8) + pow(info->m, 7) + pow(p, 6);//changed (same as gh)
-                info->seed = pow(info->n, 6) + pow(info->m, 6) + pow(p, 4);
+                info->seed = pow((info->n/2), 5) + pow(info->m/3, 3) + pow(p, 5);
+                cout << "Seed: " << info->seed << endl;
+
 
                 srand(info->seed);
 
@@ -275,9 +277,9 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                     newvec.push_back(auxnd[c]);
                     counter++;
                     //cout << "vector populating n: " << endl;
-                    for (int v = 0; v < newvec.size(); v++){
-                        cout << newvec[v].index << " " << newvec[v].vload << endl;
-                    }
+                    //for (int v = 0; v < newvec.size(); v++){
+                    //    cout << newvec[v].index << " " << newvec[v].vload << endl;
+                    //}
                     //getchar();
                 }
                 counter = 0;
@@ -291,9 +293,9 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                     //cout << "index of mp and load: " << auxmp[c].index << "; " << auxmp[c].vload << " - index of md: " << auxmd[c].index << "; " << auxmd[c].vload << endl;
                     counter++;
                     //cout << "vector populating m: " << endl;
-                    for (int v = 0; v < newvec.size(); v++){
-                        cout << newvec[v].index << " " << newvec[v].vload << endl;
-                    }
+                    //for (int v = 0; v < newvec.size(); v++){
+                    //    cout << newvec[v].index << " " << newvec[v].vload << endl;
+                    //}
                     //getchar();
                 }
 
@@ -381,10 +383,10 @@ void extractData(Info *info, vector<OrStruct> &Ndvec){
                 //newvec[0].vxs = ;
                 //newvec[0].vys = ;    
 
-                cout << "Vector: " << endl;
-                for (int i = 0; i < newvec.size(); i++){
-                    cout << "i: " << newvec[i].index << " - " << newvec[i].vxs << "    " << newvec[i].vys << " :: " << newvec[i].vload << " - " << newvec[i].ve << " - " << newvec[i].vl << endl;
-                }
+                //cout << "Vector: " << endl;
+                //for (int i = 0; i < newvec.size(); i++){
+                //    cout << "i: " << newvec[i].index << " - " << newvec[i].vxs << "    " << newvec[i].vys << " :: " << newvec[i].vload << " - " << newvec[i].ve << " - " << newvec[i].vl << endl;
+                //}
                 //getchar();
                 output(info, newvec, p);
             }
@@ -413,133 +415,136 @@ void getInstanceScale(int argc, char** argv, Info *info){
 
     info->scale = argv[2];
 
+    vector<int> vecOfninS = {6, 8, 10, 12};
+
+    vector<int> vecOfninM = {16, 20, 30, 40};
+
+
+
     if(info->scale == "S"){
-        for (int i = 5; i < 11; i++){
-            info->vecOfm.push_back(i);
-            info->vecOfn.push_back(i);
-        }
-        for (int i = 10; i < 16; i++){
-            info->scaleVec.push_back(i);
-            info->dimVec.push_back(auxvec);
-        }
-        for (int k = 0; k < info->scaleVec.size(); k++){
-            for (int i = 0; i < info->vecOfn.size(); i++){
-                for (int j = 0; j < info->vecOfm.size(); j++){
-                    dimensions.first = info->vecOfn[i];
-                    dimensions.second = info->vecOfm[j];
-                    if (dimensions.first + dimensions.second < info->scaleVec[k]){
-                        continue;
-                    }
-                    else if (dimensions.first + dimensions.second > info->scaleVec[k]){
-                        break;
-                    }
-                    else{
-                        info->dimVec[k].push_back(dimensions);
-                    }
-                }
-            }
+        for (int i = 0; i < vecOfninS.size(); i++){
+            info->vecOfm.push_back(vecOfninS[i]/2);
+            info->vecOfn.push_back(vecOfninS[i]);
         }
 
-        cout << "Vectors of dimensions: " << endl;
-        for (int i = 0; i < info->dimVec.size(); i++){
-            cout << "dimension: " << info->scaleVec[i] << ": " << endl;
-            for (int j = 0; j < info->dimVec[i].size(); j++){
-                cout << info->dimVec[i][j].first << " - " << info->dimVec[i][j].second << endl;
-            }
+
+        for (int i = 0; i < info->vecOfn.size(); i++){
+            int totalReq = info->vecOfn[i] + info->vecOfm[i];
+            info->scaleVec.push_back(i);
+            info->dimVec.push_back(auxvec);       
         }
+
+
+        //for (int k = 0; k < info->scaleVec.size(); k++){
+            for (int i = 0; i < info->vecOfn.size(); i++){
+                //for (int j = 0; j < info->vecOfm.size(); j++){
+                    dimensions.first = info->vecOfn[i];
+                    //dimensions.second = info->vecOfm[j];
+                    dimensions.second = info->vecOfm[i];
+                    //if (dimensions.first + dimensions.second < info->scaleVec[k]){
+                    //    continue;
+                    //}
+                    //else if (dimensions.first + dimensions.second > info->scaleVec[k]){
+                    //    break;
+                    //}
+                    //else{
+                        //info->dimVec[k].push_back(dimensions);
+                        info->dimVec[i].push_back(dimensions);
+                    //}
+                //}
+            }
+        //}
+
+        //for (int k = 0; k < info->scaleVec.size(); k++){
+        //    for (int i = 0; i < info->vecOfn.size(); i++){
+        //        for (int j = 0; j < info->vecOfm.size(); j++){
+        //            dimensions.first = info->vecOfn[i];
+        //            dimensions.second = info->vecOfm[j];
+        //            if (dimensions.first + dimensions.second < info->scaleVec[k]){
+        //                continue;
+        //            }
+        //            else if (dimensions.first + dimensions.second > info->scaleVec[k]){
+        //                break;
+        //            }
+        //            else{
+        //                info->dimVec[k].push_back(dimensions);
+        //            }
+        //        }
+        //    }
+        //}
 
     }
     else if(info->scale == "M"){
-       for (int i = 5; i < 31; i++){
-            if (i % 5 == 0 && i != 25){
-                info->vecOfn.push_back(i);
-            }
-        }
-        for (int i = 10; i < 31; i++){
-            if (i % 5 == 0 && i != 25){
-                info->vecOfm.push_back(i);
-            }
+
+        for (int i = 0; i < vecOfninM.size(); i++){
+            info->vecOfn.push_back(vecOfninM[i]);
+            info->vecOfm.push_back(vecOfninM[i]/2);
+
         }
 
-        for (int i = 20; i < 61; i++){
-             if (i % 5 == 0 && i != 55){
-                info->scaleVec.push_back(i);
-                info->dimVec.push_back(auxvec);
-            }           
+        for (int i = 0; i < info->vecOfn.size(); i++){
+            int totalReq = info->vecOfn[i] + info->vecOfm[i];
+            info->scaleVec.push_back(i);
+            info->dimVec.push_back(auxvec);       
         }
 
-        for (int k = 0; k < info->scaleVec.size(); k++){
+
+        //for (int k = 0; k < info->scaleVec.size(); k++){
             for (int i = 0; i < info->vecOfn.size(); i++){
-                for (int j = 0; j < info->vecOfm.size(); j++){
+                //for (int j = 0; j < info->vecOfm.size(); j++){
                     dimensions.first = info->vecOfn[i];
-                    dimensions.second = info->vecOfm[j];
-                    if (dimensions.first + dimensions.second < info->scaleVec[k]){
-                        continue;
-                    }
-                    else if (dimensions.first + dimensions.second > info->scaleVec[k]){
-                        break;
-                    }
-                    else{
-                        info->dimVec[k].push_back(dimensions);
-                    }
-                }
+                    //dimensions.second = info->vecOfm[j];
+                    dimensions.second = info->vecOfm[i];
+                    //if (dimensions.first + dimensions.second < info->scaleVec[k]){
+                    //    continue;
+                    //}
+                    //else if (dimensions.first + dimensions.second > info->scaleVec[k]){
+                    //    break;
+                    //}
+                    //else{
+                        //info->dimVec[k].push_back(dimensions);
+                        info->dimVec[i].push_back(dimensions);
+                    //}
+                //}
             }
-        }
-
-        cout << "Vectors of dimensions: " << endl;
-        for (int i = 0; i < info->dimVec.size(); i++){
-            cout << "dimension: " << info->scaleVec[i] << ": " << endl;
-            for (int j = 0; j < info->dimVec[i].size(); j++){
-                cout << info->dimVec[i][j].first << " - " << info->dimVec[i][j].second << endl;
-            }
-        }
+        //}
 
 
     }
     else if(info->scale == "L"){
-       for (int i = 20; i < 51; i++){
-            if (i % 10 == 0){
-                info->vecOfn.push_back(i);
-            }
-        }
-        for (int i = 40; i < 71; i++){
-            if (i % 10 == 0){
-                info->vecOfm.push_back(i);
-            }
+        vector<int> vecOfninL = {50, 60, 80, 100};
+
+       for (int i = 0; i < vecOfninL.size(); i++){
+            info->vecOfn.push_back(vecOfninL[i]);
+            info->vecOfm.push_back(vecOfninL[i]/2);
+        }        
+
+        for (int i = 0; i < info->vecOfn.size(); i++){
+            int totalReq = info->vecOfn[i] + info->vecOfm[i];
+            info->scaleVec.push_back(i);
+            info->dimVec.push_back(auxvec);       
         }
 
-        for (int i = 70; i < 121; i++){
-             if (i % 10 == 0){
-                info->scaleVec.push_back(i);
-                info->dimVec.push_back(auxvec);
-            }           
-        }
 
-        for (int k = 0; k < info->scaleVec.size(); k++){
+        //for (int k = 0; k < info->scaleVec.size(); k++){
             for (int i = 0; i < info->vecOfn.size(); i++){
-                for (int j = 0; j < info->vecOfm.size(); j++){
+                //for (int j = 0; j < info->vecOfm.size(); j++){
                     dimensions.first = info->vecOfn[i];
-                    dimensions.second = info->vecOfm[j];
-                    if (dimensions.first + dimensions.second < info->scaleVec[k]){
-                        continue;
-                    }
-                    else if (dimensions.first + dimensions.second > info->scaleVec[k]){
-                        break;
-                    }
-                    else{
-                        info->dimVec[k].push_back(dimensions);
-                    }
-                }
+                    //dimensions.second = info->vecOfm[j];
+                    dimensions.second = info->vecOfm[i];
+                    //if (dimensions.first + dimensions.second < info->scaleVec[k]){
+                    //    continue;
+                    //}
+                    //else if (dimensions.first + dimensions.second > info->scaleVec[k]){
+                    //    break;
+                    //}
+                    //else{
+                        //info->dimVec[k].push_back(dimensions);
+                        info->dimVec[i].push_back(dimensions);
+                    //}
+                //}
             }
-        }
-
-        cout << "Vectors of dimensions: " << endl;
-        for (int i = 0; i < info->dimVec.size(); i++){
-            cout << "dimension: " << info->scaleVec[i] << ": " << endl;
-            for (int j = 0; j < info->dimVec[i].size(); j++){
-                cout << info->dimVec[i][j].first << " - " << info->dimVec[i][j].second << endl;
-            }
-        }
+        //}
     }
     else{
         cout << "\nInstance scale should be:\n";
@@ -571,7 +576,8 @@ void output(Info *info, vector<OrStruct> &newvec, int p)
     strM = to_string(info->m);
     strP = to_string(p);
     //info->K = floor(info->n/2);
-    info->K = info->n-1;
+    //info->K = info->n-1;
+    info->K = std::max(static_cast<int>(std::ceil(info->n / 7.0)), 3) + 1;
 
     outputname = "sfsarp-" + strN + "-" + strM + "-" + strP + ".txt";
     cout << "output: " << outputname << endl;

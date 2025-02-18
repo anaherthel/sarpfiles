@@ -1,0 +1,83 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   BaPCod v0.82.5, 24/09/2023, © Inria Bordeaux, France, bapcod.math.u-bordeaux.fr 
+           THIS CODE IS PROVIDED AS IS, USE IT AT YOUR OWN RISK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Application version is 6.1, 17/11/2021
+command line:./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-5-30-C-6.txt --cutOffValue -86.2 --setting 1 
+Share-a-ride Parameters  
+Subproblem solver: resource constrained shortest path solver
+cutOffValue = -86.2
+setting = 1
+7
+2 5 30
+RCSP solver info : size of non-robust cut bitmask in a label is 640 bits
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 13.9
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 78053( 70.9205% ) / 78053( 100% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 64370( 58.4879% ) / 64370( 100% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 13.9
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 77371( 70.3008% ) / 77371( 100% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 62996( 57.2394% ) / 62996( 100% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+Model is built TIME = 0h0m2s63t = 263
+************************************************************************************************
+**** BaB tree root node
+**** Local DB = -1e+12, global bounds : [ -1e+12 , -86.2 ], TIME = 0h0m2s63t = 263
+**** 1 open nodes, 0 columns (0 active), 0 dyn. constrs. (0 active), 44 art. vars. (44 active)
+************************************************************************************************
+#<DWph=2> <it=  1> <et=2.73> <Mt= 0.00> <Spt= 0.10> <nCl= 16> <al=0.00> <DB= 3579.4260> <Mlp= 6000.0000> <PB=-86.2> 
+#<DWph=2> <it=  2> <et=2.95> <Mt= 0.00> <Spt= 0.21> <nCl=  2> <al=0.00> <DB= 4767.0470> <Mlp= 4767.0470> <PB=-86.2> 
+ Artificial variables in the solution : decreasing phase of stage 
+#<DWph=1> <it=  3> <et=3.17> <Mt= 0.00> <Spt= 0.22> <nCl=  0> <al=0.00> <DB= 4767.0470> <Mlp= 4767.0470> <PB=-86.2> 
+ Artificial variables in the solution : decreasing phase of stage 
+#1 bl.dch (14267)...2 bl.dch (15422)...3 bl.dch (16670)...4 bl.dch (17835)...5 bl.dch (18273)...6 bl.dch (18806)...7 bl.dch (19671)...8 bl.dch (19805)...9 bl.dch (19987)...10 bl.dch (20235)...11 bl.dch (20472)...12 bl.dch (20665)...13 bl.dch (20813)...14 bl.dch (20884)...15 bl.dch (21037)...16 bl.dch (21242)...17 bl.dch (21269)...18 bl.dch (21395)...20 bl.dch (21603)...21 bl.dch (21979)...25 bl.dch (22248)...26 bl.dch (22364)...27 bl.dch (22395)...28 bl.dch (23552)...29 bl.dch (23831)...33 bl.dch (24081)...34 bl.dch (24082)...39 bl.dch (24416)...48 bl.dch (24417)...49 bl.dch (24422)...50 bl.dch (24476)...51 bl.dch (24529)...52 bl.dch (24565)...53 bl.dch (24589)...54 bl.dch (24677)...61 bl.dch (24773)...62 bl.dch (24913)...66 bl.dch (25415)...74 bl.dch (25885)...75 bl.dch (25905)...76 bl.dch (26034)...79 bl.dch (26066)...80 bl.dch (26214)...82 bl.dch (26242)...83 bl.dch (26276)...108 bl.dch (26718)...109 bl.dch (26771)...114 bl.dch (26855)...115 bl.dch (27158)...118 bl.dch (27327)...122 bl.dch (27737)...RCSP solver warning : labelling time has exploded
+1 bl.dch (14100)...2 bl.dch (15255)...3 bl.dch (16344)...4 bl.dch (17509)...5 bl.dch (17950)...6 bl.dch (18480)...7 bl.dch (19390)...8 bl.dch (19524)...9 bl.dch (19706)...10 bl.dch (19954)...11 bl.dch (20191)...12 bl.dch (20384)...13 bl.dch (20532)...14 bl.dch (20606)...15 bl.dch (20756)...16 bl.dch (20961)...17 bl.dch (20988)...18 bl.dch (21114)...20 bl.dch (21322)...21 bl.dch (21698)...25 bl.dch (21967)...26 bl.dch (22084)...27 bl.dch (22114)...28 bl.dch (23267)...29 bl.dch (23546)...33 bl.dch (23796)...34 bl.dch (23797)...39 bl.dch (24465)...48 bl.dch (24466)...49 bl.dch (24471)...50 bl.dch (24526)...51 bl.dch (24578)...52 bl.dch (24614)...53 bl.dch (24638)...54 bl.dch (24726)...61 bl.dch (24822)...62 bl.dch (24964)...66 bl.dch (25464)...74 bl.dch (25934)...75 bl.dch (25956)...76 bl.dch (26083)...79 bl.dch (26115)...80 bl.dch (26263)...82 bl.dch (26291)...83 bl.dch (26328)...108 bl.dch (26767)...109 bl.dch (26820)...114 bl.dch (26904)...115 bl.dch (27209)...118 bl.dch (27376)...122 bl.dch (27786)...RCSP solver warning : labelling time has exploded
+SEARCH IS INTERRUPTED due to the pricing problem return status. 
+@@ 1 0 -1e+12 0 0 42.4411 2541.3
+@@ 1 0 -1e+12 0 0 42.2225 2541.3
+ColGenEvalAlg final dual bound: -1e+12 (rounded: -1e+12)
+************************************************************************************************
+Search is finished, global bounds : [ -1e+12 , -86.2 ], TIME = 0h42m21s39t = 254139
+************************************************************************************************
+undefined solution
+data/C4/csarp/sarp-5-30-C-6.txt
+bcAverageDualSolSize 4 26 
+bcAveragePrimalSolSize 4 23 
+bcCountCg 6 
+bcCountCgSpSolverCall 12 
+bcCountCol 18 
+bcCountMastSol 4 
+bcCountNodeGen 1 
+bcCountNodeProc 1 
+bcCountNodeTreat 1 
+bcCountPrimalSolSize 6 
+bcCountSpSol 12 
+bcEstimTreeSize 0 
+bcFailToSolveModel 1 
+bcMaxDualSpaceSize 39 
+bcMaxIterCg 4 
+bcMaxNbColInMastLp 18 
+bcMaxNbRowInMastLp 37 
+bcMaxPUpd 1 
+bcMaxPrimalSpaceSize 39 
+bcRecBestInc 1e+12 
+bcRecRootDb -999999999901 
+bcRecRootInc -86.2 
+bcRecRootLpVal 1e+12 
+bcTimeBaP 253877 & 0h42m18s76t 
+bcTimeCgSpOracle 253867 & 0h42m18s66t 
+bcTimeColGen 253867 & 0h42m18s66t 
+bcTimeHeurSpOracle 53.5696 & 0h0m0s53t 
+bcTimeMain 254140 & 0h42m21s39t 
+bcTimeMastMPsol 0.085015 & 0h0m0s0t 
+bcTimeMastPrepareProbConfig 257.067 & 0h0m2s57t 
+bcTimeRoot 254140 & 0h42m21s39t 
+bcTimeRootEval 254139 & 0h42m21s38t 
+bcTimeSetMast 8.87291 & 0h0m0s8t 
+bcTimeSpMPsol 253866 & 0h42m18s66t 
+bcTimeSpSol 253866 & 0h42m18s66t 
+bcTimeSpUpdateProb 0.665109 & 0h0m0s0t 
+BaPStat: data/C4/csarp/sarp-5-30-C-6.txt & 254140 & 0h42m21s39t  \\ 
+TIME = 0h42m21s39t = 254139

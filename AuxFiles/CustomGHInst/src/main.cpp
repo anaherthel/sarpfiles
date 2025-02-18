@@ -45,15 +45,17 @@ struct Info{
     vector<double> delta;
 };
 
-string getInstName (char **argv);
+string getInstName (string filename);
 string getInstIndex (char **argv);
 void generateInst(int argc, char** argv, Info *info);
 void tofile(Info *info);
 void clearInfo(Info *info);
 
-string getInstName (char **argv){
+string getInstName (string filename){
 
-    string filename(argv[1]);
+    //string filename(argv[1]);
+    //vector <string> instsize;
+
 
     string::size_type loc = filename.find_last_of("/");
     string::size_type loc2 = filename.find_first_of(".");
@@ -208,17 +210,28 @@ void generateInst(int argc, char** argv, Info *info){
     string file;
     std::string line;
 
-    char *instance;
-    instance = argv[1];
-    cout << "Instance: " << instance << endl;
+    char *instance1;
+    char *instance2;
+    instance1 = argv[1];
+    instance2 = argv[2];
+    cout << "Instance1: " << instance1 << endl;
+    cout << "Instance2: " << instance2 << endl;
     //ifstream in(instance, ios::in);
 
-    std::ifstream in(instance);
+    //Passengers come from Instance 1; Parcels come from Instance 2
+
+    std::ifstream in(instance1);
+    std::ifstream in2(instance2);
 
     bool inNodeCoordSection = false;
 
     if (!in.is_open()) {
-        std::cerr << "Error: Could not open the file!" << std::endl;
+        std::cerr << "Error: Could not open file 1!" << std::endl;
+        exit(1);
+    }
+
+    if (!in2.is_open()) {
+        std::cerr << "Error: Could not open file 2!" << std::endl;
         exit(1);
     }
 
@@ -253,30 +266,18 @@ void generateInst(int argc, char** argv, Info *info){
     //rearranging passengers and parcels pickup and delivery coordinates
     //order: pass PU - pass DL - parc PU - parcDL
 
-    for (int i = 2; i < 2*info->n + 2*info->m + 2; i++){
+    for (int i = 2; i < 2*info->n + 2; i++){
         auxtempdata.first = tempData[i].first;
         auxtempdata.second = tempData[i].second;
         //cout << "Node: " << i << " - " << auxtempdata.first << " - " << auxtempdata.second << endl;
-        if (i < 2 + 2*info->n){
 
-            if (i % 2 == 0){
-                paspickups.push_back(auxtempdata);
-            }
-            else{
-                pasdeliveries.push_back(auxtempdata);
-            }
+        if (i % 2 == 0){
+            paspickups.push_back(auxtempdata);
         }
         else{
-            if (i % 2 == 0){
-                parpickups.push_back(auxtempdata);
-            }
-            else{
-                pardeliveries.push_back(auxtempdata);
-            }            
+            pasdeliveries.push_back(auxtempdata);
         }
     }
-
-
 
     //coordinates of the depot
     for (int i = 0; i < paspickups.size(); i++){
@@ -293,6 +294,40 @@ void generateInst(int argc, char** argv, Info *info){
         info->loadVec.push_back(-3);
     }
 
+    //adding depot coordinates last (csarp template - euclidean coordinates)
+
+    pair <double, double> tempdepot;
+
+    tempdepot = tempData[0];
+
+
+    //reading file 2
+
+    tempData.clear();
+
+    while (file.compare("NODE_COORD_SECTION") != 0){
+        in2 >> file;
+    }
+
+    for (int i = 0; i < instV; i++){
+        in2 >> file >> auxtempdata.first >> auxtempdata.second;
+        tempData.push_back(auxtempdata);
+    }
+
+    for (int i = 2; i < 2*info->m + 2; i++){
+        auxtempdata.first = tempData[i].first;
+        auxtempdata.second = tempData[i].second;
+        //cout << "Node: " << i << " - " << auxtempdata.first << " - " << auxtempdata.second << endl;
+
+        if (i % 2 == 0){
+            parpickups.push_back(auxtempdata);
+        }
+        else{
+            pardeliveries.push_back(auxtempdata);
+        }
+
+    }
+
     for (int i = 0; i < parpickups.size(); i++){
         auxtempdata.first = parpickups[i].first;
         auxtempdata.second = parpickups[i].second;  
@@ -307,11 +342,10 @@ void generateInst(int argc, char** argv, Info *info){
         info->loadVec.push_back(-1);
     }
 
-    //adding depot coordinates last (csarp template - euclidean coordinates)
-    auxtempdata = tempData[0];
     //cout << "tempData first: " << auxtempdata.first << "-" << auxtempdata.second << endl;
-    info->coordVec.push_back(auxtempdata);
+    info->coordVec.push_back(tempdepot);
     info->loadVec.push_back(0);
+
 
     cout << "Coordinates rearranged: " << endl;
     for (int i = 0; i < info->coordVec.size(); i++){
@@ -505,45 +539,67 @@ string getInstanceType (char **argv){
 int main (int argc, char *argv[]) {
 
     Info info;
-    string instname;
+    string instname1;
+    string instname2;
 
-    if (argc < 2) {
+    if (argc < 3) {
         cout << "\nMissing parameters\n";
         cout << " ./exeCustInst [Original Instance]"<< endl;
         exit(1);
     }
     
-    if (argc > 2) {
+    if (argc > 3) {
         cout << "\nToo many parameters\n";
         cout << " ./exeCustInst [Original Instance]" << endl;
         exit(1);
     }  
 
-    instname = getInstName(argv);
+    instname1 = getInstName(argv[1]);
+    instname2 = getInstName(argv[2]);
     info.index = getInstIndex(argv);
 
-    info.V = stoi(instname);
+    cout << "instname 1: " << instname1 << endl;
 
+    info.V = stoi(instname1);
+
+    vector<int> vecOfninS = {6, 8, 10, 12};
+    vector<int> vecOfV = {11, 12, 13, 14};
+    int sizeIndex = 0;
     cout << "\n\nInstance size: " << info.V << endl;
 
-    for (int i = 5; i < 11; i++){
-        info.parcelamounts.push_back(i);
+    if (info.V < vecOfV[0] || info.V > vecOfV[3]){
+        cout << "Instance size out of range" << endl;
+        exit(1);
     }
+    else{
+        for (int i = 0; i < vecOfV.size(); i++){
+            if (info.V == vecOfV[i]){
+                sizeIndex = i;
+                break;
+            }
+        }
+    }
+
+    //cout << "\n\nInstance size: " << info.V << endl;
+
+    //for (int i = 0; i < vecOfninS.size(); i++){
+    //    info.parcelamounts.push_back(vecOfninS[i]/2);
+    //}
     //for (int i = 0; i < info.parcelamounts.size(); i++){
     //    cout << info.parcelamounts[i] << " - ";
     //}  
     //cout << endl;
     
-    for (int i = 0; i < info.parcelamounts.size(); i++){
-        info.m = info.parcelamounts[i];
-        info.n = info.V - info.m; 
-        if (info.n < 5){
-            break;
-        }
-        info.K = info.n - 1;
+    //for (int i = 0; i < info.parcelamounts.size(); i++){
+    //for (int i = 0; i < vecOfninS.size(); i++){\
+
+        info.m = vecOfninS[sizeIndex]/2;
+        info.n = 2*info.m; 
+        //info.K = info.n - 1;
+        info.K = std::max(static_cast<int>(std::ceil(info.n / 7.0)), 3);
         generateInst(argc, argv, &info);
         clearInfo(&info);
-    }
+    //}
 
     return 0;
 }

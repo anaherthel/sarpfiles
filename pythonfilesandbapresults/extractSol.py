@@ -335,7 +335,7 @@ def read_files(directory):
             e_hours, e_kms = check_deadheading(solution[j], instanceNames[j], ordered_arcs)
             hoursList.append(e_hours)
             kmsList.append(e_kms)
-            input()
+            #input()
         
         print("before csv")
         make_csvfile(i, instanceNames, solvalues, ublist, lblist, servedparcels, hoursList, kmsList, times)

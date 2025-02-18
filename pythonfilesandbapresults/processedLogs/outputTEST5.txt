@@ -1,0 +1,165 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   BaPCod v0.82.5, 24/09/2023, © Inria Bordeaux, France, bapcod.math.u-bordeaux.fr 
+           THIS CODE IS PROVIDED AS IS, USE IT AT YOUR OWN RISK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Application version is 6.1, 17/11/2021
+command line:./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-5-30-C-5.txt --cutOffValue -91.4 --setting 1 
+Share-a-ride Parameters  
+Subproblem solver: resource constrained shortest path solver
+cutOffValue = -91.4
+setting = 1
+7
+2 5 30
+RCSP solver info : size of non-robust cut bitmask in a label is 640 bits
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 13.9
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 32355( 64.6234% ) / 32355( 100% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 31376( 62.668% ) / 31376( 100% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 13.9
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 32709( 65.3305% ) / 32709( 100% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 30955( 61.8272% ) / 30955( 100% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+Model is built TIME = 0h0m1s10t = 110
+************************************************************************************************
+**** BaB tree root node
+**** Local DB = -1e+12, global bounds : [ -1e+12 , -91.4 ], TIME = 0h0m1s11t = 111
+**** 1 open nodes, 0 columns (0 active), 0 dyn. constrs. (0 active), 44 art. vars. (44 active)
+************************************************************************************************
+#<DWph=2> <it=  1> <et=1.26> <Mt= 0.00> <Spt= 0.14> <nCl= 15> <al=0.00> <DB= 5916.2240> <Mlp= 6000.0000> <PB=-91.4> 
+#<DWph=2> <it=  2> <et=1.42> <Mt= 0.00> <Spt= 0.16> <nCl= 14> <al=0.40> <DB= 4754.5544> <Mlp= 5956.7520> <PB=-91.4> 
+#<DWph=2> <it=  3> <et=1.57> <Mt= 0.00> <Spt= 0.15> <nCl=  3> <al=0.46> <DB= 5940.4229> <Mlp= 4761.7260> <PB=-91.4> 
+#<DWph=2> <it=  4> <et=2.01> <Mt= 0.00> <Spt= 0.44> <nCl=  0> <al=0.00> <DB= 5938.3500> <Mlp= 4757.3010> <PB=-91.4> 
+ Artificial variables in the solution : decreasing phase of stage 
+#<DWph=1> <it=  5> <et=2.47> <Mt= 0.00> <Spt= 0.46> <nCl=  3> <al=0.00> <DB= 5938.3500> <Mlp= 4757.3010> <PB=-91.4> 
+ Artificial variables in the solution : decreasing phase of stage 
+#1 bl.dch (8144)...2 bl.dch (9713)...3 bl.dch (9954)...4 bl.dch (12824)...    RCSP exact solver info for graph G_0 : TT = 55.1805, pt = 0.002346, dt = 44.2825, ct = 10.891, ndl = 364017', bdl = 430626', odl = 109736', odf = 52307715', bsi = 498', cnt = 1244753937', bdch = 4648269085', odch = 1507693214', lcp = 1362520929', #sols = 150
+1 bl.dch (8092)...2 bl.dch (9528)...3 bl.dch (9826)...4 bl.dch (11402)...    RCSP exact solver info for graph G_1 : TT = 58.8328, pt = 0.002409, dt = 44.9562, ct = 13.8668, ndl = 378369', bdl = 442798', odl = 115020', odf = 54426963', bsi = 498', cnt = 1600695288', bdch = 4754838661', odch = 1537211185', lcp = 1404458856', #sols = 150
+<DWph=0> <it=  6> <et=116.49> <Mt= 0.00> <Spt=114.02> <nCl=300> <al=0.31> <DB=-1324.7170> <Mlp= 4757.3010> <PB=-91.4> 
+#1 bl.dch (9190)...2 bl.dch (9954)...    RCSP exact solver info for graph G_0 : TT = 46.1883, pt = 0.003078, dt = 24.3601, ct = 21.8197, ndl = 275639', bdl = 297228', odl = 70801', odf = 39451467', bsi = 538', cnt = 2508666580', bdch = 2407142893', odch = 736812802', lcp = 868134682', #sols = 150
+1 bl.dch (7903)...2 bl.dch (9709)...    RCSP exact solver info for graph G_1 : TT = 54.5728, pt = 0.002675, dt = 25.7414, ct = 28.823, ndl = 296635', bdl = 316273', odl = 78562', odf = 42732405', bsi = 526', cnt = 3341376100', bdch = 2614672617', odch = 811351343', lcp = 927411217', #sols = 150
+<DWph=0> <it=  7> <et=217.34> <Mt= 0.00> <Spt=100.85> <nCl=300> <al=0.38> <DB= -430.2771> <Mlp= 1151.1330> <PB=-91.4> 
+1 bl.dch (7929)...2 bl.dch (10721)...    RCSP exact solver info for graph G_0 : TT = 51.3744, pt = 0.00298, dt = 19.8511, ct = 31.5147, ndl = 275070', bdl = 268230', odl = 63074', odf = 37692171', bsi = 454', cnt = 3518451722', bdch = 2001572740', odch = 643318221', lcp = 697184481', #sols = 150
+1 bl.dch (14196)...1 bl.dch (0)...2 bl.dch (9570)...    RCSP exact solver info for graph G_1 : TT = 65.1945, pt = 0.002386, dt = 23.632, ct = 41.553, ndl = 303344', bdl = 297288', odl = 72145', odf = 41420719', bsi = 458', cnt = 4646246560', bdch = 2404250007', odch = 751213324', lcp = 807422312', #sols = 150
+<DWph=0> <it=  8> <et=333.99> <Mt= 0.00> <Spt=116.65> <nCl=179> <al=0.44> <DB= -240.6597> <Mlp=  -91.1650> <PB=-91.4> 
+1 bl.dch (12010)...1 bl.dch (0)...2 bl.dch (7129)...    RCSP exact solver info for graph G_0 : TT = 68.4158, pt = 0.003254, dt = 24.0109, ct = 44.3951, ndl = 298981', bdl = 268742', odl = 62132', odf = 39280449', bsi = 411', cnt = 4809008073', bdch = 2405630344', odch = 743278570', lcp = 852114564', #sols = 150
+1 bl.dch (11757)...2 bl.dch (12364)...3 bl.dch (14196)...3 bl.dch (0)...    RCSP exact solver info for graph G_1 : TT = 91.5499, pt = 0.002417, dt = 35.8009, ct = 55.7386, ndl = 346494', bdl = 319863', odl = 71758', odf = 43859212', bsi = 410', cnt = 6093618774', bdch = 3619459499', odch = 951533804', lcp = 1275383209', #sols = 150
+<DWph=0> <it=  9> <et=494.04> <Mt= 0.00> <Spt=160.05> <nCl=185> <al=0.34> <DB= -145.3283> <Mlp=  -91.1650> <PB=-91.4> 
+1 bl.dch (12010)...1 bl.dch (0)...2 bl.dch (7094)...    RCSP exact solver info for graph G_0 : TT = 66.7122, pt = 0.002809, dt = 23.6345, ct = 43.0683, ndl = 298386', bdl = 268957', odl = 62367', odf = 39139818', bsi = 430', cnt = 4670175204', bdch = 2412668168', odch = 741191922', lcp = 849633453', #sols = 150
+1 bl.dch (4734)...2 bl.dch (9598)...    RCSP exact solver info for graph G_1 : TT = 61.8456, pt = 0.002817, dt = 23.5525, ct = 38.2832, ndl = 300565', bdl = 303006', odl = 80846', odf = 42260680', bsi = 469', cnt = 4294947776', bdch = 2396803760', odch = 779768195', lcp = 810588435', #sols = 150
+<DWph=0> <it= 10> <et=622.66> <Mt= 0.00> <Spt=128.62> <nCl=106> <al=0.24> <DB= -102.7016> <Mlp=  -91.1650> <PB=-91.4> 
+1 bl.dch (12010)...1 bl.dch (0)...2 bl.dch (7087)...    RCSP exact solver info for graph G_0 : TT = 60.4912, pt = 0.003621, dt = 23.654, ct = 36.8269, ndl = 298291', bdl = 269171', odl = 62685', odf = 38994901', bsi = 437', cnt = 3910658021', bdch = 2412074917', odch = 740030655', lcp = 847317321', #sols = 150
+1 bl.dch (12675)...1 bl.dch (0)...    RCSP exact solver info for graph G_1 : TT = 57.7724, pt = 0.002712, dt = 17.5746, ct = 40.188, ndl = 283809', bdl = 224873', odl = 74797', odf = 45705536', bsi = 470', cnt = 4388708241', bdch = 1700535440', odch = 984221963', lcp = 508757921', #sols = 150
+<DWph=0> <it= 11> <et=740.98> <Mt= 0.00> <Spt=118.31> <nCl=145> <al=0.14> <DB=  -92.1639> <Mlp=  -91.1650> <PB=-91.4> 
+1 bl.dch (12010)...1 bl.dch (0)...2 bl.dch (7094)...    RCSP exact solver info for graph G_0 : TT = 60.0819, pt = 0.003064, dt = 23.4364, ct = 36.6357, ndl = 298805', bdl = 269922', odl = 62781', odf = 39030549', bsi = 437', cnt = 3881734038', bdch = 2413890796', odch = 743625090', lcp = 848629019', #sols = 150
+1 bl.dch (12750)...1 bl.dch (0)...    RCSP exact solver info for graph G_1 : TT = 57.7395, pt = 0.002759, dt = 17.8003, ct = 39.9298, ndl = 284478', bdl = 226035', odl = 74791', odf = 45535670', bsi = 465', cnt = 4337888577', bdch = 1702577386', odch = 982930399', lcp = 509581539', #sols = 150
+<DWph=0> <it= 12> <et=858.81> <Mt= 0.00> <Spt=117.83> <nCl= 46> <al=0.23> <DB=  -91.4831> <Mlp=  -91.1650> <PB=-91.4> 
+avgVertexMem: 0 , colsForbidden = 0, phase-I = 0, phase-II = 0, colNonElem = 0, colElem = 1, TT =  0.002429
+avgVertexMem: 0 , colsForbidden = 0, phase-I = 0, phase-II = 0, colNonElem = 0, colElem = 1, TT =  0.002319
+1 bl.dch (12010)...1 bl.dch (0)...2 bl.dch (7094)...    RCSP exact solver info for graph G_0 : TT = 60.1928, pt = 0.00261, dt = 23.4604, ct = 36.7231, ndl = 298873', bdl = 270087', odl = 62839', odf = 38931308', bsi = 436', cnt = 3881431574', bdch = 2412717234', odch = 742913555', lcp = 848034287', #sols = 150
+1 bl.dch (12762)...1 bl.dch (0)...    RCSP exact solver info for graph G_1 : TT = 57.4073, pt = 0.003006, dt = 17.713, ct = 39.6849, ndl = 284687', bdl = 226365', odl = 74739', odf = 45169596', bsi = 473', cnt = 4310543423', bdch = 1701620226', odch = 969264384', lcp = 508661511', #sols = 150
+1 bl.dch (12010)...1 bl.dch (0)...2 bl.dch (7094)...    RCSP exact solver info for graph G_0 : TT = 62.6746, pt = 0.002706, dt = 23.4148, ct = 39.2505, ndl = 298916', bdl = 270234', odl = 62914', odf = 38879700', bsi = 444', cnt = 4166051044', bdch = 2412738323', odch = 742845676', lcp = 848029894', #sols = 150
+1 bl.dch (12762)...1 bl.dch (0)...    RCSP exact solver info for graph G_1 : TT = 58.2902, pt = 0.00239, dt = 17.5715, ct = 40.7101, ndl = 285138', bdl = 226512', odl = 74400', odf = 44809862', bsi = 474', cnt = 4447033040', bdch = 1701637646', odch = 959372751', lcp = 508640912', #sols = 150
+<DWph=0> <it= 13> <et=1097.39> <Mt= 0.00> <Spt=238.58> <nCl= 29> <al=0.00> <DB=  -91.4410> <Mlp=  -91.4410> <PB=-91.441> 
+RCSP solver dynamic params and stats :  bidir.bord. = 14.6 aver.obdmd = 404.672
+@@ 1 0 -91.441 59.0255 68.406 41.3408 1097.39
+RCSP solver dynamic params and stats :  bidir.bord. = 14.5 aver.obdmd = 395.164
+@@ 1 0 -91.441 62.5689 91.5394 41.6028 1097.39
+ColGenEvalAlg final dual bound: -91.441 (rounded: -91.441)
+New model incumbent solution -91.441, TIME = 0h18m17s44t = 109744
+************************************************************************************************
+Search is finished, global bounds : [ -91.441 , -91.441 ], TIME = 0h18m17s44t = 109744
+************************************************************************************************
+Solution: ref = 3   solCost = -91.441
+   multiplicity = 1
+   nbVar = 0
+-------------------------
+Solution: ref = 2899   solCost = -50.319
+   multiplicity = 1
+   nbVar = 21
+   Ordered solution  (not. enum.) : 0(9) -> 6(9.11707) -> 21(9.57358) -> 33(9.91301) -> 25(10.2915) -> 36(10.4772) -> 51(10.7825) -> 63(11.0317) -> 55(11.3167) -> 19(12.15) -> 1(12.7167) -> 49(13.7565) -> 15(13.9911) -> 3(14.6) -> 45(15.2813) -> 35(15.7167) -> 34(16.7) -> 12(16.9736) -> 65(17.1789) -> 64(17.8) -> 42(18.1126) -> 66(18.1959)
+Solution includes var[Xk1i1j7_1_OspV(2.208)] = 1
+Solution includes var[Xk1i2j50_1_OspV(8.372)] = 1
+Solution includes var[Xk1i4j46_1_OspV(7.958)] = 1
+Solution includes var[Xk1i7j22_1_OspV(-0.018)] = 1
+Solution includes var[Xk1i13j66_1_OspV(-22.269)] = 1
+Solution includes var[Xk1i16j4_1_OspV(-20.331)] = 1
+Solution includes var[Xk1i20j2_1_OspV(-5.335)] = 1
+Solution includes var[Xk1i22j34_1_OspV(-8.783)] = 1
+Solution includes var[Xk1i26j37_1_OspV(-15.665)] = 1
+Solution includes var[Xk1i34j26_1_OspV(-5.059)] = 1
+Solution includes var[Xk1i35j13_1_OspV(-16.582)] = 1
+Solution includes var[Xk1i36j35_1_OspV(-7.337)] = 1
+Solution includes var[Xk1i37j52_1_OspV(4.186)] = 1
+Solution includes var[Xk1i43j1_1_OspV(0)] = 1
+Solution includes var[Xk1i46j36_1_OspV(2.024)] = 1
+Solution includes var[Xk1i50j16_1_OspV(2.852)] = 1
+Solution includes var[Xk1i52j64_1_OspV(3.128)] = 1
+Solution includes var[Xk1i56j20_1_OspV(7.452)] = 1
+Solution includes var[Xk1i64j56_1_OspV(2.3)] = 1
+Solution includes var[Xk1i65j43_1_OspV(4.324)] = 1
+Solution includes var[Xk1i66j65_1_OspV(6.256)] = 1
+-------------------------
+Solution: ref = 2831   solCost = -41.122
+   multiplicity = 1
+   nbVar = 16
+   Ordered solution  (not. enum.) : 0(9) -> 2(9.71667) -> 17(11.9833) -> 9(12.2203) -> 5(12.6667) -> 39(13.0667) -> 47(13.4012) -> 29(14.2333) -> 4(14.9) -> 16(15.3569) -> 59(15.4988) -> 20(15.8333) -> 46(16.4728) -> 8(16.6732) -> 50(17) -> 38(17.8167) -> 66(17.9)
+Solution includes var[Xk0i0j3_0_OspV(2.254)] = 1
+Solution includes var[Xk0i3j18_0_OspV(2.208)] = 1
+Solution includes var[Xk0i5j17_0_OspV(1.886)] = 1
+Solution includes var[Xk0i6j40_0_OspV(0.69)] = 1
+Solution includes var[Xk0i9j51_0_OspV(-12.142)] = 1
+Solution includes var[Xk0i10j6_0_OspV(-7.735)] = 1
+Solution includes var[Xk0i17j60_0_OspV(-16.991)] = 1
+Solution includes var[Xk0i18j10_0_OspV(-18.849)] = 1
+Solution includes var[Xk0i21j47_0_OspV(-8.022)] = 1
+Solution includes var[Xk0i30j5_0_OspV(-3.879)] = 1
+Solution includes var[Xk0i39j0_0_OspV(0)] = 1
+Solution includes var[Xk0i40j48_0_OspV(4.738)] = 1
+Solution includes var[Xk0i47j9_0_OspV(2.208)] = 1
+Solution includes var[Xk0i48j30_0_OspV(3.91)] = 1
+Solution includes var[Xk0i51j39_0_OspV(5.566)] = 1
+Solution includes var[Xk0i60j21_0_OspV(3.036)] = 1
+-------------------------
+
+data/C4/csarp/sarp-5-30-C-5.txt
+bcAverageDualSolSize 13 126 
+bcAveragePrimalSolSize 13 56 
+bcCountCg 17 
+bcCountCgSpSolverCall 34 
+bcCountCol 1325 
+bcCountMastSol 13 
+bcCountNodeGen 1 
+bcCountNodeProc 1 
+bcCountNodeTreat 1 
+bcCountPrimalSolSize 2 
+bcCountSpSol 34 
+bcEstimTreeSize 0 
+bcMaxDualSpaceSize 39 
+bcMaxIterCg 13 
+bcMaxNbColInMastLp 1325 
+bcMaxNbRowInMastLp 37 
+bcMaxPUpd 1 
+bcMaxPrimalSpaceSize 39 
+bcRecBestDb -91.441 
+bcRecBestInc -91.441 
+bcRecRootDb -91.441 
+bcRecRootInc -91.441 
+bcRecRootLpVal -91.441 
+bcTimeBaP 109634 & 0h18m16s33t 
+bcTimeCgSpOracle 109627 & 0h18m16s26t 
+bcTimeColGen 109628 & 0h18m16s27t 
+bcTimeCutSeparation 0.484808 & 0h0m0s0t 
+bcTimeHeurSpOracle 135.556 & 0h0m1s35t 
+bcTimeMain 109745 & 0h18m17s44t 
+bcTimeMastMPsol 0.625993 & 0h0m0s0t 
+bcTimeMastPrepareProbConfig 104.542 & 0h0m1s4t 
+bcTimeRoot 109745 & 0h18m17s44t 
+bcTimeRootEval 109745 & 0h18m17s44t 
+bcTimeSetMast 4.83666 & 0h0m0s4t 
+bcTimeSpMPsol 109619 & 0h18m16s18t 
+bcTimeSpSol 109623 & 0h18m16s22t 
+bcTimeSpUpdateProb 3.39059 & 0h0m0s3t 
+BaPStat: data/C4/csarp/sarp-5-30-C-5.txt & 109745 & 0h18m17s44t  \\ 
+TIME = 0h18m17s44t = 109744

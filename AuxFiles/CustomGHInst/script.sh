@@ -21,14 +21,39 @@
 #done
 
 dirInstancias='instances/grubhub'
+dirInstancias2='instances/grubhub2'
+
 #runs=10
 
 #cat /dev/null > $output
 
-for i1 in `ls ${dirInstancias}`
-do
-	./exeCustInst ./${dirInstancias}/${i1}
 
+files1=($(ls -1 "$dirInstancias"))
+files2=($(ls -1 "$dirInstancias2"))
+
+# Ensure both directories have the same number of files
+if [ "${#files1[@]}" -ne "${#files2[@]}" ]; then
+    echo "Error: Directories contain different numbers of files!"
+    exit 1
+fi
+
+# Iterate over files using index
+for i in "${!files1[@]}"; do
+    file1="${files1[$i]}"
+    file2="${files2[$i]}"
+    
+    echo "Processing: $file1 and $file2"
+    ./exeCustInst "./$dirInstancias/$file1" "./$dirInstancias2/$file2"
 done
+
+#for i1 in `ls ${dirInstancias}`
+#do
+#	./exeCustInst ./${dirInstancias}/${i1} ./${dirInstancias2}/${i1}
+
+#done
+
+
+
+
 
 

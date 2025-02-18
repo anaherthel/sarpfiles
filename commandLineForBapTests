@@ -1,0 +1,23 @@
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-5-30-C-7.txt --cutOffValue -42.1 --setting 1 | tee outputTEST7.txt &
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-5-30-C-8.txt --cutOffValue -70.8 --setting 1 | tee outputTEST8.txt &
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-5-30-C-5.txt --cutOffValue -91.4 --setting 1 | tee outputTEST5.txt &
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-5-30-C-6.txt --cutOffValue -86.2 --setting 1 | tee outputTEST6.txt
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-5-30-C-9.txt --cutOffValue -238.6 --setting 1 | tee outputTEST9a.txt
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-5-30-C-10.txt --cutOffValue -243.5 --setting 1 | tee outputTEST10a.txt
+
+
+
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-15-C-2.txt --cutOffValue -68.2 --setting 1 | tee outputTEST15C2a.txt
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-15-C-3.txt --cutOffValue -97.8 --setting 1 | tee outputTEST15C3a.txt
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-15-C-4.txt --cutOffValue -44.1 --setting 1 | tee outputTEST15C4a.txt
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-15-C-5.txt --cutOffValue -76.1 --setting 1 | tee outputTEST15C5a.txt
+
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-20-C-2.txt --cutOffValue -129.6 --setting 1 | tee outputTEST20C2a.txt
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-20-C-3.txt --cutOffValue -150.6 --setting 1 | tee outputTEST20C3a.txt
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-20-C-4.txt --cutOffValue -79.1 --setting 1 | tee outputTEST20C4a.txt
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-20-C-5.txt --cutOffValue -113.5 --setting 1 | tee outputTEST20C5a.txt
+
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-30-B-2.txt --cutOffValue -6.4 --setting 1 | tee outputTESTB1a.txt
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-30-B-3.txt --cutOffValue -41.8 --setting 1 | tee outputTESTB3a.txt
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-30-B-4.txt --cutOffValue 9.9 --setting 1 | tee outputTESTB4a.txt
+./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C4/csarp/sarp-30-30-B-5.txt --cutOffValue -35.336 --setting 1 | tee outputTESTB5a.txt

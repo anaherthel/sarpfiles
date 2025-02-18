@@ -306,10 +306,6 @@ void solveselect(nodeStat *node, instanceStat *inst, double **mdist, vector<node
         // h.hbundleMethod(&inst, nodeVec, distMatrix, &problem, &sStat);
     }
 
-    else if (problem->model == "mio"){
-        
-    }
-
     else if (problem->model == "ils"){
         // h.orderRequests(&inst, nodeVec, distMatrix, &problem);
         // h.buildDistVec(&inst, nodeVec, distMatrix, &problem);
@@ -579,10 +575,10 @@ void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat, 
     
     // Open a file in write mode
     string sizeOfInst = "S";
-    if (inst->n + inst->m > 15 && inst->n + inst->m <= 60) {
+    if (inst->n > 15 && inst->n < 50) {
         sizeOfInst = "M";
     }
-    else if (inst->n + inst->m > 60) {
+    else if (inst->n > 40) {
         sizeOfInst = "L";
     }
     double partialCustomProfit = 0;
