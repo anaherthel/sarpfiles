@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances/ghsarp'
-output='fip1ADsghsarpN.txt'
+dirInstancias='Instances_M2/sf_data'
+output='2mm2msfsarpN2.txt'
 #runs=10
 
 cat /dev/null > $output
@@ -15,8 +15,7 @@ cat /dev/null > $output
 		do
 #			echo "Solving: " ${arquivo} ":" >> $output #output pra saber que instancia ta sendo rodada
 #			echo "Scenario: 1A bundle "  >> $output
-			./bin/bin.out ${dirInstancias}/${arquivo} 1AD fip >> $output
-			#./bin/bin.out ${dirInstancias}/${arquivo} 2MM nodefip >> $output
+			./bin/bin.out ${dirInstancias}/${arquivo} 2MM node >> $output
 		done
 #	done
 #done
