@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances_L3/csarp'
-output='fipLcsarpN3.txt'
+dirInstancias='Instances_L2/sf_data'
+output='fipLsfsarpN2.txt'
 #runs=10
 
 cat /dev/null > $output
