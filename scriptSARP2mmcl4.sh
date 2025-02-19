@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances_M3/csarp'
-output='fipmMcsarpN3.txt'
+dirInstancias='Instances_L4/csarp'
+output='2mmLcsarpN4.txt'
 #runs=10
 
 cat /dev/null > $output
@@ -15,8 +15,7 @@ cat /dev/null > $output
 		do
 #			echo "Solving: " ${arquivo} ":" >> $output #output pra saber que instancia ta sendo rodada
 #			echo "Scenario: 1A bundle "  >> $output
-			./bin/bin.out ${dirInstancias}/${arquivo} 1AD fip >> $output
-			./bin/bin.out ${dirInstancias}/${arquivo} 2MM nodefip >> $output
+			./bin/bin.out ${dirInstancias}/${arquivo} 2MM node >> $output
 		done
 #	done
 #done

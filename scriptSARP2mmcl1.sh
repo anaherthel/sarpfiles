@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='Instances_M2/sf_data'
-output='2mm2msfsarpN2.txt'
+dirInstancias='Instances_L/csarp'
+output='2mmLcsarpN1.txt'
 #runs=10
 
 cat /dev/null > $output
