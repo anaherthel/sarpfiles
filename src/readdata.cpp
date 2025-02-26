@@ -317,7 +317,8 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     double singleProfit;
     double euclidean;
     double calcdist;
-    double scalingfactor = 50; //to scale grubhub (ghsarp) distance values
+    //double scalingfactor = 50; //to scale grubhub (ghsarp) distance values
+    double scalingfactor = 25; //to scale grubhub (ghsarp) distance values
 
     if (problem->model != "osarp" && problem->model != "fip"){
         for (int i = 0; i < V + inst->dummy; i++){

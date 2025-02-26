@@ -121,7 +121,9 @@ void genPoints (int argc, char** argv, Info *info){
 
     int totalPoints, totalGenerated;
     double lb = 0;
-    double ub = 25;
+    //double ub = 25;
+    double ub = 50;
+    //double ub = 75;
     //double lb = 9;
     //double ub = 19;
     int multiplier = 1;
@@ -145,9 +147,9 @@ void genPoints (int argc, char** argv, Info *info){
 
                 //info->seed = info->n + info->m + p;
                 
-                //info->K = floor(info->n/2);
+                info->K = floor(info->n/2);
                 //info->K = info->n-1;
-                info->K = std::max(static_cast<int>(std::ceil(info->n / 7.0)), 3) + 2;
+                //info->K = std::max(static_cast<int>(std::ceil(info->n / 7.0)), 3) + 2;
                 totalPoints = (info->n + info->m)*2 + (info->K);
                 totalGenerated = totalPoints + ceil(totalPoints/5);//generating more than needed because of bugs of missing coordinates
 
@@ -155,7 +157,7 @@ void genPoints (int argc, char** argv, Info *info){
                     coordinate.first = fRand(lb, ub);
                     coordinate.second = fRand(lb, ub);
 
-                    info->coordVec.push_back(coordinate);           
+                    info->coordVec.push_back(coordinate);  
                 }
 
 

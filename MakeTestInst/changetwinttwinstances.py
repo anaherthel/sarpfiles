@@ -1,4 +1,4 @@
-
+import os
 
 def read_inst(filename):
     with open(filename) as f:
@@ -89,10 +89,21 @@ def write_inst(filename, lines):
             #f.write(line)
 
 
-filename = 'sarp-30-30-B-3.txt'
-outputName = 'sarp-30-30-B-5.txt'
-lines = read_inst(filename)
-#lines = change_deliveryTW2(lines)
-lines = change_deliveryTW(lines)
-write_inst(outputName, lines)
+l_files = os.listdir("./prevtw")
+
+
+for i in l_files:
+    filename = "./prevtw/" + i
+    outputName = "./newtw/" + i
+    lines = read_inst(filename)
+    #lines = change_deliveryTW2(lines)
+    lines = change_deliveryTW(lines)
+    write_inst(outputName, lines)
+
+#filename = 'sarp-30-30-B-3.txt'
+#outputName = 'sarp-30-30-B-5.txt'
+#lines = read_inst(filename)
+##lines = change_deliveryTW2(lines)
+#lines = change_deliveryTW(lines)
+#write_inst(outputName, lines)
     
