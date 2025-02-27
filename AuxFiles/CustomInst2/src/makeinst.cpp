@@ -142,14 +142,14 @@ void genPoints (int argc, char** argv, Info *info){
                 info->m = info->dimVec[i][scd].second;
                 //info->seed = pow((info->n-1), 8) + pow((info->m-1), 4) + pow(p, 6);//changed (same as gh)//some issues with C instances in L scale
                 //info->seed = pow((info->n/2), 3) + pow((info->m/4), 3) + pow(p, 10); 
-                info->seed = pow((info->n), 3) + pow((info->m), 6) + pow(p, 7); 
+                //info->seed = pow((info->n), 4) + pow((info->m), 6) + pow(p, 3); 
                 //info->seed = 534;
 
-                //info->seed = info->n + info->m + p;
+                info->seed = info->n*2 + info->m*5 + p*10;
                 
-                info->K = floor(info->n/2);
+                //info->K = floor(info->n/2);
                 //info->K = info->n-1;
-                //info->K = std::max(static_cast<int>(std::ceil(info->n / 7.0)), 3) + 2;
+                info->K = std::max(static_cast<int>(std::ceil(info->n / 5.0)), 3) + 6;
                 totalPoints = (info->n + info->m)*2 + (info->K);
                 totalGenerated = totalPoints + ceil(totalPoints/5);//generating more than needed because of bugs of missing coordinates
 
