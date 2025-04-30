@@ -1442,7 +1442,9 @@ void nodeMethod (nodeStat *node, instanceStat *inst, double **mdist, vector<node
 	// }
 	// // TODO UNCOMMENT //  << endl;
 
-    mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
+    //mipnode(inst, nodeVec, mdist, problem, &nas, sStat);
+    mipnodeV2(inst, nodeVec, mdist, problem, &nas, sStat);
+
     
     // mtznode(inst, nodeVec, mdist, problem, &nas, sStat);
 
