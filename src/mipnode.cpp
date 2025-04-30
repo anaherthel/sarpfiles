@@ -570,6 +570,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	}
 
+	
+
 
 	//IloExpr exp(env);
 	//exp = x[15][9][0];
@@ -2549,74 +2551,7 @@ void mipnodefip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, p
 	// }
 
 
-	//IloExpr exp(env);
 
-	//exp = x[18][1][0];
-
-	//sprintf (var, "Constraint16");
-
-	//IloRange cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-	//exp = x[1][2][0];
-
-	//sprintf (var, "Constraint17");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-
-	//exp = x[2][0][0];
-
-	//sprintf (var, "Constraint18");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-
-	//exp = x[0][20][0];
-
-	//sprintf (var, "Constraint19");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-	//exp = x[19][4][1];
-
-	//sprintf (var, "Constraint20");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-
-	//exp = x[4][5][1];
-
-	//sprintf (var, "Constraint21");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-	//exp = x[5][3][1];
-
-	//sprintf (var, "Constraint22");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
-
-	//exp = x[3][21][1];
-
-	//sprintf (var, "Constraint23");
-
-	//cons = (exp == 1);
-	//cons.setName(var);
-	//model.add(cons);
 
 
     int threads;

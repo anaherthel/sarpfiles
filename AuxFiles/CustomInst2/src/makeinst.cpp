@@ -145,7 +145,7 @@ void genPoints (int argc, char** argv, Info *info){
                 //info->seed = pow((info->n), 4) + pow((info->m), 6) + pow(p, 3); 
                 //info->seed = 534;
 
-                info->seed = info->n*2 + info->m*5 + p*10;
+                info->seed = info->n*2 + info->m*5 + p*9;
                 
                 //info->K = floor(info->n/2);
                 //info->K = info->n-1;

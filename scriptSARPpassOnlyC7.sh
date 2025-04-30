@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='C82/csarp'
-output='passOnlyLD12.txt'
+dirInstancias='C12A/csarp'
+output='passOnly12A.txt'
 #runs=10
 
 cat /dev/null > $output

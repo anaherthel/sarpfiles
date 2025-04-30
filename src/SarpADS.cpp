@@ -308,7 +308,7 @@ void printStats(instanceStat *inst, solStats *sStat){
         // cout << "\nUnserved parcels: " << inst->m - sStat->servedParcels << endl;
 
 
-        // cout << "\n*************" << endl;
+        // cout << "\n*************" << endl;32.4
 
         // cout << "\nTotal time: " << sStat->tPass + sStat->tParcel + sStat->tBoth + sStat->tNone << endl;
         // cout << "\nTotal passenger time: " << sStat->tPass << endl;
@@ -318,11 +318,11 @@ void printStats(instanceStat *inst, solStats *sStat){
 
         // cout << "\n*************" << endl;
 
-        // cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
-        // cout << "\nTotal passenger distance: " << sStat->dPass << endl;
-        // cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
-        // cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
-        // cout << "\nTotal idle distance: " << sStat->dNone << endl;
+         cout << "\nTotal distance: " << sStat->dPass + sStat->dParcel + sStat->dBoth + sStat->dNone << endl;
+         cout << "\nTotal passenger distance: " << sStat->dPass << endl;
+         cout << "\nTotal parcel distance: " << sStat->dParcel << endl;
+         cout << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
+         cout << "\nTotal idle distance: " << sStat->dNone << endl;
 
         // cout << "\n*************" << endl;
 

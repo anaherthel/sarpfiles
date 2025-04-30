@@ -570,8 +570,6 @@ void generateScaleCSV(instanceStat *inst, solStats *sStat) {
 }
 
 void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat, double **mdist) {
-
-    cout << "IN GENERATE RESULTS CSV" << endl;
     
     // Open a file in write mode
     string sizeOfInst = "S";
@@ -666,6 +664,79 @@ void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat, 
                 << sStat->gap << "," << vrps << "," << sStat->tNone << "," <<  percTime << "," << sStat->dNone << "," << percDist << "\n";
         }
         
+
+
+        file.close();
+        std::cout << "CSV file '" << filename << "' generated successfully!" << std::endl;
+
+        return;
+    }
+
+
+
+    //for (const auto& pair : data) {
+    //    file << pair.first << "," << pair.second << "\n";
+    //}
+
+    // Close the file
+}
+
+void generatePassDistCSV(instanceStat *inst, probStat* problem, double passDist) {
+    
+    // Open a file in write mode
+    string sizeOfInst = "S";
+    if (inst->n > 15 && inst->n < 50) {
+        sizeOfInst = "M";
+    }
+    else if (inst->n > 40) {
+        sizeOfInst = "L";
+    }
+    double partialCustomProfit = 0;
+    string filename = "TreatResults/FullResults/" + problem->model + problem->scen + inst->instType + "sfSPass.csv";
+    bool fileExists = checkFileExists(filename);
+
+    cout << "File exists: " << fileExists << endl;
+
+    //if(problem->model == "fip"){
+    //    cout << "calculating partial profit" << endl;
+
+    //    double partialCustomProfit = inst->totalCustomProfit;
+
+
+
+    //    cout<< "Partial profit: " << partialCustomProfit << endl;
+        
+    //}
+
+
+    // Write the header for the CSV file
+    if (fileExists) {
+        std::ofstream file(filename, std::ios::app);
+        if (!file.is_open()) {
+            std::cerr << "Error: Could not open file " << filename << std::endl;
+            return;
+        }
+
+        file << inst->InstName << "," << passDist << "\n";
+
+
+        
+        file.close();
+        std::cout << "CSV file '" << filename << "' generated successfully!" << std::endl;
+        return;
+    }
+
+    else{
+        std::ofstream file(filename);
+
+        if (!file.is_open()) {
+            std::cerr << "Error: Could not open file " << filename << std::endl;
+            return;
+        }        
+
+        file << "Instance Name, Pass Dist \n";
+        file << inst->InstName << "," << passDist << "\n";
+    
 
 
         file.close();

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dirInstancias='C61/csarp'
-output='2mmc61.txt'
+dirInstancias='CA/csarp'
+output='output.txt'
 #runs=10
 
 cat /dev/null > $output

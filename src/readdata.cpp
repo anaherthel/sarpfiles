@@ -319,6 +319,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     double calcdist;
     double scalingfactor = 50; //to scale grubhub (ghsarp) distance values
     //double scalingfactor = 35; //to scale grubhub (ghsarp) distance values
+    double totalPassDist = 0;
 
     if (problem->model != "osarp" && problem->model != "fip"){
         for (int i = 0; i < V + inst->dummy; i++){
@@ -333,7 +334,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 else if (inst->instType == "sf_data"){
                     calcdist = CalcManKm(vxs, vys, vxf, vyf, i, i); 
                 }
-
+                totalPassDist += calcdist;
                 delta[i] = (2 * (service)) + (calcdist)/inst->vmed;
                 profit[i] = inst->minpas + inst->paskm*calcdist;
                 profit[i] =  profit[i]- inst->costkm*calcdist;
@@ -529,7 +530,11 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         nodeVec.push_back(*node);
     }
 
-    
+    //cout << "Total Passenger Distance: " << totalPassDist << endl; 
+
+    //generatePassDistCSV(inst, problem, totalPassDist);
+
+    //getchar();
     // TODO UNCOMMENT 
     //cout << "Earlier // Later: " << endl;
 
@@ -578,6 +583,9 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
     // // TODO UNCOMMENT //  << "\ntotal profit: " << inst->totalCustomProfit;
 
     // getchar();
+
+
+
 
     delete[] profit;
     delete[] delta;
@@ -642,10 +650,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     ////////passDistances.clear();
     ////////// TODO UNCOMMENT //  
-    //cout << "Profits: " << endl;
-    //for (int i = 0; i < nodeVec.size(); i++){
-    //    cout  << i << ": " << nodeVec[i].profit << endl;
-    //}
+    cout << "Profits: " << endl;
+    for (int i = 0; i < nodeVec.size(); i++){
+        cout  << i << ": " << nodeVec[i].profit << endl;
+    }
 
     ////////// // getchar();
 

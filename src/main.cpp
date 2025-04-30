@@ -51,19 +51,17 @@ int main (int argc, char *argv[]) {
 		//if (trialK > inst.n){
 		//	break;
 		//}
-		
-		hbundle h(&inst);
-		
+				
 		//startPermutation(&inst, distMatrix, nodeVec);
 
-		//cout << "Dist Matrix: " << endl;
-		//for (int i = 0; i < inst.V + inst.dummy; i++){
-		//	for (int j = 0; j < inst.V + inst.dummy; j++){
-		//		cout << setw(10) << distMatrix[i][j] << " ";
-		//	}
-		//	cout << endl;
-		//}
-
+		cout << "Dist Matrix: " << endl;
+		for (int i = 0; i < inst.V + inst.dummy; i++){
+			for (int j = 0; j < inst.V + inst.dummy; j++){
+				cout << setw(10) << distMatrix[i][j] << " ";
+			}
+			cout << endl;
+		}
+		getchar();
 		//cout << "Time Matrix: " << endl;
 		//for (int i = 0; i < inst.V + inst.dummy; i++){
 		//	for (int j = 0; j < inst.V + inst.dummy; j++){
