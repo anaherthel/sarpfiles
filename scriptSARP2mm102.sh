@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='C102/csarp'
-output='2mmc102.txt'
+output='2mmStartcsarp102.txt'
 #runs=10
 
 cat /dev/null > $output

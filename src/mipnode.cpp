@@ -1073,6 +1073,13 @@ void mipnodeV2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, pr
 		model.add(cons2);			
 	}
 
+	//Obtaining bounds
+
+	double cutoff = getCutOff(inst);
+
+	cout << "Cutoff Value: " << cutoff << endl;
+
+	//getchar();
     int threads;
 
     threads = 1;
@@ -1081,6 +1088,10 @@ void mipnodeV2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, pr
 	v2SARP.exportModel("v2SARP.lp");
 	v2SARP.setParam(IloCplex::Threads, threads);
 	v2SARP.setParam(IloCplex::Param::TimeLimit, 7200);
+	//v2SARP.setParam(IloCplex::CutLo, cutoff);
+	v2SARP.setParam(IloCplex::Param::MIP::Tolerances::LowerCutoff, cutoff);
+
+	//mip start
 
     IloNum start;
     IloNum time;

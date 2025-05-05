@@ -753,3 +753,42 @@ void generatePassDistCSV(instanceStat *inst, probStat* problem, double passDist)
 
     // Close the file
 }
+double getCutOff(instanceStat *inst){
+
+    string instName = inst->InstName;
+
+    double cutoff = 0;
+
+    string cutOffFile = "/home/ana/Documents/PHD/Research/Implementation/sarpfiles/cutoffs/" + instName + ".txt";
+
+    std::ifstream file(cutOffFile);
+    std::string line;
+    string value = "0";
+
+    if (file.is_open()) {
+        if (std::getline(file, line)) {
+            std::stringstream ss(line);
+            ss >> value;
+
+            //if (ss.fail()) {
+            //    std::cerr << "Conversion failed: not a valid double." << std::endl;
+            //} else {
+            //    std::cout << "Read value: " << value << std::endl;
+            //}
+        }
+        file.close();
+    } else {
+        std::cerr << "Unable to open file." << std::endl;
+    }
+    // Convert the variable called value to a double
+    cutoff = std::stod(value);
+
+    double custProfit = inst->totalCustomProfit;
+
+    //double nCutOff = cutoff - 0.1;
+    double nCutOff = cutoff;
+
+    double realCutOff = custProfit - nCutOff;
+
+    return realCutOff;
+}

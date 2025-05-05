@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dirInstancias='C62/sf_data'
-output='2mmsf62.txt'
+output='2mmStartsfsarp62.txt'
 #runs=10
 
 cat /dev/null > $output

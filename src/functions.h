@@ -17,17 +17,19 @@
 #include <ctime>
 #include <ilcplex/ilocplex.h>
 #include <stdlib.h>
-#include <iostream>
 #include <locale.h>
 #include <sys/time.h>
 #include <ctime>
 #include <unistd.h>
+#include <filesystem>
+#include <sstream>
 #include "sarpILS.h"
 #include "modelnode.h"
 #include "modelbundle.h"
 #include "modelbundle2.h"
 #include "modelbundlep.h"
 #include "SarpADS.h"
+
 
 using namespace std;
 
@@ -53,5 +55,6 @@ bool checkFileExists(const std::string& filename);
 void generateScaleCSV(instanceStat *inst, solStats *sStat);
 void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat, double **mdist);
 void generatePassDistCSV(instanceStat *inst, probStat* problem, double passDist);
+double getCutOff(instanceStat *inst);
 
 #endif
