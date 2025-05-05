@@ -759,7 +759,7 @@ double getCutOff(instanceStat *inst){
 
     double cutoff = 0;
 
-    string cutOffFile = "/home/ana/Documents/PHD/Research/Implementation/sarpfiles/cutoffs/" + instName + ".txt";
+    string cutOffFile = "./cutoffs/" + instName + ".txt";
 
     std::ifstream file(cutOffFile);
     std::string line;
@@ -784,6 +784,8 @@ double getCutOff(instanceStat *inst){
     cutoff = std::stod(value);
 
     double custProfit = inst->totalCustomProfit;
+    cout << "profit: " << custProfit << endl;
+    cout << "cutoff: " << cutoff << endl;
 
     //double nCutOff = cutoff - 0.1;
     double nCutOff = cutoff;
