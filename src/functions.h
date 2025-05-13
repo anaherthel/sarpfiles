@@ -56,5 +56,6 @@ void generateScaleCSV(instanceStat *inst, solStats *sStat);
 void generateResultsCSV(instanceStat *inst, probStat* problem, solStats *sStat, double **mdist);
 void generatePassDistCSV(instanceStat *inst, probStat* problem, double passDist);
 double getCutOff(instanceStat *inst);
+int getMaxRunTime(instanceStat *inst);
 
 #endif

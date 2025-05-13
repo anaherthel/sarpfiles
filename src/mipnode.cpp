@@ -1076,9 +1076,18 @@ void mipnodeV2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, pr
 	//Obtaining bounds
 
 	double cutoff = getCutOff(inst);
+	int maxRunTime = getMaxRunTime(inst);
 
+	cout << "_______________________________________" << endl;
 	cout << "Cutoff Value: " << cutoff << endl;
+	cout << "Max Run Time: " << maxRunTime << endl;
+	cout << "_______________________________________" << endl;
 
+	int selectedMaxTime = std::max(7200, maxRunTime);
+
+	cout << "Selected Max Time: " << selectedMaxTime << endl;
+	cout << "_______________________________________" << endl;
+	//getchar();
 	//getchar();
     int threads;
 
@@ -1087,7 +1096,7 @@ void mipnodeV2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, pr
 	IloCplex v2SARP(model);
 	v2SARP.exportModel("v2SARP.lp");
 	v2SARP.setParam(IloCplex::Threads, threads);
-	v2SARP.setParam(IloCplex::Param::TimeLimit, 7200);
+	v2SARP.setParam(IloCplex::Param::TimeLimit, selectedMaxTime);
 	//v2SARP.setParam(IloCplex::CutLo, cutoff);
 	v2SARP.setParam(IloCplex::Param::MIP::Tolerances::LowerCutoff, cutoff);
 

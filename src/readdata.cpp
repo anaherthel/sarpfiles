@@ -650,10 +650,10 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
 
     ////////passDistances.clear();
     ////////// TODO UNCOMMENT //  
-    cout << "Profits: " << endl;
-    for (int i = 0; i < nodeVec.size(); i++){
-        cout  << i << ": " << nodeVec[i].profit << endl;
-    }
+    //cout << "Profits: " << endl;
+    //for (int i = 0; i < nodeVec.size(); i++){
+    //    cout  << i << ": " << nodeVec[i].profit << endl;
+    //}
 
     ////////// // getchar();
 

@@ -447,7 +447,7 @@ def make_csvfile(filename):
                   'feature_avgParcTripLen', 'feature_avgPassToParcTrip', 'feature_avgPassToPassTrip','feature_avgDepotToReqDist',
                   'feature_entropyPass', 'feature_entropyParc', 'feature_entropyReq', 
                   'feature_depotIsolationRatio', 'feature_requestSpreadRadius', 'feature_convexHullArea',
-                  'feature_avgTWLength', 'feature_TWEntropy', 'algo_standardMIP', 'algo_FIP', 'algo_BCP']
+                  'feature_avgTWLength', 'feature_TWEntropy', 'algo_standardMIP', 'algo_FIP', 'algo_BCP', 'algo_heuristic']
         writer.writerow(header)
            
 def addTo_csvfile(filename, list_features, list_algos):
@@ -475,7 +475,7 @@ def addTo_csvfile(filename, list_features, list_algos):
                    list_features[i][5], list_features[i][6], list_features[i][7], list_features[i][8], 
                    list_features[i][9], list_features[i][10], list_features[i][11], list_features[i][12], list_features[i][13],
                    list_features[i][14], list_features[i][15], list_features[i][16],
-                   list_algos[algo_i][1], list_algos[algo_i][2], list_algos[algo_i][3]]
+                   list_algos[algo_i][1], list_algos[algo_i][2], list_algos[algo_i][3], list_algos[algo_i][4]]
             writer.writerow(row)
             
 def calcStdDev(llist):
@@ -804,11 +804,11 @@ make_csvfile("SARPmetadata.csv")
 dir_csv = '/home/ana/Documents/PHD/Research/Implementation/sarpfiles/ISA/MetaData/'
 dir_inst = '/home/ana/Documents/PHD/Research/Implementation/sarpfiles/ISA/AllInst/'
 
-list_algos = read_algos_file('algorithms2.csv')
+list_algos = read_algos_file('algorithms3.csv')
 #print()
 
 #print("list_algos", list_algos)
 list_features = make_list_features(dir_inst)
 
-addTo_csvfile("SARPmetadata.csv", list_features, list_algos)
+addTo_csvfile("SARPmetadata2.csv", list_features, list_algos)
 
