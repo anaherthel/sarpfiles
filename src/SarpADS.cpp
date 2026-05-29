@@ -296,8 +296,331 @@ void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec,
     }
 }
 
+void fipPassSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat){
+
+    int load;
+    double distPass;
+    // load = 0;
+    double dij;
+    double stop;
+    double tij;
+    int currNode;
+    int nextNode;
+    
+    for (int k = 0; k < inst->K; k++){
+        load = 0;
+        if (sStat->solOrder[k].size() < 1){
+            continue;
+        }
+        for (int i = 0; i < sStat->solOrder[k].size() - 2; i++){
+            // dij = mdist[sStat->solOrder[k][i]][sStat->solOrder[k][i + 1]];
+            currNode = sStat->solOrder[k][i];
+            nextNode = sStat->solOrder[k][i + 1];
+            dij = mdist[currNode][nextNode];
+            tij = (mdist[currNode][nextNode])/(inst->vmed);
+
+            // stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+            
+            // // // TODO UNCOMMENT //  << "b - " << currNode << ": " << sStat->solBegin[currNode] << "; b - " << nextNode << ": " << sStat->solBegin[nextNode] << "; delta: " << nodeVec[currNode].delta << endl;
+            // // getchar();
+
+            // sStat->tStillP += stop;
+
+            // // TODO UNCOMMENT //  << "\nTesting idle still time: " << endl;
+            // // TODO UNCOMMENT //  << "tij: " << tij << " || stop: " << stop << " || sStat->tStill: " << sStat->tStill << endl;
+            // getchar();
+
+            if(currNode < inst->n){//from passenger
+                if(nextNode >= inst->n && nextNode < 2*inst->n){//to passenger delivery
+                    if (load > 3){//carrying parcels
+                        sStat->dPass += dij;
+                        sStat->dBoth += dij;
+
+                        sStat->tBoth += sStat->dBoth/inst->vmed;
+                        sStat->tParcel += inst->service;
+                    }  
+                    else{//not carrying parcels
+
+                        sStat->dPass += dij;
+
+                        sStat->tPass += sStat->dPass/inst->vmed;
+                        sStat->tNone += inst->service;
+                    }
+
+                    load -= 3;
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+                    sStat->tStillP += stop;
+                }
+
+                else if (nextNode >= 2*inst->n && nextNode < 2*inst->n + inst->m){//from passenger to parcel PU
+                    if (load > 3){//with load
+
+                        sStat->dBoth += dij;
+
+                        sStat->tBoth += dij/inst->vmed;
+                        sStat->tBoth += inst->service;
+                       
+                    }  
+                    else{//no load
+                        sStat->dPass += dij;
+
+                        sStat->tPass += dij/inst->vmed;
+                        sStat->tBoth += inst->service;
+
+                    }
+
+                    load++;
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillG += stop;
+                }
+
+                else if (nextNode >= 2*inst->n + inst->m && nextNode < 2*inst->n + 2*inst->m){//from passenger to parcel DL
+                    sStat->dBoth += dij;
+                    
+                    
+                    sStat->tBoth += dij/inst->vmed;
+                    sStat->tPass += inst->service;
+                    load--;
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillG += stop;
+                }
+            }
+            else if (currNode >= inst->n && currNode < 2*inst->n){
+                if (nextNode < inst->n){//to passenger PU
+                    if (load > 0){
+                        sStat->dParcel += dij;
+
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tBoth += inst->service;
+
+                    }  
+                    else{
+                        sStat->dNone += dij;
+
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tPass += inst->service;
+                    }     
+                    load += 3;
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillP += stop;  
+                }
+                else if(nextNode >= 2*inst->n && nextNode < 2*inst->n + inst->m){//parcel PU
+                    if (load > 0){//with load
+                        sStat->dParcel += dij;
+
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+
+                    }  
+                    else{//no load
+                        sStat->dNone += dij;
+
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+                    }  
+                    load++;
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillG += stop; 
+                }
+                else if (nextNode >= 2*inst->n + inst->m && nextNode < 2*inst->n + 2*inst->m){ //parcel DL
+                    sStat->dParcel += dij;
+
+                    sStat->tParcel += dij/inst->vmed;
+                    if (load > 1){
+                        sStat->tParcel += inst->service;
+                    }
+                    else{
+                        sStat->tNone += inst->service;
+                    }
+                    load--;
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillG += stop; 
+                }
+            }
+
+            else if (currNode >= 2*inst->n && currNode < 2*inst->n + inst->m){//Parcel PU
+                if (nextNode < inst->n){
+
+                    sStat->dParcel += dij;
+
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tBoth += inst->service;
+
+                    
+                    load += 3;
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillP += stop;  
+                }
+                else if (nextNode >= inst->n && nextNode < 2*inst->n){//pass Dl
+                    sStat->dBoth += dij;
+
+                    sStat->tBoth += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+
+                    load -= 3;
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillG += stop; 
+                }
+                else if(nextNode >= 2*inst->n && nextNode < 2*inst->n + inst->m){ //parcel PU
+                    sStat->dParcel += dij;         
+
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load++;
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillG += stop; 
+                }
+                else if (nextNode >= 2*inst->n + inst->m && nextNode < 2*inst->n + 2*inst->m){ //parcel DL
+                    sStat->dParcel += dij;
+                    load--; 
+                    sStat->tParcel += dij/inst->vmed;
+
+                    if (load > 0){
+                        sStat->tParcel += inst->service;
+
+                    }
+                    else{
+                        sStat->tNone += inst->service;
+                    }
+    
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillG += stop; 
+                }
+            }
+            else if (currNode >= 2*inst->n + inst->m && currNode < 2*inst->n + 2*inst->m){//parcel DL
+                if(nextNode < inst->n){//pass PU
+                    if (load > 0){
+                        sStat->dParcel += dij;                   
+
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tBoth += inst->service; 
+
+                    }  
+                    else{
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tPass += inst->service;
+
+                        sStat->dNone += dij;
+                                               
+                    }
+                    load += 3;
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillP += stop; 
+
+                }
+                else if (nextNode >= inst->n && nextNode < 2*inst->n){ //pass DL
+                    sStat->dBoth += dij; 
+
+                    sStat->tBoth += dij/inst->vmed;
+                    load -= 3;
+
+                    if (load > 0){
+                        sStat->tParcel += inst->service;
+                    }
+                    else{
+                        sStat->tNone += inst->service;
+                    }
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillG += stop;
+                }
+                else if(nextNode >= 2*inst->n && nextNode < 2*inst->n + inst->m){ //parcel PU
+                    if (load > 0){
+                        sStat->tParcel += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+
+                        sStat->dParcel += dij;
+                    }  
+                    else{
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+
+                        sStat->dNone += dij;
+                    }
+                    load++;
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillG += stop;                                       
+                }
+                else if (nextNode >= 2*inst->n + inst->m && nextNode < 2*inst->n + 2*inst->m){ //parcel DL
+                    sStat->tParcel += dij/inst->vmed;
+                    sStat->tParcel += inst->service;
+                    load--;
+
+                    sStat->dParcel += dij;
+
+                    stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                    sStat->tStillG += stop; 
+                }
+            }
+            else{//depot
+                if (nextNode < 2*inst->n + 2*inst->m + inst->K){ //non depot
+                    if(nextNode < inst->n){
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tPass += inst->service;
+                        load += 3;
+
+                        sStat->dNone += dij;
+
+                        stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                        sStat->tStillP += stop; 
+                    }
+                    else if(nextNode < inst->n + inst->m){
+                        sStat->tNone += dij/inst->vmed;
+                        sStat->tParcel += inst->service;
+                        load++;
+
+                        sStat->dNone += dij;
+
+                        stop = sStat->solBegin[nextNode] - sStat->solBegin[currNode] - tij - nodeVec[currNode].delta;
+
+                        sStat->tStillG += stop;
+                    }  
+                }
+            }
+
+
+            // // TODO UNCOMMENT //  << "\nTotal passenger time: " << sStat->tPass << endl;
+            // // TODO UNCOMMENT //  << "\nTotal parcel time: " << sStat->tParcel << endl;
+            // // TODO UNCOMMENT //  << "\nTotal combined transportation time: " << sStat->tBoth << endl;
+            // // TODO UNCOMMENT //  << "\nTotal idle time: " << sStat->tNone << endl;
+
+            // // TODO UNCOMMENT //  << "\nTotal passenger distance: " << sStat->dPass << endl;
+            // // TODO UNCOMMENT //  << "\nTotal parcel distance: " << sStat->dParcel << endl;
+            // // TODO UNCOMMENT //  << "\nTotal combined transportation distance: " << sStat->dBoth << endl;
+            // // TODO UNCOMMENT //  << "\nTotal idle distance: " << sStat->dNone << endl;
+            // getchar();
+
+        }
+    }
+}
+
 void printStats(instanceStat *inst, solStats *sStat){
-    for (int i = 0; i < inst->K; i++){
+    //for (int i = 0; i < inst->K; i++){
 
         // cout << "\nsize of n: " << inst->n << endl;
         // cout << "\nsize of m: " << inst->m << endl;
@@ -329,7 +652,7 @@ void printStats(instanceStat *inst, solStats *sStat){
         // cout << "\nWaiting time passenger: " << sStat->tStillP << endl;
         // cout << "\nWaiting time goods: " << sStat->tStillG << endl;
         // cout << "\nTotal waiting time: " << sStat->tStillG + sStat->tStillP << endl;
-    }
+    //}
 
 }
 

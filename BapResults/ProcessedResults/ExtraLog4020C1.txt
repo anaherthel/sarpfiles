@@ -1,0 +1,146 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   BaPCod v0.82.5, 24/09/2023, © Inria Bordeaux, France, bapcod.math.u-bordeaux.fr 
+           THIS CODE IS PROVIDED AS IS, USE IT AT YOUR OWN RISK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Application version is 6.1, 17/11/2021
+command line:./bin/sharearidec -b config/CVRPbc.cfg -a config/CVRPapp.cfg -i data/C2/csarp/sarp-40-20-C-1.txt --cutOffValue -90.3 --setting 1 
+Share-a-ride Parameters  
+Subproblem solver: resource constrained shortest path solver
+cutOffValue = -90.3
+setting = 1
+full instType: csarp
+6 40 20
+RCSP solver info : size of non-robust cut bitmask in a label is 640 bits
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 14.4
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 10620( 88.3601% ) / 10620( 100% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 10156( 84.4995% ) / 10156( 100% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 14.4
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 10620( 88.3601% ) / 10620( 100% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 10141( 84.3747% ) / 10141( 100% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 14.4
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 10620( 88.3601% ) / 10620( 100% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 10139( 84.3581% ) / 10139( 100% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 14.4
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 10621( 88.3684% ) / 10621( 100% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 10213( 84.9738% ) / 10213( 100% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 14.4
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 10610( 88.2769% ) / 10610( 100% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 10210( 84.9488% ) / 10210( 100% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+RCSP solver info : non-symmetric case as there are binary resources 
+Bidirectional border value is initialised to 14.4
+RCSP solver info : number of forw. reachable buckets / buck. strongly connected components is 10620( 88.3601% ) / 10620( 100% )
+RCSP solver info : number of back. reachable buckets / buck. strongly connected components is 10155( 84.4912% ) / 10155( 100% )
+RCSP solver info: std. label size is 56, ext. label size is 136
+Model is built TIME = 0h0m1s38t = 138
+************************************************************************************************
+**** BaB tree root node
+**** Local DB = -1e+12, global bounds : [ -1e+12 , -90.3 ], TIME = 0h0m1s38t = 138
+**** 1 open nodes, 0 columns (0 active), 0 dyn. constrs. (0 active), 112 art. vars. (112 active)
+************************************************************************************************
+#<DWph=2> <it=  1> <et=1.52> <Mt= 0.00> <Spt= 0.10> <nCl=107> <al=0.00> <DB=11955.1700> <Mlp=48000.0000> <PB=-90.3> 
+#<DWph=2> <it=  2> <et=1.62> <Mt= 0.00> <Spt= 0.10> <nCl= 42> <al=0.40> <DB= 8639.7404> <Mlp=35401.2560> <PB=-90.3> 
+#<DWph=2> <it=  3> <et=1.72> <Mt= 0.00> <Spt= 0.10> <nCl= 69> <al=0.46> <DB=-5739.4218> <Mlp=32402.0200> <PB=-90.3> 
+#<DWph=2> <it=  4> <et=1.81> <Mt= 0.00> <Spt= 0.10> <nCl=101> <al=0.51> <DB=-23424.3058> <Mlp=27617.9220> <PB=-90.3> 
+#<DWph=2> <it=  5> <et=1.91> <Mt= 0.00> <Spt= 0.09> <nCl= 74> <al=0.41> <DB=-27687.3952> <Mlp=22192.8245> <PB=-90.3> 
+#<DWph=2> <it=  6> <et=2.02> <Mt= 0.00> <Spt= 0.11> <nCl=139> <al=0.47> <DB=-24678.1449> <Mlp=17110.0845> <PB=-90.3> 
+#<DWph=2> <it=  7> <et=2.12> <Mt= 0.00> <Spt= 0.10> <nCl= 85> <al=0.53> <DB=-27466.5662> <Mlp=10021.8083> <PB=-90.3> 
+#<DWph=2> <it=  8> <et=2.21> <Mt= 0.00> <Spt= 0.09> <nCl=135> <al=0.57> <DB=-19753.2165> <Mlp= 7232.7437> <PB=-90.3> 
+#<DWph=2> <it=  9> <et=2.32> <Mt= 0.00> <Spt= 0.11> <nCl= 55> <al=0.47> <DB= 8392.5858> <Mlp= 6038.0790> <PB=-90.3> 
+#<DWph=2> <it= 10> <et=2.43> <Mt= 0.00> <Spt= 0.10> <nCl= 56> <al=0.53> <DB=-19977.0531> <Mlp= 6038.0790> <PB=-90.3> 
+#<DWph=2> <it= 11> <et=2.53> <Mt= 0.01> <Spt= 0.10> <nCl= 92> <al=0.43> <DB=-16071.4821> <Mlp= 5700.8185> <PB=-90.3> 
+#<DWph=2> <it= 12> <et=2.64> <Mt= 0.00> <Spt= 0.11> <nCl= 45> <al=0.48> <DB= 5743.3918> <Mlp= 4840.5255> <PB=-90.3> 
+#<DWph=2> <it= 13> <et=2.73> <Mt= 0.00> <Spt= 0.09> <nCl= 86> <al=0.53> <DB=-15057.9838> <Mlp= 4695.9475> <PB=-90.3> 
+#<DWph=2> <it= 14> <et=2.83> <Mt= 0.00> <Spt= 0.10> <nCl=116> <al=0.43> <DB=-12444.3323> <Mlp= 3846.4767> <PB=-90.3> 
+#<DWph=2> <it= 15> <et=2.93> <Mt= 0.00> <Spt= 0.09> <nCl= 90> <al=0.49> <DB=-19801.2334> <Mlp= 3172.3194> <PB=-90.3> 
+#<DWph=2> <it= 16> <et=3.02> <Mt= 0.01> <Spt= 0.10> <nCl=144> <al=0.54> <DB=-16186.8070> <Mlp= 2606.4732> <PB=-90.3> 
+#<DWph=2> <it= 17> <et=3.12> <Mt= 0.00> <Spt= 0.09> <nCl= 85> <al=0.44> <DB=-12058.8217> <Mlp= 2536.5357> <PB=-90.3> 
+#<DWph=2> <it= 18> <et=3.21> <Mt= 0.00> <Spt= 0.09> <nCl=144> <al=0.50> <DB=-15259.8054> <Mlp= 1919.7783> <PB=-90.3> 
+#<DWph=2> <it= 19> <et=3.31> <Mt= 0.00> <Spt= 0.10> <nCl= 79> <al=0.40> <DB=-13293.3497> <Mlp= 1673.7583> <PB=-90.3> 
+#<DWph=2> <it= 20> <et=3.41> <Mt= 0.00> <Spt= 0.09> <nCl= 98> <al=0.46> <DB=-12979.5477> <Mlp= 1360.1240> <PB=-90.3> 
+#<DWph=2> <it= 21> <et=3.62> <Mt= 0.01> <Spt= 0.21> <nCl=100> <al=0.00> <DB=-1852.2555> <Mlp= 1238.4469> <PB=-90.3> 
+#<DWph=2> <it= 22> <et=3.73> <Mt= 0.00> <Spt= 0.11> <nCl= 49> <al=0.26> <DB=-1562.3620> <Mlp= 1208.9703> <PB=-90.3> 
+#<DWph=2> <it= 23> <et=3.84> <Mt= 0.00> <Spt= 0.11> <nCl= 47> <al=0.16> <DB=-1773.5021> <Mlp= 1207.9492> <PB=-90.3> 
+#<DWph=2> <it= 24> <et=3.95> <Mt= 0.00> <Spt= 0.11> <nCl= 95> <al=0.06> <DB=-7163.7406> <Mlp= 1207.1967> <PB=-90.3> 
+#<DWph=2> <it= 25> <et=4.05> <Mt= 0.01> <Spt= 0.09> <nCl= 81> <al=0.00> <DB=-7653.4076> <Mlp=  909.0341> <PB=-90.3> 
+#<DWph=2> <it= 26> <et=4.17> <Mt= 0.00> <Spt= 0.11> <nCl=110> <al=0.06> <DB=-8481.7571> <Mlp=  663.5958> <PB=-90.3> 
+#<DWph=2> <it= 27> <et=4.27> <Mt= 0.01> <Spt= 0.10> <nCl=114> <al=0.00> <DB=-6491.9392> <Mlp=  452.1322> <PB=-90.3> 
+#<DWph=2> <it= 28> <et=4.37> <Mt= 0.00> <Spt= 0.10> <nCl= 97> <al=0.00> <DB=-7787.2226> <Mlp=  407.7095> <PB=-90.3> 
+#<DWph=2> <it= 29> <et=4.48> <Mt= 0.00> <Spt= 0.10> <nCl=104> <al=0.00> <DB=-7138.6383> <Mlp=  254.5785> <PB=-90.3> 
+#<DWph=2> <it= 30> <et=4.59> <Mt= 0.01> <Spt= 0.10> <nCl=162> <al=0.08> <DB=-9423.4972> <Mlp=   99.9126> <PB=-90.3> 
+<DWph=2> <it= 31> <et=4.59> <Mt= 0.00> <Spt= 0.00> <nCl=  0> <al=0.00> <DB=-9423.4972> <Mlp=   22.4509> <PB=-90.3> 
+<DWph=1> <it= 32> <et=4.99> <Mt= 0.00> <Spt= 0.40> <nCl= 53> <al=0.00> <DB= -139.0248> <Mlp=   22.4509> <PB=-90.3> 
+<DWph=1> <it= 33> <et=5.36> <Mt= 0.01> <Spt= 0.37> <nCl= 44> <al=0.08> <DB=  -32.7846> <Mlp=   21.9908> <PB=-90.3> 
+<DWph=1> <it= 34> <et=5.71> <Mt= 0.00> <Spt= 0.35> <nCl= 81> <al=0.17> <DB=-7216.9967> <Mlp=   21.8107> <PB=-90.3> 
+<DWph=1> <it= 35> <et=6.14> <Mt= 0.00> <Spt= 0.42> <nCl= 38> <al=0.26> <DB=   12.5644> <Mlp=   12.2666> <PB=-90.3> 
+1 bl.dch (1324)...2 bl.dch (1458)...3 bl.dch (1483)...4 bl.dch (1530)...5 bl.dch (1575)...6 bl.dch (1610)...7 bl.dch (1623)...8 bl.dch (1643)...9 bl.dch (1649)...10 bl.dch (1657)...11 bl.dch (1665)...12 bl.dch (1684)...13 bl.dch (1702)...14 bl.dch (1706)...15 bl.dch (1713)...16 bl.dch (1739)...17 bl.dch (1761)...18 bl.dch (1770)...19 bl.dch (1780)...20 bl.dch (1798)...21 bl.dch (1807)...22 bl.dch (1817)...23 bl.dch (1838)...24 bl.dch (1847)...25 bl.dch (1851)...26 bl.dch (1859)...27 bl.dch (1863)...28 bl.dch (1870)...29 bl.dch (1897)...30 bl.dch (1902)...31 bl.dch (1906)...32 bl.dch (1908)...33 bl.dch (1910)...34 bl.dch (1912)...35 bl.dch (1914)...36 bl.dch (1916)...37 bl.dch (1918)...38 bl.dch (1920)...39 bl.dch (1922)...40 bl.dch (1925)...41 bl.dch (1928)...42 bl.dch (1933)...43 bl.dch (1940)...44 bl.dch (1946)...45 bl.dch (1948)...46 bl.dch (1950)...47 bl.dch (1952)...48 bl.dch (1953)...49 bl.dch (1959)...50 bl.dch (1966)...51 bl.dch (1977)...52 bl.dch (1981)...53 bl.dch (1986)...54 bl.dch (1994)...55 bl.dch (2001)...56 bl.dch (2005)...57 bl.dch (2007)...58 bl.dch (2021)...59 bl.dch (2031)...60 bl.dch (2034)...61 bl.dch (2042)...62 bl.dch (2047)...63 bl.dch (2049)...64 bl.dch (2050)...65 bl.dch (2053)...66 bl.dch (2056)...67 bl.dch (2059)...68 bl.dch (2067)...69 bl.dch (2074)...70 bl.dch (2078)...71 bl.dch (2083)...72 bl.dch (2092)...73 bl.dch (2098)...74 bl.dch (2103)...75 bl.dch (2107)...76 bl.dch (2111)...77 bl.dch (2113)...78 bl.dch (2115)...79 bl.dch (2117)...80 bl.dch (2119)...81 bl.dch (2120)...82 bl.dch (2121)...83 bl.dch (2123)...84 bl.dch (2127)...85 bl.dch (2130)...86 bl.dch (2133)...87 bl.dch (2135)...88 bl.dch (2137)...89 bl.dch (2139)...90 bl.dch (2141)...91 bl.dch (2143)...92 bl.dch (2144)...103 bl.dch (2145)...104 bl.dch (2153)...105 bl.dch (2158)...106 bl.dch (2162)...107 bl.dch (2165)...108 bl.dch (2167)...109 bl.dch (2169)...110 bl.dch (2171)...111 bl.dch (2173)...112 bl.dch (2175)...113 bl.dch (2177)...114 bl.dch (2178)...115 bl.dch (2179)...116 bl.dch (2180)...117 bl.dch (2182)...118 bl.dch (2183)...119 bl.dch (2185)...120 bl.dch (2187)...121 bl.dch (2188)...122 bl.dch (2190)...123 bl.dch (2191)...124 bl.dch (2192)...125 bl.dch (2193)...126 bl.dch (2196)...127 bl.dch (2199)...128 bl.dch (2204)...129 bl.dch (2205)...130 bl.dch (2206)...131 bl.dch (2208)...132 bl.dch (2209)...133 bl.dch (2210)...134 bl.dch (2211)...135 bl.dch (2212)...136 bl.dch (2216)...137 bl.dch (2219)...138 bl.dch (2222)...139 bl.dch (2224)...140 bl.dch (2229)...141 bl.dch (2242)...RCSP solver warning : labelling time has exploded
+1 bl.dch (1324)...2 bl.dch (1458)...3 bl.dch (1483)...4 bl.dch (1530)...5 bl.dch (1575)...6 bl.dch (1610)...7 bl.dch (1623)...8 bl.dch (1643)...9 bl.dch (1649)...10 bl.dch (1657)...11 bl.dch (1665)...12 bl.dch (1684)...13 bl.dch (1702)...14 bl.dch (1706)...15 bl.dch (1713)...16 bl.dch (1739)...17 bl.dch (1761)...18 bl.dch (1770)...19 bl.dch (1780)...20 bl.dch (1798)...21 bl.dch (1807)...22 bl.dch (1817)...23 bl.dch (1838)...24 bl.dch (1847)...25 bl.dch (1851)...26 bl.dch (1859)...27 bl.dch (1863)...28 bl.dch (1870)...29 bl.dch (1897)...30 bl.dch (1902)...31 bl.dch (1906)...32 bl.dch (1908)...33 bl.dch (1910)...34 bl.dch (1912)...35 bl.dch (1914)...36 bl.dch (1916)...37 bl.dch (1918)...38 bl.dch (1920)...39 bl.dch (1922)...40 bl.dch (1925)...41 bl.dch (1928)...42 bl.dch (1933)...43 bl.dch (1940)...44 bl.dch (1946)...45 bl.dch (1948)...46 bl.dch (1950)...47 bl.dch (1952)...48 bl.dch (1953)...49 bl.dch (1959)...50 bl.dch (1966)...51 bl.dch (1977)...52 bl.dch (1981)...53 bl.dch (1986)...54 bl.dch (1994)...55 bl.dch (2001)...56 bl.dch (2005)...57 bl.dch (2007)...58 bl.dch (2021)...59 bl.dch (2031)...60 bl.dch (2034)...61 bl.dch (2042)...62 bl.dch (2047)...63 bl.dch (2049)...64 bl.dch (2050)...65 bl.dch (2053)...66 bl.dch (2056)...67 bl.dch (2059)...68 bl.dch (2067)...69 bl.dch (2074)...70 bl.dch (2078)...71 bl.dch (2083)...72 bl.dch (2092)...73 bl.dch (2098)...74 bl.dch (2103)...75 bl.dch (2107)...76 bl.dch (2111)...77 bl.dch (2113)...78 bl.dch (2115)...79 bl.dch (2117)...80 bl.dch (2119)...81 bl.dch (2120)...82 bl.dch (2121)...83 bl.dch (2123)...84 bl.dch (2127)...85 bl.dch (2130)...86 bl.dch (2133)...87 bl.dch (2135)...88 bl.dch (2137)...89 bl.dch (2139)...90 bl.dch (2141)...91 bl.dch (2143)...92 bl.dch (2144)...103 bl.dch (2145)...104 bl.dch (2153)...105 bl.dch (2158)...106 bl.dch (2162)...107 bl.dch (2165)...108 bl.dch (2167)...109 bl.dch (2169)...110 bl.dch (2171)...111 bl.dch (2173)...112 bl.dch (2175)...113 bl.dch (2177)...114 bl.dch (2178)...115 bl.dch (2179)...116 bl.dch (2180)...117 bl.dch (2182)...118 bl.dch (2183)...119 bl.dch (2185)...120 bl.dch (2187)...121 bl.dch (2188)...122 bl.dch (2190)...123 bl.dch (2191)...124 bl.dch (2192)...125 bl.dch (2193)...126 bl.dch (2196)...127 bl.dch (2199)...128 bl.dch (2204)...129 bl.dch (2205)...130 bl.dch (2206)...131 bl.dch (2208)...132 bl.dch (2209)...133 bl.dch (2210)...134 bl.dch (2211)...135 bl.dch (2212)...136 bl.dch (2216)...137 bl.dch (2219)...138 bl.dch (2222)...139 bl.dch (2224)...140 bl.dch (2229)...141 bl.dch (2242)...142 bl.dch (2248)...143 bl.dch (2252)...144 bl.dch (2256)...145 bl.dch (2258)...146 bl.dch (2260)...148 bl.dch (2262)...RCSP solver warning : labelling time has exploded
+1 bl.dch (1324)...2 bl.dch (1458)...3 bl.dch (1483)...4 bl.dch (1530)...5 bl.dch (1575)...6 bl.dch (1610)...7 bl.dch (1623)...8 bl.dch (1643)...9 bl.dch (1649)...10 bl.dch (1657)...11 bl.dch (1665)...12 bl.dch (1684)...13 bl.dch (1702)...14 bl.dch (1706)...15 bl.dch (1713)...16 bl.dch (1739)...17 bl.dch (1761)...18 bl.dch (1770)...19 bl.dch (1780)...20 bl.dch (1798)...21 bl.dch (1807)...22 bl.dch (1817)...23 bl.dch (1838)...24 bl.dch (1847)...25 bl.dch (1851)...26 bl.dch (1859)...27 bl.dch (1863)...28 bl.dch (1870)...29 bl.dch (1897)...30 bl.dch (1902)...31 bl.dch (1906)...32 bl.dch (1908)...33 bl.dch (1910)...34 bl.dch (1912)...35 bl.dch (1914)...36 bl.dch (1916)...37 bl.dch (1918)...38 bl.dch (1920)...39 bl.dch (1922)...40 bl.dch (1925)...41 bl.dch (1928)...42 bl.dch (1933)...43 bl.dch (1940)...44 bl.dch (1946)...45 bl.dch (1948)...46 bl.dch (1950)...47 bl.dch (1952)...48 bl.dch (1953)...49 bl.dch (1959)...50 bl.dch (1966)...51 bl.dch (1977)...52 bl.dch (1981)...53 bl.dch (1986)...54 bl.dch (1994)...55 bl.dch (2001)...56 bl.dch (2005)...57 bl.dch (2007)...58 bl.dch (2021)...59 bl.dch (2031)...60 bl.dch (2034)...61 bl.dch (2042)...62 bl.dch (2047)...63 bl.dch (2049)...64 bl.dch (2050)...65 bl.dch (2053)...66 bl.dch (2056)...67 bl.dch (2059)...68 bl.dch (2067)...69 bl.dch (2074)...70 bl.dch (2078)...71 bl.dch (2083)...72 bl.dch (2092)...73 bl.dch (2098)...74 bl.dch (2103)...75 bl.dch (2107)...76 bl.dch (2111)...77 bl.dch (2113)...78 bl.dch (2115)...79 bl.dch (2117)...80 bl.dch (2119)...81 bl.dch (2120)...82 bl.dch (2121)...83 bl.dch (2123)...84 bl.dch (2127)...85 bl.dch (2130)...86 bl.dch (2133)...87 bl.dch (2135)...88 bl.dch (2137)...89 bl.dch (2139)...90 bl.dch (2141)...91 bl.dch (2143)...92 bl.dch (2144)...103 bl.dch (2145)...104 bl.dch (2153)...105 bl.dch (2158)...106 bl.dch (2162)...107 bl.dch (2165)...108 bl.dch (2167)...109 bl.dch (2169)...110 bl.dch (2171)...111 bl.dch (2173)...112 bl.dch (2175)...113 bl.dch (2177)...114 bl.dch (2178)...115 bl.dch (2179)...116 bl.dch (2180)...117 bl.dch (2182)...118 bl.dch (2183)...119 bl.dch (2185)...120 bl.dch (2187)...121 bl.dch (2188)...122 bl.dch (2190)...123 bl.dch (2191)...124 bl.dch (2192)...125 bl.dch (2193)...126 bl.dch (2196)...127 bl.dch (2199)...128 bl.dch (2204)...129 bl.dch (2205)...130 bl.dch (2206)...131 bl.dch (2208)...132 bl.dch (2209)...133 bl.dch (2210)...134 bl.dch (2211)...135 bl.dch (2212)...136 bl.dch (2216)...137 bl.dch (2219)...138 bl.dch (2222)...139 bl.dch (2224)...140 bl.dch (2229)...141 bl.dch (2242)...142 bl.dch (2248)...143 bl.dch (2252)...144 bl.dch (2256)...145 bl.dch (2258)...146 bl.dch (2260)...148 bl.dch (2262)...149 bl.dch (2263)...152 bl.dch (2274)...RCSP solver warning : labelling time has exploded
+1 bl.dch (1324)...2 bl.dch (1458)...3 bl.dch (1483)...4 bl.dch (1530)...5 bl.dch (1575)...6 bl.dch (1610)...7 bl.dch (1623)...8 bl.dch (1643)...9 bl.dch (1649)...10 bl.dch (1657)...11 bl.dch (1665)...12 bl.dch (1684)...13 bl.dch (1702)...14 bl.dch (1706)...15 bl.dch (1713)...16 bl.dch (1739)...17 bl.dch (1761)...18 bl.dch (1770)...19 bl.dch (1780)...20 bl.dch (1798)...21 bl.dch (1807)...22 bl.dch (1817)...23 bl.dch (1838)...24 bl.dch (1847)...25 bl.dch (1851)...26 bl.dch (1859)...27 bl.dch (1863)...28 bl.dch (1870)...29 bl.dch (1897)...30 bl.dch (1902)...31 bl.dch (1906)...32 bl.dch (1908)...33 bl.dch (1910)...34 bl.dch (1912)...35 bl.dch (1914)...36 bl.dch (1916)...37 bl.dch (1918)...38 bl.dch (1920)...39 bl.dch (1922)...40 bl.dch (1925)...41 bl.dch (1928)...42 bl.dch (1933)...43 bl.dch (1940)...44 bl.dch (1946)...45 bl.dch (1948)...46 bl.dch (1950)...47 bl.dch (1952)...48 bl.dch (1953)...49 bl.dch (1959)...50 bl.dch (1966)...51 bl.dch (1977)...52 bl.dch (1981)...53 bl.dch (1986)...54 bl.dch (1994)...55 bl.dch (2001)...56 bl.dch (2005)...57 bl.dch (2007)...58 bl.dch (2021)...59 bl.dch (2031)...60 bl.dch (2034)...61 bl.dch (2042)...62 bl.dch (2047)...63 bl.dch (2049)...64 bl.dch (2050)...65 bl.dch (2053)...66 bl.dch (2056)...67 bl.dch (2059)...68 bl.dch (2067)...69 bl.dch (2074)...70 bl.dch (2078)...71 bl.dch (2083)...72 bl.dch (2092)...73 bl.dch (2098)...74 bl.dch (2103)...75 bl.dch (2107)...76 bl.dch (2111)...77 bl.dch (2113)...78 bl.dch (2115)...79 bl.dch (2117)...80 bl.dch (2119)...81 bl.dch (2120)...82 bl.dch (2121)...83 bl.dch (2123)...84 bl.dch (2127)...85 bl.dch (2130)...86 bl.dch (2133)...87 bl.dch (2135)...88 bl.dch (2137)...89 bl.dch (2139)...90 bl.dch (2141)...91 bl.dch (2143)...92 bl.dch (2144)...103 bl.dch (2145)...104 bl.dch (2153)...105 bl.dch (2158)...106 bl.dch (2162)...107 bl.dch (2165)...108 bl.dch (2167)...109 bl.dch (2169)...110 bl.dch (2171)...111 bl.dch (2173)...112 bl.dch (2175)...113 bl.dch (2177)...114 bl.dch (2178)...115 bl.dch (2179)...116 bl.dch (2180)...117 bl.dch (2182)...118 bl.dch (2183)...119 bl.dch (2185)...120 bl.dch (2187)...121 bl.dch (2188)...122 bl.dch (2190)...123 bl.dch (2191)...124 bl.dch (2192)...125 bl.dch (2193)...126 bl.dch (2196)...127 bl.dch (2199)...128 bl.dch (2204)...129 bl.dch (2205)...130 bl.dch (2206)...131 bl.dch (2208)...132 bl.dch (2209)...133 bl.dch (2210)...134 bl.dch (2211)...135 bl.dch (2212)...136 bl.dch (2216)...137 bl.dch (2219)...138 bl.dch (2222)...139 bl.dch (2224)...140 bl.dch (2229)...141 bl.dch (2242)...142 bl.dch (2248)...143 bl.dch (2252)...144 bl.dch (2256)...145 bl.dch (2258)...146 bl.dch (2260)...148 bl.dch (2262)...149 bl.dch (2263)...152 bl.dch (2274)...RCSP solver warning : labelling time has exploded
+1 bl.dch (1324)...2 bl.dch (1458)...3 bl.dch (1483)...4 bl.dch (1530)...5 bl.dch (1575)...6 bl.dch (1610)...7 bl.dch (1623)...8 bl.dch (1643)...9 bl.dch (1649)...10 bl.dch (1657)...11 bl.dch (1665)...12 bl.dch (1684)...13 bl.dch (1702)...14 bl.dch (1706)...15 bl.dch (1713)...16 bl.dch (1739)...17 bl.dch (1761)...18 bl.dch (1770)...19 bl.dch (1780)...20 bl.dch (1798)...21 bl.dch (1807)...22 bl.dch (1817)...23 bl.dch (1838)...24 bl.dch (1847)...25 bl.dch (1851)...26 bl.dch (1859)...27 bl.dch (1863)...28 bl.dch (1870)...29 bl.dch (1897)...30 bl.dch (1902)...31 bl.dch (1906)...32 bl.dch (1908)...33 bl.dch (1910)...34 bl.dch (1912)...35 bl.dch (1914)...36 bl.dch (1916)...37 bl.dch (1918)...38 bl.dch (1920)...39 bl.dch (1922)...40 bl.dch (1925)...41 bl.dch (1928)...42 bl.dch (1933)...43 bl.dch (1940)...44 bl.dch (1946)...45 bl.dch (1948)...46 bl.dch (1950)...47 bl.dch (1952)...48 bl.dch (1953)...49 bl.dch (1959)...50 bl.dch (1966)...51 bl.dch (1977)...52 bl.dch (1981)...53 bl.dch (1986)...54 bl.dch (1994)...55 bl.dch (2001)...56 bl.dch (2005)...57 bl.dch (2007)...58 bl.dch (2021)...59 bl.dch (2031)...60 bl.dch (2034)...61 bl.dch (2042)...62 bl.dch (2047)...63 bl.dch (2049)...64 bl.dch (2050)...65 bl.dch (2053)...66 bl.dch (2056)...67 bl.dch (2059)...68 bl.dch (2067)...69 bl.dch (2074)...70 bl.dch (2078)...71 bl.dch (2083)...72 bl.dch (2092)...73 bl.dch (2098)...74 bl.dch (2103)...75 bl.dch (2107)...76 bl.dch (2111)...77 bl.dch (2113)...78 bl.dch (2115)...79 bl.dch (2117)...80 bl.dch (2119)...81 bl.dch (2120)...82 bl.dch (2121)...83 bl.dch (2123)...84 bl.dch (2127)...85 bl.dch (2130)...86 bl.dch (2133)...87 bl.dch (2135)...88 bl.dch (2137)...89 bl.dch (2139)...90 bl.dch (2141)...91 bl.dch (2143)...92 bl.dch (2144)...103 bl.dch (2145)...104 bl.dch (2153)...105 bl.dch (2158)...106 bl.dch (2162)...107 bl.dch (2165)...108 bl.dch (2167)...109 bl.dch (2169)...110 bl.dch (2171)...111 bl.dch (2173)...112 bl.dch (2175)...113 bl.dch (2177)...114 bl.dch (2178)...115 bl.dch (2179)...116 bl.dch (2180)...117 bl.dch (2182)...118 bl.dch (2183)...119 bl.dch (2185)...120 bl.dch (2187)...121 bl.dch (2188)...122 bl.dch (2190)...123 bl.dch (2191)...124 bl.dch (2192)...125 bl.dch (2193)...126 bl.dch (2196)...127 bl.dch (2199)...128 bl.dch (2204)...129 bl.dch (2205)...130 bl.dch (2206)...131 bl.dch (2208)...132 bl.dch (2209)...133 bl.dch (2210)...134 bl.dch (2211)...135 bl.dch (2212)...136 bl.dch (2216)...137 bl.dch (2219)...138 bl.dch (2222)...139 bl.dch (2224)...140 bl.dch (2229)...141 bl.dch (2242)...142 bl.dch (2248)...143 bl.dch (2252)...144 bl.dch (2256)...145 bl.dch (2258)...146 bl.dch (2260)...148 bl.dch (2262)...149 bl.dch (2263)...152 bl.dch (2274)...RCSP solver warning : labelling time has exploded
+1 bl.dch (1324)...2 bl.dch (1458)...3 bl.dch (1483)...4 bl.dch (1530)...5 bl.dch (1575)...6 bl.dch (1610)...7 bl.dch (1623)...8 bl.dch (1643)...9 bl.dch (1649)...10 bl.dch (1657)...11 bl.dch (1665)...12 bl.dch (1684)...13 bl.dch (1702)...14 bl.dch (1706)...15 bl.dch (1713)...16 bl.dch (1739)...17 bl.dch (1761)...18 bl.dch (1770)...19 bl.dch (1780)...20 bl.dch (1798)...21 bl.dch (1807)...22 bl.dch (1817)...23 bl.dch (1838)...24 bl.dch (1847)...25 bl.dch (1851)...26 bl.dch (1859)...27 bl.dch (1863)...28 bl.dch (1870)...29 bl.dch (1897)...30 bl.dch (1902)...31 bl.dch (1906)...32 bl.dch (1908)...33 bl.dch (1910)...34 bl.dch (1912)...35 bl.dch (1914)...36 bl.dch (1916)...37 bl.dch (1918)...38 bl.dch (1920)...39 bl.dch (1922)...40 bl.dch (1925)...41 bl.dch (1928)...42 bl.dch (1933)...43 bl.dch (1940)...44 bl.dch (1946)...45 bl.dch (1948)...46 bl.dch (1950)...47 bl.dch (1952)...48 bl.dch (1953)...49 bl.dch (1959)...50 bl.dch (1966)...51 bl.dch (1977)...52 bl.dch (1981)...53 bl.dch (1986)...54 bl.dch (1994)...55 bl.dch (2001)...56 bl.dch (2005)...57 bl.dch (2007)...58 bl.dch (2021)...59 bl.dch (2031)...60 bl.dch (2034)...61 bl.dch (2042)...62 bl.dch (2047)...63 bl.dch (2049)...64 bl.dch (2050)...65 bl.dch (2053)...66 bl.dch (2056)...67 bl.dch (2059)...68 bl.dch (2067)...69 bl.dch (2074)...70 bl.dch (2078)...71 bl.dch (2083)...72 bl.dch (2092)...73 bl.dch (2098)...74 bl.dch (2103)...75 bl.dch (2107)...76 bl.dch (2111)...77 bl.dch (2113)...78 bl.dch (2115)...79 bl.dch (2117)...80 bl.dch (2119)...81 bl.dch (2120)...82 bl.dch (2121)...83 bl.dch (2123)...84 bl.dch (2127)...85 bl.dch (2130)...86 bl.dch (2133)...87 bl.dch (2135)...88 bl.dch (2137)...89 bl.dch (2139)...90 bl.dch (2141)...91 bl.dch (2143)...92 bl.dch (2144)...103 bl.dch (2145)...104 bl.dch (2153)...105 bl.dch (2158)...106 bl.dch (2162)...107 bl.dch (2165)...108 bl.dch (2167)...109 bl.dch (2169)...110 bl.dch (2171)...111 bl.dch (2173)...112 bl.dch (2175)...113 bl.dch (2177)...114 bl.dch (2178)...115 bl.dch (2179)...116 bl.dch (2180)...117 bl.dch (2182)...118 bl.dch (2183)...119 bl.dch (2185)...120 bl.dch (2187)...121 bl.dch (2188)...122 bl.dch (2190)...123 bl.dch (2191)...124 bl.dch (2192)...125 bl.dch (2193)...126 bl.dch (2196)...127 bl.dch (2199)...128 bl.dch (2204)...129 bl.dch (2205)...130 bl.dch (2206)...131 bl.dch (2208)...132 bl.dch (2209)...133 bl.dch (2210)...134 bl.dch (2211)...135 bl.dch (2212)...136 bl.dch (2216)...137 bl.dch (2219)...138 bl.dch (2222)...139 bl.dch (2224)...140 bl.dch (2229)...141 bl.dch (2242)...142 bl.dch (2248)...143 bl.dch (2252)...144 bl.dch (2256)...145 bl.dch (2258)...146 bl.dch (2260)...148 bl.dch (2262)...149 bl.dch (2263)...152 bl.dch (2268)...RCSP solver warning : labelling time has exploded
+SEARCH IS INTERRUPTED due to the pricing problem return status. 
+@@ 1 0 -1e+12 0 0 52.9297 7564
+@@ 1 0 -1e+12 0 0 52.9297 7564
+@@ 1 0 -1e+12 0 0 52.9297 7564
+@@ 1 0 -1e+12 0 0 52.9318 7564
+@@ 1 0 -1e+12 0 0 52.918 7564
+@@ 1 0 -1e+12 0 0 52.9297 7564
+ColGenEvalAlg final dual bound: -1e+12 (rounded: -1e+12)
+**** Strong branching phase 1 is started *****
+**** Strong branching phase 3 is started *****
+************************************************************************************************
+Search is finished, global bounds : [ -1e+12 , -90.3 ], TIME = 2h6m4s38t = 756438
+************************************************************************************************
+undefined solution
+data/C2/csarp/sarp-40-20-C-1.txt
+bcAverageDualSolSize 36 2026 
+bcAveragePrimalSolSize 36 1563 
+bcCountCg 36 
+bcCountCgSpSolverCall 216 
+bcCountCgT1 2 
+bcCountCol 3017 
+bcCountMastSol 36 
+bcCountNodeGen 1 
+bcCountNodeProc 1 
+bcCountNodeTreat 1 
+bcCountPrimalSolSize 60 
+bcCountSpSol 216 
+bcEstimTreeSize 0 
+bcFailToSolveModel 1 
+bcMaxDualSpaceSize 72 
+bcMaxIterCg 36 
+bcMaxNbColInMastLp 3017 
+bcMaxNbRowInMastLp 66 
+bcMaxPUpd 1 
+bcMaxPrimalSpaceSize 72 
+bcRecBestInc 1e+12 
+bcRecRootDb -999999999901 
+bcRecRootInc -90.3 
+bcRecRootLpVal 12.1878697684 
+bcTimeBaP 756300 & 2h6m2s99t 
+bcTimeCgSpOracle 756251 & 2h6m2s50t 
+bcTimeColGen 756259 & 2h6m2s59t 
+bcTimeHeurSpOracle 464.642 & 0h0m4s64t 
+bcTimeMain 756439 & 2h6m4s38t 
+bcTimeMastMPsol 7.93299 & 0h0m0s7t 
+bcTimeMastPrepareProbConfig 105.37 & 0h0m1s5t 
+bcTimeRoot 756438 & 2h6m4s38t 
+bcTimeRootEval 756425 & 2h6m4s24t 
+bcTimeSBphase1 0.0842882 & 0h0m0s0t 
+bcTimeSepFracSol 12.2167 & 0h0m0s12t 
+bcTimeSetMast 26.2803 & 0h0m0s26t 
+bcTimeSpMPsol 756219 & 2h6m2s19t 
+bcTimeSpSol 756226 & 2h6m2s26t 
+bcTimeSpUpdateProb 23.0988 & 0h0m0s23t 
+BaPStat: data/C2/csarp/sarp-40-20-C-1.txt & 756439 & 2h6m4s38t  \\ 
+TIME = 2h6m4s38t = 756438

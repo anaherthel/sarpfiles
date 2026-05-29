@@ -1695,15 +1695,15 @@ void fipMethod(nodeStat *node, instanceStat *inst, double **mdist, vector<nodeSt
 	if(sStat->feasible){
 		viewSol (inst, mdist, nodeVec, sStat);
 
-		mipSolStats (inst, mdist, nodeVec, sStat);
+		fipPassSolStats (inst, mdist, nodeVec, sStat);
 
 		printStats(inst, sStat);
 
         printSolFile (inst, sStat, problem, false);
 
-        if (inst->preInst == 1) {
-            output(inst, nodeVec,  sStat, problem);
-        }
+        //if (inst->preInst == 1) {
+        //    output(inst, nodeVec,  sStat, problem);
+        //}
         generateResultsCSV(inst, problem, sStat, mdist);
 
   		//generateScaleCSV(inst, sStat); //For Scale K phase

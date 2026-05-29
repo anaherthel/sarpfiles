@@ -253,6 +253,7 @@ struct nodeArcsStruct{//for model node
 void solStatIni(solStats *sStat);
 void fipStatIni(fipStats *fipStat);
 void mipSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat);
+void fipPassSolStats (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, solStats *sStat);
 void printStats(instanceStat *inst, solStats *sStat);
 void printStructures(nodeArcsStruct *nas);
 void fipStruct(instanceStat *inst, solStats *sStat, fipStats *fipStat);

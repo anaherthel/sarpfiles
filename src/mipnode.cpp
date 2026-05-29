@@ -1087,17 +1087,16 @@ void mipnodeV2(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, pr
 
 	cout << "Selected Max Time: " << selectedMaxTime << endl;
 	cout << "_______________________________________" << endl;
-	//getchar();
-	//getchar();
+
     int threads;
 
     threads = 1;
 
 	IloCplex v2SARP(model);
+
 	v2SARP.exportModel("v2SARP.lp");
 	v2SARP.setParam(IloCplex::Threads, threads);
 	v2SARP.setParam(IloCplex::Param::TimeLimit, selectedMaxTime);
-	//v2SARP.setParam(IloCplex::CutLo, cutoff);
 	v2SARP.setParam(IloCplex::Param::MIP::Tolerances::LowerCutoff, cutoff);
 
 	//mip start
@@ -1827,24 +1826,24 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 	//Constraint 2 - At most 1 parcel between passenger nodes (or starting and passenger) (24)
 	//remove it for fip qm
 
-	for (int k = 0; k < fipStat->solPass.size(); k++){
-		if (fipStat->solPass[k].size() < 3){
-			continue;
-		}
+	//for (int k = 0; k < fipStat->solPass.size(); k++){
+	//	if (fipStat->solPass[k].size() < 3){
+	//		continue;
+	//	}
 
-		for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
-			IloExpr exp(env);
-			int u = fipStat->solPass[k][i];
-			for(int j = 2*inst->n; j < 2*inst->n+2*inst->m; j++){
-				exp += x[u][j][k];
-			}
+	//	for (int i = 0; i < fipStat->solPass[k].size() - 1; i++){
+	//		IloExpr exp(env);
+	//		int u = fipStat->solPass[k][i];
+	//		for(int j = 2*inst->n; j < 2*inst->n+2*inst->m; j++){
+	//			exp += x[u][j][k];
+	//		}
 
-			sprintf (var, "Constraint2_%d_%d", k, u);
-			IloRange cons = (exp <= 1);
-			cons.setName(var);
-			model.add(cons);
-		}
-	}
+	//		sprintf (var, "Constraint2_%d_%d", k, u);
+	//		IloRange cons = (exp <= 1);
+	//		cons.setName(var);
+	//		model.add(cons);
+	//	}
+	//}
 
 	// Constraint 3 - parcel that is picked up, has to be delivered by the same vehicle (25)
 
@@ -1958,24 +1957,24 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
         }
     }
 
-	// Constraint 7 - Maximum driving time (29)
+	//// Constraint 7 - Maximum driving time (29)
 
-	for (int k = 0; k < fipStat->solPass.size(); k++){
-		if (fipStat->solPass[k].size() < 3){
-			continue;
-		}
-		IloExpr exp(env);
-		int u = fipStat->solPass[k][0];
-		int v = fipStat->solPass[k][fipStat->solPass[k].size()-1];
+	//for (int k = 0; k < fipStat->solPass.size(); k++){
+	//	if (fipStat->solPass[k].size() < 3){
+	//		continue;
+	//	}
+	//	IloExpr exp(env);
+	//	int u = fipStat->solPass[k][0];
+	//	int v = fipStat->solPass[k][fipStat->solPass[k].size()-1];
 
-		exp = b[k][v] - b[k][u];
-		// exp = b[k][v] - b[k][u];
+	//	exp = b[k][v] - b[k][u];
+	//	// exp = b[k][v] - b[k][u];
 
-		sprintf (var, "Constraint7_%d", k);
-		IloRange cons = (exp <= inst->maxTime);
-		cons.setName(var);
-		model.add(cons);
-	}
+	//	sprintf (var, "Constraint7_%d", k);
+	//	IloRange cons = (exp <= inst->maxTime);
+	//	cons.setName(var);
+	//	model.add(cons);
+	//}
 
 	// Constraint 8 - Time windows (30)
 
@@ -2044,33 +2043,33 @@ void fipmip(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, probS
 
 	//Load constraints (33) Maybe remove it
 
-	for (int k = 0; k < fipStat->solPass.size(); k++){
-		if (fipStat->solPass[k].size() < 3){
-			continue;
-		}
-        for (int i = 1; i < fipStat->solPass[k].size(); i++){//maybe start from i = 0
-			IloExpr exp1(env);
-			IloExpr exp2(env);
+	//for (int k = 0; k < fipStat->solPass.size(); k++){
+	//	if (fipStat->solPass[k].size() < 3){
+	//		continue;
+	//	}
+    //    for (int i = 1; i < fipStat->solPass[k].size(); i++){//maybe start from i = 0
+	//		IloExpr exp1(env);
+	//		IloExpr exp2(env);
 
-			int u = fipStat->solPass[k][i];
+	//		int u = fipStat->solPass[k][i];
 
-			for (int f = 0; f < i; f++){ 
-				int v = fipStat->solPass[k][f];
-				exp2 += nodeVec[v].load;
+	//		for (int f = 0; f < i; f++){ 
+	//			int v = fipStat->solPass[k][f];
+	//			exp2 += nodeVec[v].load;
 
-				for (int j = 2*inst->n; j < 2*inst->n + 2*inst->m; j++){
+	//			for (int j = 2*inst->n; j < 2*inst->n + 2*inst->m; j++){
 					
-					exp1 += nodeVec[j].load*x[v][j][k];
-				}
+	//				exp1 += nodeVec[j].load*x[v][j][k];
+	//			}
 
 	
-			}
-			sprintf (var, "Constraint12_%d_%d", k, u);
-			IloRange cons = ((exp1+exp2) <= Q);
-			cons.setName(var);
-			model.add(cons);
-		}
-	}
+	//		}
+	//		sprintf (var, "Constraint12_%d_%d", k, u);
+	//		IloRange cons = ((exp1+exp2) <= Q);
+	//		cons.setName(var);
+	//		model.add(cons);
+	//	}
+	//}
 
 
 
