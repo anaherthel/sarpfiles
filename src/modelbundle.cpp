@@ -226,6 +226,11 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
         setN = setP;
         ref = inst->m;
     }
+    else {
+        setN = bStat->bundleVec.size() - (2*inst->K);
+        setP = setN;
+        ref = 3*inst->m;
+    }
 
     int currentCluster = 0;
 
@@ -667,6 +672,7 @@ void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat
                 // }
                 else{
                     parcelReq = bStat->bundleVec[i][j];
+                    if (parcelReq >= inst->n + 2*inst->m) continue;
                     bStat->parcelBundleVec[parcelReq - inst->n].push_back(i);
                 }
             }
