@@ -2,6 +2,7 @@
 #define SARPSOLUTION_H
 
 #include <algorithm>
+#include <cstdint>
 
 #include "sarpRoute.h"
 #include "Statistics.h"
