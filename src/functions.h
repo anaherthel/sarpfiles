@@ -28,6 +28,7 @@
 #include "modelbundle2.h"
 #include "modelbundlep.h"
 #include "SarpADS.h"
+#include "modelrfn.h"
 
 using namespace std;
 
