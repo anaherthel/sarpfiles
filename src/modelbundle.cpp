@@ -238,8 +238,11 @@ void feasibleBundleArcs (instanceStat *inst, double **mdist, vector<nodeStat> &n
     int auxK;
 
     int fDummy = bStat->bundleVec.size() - inst->K;
-    
-    inst->T = 24; 
+
+    //1A/1AD keep the depot closing time (inst->T = 19), as the node model does
+    if (problem->scen != "1A" && problem->scen != "1AD"){
+        inst->T = 24;
+    }
 
     for(int i = 0; i < bStat->bundleVec.size(); i++){
         if (i < fDummy){
@@ -680,7 +683,60 @@ void makeParcelBundles(instanceStat *inst, vector<nodeStat> &nodeVec, bundleStat
     }
 }
 
+//Timing of a bundle under the windows of all its nodes: the latest start (backward pass),
+//then the earliest completion when starting there (forward pass). A bundle whose windows
+//cannot all be met returns false.
+bool bundleTiming (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, vector<int> &seq, double *start, double *end){
+    double eps = 1e-6;
+    int K = seq.size();
+    vector<double> b(K);
+
+    b[K-1] = nodeVec[seq[K-1]].l;
+    for (int k = K - 2; k >= 0; k--){
+        double tk = mdist[seq[k]][seq[k+1]]/inst->vmed;
+        b[k] = min(nodeVec[seq[k]].l, b[k+1] - nodeVec[seq[k]].delta - tk);
+    }
+    double f = b[0];
+    if (f < nodeVec[seq[0]].e - eps){
+        return false;
+    }
+    for (int k = 1; k < K; k++){
+        double tk = mdist[seq[k-1]][seq[k]]/inst->vmed;
+        f = max(nodeVec[seq[k]].e, f + nodeVec[seq[k-1]].delta + tk);
+        if (f > nodeVec[seq[k]].l + eps){
+            return false;
+        }
+    }
+    *start = b[0];
+    *end = f + nodeVec[seq[K-1]].delta;
+    return true;
+}
+
 void makeStartTimes (instanceStat *inst, double **mdist, vector<nodeStat> &nodeVec, bundleStat *bStat, probStat* problem){
+
+    if (problem->scen == "1A" || problem->scen == "1AD"){
+        //Parcel windows bind in the published instances, so every multi-node bundle is timed
+        //against them. An infeasible bundle gets a negative start, and feasibleBundleArcs then
+        //removes all of its arcs. Service time becomes end - start, so that it includes any
+        //waiting inside the bundle.
+        for (int i = 0; i < bStat->bundleVec.size(); i++){
+            double start, end;
+            if (bStat->bundleVec[i].size() == 1){
+                start = nodeVec[bStat->bundleVec[i][0]].e;
+                end = start + nodeVec[bStat->bundleVec[i][0]].delta;
+            }
+            else if (!bundleTiming(inst, mdist, nodeVec, bStat->bundleVec[i], &start, &end)){
+                start = -1;
+                end = -1;
+            }
+            else{
+                bStat->bundleServVec[i] = end - start;
+            }
+            bStat->bundleStart.push_back(start);
+            bStat->bundleEnd.push_back(end);
+        }
+        return;
+    }
 
     double parcelTime;
     double bundleTime;
