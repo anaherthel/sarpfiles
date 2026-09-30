@@ -354,9 +354,11 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	//Constraint 7 - tie service begining to node visit
 
+    //a delivery is visited exactly when its pickup is, so it follows its pickup's y
     for (int i = 0; i < fDepot; i++){
         IloExpr exp(env);
-        exp = b[i] - M * y[i]; 
+        int vis = (i >= inst->n + inst->m) ? i - inst->m : i;
+        exp = b[i] - M * y[vis];
         sprintf (var, "Constraint7_%d", i);
         IloRange cons = (exp <= 9);
         cons.setName(var);
@@ -425,6 +427,8 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 
 	//Constraints 11 and 12 - bound the service beginning time by the earlier and later service times for each node
 
+	//A parcel's earliest time binds only if the parcel is served: with Constraint 7, an
+	//unconditional e_i <= b_i would force every parcel whose window opens after 9h to be served.
 	for (int i = 0; i < nodeVec.size(); i++){
 		IloExpr exp(env);
 		exp = b[i];
@@ -433,11 +437,19 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 		IloRange cons1 = (exp <= nodeVec[i].l);
 		cons1.setName(var);
 		model.add(cons1);
-		
+
 		sprintf (var, "Constraint12_%d", i);
-		IloRange cons2 = (nodeVec[i].e <= exp);
-		cons2.setName(var);
-		model.add(cons2);			
+		if (i >= inst->n && i < inst->n + 2*inst->m){
+			int pu = (i < inst->n + inst->m) ? i : i - inst->m;
+			IloRange cons2 = (nodeVec[i].e * y[pu] - exp <= 0);
+			cons2.setName(var);
+			model.add(cons2);
+		}
+		else{
+			IloRange cons2 = (nodeVec[i].e <= exp);
+			cons2.setName(var);
+			model.add(cons2);
+		}
 	}
 
     //Constraints 13 - maximum driving time
@@ -754,7 +766,7 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	IloCplex nSARP(model);
 	nSARP.exportModel("nSARP.lp");
 	nSARP.setParam(IloCplex::Threads, threads);
-	nSARP.setParam(IloCplex::Param::TimeLimit, 7200);
+	nSARP.setParam(IloCplex::Param::TimeLimit, getenv("SARP_TIMELIMIT") ? atof(getenv("SARP_TIMELIMIT")) : 7200);
 
     IloNum start;
     IloNum time;
@@ -763,6 +775,11 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
     time = (nSARP.getTime() - start)/threads;
 	// TODO UNCOMMENT //  << "\nSol status: " << nSARP.getStatus() << endl;
 	sStat->feasible = nSARP.isPrimalFeasible();
+	double rbound = 1e30;
+	try { rbound = nSARP.getBestObjValue(); } catch (IloException &e) { e.end(); }
+	cout << "RESULT status=" << nSARP.getStatus() << " obj=" << setprecision(10)
+	     << (sStat->feasible ? nSARP.getObjValue() : -1e30) << " bound=" << rbound
+	     << " time=" << time << " nodes=" << nSARP.getNnodes() << endl;
 
     // TODO UNCOMMENT //  << " Tree_Size: " <<  nSARP.getNnodes() + nSARP.getNnodesLeft() + 1 << endl;
     // TODO UNCOMMENT //  << " Total Time: " << time << endl;

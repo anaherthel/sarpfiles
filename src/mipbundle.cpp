@@ -418,7 +418,7 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	bSARP.exportModel("bSARP.lp");
 	bSARP.setParam(IloCplex::Threads, threads);
 
-    bSARP.setParam(IloCplex::Param::TimeLimit, 7200);
+    bSARP.setParam(IloCplex::Param::TimeLimit, getenv("SARP_TIMELIMIT") ? atof(getenv("SARP_TIMELIMIT")) : 7200);
     // bSARP.setParam(IloCplex::Param::TimeLimit, 10);
 
     IloNum start;
@@ -429,6 +429,11 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 
 	cout << "\nSol status: " << bSARP.getStatus() << endl;
 	sStat->feasible = bSARP.isPrimalFeasible();
+	double rbound = 1e30;
+	try { rbound = bSARP.getBestObjValue(); } catch (IloException &e) { e.end(); }
+	cout << "RESULT status=" << bSARP.getStatus() << " obj=" << setprecision(10)
+	     << (sStat->feasible ? bSARP.getObjValue() : -1e30) << " bound=" << rbound
+	     << " time=" << time << " nodes=" << bSARP.getNnodes() << endl;
 
     // cout << "here" << endl;
     // getchar();
