@@ -601,19 +601,21 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         delete[] trip;
     }
     //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-    else if (inst->instType == "csarp" || inst->instType == "ghsarp"){
+    else if (inst->instType == "csarp" || inst->instType == "ghsarp" || inst->instType == "sfsarp"){
         int originalK = 0;
-    
+        //published instances (sarpinstances, names ending in -V<k>) carry their fleet size in the header
+        bool published = inst->InstName.find("-V") != string::npos;
+
         in >> K;
         in >> service;
         in >> n;
         in >> m;
-        if (n > 40){
+        if (n > 40 && !published){
             K = floor((n+m)*0.1);
         }
 
-        
-        if (inst->instType == "ghsarp"){
+
+        if (inst->instType == "ghsarp" || inst->instType == "sfsarp"){
             originalK = 1;
         }
         else{
@@ -642,7 +644,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         //    exit(1);
         //}
         //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-        if (n > 40){
+        if (n > 40 && !published){
             if (K + trialK <= n - 1){
                 K += trialK;
             }
@@ -757,7 +759,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             //vl[i] = 480;
         }
 
-        if (inst->instType == "ghsarp"){ //multiplying depots
+        if (inst->instType == "ghsarp" || inst->instType == "sfsarp"){ //multiplying depots
             for (int i = 1; i < K; i++){
                 vxs.push_back(vxs[vxs.size()-1]);
                 vys.push_back(vys[vys.size()-1]);
@@ -794,7 +796,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
         if (problem->model != "osarp" && problem->model != "fip"){
             for (int i = 0; i < V + inst->dummy; i++){
                 if (i < n){
-                    euclidean = calcEucDist2(vxs, vys, vxf, vyf, i, i);
+                    euclidean = pubDist(inst->instType, vxs, vys, vxf, vyf, i, i);
                     if (inst->instType == "ghsarp"){
                         euclidean = euclidean/scalingfactor;
                         //euclidean = valRound(euclidean);
@@ -812,7 +814,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                 else if (i < V - K){ 
                     delta[i] = service;
                     if (i < n + m){
-                        euclidean = calcEucDist2(vxs, vys, vxf, vyf, i, i+m);
+                        euclidean = pubDist(inst->instType, vxs, vys, vxf, vyf, i, i+m);
                         if (inst->instType == "ghsarp"){
                             euclidean = euclidean/scalingfactor;
                             //euclidean = valRound(euclidean);                        
@@ -837,7 +839,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     else{
                         if (i < V){
                             if (j < V){
-                                euclidean = calcEucDist2(vxs, vys, vxf, vyf, i, j);
+                                euclidean = pubDist(inst->instType, vxs, vys, vxf, vyf, i, j);
                                 if (inst->instType == "ghsarp"){
                                     euclidean = euclidean/scalingfactor;
                                     //euclidean = valRound(euclidean); 
@@ -863,7 +865,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
             for (int i = 0; i < V + inst->dummy; i++){
                 delta[i] = service;
                 if (i < n){
-                    euclidean = calcEucDist2(vxs, vys, vxf, vyf, i, i+n);
+                    euclidean = pubDist(inst->instType, vxs, vys, vxf, vyf, i, i+n);
                     if (inst->instType == "ghsarp"){
                         euclidean = euclidean/scalingfactor;
                         //euclidean = valRound(euclidean); 
@@ -878,7 +880,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                         profit[i] = 0;
                     }
                     else if (i < 2*n + m){
-                        euclidean = calcEucDist2(vxs, vys, vxf, vyf, i, i+m);
+                        euclidean = pubDist(inst->instType, vxs, vys, vxf, vyf, i, i+m);
                         if (inst->instType == "ghsarp"){
                             euclidean = euclidean/scalingfactor;
                             //euclidean = valRound(euclidean); 
@@ -903,7 +905,7 @@ void readData (int argc, char** argv, nodeStat *node, instanceStat *inst, vector
                     else{
                         if (i < V){
                             if (j < V){
-                                euclidean = calcEucDist2(vxs, vys, vxf, vyf, i, j);
+                                euclidean = pubDist(inst->instType, vxs, vys, vxf, vyf, i, j);
                                 if (inst->instType == "ghsarp"){
                                     euclidean = euclidean/scalingfactor;
                                     //euclidean = valRound(euclidean); 

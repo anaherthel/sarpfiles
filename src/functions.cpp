@@ -64,6 +64,24 @@ double calcEucDist2 (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf,
     return floor(sqrt(a + b)*10)/10;
 }
 
+//Manhattan distance in km for the published sfsarp instances (lat/long coordinates)
+double CalcManKm (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
+    double lat1 = Xf[I], lon1 = Yf[I], lat2 = Xs[J], lon2 = Ys[J];
+    const double kmPerDegreeLat = 111.0;
+    double deltaLat = std::abs(lat2 - lat1) * kmPerDegreeLat;
+    double avgLat = ((lat1 + lat2) / 2.0) * M_PI / 180.0;
+    double deltaLon = std::abs(lon2 - lon1) * kmPerDegreeLat * cos(avgLat);
+    return round((deltaLat + deltaLon) * 1000) / 1000;
+}
+
+//distance used by the csarp/ghsarp/sfsarp reader; ghsarp's scaling by 50 is applied by the caller
+double pubDist (string instType, vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
+    if (instType == "sfsarp"){
+        return CalcManKm(Xs, Ys, Xf, Yf, I, J);
+    }
+    return calcEucDist2(Xs, Ys, Xf, Yf, I, J);
+}
+
 double CalcMan (vector<double> &Xs, vector<double> &Ys, vector<double> &Xf, vector<double> &Yf, int I, int J){
     return abs(Xf[I] - Xs[J]) + abs(Yf[I] - Ys[J]);
 }
