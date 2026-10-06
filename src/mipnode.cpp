@@ -488,8 +488,83 @@ void mipnode(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, prob
 	}
 	//make new constraints for route sequence
 
+	//1AD: a direct pair P-D needs its own passenger, right before P (C-P-D) or right after D
+	//(P-D-C); P-C-D is unchanged. Same routes as the bundle model ({C}, {P-C-D}, {C-P-D}, {P-D-C}).
+	//c: credit, 1 only at a passenger free to precede a direct pair, passed on to the next pickup.
+	//d: debt at a delivery whose direct pair had no credit; the next node must be a passenger,
+	//which then loses its credit.
+	if (problem->scen == "1AD"){
+		int fPU = inst->n;
+		int fDL = inst->n + inst->m;
+		int fDep = inst->n + 2*inst->m;
 
-	if (problem->p1 < 1 && problem->dParcel > 0){
+		IloNumVarArray c(env, nodeVec.size(), 0, 1);
+		IloNumVarArray d(env, nodeVec.size(), 0, 1);
+		for (int i = 0; i < nodeVec.size(); i++){
+			sprintf(var, "c(%d)", i);
+			c[i].setName(var);
+			if (i >= fDL){
+				c[i].setUB(0);
+			}
+			sprintf(var, "d(%d)", i);
+			d[i].setName(var);
+			if (i < fDL || i >= fDep){
+				d[i].setUB(0);
+			}
+			model.add(c[i]);
+			model.add(d[i]);
+		}
+
+		for (int a = 0; a < nas->allArcs.size(); a++){
+			int i = nas->allArcs[a].first;
+			int j = nas->allArcs[a].second;
+
+			IloExpr sumX(env);
+			for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+				int k = nas->arcV[i][j][k1];
+				sumX += x[i][j][k];
+			}
+
+			if (j >= fPU && j < fDL){//into a pickup: credit only from the node right before
+				sprintf (var, "Constraint15c_%d_%d", i, j);
+				IloRange cons = (c[j] - c[i] + sumX <= 1);
+				cons.setName(var);
+				model.add(cons);
+			}
+			if (i >= fDL && i < fDep){//out of a delivery: a debt is paid by the next passenger
+				if (j < inst->n){
+					sprintf (var, "Constraint15p_%d_%d", i, j);
+					IloRange cons = (c[j] + d[i] + sumX <= 2);
+					cons.setName(var);
+					model.add(cons);
+				}
+				else{
+					sprintf (var, "Constraint15n_%d_%d", i, j);
+					IloRange cons = (d[i] + sumX <= 1);
+					cons.setName(var);
+					model.add(cons);
+				}
+			}
+			sumX.end();
+		}
+
+		for (int a = 0; a < nas->arcPD.size(); a++){//direct pair without credit leaves a debt
+			int i = nas->arcPD[a].first;
+			int j = nas->arcPD[a].second;
+
+			IloExpr sumX(env);
+			for (int k1 = 0; k1 < nas->arcV[i][j].size(); k1++){
+				int k = nas->arcV[i][j][k1];
+				sumX += x[i][j][k];
+			}
+			sprintf (var, "Constraint15d_%d", j);
+			IloRange cons = (d[j] - sumX + c[i] >= 0);
+			cons.setName(var);
+			model.add(cons);
+			sumX.end();
+		}
+	}
+	else if (problem->p1 < 1 && problem->dParcel > 0){
 		
 		//for (int i = inst->n + 2*inst->m; i < nodeVec.size(); i++){
 		//	IloExpr exp(env);
