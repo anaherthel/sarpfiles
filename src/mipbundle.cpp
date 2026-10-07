@@ -419,6 +419,9 @@ void mipbundle(instanceStat *inst, vector<nodeStat> &nodeVec, double **mdist, bu
 	bSARP.setParam(IloCplex::Threads, threads);
 
     bSARP.setParam(IloCplex::Param::TimeLimit, getenv("SARP_TIMELIMIT") ? atof(getenv("SARP_TIMELIMIT")) : 7200);
+    //prove optimality exactly: the default 1e-4 relative gap stopped sfsarp-40-20-2-V1 at 215.513 < 215.529
+    bSARP.setParam(IloCplex::Param::MIP::Tolerances::MIPGap, 0.0);
+    bSARP.setParam(IloCplex::Param::MIP::Tolerances::AbsMIPGap, 0.0);
     // bSARP.setParam(IloCplex::Param::TimeLimit, 10);
 
     IloNum start;
